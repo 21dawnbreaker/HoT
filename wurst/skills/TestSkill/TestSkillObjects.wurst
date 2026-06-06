@@ -3,20 +3,20 @@ import public Assets
 import public BuffObjEditing
 import ChannelAbilityPreset
 
-public let SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public let BUFF_OBJ = compiletime(createDummyBuffObject("TestBuff", "This unit is being tested.", Icons.bTNInfernal, Abilities.incinerateBuff, "chest"))
-public let BUFF_ID = compiletime(BUFF_ID_GEN.next())
-public let FLASH_EFFECT = Abilities.stormBoltTarget
+public constant SPELL_ID = compiletime(ABIL_ID_GEN.next())
+// public constant BUFF_OBJ = compiletime(createDummyBuffObject("TestBuff", "This unit is being tested.", Icons.bTNInfernal, Abilities.incinerateBuff, "chest"))
+// public constant BUFF_ID = compiletime(BUFF_ID_GEN.next())
+public constant FLASH_EFFECT = Abilities.stormBoltTarget
 
-@compiletime function getBuff()
-    new BuffDefinition(BUFF_ID, 'Btab')
-    ..setName("testBuff")
-    ..setTooltipNormal("presetTooltipNormal")
-    ..setTooltipNormalExtended("presetTooltipNormalExtended")
-    ..setIcon(Icons.bTNInfernal)
+@compiletime function genBuff()
+    new BuffDefinition('Btsl', 'Basl')
+        ..setName("testBuff")
+        ..setTooltipNormal("presetTooltipNormal")
+        ..setTooltipNormalExtended("presetTooltipNormalExtended")
+        ..setIcon(Icons.bTNInfernal)
+        ..setArtSpecial(Abilities.incinerateBuff)
 
 @compiletime function genObj()
-    // new ChannelAbilityPreset(SPELL_ID, 3, true)
     new AbilityDefinitionAlchemistAcidBomb(SPELL_ID)
     ..setHeroAbility(true)
     ..setLevels(3)
@@ -29,13 +29,13 @@ public let FLASH_EFFECT = Abilities.stormBoltTarget
     ..presetButtonPosResearch(1, 0)
     ..presetButtonPosNormal(1, 3)
     ..presetIcon(Icons.bTNInfernal)
-    ..presetBuffs(lvl -> BUFF_ID.toString())
+    ..presetBuffs(lvl -> "Btsl")
 
     ..presetPrimaryDamage(lvl -> 0)
     ..presetSecondaryDamage(lvl -> 0)
     ..presetArmorPenalty(lvl -> 0)
     ..presetCooldown(lvl -> 6.0 - lvl)
-    ..presetManaCost(lvl -> 3 - lvl)
+    ..presetManaCost(lvl -> 0 - lvl)
     ..presetCastRange(lvl -> 100)
     ..presetDurationHero(lvl -> 5)
     ..presetDurationNormal(lvl -> 5)

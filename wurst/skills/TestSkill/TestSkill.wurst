@@ -4,7 +4,7 @@ import TestSkillObjects
 import ClosureEvents
 import ClosureTimers
 
-let buffId = BUFF_OBJ
+// let buffId = BUFF_OBJ
 
 init
     EventListener.onTargetCast(SPELL_ID) (unit caster, unit target) ->
