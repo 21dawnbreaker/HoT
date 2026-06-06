@@ -1,0 +1,10 @@
+---
+projectName: HoT
+dependencies:
+- https://github.com/wurstscript/wurstStdlib2
+buildMapData:
+  name: HoT
+  fileName: HoT.w3x
+  author: gwynbleidd
+scriptMode: JASS
+wc3Patch: v2.0
