@@ -1,0 +1,29 @@
+package PotionDrinkSound
+
+import ClosureEvents
+
+function doSoundEffect(unit u)
+    PlaySoundOnUnitBJ(gg_snd_diablo2potiondrink, 100, u)
+
+init
+    // HP
+    EventListener.onCast('AIh1') (unit u) ->
+        doSoundEffect(u)
+    EventListener.onCast('AIh2') (unit u) ->
+        doSoundEffect(u)
+    EventListener.onCast('A0K4') (unit u) ->
+        doSoundEffect(u)
+    // MP
+    EventListener.onCast('AIm1') (unit u) ->
+        doSoundEffect(u)
+    EventListener.onCast('AIm2') (unit u) ->
+        doSoundEffect(u)
+    EventListener.onCast('A0K5') (unit u) ->
+        doSoundEffect(u)
+    // HP + MP
+    EventListener.onCast('A0K6') (unit u) ->
+        doSoundEffect(u)
+    EventListener.onCast('A0K7') (unit u) ->
+        doSoundEffect(u)
+    EventListener.onCast('A0JJ') (unit u) ->
+        doSoundEffect(u)

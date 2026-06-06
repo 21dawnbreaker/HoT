@@ -7,7 +7,6 @@ init
     EventListener.add(EVENT_PLAYER_CHAT_FILTER) ->
         let msg = GetEventPlayerChatString()
         let plyer = GetTriggerPlayer()
-        print(plyer.getName())
         if msg == "-test4"
             let u = udg_hero_by_player[plyer.getId() + 1]
             u.addPermanentAbility(SPELL_ID)
