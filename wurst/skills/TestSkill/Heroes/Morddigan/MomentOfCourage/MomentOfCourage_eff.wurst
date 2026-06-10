@@ -1,0 +1,8 @@
+package MomentOfCourage_eff
+
+import ClosureEvents
+
+
+init
+    EventListener.onCast('A02G') (unit caster) ->
+        flashEffect("Models/[Wind]Decimate_Q2.mdx", caster.getPos3Real(), 0.75)
