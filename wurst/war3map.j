@@ -53,13 +53,13 @@ constant boolean LIBRARY_NSLCodeHelper=true
 //endglobals from NSLCodeHelper
 //globals from NSLCodexStore:
 constant boolean LIBRARY_NSLCodexStore=true
-trigger array NSLCodexStore___CodexArray
-integer array NSLCodexStore___CodexVersion
-integer NSLCodexStore___CodexSize= 0
+trigger array NSLCodexStore__CodexArray
+integer array NSLCodexStore__CodexVersion
+integer NSLCodexStore__CodexSize= 0
 //endglobals from NSLCodexStore
 //globals from NSLHelper:
 constant boolean LIBRARY_NSLHelper=true
-integer array NSLHelper___TWO_POW_CACHE
+integer array NSLHelper__TWO_POW_CACHE
 //endglobals from NSLHelper
 //globals from NSLSizeEnum:
 constant boolean LIBRARY_NSLSizeEnum=true
@@ -99,16 +99,16 @@ constant integer NSL_SIZE_LESS_THAN_2147483648= 31
 constant boolean LIBRARY_PlayerUtils=true
 constant force FORCE_PLAYING= CreateForce()
    
-string array PlayerUtils___Name
-string array PlayerUtils___Hex
-string array PlayerUtils___OriginalHex
-playercolor array PlayerUtils___CurrentColor
+string array PlayerUtils__Name
+string array PlayerUtils__Hex
+string array PlayerUtils__OriginalHex
+playercolor array PlayerUtils__CurrentColor
 //endglobals from PlayerUtils
 //globals from SyncHelper:
 constant boolean LIBRARY_SyncHelper=true
 constant string SyncHelper_SYNC_PREFIX_COUNT= "CP"
 constant string SyncHelper_SYNC_PREFIX= "CS"
-constant integer SyncHelper___SYNC_SIZE_CHUNK= 200
+constant integer SyncHelper__SYNC_SIZE_CHUNK= 200
 //endglobals from SyncHelper
 //globals from NSLImpl:
 constant boolean LIBRARY_NSLImpl=true
@@ -123,17 +123,17 @@ constant boolean NSL_UseSimpleSaveLoad= false
 //endglobals from NSLImpl
 //globals from NSLSaveLoad:
 constant boolean LIBRARY_NSLSaveLoad=true
-string NSLSaveLoad___NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
-integer NSLSaveLoad___NSL_CharsetLen= 64
-integer NSLSaveLoad___NSL_BitPerChar= 6
+string NSLSaveLoad__NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
+integer NSLSaveLoad__NSL_CharsetLen= 64
+integer NSLSaveLoad__NSL_BitPerChar= 6
 		
-integer NSLSaveLoad___NSL_HT_KEY_CODE_ID= 0
-integer NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX= 1
-integer NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET= 2
+integer NSLSaveLoad__NSL_HT_KEY_CODE_ID= 0
+integer NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX= 1
+integer NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET= 2
 
-hashtable NSLSaveLoad___NSL_Hashtable= InitHashtable()
-hashtable NSLSaveLoad___NSL_HashtableValue= InitHashtable()
-timer array NSLSaveLoad___NSL_Timers
+hashtable NSLSaveLoad__NSL_Hashtable= InitHashtable()
+hashtable NSLSaveLoad__NSL_HashtableValue= InitHashtable()
+timer array NSLSaveLoad__NSL_Timers
 //endglobals from NSLSaveLoad
 //globals from SaveFile:
 constant boolean LIBRARY_SaveFile=true
@@ -154,7 +154,7 @@ string array NSL_PlayerLoadingCode
 constant trigger SL_OnLoadedTrigger= CreateTrigger()
 integer SL_LoadedPlayerId
         
-trigger NSLUtils___format
+trigger NSLUtils__format
 //endglobals from NSLUtils
     // User-defined
 group udg_UnitGroup= null
@@ -166,7 +166,7 @@ unit udg_dummy2= null
 unit udg_ThunderStrikeCasterWTF= null
 group udg_UnitGroupLS= null
 unit udg_ShamanTruesight= null
-group udg_DiedHeroes= null
+group udg_HeroesDead_UG= null
 unit udg_DummyAncestral= null
 effect udg_AncestralEff= null
 unit udg_TurtleKill= null
@@ -699,13 +699,9 @@ integer array udg_SadismInt
 group udg_SadismUG= null
 integer array udg_SadismCap_Int
 group udg_BitterHarvestUG= null
-integer array udg_LastGraspInt
 group udg_LastGraspUG= null
-timer array udg_LastGraspTimer
-integer array udg_LastGraspInt2
 hashtable udg_LastGraspHT= null
-effect array udg_LastGraspEff
-group udg_LastGraspUG2= null
+group udg_LastGraspInactiveUG= null
 group udg_TerrorFromTheDeepUG= null
 integer udg_TerrorFromTheDeepInt= 0
 group udg_SurgeOfMaliceUG= null
@@ -1042,6 +1038,13 @@ timer udg_BossMusicTimer= null
 boolean udg_MusicEmilisma= false
 boolean udg_HydraTailOn= false
 group udg_strong_aura_UG= null
+integer array udg_region_votes
+boolean udg_vote_on= false
+string udg_tempString2
+boolean udg_battle_stance_offensive= false
+integer udg_whirlwind_bonus= 0
+timer udg_whirlwind_timer= null
+integer udg_decimate_targets= 0
 
     // Generated
 rect gg_rct_StartLoc= null
@@ -1597,6 +1600,7 @@ trigger gg_trg_DeathPenalty= null
 trigger gg_trg_GeneralPlayableMapAreaEnter= null
 trigger gg_trg_BuyingMercenaries= null
 trigger gg_trg_BackpackAndDisobidienceMove= null
+trigger gg_trg_DemonDying= null
 trigger gg_trg_QuestMutagenReward= null
 trigger gg_trg_QuestCompleted= null
 trigger gg_trg_QuestCompletedPreviously= null
@@ -1605,6 +1609,8 @@ trigger gg_trg_CheckPlayerFoodLimitFunc= null
 trigger gg_trg_DisobidienceOfDeathAquire= null
 trigger gg_trg_DisobidienceOfDeathResAndRemove= null
 trigger gg_trg_GlobalDamageEvent= null
+trigger gg_trg_HeroResFunc= null
+trigger gg_trg_BackpackFreeze= null
 trigger gg_trg_Leave= null
 trigger gg_trg_bossfight1= null
 trigger gg_trg_bossfight2= null
@@ -1638,6 +1644,8 @@ trigger gg_trg_cheed= null
 trigger gg_trg_goldenconsul= null
 trigger gg_trg_fallenshrine= null
 trigger gg_trg_enemies= null
+trigger gg_trg_res= null
+trigger gg_trg_res2= null
 trigger gg_trg_reinacrnations= null
 trigger gg_trg_test= null
 trigger gg_trg_test2= null
@@ -1676,8 +1684,6 @@ trigger gg_trg_ActMsg1= null
 trigger gg_trg_ActMsg2= null
 trigger gg_trg_ActMsg3= null
 trigger gg_trg_ActMsg4= null
-trigger gg_trg_HeroResFunc= null
-trigger gg_trg_BackpackFreeze= null
 trigger gg_trg_RoomCreateExit= null
 trigger gg_trg_RoomCreateExitTownBeforeBoss= null
 trigger gg_trg_KarmaSystem= null
@@ -1708,12 +1714,12 @@ trigger gg_trg_tL14= null
 trigger gg_trg_tL14_Copy= null
 trigger gg_trg_tL15= null
 trigger gg_trg_tL15_Copy= null
-trigger gg_trg_tL16= null
-trigger gg_trg_tL17= null
+trigger gg_trg_TalentUnholyStrength= null
+trigger gg_trg_TalentGreed= null
 trigger gg_trg_tL18= null
 trigger gg_trg_tL18_Copy= null
 trigger gg_trg_tL18_Copy_Copy= null
-trigger gg_trg_tL19= null
+trigger gg_trg_TalentCorpseExplosion= null
 trigger gg_trg_tL19_Copy= null
 trigger gg_trg_tL20= null
 trigger gg_trg_tL20_Copy= null
@@ -1722,12 +1728,12 @@ trigger gg_trg_tL21_Copy= null
 trigger gg_trg_tL22= null
 trigger gg_trg_tL22_copy= null
 trigger gg_trg_tL22_copy_Copy= null
-trigger gg_trg_tL23= null
+trigger gg_trg_TalentFelEnergy= null
 trigger gg_trg_tL24= null
 trigger gg_trg_tL24_Copy= null
-trigger gg_trg_tL25= null
-trigger gg_trg_tL26= null
-trigger gg_trg_tL27= null
+trigger gg_trg_TalentHatred= null
+trigger gg_trg_TalentFoulBulwark= null
+trigger gg_trg_TalentHemostasis= null
 trigger gg_trg_tL28= null
 trigger gg_trg_tL28_Copy_Copy_2= null
 trigger gg_trg_tL28_Copy_Copy_2_Copy= null
@@ -1744,13 +1750,16 @@ trigger gg_trg_tL33_Copy_Copy= null
 trigger gg_trg_tL34= null
 trigger gg_trg_tL34_copy= null
 trigger gg_trg_tL34_copy_Copy= null
+trigger gg_trg_TalentMight= null
 trigger gg_trg_tL35= null
 trigger gg_trg_tL35_copy= null
+trigger gg_trg_TalentSuperstition= null
 trigger gg_trg_tL36= null
 trigger gg_trg_tL36_Copy= null
 trigger gg_trg_TalentArmorupLVL= null
 trigger gg_trg_TalentLevelup= null
 trigger gg_trg_TalentMushroomStew= null
+trigger gg_trg_TalentArcana= null
 trigger gg_trg_tL40= null
 trigger gg_trg_tL40_Copy= null
 trigger gg_trg_TalentEvasionLVL= null
@@ -2031,7 +2040,6 @@ trigger gg_trg_Elixir= null
 trigger gg_trg_Taunt= null
 trigger gg_trg_ShieldBash= null
 trigger gg_trg_DefenseShout= null
-trigger gg_trg_DemonDying= null
 trigger gg_trg_BaronStop= null
 trigger gg_trg_BaronCast= null
 trigger gg_trg_Baron= null
@@ -2105,6 +2113,7 @@ trigger gg_trg_LifeDrainStop= null
 trigger gg_trg_LifeDrain= null
 trigger gg_trg_LifeDrainDying= null
 trigger gg_trg_LifeDrainPeridoic= null
+trigger gg_trg_Warstomp= null
 trigger gg_trg_RunestoneMaster= null
 trigger gg_trg_RuneOfMightyWindCheck= null
 trigger gg_trg_RuneOfMightyWindDmg= null
@@ -2154,6 +2163,7 @@ trigger gg_trg_DamageVSelitesPickup= null
 trigger gg_trg_DamageVSelitesDrop= null
 trigger gg_trg_MinionBonusPickup= null
 trigger gg_trg_MinionBonusDrop= null
+trigger gg_trg_ScalesEkvilibrium= null
 trigger gg_trg_ArmorOfWarTake= null
 trigger gg_trg_ArmorOfWarDrop= null
 trigger gg_trg_ArmorOfWarGiveDoD= null
@@ -2168,7 +2178,6 @@ trigger gg_trg_OrcishStaffBloodlust= null
 trigger gg_trg_GauntletsOfWarKnockbackTarget= null
 trigger gg_trg_GauntletsOfWarKnockbackCaster= null
 trigger gg_trg_DefenseStaff= null
-trigger gg_trg_ScalesEkvilibrium= null
 trigger gg_trg_ChaosStaffLvlAbuse= null
 trigger gg_trg_IzuverTake= null
 trigger gg_trg_IzuverDrop= null
@@ -2278,6 +2287,8 @@ trigger gg_trg_BackpackLvlup= null
 trigger gg_trg_Pickup= null
 trigger gg_trg_Drop= null
 trigger gg_trg_Initialization= null
+trigger gg_trg_VoteRegionSell= null
+trigger gg_trg_TimeElapsedRegion= null
 trigger gg_trg_TimeElapsedInit= null
 trigger gg_trg_TimeElapsedNPC= null
 trigger gg_trg_Autoload= null
@@ -2629,7 +2640,9 @@ unit gg_unit_H00C_0066= null
 unit gg_unit_H00Q_0280= null
 unit gg_unit_Hamg_0135= null
 unit gg_unit_U00K_0485= null
+unit gg_unit_U00K_0470= null
 unit gg_unit_O02P_0444= null
+unit gg_unit_O02P_0339= null
 unit gg_unit_U00J_0435= null
 unit gg_unit_O02N_0418= null
 unit gg_unit_H023_0404= null
@@ -2646,10 +2659,13 @@ unit gg_unit_O024_0311= null
 unit gg_unit_hlum_0313= null
 unit gg_unit_O01W_0221= null
 unit gg_unit_H020_0243= null
+unit gg_unit_N01N_0239= null
+unit gg_unit_O01W_0238= null
 unit gg_unit_E002_0526= null
 unit gg_unit_n00R_0715= null
 unit gg_unit_ogru_0290= null
 unit gg_unit_U00I_0341= null
+unit gg_unit_U00I_0284= null
 unit gg_unit_E00A_0257= null
 destructable gg_dest_LTlt_12813= null
 destructable gg_dest_FTtw_12843= null
@@ -2657,6 +2673,14 @@ destructable gg_dest_BTtw_12095= null
 destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
+trigger gg_trg_BattleStance= null
+trigger gg_trg_BattleStanceLearn= null
+trigger gg_trg_Whirlwind= null
+unit gg_unit_E00C_0088= null
+trigger gg_trg_WhirlwindTimer= null
+sound gg_snd_Spell_WR_Ravager_Cast_02= null
+sound gg_snd_Spell_WR_Ravager_Cast_03= null
+trigger gg_trg_Decimate= null
 
 trigger l__library_init
 
@@ -2749,9 +2773,9 @@ integer s__User_AmountPlaying= 0
 playercolor array s__User_Color
 integer array s__User_PlayingPlayer
 integer array s__User_PlayingPlayerIndex
-constant integer si__SyncHelper___Sync=5
-trigger s__SyncHelper___Sync_TriggerCount= CreateTrigger()
-trigger s__SyncHelper___Sync_Trigger= CreateTrigger()
+constant integer si__SyncHelper__Sync=5
+trigger s__SyncHelper__Sync_TriggerCount= CreateTrigger()
+trigger s__SyncHelper__Sync_Trigger= CreateTrigger()
 constant integer si__NSL_Code=6
 integer si__NSL_Code_F=0
 integer si__NSL_Code_I=0
@@ -4088,8 +4112,8 @@ endfunction
             return s__File_write(s__File_open(filename),"")
         endfunction
     
-//Implemented from module FileIO___FileInit:
-        function s__File_FileIO___FileInit___onInit takes nothing returns nothing
+//Implemented from module FileIO__FileInit:
+        function s__File_FileIO__FileInit___onInit takes nothing returns nothing
             // Read check
             set s__File_ReadEnabled=(s__File_readEx((s__File_write(s__File_open("FileTester.pld"),"FileIO_")),true)) == "FileIO_" // INLINED!!
         endfunction
@@ -4106,14 +4130,14 @@ endfunction
 
 //library FileIO ends
 //library NSLCodeHelper:
-    function NSLCodeHelper___GetSign takes integer value returns integer
+    function NSLCodeHelper__GetSign takes integer value returns integer
         if ( value < 0 ) then
             return 1
         endif
         return 0
     endfunction
     
-    function NSLCodeHelper___GetSignInvert takes integer sign returns integer
+    function NSLCodeHelper__GetSignInvert takes integer sign returns integer
         if ( sign == 1 ) then
             return - 1
         endif
@@ -4121,12 +4145,12 @@ endfunction
     endfunction
     
     function NSLCodeHelper_Save_Int takes integer inst,integer value returns nothing
-        call sc__NSL_Code_SV(inst,NSLCodeHelper___GetSign(value) , NSL_SIZE_BOOLEAN)
+        call sc__NSL_Code_SV(inst,NSLCodeHelper__GetSign(value) , NSL_SIZE_BOOLEAN)
         call sc__NSL_Code_SV(inst,IAbsBJ(value) , NSL_SIZE_LESS_THAN_2147483648)
     endfunction
     
     function NSLCodeHelper_Read_Int takes integer inst returns integer
-        return NSLCodeHelper___GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
+        return NSLCodeHelper__GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
     endfunction
 
 //library NSLCodeHelper ends
@@ -4135,9 +4159,9 @@ endfunction
 //processed:     function interface CodexFormat takes integer playerId, NSL_Code loader returns nothing
 
     function NSLCodexStore_Add takes integer codex_version,trigger codex returns nothing
-        set NSLCodexStore___CodexArray[NSLCodexStore___CodexSize]=codex
-        set NSLCodexStore___CodexVersion[NSLCodexStore___CodexSize]=codex_version
-        set NSLCodexStore___CodexSize=NSLCodexStore___CodexSize + 1
+        set NSLCodexStore__CodexArray[NSLCodexStore__CodexSize]=codex
+        set NSLCodexStore__CodexVersion[NSLCodexStore__CodexSize]=codex_version
+        set NSLCodexStore__CodexSize=NSLCodexStore__CodexSize + 1
         call h__TriggerRegisterVariableEvent(codex, "udg_NSL_EventExecutorLoad", EQUAL, I2R(codex_version))
         call EnableTrigger(codex)
     endfunction
@@ -4145,9 +4169,9 @@ endfunction
     function NSLCodexStore_GetCodexForVersion takes integer codex_version returns trigger
         local integer i= 0
         loop
-            exitwhen i == NSLCodexStore___CodexSize
-            if ( NSLCodexStore___CodexVersion[i] == codex_version ) then
-                return NSLCodexStore___CodexArray[i]
+            exitwhen i == NSLCodexStore__CodexSize
+            if ( NSLCodexStore__CodexVersion[i] == codex_version ) then
+                return NSLCodexStore__CodexArray[i]
             endif
             set i=i + 1
         endloop
@@ -4159,43 +4183,43 @@ endfunction
 
     // vJass compiler should inline this function call
  function NSLHelper_TwoPow takes integer exp returns integer
-        return NSLHelper___TWO_POW_CACHE[exp]
+        return NSLHelper__TWO_POW_CACHE[exp]
 	endfunction
     
-    function NSLHelper___Init takes nothing returns nothing
+    function NSLHelper__Init takes nothing returns nothing
         // Cache for better performance
-        set NSLHelper___TWO_POW_CACHE[0]=1
-        set NSLHelper___TWO_POW_CACHE[1]=2
-        set NSLHelper___TWO_POW_CACHE[2]=4
-        set NSLHelper___TWO_POW_CACHE[3]=8
-        set NSLHelper___TWO_POW_CACHE[4]=16
-        set NSLHelper___TWO_POW_CACHE[5]=32
-        set NSLHelper___TWO_POW_CACHE[6]=64
-        set NSLHelper___TWO_POW_CACHE[7]=128
-        set NSLHelper___TWO_POW_CACHE[8]=256
-        set NSLHelper___TWO_POW_CACHE[9]=512
-        set NSLHelper___TWO_POW_CACHE[10]=1024
-        set NSLHelper___TWO_POW_CACHE[11]=2048
-        set NSLHelper___TWO_POW_CACHE[12]=4096
-        set NSLHelper___TWO_POW_CACHE[13]=8192
-        set NSLHelper___TWO_POW_CACHE[14]=16384
-        set NSLHelper___TWO_POW_CACHE[15]=32768
-        set NSLHelper___TWO_POW_CACHE[16]=65536
-        set NSLHelper___TWO_POW_CACHE[17]=131072
-        set NSLHelper___TWO_POW_CACHE[18]=262144
-        set NSLHelper___TWO_POW_CACHE[19]=524288
-        set NSLHelper___TWO_POW_CACHE[20]=1048576
-        set NSLHelper___TWO_POW_CACHE[21]=2097152
-        set NSLHelper___TWO_POW_CACHE[22]=4194304
-        set NSLHelper___TWO_POW_CACHE[23]=8388608
-        set NSLHelper___TWO_POW_CACHE[24]=16777216
-        set NSLHelper___TWO_POW_CACHE[25]=33554432
-        set NSLHelper___TWO_POW_CACHE[26]=67108864
-        set NSLHelper___TWO_POW_CACHE[27]=134217728
-        set NSLHelper___TWO_POW_CACHE[28]=268435456
-        set NSLHelper___TWO_POW_CACHE[29]=536870912
-        set NSLHelper___TWO_POW_CACHE[30]=1073741824
-        set NSLHelper___TWO_POW_CACHE[31]=2147483647
+        set NSLHelper__TWO_POW_CACHE[0]=1
+        set NSLHelper__TWO_POW_CACHE[1]=2
+        set NSLHelper__TWO_POW_CACHE[2]=4
+        set NSLHelper__TWO_POW_CACHE[3]=8
+        set NSLHelper__TWO_POW_CACHE[4]=16
+        set NSLHelper__TWO_POW_CACHE[5]=32
+        set NSLHelper__TWO_POW_CACHE[6]=64
+        set NSLHelper__TWO_POW_CACHE[7]=128
+        set NSLHelper__TWO_POW_CACHE[8]=256
+        set NSLHelper__TWO_POW_CACHE[9]=512
+        set NSLHelper__TWO_POW_CACHE[10]=1024
+        set NSLHelper__TWO_POW_CACHE[11]=2048
+        set NSLHelper__TWO_POW_CACHE[12]=4096
+        set NSLHelper__TWO_POW_CACHE[13]=8192
+        set NSLHelper__TWO_POW_CACHE[14]=16384
+        set NSLHelper__TWO_POW_CACHE[15]=32768
+        set NSLHelper__TWO_POW_CACHE[16]=65536
+        set NSLHelper__TWO_POW_CACHE[17]=131072
+        set NSLHelper__TWO_POW_CACHE[18]=262144
+        set NSLHelper__TWO_POW_CACHE[19]=524288
+        set NSLHelper__TWO_POW_CACHE[20]=1048576
+        set NSLHelper__TWO_POW_CACHE[21]=2097152
+        set NSLHelper__TWO_POW_CACHE[22]=4194304
+        set NSLHelper__TWO_POW_CACHE[23]=8388608
+        set NSLHelper__TWO_POW_CACHE[24]=16777216
+        set NSLHelper__TWO_POW_CACHE[25]=33554432
+        set NSLHelper__TWO_POW_CACHE[26]=67108864
+        set NSLHelper__TWO_POW_CACHE[27]=134217728
+        set NSLHelper__TWO_POW_CACHE[28]=268435456
+        set NSLHelper__TWO_POW_CACHE[29]=536870912
+        set NSLHelper__TWO_POW_CACHE[30]=1073741824
+        set NSLHelper__TWO_POW_CACHE[31]=2147483647
 	// set TWO_POW_CACHE[31] = 2147483648
     endfunction
 
@@ -4249,7 +4273,7 @@ endfunction
         endfunction
    
         function s__User__get_hex takes integer this returns string
-            return PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
+            return PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
         endfunction
    
         function s__User__set_color takes integer this,playercolor c returns nothing
@@ -4261,7 +4285,7 @@ endfunction
         endfunction
    
         function s__User__get_nameColored takes integer this returns string
-            return (PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
+            return (PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
         endfunction
    
         function s__User_onLeave takes nothing returns boolean
@@ -4291,8 +4315,8 @@ endfunction
             return false
         endfunction
    
-//Implemented from module PlayerUtils___PlayerUtilsInit:
-        function s__User_PlayerUtils___PlayerUtilsInit___onInit takes nothing returns nothing
+//Implemented from module PlayerUtils__PlayerUtilsInit:
+        function s__User_PlayerUtils__PlayerUtilsInit___onInit takes nothing returns nothing
             local trigger t= CreateTrigger()
             local integer i= 0
             local integer p
@@ -4300,32 +4324,32 @@ endfunction
             set s__User_Local=GetLocalPlayer()
             set s__User_LocalId=GetPlayerId(s__User_Local)
        
-            set PlayerUtils___OriginalHex[0]="|cffff0303"
-            set PlayerUtils___OriginalHex[1]="|cff0042ff"
-            set PlayerUtils___OriginalHex[2]="|cff1ce6b9"
-            set PlayerUtils___OriginalHex[3]="|cff540081"
-            set PlayerUtils___OriginalHex[4]="|cfffffc01"
-            set PlayerUtils___OriginalHex[5]="|cfffe8a0e"
-            set PlayerUtils___OriginalHex[6]="|cff20c000"
-            set PlayerUtils___OriginalHex[7]="|cffe55bb0"
-            set PlayerUtils___OriginalHex[8]="|cff959697"
-            set PlayerUtils___OriginalHex[9]="|cff7ebff1"
-            set PlayerUtils___OriginalHex[10]="|cff106246"
-            set PlayerUtils___OriginalHex[11]="|cff4e2a04"
+            set PlayerUtils__OriginalHex[0]="|cffff0303"
+            set PlayerUtils__OriginalHex[1]="|cff0042ff"
+            set PlayerUtils__OriginalHex[2]="|cff1ce6b9"
+            set PlayerUtils__OriginalHex[3]="|cff540081"
+            set PlayerUtils__OriginalHex[4]="|cfffffc01"
+            set PlayerUtils__OriginalHex[5]="|cfffe8a0e"
+            set PlayerUtils__OriginalHex[6]="|cff20c000"
+            set PlayerUtils__OriginalHex[7]="|cffe55bb0"
+            set PlayerUtils__OriginalHex[8]="|cff959697"
+            set PlayerUtils__OriginalHex[9]="|cff7ebff1"
+            set PlayerUtils__OriginalHex[10]="|cff106246"
+            set PlayerUtils__OriginalHex[11]="|cff4e2a04"
             
             if ( bj_MAX_PLAYERS > 12 ) then
-                set PlayerUtils___OriginalHex[12]="|cff9B0000"
-                set PlayerUtils___OriginalHex[13]="|cff0000C3"
-                set PlayerUtils___OriginalHex[14]="|cff00EAFF"
-                set PlayerUtils___OriginalHex[15]="|cffBE00FE"
-                set PlayerUtils___OriginalHex[16]="|cffEBCD87"
-                set PlayerUtils___OriginalHex[17]="|cffF8A48B"
-                set PlayerUtils___OriginalHex[18]="|cffBFFF80"
-                set PlayerUtils___OriginalHex[19]="|cffDCB9EB"
-                set PlayerUtils___OriginalHex[20]="|cff282828"
-                set PlayerUtils___OriginalHex[21]="|cffEBF0FF"
-                set PlayerUtils___OriginalHex[22]="|cff00781E"
-                set PlayerUtils___OriginalHex[23]="|cffA46F33"
+                set PlayerUtils__OriginalHex[12]="|cff9B0000"
+                set PlayerUtils__OriginalHex[13]="|cff0000C3"
+                set PlayerUtils__OriginalHex[14]="|cff00EAFF"
+                set PlayerUtils__OriginalHex[15]="|cffBE00FE"
+                set PlayerUtils__OriginalHex[16]="|cffEBCD87"
+                set PlayerUtils__OriginalHex[17]="|cffF8A48B"
+                set PlayerUtils__OriginalHex[18]="|cffBFFF80"
+                set PlayerUtils__OriginalHex[19]="|cffDCB9EB"
+                set PlayerUtils__OriginalHex[20]="|cff282828"
+                set PlayerUtils__OriginalHex[21]="|cffEBF0FF"
+                set PlayerUtils__OriginalHex[22]="|cff00781E"
+                set PlayerUtils__OriginalHex[23]="|cffA46F33"
             endif
          
             set s__User_first=s__User_NULL
@@ -4338,7 +4362,7 @@ endfunction
                 set s__User_id[p]=i
            
                 set s__User_Color[i]=GetPlayerColor(s__User_handle[p])
-                set PlayerUtils___CurrentColor[i]=s__User_Color[i]
+                set PlayerUtils__CurrentColor[i]=s__User_Color[i]
              
                 if ( GetPlayerController(s__User_handle[p]) == MAP_CONTROL_USER and GetPlayerSlotState(s__User_handle[p]) == PLAYER_SLOT_STATE_PLAYING ) then
 
@@ -4362,14 +4386,14 @@ endfunction
                     call TriggerRegisterPlayerEvent(t, s__User_handle[p], EVENT_PLAYER_LEAVE)
                     call ForceAddPlayer(FORCE_PLAYING, s__User_handle[p])
                
-                    set PlayerUtils___Hex[p]=PlayerUtils___OriginalHex[GetHandleId(s__User_Color[i])]
+                    set PlayerUtils__Hex[p]=PlayerUtils__OriginalHex[GetHandleId(s__User_Color[i])]
                
                     set s__User_AmountPlaying=s__User_AmountPlaying + 1
 
                 endif
            
-                set PlayerUtils___Name[p]=GetPlayerName(s__User_handle[p])
-                set s__User_originalName[p]=PlayerUtils___Name[p]
+                set PlayerUtils__Name[p]=GetPlayerName(s__User_handle[p])
+                set s__User_originalName[p]=PlayerUtils__Name[p]
            
                 set i=i + 1
             endloop
@@ -4391,13 +4415,13 @@ endfunction
 
     
     
-//Implemented from module SyncHelper___INITS:
-        function s__SyncHelper___Sync_SyncHelper___INITS___onInit takes nothing returns nothing
+//Implemented from module SyncHelper__INITS:
+        function s__SyncHelper__Sync_SyncHelper__INITS___onInit takes nothing returns nothing
             local integer i= 0
             
             loop
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
                 set i=i + 1
                 
                 exitwhen i == bj_MAX_PLAYER_SLOTS
@@ -4406,15 +4430,15 @@ endfunction
     
     function SyncString takes string s returns nothing
         local integer len= StringLength(s)
-        local integer parts= ( len / SyncHelper___SYNC_SIZE_CHUNK ) + 1
+        local integer parts= ( len / SyncHelper__SYNC_SIZE_CHUNK ) + 1
   local string sub
         local integer i= 0
-        if ( ModuloInteger(len, SyncHelper___SYNC_SIZE_CHUNK) == 0 ) then
+        if ( ModuloInteger(len, SyncHelper__SYNC_SIZE_CHUNK) == 0 ) then
             set parts=parts - 1
         endif
         call BlzSendSyncData(SyncHelper_SYNC_PREFIX_COUNT, I2S(parts))
 		loop
-			set sub=SubString(s, i * SyncHelper___SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper___SYNC_SIZE_CHUNK)
+			set sub=SubString(s, i * SyncHelper__SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper__SYNC_SIZE_CHUNK)
 			if ( StringLength(sub) > 0 ) then
                 call BlzSendSyncData(SyncHelper_SYNC_PREFIX, sub)
 			endif
@@ -4424,15 +4448,15 @@ endfunction
     endfunction
     
     function OnSyncString takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper___Sync_Trigger, func)
+        return TriggerAddAction(s__SyncHelper__Sync_Trigger, func)
     endfunction
     
     function OnSyncStringCount takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper___Sync_TriggerCount, func)
+        return TriggerAddAction(s__SyncHelper__Sync_TriggerCount, func)
     endfunction
     
     function RemoveSyncString takes triggeraction t returns nothing
-        call TriggerRemoveAction(s__SyncHelper___Sync_Trigger, t)
+        call TriggerRemoveAction(s__SyncHelper__Sync_Trigger, t)
     endfunction
     
 
@@ -4441,7 +4465,7 @@ endfunction
     
     
     
-    function NSLImpl___SaveCodeValues takes integer saver returns nothing
+    function NSLImpl__SaveCodeValues takes integer saver returns nothing
         local integer pid= GetPlayerId(udg_NSL_SavePlayer) + 1
         local integer i= 1
         loop
@@ -4451,7 +4475,7 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl___ReadCodeValues takes integer loader returns nothing
+    function NSLImpl__ReadCodeValues takes integer loader returns nothing
         local integer pid= GetPlayerId(udg_NSL_LoadPlayer) + 1
         local integer i= 1
         local integer v
@@ -4463,15 +4487,15 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl___SavePlayerCompleted takes nothing returns nothing
+    function NSLImpl__SavePlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_SavePlayer)
         local integer playerCode= udg_NSL_SaveCode[playerId]
-        call NSLImpl___SaveCodeValues(playerCode)
+        call NSLImpl__SaveCodeValues(playerCode)
         call sc__NSL_Code_Generate(playerCode)
         set udg_NSL_EventExecutorSaveCompleted=0.0
     endfunction
     
-    function NSLImpl___LoadPlayerCompleted takes nothing returns nothing
+    function NSLImpl__LoadPlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_LoadPlayer)
         local integer playerCode= udg_NSL_LoadCode[playerId]
         call s__NSL_Code_deallocate(playerCode)
@@ -4482,7 +4506,7 @@ endfunction
     function NSLImpl_LoadPlayer takes integer playerId,integer loader,trigger format returns nothing
         set udg_NSL_LoadPlayer=Player(playerId)
         set udg_NSL_LoadCode[playerId]=loader
-        call NSLImpl___ReadCodeValues(loader)
+        call NSLImpl__ReadCodeValues(loader)
         call TriggerExecute(format)
     endfunction
 
@@ -4492,14 +4516,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerExecutorSave)
     endfunction
     
-    function NSLImpl___Init takes nothing returns nothing
+    function NSLImpl__Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl___SavePlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl__SavePlayerCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl___LoadPlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl__LoadPlayerCompleted)
     endfunction
 
 //library NSLImpl ends
@@ -4508,52 +4532,52 @@ endfunction
 //processed: 	function interface NSL_PlayerLoadCallback takes integer playerId, boolean is_valid, NSL_Code loader returns nothing
 //processed: 	function interface NSL_PlayerSaveCallback takes integer playerId, string generated_code returns nothing
 	
- function NSLSaveLoad___Init takes nothing returns nothing
+ function NSLSaveLoad__Init takes nothing returns nothing
   local integer i= 0
 		
         loop
-			set NSLSaveLoad___NSL_Timers[i]=CreateTimer()
+			set NSLSaveLoad__NSL_Timers[i]=CreateTimer()
 			set i=i + 1
 			exitwhen i == 24
 		endloop
 	endfunction
 	
- function NSLSaveLoad___CharAt takes integer index returns string
-		return SubString(NSLSaveLoad___NSL_Charset, index, index + 1)
+ function NSLSaveLoad__CharAt takes integer index returns string
+		return SubString(NSLSaveLoad__NSL_Charset, index, index + 1)
 	endfunction
 	
- function NSLSaveLoad___GenerateTimerCallback takes nothing returns nothing
+ function NSLSaveLoad__GenerateTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Generate(inst)
 	endfunction
 	
- function NSLSaveLoad___LoadTimerCallback takes nothing returns nothing
+ function NSLSaveLoad__LoadTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Load(inst)
 	endfunction
 	
- function NSLSaveLoad___IndexOf takes string char returns integer
+ function NSLSaveLoad__IndexOf takes string char returns integer
   local integer i= 0
 		loop
-			if ( NSLSaveLoad___CharAt(i) == char ) then
+			if ( NSLSaveLoad__CharAt(i) == char ) then
 				return i
 			endif
 			set i=i + 1
-			exitwhen i == NSLSaveLoad___NSL_CharsetLen
+			exitwhen i == NSLSaveLoad__NSL_CharsetLen
 		endloop
 
 		return 0
 	endfunction
 	
- function NSLSaveLoad___GetPlayerHash takes integer player_id returns integer
+ function NSLSaveLoad__GetPlayerHash takes integer player_id returns integer
   local string name= GetPlayerName(Player(player_id))
   local integer len= StringLength(name)
   local integer hash= 0
   local integer i= 0
 		loop
-			set hash=hash + NSLSaveLoad___IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
+			set hash=hash + NSLSaveLoad__IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
 			set i=i + 1
 			exitwhen i == len
 		endloop
@@ -4599,14 +4623,14 @@ endfunction
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
 			
-			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
 			
 			return inst
   endfunction
 		
   function s__NSL_Code_StoreBit takes integer this,integer value returns nothing
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
 			set s__NSL_Code_bits_count[this]=s__NSL_Code_bits_count[this] + 1
   endfunction 
 		
@@ -4630,7 +4654,7 @@ endfunction
 			endif
 			
 			loop
-				set current=(NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+				set current=(NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
 				if ( value >= current ) then
 					call s__NSL_Code_StoreBit(this,1)
 					set size_done=size_done + 1
@@ -4651,63 +4675,63 @@ endfunction
   endfunction
 		
   function s__NSL_Code_Insert takes integer this returns nothing
-   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_value_count[this] ) then
 				set s__NSL_Code_is_started[this]=false
 				set s__NSL_Code_is_ready[this]=true
-				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
 				return
 			endif
 
 			if ( s__NSL_Code_is_started[this] ) then
-				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
-				call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
+				call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
             call s__NSL_Code_InsertImpl(this,NSL_CodeVersion , NSL_SIZE_LESS_THAN_1024)
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_SV takes integer this,integer value,integer size returns nothing
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
   endfunction
 		
   function s__NSL_Code_BitAt takes integer this,integer pos returns integer
-			return LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + pos)
+			return LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + pos)
   endfunction
 		
   function s__NSL_Code_EncodeImpl takes integer this,integer offset returns integer
-   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad___NSL_BitPerChar)
+   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad__NSL_BitPerChar)
    local integer value= 0
    local integer exponent= ( last_index - offset ) - 1
    local integer i= offset
 			
 			loop
-				if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-					set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+				if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+					set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
 				endif
 				set exponent=exponent - 1
 				set i=i + 1
 				exitwhen i == last_index
 			endloop
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, last_index)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, last_index)
 			return value
   endfunction
 		
   function s__NSL_Code_Encode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_bits_count[this] ) then
 				return - 1
 			endif
@@ -4716,17 +4740,17 @@ endfunction
   endfunction
 		
   function s__NSL_Code_GenerateSecurity takes integer this returns nothing
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen))
 			
-            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen))
+            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen))
 
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad__NSL_CharsetLen))
   endfunction
 		
   function s__NSL_Code_GenerateImpl takes integer this returns nothing
@@ -4739,10 +4763,10 @@ endfunction
 				return
 			endif
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
             
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
   endfunction
 		
   function s__NSL_Code_Generate takes integer this returns nothing
@@ -4755,37 +4779,37 @@ endfunction
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
 			endif
 
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_Decode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_code_length[this] ) then
 				return - 1
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-			return ModuloInteger(NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+			return ModuloInteger(NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen)
   endfunction
 
   function s__NSL_Code_CheckSecurity takes integer this returns boolean
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen) ) then
                 return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen) ) then
 				return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen) ) then
 				return false
 			endif
 			return true
@@ -4803,9 +4827,9 @@ endfunction
 				return
 			endif
 			
-			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad___NSL_BitPerChar)
+			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad__NSL_BitPerChar)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
   endfunction
 
   function s__NSL_Code_Load takes integer this returns boolean
@@ -4814,36 +4838,36 @@ endfunction
 				return true
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
 			
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
 			return true
   endfunction
 		
@@ -4853,8 +4877,8 @@ endfunction
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -4948,7 +4972,7 @@ endfunction
 //library SaveFile ends
 //library NSLSaveLoadExecutor:
     
-    function NSLSaveLoadExecutor___LoadSaveSlot takes player p,string charId returns nothing
+    function NSLSaveLoadExecutor__LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -4965,7 +4989,7 @@ endfunction
         endif
     endfunction
 
-    function NSLSaveLoadExecutor___OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
+    function NSLSaveLoadExecutor__OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
         local string charId= NSL_PlayerCharId[player_id]
 		call s__SaveFile_create(Player(player_id) , charId , charId , generated_code)
         if ( player_id == GetPlayerId(GetLocalPlayer()) ) then
@@ -4974,7 +4998,7 @@ endfunction
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     endfunction
     
-    function NSLSaveLoadExecutor___CheckSaveCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor__CheckSaveCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerSave ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Save Error]|r You are not allowed to save.")) // INLINED!!
             return
@@ -4984,13 +5008,13 @@ endfunction
         set udg_NSL_EventCheckSaveCompleted=0.0
     endfunction
     
-    function NSLSaveLoadExecutor___CheckLoadCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor__CheckLoadCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerLoad ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r You are not allowed to load.")) // INLINED!!
             return
         endif
 
-        call NSLSaveLoadExecutor___LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
+        call NSLSaveLoadExecutor__LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
         
         set udg_NSL_EventCheckLoadCompleted=0.0
     endfunction
@@ -5009,14 +5033,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerCheckSave)
     endfunction
 
-    function NSLSaveLoadExecutor___Init takes nothing returns nothing
+    function NSLSaveLoadExecutor__Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckSaveCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckSaveCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckLoadCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckLoadCompleted)
     endfunction
 
 
@@ -5039,22 +5063,22 @@ endfunction
         call NSLSaveLoadExecutor_Save(GetPlayerId(savingPlayer) , SubString(input, 6, 999))
     endfunction
 
-    function NSLUtils___OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
+    function NSLUtils__OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
         if ( is_valid ) then
-            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils___format == null ) then
+            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils__format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
                 return
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
         endif
     endfunction
         
-    function NSLUtils___LoadSaveSlot takes player p,string charId returns nothing
+    function NSLUtils__LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -5088,7 +5112,7 @@ endfunction
         call NSLSaveLoadExecutor_Load(GetPlayerId(loadingPlayer) , SubString(input, 6, 999))
 	endfunction
     
-    function NSLUtils___LoadSaveSlot_OnLoadCount takes nothing returns nothing
+    function NSLUtils__LoadSaveSlot_OnLoadCount takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -5098,7 +5122,7 @@ endfunction
         set NSL_PlayerLoadingCode[s__User_id[user]]=""
     endfunction
     
-    function NSLUtils___LoadSaveSlot_OnLoad takes nothing returns nothing
+    function NSLUtils__LoadSaveSlot_OnLoad takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -5112,11 +5136,11 @@ endfunction
         endif
     endfunction
     
- function NSLUtils___Init takes nothing returns nothing
+ function NSLUtils__Init takes nothing returns nothing
   local integer i= 0
 
-call TriggerAddAction(s__SyncHelper___Sync_TriggerCount, (function NSLUtils___LoadSaveSlot_OnLoadCount)) // INLINED!!
-call TriggerAddAction(s__SyncHelper___Sync_Trigger, (function NSLUtils___LoadSaveSlot_OnLoad)) // INLINED!!
+call TriggerAddAction(s__SyncHelper__Sync_TriggerCount, (function NSLUtils__LoadSaveSlot_OnLoadCount)) // INLINED!!
+call TriggerAddAction(s__SyncHelper__Sync_Trigger, (function NSLUtils__LoadSaveSlot_OnLoad)) // INLINED!!
 
 		loop
             if ( NSL_UseSimpleSaveLoad ) then
@@ -5162,7 +5186,7 @@ function InitGlobals takes nothing returns nothing
     set udg_PlayerGroup=CreateForce()
     set udg_WarriorsGroup=CreateGroup()
     set udg_UnitGroupLS=CreateGroup()
-    set udg_DiedHeroes=CreateGroup()
+    set udg_HeroesDead_UG=CreateGroup()
     set udg_Distance=0
     set udg_KillInteger=0
     set udg_KillLevel=0
@@ -5580,29 +5604,8 @@ function InitGlobals takes nothing returns nothing
     endloop
 
     set udg_BitterHarvestUG=CreateGroup()
-    set i=0
-    loop
-        exitwhen ( i > 0 )
-        set udg_LastGraspInt[i]=0
-        set i=i + 1
-    endloop
-
     set udg_LastGraspUG=CreateGroup()
-    set i=0
-    loop
-        exitwhen ( i > 1 )
-        set udg_LastGraspTimer[i]=CreateTimer()
-        set i=i + 1
-    endloop
-
-    set i=0
-    loop
-        exitwhen ( i > 0 )
-        set udg_LastGraspInt2[i]=0
-        set i=i + 1
-    endloop
-
-    set udg_LastGraspUG2=CreateGroup()
+    set udg_LastGraspInactiveUG=CreateGroup()
     set udg_TerrorFromTheDeepUG=CreateGroup()
     set udg_TerrorFromTheDeepInt=0
     set udg_SurgeOfMaliceUG=CreateGroup()
@@ -6082,6 +6085,19 @@ function InitGlobals takes nothing returns nothing
     set udg_MusicEmilisma=false
     set udg_HydraTailOn=false
     set udg_strong_aura_UG=CreateGroup()
+    set i=0
+    loop
+        exitwhen ( i > 0 )
+        set udg_region_votes[i]=0
+        set i=i + 1
+    endloop
+
+    set udg_vote_on=true
+    set udg_tempString2=""
+    set udg_battle_stance_offensive=true
+    set udg_whirlwind_bonus=0
+    set udg_whirlwind_timer=CreateTimer()
+    set udg_decimate_targets=0
 endfunction
 
 //***************************************************************************
@@ -7683,7 +7699,7 @@ function InitSounds takes nothing returns nothing
     set gg_snd_Miniboss=CreateSound("Miniboss.mp3", false, false, false, 1, 1, "DefaultEAXON")
     call SetSoundDuration(gg_snd_Miniboss, 144888)
     call SetSoundChannel(gg_snd_Miniboss, 0)
-    call SetSoundVolume(gg_snd_Miniboss, 40)
+    call SetSoundVolume(gg_snd_Miniboss, 55)
     call SetSoundPitch(gg_snd_Miniboss, 1.0)
     set gg_snd_diablo2shatter2=CreateSound("diablo2shatter2.wav", false, true, false, 1, 1, "CombatSoundsEAX")
     call SetSoundDuration(gg_snd_diablo2shatter2, 822)
@@ -7715,7 +7731,7 @@ function InitSounds takes nothing returns nothing
     set gg_snd_Combat6=CreateSound("Combat6.mp3", false, false, false, 1, 1, "DefaultEAXON")
     call SetSoundDuration(gg_snd_Combat6, 135993)
     call SetSoundChannel(gg_snd_Combat6, 0)
-    call SetSoundVolume(gg_snd_Combat6, 60)
+    call SetSoundVolume(gg_snd_Combat6, 50)
     call SetSoundPitch(gg_snd_Combat6, 1.0)
     set gg_snd_aimed_shot=CreateSound("aimed_shot.mp3", false, true, false, 1, 1, "SpellsEAX")
     call SetSoundDuration(gg_snd_aimed_shot, 1541)
@@ -7773,6 +7789,24 @@ function InitSounds takes nothing returns nothing
     call SetSoundChannel(gg_snd_combat5, 0)
     call SetSoundVolume(gg_snd_combat5, 50)
     call SetSoundPitch(gg_snd_combat5, 1.0)
+    set gg_snd_Spell_WR_Ravager_Cast_02=CreateSound("Spell_WR_Ravager_Cast_02.mp3", false, true, true, 1, 1, "CombatSoundsEAX")
+    call SetSoundDuration(gg_snd_Spell_WR_Ravager_Cast_02, 2063)
+    call SetSoundChannel(gg_snd_Spell_WR_Ravager_Cast_02, 5)
+    call SetSoundVolume(gg_snd_Spell_WR_Ravager_Cast_02, 127)
+    call SetSoundPitch(gg_snd_Spell_WR_Ravager_Cast_02, 1.0)
+    call SetSoundDistances(gg_snd_Spell_WR_Ravager_Cast_02, 0.0, 10000.0)
+    call SetSoundDistanceCutoff(gg_snd_Spell_WR_Ravager_Cast_02, 3000.0)
+    call SetSoundConeAngles(gg_snd_Spell_WR_Ravager_Cast_02, 0.0, 0.0, 127)
+    call SetSoundConeOrientation(gg_snd_Spell_WR_Ravager_Cast_02, 0.0, 0.0, 0.0)
+    set gg_snd_Spell_WR_Ravager_Cast_03=CreateSound("Spell_WR_Ravager_Cast_03.mp3", false, true, true, 1, 1, "CombatSoundsEAX")
+    call SetSoundDuration(gg_snd_Spell_WR_Ravager_Cast_03, 2142)
+    call SetSoundChannel(gg_snd_Spell_WR_Ravager_Cast_03, 5)
+    call SetSoundVolume(gg_snd_Spell_WR_Ravager_Cast_03, 127)
+    call SetSoundPitch(gg_snd_Spell_WR_Ravager_Cast_03, 1.0)
+    call SetSoundDistances(gg_snd_Spell_WR_Ravager_Cast_03, 0.0, 10000.0)
+    call SetSoundDistanceCutoff(gg_snd_Spell_WR_Ravager_Cast_03, 3000.0)
+    call SetSoundConeAngles(gg_snd_Spell_WR_Ravager_Cast_03, 0.0, 0.0, 127)
+    call SetSoundConeOrientation(gg_snd_Spell_WR_Ravager_Cast_03, 0.0, 0.0, 0.0)
 endfunction
 
 //***************************************************************************
@@ -8169,17 +8203,17 @@ function CreateUnitsForPlayer23 takes nothing returns nothing
     set gg_unit_O01W_0221=BlzCreateUnitWithSkin(p, 'O01W', - 9018.3, - 19415.9, 236.487, 'O01W')
     set u=BlzCreateUnitWithSkin(p, 'n00Y', 10937.4, - 12429.4, 278.729, 'n00Y')
     set gg_unit_N01N_0235=BlzCreateUnitWithSkin(p, 'N01N', - 8738.8, - 19384.6, 216.483, 'N01N')
-    set u=BlzCreateUnitWithSkin(p, 'O01W', 12468.6, - 12595.5, 249.770, 'O01W')
-    set u=BlzCreateUnitWithSkin(p, 'N01N', 10465.0, - 11714.9, 265.790, 'N01N')
+    set gg_unit_O01W_0238=BlzCreateUnitWithSkin(p, 'O01W', 12468.6, - 12595.5, 249.770, 'O01W')
+    set gg_unit_N01N_0239=BlzCreateUnitWithSkin(p, 'N01N', 10465.0, - 11714.9, 265.790, 'N01N')
     set u=BlzCreateUnitWithSkin(p, 'E009', 9768.6, - 11691.4, 285.011, 'E009')
     set u=BlzCreateUnitWithSkin(p, 'H020', 9668.3, - 12372.8, 272.370, 'H020')
     set gg_unit_H020_0243=BlzCreateUnitWithSkin(p, 'H020', - 9371.1, - 19629.2, 312.929, 'H020')
     set u=BlzCreateUnitWithSkin(p, 'E00A', 11559.9, - 12357.6, 244.738, 'E00A')
     set u=BlzCreateUnitWithSkin(p, 'n00Q', 11474.8, - 12336.9, 279.400, 'n00Q')
     set gg_unit_E00A_0257=BlzCreateUnitWithSkin(p, 'E00A', - 9389.6, - 19405.2, 269.398, 'E00A')
-    set u=BlzCreateUnitWithSkin(p, 'U00I', 12114.0, - 11807.0, 266.800, 'U00I')
+    set gg_unit_U00I_0284=BlzCreateUnitWithSkin(p, 'U00I', 12114.0, - 11807.0, 266.800, 'U00I')
     set u=BlzCreateUnitWithSkin(p, 'n00X', 10933.7, - 12675.9, 262.669, 'n00X')
-    set u=BlzCreateUnitWithSkin(p, 'O02P', 10262.8, - 12379.3, 275.477, 'O02P')
+    set gg_unit_O02P_0339=BlzCreateUnitWithSkin(p, 'O02P', 10262.8, - 12379.3, 275.477, 'O02P')
     set u=BlzCreateUnitWithSkin(p, 'n01K', 10382.4, - 12508.0, 265.177, 'n01K')
     set gg_unit_U00I_0341=BlzCreateUnitWithSkin(p, 'U00I', - 10325.0, - 19369.4, 290.457, 'U00I')
     set u=BlzCreateUnitWithSkin(p, 'n00X', 10775.2, - 12631.7, 281.367, 'n00X')
@@ -8231,7 +8265,7 @@ function CreateUnitsForPlayer23 takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'n01L', 10286.5, - 12644.0, 255.540, 'n01L')
     set u=BlzCreateUnitWithSkin(p, 'o02Q', 10448.7, - 12299.5, 5.240, 'o02Q')
     set gg_unit_O02P_0444=BlzCreateUnitWithSkin(p, 'O02P', - 9686.0, - 19338.3, 293.885, 'O02P')
-    set u=BlzCreateUnitWithSkin(p, 'U00K', 10991.5, - 11772.2, 264.937, 'U00K')
+    set gg_unit_U00K_0470=BlzCreateUnitWithSkin(p, 'U00K', 10991.5, - 11772.2, 264.937, 'U00K')
     set gg_unit_U00K_0485=BlzCreateUnitWithSkin(p, 'U00K', - 8833.4, - 19800.2, 189.230, 'U00K')
 endfunction
 
@@ -8302,7 +8336,7 @@ function CreateNeutralPassive takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'ntnt', 12896.0, - 12512.0, 239.709, 'ntnt')
     set u=BlzCreateUnitWithSkin(p, 'ntnt', 8960.0, - 10976.0, 342.763, 'ntnt')
     set u=BlzCreateUnitWithSkin(p, 'ntt2', 11200.0, - 11264.0, 270.000, 'ntt2')
-    set gg_unit_H00D_0059=BlzCreateUnitWithSkin(p, 'H00D', 528.9, 800.3, 264.680, 'H00D')
+    set gg_unit_H00D_0059=BlzCreateUnitWithSkin(p, 'H00D', 492.1, 809.9, 268.946, 'H00D')
     call SetUnitState(gg_unit_H00D_0059, UNIT_STATE_MANA, 500)
     call SetUnitColor(gg_unit_H00D_0059, ConvertPlayerColor(3))
     call UnitAddItemToSlotById(gg_unit_H00D_0059, 'I006', 0)
@@ -8322,7 +8356,7 @@ function CreateNeutralPassive takes nothing returns nothing
     call SetUnitColor(gg_unit_O002_0064, ConvertPlayerColor(12))
     call UnitAddItemToSlotById(gg_unit_O002_0064, 'I00B', 0)
     call UnitAddItemToSlotById(gg_unit_O002_0064, 'I01T', 1)
-    set gg_unit_O00C_0065=BlzCreateUnitWithSkin(p, 'O00C', - 33.5, 891.0, 275.654, 'O00C')
+    set gg_unit_O00C_0065=BlzCreateUnitWithSkin(p, 'O00C', 599.7, 786.4, 230.234, 'O00C')
     call SetUnitColor(gg_unit_O00C_0065, ConvertPlayerColor(20))
     call UnitAddItemToSlotById(gg_unit_O00C_0065, 'I00A', 0)
     call UnitAddItemToSlotById(gg_unit_O00C_0065, 'I01S', 1)
@@ -8348,6 +8382,8 @@ function CreateNeutralPassive takes nothing returns nothing
     call SetUnitColor(gg_unit_H00A_0082, ConvertPlayerColor(5))
     call UnitAddItemToSlotById(gg_unit_H00A_0082, 'I001', 0)
     call UnitAddItemToSlotById(gg_unit_H00A_0082, 'I01S', 1)
+    set gg_unit_E00C_0088=BlzCreateUnitWithSkin(p, 'E00C', 395.2, 755.2, 315.053, 'E00C')
+    call SetUnitColor(gg_unit_E00C_0088, ConvertPlayerColor(16))
     set u=BlzCreateUnitWithSkin(p, 'h00X', 1248.8, 363.3, 263.743, 'h00X')
     set u=BlzCreateUnitWithSkin(p, 'o00N', 1156.1, 471.3, 183.226, 'o00N')
     set gg_unit_H001_0116=BlzCreateUnitWithSkin(p, 'H001', - 690.5, 162.4, 305.180, 'H001')
@@ -9062,36 +9098,6 @@ function InitTrig_infoRemove takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: RaidBuffs
-//===========================================================================
-function Trig_RaidBuffs_Func001Func002C takes nothing returns boolean
-    if ( not ( UnitHasItemOfTypeBJ(GetEnumUnit(), 'I09C') == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_RaidBuffs_Func001A takes nothing returns nothing
-    // DvimeritGauntlets
-    if ( Trig_RaidBuffs_Func001Func002C() ) then
-        set udg_DamageEventAmount=( udg_DamageEventAmount * 0.90 )
-    else
-    endif
-    // DvimeritGauntlets
-endfunction
-
-function Trig_RaidBuffs_Actions takes nothing returns nothing
-    call ForGroupBJ(udg_HeroesGroup, function Trig_RaidBuffs_Func001A)
-endfunction
-
-//===========================================================================
-function InitTrig_RaidBuffs takes nothing returns nothing
-    set gg_trg_RaidBuffs=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_RaidBuffs, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddAction(gg_trg_RaidBuffs, function Trig_RaidBuffs_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: DeathPenalty
 //===========================================================================
 function Trig_DeathPenalty_Conditions takes nothing returns boolean
@@ -9101,7 +9107,7 @@ function Trig_DeathPenalty_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_DeathPenalty_Func001C takes nothing returns boolean
+function Trig_DeathPenalty_Func002C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_DevotionUG) == true ) ) then
         return false
     endif
@@ -9109,7 +9115,8 @@ function Trig_DeathPenalty_Func001C takes nothing returns boolean
 endfunction
 
 function Trig_DeathPenalty_Actions takes nothing returns nothing
-    if ( Trig_DeathPenalty_Func001C() ) then
+    call GroupAddUnitSimple(GetTriggerUnit(), udg_HeroesDead_UG)
+    if ( Trig_DeathPenalty_Func002C() ) then
         call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 20 ) ))
     else
         call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 5 ) ))
@@ -9245,6 +9252,12 @@ function Trig_GeneralPlayableMapAreaEnter_Func012C takes nothing returns boolean
         return false
     endif
     if ( not ( IsUnitType(GetTriggerUnit(), UNIT_TYPE_HERO) == false ) ) then
+        return false
+    endif
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) != 'e000' ) ) then
+        return false
+    endif
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) != 'e007' ) ) then
         return false
     endif
     return true
@@ -9629,6 +9642,139 @@ function InitTrig_BackpackAndDisobidienceMove takes nothing returns nothing
     set gg_trg_BackpackAndDisobidienceMove=CreateTrigger()
     call DisableTrigger(gg_trg_BackpackAndDisobidienceMove)
     call TriggerAddAction(gg_trg_BackpackAndDisobidienceMove, function Trig_BackpackAndDisobidienceMove_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: DemonDying
+//===========================================================================
+function Trig_DemonDying_Func011C takes nothing returns boolean
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00B' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n005' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n007' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00A' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n009' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n008' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n007' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n006' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nerw' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'ndqs' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nvdg' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nfel' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nfgu' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'ninf' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00Q' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'E00A' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_DemonDying_Conditions takes nothing returns boolean
+    if ( not Trig_DemonDying_Func011C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemonDying_Func001Func004C takes nothing returns boolean
+    if ( not ( IsUnitAliveBJ(udg_Baron) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemonDying_Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(gg_unit_H00B_0036, udg_HeroesGroup) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemonDying_Func004C takes nothing returns boolean
+    if ( not ( udg_DemonDyingInt >= 20 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemonDying_Func007C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00B' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemonDying_Actions takes nothing returns nothing
+    if ( Trig_DemonDying_Func001C() ) then
+        call AddSpecialEffectTargetUnitBJ("origin", gg_unit_H00B_0036, "Abilities\\Spells\\Undead\\DeathPact\\DeathPactCaster.mdl")
+        call DestroyEffectBJ(GetLastCreatedEffectBJ())
+        call SetUnitLifePercentBJ(gg_unit_H00B_0036, ( GetUnitLifePercent(gg_unit_H00B_0036) + 10.00 ))
+        if ( Trig_DemonDying_Func001Func004C() ) then
+            call SetUnitLifePercentBJ(udg_Baron, ( GetUnitLifePercent(udg_Baron) + 10.00 ))
+            call AddSpecialEffectTargetUnitBJ("origin", udg_Baron, "Abilities\\Spells\\Undead\\DeathPact\\DeathPactCaster.mdl")
+            call DestroyEffectBJ(GetLastCreatedEffectBJ())
+        else
+        endif
+    else
+    endif
+    call TriggerSleepAction(1.00)
+    if ( Trig_DemonDying_Func004C() ) then
+        set udg_DemonDyingInt=0
+    else
+    endif
+    set udg_DemonDyingInt=( udg_DemonDyingInt + 1 )
+    set udg_DemonDyingLoc[udg_DemonDyingInt]=GetUnitLoc(GetTriggerUnit())
+    if ( Trig_DemonDying_Func007C() ) then
+        call AddSpecialEffectLocBJ(udg_DemonDyingLoc[udg_DemonDyingInt], "Conflagrate.mdx")
+        call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.70)
+        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) - 50.00 ))
+        call DestroyEffectBJ(GetLastCreatedEffectBJ())
+    else
+        call AddSpecialEffectLocBJ(udg_DemonDyingLoc[udg_DemonDyingInt], "Conflagrate.mdx")
+        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) - 50.00 ))
+        call DestroyEffectBJ(GetLastCreatedEffectBJ())
+    endif
+    call RemoveLocation(udg_DemonDyingLoc[udg_DemonDyingInt])
+    call TriggerSleepAction(0.75)
+    call RemoveUnit(GetTriggerUnit())
+endfunction
+
+//===========================================================================
+function InitTrig_DemonDying takes nothing returns nothing
+    set gg_trg_DemonDying=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_DemonDying, EVENT_PLAYER_UNIT_DEATH)
+    call TriggerAddCondition(gg_trg_DemonDying, Condition(function Trig_DemonDying_Conditions))
+    call TriggerAddAction(gg_trg_DemonDying, function Trig_DemonDying_Actions)
 endfunction
 
 //===========================================================================
@@ -13485,6 +13631,39 @@ function InitTrig_GlobalDamageEvent takes nothing returns nothing
 endfunction
 
 //===========================================================================
+// Trigger: HeroResFunc
+//
+// expects tempLoc
+//===========================================================================
+function Trig_HeroResFunc_Func001Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesDead_UG) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_HeroResFunc_Func001A takes nothing returns nothing
+    if ( Trig_HeroResFunc_Func001Func001C() ) then
+        call GroupRemoveUnitSimple(GetEnumUnit(), udg_HeroesDead_UG)
+        call ReviveHeroLoc(GetEnumUnit(), udg_tempLoc, true)
+        call SetUnitLifePercentBJ(GetEnumUnit(), 20.00)
+        call SetUnitManaPercentBJ(GetEnumUnit(), 20.00)
+        call PauseUnitBJ(false, udg_backpack_by_player[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))])
+    else
+    endif
+endfunction
+
+function Trig_HeroResFunc_Actions takes nothing returns nothing
+    call ForGroupBJ(udg_HeroesGroup, function Trig_HeroResFunc_Func001A)
+endfunction
+
+//===========================================================================
+function InitTrig_HeroResFunc takes nothing returns nothing
+    set gg_trg_HeroResFunc=CreateTrigger()
+    call TriggerAddAction(gg_trg_HeroResFunc, function Trig_HeroResFunc_Actions)
+endfunction
+
+//===========================================================================
 // Trigger: Leave
 //===========================================================================
 function Trig_Leave_Func003Func001C takes nothing returns boolean
@@ -14163,6 +14342,42 @@ function InitTrig_enemies takes nothing returns nothing
 endfunction
 
 //===========================================================================
+// Trigger: res
+//===========================================================================
+function Trig_res_Actions takes nothing returns nothing
+    set udg_tempLoc=GetUnitLoc(GroupPickRandomUnit(udg_HeroesGroup))
+    call TriggerExecute(gg_trg_HeroResFunc)
+    call RemoveLocation(udg_tempLoc)
+endfunction
+
+//===========================================================================
+function InitTrig_res takes nothing returns nothing
+    set gg_trg_res=CreateTrigger()
+    call TriggerRegisterPlayerChatEvent(gg_trg_res, Player(0), "-res1", true)
+    call TriggerAddAction(gg_trg_res, function Trig_res_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: res2
+//===========================================================================
+function Trig_res2_Func002A takes nothing returns nothing
+    call ReviveHeroLoc(GetEnumUnit(), udg_tempLoc, true)
+endfunction
+
+function Trig_res2_Actions takes nothing returns nothing
+    set udg_tempLoc=GetUnitLoc(GroupPickRandomUnit(udg_HeroesGroup))
+    call ForGroupBJ(udg_HeroesGroup, function Trig_res2_Func002A)
+    call RemoveLocation(udg_tempLoc)
+endfunction
+
+//===========================================================================
+function InitTrig_res2 takes nothing returns nothing
+    set gg_trg_res2=CreateTrigger()
+    call TriggerRegisterPlayerChatEvent(gg_trg_res2, Player(0), "-res2", true)
+    call TriggerAddAction(gg_trg_res2, function Trig_res2_Actions)
+endfunction
+
+//===========================================================================
 // Trigger: reinacrnations
 //===========================================================================
 function Trig_reinacrnations_Func001Func001A takes nothing returns nothing
@@ -14191,17 +14406,13 @@ endfunction
 //===========================================================================
 // Trigger: test
 //===========================================================================
+function Trig_test_Func001A takes nothing returns nothing
+    call UnitAddItemByIdSwapped('I093', GetEnumUnit())
+    call UnitAddItemByIdSwapped('I0AV', GetEnumUnit())
+endfunction
+
 function Trig_test_Actions takes nothing returns nothing
-    set udg_tempInt=GetConvertedPlayerId(Player(0))
-    call DisplayTextToForce(GetPlayersAll(), ( "Damage amp (ALL) - " + ( I2S(udg_HERO_DAMAGE_BONUS_ALL[udg_tempInt]) + "%" ) ))
-    call DisplayTextToForce(GetPlayersAll(), ( "Damage amp (PHYSICAL) - " + ( I2S(udg_HERO_DAMAGE_BONUS_PHYSICAL[udg_tempInt]) + "%" ) ))
-    call DisplayTextToForce(GetPlayersAll(), ( "Damage amp (MAGIC) - " + ( I2S(udg_HERO_DAMAGE_BONUS_MAGIC[udg_tempInt]) + "%" ) ))
-    call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_268")
-    call DisplayTextToForce(GetPlayersAll(), ( "Damage resistance (ALL) - " + ( I2S(udg_HERO_DAMAGE_DEF_ALL[udg_tempInt]) + "%" ) ))
-    call DisplayTextToForce(GetPlayersAll(), ( "Damage resistance (PHYSICAL) - " + ( I2S(udg_HERO_DAMAGE_DEF_PHYSICAL[udg_tempInt]) + "%" ) ))
-    call DisplayTextToForce(GetPlayersAll(), ( "Damage resistance (MAGIC) - " + ( I2S(udg_HERO_DAMAGE_DEF_MAGIC[udg_tempInt]) + "%" ) ))
-    call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_244")
-    set udg_tempInt=0
+    call ForGroupBJ(udg_HeroesGroup, function Trig_test_Func001A)
 endfunction
 
 //===========================================================================
@@ -14422,7 +14633,7 @@ function Trig_RewardingGeneral_Func001A takes nothing returns nothing
     set udg_player_rooms_normal[GetConvertedPlayerId(GetEnumPlayer())]=( udg_player_rooms_normal[GetConvertedPlayerId(GetEnumPlayer())] + 1 )
 endfunction
 
-function Trig_RewardingGeneral_Func011Func001Func001Func002A takes nothing returns nothing
+function Trig_RewardingGeneral_Func010Func001Func001Func002A takes nothing returns nothing
     call SetPlayerStateBJ(GetEnumPlayer(), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetEnumPlayer(), PLAYER_STATE_RESOURCE_GOLD) + 15 ))
     call CreateTextTagUnitBJ(( "Additional gold: |cffffff00+15" ), GroupPickRandomUnit(GetUnitsInRectOfPlayer(udg_RoomReg[udg_RoomInt], GetEnumPlayer())), 0, 10, 100, 100, 100, 0)
     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
@@ -14430,22 +14641,22 @@ function Trig_RewardingGeneral_Func011Func001Func001Func002A takes nothing retur
     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 90.00)
 endfunction
 
-function Trig_RewardingGeneral_Func011Func001Func001C takes nothing returns boolean
+function Trig_RewardingGeneral_Func010Func001Func001C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(GetEnumUnit(), 'I08B') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_RewardingGeneral_Func011Func001A takes nothing returns nothing
-    if ( Trig_RewardingGeneral_Func011Func001Func001C() ) then
+function Trig_RewardingGeneral_Func010Func001A takes nothing returns nothing
+    if ( Trig_RewardingGeneral_Func010Func001Func001C() ) then
         call PlaySoundOnUnitBJ(gg_snd_ReceiveGold, 100, GetEnumUnit())
-        call ForForce(udg_PlayerGroup, function Trig_RewardingGeneral_Func011Func001Func001Func002A)
+        call ForForce(udg_PlayerGroup, function Trig_RewardingGeneral_Func010Func001Func001Func002A)
     else
     endif
 endfunction
 
-function Trig_RewardingGeneral_Func011C takes nothing returns boolean
+function Trig_RewardingGeneral_Func010C takes nothing returns boolean
     if ( not ( RectContainsUnit(udg_RoomReg[udg_RoomInt], GetTriggerUnit()) == true ) ) then
         return false
     endif
@@ -14462,9 +14673,8 @@ function Trig_RewardingGeneral_Actions takes nothing returns nothing
     call DisableTrigger(gg_trg_EnemyPursuitPeriodic)
     set udg_portal_avaible=true
     // ITEMS
-    call TriggerExecute(gg_trg_ArmorOfWarGiveDoD)
-    if ( Trig_RewardingGeneral_Func011C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_RewardingGeneral_Func011Func001A)
+    if ( Trig_RewardingGeneral_Func010C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_RewardingGeneral_Func010Func001A)
     else
     endif
 endfunction
@@ -17367,38 +17577,6 @@ function InitTrig_ActMsg4 takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: HeroResFunc
-//
-// expects tempLoc
-//===========================================================================
-function Trig_HeroResFunc_Func001Func001C takes nothing returns boolean
-    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_HeroResFunc_Func001A takes nothing returns nothing
-    if ( Trig_HeroResFunc_Func001Func001C() ) then
-        call ReviveHeroLoc(GetEnumUnit(), udg_tempLoc, true)
-        call SetUnitLifePercentBJ(GetEnumUnit(), 20.00)
-        call SetUnitManaPercentBJ(GetEnumUnit(), 20.00)
-        call PauseUnitBJ(false, udg_backpack_by_player[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))])
-    else
-    endif
-endfunction
-
-function Trig_HeroResFunc_Actions takes nothing returns nothing
-    call ForGroupBJ(udg_HeroesGroup, function Trig_HeroResFunc_Func001A)
-endfunction
-
-//===========================================================================
-function InitTrig_HeroResFunc takes nothing returns nothing
-    set gg_trg_HeroResFunc=CreateTrigger()
-    call TriggerAddAction(gg_trg_HeroResFunc, function Trig_HeroResFunc_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: RoomCreateExit
 //===========================================================================
 function Trig_RoomCreateExit_Conditions takes nothing returns boolean
@@ -19359,16 +19537,16 @@ function InitTrig_tL15_Copy takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL16
+// Trigger: TalentUnholyStrength
 //===========================================================================
-function Trig_tL16_Conditions takes nothing returns boolean
+function Trig_TalentUnholyStrength_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[16] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL16_Func001Func001C takes nothing returns boolean
+function Trig_TalentUnholyStrength_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -19378,8 +19556,8 @@ function Trig_tL16_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL16_Func001A takes nothing returns nothing
-    if ( Trig_tL16_Func001Func001C() ) then
+function Trig_TalentUnholyStrength_Func001A takes nothing returns nothing
+    if ( Trig_TalentUnholyStrength_Func001Func001C() ) then
         call ModifyHeroStat(bj_HEROSTAT_STR, GetEnumUnit(), bj_MODIFYMETHOD_ADD, 20)
         call ModifyHeroStat(bj_HEROSTAT_AGI, GetEnumUnit(), bj_MODIFYMETHOD_ADD, 20)
         call ModifyHeroStat(bj_HEROSTAT_INT, GetEnumUnit(), bj_MODIFYMETHOD_ADD, 20)
@@ -19388,36 +19566,36 @@ function Trig_tL16_Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_tL16_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL16_Func001A)
+function Trig_TalentUnholyStrength_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentUnholyStrength_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL16 takes nothing returns nothing
-    set gg_trg_tL16=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL16, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL16, Condition(function Trig_tL16_Conditions))
-    call TriggerAddAction(gg_trg_tL16, function Trig_tL16_Actions)
+function InitTrig_TalentUnholyStrength takes nothing returns nothing
+    set gg_trg_TalentUnholyStrength=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentUnholyStrength, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentUnholyStrength, Condition(function Trig_TalentUnholyStrength_Conditions))
+    call TriggerAddAction(gg_trg_TalentUnholyStrength, function Trig_TalentUnholyStrength_Actions)
 endfunction
 
 //===========================================================================
-// Trigger: tL17
+// Trigger: TalentGreed
 //===========================================================================
-function Trig_tL17_Conditions takes nothing returns boolean
+function Trig_TalentGreed_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[17] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL17_Func001Func001Func004Func001C takes nothing returns boolean
+function Trig_TalentGreed_Func001Func001Func004Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL17_Func001Func001C takes nothing returns boolean
+function Trig_TalentGreed_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -19427,8 +19605,8 @@ function Trig_tL17_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL17_Func001A takes nothing returns nothing
-    if ( Trig_tL17_Func001Func001C() ) then
+function Trig_TalentGreed_Func001A takes nothing returns nothing
+    if ( Trig_TalentGreed_Func001Func001C() ) then
         call PlaySoundOnUnitBJ(gg_snd_AlchemistTransmuteDeath1, 100, GetEnumUnit())
         call AdjustPlayerStateBJ(150, GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD)
         call AdjustPlayerStateBJ(2, GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_LUMBER)
@@ -19436,7 +19614,7 @@ function Trig_tL17_Func001A takes nothing returns nothing
         set bj_forLoopAIndexEnd=udg_HeroNumber
         loop
             exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_tL17_Func001Func001Func004Func001C() ) then
+            if ( Trig_TalentGreed_Func001Func001Func004Func001C() ) then
                 set udg_Karma[GetForLoopIndexA()]=( udg_Karma[GetForLoopIndexA()] - 2 )
             else
             endif
@@ -19447,16 +19625,16 @@ function Trig_tL17_Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_tL17_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL17_Func001A)
+function Trig_TalentGreed_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentGreed_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL17 takes nothing returns nothing
-    set gg_trg_tL17=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL17, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL17, Condition(function Trig_tL17_Conditions))
-    call TriggerAddAction(gg_trg_tL17, function Trig_tL17_Actions)
+function InitTrig_TalentGreed takes nothing returns nothing
+    set gg_trg_TalentGreed=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentGreed, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentGreed, Condition(function Trig_TalentGreed_Conditions))
+    call TriggerAddAction(gg_trg_TalentGreed, function Trig_TalentGreed_Actions)
 endfunction
 
 //===========================================================================
@@ -19508,7 +19686,7 @@ function Trig_tL18_Copy_Conditions takes nothing returns boolean
     if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_RuneofApocalypseUG) == true ) ) then
         return false
     endif
-    if ( not ( GetRandomInt(1, 100) <= ( GetUnitAbilityLevelSwapped('A09H', udg_DamageEventSource) * 6 ) ) ) then
+    if ( not ( GetRandomInt(1, 100) <= ( GetUnitAbilityLevelSwapped('A09H', udg_DamageEventSource) * 5 ) ) ) then
         return false
     endif
     if ( not ( udg_IsDamageAttack == true ) ) then
@@ -19546,7 +19724,7 @@ function Trig_tL18_Copy_Actions takes nothing returns nothing
     call PlaySoundOnUnitBJ(gg_snd_MON_NorthrendGhoul_Birth_04, 100, GetLastCreatedUnit())
     call BlzSetUnitMaxHP(GetLastCreatedUnit(), ( 200 + ( BlzGetUnitMaxHP(udg_RuneofApocalypseC) / 10 ) ))
     call SetUnitLifePercentBJ(GetLastCreatedUnit(), 100)
-    call BlzSetUnitBaseDamage(GetLastCreatedUnit(), ( BlzGetUnitBaseDamage(udg_RuneofApocalypseC, 0) / 3 ), 0)
+    call BlzSetUnitBaseDamage(GetLastCreatedUnit(), ( BlzGetUnitBaseDamage(udg_RuneofApocalypseC, 0) / 4 ), 0)
     call PauseUnitBJ(true, GetLastCreatedUnit())
     set udg_RuneofApocalypseInt=( udg_RuneofApocalypseInt + 1 )
     set udg_RuneofApocalypseU[udg_RuneofApocalypseInt]=GetLastCreatedUnit()
@@ -19650,16 +19828,16 @@ function InitTrig_tL18_Copy_Copy takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL19
+// Trigger: TalentCorpseExplosion
 //===========================================================================
-function Trig_tL19_Conditions takes nothing returns boolean
+function Trig_TalentCorpseExplosion_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[19] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL19_Func001Func001C takes nothing returns boolean
+function Trig_TalentCorpseExplosion_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -19669,8 +19847,8 @@ function Trig_tL19_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL19_Func001A takes nothing returns nothing
-    if ( Trig_tL19_Func001Func001C() ) then
+function Trig_TalentCorpseExplosion_Func001A takes nothing returns nothing
+    if ( Trig_TalentCorpseExplosion_Func001Func001C() ) then
         call GroupAddUnitSimple(GetEnumUnit(), udg_CorpseExplosionUG)
         call IncUnitAbilityLevelSwapped('A09T', GetEnumUnit())
         call UnitAddAbilityBJ('A09T', GetEnumUnit())
@@ -19679,16 +19857,16 @@ function Trig_tL19_Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_tL19_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL19_Func001A)
+function Trig_TalentCorpseExplosion_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentCorpseExplosion_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL19 takes nothing returns nothing
-    set gg_trg_tL19=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL19, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL19, Condition(function Trig_tL19_Conditions))
-    call TriggerAddAction(gg_trg_tL19, function Trig_tL19_Actions)
+function InitTrig_TalentCorpseExplosion takes nothing returns nothing
+    set gg_trg_TalentCorpseExplosion=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentCorpseExplosion, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentCorpseExplosion, Condition(function Trig_TalentCorpseExplosion_Conditions))
+    call TriggerAddAction(gg_trg_TalentCorpseExplosion, function Trig_TalentCorpseExplosion_Actions)
 endfunction
 
 //===========================================================================
@@ -19696,13 +19874,6 @@ endfunction
 //===========================================================================
 function Trig_tL19_Copy_Conditions takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_CorpseExplosionUG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL19_Copy_Func002Func001Func009C takes nothing returns boolean
-    if ( not ( IsUnitType(GetTriggerUnit(), UNIT_TYPE_HERO) == true ) ) then
         return false
     endif
     return true
@@ -19735,6 +19906,12 @@ function Trig_tL19_Copy_Func002Func001C takes nothing returns boolean
     if ( not ( udg_CorpseExplosionInt == 0 ) ) then
         return false
     endif
+    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
+        return false
+    endif
     return true
 endfunction
 
@@ -19748,10 +19925,7 @@ function Trig_tL19_Copy_Func002A takes nothing returns nothing
         call SetUnitLifeBJ(GetTriggerUnit(), ( GetUnitStateSwap(UNIT_STATE_LIFE, GetTriggerUnit()) + ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetTriggerUnit()) * ( 0.10 * I2R(GetUnitAbilityLevelSwapped('A09T', GetTriggerUnit())) ) ) ))
         call AddSpecialEffectTargetUnitBJ("head", GetTriggerUnit(), "Abilities\\Weapons\\BansheeMissile\\BansheeMissile.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        if ( Trig_tL19_Copy_Func002Func001Func009C() ) then
-        else
-            call RemoveUnit(GetEnumUnit())
-        endif
+        call RemoveUnit(GetEnumUnit())
         call ForGroupBJ(GetUnitsInRangeOfLocAll(200.00, udg_tempLoc), function Trig_tL19_Copy_Func002Func001Func010A)
         call RemoveLocation(udg_tempLoc)
     else
@@ -19782,13 +19956,6 @@ function Trig_tL20_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL20_Func001Func001Func005Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
 function Trig_tL20_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
@@ -19801,21 +19968,9 @@ endfunction
 
 function Trig_tL20_Func001A takes nothing returns nothing
     if ( Trig_tL20_Func001Func001C() ) then
-        call GroupAddUnitSimple(GetEnumUnit(), udg_HastyBargainUG)
-        call IncUnitAbilityLevelSwapped('A09U', GetEnumUnit())
-        call UnitAddAbilityBJ('A09U', GetEnumUnit())
-        call BlzSetUnitMaxHP(GetEnumUnit(), ( BlzGetUnitMaxHP(GetEnumUnit()) - ( BlzGetUnitMaxHP(GetEnumUnit()) / 10 ) ))
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_tL20_Func001Func001Func005Func001C() ) then
-                set udg_Karma[GetForLoopIndexA()]=( udg_Karma[GetForLoopIndexA()] - 1 )
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
         call PlaySoundOnUnitBJ(gg_snd_DevourMagic, 100, GetEnumUnit())
+        set udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 15 )
+        set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] - 5 )
     else
     endif
 endfunction
@@ -19830,28 +19985,6 @@ function InitTrig_tL20 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL20, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL20, Condition(function Trig_tL20_Conditions))
     call TriggerAddAction(gg_trg_tL20, function Trig_tL20_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL20 Copy
-//===========================================================================
-function Trig_tL20_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HastyBargainUG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL20_Copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * ( 0.15 * I2R(GetUnitAbilityLevelSwapped('A09U', udg_DamageEventSource)) ) ) )
-endfunction
-
-//===========================================================================
-function InitTrig_tL20_Copy takes nothing returns nothing
-    set gg_trg_tL20_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL20_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL20_Copy, Condition(function Trig_tL20_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL20_Copy, function Trig_tL20_Copy_Actions)
 endfunction
 
 //===========================================================================
@@ -20118,16 +20251,16 @@ function InitTrig_tL22_copy_Copy takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL23
+// Trigger: TalentFelEnergy
 //===========================================================================
-function Trig_tL23_Conditions takes nothing returns boolean
+function Trig_TalentFelEnergy_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[23] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL23_Func001Func001Func003Func001Func003C takes nothing returns boolean
+function Trig_TalentFelEnergy_Func001Func001Func003Func001Func003C takes nothing returns boolean
     if ( ( GetEnumUnit() == gg_unit_H00P_0279 ) ) then
         return true
     endif
@@ -20137,21 +20270,21 @@ function Trig_tL23_Func001Func001Func003Func001Func003C takes nothing returns bo
     return false
 endfunction
 
-function Trig_tL23_Func001Func001Func003Func001C takes nothing returns boolean
-    if ( not Trig_tL23_Func001Func001Func003Func001Func003C() ) then
+function Trig_TalentFelEnergy_Func001Func001Func003Func001C takes nothing returns boolean
+    if ( not Trig_TalentFelEnergy_Func001Func001Func003Func001Func003C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL23_Func001Func001Func003C takes nothing returns boolean
+function Trig_TalentFelEnergy_Func001Func001Func003C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_WarriorsGroup) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL23_Func001Func001C takes nothing returns boolean
+function Trig_TalentFelEnergy_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -20161,36 +20294,36 @@ function Trig_tL23_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL23_Func001A takes nothing returns nothing
-    if ( Trig_tL23_Func001Func001C() ) then
+function Trig_TalentFelEnergy_Func001A takes nothing returns nothing
+    if ( Trig_TalentFelEnergy_Func001Func001C() ) then
         call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Call of Dread Green.mdx")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        if ( Trig_tL23_Func001Func001Func003C() ) then
+        if ( Trig_TalentFelEnergy_Func001Func001Func003C() ) then
             call IncUnitAbilityLevelSwapped('A09Y', GetEnumUnit())
             call UnitAddAbilityBJ('A09Y', GetEnumUnit())
         else
-            if ( Trig_tL23_Func001Func001Func003Func001C() ) then
+            if ( Trig_TalentFelEnergy_Func001Func001Func003Func001C() ) then
                 call IncUnitAbilityLevelSwapped('A09Z', GetEnumUnit())
                 call UnitAddAbilityBJ('A09Z', GetEnumUnit())
             else
-                call BlzSetUnitMaxMana(GetEnumUnit(), ( BlzGetUnitMaxMana(GetEnumUnit()) + ( BlzGetUnitMaxMana(GetEnumUnit()) / 6 ) ))
-                call SetUnitManaBJ(GetEnumUnit(), ( ( GetUnitStateSwap(UNIT_STATE_MANA, GetEnumUnit()) + ( GetUnitStateSwap(UNIT_STATE_MAX_MANA, GetEnumUnit()) * 0.16 ) ) + 0.00 ))
+                call BlzSetUnitMaxMana(GetEnumUnit(), ( BlzGetUnitMaxMana(GetEnumUnit()) + ( BlzGetUnitMaxMana(GetEnumUnit()) / 5 ) ))
+                call SetUnitManaBJ(GetEnumUnit(), ( ( GetUnitStateSwap(UNIT_STATE_MANA, GetEnumUnit()) + ( GetUnitStateSwap(UNIT_STATE_MAX_MANA, GetEnumUnit()) * 0.20 ) ) + 0.00 ))
             endif
         endif
     else
     endif
 endfunction
 
-function Trig_tL23_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL23_Func001A)
+function Trig_TalentFelEnergy_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentFelEnergy_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL23 takes nothing returns nothing
-    set gg_trg_tL23=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL23, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL23, Condition(function Trig_tL23_Conditions))
-    call TriggerAddAction(gg_trg_tL23, function Trig_tL23_Actions)
+function InitTrig_TalentFelEnergy takes nothing returns nothing
+    set gg_trg_TalentFelEnergy=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentFelEnergy, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentFelEnergy, Condition(function Trig_TalentFelEnergy_Conditions))
+    call TriggerAddAction(gg_trg_TalentFelEnergy, function Trig_TalentFelEnergy_Actions)
 endfunction
 
 //===========================================================================
@@ -20274,16 +20407,16 @@ function InitTrig_tL24_Copy takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL25
+// Trigger: TalentHatred
 //===========================================================================
-function Trig_tL25_Conditions takes nothing returns boolean
+function Trig_TalentHatred_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[25] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL25_Func001Func001C takes nothing returns boolean
+function Trig_TalentHatred_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -20293,39 +20426,39 @@ function Trig_tL25_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL25_Func001A takes nothing returns nothing
-    if ( Trig_tL25_Func001Func001C() ) then
-        call IncUnitAbilityLevelSwapped('A0A1', GetEnumUnit())
-        call UnitAddAbilityBJ('A0A1', GetEnumUnit())
-        call BlzUnitHideAbility(GetEnumUnit(), 'A0A1', true)
+function Trig_TalentHatred_Func001A takes nothing returns nothing
+    if ( Trig_TalentHatred_Func001Func001C() ) then
+        call IncUnitAbilityLevelSwapped('A0KB', GetEnumUnit())
+        call UnitAddAbilityBJ('A0KB', GetEnumUnit())
+        call BlzUnitHideAbility(GetEnumUnit(), 'A0KB', true)
         call PlaySoundOnUnitBJ(gg_snd_FireScorch, 100, GetEnumUnit())
     else
     endif
 endfunction
 
-function Trig_tL25_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL25_Func001A)
+function Trig_TalentHatred_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentHatred_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL25 takes nothing returns nothing
-    set gg_trg_tL25=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL25, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL25, Condition(function Trig_tL25_Conditions))
-    call TriggerAddAction(gg_trg_tL25, function Trig_tL25_Actions)
+function InitTrig_TalentHatred takes nothing returns nothing
+    set gg_trg_TalentHatred=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentHatred, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentHatred, Condition(function Trig_TalentHatred_Conditions))
+    call TriggerAddAction(gg_trg_TalentHatred, function Trig_TalentHatred_Actions)
 endfunction
 
 //===========================================================================
-// Trigger: tL26
+// Trigger: TalentFoulBulwark
 //===========================================================================
-function Trig_tL26_Conditions takes nothing returns boolean
+function Trig_TalentFoulBulwark_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[26] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL26_Func001Func001C takes nothing returns boolean
+function Trig_TalentFoulBulwark_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -20335,8 +20468,8 @@ function Trig_tL26_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL26_Func001A takes nothing returns nothing
-    if ( Trig_tL26_Func001Func001C() ) then
+function Trig_TalentFoulBulwark_Func001A takes nothing returns nothing
+    if ( Trig_TalentFoulBulwark_Func001Func001C() ) then
         call BlzSetUnitMaxHP(GetEnumUnit(), ( BlzGetUnitMaxHP(GetEnumUnit()) + ( BlzGetUnitMaxHP(GetEnumUnit()) / 5 ) ))
         call SetUnitLifeBJ(GetEnumUnit(), ( GetUnitStateSwap(UNIT_STATE_LIFE, GetEnumUnit()) + ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetEnumUnit()) * 0.20 ) ))
         call PlaySoundOnUnitBJ(gg_snd_Taunt__mp3cut_net_u, 100, GetEnumUnit())
@@ -20344,29 +20477,29 @@ function Trig_tL26_Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_tL26_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL26_Func001A)
+function Trig_TalentFoulBulwark_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentFoulBulwark_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL26 takes nothing returns nothing
-    set gg_trg_tL26=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL26, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL26, Condition(function Trig_tL26_Conditions))
-    call TriggerAddAction(gg_trg_tL26, function Trig_tL26_Actions)
+function InitTrig_TalentFoulBulwark takes nothing returns nothing
+    set gg_trg_TalentFoulBulwark=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentFoulBulwark, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentFoulBulwark, Condition(function Trig_TalentFoulBulwark_Conditions))
+    call TriggerAddAction(gg_trg_TalentFoulBulwark, function Trig_TalentFoulBulwark_Actions)
 endfunction
 
 //===========================================================================
-// Trigger: tL27
+// Trigger: TalentHemostasis
 //===========================================================================
-function Trig_tL27_Conditions takes nothing returns boolean
+function Trig_TalentHemostasis_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[27] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL27_Func001Func001C takes nothing returns boolean
+function Trig_TalentHemostasis_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -20376,8 +20509,8 @@ function Trig_tL27_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL27_Func001A takes nothing returns nothing
-    if ( Trig_tL27_Func001Func001C() ) then
+function Trig_TalentHemostasis_Func001A takes nothing returns nothing
+    if ( Trig_TalentHemostasis_Func001Func001C() ) then
         call IncUnitAbilityLevelSwapped('A0FJ', GetEnumUnit())
         call UnitAddAbilityBJ('A0FJ', GetEnumUnit())
         call PlaySoundOnUnitBJ(gg_snd_BloodBoil, 100, GetEnumUnit())
@@ -20385,16 +20518,16 @@ function Trig_tL27_Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_tL27_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL27_Func001A)
+function Trig_TalentHemostasis_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentHemostasis_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL27 takes nothing returns nothing
-    set gg_trg_tL27=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL27, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL27, Condition(function Trig_tL27_Conditions))
-    call TriggerAddAction(gg_trg_tL27, function Trig_tL27_Actions)
+function InitTrig_TalentHemostasis takes nothing returns nothing
+    set gg_trg_TalentHemostasis=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentHemostasis, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentHemostasis, Condition(function Trig_TalentHemostasis_Conditions))
+    call TriggerAddAction(gg_trg_TalentHemostasis, function Trig_TalentHemostasis_Actions)
 endfunction
 
 //===========================================================================
@@ -20422,7 +20555,7 @@ function Trig_tL28_Func001A takes nothing returns nothing
         call GroupAddUnitSimple(GetEnumUnit(), udg_LastGraspUG)
         call IncUnitAbilityLevelSwapped('A0A4', GetEnumUnit())
         call UnitAddAbilityBJ('A0A4', GetEnumUnit())
-        call GroupRemoveUnitSimple(GetEnumUnit(), udg_LastGraspUG2)
+        call GroupRemoveUnitSimple(GetEnumUnit(), udg_LastGraspInactiveUG)
         call UnitRemoveBuffBJ('B02O', GetEnumUnit())
         call PlaySoundOnUnitBJ(gg_snd_AntiMagicShellBirth1, 100, GetEnumUnit())
     else
@@ -20461,7 +20594,7 @@ function Trig_tL28_Copy_Copy_2_Func002C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02N') == false ) ) then
         return false
     endif
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspUG2) == false ) ) then
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspInactiveUG) == false ) ) then
         return false
     endif
     return true
@@ -20472,7 +20605,7 @@ function Trig_tL28_Copy_Copy_2_Actions takes nothing returns nothing
     if ( Trig_tL28_Copy_Copy_2_Func002C() ) then
         set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
         call PlaySoundOnUnitBJ(gg_snd_DevourMagic, 100, udg_DamageEventTarget)
-        call GroupAddUnitSimple(udg_DamageEventTarget, udg_LastGraspUG2)
+        call GroupAddUnitSimple(udg_DamageEventTarget, udg_LastGraspInactiveUG)
         call CreateNUnitsAtLoc(1, 'h00J', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
         call SetUnitAbilityLevelSwapped('A0A5', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A4', udg_DamageEventTarget))
         call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
@@ -20533,7 +20666,7 @@ function Trig_tL28_Copy_Copy_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_tL28_Copy_Copy_Actions takes nothing returns nothing
-    call GroupRemoveUnitSimple(GetTriggerUnit(), udg_LastGraspUG2)
+    call GroupRemoveUnitSimple(GetTriggerUnit(), udg_LastGraspInactiveUG)
 endfunction
 
 //===========================================================================
@@ -21085,16 +21218,16 @@ function InitTrig_tL34_copy_Copy takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL35
+// Trigger: TalentMight
 //===========================================================================
-function Trig_tL35_Conditions takes nothing returns boolean
+function Trig_TalentMight_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[35] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL35_Func001Func001C takes nothing returns boolean
+function Trig_TalentMight_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -21104,64 +21237,36 @@ function Trig_tL35_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL35_Func001A takes nothing returns nothing
-    if ( Trig_tL35_Func001Func001C() ) then
-        call GroupAddUnitSimple(GetEnumUnit(), udg_RuthlessnessUG)
-        call IncUnitAbilityLevelSwapped('A0AD', GetEnumUnit())
-        call UnitAddAbilityBJ('A0AD', GetEnumUnit())
-        call PlaySoundOnUnitBJ(gg_snd_Spell_WR_BloodThirst_Revamp_Impact_02, 100, GetEnumUnit())
+function Trig_TalentMight_Func001A takes nothing returns nothing
+    if ( Trig_TalentMight_Func001Func001C() ) then
+        set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 8 )
     else
     endif
 endfunction
 
-function Trig_tL35_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL35_Func001A)
+function Trig_TalentMight_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentMight_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL35 takes nothing returns nothing
-    set gg_trg_tL35=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL35, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL35, Condition(function Trig_tL35_Conditions))
-    call TriggerAddAction(gg_trg_tL35, function Trig_tL35_Actions)
+function InitTrig_TalentMight takes nothing returns nothing
+    set gg_trg_TalentMight=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentMight, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentMight, Condition(function Trig_TalentMight_Conditions))
+    call TriggerAddAction(gg_trg_TalentMight, function Trig_TalentMight_Actions)
 endfunction
 
 //===========================================================================
-// Trigger: tL35 copy
+// Trigger: TalentSuperstition
 //===========================================================================
-function Trig_tL35_copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_RuthlessnessUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) <= ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_DamageEventTarget) * 0.30 ) ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL35_copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * ( 0.00 + ( 0.30 * I2R(GetUnitAbilityLevelSwapped('A0AD', udg_DamageEventSource)) ) ) ) )
-endfunction
-
-//===========================================================================
-function InitTrig_tL35_copy takes nothing returns nothing
-    set gg_trg_tL35_copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL35_copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL35_copy, Condition(function Trig_tL35_copy_Conditions))
-    call TriggerAddAction(gg_trg_tL35_copy, function Trig_tL35_copy_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL36
-//===========================================================================
-function Trig_tL36_Conditions takes nothing returns boolean
+function Trig_TalentSuperstition_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[36] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL36_Func001Func001C takes nothing returns boolean
+function Trig_TalentSuperstition_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -21171,61 +21276,24 @@ function Trig_tL36_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL36_Func001A takes nothing returns nothing
-    if ( Trig_tL36_Func001Func001C() ) then
-        call GroupAddUnitSimple(GetEnumUnit(), udg_SuperstitionUG)
-        call IncUnitAbilityLevelSwapped('A0AE', GetEnumUnit())
-        call UnitAddAbilityBJ('A0AE', GetEnumUnit())
+function Trig_TalentSuperstition_Func001A takes nothing returns nothing
+    if ( Trig_TalentSuperstition_Func001Func001C() ) then
+        set udg_HERO_DAMAGE_DEF_MAGIC[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_MAGIC[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 6 )
         call PlaySoundOnUnitBJ(gg_snd_SpellShieldImpact1, 100, GetEnumUnit())
     else
     endif
 endfunction
 
-function Trig_tL36_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL36_Func001A)
+function Trig_TalentSuperstition_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentSuperstition_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL36 takes nothing returns nothing
-    set gg_trg_tL36=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL36, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL36, Condition(function Trig_tL36_Conditions))
-    call TriggerAddAction(gg_trg_tL36, function Trig_tL36_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL36 Copy
-//===========================================================================
-function Trig_tL36_Copy_Func004C takes nothing returns boolean
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_tL36_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_SuperstitionUG) == true ) ) then
-        return false
-    endif
-    if ( not Trig_tL36_Copy_Func004C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL36_Copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount * ( 1.00 - ( 0.09 * ( 1.00 * I2R(GetUnitAbilityLevelSwapped('A0AE', udg_DamageEventTarget)) ) ) ) )
-endfunction
-
-//===========================================================================
-function InitTrig_tL36_Copy takes nothing returns nothing
-    set gg_trg_tL36_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL36_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL36_Copy, Condition(function Trig_tL36_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL36_Copy, function Trig_tL36_Copy_Actions)
+function InitTrig_TalentSuperstition takes nothing returns nothing
+    set gg_trg_TalentSuperstition=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentSuperstition, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentSuperstition, Condition(function Trig_TalentSuperstition_Conditions))
+    call TriggerAddAction(gg_trg_TalentSuperstition, function Trig_TalentSuperstition_Actions)
 endfunction
 
 //===========================================================================
@@ -21424,16 +21492,16 @@ function InitTrig_TalentMushroomStew takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL40
+// Trigger: TalentArcana
 //===========================================================================
-function Trig_tL40_Conditions takes nothing returns boolean
+function Trig_TalentArcana_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[40] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL40_Func001Func001C takes nothing returns boolean
+function Trig_TalentArcana_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -21443,51 +21511,24 @@ function Trig_tL40_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL40_Func001A takes nothing returns nothing
-    if ( Trig_tL40_Func001Func001C() ) then
-        call GroupAddUnitSimple(GetEnumUnit(), udg_AmbushUG)
-        call IncUnitAbilityLevelSwapped('A0AH', GetEnumUnit())
-        call UnitAddAbilityBJ('A0AH', GetEnumUnit())
-        call PlaySoundOnUnitBJ(gg_snd_ShadowMeld1, 100, GetEnumUnit())
+function Trig_TalentArcana_Func001A takes nothing returns nothing
+    if ( Trig_TalentArcana_Func001Func001C() ) then
+        set udg_HERO_DAMAGE_BONUS_MAGIC[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_MAGIC[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 8 )
+        call PlaySoundOnUnitBJ(gg_snd_ArcaneBrilliance, 100, GetEnumUnit())
     else
     endif
 endfunction
 
-function Trig_tL40_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL40_Func001A)
+function Trig_TalentArcana_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentArcana_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL40 takes nothing returns nothing
-    set gg_trg_tL40=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL40, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL40, Condition(function Trig_tL40_Conditions))
-    call TriggerAddAction(gg_trg_tL40, function Trig_tL40_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL40 Copy
-//===========================================================================
-function Trig_tL40_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_RuthlessnessUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) >= ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_DamageEventTarget) * 0.70 ) ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL40_Copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * ( 0.00 + ( 0.30 * I2R(GetUnitAbilityLevelSwapped('A0AH', udg_DamageEventSource)) ) ) ) )
-endfunction
-
-//===========================================================================
-function InitTrig_tL40_Copy takes nothing returns nothing
-    set gg_trg_tL40_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL40_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL40_Copy, Condition(function Trig_tL40_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL40_Copy, function Trig_tL40_Copy_Actions)
+function InitTrig_TalentArcana takes nothing returns nothing
+    set gg_trg_TalentArcana=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentArcana, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentArcana, Condition(function Trig_TalentArcana_Conditions))
+    call TriggerAddAction(gg_trg_TalentArcana, function Trig_TalentArcana_Actions)
 endfunction
 
 //===========================================================================
@@ -21903,42 +21944,11 @@ function Trig_TalentsSell_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_TalentsSell_Func005Func001C takes nothing returns boolean
+function Trig_TalentsSell_Func006Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
         return false
     endif
     return true
-endfunction
-
-function Trig_TalentsSell_Func007Func001001002 takes nothing returns boolean
-    return ( IsUnitType(GetFilterUnit(), UNIT_TYPE_HERO) == true )
-endfunction
-
-function Trig_TalentsSell_Func007Func001Func001Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[GetForLoopIndexB()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsSell_Func007Func001Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetEnumUnit()) != 'H004' ) ) then
-        return false
-    endif
-    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_Metamorphosis) == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsSell_Func007Func001A takes nothing returns nothing
-    if ( Trig_TalentsSell_Func007Func001Func001C() ) then
-        if ( Trig_TalentsSell_Func007Func001Func001Func001C() ) then
-            set udg_Karma[udg_TalentPlayerNumberInt]=( udg_Karma[udg_TalentPlayerNumberInt] + 1 )
-        else
-        endif
-    else
-    endif
 endfunction
 
 function Trig_TalentsSell_Func008Func001001002 takes nothing returns boolean
@@ -21956,12 +21966,43 @@ function Trig_TalentsSell_Func008Func001Func001C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetEnumUnit()) != 'H004' ) ) then
         return false
     endif
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_Metamorphosis) == false ) ) then
+        return false
+    endif
     return true
 endfunction
 
 function Trig_TalentsSell_Func008Func001A takes nothing returns nothing
     if ( Trig_TalentsSell_Func008Func001Func001C() ) then
         if ( Trig_TalentsSell_Func008Func001Func001Func001C() ) then
+            set udg_Karma[udg_TalentPlayerNumberInt]=( udg_Karma[udg_TalentPlayerNumberInt] + 1 )
+        else
+        endif
+    else
+    endif
+endfunction
+
+function Trig_TalentsSell_Func009Func001001002 takes nothing returns boolean
+    return ( IsUnitType(GetFilterUnit(), UNIT_TYPE_HERO) == true )
+endfunction
+
+function Trig_TalentsSell_Func009Func001Func001Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[GetForLoopIndexB()] ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsSell_Func009Func001Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetEnumUnit()) != 'H004' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsSell_Func009Func001A takes nothing returns nothing
+    if ( Trig_TalentsSell_Func009Func001Func001C() ) then
+        if ( Trig_TalentsSell_Func009Func001Func001Func001C() ) then
             set udg_Karma[udg_TalentPlayerNumberInt]=( udg_Karma[udg_TalentPlayerNumberInt] - 1 )
         else
         endif
@@ -21970,12 +22011,12 @@ function Trig_TalentsSell_Func008Func001A takes nothing returns nothing
 endfunction
 
 function Trig_TalentsSell_Actions takes nothing returns nothing
+    call RemoveUnit(GetSoldUnit())
     set bj_forLoopAIndex=1
     set bj_forLoopAIndexEnd=50
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
         call RemoveUnitFromStockBJ(udg_TalentUnitType[GetForLoopIndexA()], GetTriggerUnit())
-        call RemoveUnit(GetSoldUnit())
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_TalentTempPlayer=GetOwningPlayer(GetTriggerUnit())
@@ -21983,7 +22024,7 @@ function Trig_TalentsSell_Actions takes nothing returns nothing
     set bj_forLoopAIndexEnd=udg_HeroNumber
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_TalentsSell_Func005Func001C() ) then
+        if ( Trig_TalentsSell_Func006Func001C() ) then
             set udg_TalentPlayerNumberInt=GetForLoopIndexA()
         else
         endif
@@ -21994,14 +22035,14 @@ function Trig_TalentsSell_Actions takes nothing returns nothing
     set bj_forLoopBIndexEnd=15
     loop
         exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
-        call ForGroupBJ(GetUnitsOfPlayerMatching(GetOwningPlayer(GetTriggerUnit()), Condition(function Trig_TalentsSell_Func007Func001001002)), function Trig_TalentsSell_Func007Func001A)
+        call ForGroupBJ(GetUnitsOfPlayerMatching(GetOwningPlayer(GetTriggerUnit()), Condition(function Trig_TalentsSell_Func008Func001001002)), function Trig_TalentsSell_Func008Func001A)
         set bj_forLoopBIndex=bj_forLoopBIndex + 1
     endloop
     set bj_forLoopBIndex=16
     set bj_forLoopBIndexEnd=30
     loop
         exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
-        call ForGroupBJ(GetUnitsOfPlayerMatching(GetOwningPlayer(GetTriggerUnit()), Condition(function Trig_TalentsSell_Func008Func001001002)), function Trig_TalentsSell_Func008Func001A)
+        call ForGroupBJ(GetUnitsOfPlayerMatching(GetOwningPlayer(GetTriggerUnit()), Condition(function Trig_TalentsSell_Func009Func001001002)), function Trig_TalentsSell_Func009Func001A)
         set bj_forLoopBIndex=bj_forLoopBIndex + 1
     endloop
     set udg_KarmaU=GetTriggerUnit()
@@ -22041,70 +22082,49 @@ function Trig_TalentsCheck_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AA', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001Func002C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001Func002C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AB', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001Func003C takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A0AD', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func003Func004Func001Func004C takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A0AE', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func003Func004Func001Func005C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001Func005C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AF', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001Func006C takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A0AH', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func003Func004Func001Func007C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001Func007C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AI', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001Func008C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001Func008C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AJ', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001Func009C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001Func009C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AM', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func003Func004Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func003Func003Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
         return false
     endif
@@ -22321,6 +22341,121 @@ function Trig_TalentsCheck_Func005C takes nothing returns boolean
     return true
 endfunction
 
+function Trig_TalentsCheck_Func007Func003Func001Func001C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A09H', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func002C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A09T', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func003C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A09W', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func004C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A09X', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func005Func001C takes nothing returns boolean
+    if ( ( GetUnitAbilityLevelSwapped('A09Y', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return true
+    endif
+    if ( ( GetUnitAbilityLevelSwapped('A09Z', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func005Func003C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A09Y', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func005Func004C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A09Z', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func005C takes nothing returns boolean
+    if ( not Trig_TalentsCheck_Func007Func003Func001Func005Func001C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func006C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0A0', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func007C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0KB', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func008C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0FJ', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func009Func002C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_Hero[GetForLoopIndexA()], udg_LastGraspInactiveUG) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func009C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0A4', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func010C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0A7', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001Func011C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0A8', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TalentsCheck_Func007Func003Func001C takes nothing returns boolean
+    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_TalentsCheck_Func007C takes nothing returns boolean
     if ( not ( GetSpellAbilityId() == 'A08Y' ) ) then
         return false
@@ -22336,8 +22471,8 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
         set bj_forLoopAIndexEnd=udg_HeroNumber
         loop
             exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func003Func004Func001C() ) then
-                if ( Trig_TalentsCheck_Func003Func004Func001Func001C() ) then
+            if ( Trig_TalentsCheck_Func003Func003Func001C() ) then
+                if ( Trig_TalentsCheck_Func003Func003Func001Func001C() ) then
                     set udg_tempString="|cffc0c0c0Headhunting|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AA', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AA', udg_Hero[GetForLoopIndexA()]) * 300 )
@@ -22347,7 +22482,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func002C() ) then
+                if ( Trig_TalentsCheck_Func003Func003Func001Func002C() ) then
                     set udg_tempString="|cffc0c0c0Enrage|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AB', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AB', udg_Hero[GetForLoopIndexA()]) * 25 )
@@ -22357,27 +22492,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func003C() ) then
-                    set udg_tempString="|cffc0c0c0Ruthlessness|r"
-                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0AD', udg_Hero[GetForLoopIndexA()])
-                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AD', udg_Hero[GetForLoopIndexA()]) * 30 )
-                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current bonus: |cffff0000" + ( I2S(udg_tempInt2) + "%|r" ) ) ) ) ))
-                    set udg_tempString=""
-                    set udg_tempInt=0
-                    set udg_tempInt2=0
-                else
-                endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func004C() ) then
-                    set udg_tempString="|cffc0c0c0Superstition|r"
-                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0AE', udg_Hero[GetForLoopIndexA()])
-                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AE', udg_Hero[GetForLoopIndexA()]) * 9 )
-                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current bonus: |cffff0000" + ( I2S(udg_tempInt2) + "%|r" ) ) ) ) ))
-                    set udg_tempString=""
-                    set udg_tempInt=0
-                    set udg_tempInt2=0
-                else
-                endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func005C() ) then
+                if ( Trig_TalentsCheck_Func003Func003Func001Func005C() ) then
                     set udg_tempString="|cffc0c0c0Armor Up!|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AF', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AF', udg_Hero[GetForLoopIndexA()]) * 3 )
@@ -22387,17 +22502,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func006C() ) then
-                    set udg_tempString="|cffc0c0c0Ambush|r"
-                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0AH', udg_Hero[GetForLoopIndexA()])
-                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AH', udg_Hero[GetForLoopIndexA()]) * 30 )
-                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current bonus: |cffff0000" + ( I2S(udg_tempInt2) + "%|r" ) ) ) ) ))
-                    set udg_tempString=""
-                    set udg_tempInt=0
-                    set udg_tempInt2=0
-                else
-                endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func007C() ) then
+                if ( Trig_TalentsCheck_Func003Func003Func001Func007C() ) then
                     set udg_tempString="|cffc0c0c0Evasion|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AI', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AI', udg_Hero[GetForLoopIndexA()]) * 9 )
@@ -22407,7 +22512,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func008C() ) then
+                if ( Trig_TalentsCheck_Func003Func003Func001Func008C() ) then
                     set udg_tempString="|cffc0c0c0Fortitude|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AJ', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AJ', udg_Hero[GetForLoopIndexA()]) * 8 )
@@ -22417,7 +22522,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-                if ( Trig_TalentsCheck_Func003Func004Func001Func009C() ) then
+                if ( Trig_TalentsCheck_Func003Func003Func001Func009C() ) then
                     set udg_tempString="|cffc0c0c0Witcher's Dodge|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AM', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( 1400 - ( 100 * GetUnitAbilityLevelSwapped('A0AM', udg_Hero[GetForLoopIndexA()]) ) )
@@ -22705,6 +22810,144 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
     // CHAOTIC TALENTS
     if ( Trig_TalentsCheck_Func007C() ) then
         call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, "TRIGSTR_251")
+        set bj_forLoopAIndex=1
+        set bj_forLoopAIndexEnd=udg_HeroNumber
+        loop
+            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+            if ( Trig_TalentsCheck_Func007Func003Func001C() ) then
+                if ( Trig_TalentsCheck_Func007Func003Func001Func001C() ) then
+                    set udg_tempString="|cffff0000Rune of Apocalypse|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A09H', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09H', udg_Hero[GetForLoopIndexA()]) * 5 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current chance: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func002C() ) then
+                    set udg_tempString="|cffff0000Corpse Explosion|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A09T', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09T', udg_Hero[GetForLoopIndexA()]) * 5 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current heal: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func003C() ) then
+                    set udg_tempString="|cffff0000Bone Shield|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A09W', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09W', udg_Hero[GetForLoopIndexA()]) * 5 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current armor bonus: |cffff0000" + ( I2S(udg_tempInt2) + "|r" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func004C() ) then
+                    set udg_tempString="|cffff0000Sadism|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A09X', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09X', udg_Hero[GetForLoopIndexA()]) * 30 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current cap: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
+                    call CreateTextTagUnitBJ(( "|cffff0000Sadism: " + ( I2S(udg_SadismInt[GetForLoopIndexA()]) + ( " / " + ( I2S(udg_SadismCap_Int[GetForLoopIndexA()]) + "|r" ) ) ) ), udg_Hero[GetForLoopIndexA()], 0, 10, 100, 100, 100, 0)
+                    call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
+                    call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 3.00)
+                    call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func005C() ) then
+                    set udg_tempString="|cffff0000Fel Energy|r"
+                    if ( Trig_TalentsCheck_Func007Func003Func001Func005Func003C() ) then
+                        set udg_tempInt=GetUnitAbilityLevelSwapped('A09Y', udg_Hero[GetForLoopIndexA()])
+                        set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09Y', udg_Hero[GetForLoopIndexA()]) * 20 )
+                        call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current bonus: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
+                    else
+                    endif
+                    if ( Trig_TalentsCheck_Func007Func003Func001Func005Func004C() ) then
+                        set udg_tempInt=GetUnitAbilityLevelSwapped('A09Z', udg_Hero[GetForLoopIndexA()])
+                        set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09Z', udg_Hero[GetForLoopIndexA()]) * 50 )
+                        call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current bonus: |cffff0000" + ( I2S(udg_tempInt2) + "|r" ) ) ) ) ))
+                    else
+                    endif
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func006C() ) then
+                    set udg_tempString="|cffff0000Grim Harvest|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0A0', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0A0', udg_Hero[GetForLoopIndexA()]) * 3 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current heal: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func007C() ) then
+                    set udg_tempString="|cffff0000Hatred|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0KB', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0KB', udg_Hero[GetForLoopIndexA()]) * 10 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current chance: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func008C() ) then
+                    set udg_tempString="|cffff0000Hemostasis|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0FJ', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0FJ', udg_Hero[GetForLoopIndexA()]) * 6 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current regen: |cffff0000" + ( I2S(udg_tempInt2) + "|r" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func009C() ) then
+                    set udg_tempString="|cffff0000Last Grasp|r"
+                    if ( Trig_TalentsCheck_Func007Func003Func001Func009Func002C() ) then
+                        set udg_tempString2="|cffff0000Inactive|r"
+                    else
+                        set udg_tempString2="|cff00ff00Active|r"
+                    endif
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0A4', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0A4', udg_Hero[GetForLoopIndexA()]) * 3 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current duration: |cffff0000" + ( I2S(udg_tempInt2) + ( "|r | " + udg_tempString2 ) ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempString2=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func010C() ) then
+                    set udg_tempString="|cffff0000Terror from the Deep|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0A7', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0A7', udg_Hero[GetForLoopIndexA()]) * 8 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current duration: |cffff0000" + ( I2S(udg_tempInt2) + "|r" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+                if ( Trig_TalentsCheck_Func007Func003Func001Func011C() ) then
+                    set udg_tempString="|cffff0000Surge of Malice|r"
+                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0A8', udg_Hero[GetForLoopIndexA()])
+                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0A8', udg_Hero[GetForLoopIndexA()]) * 160 )
+                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current damage: |cffff0000" + ( I2S(udg_tempInt2) + "|r" ) ) ) ) ))
+                    set udg_tempString=""
+                    set udg_tempInt=0
+                    set udg_tempInt2=0
+                else
+                endif
+            else
+            endif
+            set bj_forLoopAIndex=bj_forLoopAIndex + 1
+        endloop
     else
     endif
 endfunction
@@ -26945,7 +27188,7 @@ function Trig_ShadowdanceTimer_Actions takes nothing returns nothing
     call RemoveLocation(udg_shadowdance_final_pos)
     set udg_tempLoc=GetUnitLoc(gg_unit_H012_0027)
     set udg_shadowdance_final_pos=GetUnitLoc(GroupPickRandomUnit(udg_HeroesGroup))
-    set udg_tempLoc2=PolarProjectionBJ(udg_shadowdance_final_pos, 200.00, GetRandomDirectionDeg())
+    set udg_tempLoc2=PolarProjectionBJ(udg_shadowdance_final_pos, 300.00, GetRandomDirectionDeg())
     call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\Human\\MassTeleport\\MassTeleportTarget.mdl")
     call DestroyEffectBJ(GetLastCreatedEffectBJ())
     call SetUnitPositionLocFacingLocBJ(gg_unit_H012_0027, udg_tempLoc2, udg_shadowdance_final_pos)
@@ -27256,60 +27499,70 @@ endfunction
 function InitTrig_EmilismaPeriodic takes nothing returns nothing
     set gg_trg_EmilismaPeriodic=CreateTrigger()
     call DisableTrigger(gg_trg_EmilismaPeriodic)
-    call TriggerRegisterTimerEventPeriodic(gg_trg_EmilismaPeriodic, 12.00)
+    call TriggerRegisterTimerEventPeriodic(gg_trg_EmilismaPeriodic, 7.00)
     call TriggerAddAction(gg_trg_EmilismaPeriodic, function Trig_EmilismaPeriodic_Actions)
 endfunction
 
 //===========================================================================
 // Trigger: MagicStormPeriodic
 //===========================================================================
-function Trig_MagicStormPeriodic_Func001Func001Func005C takes nothing returns boolean
+function Trig_MagicStormPeriodic_Func001Func001Func001Func005C takes nothing returns boolean
     if ( not ( udg_magic_storm_int == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MagicStormPeriodic_Func001Func001Func006C takes nothing returns boolean
+function Trig_MagicStormPeriodic_Func001Func001Func001Func006C takes nothing returns boolean
     if ( not ( udg_magic_storm_int == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MagicStormPeriodic_Func001Func001Func007C takes nothing returns boolean
+function Trig_MagicStormPeriodic_Func001Func001Func001Func007C takes nothing returns boolean
     if ( not ( udg_magic_storm_int == 3 ) ) then
         return false
     endif
     return true
 endfunction
 
+function Trig_MagicStormPeriodic_Func001Func001Func001C takes nothing returns boolean
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_MagicStormPeriodic_Func001Func001A takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(GetEnumUnit())
-    call AddSpecialEffectLocBJ(udg_tempLoc, "Skill_Indicator_Circle.mdx")
-    call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 2.00)
-    call BlzSetSpecialEffectZ(GetLastCreatedEffectBJ(), GetUnitFlyHeight(GetEnumUnit()))
-    if ( Trig_MagicStormPeriodic_Func001Func001Func005C() ) then
-        call StartTimerBJ(udg_magic_storm_timer1, false, 2.00)
-        set udg_magic_storm_pos1[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetUnitLoc(GetEnumUnit())
-        set udg_magic_storm_eff1[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetLastCreatedEffectBJ()
+    if ( Trig_MagicStormPeriodic_Func001Func001Func001C() ) then
+        set udg_tempLoc=GetUnitLoc(GetEnumUnit())
+        call AddSpecialEffectLocBJ(udg_tempLoc, "Skill_Indicator_Circle.mdx")
+        call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 2.00)
+        call BlzSetSpecialEffectZ(GetLastCreatedEffectBJ(), GetUnitFlyHeight(GetEnumUnit()))
+        if ( Trig_MagicStormPeriodic_Func001Func001Func001Func005C() ) then
+            call StartTimerBJ(udg_magic_storm_timer1, false, 2.00)
+            set udg_magic_storm_pos1[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetUnitLoc(GetEnumUnit())
+            set udg_magic_storm_eff1[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetLastCreatedEffectBJ()
+        else
+        endif
+        if ( Trig_MagicStormPeriodic_Func001Func001Func001Func006C() ) then
+            call StartTimerBJ(udg_magic_storm_timer2, false, 2.00)
+            set udg_magic_storm_pos2[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetUnitLoc(GetEnumUnit())
+            set udg_magic_storm_eff2[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetLastCreatedEffectBJ()
+        else
+        endif
+        if ( Trig_MagicStormPeriodic_Func001Func001Func001Func007C() ) then
+            call StartTimerBJ(udg_magic_storm_timer3, false, 2.00)
+            set udg_magic_storm_pos3[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetUnitLoc(GetEnumUnit())
+            set udg_magic_storm_eff3[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetLastCreatedEffectBJ()
+            set udg_magic_storm_flag=false
+            call SetUnitAnimation(gg_unit_H013_0011, "stand")
+        else
+        endif
+        call RemoveLocation(udg_tempLoc)
     else
     endif
-    if ( Trig_MagicStormPeriodic_Func001Func001Func006C() ) then
-        call StartTimerBJ(udg_magic_storm_timer2, false, 2.00)
-        set udg_magic_storm_pos2[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetUnitLoc(GetEnumUnit())
-        set udg_magic_storm_eff2[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetLastCreatedEffectBJ()
-    else
-    endif
-    if ( Trig_MagicStormPeriodic_Func001Func001Func007C() ) then
-        call StartTimerBJ(udg_magic_storm_timer3, false, 2.00)
-        set udg_magic_storm_pos3[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetUnitLoc(GetEnumUnit())
-        set udg_magic_storm_eff3[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=GetLastCreatedEffectBJ()
-        set udg_magic_storm_flag=false
-        call SetUnitAnimation(gg_unit_H013_0011, "stand")
-    else
-    endif
-    call RemoveLocation(udg_tempLoc)
 endfunction
 
 function Trig_MagicStormPeriodic_Func001C takes nothing returns boolean
@@ -27550,7 +27803,7 @@ endfunction
 function InitTrig_HarvestPeriodic takes nothing returns nothing
     set gg_trg_HarvestPeriodic=CreateTrigger()
     call DisableTrigger(gg_trg_HarvestPeriodic)
-    call TriggerRegisterTimerEventPeriodic(gg_trg_HarvestPeriodic, 15.00)
+    call TriggerRegisterTimerEventPeriodic(gg_trg_HarvestPeriodic, 12.00)
     call TriggerAddAction(gg_trg_HarvestPeriodic, function Trig_HarvestPeriodic_Actions)
 endfunction
 
@@ -33827,7 +34080,7 @@ function Trig_AncestralVision_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_AncestralVision_Func002Func001C takes nothing returns boolean
-    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == false ) ) then
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesDead_UG) == true ) ) then
         return false
     endif
     return true
@@ -33835,11 +34088,12 @@ endfunction
 
 function Trig_AncestralVision_Func002A takes nothing returns nothing
     if ( Trig_AncestralVision_Func002Func001C() ) then
+        call GroupRemoveUnitSimple(GetEnumUnit(), udg_HeroesDead_UG)
         set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(gg_unit_O000_0013), 150.00, GetRandomDirectionDeg())
         call AddSpecialEffectLocBJ(udg_tempLoc, "Stormfall.mdx")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
         call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.50)
-        call ReviveHeroLoc(GetEnumUnit(), udg_tempLoc, true)
+        call ReviveHeroLoc(GetEnumUnit(), udg_tempLoc, false)
         call SetUnitLifePercentBJ(GetEnumUnit(), 50.00)
         call SetUnitManaPercentBJ(GetEnumUnit(), 50.00)
         call RemoveLocation(udg_tempLoc)
@@ -36329,136 +36583,6 @@ function InitTrig_DefenseShout takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: DemonDying
-//===========================================================================
-function Trig_DemonDying_Func011C takes nothing returns boolean
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00B' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n005' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n007' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00A' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n008' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n008' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n006' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nerw' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'ndqs' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nvdg' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nfel' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nfgu' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'ninf' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00Q' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'E00A' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_DemonDying_Conditions takes nothing returns boolean
-    if ( not Trig_DemonDying_Func011C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DemonDying_Func001Func004C takes nothing returns boolean
-    if ( not ( IsUnitAliveBJ(udg_Baron) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DemonDying_Func001C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(gg_unit_H00B_0036, udg_HeroesGroup) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DemonDying_Func004C takes nothing returns boolean
-    if ( not ( udg_DemonDyingInt >= 20 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DemonDying_Func007C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00B' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DemonDying_Actions takes nothing returns nothing
-    if ( Trig_DemonDying_Func001C() ) then
-        call AddSpecialEffectTargetUnitBJ("origin", gg_unit_H00B_0036, "Abilities\\Spells\\Undead\\DeathPact\\DeathPactCaster.mdl")
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        call SetUnitLifePercentBJ(gg_unit_H00B_0036, ( GetUnitLifePercent(gg_unit_H00B_0036) + 10.00 ))
-        if ( Trig_DemonDying_Func001Func004C() ) then
-            call SetUnitLifePercentBJ(udg_Baron, ( GetUnitLifePercent(udg_Baron) + 10.00 ))
-            call AddSpecialEffectTargetUnitBJ("origin", udg_Baron, "Abilities\\Spells\\Undead\\DeathPact\\DeathPactCaster.mdl")
-            call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        else
-        endif
-    else
-    endif
-    call TriggerSleepAction(1.00)
-    if ( Trig_DemonDying_Func004C() ) then
-        set udg_DemonDyingInt=0
-    else
-    endif
-    set udg_DemonDyingInt=( udg_DemonDyingInt + 1 )
-    set udg_DemonDyingLoc[udg_DemonDyingInt]=GetUnitLoc(GetTriggerUnit())
-    if ( Trig_DemonDying_Func007C() ) then
-        call AddSpecialEffectLocBJ(udg_DemonDyingLoc[udg_DemonDyingInt], "Conflagrate.mdx")
-        call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.70)
-        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) - 50.00 ))
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    else
-        call AddSpecialEffectLocBJ(udg_DemonDyingLoc[udg_DemonDyingInt], "Conflagrate.mdx")
-        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) - 50.00 ))
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    endif
-    call RemoveLocation(udg_DemonDyingLoc[udg_DemonDyingInt])
-    call TriggerSleepAction(0.75)
-    call RemoveUnit(GetTriggerUnit())
-endfunction
-
-//===========================================================================
-function InitTrig_DemonDying takes nothing returns nothing
-    set gg_trg_DemonDying=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_DemonDying, EVENT_PLAYER_UNIT_DEATH)
-    call TriggerAddCondition(gg_trg_DemonDying, Condition(function Trig_DemonDying_Conditions))
-    call TriggerAddAction(gg_trg_DemonDying, function Trig_DemonDying_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: BaronStop
 //===========================================================================
 function Trig_BaronStop_Conditions takes nothing returns boolean
@@ -38035,7 +38159,7 @@ function Trig_DuelC_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_DuelC_Actions takes nothing returns nothing
-    call BlzSetUnitBaseDamage(udg_DuelC, ( BlzGetUnitBaseDamage(udg_DuelC, 0) + ( BlzGetUnitBaseDamage(udg_DuelC, 0) / 20 ) ), 0)
+    call BlzSetUnitBaseDamage(udg_DuelC, ( BlzGetUnitBaseDamage(udg_DuelC, 0) + ( BlzGetUnitBaseDamage(udg_DuelC, 0) / 10 ) ), 0)
     call UnitRemoveBuffBJ('B00O', udg_DuelC)
     call UnitRemoveBuffBJ('B00O', udg_DuelT)
     call UnitRemoveBuffBJ('B02J', udg_DuelT)
@@ -38258,6 +38382,9 @@ function Trig_MomentOfCourage_Func009C takes nothing returns boolean
         return false
     endif
     if ( not ( R2I(DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2)) <= 250 ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(udg_CourageT) == false ) ) then
         return false
     endif
     return true
@@ -39952,6 +40079,389 @@ function InitTrig_LifeDrainPeridoic takes nothing returns nothing
     call DisableTrigger(gg_trg_LifeDrainPeridoic)
     call TriggerRegisterTimerEventPeriodic(gg_trg_LifeDrainPeridoic, 0.50)
     call TriggerAddAction(gg_trg_LifeDrainPeridoic, function Trig_LifeDrainPeridoic_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: Decimate
+//===========================================================================
+function Trig_Decimate_Conditions takes nothing returns boolean
+    if ( not ( GetSpellAbilityId() == 'A0KH' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Decimate_Func009C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Decimate_Func011Func001Func004C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Decimate_Func011Func001C takes nothing returns boolean
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetEnumUnit()) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Decimate_Func011A takes nothing returns nothing
+    if ( Trig_Decimate_Func011Func001C() ) then
+        set udg_decimate_targets=( udg_decimate_targets + 1 )
+        set udg_tempUnit=GetEnumUnit()
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( ( ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) + 50.00 ) + ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * ( I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) * 0.60 ) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        if ( Trig_Decimate_Func011Func001Func004C() ) then
+        else
+            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * 1.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+            set udg_whirlwind_bonus=( udg_whirlwind_bonus + ( 1 + GetUnitAbilityLevelSwapped('A0KG', GetTriggerUnit()) ) )
+        endif
+    else
+    endif
+endfunction
+
+function Trig_Decimate_Func012C takes nothing returns boolean
+    if ( not ( udg_decimate_targets == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Decimate_Func013C takes nothing returns boolean
+    return true
+endfunction
+
+function Trig_Decimate_Actions takes nothing returns nothing
+    call UnitAddAbilityBJ('Amrf', GetTriggerUnit())
+    call BlzUnitHideAbility(GetTriggerUnit(), 'Amrf', true)
+    call SetUnitFlyHeightBJ(GetTriggerUnit(), 150.00, 800.00)
+    call TriggerSleepAction(0.15)
+    set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
+    set udg_tempLoc2=GetSpellTargetLoc()
+    set udg_tempZ=GetLocationZ(udg_tempLoc)
+    if ( Trig_Decimate_Func009C() ) then
+        call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_02, 100.00, udg_tempLoc, udg_tempZ)
+    else
+        call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_03, 100.00, udg_tempLoc, udg_tempZ)
+    endif
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(125.00, udg_tempLoc2), function Trig_Decimate_Func011A)
+    if ( Trig_Decimate_Func012C() ) then
+        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, ( ( ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) + 50.00 ) + ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * ( I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) * 0.60 ) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, ( ( ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) + 50.00 ) + ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * ( I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) * 0.60 ) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+    else
+    endif
+    if ( (true) ) then // INLINED!!
+    else
+    endif
+    set udg_decimate_targets=0
+    set udg_tempUnit=null
+    call RemoveLocation(udg_tempLoc)
+    call RemoveLocation(udg_tempLoc2)
+    set udg_tempZ=0.00
+    call SetUnitFlyHeightBJ(GetTriggerUnit(), 0.00, 800.00)
+endfunction
+
+//===========================================================================
+function InitTrig_Decimate takes nothing returns nothing
+    set gg_trg_Decimate=CreateTrigger()
+    call TriggerRegisterUnitEvent(gg_trg_Decimate, gg_unit_E00C_0088, EVENT_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_Decimate, Condition(function Trig_Decimate_Conditions))
+    call TriggerAddAction(gg_trg_Decimate, function Trig_Decimate_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: Warstomp
+//===========================================================================
+function Trig_Warstomp_Conditions takes nothing returns boolean
+    if ( not ( GetSpellAbilityId() == 'A0KC' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Warstomp_Func003Func002Func001C takes nothing returns boolean
+    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Warstomp_Func003Func002A takes nothing returns nothing
+    if ( Trig_Warstomp_Func003Func002Func001C() ) then
+        set udg_KBA_Caster=GetTriggerUnit()
+        set udg_KBA_TargetUnit=GetEnumUnit()
+        set udg_KBA_Level=1
+        set udg_KBA_StartingPosition=GetUnitLoc(GetTriggerUnit())
+        set udg_KBA_Speed=8.00
+        set udg_KBA_DistancePerLevel=250.00
+        set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
+        set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
+        set udg_KBA_DestroyTrees=false
+        call ConditionalTriggerExecute(gg_trg_Cast_A_Knockback)
+    else
+    endif
+endfunction
+
+function Trig_Warstomp_Func003Func003Func001C takes nothing returns boolean
+    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Warstomp_Func003Func003A takes nothing returns nothing
+    if ( Trig_Warstomp_Func003Func003Func001C() ) then
+        set udg_tempLoc=GetUnitLoc(GetEnumUnit())
+        set udg_KBA_Caster=GetTriggerUnit()
+        set udg_KBA_TargetUnit=GetEnumUnit()
+        set udg_KBA_Level=1
+        set udg_KBA_StartingPosition=PolarProjectionBJ(udg_tempLoc, 50.00, AngleBetweenPoints(udg_tempLoc2, udg_tempLoc))
+        set udg_KBA_Speed=8.00
+        set udg_KBA_DistancePerLevel=250.00
+        set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
+        set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
+        set udg_KBA_DestroyTrees=false
+        call ConditionalTriggerExecute(gg_trg_Cast_A_Knockback)
+        call RemoveLocation(udg_tempLoc)
+    else
+    endif
+endfunction
+
+function Trig_Warstomp_Func003C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Warstomp_Actions takes nothing returns nothing
+    call SetUnitManaPercentBJ(GetTriggerUnit(), ( GetUnitManaPercent(GetTriggerUnit()) + 50.00 ))
+    set udg_tempLoc2=GetUnitLoc(GetTriggerUnit())
+    if ( Trig_Warstomp_Func003C() ) then
+        call ForGroupBJ(GetUnitsInRangeOfLocAll(400.00, udg_tempLoc2), function Trig_Warstomp_Func003Func003A)
+    else
+        call ForGroupBJ(GetUnitsInRangeOfLocAll(400.00, udg_tempLoc2), function Trig_Warstomp_Func003Func002A)
+    endif
+    call RemoveLocation(udg_tempLoc2)
+endfunction
+
+//===========================================================================
+function InitTrig_Warstomp takes nothing returns nothing
+    set gg_trg_Warstomp=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_Warstomp, EVENT_PLAYER_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_Warstomp, Condition(function Trig_Warstomp_Conditions))
+    call TriggerAddAction(gg_trg_Warstomp, function Trig_Warstomp_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: Whirlwind
+//===========================================================================
+function Trig_Whirlwind_Conditions takes nothing returns boolean
+    if ( not ( GetSpellAbilityId() == 'A0KG' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Whirlwind_Func003C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Whirlwind_Func005Func001Func001C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Whirlwind_Func005Func001C takes nothing returns boolean
+    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetEnumUnit()) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Whirlwind_Func005A takes nothing returns nothing
+    if ( Trig_Whirlwind_Func005Func001C() ) then
+        if ( Trig_Whirlwind_Func005Func001Func001C() ) then
+            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * 3.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        else
+            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * 1.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+            set udg_whirlwind_bonus=( udg_whirlwind_bonus + ( 1 + GetUnitAbilityLevelSwapped('A0KG', GetTriggerUnit()) ) )
+        endif
+    else
+    endif
+endfunction
+
+function Trig_Whirlwind_Func006C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Whirlwind_Actions takes nothing returns nothing
+    set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
+    set udg_tempZ=GetLocationZ(udg_tempLoc)
+    if ( Trig_Whirlwind_Func003C() ) then
+        call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_02, 100.00, udg_tempLoc, udg_tempZ)
+    else
+        call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_03, 100.00, udg_tempLoc, udg_tempZ)
+    endif
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(250.00, udg_tempLoc), function Trig_Whirlwind_Func005A)
+    if ( Trig_Whirlwind_Func006C() ) then
+        set udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))]=( udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))] + udg_whirlwind_bonus )
+        call StartTimerBJ(udg_whirlwind_timer, false, 5.90)
+    else
+    endif
+    call RemoveLocation(udg_tempLoc)
+    set udg_tempZ=0.00
+endfunction
+
+//===========================================================================
+function InitTrig_Whirlwind takes nothing returns nothing
+    set gg_trg_Whirlwind=CreateTrigger()
+    call TriggerRegisterUnitEvent(gg_trg_Whirlwind, gg_unit_E00C_0088, EVENT_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_Whirlwind, Condition(function Trig_Whirlwind_Conditions))
+    call TriggerAddAction(gg_trg_Whirlwind, function Trig_Whirlwind_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: WhirlwindTimer
+//===========================================================================
+function Trig_WhirlwindTimer_Actions takes nothing returns nothing
+    set udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))]=( udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))] - udg_whirlwind_bonus )
+    set udg_whirlwind_bonus=0
+endfunction
+
+//===========================================================================
+function InitTrig_WhirlwindTimer takes nothing returns nothing
+    set gg_trg_WhirlwindTimer=CreateTrigger()
+    call TriggerRegisterTimerExpireEventBJ(gg_trg_WhirlwindTimer, udg_whirlwind_timer)
+    call TriggerAddAction(gg_trg_WhirlwindTimer, function Trig_WhirlwindTimer_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: BattleStance
+//===========================================================================
+function Trig_BattleStance_Func002C takes nothing returns boolean
+    if ( ( GetSpellAbilityId() == 'A0KD' ) ) then
+        return true
+    endif
+    if ( ( GetSpellAbilityId() == 'A0KE' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_BattleStance_Conditions takes nothing returns boolean
+    if ( not Trig_BattleStance_Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_BattleStance_Func001C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_BattleStance_Actions takes nothing returns nothing
+    if ( Trig_BattleStance_Func001C() ) then
+        set udg_battle_stance_offensive=false
+        call UnitAddAbilityBJ('A0KF', GetTriggerUnit())
+        call SetUnitAbilityLevelSwapped('A0KF', GetTriggerUnit(), GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit()))
+        set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 10 )
+        call UnitAddAbilityBJ('A0KE', GetTriggerUnit())
+        call SetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KD', GetTriggerUnit()))
+        // ---
+        call BlzUnitHideAbility(GetTriggerUnit(), 'A0KD', true)
+        set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] - ( 30 * GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit()) ) )
+    else
+        set udg_battle_stance_offensive=true
+        set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + ( 30 * GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit()) ) )
+        call BlzUnitHideAbility(GetTriggerUnit(), 'A0KD', false)
+        // ---
+        call UnitRemoveAbilityBJ('A0KE', GetTriggerUnit())
+        call UnitRemoveAbilityBJ('A0KF', GetTriggerUnit())
+        set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] - 10 )
+    endif
+endfunction
+
+//===========================================================================
+function InitTrig_BattleStance takes nothing returns nothing
+    set gg_trg_BattleStance=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_BattleStance, EVENT_PLAYER_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_BattleStance, Condition(function Trig_BattleStance_Conditions))
+    call TriggerAddAction(gg_trg_BattleStance, function Trig_BattleStance_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: BattleStanceLearn
+//===========================================================================
+function Trig_BattleStanceLearn_Conditions takes nothing returns boolean
+    if ( not ( GetLearnedSkillBJ() == 'A0KD' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_BattleStanceLearn_Func001C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_BattleStanceLearn_Actions takes nothing returns nothing
+    if ( Trig_BattleStanceLearn_Func001C() ) then
+        set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 30 )
+    else
+        call UnitRemoveAbilityBJ('A0KE', GetTriggerUnit())
+        call UnitAddAbilityBJ('A0KE', GetTriggerUnit())
+        call SetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KD', GetTriggerUnit()))
+        call SetUnitAbilityLevelSwapped('A0KF', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit()))
+    endif
+endfunction
+
+//===========================================================================
+function InitTrig_BattleStanceLearn takes nothing returns nothing
+    set gg_trg_BattleStanceLearn=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_BattleStanceLearn, EVENT_PLAYER_HERO_SKILL)
+    call TriggerAddCondition(gg_trg_BattleStanceLearn, Condition(function Trig_BattleStanceLearn_Conditions))
+    call TriggerAddAction(gg_trg_BattleStanceLearn, function Trig_BattleStanceLearn_Actions)
 endfunction
 
 //===========================================================================
@@ -44571,22 +45081,41 @@ endfunction
 //===========================================================================
 // Trigger: ArmorOfWarGiveDoD
 //===========================================================================
+function Trig_ArmorOfWarGiveDoD_Func002C takes nothing returns boolean
+    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02R' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
 function Trig_ArmorOfWarGiveDoD_Conditions takes nothing returns boolean
-    if ( not ( CountUnitsInGroup(udg_RoomEnemyUG) == 0 ) ) then
+    if ( not Trig_ArmorOfWarGiveDoD_Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_ArmorOfWarGiveDoD_Func004Func001C takes nothing returns boolean
-    if ( not ( UnitHasItemOfTypeBJ(GetTriggerUnit(), 'I093') == true ) ) then
+function Trig_ArmorOfWarGiveDoD_Func003Func001C takes nothing returns boolean
+    if ( not ( UnitHasItemOfTypeBJ(GetEnumUnit(), 'I093') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_ArmorOfWarGiveDoD_Func004A takes nothing returns nothing
-    if ( Trig_ArmorOfWarGiveDoD_Func004Func001C() ) then
+function Trig_ArmorOfWarGiveDoD_Func003A takes nothing returns nothing
+    if ( Trig_ArmorOfWarGiveDoD_Func003Func001C() ) then
         set udg_tempLoc=GetUnitLoc(GetEnumUnit())
         call CreateNUnitsAtLoc(1, 'e008', GetOwningPlayer(GetEnumUnit()), udg_tempLoc, bj_UNIT_FACING)
         call RemoveLocation(udg_tempLoc)
@@ -44595,14 +45124,13 @@ function Trig_ArmorOfWarGiveDoD_Func004A takes nothing returns nothing
 endfunction
 
 function Trig_ArmorOfWarGiveDoD_Actions takes nothing returns nothing
-    call ForGroupBJ(udg_HeroesGroup, function Trig_ArmorOfWarGiveDoD_Func004A)
+    call ForGroupBJ(udg_HeroesGroup, function Trig_ArmorOfWarGiveDoD_Func003A)
 endfunction
 
 //===========================================================================
 function InitTrig_ArmorOfWarGiveDoD takes nothing returns nothing
     set gg_trg_ArmorOfWarGiveDoD=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_ArmorOfWarGiveDoD, EVENT_PLAYER_UNIT_DEATH)
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_ArmorOfWarGiveDoD, EVENT_PLAYER_UNIT_CHANGE_OWNER)
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_ArmorOfWarGiveDoD, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_ArmorOfWarGiveDoD, Condition(function Trig_ArmorOfWarGiveDoD_Conditions))
     call TriggerAddAction(gg_trg_ArmorOfWarGiveDoD, function Trig_ArmorOfWarGiveDoD_Actions)
 endfunction
@@ -45185,85 +45713,6 @@ function InitTrig_DefenseStaff takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_DefenseStaff, EVENT_PLAYER_UNIT_SPELL_EFFECT)
     call TriggerAddCondition(gg_trg_DefenseStaff, Condition(function Trig_DefenseStaff_Conditions))
     call TriggerAddAction(gg_trg_DefenseStaff, function Trig_DefenseStaff_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: ScalesEkvilibrium
-//===========================================================================
-function Trig_ScalesEkvilibrium_Conditions takes nothing returns boolean
-    if ( not ( GetSpellAbilityId() == 'A0I6' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_ScalesEkvilibrium_Func002Func001Func001C takes nothing returns boolean
-    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
-        return false
-    endif
-    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_ScalesEkvilibrium_Func002Func001Func002Func002C takes nothing returns boolean
-    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
-        return false
-    endif
-    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_ScalesEkvilibrium_Func002Func001Func002C takes nothing returns boolean
-    if ( ( BlzIsUnitInvulnerable(GetEnumUnit()) == true ) ) then
-        return true
-    endif
-    if ( Trig_ScalesEkvilibrium_Func002Func001Func002Func002C() ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_ScalesEkvilibrium_Func002Func001C takes nothing returns boolean
-    if ( not Trig_ScalesEkvilibrium_Func002Func001Func002C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_ScalesEkvilibrium_Func002A takes nothing returns nothing
-    if ( Trig_ScalesEkvilibrium_Func002Func001C() ) then
-        if ( Trig_ScalesEkvilibrium_Func002Func001Func001C() ) then
-            call CreateTextTagUnitBJ("TRIGSTR_8413", GetEnumUnit(), 0, 10, 100, 100, 100, 0)
-            call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
-            call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 3.00)
-            call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
-        else
-        endif
-    else
-        call SetUnitLifePercentBJ(GetEnumUnit(), 50.00)
-        call SetUnitManaPercentBJ(GetEnumUnit(), 50.00)
-        call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Abilities\\Weapons\\DemonHunterMissile\\DemonHunterMissile.mdl")
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    endif
-endfunction
-
-function Trig_ScalesEkvilibrium_Actions takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(5000.00, udg_tempLoc), function Trig_ScalesEkvilibrium_Func002A)
-    call DestroyGroup(GetLastCreatedGroup())
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_ScalesEkvilibrium takes nothing returns nothing
-    set gg_trg_ScalesEkvilibrium=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_ScalesEkvilibrium, EVENT_PLAYER_UNIT_SPELL_EFFECT)
-    call TriggerAddCondition(gg_trg_ScalesEkvilibrium, Condition(function Trig_ScalesEkvilibrium_Conditions))
-    call TriggerAddAction(gg_trg_ScalesEkvilibrium, function Trig_ScalesEkvilibrium_Actions)
 endfunction
 
 //===========================================================================
@@ -48341,32 +48790,6 @@ function Trig_Choosing_Func022C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Choosing_Func024Func001C takes nothing returns boolean
-    if ( ( GetSpellTargetUnit() == gg_unit_H008_0079 ) ) then
-        return true
-    endif
-    if ( ( GetSpellTargetUnit() == gg_unit_H00M_0276 ) ) then
-        return true
-    endif
-    if ( ( GetSpellTargetUnit() == gg_unit_H00D_0059 ) ) then
-        return true
-    endif
-    if ( ( GetSpellTargetUnit() == gg_unit_H009_0081 ) ) then
-        return true
-    endif
-    if ( ( GetSpellTargetUnit() == gg_unit_H00E_0060 ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_Choosing_Func024C takes nothing returns boolean
-    if ( not Trig_Choosing_Func024Func001C() ) then
-        return false
-    endif
-    return true
-endfunction
-
 function Trig_Choosing_Func026C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 1 ) ) then
         return false
@@ -48491,7 +48914,6 @@ function Trig_Choosing_Actions takes nothing returns nothing
     endloop
     // ------------
     if ( Trig_Choosing_Func020C() ) then
-        call UnitAddAbilityBJ('A00M', GetLastCreatedUnit())
         call CreateNUnitsAtLoc(1, 'e008', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetLastCreatedUnit()), bj_UNIT_FACING)
         set udg_DISOBIDIENCE_OF_DEATH=( udg_DISOBIDIENCE_OF_DEATH + 1 )
     else
@@ -48506,10 +48928,6 @@ function Trig_Choosing_Actions takes nothing returns nothing
     else
     endif
     // ------------
-    if ( Trig_Choosing_Func024C() ) then
-        call AddUnitToStockBJ('o02M', GetLastCreatedUnit(), 1, 1)
-    else
-    endif
     // ------------
     if ( Trig_Choosing_Func026C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegOrc[udg_HeroNumber]), bj_UNIT_FACING)
@@ -48561,7 +48979,7 @@ function Trig_GameInit_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GameInit_Func008Func001Func002C takes nothing returns boolean
+function Trig_GameInit_Func009Func001Func002C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetEnumUnit()) == 'H004' ) ) then
         return true
     endif
@@ -48571,39 +48989,39 @@ function Trig_GameInit_Func008Func001Func002C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_GameInit_Func008Func001C takes nothing returns boolean
-    if ( not Trig_GameInit_Func008Func001Func002C() ) then
+function Trig_GameInit_Func009Func001C takes nothing returns boolean
+    if ( not Trig_GameInit_Func009Func001Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GameInit_Func008A takes nothing returns nothing
-    if ( Trig_GameInit_Func008Func001C() ) then
+function Trig_GameInit_Func009A takes nothing returns nothing
+    if ( Trig_GameInit_Func009Func001C() ) then
     else
         call RemoveUnit(GetEnumUnit())
     endif
-endfunction
-
-function Trig_GameInit_Func009A takes nothing returns nothing
-    call PauseUnitBJ(false, GetEnumUnit())
 endfunction
 
 function Trig_GameInit_Func010A takes nothing returns nothing
     call PauseUnitBJ(false, GetEnumUnit())
 endfunction
 
+function Trig_GameInit_Func011A takes nothing returns nothing
+    call PauseUnitBJ(false, GetEnumUnit())
+endfunction
+
 function Trig_GameInit_Actions takes nothing returns nothing
+    set udg_vote_on=false
     call UseTimeOfDayBJ(true)
     call EnableTrigger(gg_trg_RaiseDeadUp)
-    call EnableTrigger(gg_trg_DPSPeriodic)
     call EnableTrigger(gg_trg_MutagenAquiring)
     call EnableTrigger(gg_trg_BackpackAndDisobidienceMove)
     call DisableTrigger(GetTriggeringTrigger())
     call TriggerSleepAction(2)
-    call ForGroupBJ(GetUnitsInRectAll(gg_rct_MainBossLoc), function Trig_GameInit_Func008A)
-    call ForGroupBJ(udg_HeroesGroup, function Trig_GameInit_Func009A)
-    call ForGroupBJ(udg_BackpackGroup, function Trig_GameInit_Func010A)
+    call ForGroupBJ(GetUnitsInRectAll(gg_rct_MainBossLoc), function Trig_GameInit_Func009A)
+    call ForGroupBJ(udg_HeroesGroup, function Trig_GameInit_Func010A)
+    call ForGroupBJ(udg_BackpackGroup, function Trig_GameInit_Func011A)
 endfunction
 
 //===========================================================================
@@ -48628,7 +49046,7 @@ function Trig_Orcs_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Orcs_Func008C takes nothing returns boolean
+function Trig_Orcs_Func009C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 1 ) ) then
         return false
     endif
@@ -48636,12 +49054,13 @@ function Trig_Orcs_Func008C takes nothing returns boolean
 endfunction
 
 function Trig_Orcs_Actions takes nothing returns nothing
+    set udg_vote_on=false
     call SelectUnitForPlayerSingle(GetSpellTargetUnit(), GetOwningPlayer(GetTriggerUnit()))
     call PlaySoundAtPointBJ(gg_snd_BerserkerCaster, 100, GetRectCenter(gg_rct_PlayableMapAreaLoc), 0)
     call SetUnitPositionLoc(GetSpellTargetUnit(), GetRectCenter(gg_rct_StartOrc))
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetTriggerUnit()), gg_rct_Room6_TRADE)
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), 0.00)
-    if ( Trig_Orcs_Func008C() ) then
+    if ( Trig_Orcs_Func009C() ) then
         set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom6)
         call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
@@ -48685,7 +49104,7 @@ function Trig_Alliance_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Alliance_Func008C takes nothing returns boolean
+function Trig_Alliance_Func009C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 1 ) ) then
         return false
     endif
@@ -48693,12 +49112,13 @@ function Trig_Alliance_Func008C takes nothing returns boolean
 endfunction
 
 function Trig_Alliance_Actions takes nothing returns nothing
+    set udg_vote_on=false
     call SelectUnitForPlayerSingle(GetSpellTargetUnit(), GetOwningPlayer(GetTriggerUnit()))
     call PlaySoundAtPointBJ(gg_snd_InviteToParty, 100, GetRectCenter(gg_rct_PlayableMapAreaLoc), 0)
     call SetUnitPositionLoc(GetSpellTargetUnit(), GetRandomLocInRect(gg_rct_StartAlliance))
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetTriggerUnit()), gg_rct_Room18_TRADE)
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), 0.00)
-    if ( Trig_Alliance_Func008C() ) then
+    if ( Trig_Alliance_Func009C() ) then
         set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom18)
         call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
@@ -48736,7 +49156,7 @@ function Trig_NotAlliance_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_NotAlliance_Func008C takes nothing returns boolean
+function Trig_NotAlliance_Func009C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 1 ) ) then
         return false
     endif
@@ -48744,12 +49164,13 @@ function Trig_NotAlliance_Func008C takes nothing returns boolean
 endfunction
 
 function Trig_NotAlliance_Actions takes nothing returns nothing
+    set udg_vote_on=false
     call SelectUnitForPlayerSingle(GetSpellTargetUnit(), GetOwningPlayer(GetTriggerUnit()))
     call PlaySoundAtPointBJ(gg_snd_AchievementEarned, 100, GetRectCenter(gg_rct_PlayableMapAreaLoc), 0)
     call SetUnitPositionLoc(GetSpellTargetUnit(), GetRandomLocInRect(gg_rct_StartNaluara))
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetTriggerUnit()), gg_rct_Room12_TRADE)
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), 0.00)
-    if ( Trig_NotAlliance_Func008C() ) then
+    if ( Trig_NotAlliance_Func009C() ) then
         set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom12)
         call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
@@ -48908,6 +49329,157 @@ function InitTrig_Initialization takes nothing returns nothing
 endfunction
 
 //===========================================================================
+// Trigger: VoteRegionSell
+//===========================================================================
+function Trig_VoteRegionSell_Func007C takes nothing returns boolean
+    if ( ( GetSpellAbilityId() == 'A0K8' ) ) then
+        return true
+    endif
+    if ( ( GetSpellAbilityId() == 'A0K9' ) ) then
+        return true
+    endif
+    if ( ( GetSpellAbilityId() == 'A0KA' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_VoteRegionSell_Conditions takes nothing returns boolean
+    if ( not Trig_VoteRegionSell_Func007C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_VoteRegionSell_Func001C takes nothing returns boolean
+    if ( not ( GetSpellAbilityId() == 'A0K8' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_VoteRegionSell_Func002C takes nothing returns boolean
+    if ( not ( GetSpellAbilityId() == 'A0K9' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_VoteRegionSell_Func003C takes nothing returns boolean
+    if ( not ( GetSpellAbilityId() == 'A0KA' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_VoteRegionSell_Actions takes nothing returns nothing
+    if ( Trig_VoteRegionSell_Func001C() ) then
+        set udg_region_votes[1]=( udg_region_votes[1] + 1 )
+        call DisplayTextToForce(GetPlayersAll(), ( GetPlayerName(GetOwningPlayer(GetTriggerUnit())) + ( " хочет начать в |cffff0000Кровавой Орде|r" ) ))
+    else
+    endif
+    if ( Trig_VoteRegionSell_Func002C() ) then
+        set udg_region_votes[2]=( udg_region_votes[2] + 1 )
+        call DisplayTextToForce(GetPlayersAll(), ( GetPlayerName(GetOwningPlayer(GetTriggerUnit())) + ( " хочет начать в |cff8080ffНалуаре|r" ) ))
+    else
+    endif
+    if ( Trig_VoteRegionSell_Func003C() ) then
+        set udg_region_votes[3]=( udg_region_votes[3] + 1 )
+        call DisplayTextToForce(GetPlayersAll(), ( GetPlayerName(GetOwningPlayer(GetTriggerUnit())) + ( " хочет начать в |cffffff00Альянсе Спасения|r" ) ))
+    else
+    endif
+    call UnitRemoveAbilityBJ('A0K8', GetTriggerUnit())
+    call UnitRemoveAbilityBJ('A0K9', GetTriggerUnit())
+    call UnitRemoveAbilityBJ('A0KA', GetTriggerUnit())
+endfunction
+
+//===========================================================================
+function InitTrig_VoteRegionSell takes nothing returns nothing
+    set gg_trg_VoteRegionSell=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_VoteRegionSell, EVENT_PLAYER_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_VoteRegionSell, Condition(function Trig_VoteRegionSell_Conditions))
+    call TriggerAddAction(gg_trg_VoteRegionSell, function Trig_VoteRegionSell_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: TimeElapsedRegion
+//===========================================================================
+function Trig_TimeElapsedRegion_Func002Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'e000' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TimeElapsedRegion_Func002A takes nothing returns nothing
+    if ( Trig_TimeElapsedRegion_Func002Func001C() ) then
+        call UnitRemoveAbilityBJ('A0K8', GetEnumUnit())
+        call UnitRemoveAbilityBJ('A0K9', GetEnumUnit())
+        call UnitRemoveAbilityBJ('A0KA', GetEnumUnit())
+    else
+    endif
+endfunction
+
+function Trig_TimeElapsedRegion_Func003Func001Func001C takes nothing returns boolean
+    if ( not ( udg_region_votes[3] > udg_region_votes[1] ) ) then
+        return false
+    endif
+    if ( not ( udg_region_votes[3] > udg_region_votes[2] ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TimeElapsedRegion_Func003Func001C takes nothing returns boolean
+    if ( not ( udg_region_votes[2] > udg_region_votes[1] ) ) then
+        return false
+    endif
+    if ( not ( udg_region_votes[2] > udg_region_votes[3] ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TimeElapsedRegion_Func003C takes nothing returns boolean
+    if ( not ( udg_region_votes[1] > udg_region_votes[2] ) ) then
+        return false
+    endif
+    if ( not ( udg_region_votes[1] > udg_region_votes[3] ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TimeElapsedRegion_Actions takes nothing returns nothing
+    set udg_vote_on=false
+    call ForGroupBJ(GetUnitsInRectAll(gg_rct_BossfightInnerLoc), function Trig_TimeElapsedRegion_Func002A)
+    if ( Trig_TimeElapsedRegion_Func003C() ) then
+        set udg_CurrentLocation=1
+        call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_594")
+    else
+        if ( Trig_TimeElapsedRegion_Func003Func001C() ) then
+            set udg_CurrentLocation=2
+            call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_595")
+        else
+            if ( Trig_TimeElapsedRegion_Func003Func001Func001C() ) then
+                set udg_CurrentLocation=3
+                call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_596")
+            else
+                call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_597")
+            endif
+        endif
+    endif
+    call DisableTrigger(GetTriggeringTrigger())
+endfunction
+
+//===========================================================================
+function InitTrig_TimeElapsedRegion takes nothing returns nothing
+    set gg_trg_TimeElapsedRegion=CreateTrigger()
+    call TriggerRegisterTimerEventSingle(gg_trg_TimeElapsedRegion, 30.50)
+    call TriggerAddAction(gg_trg_TimeElapsedRegion, function Trig_TimeElapsedRegion_Actions)
+endfunction
+
+//===========================================================================
 // Trigger: TimeElapsedInit
 //===========================================================================
 function Trig_TimeElapsedInit_Func007A takes nothing returns nothing
@@ -48915,7 +49487,7 @@ function Trig_TimeElapsedInit_Func007A takes nothing returns nothing
     call SetCameraBoundsToRectForPlayerBJ(GetEnumPlayer(), gg_rct_MainBossLoc)
 endfunction
 
-function Trig_TimeElapsedInit_Func047Func001C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func052Func001C takes nothing returns boolean
     if ( not ( GetPlayerColor(GetEnumPlayer()) != PLAYER_COLOR_PEANUT ) ) then
         return false
     endif
@@ -48937,8 +49509,8 @@ function Trig_TimeElapsedInit_Func047Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_TimeElapsedInit_Func047A takes nothing returns nothing
-    if ( Trig_TimeElapsedInit_Func047Func001C() ) then
+function Trig_TimeElapsedInit_Func052A takes nothing returns nothing
+    if ( Trig_TimeElapsedInit_Func052Func001C() ) then
         set udg_PlayerCountChoosing=( udg_PlayerCountChoosing + 1 )
         call SetPlayerAllianceStateBJ(Player(19), GetEnumPlayer(), bj_ALLIANCE_UNALLIED)
         call SetPlayerAllianceStateBJ(GetEnumPlayer(), Player(19), bj_ALLIANCE_UNALLIED)
@@ -48950,7 +49522,7 @@ function Trig_TimeElapsedInit_Func047A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_TimeElapsedInit_Func048Func001Func001C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func053Func001Func001C takes nothing returns boolean
     if ( ( GetPlayerColor(GetEnumPlayer()) == PLAYER_COLOR_SNOW ) ) then
         return true
     endif
@@ -48963,30 +49535,30 @@ function Trig_TimeElapsedInit_Func048Func001Func001C takes nothing returns boole
     return false
 endfunction
 
-function Trig_TimeElapsedInit_Func048Func001C takes nothing returns boolean
-    if ( not Trig_TimeElapsedInit_Func048Func001Func001C() ) then
+function Trig_TimeElapsedInit_Func053Func001C takes nothing returns boolean
+    if ( not Trig_TimeElapsedInit_Func053Func001Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TimeElapsedInit_Func048A takes nothing returns nothing
-    if ( Trig_TimeElapsedInit_Func048Func001C() ) then
+function Trig_TimeElapsedInit_Func053A takes nothing returns nothing
+    if ( Trig_TimeElapsedInit_Func053Func001C() ) then
         call ForceAddPlayerSimple(GetEnumPlayer(), udg_PlayerBotsUG)
     else
     endif
 endfunction
 
-function Trig_TimeElapsedInit_Func084A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func089A takes nothing returns nothing
     call DialogDisplayBJ(true, udg_dialogDifficulty, GetEnumPlayer())
 endfunction
 
-function Trig_TimeElapsedInit_Func093Func001A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func098Func001A takes nothing returns nothing
     call SetUnitInvulnerable(GetEnumUnit(), true)
 endfunction
 
-function Trig_TimeElapsedInit_Func093A takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetEnumPlayer()), function Trig_TimeElapsedInit_Func093Func001A)
+function Trig_TimeElapsedInit_Func098A takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetEnumPlayer()), function Trig_TimeElapsedInit_Func098Func001A)
 endfunction
 
 function Trig_TimeElapsedInit_Actions takes nothing returns nothing
@@ -49004,6 +49576,11 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call MeleeStartingHeroLimit()
     // ----
     call GroupAddUnitSimple(gg_unit_H013_0011, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_O02P_0339, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_U00I_0284, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_N01N_0239, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_O01W_0238, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_U00K_0470, udg_not_knockbackable_UG)
     // ----
     call GroupAddUnitSimple(gg_unit_O002_0064, udg_WarriorsGroup)
     call GroupAddUnitSimple(gg_unit_H00A_0082, udg_WarriorsGroup)
@@ -49036,8 +49613,8 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call GroupAddUnitSimple(gg_unit_H00M_0276, udg_NotAlliance)
     call GroupAddUnitSimple(gg_unit_O024_0311, udg_NotAlliance)
     // ----
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func047A)
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func048A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func052A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func053A)
     call SetPlayerAllianceStateBJ(Player(22), Player(11), bj_ALLIANCE_ALLIED)
     call SetPlayerAllianceStateBJ(Player(23), Player(11), bj_ALLIANCE_ALLIED)
     call SetPlayerAllianceStateBJ(Player(11), Player(22), bj_ALLIANCE_ALLIED)
@@ -49084,7 +49661,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     set udg_dialogDifficultyButton[3]=GetLastCreatedButtonBJ()
     call DialogAddButtonBJ(udg_dialogDifficulty, "TRIGSTR_7291")
     set udg_dialogDifficultyButton[4]=GetLastCreatedButtonBJ()
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func084A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func089A)
     call SetTimeOfDay(12.00)
     call UseTimeOfDayBJ(false)
     set udg_tempLoc=GetUnitLoc(gg_unit_H00A_0082)
@@ -49093,7 +49670,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
     call IssueTargetOrderBJ(GetLastCreatedUnit(), "innerfire", gg_unit_H00A_0082)
     set udg_CurrentLocation=GetRandomInt(1, 3)
-    call ForForce(udg_PlayerBotsUG, function Trig_TimeElapsedInit_Func093A)
+    call ForForce(udg_PlayerBotsUG, function Trig_TimeElapsedInit_Func098A)
     call ConditionalTriggerExecute(gg_trg_InitCosmetic)
 endfunction
 
@@ -51643,29 +52220,8 @@ function Trig_BloodAltar_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_BloodAltar_Func002Func001Func014Func001C takes nothing returns boolean
+function Trig_BloodAltar_Func002Func001Func016Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetBuyingUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_BloodAltar_Func002Func001Func020Func001Func001C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 100) >= 85 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_BloodAltar_Func002Func001Func020Func001C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 100) >= 95 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_BloodAltar_Func002Func001Func020C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 10) > 1 ) ) then
         return false
     endif
     return true
@@ -51698,11 +52254,13 @@ function Trig_BloodAltar_Func002A takes nothing returns nothing
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\Undead\\DeathPact\\DeathPactCaster.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
         call KillUnit(GetEnumUnit())
+        call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\Items\\RitualDagger\\RitualDaggerTarget.mdl")
+        call DestroyEffectBJ(GetLastCreatedEffectBJ())
         set bj_forLoopAIndex=1
         set bj_forLoopAIndexEnd=udg_HeroNumber
         loop
             exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_BloodAltar_Func002Func001Func014Func001C() ) then
+            if ( Trig_BloodAltar_Func002Func001Func016Func001C() ) then
                 set udg_Karma[GetForLoopIndexA()]=( udg_Karma[GetForLoopIndexA()] - 1 )
             else
             endif
@@ -51711,34 +52269,23 @@ function Trig_BloodAltar_Func002A takes nothing returns nothing
         set udg_KarmaU=GetBuyingUnit()
         call TriggerExecute(gg_trg_KarmaSystem)
         set udg_KarmaU=null
-        if ( Trig_BloodAltar_Func002Func001Func020C() ) then
-            if ( Trig_BloodAltar_Func002Func001Func020Func001C() ) then
-                call CreateNUnitsAtLoc(1, 'o028', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, 270.00)
-            else
-                if ( Trig_BloodAltar_Func002Func001Func020Func001Func001C() ) then
-                    call CreateNUnitsAtLoc(1, 'o029', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, 270.00)
-                else
-                    call CreateNUnitsAtLoc(1, 'o027', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, 270.00)
-                endif
-            endif
-            call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\Items\\RitualDagger\\RitualDaggerTarget.mdl")
-            call DestroyEffectBJ(GetLastCreatedEffectBJ())
-            call RemoveLocation(udg_tempLoc)
-            set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(GetTriggerUnit()), 150.00, 270.00)
-            call CreateTextTagUnitBJ("TRIGSTR_6179", GetTriggerUnit(), 0, 10, 100, 100, 100, 0)
-            call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
-            call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 3.00)
-            call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
-        else
-            call AddSpecialEffectTargetUnitBJ("chest", GetBuyingUnit(), "BloodySplat Missile.mdx")
-            call DestroyEffectBJ(GetLastCreatedEffectBJ())
-            call BlzSetUnitMaxHP(GetBuyingUnit(), ( BlzGetUnitMaxHP(GetBuyingUnit()) + 200 ))
-            call SetUnitLifeBJ(GetBuyingUnit(), ( GetUnitStateSwap(UNIT_STATE_LIFE, GetBuyingUnit()) + 200.00 ))
-            call CreateTextTagUnitBJ("TRIGSTR_6178", GetTriggerUnit(), 0, 10, 100, 100, 100, 0)
-            call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
-            call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 3.00)
-            call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
-        endif
+        set udg_tempZ=GetLocationZ(udg_tempLoc)
+        // CHEST BONUS GOLD
+        set udg_tempReal=GetRandomReal(0.00, 5.00)
+        set udg_chest_pos=PolarProjectionBJ(GetUnitLoc(GetTriggerUnit()), 0.00, GetRandomDirectionDeg())
+        set udg_ChestU=GetTriggerUnit()
+        call RemoveLocation(udg_tempLoc)
+        call PauseUnitBJ(true, GetTriggerUnit())
+        call DisableTrigger(gg_trg_ChestOpen)
+        call EnableTrigger(gg_trg_GoldDropChestPeriodic)
+        // -
+        set udg_tempReal=( udg_tempReal + GetRandomReal(2.00, 5.00) )
+        call ConditionalTriggerExecute(gg_trg_ChestEpic)
+        call StartTimerBJ(udg_ChestTimerGold, false, udg_tempReal)
+        call CreateTextTagUnitBJ("TRIGSTR_505", GetTriggerUnit(), 0, 10, 100, 100, 100, 0)
+        call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
+        call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 3.00)
+        call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
         call PauseUnitBJ(true, GetTriggerUnit())
     else
     endif
@@ -51748,6 +52295,7 @@ function Trig_BloodAltar_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetSellingUnit())
     call ForGroupBJ(GetUnitsInRangeOfLocAll(300.00, udg_tempLoc), function Trig_BloodAltar_Func002A)
     set udg_tempInt=0
+    set udg_tempZ=0.00
     call RemoveLocation(udg_tempLoc)
     call RemoveLocation(udg_tempLoc2)
 endfunction
@@ -63561,119 +64109,6 @@ function InitTrig_DPScheck takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: DPS reset rooms
-//===========================================================================
-function Trig_DPS_reset_rooms_Func001C takes nothing returns boolean
-    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_DPS_reset_rooms_Conditions takes nothing returns boolean
-    if ( not Trig_DPS_reset_rooms_Func001C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DPS_reset_rooms_Actions takes nothing returns nothing
-    set bj_forLoopAIndex=1
-    set bj_forLoopAIndexEnd=udg_HeroNumber
-    loop
-        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        set udg_DPStimeElapsedReal[GetForLoopIndexA()]=0.00
-        set udg_DPSstoreReal[GetForLoopIndexA()]=0.00
-        set udg_DPStempReal[GetForLoopIndexA()]=0.00
-        set udg_DPSstoreCheckReal[GetForLoopIndexA()]=0.00
-        call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), R2S(udg_DPStempReal[GetForLoopIndexA()]))
-        set bj_forLoopAIndex=bj_forLoopAIndex + 1
-    endloop
-endfunction
-
-//===========================================================================
-function InitTrig_DPS_reset_rooms takes nothing returns nothing
-    set gg_trg_DPS_reset_rooms=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_DPS_reset_rooms, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_DPS_reset_rooms, Condition(function Trig_DPS_reset_rooms_Conditions))
-    call TriggerAddAction(gg_trg_DPS_reset_rooms, function Trig_DPS_reset_rooms_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: DPS
-//===========================================================================
-function Trig_DPS_Func001Func001Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(udg_DamageEventSource) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DPS_Func001A takes nothing returns nothing
-    set bj_forLoopAIndex=1
-    set bj_forLoopAIndexEnd=udg_HeroNumber
-    loop
-        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_DPS_Func001Func001Func001C() ) then
-            set udg_DPSstoreReal[GetForLoopIndexA()]=( udg_DamageEventAmount + udg_DPSstoreReal[GetForLoopIndexA()] )
-        else
-        endif
-        set bj_forLoopAIndex=bj_forLoopAIndex + 1
-    endloop
-endfunction
-
-function Trig_DPS_Actions takes nothing returns nothing
-    call ForForce(udg_PlayerGroup, function Trig_DPS_Func001A)
-endfunction
-
-//===========================================================================
-function InitTrig_DPS takes nothing returns nothing
-    set gg_trg_DPS=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_DPS, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddAction(gg_trg_DPS, function Trig_DPS_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: DPSPeriodic
-//===========================================================================
-function Trig_DPSPeriodic_Func001Func001C takes nothing returns boolean
-    if ( not ( udg_DPSstoreReal[GetForLoopIndexA()] == udg_DPSstoreCheckReal[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DPSPeriodic_Actions takes nothing returns nothing
-    set bj_forLoopAIndex=1
-    set bj_forLoopAIndexEnd=udg_HeroNumber
-    loop
-        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_DPSPeriodic_Func001Func001C() ) then
-        else
-            set udg_DPStimeElapsedReal[GetForLoopIndexA()]=( udg_DPStimeElapsedReal[GetForLoopIndexA()] + 5.00 )
-            set udg_DPSstoreCheckReal[GetForLoopIndexA()]=udg_DPSstoreReal[GetForLoopIndexA()]
-            set udg_DPStempReal[GetForLoopIndexA()]=( udg_DPSstoreReal[GetForLoopIndexA()] / udg_DPStimeElapsedReal[GetForLoopIndexA()] )
-            call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), R2S(udg_DPStempReal[GetForLoopIndexA()]))
-        endif
-        set bj_forLoopAIndex=bj_forLoopAIndex + 1
-    endloop
-endfunction
-
-//===========================================================================
-function InitTrig_DPSPeriodic takes nothing returns nothing
-    set gg_trg_DPSPeriodic=CreateTrigger()
-    call DisableTrigger(gg_trg_DPSPeriodic)
-    call TriggerRegisterTimerEventPeriodic(gg_trg_DPSPeriodic, 5.00)
-    call TriggerAddAction(gg_trg_DPSPeriodic, function Trig_DPSPeriodic_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: MultiboardKarma
 //===========================================================================
 function Trig_MultiboardKarma_Actions takes nothing returns nothing
@@ -63811,6 +64246,7 @@ endfunction
 function Trig_MusicEnd_Actions takes nothing returns nothing
     set udg_musicOn=0
     if ( Trig_MusicEnd_Func003C() ) then
+        set udg_musicOn=1
         call EndThematicMusicBJ()
         call SetMusicVolumeBJ(100.00)
         call PlayThematicMusicBJ("Miniboss.mp3")
@@ -63838,7 +64274,6 @@ function Trig_MinibossEnteringMusic_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_MinibossEnteringMusic_Actions takes nothing returns nothing
-    call DisableTrigger(gg_trg_MusicEnd)
     set udg_musicOn=1
     set udg_miniboss_music_on=true
     call EndThematicMusicBJ()
@@ -63870,6 +64305,7 @@ function Trig_MinibossDies_Actions takes nothing returns nothing
     call GroupRemoveUnitSimple(GetTriggerUnit(), udg_MiniBossUG)
     call EnableTrigger(gg_trg_MinibossEnteringMusic)
     set udg_miniboss_music_on=false
+    set udg_musicOn=0
 endfunction
 
 //===========================================================================
@@ -63884,11 +64320,11 @@ endfunction
 function InitCustomTriggers takes nothing returns nothing
     call InitTrig_GlobalPeriodic()
     call InitTrig_infoRemove()
-    call InitTrig_RaidBuffs()
     call InitTrig_DeathPenalty()
     call InitTrig_GeneralPlayableMapAreaEnter()
     call InitTrig_BuyingMercenaries()
     call InitTrig_BackpackAndDisobidienceMove()
+    call InitTrig_DemonDying()
     call InitTrig_QuestMutagenReward()
     call InitTrig_QuestCompleted()
     call InitTrig_QuestCompletedPreviously()
@@ -63896,6 +64332,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_CheckPlayerFoodLimitFunc()
     call InitTrig_DisobidienceOfDeathResAndRemove()
     call InitTrig_GlobalDamageEvent()
+    call InitTrig_HeroResFunc()
     call InitTrig_Leave()
     call InitTrig_bossfight1()
     call InitTrig_bossfight2()
@@ -63927,6 +64364,8 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_goldenconsul()
     call InitTrig_fallenshrine()
     call InitTrig_enemies()
+    call InitTrig_res()
+    call InitTrig_res2()
     call InitTrig_reinacrnations()
     call InitTrig_test()
     call InitTrig_test2()
@@ -63961,7 +64400,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_ActMsg2()
     call InitTrig_ActMsg3()
     call InitTrig_ActMsg4()
-    call InitTrig_HeroResFunc()
     call InitTrig_RoomCreateExit()
     call InitTrig_RoomCreateExitTownBeforeBoss()
     call InitTrig_KarmaSystem()
@@ -63992,26 +64430,25 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_tL14_Copy()
     call InitTrig_tL15()
     call InitTrig_tL15_Copy()
-    call InitTrig_tL16()
-    call InitTrig_tL17()
+    call InitTrig_TalentUnholyStrength()
+    call InitTrig_TalentGreed()
     call InitTrig_tL18()
     call InitTrig_tL18_Copy()
     call InitTrig_tL18_Copy_Copy()
-    call InitTrig_tL19()
+    call InitTrig_TalentCorpseExplosion()
     call InitTrig_tL19_Copy()
     call InitTrig_tL20()
-    call InitTrig_tL20_Copy()
     call InitTrig_tL21()
     call InitTrig_tL21_Copy()
     call InitTrig_tL22()
     call InitTrig_tL22_copy()
     call InitTrig_tL22_copy_Copy()
-    call InitTrig_tL23()
+    call InitTrig_TalentFelEnergy()
     call InitTrig_tL24()
     call InitTrig_tL24_Copy()
-    call InitTrig_tL25()
-    call InitTrig_tL26()
-    call InitTrig_tL27()
+    call InitTrig_TalentHatred()
+    call InitTrig_TalentFoulBulwark()
+    call InitTrig_TalentHemostasis()
     call InitTrig_tL28()
     call InitTrig_tL28_Copy_Copy_2()
     call InitTrig_tL28_Copy_Copy_2_Copy()
@@ -64028,15 +64465,12 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_tL34()
     call InitTrig_tL34_copy()
     call InitTrig_tL34_copy_Copy()
-    call InitTrig_tL35()
-    call InitTrig_tL35_copy()
-    call InitTrig_tL36()
-    call InitTrig_tL36_Copy()
+    call InitTrig_TalentMight()
+    call InitTrig_TalentSuperstition()
     call InitTrig_TalentArmorupLVL()
     call InitTrig_TalentLevelup()
     call InitTrig_TalentMushroomStew()
-    call InitTrig_tL40()
-    call InitTrig_tL40_Copy()
+    call InitTrig_TalentArcana()
     call InitTrig_TalentEvasionLVL()
     call InitTrig_tL42()
     call InitTrig_tL42_Copy()
@@ -64294,7 +64728,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_Taunt()
     call InitTrig_ShieldBash()
     call InitTrig_DefenseShout()
-    call InitTrig_DemonDying()
     call InitTrig_BaronStop()
     call InitTrig_BaronCast()
     call InitTrig_Baron()
@@ -64354,6 +64787,12 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_LifeDrain()
     call InitTrig_LifeDrainDying()
     call InitTrig_LifeDrainPeridoic()
+    call InitTrig_Decimate()
+    call InitTrig_Warstomp()
+    call InitTrig_Whirlwind()
+    call InitTrig_WhirlwindTimer()
+    call InitTrig_BattleStance()
+    call InitTrig_BattleStanceLearn()
     call InitTrig_RunestoneMaster()
     call InitTrig_RuneOfMightyWindCheck()
     call InitTrig_RuneOfMightyWind()
@@ -64415,7 +64854,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_GauntletsOfWarKnockbackTarget()
     call InitTrig_GauntletsOfWarKnockbackCaster()
     call InitTrig_DefenseStaff()
-    call InitTrig_ScalesEkvilibrium()
     call InitTrig_ChaosStaffLvlAbuse()
     call InitTrig_IzuverTake()
     call InitTrig_IzuverDrop()
@@ -64485,6 +64923,8 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_Pickup()
     call InitTrig_Drop()
     call InitTrig_Initialization()
+    call InitTrig_VoteRegionSell()
+    call InitTrig_TimeElapsedRegion()
     call InitTrig_TimeElapsedInit()
     call InitTrig_TimeElapsedNPC()
     call InitTrig_Autoload()
@@ -64779,9 +65219,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_Slots()
     call InitTrig_JuiceCactus()
     call InitTrig_DPScheck()
-    call InitTrig_DPS_reset_rooms()
-    call InitTrig_DPS()
-    call InitTrig_DPSPeriodic()
     call InitTrig_MultiboardKarma()
     call InitTrig_MusicMiscStart()
     call InitTrig_MusicEnd()
@@ -65281,12 +65718,12 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs30272515")
-call ExecuteFunc("NSLHelper___Init")
-call ExecuteFunc("NSLImpl___Init")
-call ExecuteFunc("NSLSaveLoad___Init")
-call ExecuteFunc("NSLSaveLoadExecutor___Init")
-call ExecuteFunc("NSLUtils___Init")
+call ExecuteFunc("jasshelper__initstructs35569671")
+call ExecuteFunc("NSLHelper__Init")
+call ExecuteFunc("NSLImpl__Init")
+call ExecuteFunc("NSLSaveLoad__Init")
+call ExecuteFunc("NSLSaveLoadExecutor__Init")
+call ExecuteFunc("NSLUtils__Init")
 
     call InitGlobals()
     call InitCustomTriggers()
@@ -65345,8 +65782,8 @@ local integer player_id=f__arg_integer1
 			set s__NSL_Code_code_length[inst]=0
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
-			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
 set f__result_integer= inst
    return true
 endfunction
@@ -65357,8 +65794,8 @@ local integer size=f__arg_integer2
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
    return true
 endfunction
@@ -65372,15 +65809,15 @@ return true
 				call s__NSL_Code_GenerateImpl(this)
 return true
 			endif
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
 			endif
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
    return true
 endfunction
 function sa__NSL_Code_Load takes nothing returns boolean
@@ -65390,33 +65827,33 @@ local integer this=f__arg_this
 set f__result_boolean= true
 return true
 			endif
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
 set f__result_boolean= true
    return true
 endfunction
@@ -65428,8 +65865,8 @@ local integer size=f__arg_integer1
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -65459,7 +65896,7 @@ function sa___prototype2_DamageEngine_RegisterFromHook takes nothing returns boo
     call DamageEngine_RegisterFromHook(f__arg_trigger1,f__arg_string1,f__arg_limitop1,f__arg_real1)
     return true
 endfunction
-function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated takes nothing returns boolean
+function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local string generated_code=f__arg_string1
 
@@ -65470,19 +65907,19 @@ function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated takes noth
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     return true
 endfunction
-function sa___prototype19_NSLUtils___OnPlayerCodeLoaded takes nothing returns boolean
+function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local boolean is_valid=f__arg_boolean1
  local integer loader=f__arg_integer2
 
         if ( is_valid ) then
-            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils___format == null ) then
+            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils__format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
     return true
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
@@ -65490,7 +65927,7 @@ function sa___prototype19_NSLUtils___OnPlayerCodeLoaded takes nothing returns bo
     return true
 endfunction
 
-function jasshelper__initstructs30272515 takes nothing returns nothing
+function jasshelper__initstructs35569671 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -65509,19 +65946,19 @@ function jasshelper__initstructs30272515 takes nothing returns nothing
     call TriggerAddAction(st___prototype2[1],function sa___prototype2_DamageEngine_RegisterFromHook)
     call TriggerAddCondition(st___prototype2[1],Condition(function sa___prototype2_DamageEngine_RegisterFromHook))
     set st___prototype13[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype13[1],function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated)
-    call TriggerAddCondition(st___prototype13[1],Condition(function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated))
+    call TriggerAddAction(st___prototype13[1],function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated)
+    call TriggerAddCondition(st___prototype13[1],Condition(function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated))
     set st___prototype19[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype19[1],function sa___prototype19_NSLUtils___OnPlayerCodeLoaded)
-    call TriggerAddCondition(st___prototype19[1],Condition(function sa___prototype19_NSLUtils___OnPlayerCodeLoaded))
+    call TriggerAddAction(st___prototype19[1],function sa___prototype19_NSLUtils__OnPlayerCodeLoaded)
+    call TriggerAddCondition(st___prototype19[1],Condition(function sa___prototype19_NSLUtils__OnPlayerCodeLoaded))
 
 
 
-call ExecuteFunc("s__File_FileIO___FileInit___onInit")
+call ExecuteFunc("s__File_FileIO__FileInit___onInit")
 
-call ExecuteFunc("s__User_PlayerUtils___PlayerUtilsInit___onInit")
+call ExecuteFunc("s__User_PlayerUtils__PlayerUtilsInit___onInit")
 
-call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
+call ExecuteFunc("s__SyncHelper__Sync_SyncHelper__INITS___onInit")
 
 
 

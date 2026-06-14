@@ -1,0 +1,9 @@
+package Decimate
+
+import ClosureEvents
+
+
+init
+    EventListener.onCast('A0KH') (unit caster) ->
+        addEffect("Models/[Wind]Decimate_Q1.mdx", caster.getPos3Real() + vec3(0, 0, 150))..setScale(0.75)..setRoll(100.0.fromDeg())..setYaw((caster.getFacingAngle() * 2))..destr()
+

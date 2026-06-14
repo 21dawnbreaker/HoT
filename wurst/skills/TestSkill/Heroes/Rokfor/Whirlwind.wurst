@@ -1,0 +1,8 @@
+package Whirlwind
+
+import ClosureEvents
+
+
+init
+    EventListener.onCast('A0KG') (unit caster) ->
+        flashEffect("Models/[Wind]Decimate_Q1.mdx", caster.getPos3Real(), 0.75)
