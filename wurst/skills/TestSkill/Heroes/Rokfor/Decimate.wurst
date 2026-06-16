@@ -1,9 +1,18 @@
 package Decimate
 
 import ClosureEvents
+import ClosureTimers
 
 
 init
     EventListener.onCast('A0KH') (unit caster) ->
-        addEffect("Models/[Wind]Decimate_Q1.mdx", caster.getPos3Real() + vec3(0, 0, 150))..setScale(0.75)..setRoll(100.0.fromDeg())..setYaw((caster.getFacingAngle() * 2))..destr()
-
+        addEffect("Models/[Wind]Decimate_Q1.mdx", caster.getPos3Real() + vec3(0, 0, 75))..setScale(0.75)..setRoll(100.0.fromDeg())..setYaw((caster.getFacingAngle()))..destr()
+        // GroupEnumUnitsInRangeOfLoc(whichGroup, whichLocation, radius, filter)
+        // PauseUnit(caster, true)
+        doAfter(0.05) -> 
+            caster.setAnimation("attack")
+        doAfter(0.5) -> 
+            // PauseUnit(caster, false)
+            caster.setAnimation("ready")
+    
+    EventListener.onSpellEffect()

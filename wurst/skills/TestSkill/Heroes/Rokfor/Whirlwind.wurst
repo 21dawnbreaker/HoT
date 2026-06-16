@@ -1,8 +1,13 @@
 package Whirlwind
 
 import ClosureEvents
+import ClosureTimers
 
 
 init
     EventListener.onCast('A0KG') (unit caster) ->
         flashEffect("Models/[Wind]Decimate_Q1.mdx", caster.getPos3Real(), 0.75)
+        caster.setAnimation("attack")
+        doAfter(0.5) -> 
+            PauseUnit(caster, false)
+            caster.setAnimation("ready")

@@ -53,13 +53,13 @@ constant boolean LIBRARY_NSLCodeHelper=true
 //endglobals from NSLCodeHelper
 //globals from NSLCodexStore:
 constant boolean LIBRARY_NSLCodexStore=true
-trigger array NSLCodexStore__CodexArray
-integer array NSLCodexStore__CodexVersion
-integer NSLCodexStore__CodexSize= 0
+trigger array NSLCodexStore___CodexArray
+integer array NSLCodexStore___CodexVersion
+integer NSLCodexStore___CodexSize= 0
 //endglobals from NSLCodexStore
 //globals from NSLHelper:
 constant boolean LIBRARY_NSLHelper=true
-integer array NSLHelper__TWO_POW_CACHE
+integer array NSLHelper___TWO_POW_CACHE
 //endglobals from NSLHelper
 //globals from NSLSizeEnum:
 constant boolean LIBRARY_NSLSizeEnum=true
@@ -99,16 +99,16 @@ constant integer NSL_SIZE_LESS_THAN_2147483648= 31
 constant boolean LIBRARY_PlayerUtils=true
 constant force FORCE_PLAYING= CreateForce()
    
-string array PlayerUtils__Name
-string array PlayerUtils__Hex
-string array PlayerUtils__OriginalHex
-playercolor array PlayerUtils__CurrentColor
+string array PlayerUtils___Name
+string array PlayerUtils___Hex
+string array PlayerUtils___OriginalHex
+playercolor array PlayerUtils___CurrentColor
 //endglobals from PlayerUtils
 //globals from SyncHelper:
 constant boolean LIBRARY_SyncHelper=true
 constant string SyncHelper_SYNC_PREFIX_COUNT= "CP"
 constant string SyncHelper_SYNC_PREFIX= "CS"
-constant integer SyncHelper__SYNC_SIZE_CHUNK= 200
+constant integer SyncHelper___SYNC_SIZE_CHUNK= 200
 //endglobals from SyncHelper
 //globals from NSLImpl:
 constant boolean LIBRARY_NSLImpl=true
@@ -123,17 +123,17 @@ constant boolean NSL_UseSimpleSaveLoad= false
 //endglobals from NSLImpl
 //globals from NSLSaveLoad:
 constant boolean LIBRARY_NSLSaveLoad=true
-string NSLSaveLoad__NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
-integer NSLSaveLoad__NSL_CharsetLen= 64
-integer NSLSaveLoad__NSL_BitPerChar= 6
+string NSLSaveLoad___NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
+integer NSLSaveLoad___NSL_CharsetLen= 64
+integer NSLSaveLoad___NSL_BitPerChar= 6
 		
-integer NSLSaveLoad__NSL_HT_KEY_CODE_ID= 0
-integer NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX= 1
-integer NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET= 2
+integer NSLSaveLoad___NSL_HT_KEY_CODE_ID= 0
+integer NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX= 1
+integer NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET= 2
 
-hashtable NSLSaveLoad__NSL_Hashtable= InitHashtable()
-hashtable NSLSaveLoad__NSL_HashtableValue= InitHashtable()
-timer array NSLSaveLoad__NSL_Timers
+hashtable NSLSaveLoad___NSL_Hashtable= InitHashtable()
+hashtable NSLSaveLoad___NSL_HashtableValue= InitHashtable()
+timer array NSLSaveLoad___NSL_Timers
 //endglobals from NSLSaveLoad
 //globals from SaveFile:
 constant boolean LIBRARY_SaveFile=true
@@ -154,7 +154,7 @@ string array NSL_PlayerLoadingCode
 constant trigger SL_OnLoadedTrigger= CreateTrigger()
 integer SL_LoadedPlayerId
         
-trigger NSLUtils__format
+trigger NSLUtils___format
 //endglobals from NSLUtils
     // User-defined
 group udg_UnitGroup= null
@@ -707,10 +707,6 @@ integer udg_TerrorFromTheDeepInt= 0
 group udg_SurgeOfMaliceUG= null
 group udg_HeadhunterUG= null
 force udg_HeadhunterPG= null
-group udg_EnrageUG= null
-group udg_RuthlessnessUG= null
-group udg_SuperstitionUG= null
-group udg_AmbushUG= null
 group udg_FortitudeUG= null
 group udg_TrainedReactionUG= null
 location array udg_TrainedReactionTempLoc
@@ -1045,6 +1041,17 @@ boolean udg_battle_stance_offensive= false
 integer udg_whirlwind_bonus= 0
 timer udg_whirlwind_timer= null
 integer udg_decimate_targets= 0
+integer udg_decimate_overpower_hits= 0
+location udg_decimate_loc= null
+sound udg_unholy_reincarnation_sound= null
+sound udg_overpower_sound= null
+group udg_HeroesAlive_UG= null
+boolean udg_heavens_fury_avaible= false
+boolean udg_rune_of_apocalypse_avaible= false
+boolean udg_terror_is_avaible= false
+integer udg_morddigan_previous_dmg= 0
+boolean udg_unlocked_rokfor= false
+integer array udg_multiboard_kills
 
     // Generated
 rect gg_rct_StartLoc= null
@@ -1593,11 +1600,16 @@ sound gg_snd_BlizzardImpact1f= null
 sound gg_snd_dragon_fire= null
 sound gg_snd_bipolar_nightmare= null
 sound gg_snd_combat5= null
+sound gg_snd_Spell_WR_Ravager_Cast_02= null
+sound gg_snd_Spell_WR_Ravager_Cast_03= null
+sound gg_snd_Spell_WR_Ravager_Cast_04= null
+sound gg_snd_overpower= null
+sound gg_snd_GarithosYesAttack2= null
 trigger gg_trg_GlobalPeriodic= null
 trigger gg_trg_infoRemove= null
 trigger gg_trg_RaidBuffs= null
-trigger gg_trg_DeathPenalty= null
 trigger gg_trg_GeneralPlayableMapAreaEnter= null
+trigger gg_trg_GeneralDropsOnDeath= null
 trigger gg_trg_BuyingMercenaries= null
 trigger gg_trg_BackpackAndDisobidienceMove= null
 trigger gg_trg_DemonDying= null
@@ -1610,6 +1622,7 @@ trigger gg_trg_DisobidienceOfDeathAquire= null
 trigger gg_trg_DisobidienceOfDeathResAndRemove= null
 trigger gg_trg_GlobalDamageEvent= null
 trigger gg_trg_HeroResFunc= null
+trigger gg_trg_DeathPenalty= null
 trigger gg_trg_BackpackFreeze= null
 trigger gg_trg_Leave= null
 trigger gg_trg_bossfight1= null
@@ -1631,6 +1644,7 @@ trigger gg_trg_difficulty1= null
 trigger gg_trg_difficulty2= null
 trigger gg_trg_difficulty3= null
 trigger gg_trg_kill= null
+trigger gg_trg_kilall= null
 trigger gg_trg_kill2= null
 trigger gg_trg_remove= null
 trigger gg_trg_seeall= null
@@ -1717,7 +1731,7 @@ trigger gg_trg_tL15_Copy= null
 trigger gg_trg_TalentUnholyStrength= null
 trigger gg_trg_TalentGreed= null
 trigger gg_trg_tL18= null
-trigger gg_trg_tL18_Copy= null
+trigger gg_trg_RuneOfApocalypseFunc= null
 trigger gg_trg_tL18_Copy_Copy= null
 trigger gg_trg_TalentCorpseExplosion= null
 trigger gg_trg_tL19_Copy= null
@@ -1747,21 +1761,12 @@ trigger gg_trg_TalentRuneOfMentorship= null
 trigger gg_trg_tL33= null
 trigger gg_trg_tL33_Copy= null
 trigger gg_trg_tL33_Copy_Copy= null
-trigger gg_trg_tL34= null
-trigger gg_trg_tL34_copy= null
-trigger gg_trg_tL34_copy_Copy= null
 trigger gg_trg_TalentMight= null
-trigger gg_trg_tL35= null
-trigger gg_trg_tL35_copy= null
 trigger gg_trg_TalentSuperstition= null
-trigger gg_trg_tL36= null
-trigger gg_trg_tL36_Copy= null
 trigger gg_trg_TalentArmorupLVL= null
 trigger gg_trg_TalentLevelup= null
 trigger gg_trg_TalentMushroomStew= null
 trigger gg_trg_TalentArcana= null
-trigger gg_trg_tL40= null
-trigger gg_trg_tL40_Copy= null
 trigger gg_trg_TalentEvasionLVL= null
 trigger gg_trg_tL42= null
 trigger gg_trg_tL42_Copy= null
@@ -2113,7 +2118,13 @@ trigger gg_trg_LifeDrainStop= null
 trigger gg_trg_LifeDrain= null
 trigger gg_trg_LifeDrainDying= null
 trigger gg_trg_LifeDrainPeridoic= null
+trigger gg_trg_Juggernaut= null
+trigger gg_trg_Decimate= null
 trigger gg_trg_Warstomp= null
+trigger gg_trg_Whirlwind= null
+trigger gg_trg_WhirlwindTimer= null
+trigger gg_trg_BattleStance= null
+trigger gg_trg_BattleStanceLearn= null
 trigger gg_trg_RunestoneMaster= null
 trigger gg_trg_RuneOfMightyWindCheck= null
 trigger gg_trg_RuneOfMightyWindDmg= null
@@ -2230,7 +2241,6 @@ trigger gg_trg_Bombs= null
 trigger gg_trg_BombsDamage= null
 trigger gg_trg_GoblinOnDamage2= null
 trigger gg_trg_AurasForMinibossGiveaway= null
-trigger gg_trg_AurasOnDamage= null
 trigger gg_trg_AurasOnDeath= null
 trigger gg_trg_Butchery= null
 trigger gg_trg_UnholyReincarnation= null
@@ -2333,6 +2343,7 @@ trigger gg_trg_ArrowsOrcAimed= null
 trigger gg_trg_NoOrb= null
 trigger gg_trg_NoOrbMsg= null
 trigger gg_trg_Minions= null
+trigger gg_trg_GeneralUGremove_on_Death= null
 trigger gg_trg_MinionsUGremove= null
 trigger gg_trg_NotKnockbackable= null
 trigger gg_trg_PoisonedFunc= null
@@ -2640,14 +2651,13 @@ unit gg_unit_H00C_0066= null
 unit gg_unit_H00Q_0280= null
 unit gg_unit_Hamg_0135= null
 unit gg_unit_U00K_0485= null
-unit gg_unit_U00K_0470= null
 unit gg_unit_O02P_0444= null
-unit gg_unit_O02P_0339= null
 unit gg_unit_U00J_0435= null
 unit gg_unit_O02N_0418= null
 unit gg_unit_H023_0404= null
 unit gg_unit_U008_0255= null
 unit gg_unit_E006_0186= null
+unit gg_unit_E00C_0088= null
 unit gg_unit_h019_0200= null
 unit gg_unit_nhew_0226= null
 unit gg_unit_H013_0011= null
@@ -2659,13 +2669,10 @@ unit gg_unit_O024_0311= null
 unit gg_unit_hlum_0313= null
 unit gg_unit_O01W_0221= null
 unit gg_unit_H020_0243= null
-unit gg_unit_N01N_0239= null
-unit gg_unit_O01W_0238= null
 unit gg_unit_E002_0526= null
 unit gg_unit_n00R_0715= null
 unit gg_unit_ogru_0290= null
 unit gg_unit_U00I_0341= null
-unit gg_unit_U00I_0284= null
 unit gg_unit_E00A_0257= null
 destructable gg_dest_LTlt_12813= null
 destructable gg_dest_FTtw_12843= null
@@ -2673,14 +2680,9 @@ destructable gg_dest_BTtw_12095= null
 destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
-trigger gg_trg_BattleStance= null
-trigger gg_trg_BattleStanceLearn= null
-trigger gg_trg_Whirlwind= null
-unit gg_unit_E00C_0088= null
-trigger gg_trg_WhirlwindTimer= null
-sound gg_snd_Spell_WR_Ravager_Cast_02= null
-sound gg_snd_Spell_WR_Ravager_Cast_03= null
-trigger gg_trg_Decimate= null
+trigger gg_trg_TalentBigGameHunt= null
+trigger gg_trg_MultiboardKillsUpdate= null
+trigger gg_trg_unlock= null
 
 trigger l__library_init
 
@@ -2773,9 +2775,9 @@ integer s__User_AmountPlaying= 0
 playercolor array s__User_Color
 integer array s__User_PlayingPlayer
 integer array s__User_PlayingPlayerIndex
-constant integer si__SyncHelper__Sync=5
-trigger s__SyncHelper__Sync_TriggerCount= CreateTrigger()
-trigger s__SyncHelper__Sync_Trigger= CreateTrigger()
+constant integer si__SyncHelper___Sync=5
+trigger s__SyncHelper___Sync_TriggerCount= CreateTrigger()
+trigger s__SyncHelper___Sync_Trigger= CreateTrigger()
 constant integer si__NSL_Code=6
 integer si__NSL_Code_F=0
 integer si__NSL_Code_I=0
@@ -4112,8 +4114,8 @@ endfunction
             return s__File_write(s__File_open(filename),"")
         endfunction
     
-//Implemented from module FileIO__FileInit:
-        function s__File_FileIO__FileInit___onInit takes nothing returns nothing
+//Implemented from module FileIO___FileInit:
+        function s__File_FileIO___FileInit___onInit takes nothing returns nothing
             // Read check
             set s__File_ReadEnabled=(s__File_readEx((s__File_write(s__File_open("FileTester.pld"),"FileIO_")),true)) == "FileIO_" // INLINED!!
         endfunction
@@ -4130,14 +4132,14 @@ endfunction
 
 //library FileIO ends
 //library NSLCodeHelper:
-    function NSLCodeHelper__GetSign takes integer value returns integer
+    function NSLCodeHelper___GetSign takes integer value returns integer
         if ( value < 0 ) then
             return 1
         endif
         return 0
     endfunction
     
-    function NSLCodeHelper__GetSignInvert takes integer sign returns integer
+    function NSLCodeHelper___GetSignInvert takes integer sign returns integer
         if ( sign == 1 ) then
             return - 1
         endif
@@ -4145,12 +4147,12 @@ endfunction
     endfunction
     
     function NSLCodeHelper_Save_Int takes integer inst,integer value returns nothing
-        call sc__NSL_Code_SV(inst,NSLCodeHelper__GetSign(value) , NSL_SIZE_BOOLEAN)
+        call sc__NSL_Code_SV(inst,NSLCodeHelper___GetSign(value) , NSL_SIZE_BOOLEAN)
         call sc__NSL_Code_SV(inst,IAbsBJ(value) , NSL_SIZE_LESS_THAN_2147483648)
     endfunction
     
     function NSLCodeHelper_Read_Int takes integer inst returns integer
-        return NSLCodeHelper__GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
+        return NSLCodeHelper___GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
     endfunction
 
 //library NSLCodeHelper ends
@@ -4159,9 +4161,9 @@ endfunction
 //processed:     function interface CodexFormat takes integer playerId, NSL_Code loader returns nothing
 
     function NSLCodexStore_Add takes integer codex_version,trigger codex returns nothing
-        set NSLCodexStore__CodexArray[NSLCodexStore__CodexSize]=codex
-        set NSLCodexStore__CodexVersion[NSLCodexStore__CodexSize]=codex_version
-        set NSLCodexStore__CodexSize=NSLCodexStore__CodexSize + 1
+        set NSLCodexStore___CodexArray[NSLCodexStore___CodexSize]=codex
+        set NSLCodexStore___CodexVersion[NSLCodexStore___CodexSize]=codex_version
+        set NSLCodexStore___CodexSize=NSLCodexStore___CodexSize + 1
         call h__TriggerRegisterVariableEvent(codex, "udg_NSL_EventExecutorLoad", EQUAL, I2R(codex_version))
         call EnableTrigger(codex)
     endfunction
@@ -4169,9 +4171,9 @@ endfunction
     function NSLCodexStore_GetCodexForVersion takes integer codex_version returns trigger
         local integer i= 0
         loop
-            exitwhen i == NSLCodexStore__CodexSize
-            if ( NSLCodexStore__CodexVersion[i] == codex_version ) then
-                return NSLCodexStore__CodexArray[i]
+            exitwhen i == NSLCodexStore___CodexSize
+            if ( NSLCodexStore___CodexVersion[i] == codex_version ) then
+                return NSLCodexStore___CodexArray[i]
             endif
             set i=i + 1
         endloop
@@ -4183,43 +4185,43 @@ endfunction
 
     // vJass compiler should inline this function call
  function NSLHelper_TwoPow takes integer exp returns integer
-        return NSLHelper__TWO_POW_CACHE[exp]
+        return NSLHelper___TWO_POW_CACHE[exp]
 	endfunction
     
-    function NSLHelper__Init takes nothing returns nothing
+    function NSLHelper___Init takes nothing returns nothing
         // Cache for better performance
-        set NSLHelper__TWO_POW_CACHE[0]=1
-        set NSLHelper__TWO_POW_CACHE[1]=2
-        set NSLHelper__TWO_POW_CACHE[2]=4
-        set NSLHelper__TWO_POW_CACHE[3]=8
-        set NSLHelper__TWO_POW_CACHE[4]=16
-        set NSLHelper__TWO_POW_CACHE[5]=32
-        set NSLHelper__TWO_POW_CACHE[6]=64
-        set NSLHelper__TWO_POW_CACHE[7]=128
-        set NSLHelper__TWO_POW_CACHE[8]=256
-        set NSLHelper__TWO_POW_CACHE[9]=512
-        set NSLHelper__TWO_POW_CACHE[10]=1024
-        set NSLHelper__TWO_POW_CACHE[11]=2048
-        set NSLHelper__TWO_POW_CACHE[12]=4096
-        set NSLHelper__TWO_POW_CACHE[13]=8192
-        set NSLHelper__TWO_POW_CACHE[14]=16384
-        set NSLHelper__TWO_POW_CACHE[15]=32768
-        set NSLHelper__TWO_POW_CACHE[16]=65536
-        set NSLHelper__TWO_POW_CACHE[17]=131072
-        set NSLHelper__TWO_POW_CACHE[18]=262144
-        set NSLHelper__TWO_POW_CACHE[19]=524288
-        set NSLHelper__TWO_POW_CACHE[20]=1048576
-        set NSLHelper__TWO_POW_CACHE[21]=2097152
-        set NSLHelper__TWO_POW_CACHE[22]=4194304
-        set NSLHelper__TWO_POW_CACHE[23]=8388608
-        set NSLHelper__TWO_POW_CACHE[24]=16777216
-        set NSLHelper__TWO_POW_CACHE[25]=33554432
-        set NSLHelper__TWO_POW_CACHE[26]=67108864
-        set NSLHelper__TWO_POW_CACHE[27]=134217728
-        set NSLHelper__TWO_POW_CACHE[28]=268435456
-        set NSLHelper__TWO_POW_CACHE[29]=536870912
-        set NSLHelper__TWO_POW_CACHE[30]=1073741824
-        set NSLHelper__TWO_POW_CACHE[31]=2147483647
+        set NSLHelper___TWO_POW_CACHE[0]=1
+        set NSLHelper___TWO_POW_CACHE[1]=2
+        set NSLHelper___TWO_POW_CACHE[2]=4
+        set NSLHelper___TWO_POW_CACHE[3]=8
+        set NSLHelper___TWO_POW_CACHE[4]=16
+        set NSLHelper___TWO_POW_CACHE[5]=32
+        set NSLHelper___TWO_POW_CACHE[6]=64
+        set NSLHelper___TWO_POW_CACHE[7]=128
+        set NSLHelper___TWO_POW_CACHE[8]=256
+        set NSLHelper___TWO_POW_CACHE[9]=512
+        set NSLHelper___TWO_POW_CACHE[10]=1024
+        set NSLHelper___TWO_POW_CACHE[11]=2048
+        set NSLHelper___TWO_POW_CACHE[12]=4096
+        set NSLHelper___TWO_POW_CACHE[13]=8192
+        set NSLHelper___TWO_POW_CACHE[14]=16384
+        set NSLHelper___TWO_POW_CACHE[15]=32768
+        set NSLHelper___TWO_POW_CACHE[16]=65536
+        set NSLHelper___TWO_POW_CACHE[17]=131072
+        set NSLHelper___TWO_POW_CACHE[18]=262144
+        set NSLHelper___TWO_POW_CACHE[19]=524288
+        set NSLHelper___TWO_POW_CACHE[20]=1048576
+        set NSLHelper___TWO_POW_CACHE[21]=2097152
+        set NSLHelper___TWO_POW_CACHE[22]=4194304
+        set NSLHelper___TWO_POW_CACHE[23]=8388608
+        set NSLHelper___TWO_POW_CACHE[24]=16777216
+        set NSLHelper___TWO_POW_CACHE[25]=33554432
+        set NSLHelper___TWO_POW_CACHE[26]=67108864
+        set NSLHelper___TWO_POW_CACHE[27]=134217728
+        set NSLHelper___TWO_POW_CACHE[28]=268435456
+        set NSLHelper___TWO_POW_CACHE[29]=536870912
+        set NSLHelper___TWO_POW_CACHE[30]=1073741824
+        set NSLHelper___TWO_POW_CACHE[31]=2147483647
 	// set TWO_POW_CACHE[31] = 2147483648
     endfunction
 
@@ -4273,7 +4275,7 @@ endfunction
         endfunction
    
         function s__User__get_hex takes integer this returns string
-            return PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
+            return PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
         endfunction
    
         function s__User__set_color takes integer this,playercolor c returns nothing
@@ -4285,7 +4287,7 @@ endfunction
         endfunction
    
         function s__User__get_nameColored takes integer this returns string
-            return (PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
+            return (PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
         endfunction
    
         function s__User_onLeave takes nothing returns boolean
@@ -4315,8 +4317,8 @@ endfunction
             return false
         endfunction
    
-//Implemented from module PlayerUtils__PlayerUtilsInit:
-        function s__User_PlayerUtils__PlayerUtilsInit___onInit takes nothing returns nothing
+//Implemented from module PlayerUtils___PlayerUtilsInit:
+        function s__User_PlayerUtils___PlayerUtilsInit___onInit takes nothing returns nothing
             local trigger t= CreateTrigger()
             local integer i= 0
             local integer p
@@ -4324,32 +4326,32 @@ endfunction
             set s__User_Local=GetLocalPlayer()
             set s__User_LocalId=GetPlayerId(s__User_Local)
        
-            set PlayerUtils__OriginalHex[0]="|cffff0303"
-            set PlayerUtils__OriginalHex[1]="|cff0042ff"
-            set PlayerUtils__OriginalHex[2]="|cff1ce6b9"
-            set PlayerUtils__OriginalHex[3]="|cff540081"
-            set PlayerUtils__OriginalHex[4]="|cfffffc01"
-            set PlayerUtils__OriginalHex[5]="|cfffe8a0e"
-            set PlayerUtils__OriginalHex[6]="|cff20c000"
-            set PlayerUtils__OriginalHex[7]="|cffe55bb0"
-            set PlayerUtils__OriginalHex[8]="|cff959697"
-            set PlayerUtils__OriginalHex[9]="|cff7ebff1"
-            set PlayerUtils__OriginalHex[10]="|cff106246"
-            set PlayerUtils__OriginalHex[11]="|cff4e2a04"
+            set PlayerUtils___OriginalHex[0]="|cffff0303"
+            set PlayerUtils___OriginalHex[1]="|cff0042ff"
+            set PlayerUtils___OriginalHex[2]="|cff1ce6b9"
+            set PlayerUtils___OriginalHex[3]="|cff540081"
+            set PlayerUtils___OriginalHex[4]="|cfffffc01"
+            set PlayerUtils___OriginalHex[5]="|cfffe8a0e"
+            set PlayerUtils___OriginalHex[6]="|cff20c000"
+            set PlayerUtils___OriginalHex[7]="|cffe55bb0"
+            set PlayerUtils___OriginalHex[8]="|cff959697"
+            set PlayerUtils___OriginalHex[9]="|cff7ebff1"
+            set PlayerUtils___OriginalHex[10]="|cff106246"
+            set PlayerUtils___OriginalHex[11]="|cff4e2a04"
             
             if ( bj_MAX_PLAYERS > 12 ) then
-                set PlayerUtils__OriginalHex[12]="|cff9B0000"
-                set PlayerUtils__OriginalHex[13]="|cff0000C3"
-                set PlayerUtils__OriginalHex[14]="|cff00EAFF"
-                set PlayerUtils__OriginalHex[15]="|cffBE00FE"
-                set PlayerUtils__OriginalHex[16]="|cffEBCD87"
-                set PlayerUtils__OriginalHex[17]="|cffF8A48B"
-                set PlayerUtils__OriginalHex[18]="|cffBFFF80"
-                set PlayerUtils__OriginalHex[19]="|cffDCB9EB"
-                set PlayerUtils__OriginalHex[20]="|cff282828"
-                set PlayerUtils__OriginalHex[21]="|cffEBF0FF"
-                set PlayerUtils__OriginalHex[22]="|cff00781E"
-                set PlayerUtils__OriginalHex[23]="|cffA46F33"
+                set PlayerUtils___OriginalHex[12]="|cff9B0000"
+                set PlayerUtils___OriginalHex[13]="|cff0000C3"
+                set PlayerUtils___OriginalHex[14]="|cff00EAFF"
+                set PlayerUtils___OriginalHex[15]="|cffBE00FE"
+                set PlayerUtils___OriginalHex[16]="|cffEBCD87"
+                set PlayerUtils___OriginalHex[17]="|cffF8A48B"
+                set PlayerUtils___OriginalHex[18]="|cffBFFF80"
+                set PlayerUtils___OriginalHex[19]="|cffDCB9EB"
+                set PlayerUtils___OriginalHex[20]="|cff282828"
+                set PlayerUtils___OriginalHex[21]="|cffEBF0FF"
+                set PlayerUtils___OriginalHex[22]="|cff00781E"
+                set PlayerUtils___OriginalHex[23]="|cffA46F33"
             endif
          
             set s__User_first=s__User_NULL
@@ -4362,7 +4364,7 @@ endfunction
                 set s__User_id[p]=i
            
                 set s__User_Color[i]=GetPlayerColor(s__User_handle[p])
-                set PlayerUtils__CurrentColor[i]=s__User_Color[i]
+                set PlayerUtils___CurrentColor[i]=s__User_Color[i]
              
                 if ( GetPlayerController(s__User_handle[p]) == MAP_CONTROL_USER and GetPlayerSlotState(s__User_handle[p]) == PLAYER_SLOT_STATE_PLAYING ) then
 
@@ -4386,14 +4388,14 @@ endfunction
                     call TriggerRegisterPlayerEvent(t, s__User_handle[p], EVENT_PLAYER_LEAVE)
                     call ForceAddPlayer(FORCE_PLAYING, s__User_handle[p])
                
-                    set PlayerUtils__Hex[p]=PlayerUtils__OriginalHex[GetHandleId(s__User_Color[i])]
+                    set PlayerUtils___Hex[p]=PlayerUtils___OriginalHex[GetHandleId(s__User_Color[i])]
                
                     set s__User_AmountPlaying=s__User_AmountPlaying + 1
 
                 endif
            
-                set PlayerUtils__Name[p]=GetPlayerName(s__User_handle[p])
-                set s__User_originalName[p]=PlayerUtils__Name[p]
+                set PlayerUtils___Name[p]=GetPlayerName(s__User_handle[p])
+                set s__User_originalName[p]=PlayerUtils___Name[p]
            
                 set i=i + 1
             endloop
@@ -4415,13 +4417,13 @@ endfunction
 
     
     
-//Implemented from module SyncHelper__INITS:
-        function s__SyncHelper__Sync_SyncHelper__INITS___onInit takes nothing returns nothing
+//Implemented from module SyncHelper___INITS:
+        function s__SyncHelper___Sync_SyncHelper___INITS___onInit takes nothing returns nothing
             local integer i= 0
             
             loop
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
                 set i=i + 1
                 
                 exitwhen i == bj_MAX_PLAYER_SLOTS
@@ -4430,15 +4432,15 @@ endfunction
     
     function SyncString takes string s returns nothing
         local integer len= StringLength(s)
-        local integer parts= ( len / SyncHelper__SYNC_SIZE_CHUNK ) + 1
+        local integer parts= ( len / SyncHelper___SYNC_SIZE_CHUNK ) + 1
   local string sub
         local integer i= 0
-        if ( ModuloInteger(len, SyncHelper__SYNC_SIZE_CHUNK) == 0 ) then
+        if ( ModuloInteger(len, SyncHelper___SYNC_SIZE_CHUNK) == 0 ) then
             set parts=parts - 1
         endif
         call BlzSendSyncData(SyncHelper_SYNC_PREFIX_COUNT, I2S(parts))
 		loop
-			set sub=SubString(s, i * SyncHelper__SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper__SYNC_SIZE_CHUNK)
+			set sub=SubString(s, i * SyncHelper___SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper___SYNC_SIZE_CHUNK)
 			if ( StringLength(sub) > 0 ) then
                 call BlzSendSyncData(SyncHelper_SYNC_PREFIX, sub)
 			endif
@@ -4448,15 +4450,15 @@ endfunction
     endfunction
     
     function OnSyncString takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper__Sync_Trigger, func)
+        return TriggerAddAction(s__SyncHelper___Sync_Trigger, func)
     endfunction
     
     function OnSyncStringCount takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper__Sync_TriggerCount, func)
+        return TriggerAddAction(s__SyncHelper___Sync_TriggerCount, func)
     endfunction
     
     function RemoveSyncString takes triggeraction t returns nothing
-        call TriggerRemoveAction(s__SyncHelper__Sync_Trigger, t)
+        call TriggerRemoveAction(s__SyncHelper___Sync_Trigger, t)
     endfunction
     
 
@@ -4465,7 +4467,7 @@ endfunction
     
     
     
-    function NSLImpl__SaveCodeValues takes integer saver returns nothing
+    function NSLImpl___SaveCodeValues takes integer saver returns nothing
         local integer pid= GetPlayerId(udg_NSL_SavePlayer) + 1
         local integer i= 1
         loop
@@ -4475,7 +4477,7 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl__ReadCodeValues takes integer loader returns nothing
+    function NSLImpl___ReadCodeValues takes integer loader returns nothing
         local integer pid= GetPlayerId(udg_NSL_LoadPlayer) + 1
         local integer i= 1
         local integer v
@@ -4487,15 +4489,15 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl__SavePlayerCompleted takes nothing returns nothing
+    function NSLImpl___SavePlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_SavePlayer)
         local integer playerCode= udg_NSL_SaveCode[playerId]
-        call NSLImpl__SaveCodeValues(playerCode)
+        call NSLImpl___SaveCodeValues(playerCode)
         call sc__NSL_Code_Generate(playerCode)
         set udg_NSL_EventExecutorSaveCompleted=0.0
     endfunction
     
-    function NSLImpl__LoadPlayerCompleted takes nothing returns nothing
+    function NSLImpl___LoadPlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_LoadPlayer)
         local integer playerCode= udg_NSL_LoadCode[playerId]
         call s__NSL_Code_deallocate(playerCode)
@@ -4506,7 +4508,7 @@ endfunction
     function NSLImpl_LoadPlayer takes integer playerId,integer loader,trigger format returns nothing
         set udg_NSL_LoadPlayer=Player(playerId)
         set udg_NSL_LoadCode[playerId]=loader
-        call NSLImpl__ReadCodeValues(loader)
+        call NSLImpl___ReadCodeValues(loader)
         call TriggerExecute(format)
     endfunction
 
@@ -4516,14 +4518,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerExecutorSave)
     endfunction
     
-    function NSLImpl__Init takes nothing returns nothing
+    function NSLImpl___Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl__SavePlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl___SavePlayerCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl__LoadPlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl___LoadPlayerCompleted)
     endfunction
 
 //library NSLImpl ends
@@ -4532,52 +4534,52 @@ endfunction
 //processed: 	function interface NSL_PlayerLoadCallback takes integer playerId, boolean is_valid, NSL_Code loader returns nothing
 //processed: 	function interface NSL_PlayerSaveCallback takes integer playerId, string generated_code returns nothing
 	
- function NSLSaveLoad__Init takes nothing returns nothing
+ function NSLSaveLoad___Init takes nothing returns nothing
   local integer i= 0
 		
         loop
-			set NSLSaveLoad__NSL_Timers[i]=CreateTimer()
+			set NSLSaveLoad___NSL_Timers[i]=CreateTimer()
 			set i=i + 1
 			exitwhen i == 24
 		endloop
 	endfunction
 	
- function NSLSaveLoad__CharAt takes integer index returns string
-		return SubString(NSLSaveLoad__NSL_Charset, index, index + 1)
+ function NSLSaveLoad___CharAt takes integer index returns string
+		return SubString(NSLSaveLoad___NSL_Charset, index, index + 1)
 	endfunction
 	
- function NSLSaveLoad__GenerateTimerCallback takes nothing returns nothing
+ function NSLSaveLoad___GenerateTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Generate(inst)
 	endfunction
 	
- function NSLSaveLoad__LoadTimerCallback takes nothing returns nothing
+ function NSLSaveLoad___LoadTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Load(inst)
 	endfunction
 	
- function NSLSaveLoad__IndexOf takes string char returns integer
+ function NSLSaveLoad___IndexOf takes string char returns integer
   local integer i= 0
 		loop
-			if ( NSLSaveLoad__CharAt(i) == char ) then
+			if ( NSLSaveLoad___CharAt(i) == char ) then
 				return i
 			endif
 			set i=i + 1
-			exitwhen i == NSLSaveLoad__NSL_CharsetLen
+			exitwhen i == NSLSaveLoad___NSL_CharsetLen
 		endloop
 
 		return 0
 	endfunction
 	
- function NSLSaveLoad__GetPlayerHash takes integer player_id returns integer
+ function NSLSaveLoad___GetPlayerHash takes integer player_id returns integer
   local string name= GetPlayerName(Player(player_id))
   local integer len= StringLength(name)
   local integer hash= 0
   local integer i= 0
 		loop
-			set hash=hash + NSLSaveLoad__IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
+			set hash=hash + NSLSaveLoad___IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
 			set i=i + 1
 			exitwhen i == len
 		endloop
@@ -4623,14 +4625,14 @@ endfunction
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
 			
-			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
 			
 			return inst
   endfunction
 		
   function s__NSL_Code_StoreBit takes integer this,integer value returns nothing
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
 			set s__NSL_Code_bits_count[this]=s__NSL_Code_bits_count[this] + 1
   endfunction 
 		
@@ -4654,7 +4656,7 @@ endfunction
 			endif
 			
 			loop
-				set current=(NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+				set current=(NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
 				if ( value >= current ) then
 					call s__NSL_Code_StoreBit(this,1)
 					set size_done=size_done + 1
@@ -4675,63 +4677,63 @@ endfunction
   endfunction
 		
   function s__NSL_Code_Insert takes integer this returns nothing
-   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_value_count[this] ) then
 				set s__NSL_Code_is_started[this]=false
 				set s__NSL_Code_is_ready[this]=true
-				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
 				return
 			endif
 
 			if ( s__NSL_Code_is_started[this] ) then
-				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
-				call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
+				call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
             call s__NSL_Code_InsertImpl(this,NSL_CodeVersion , NSL_SIZE_LESS_THAN_1024)
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_SV takes integer this,integer value,integer size returns nothing
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
   endfunction
 		
   function s__NSL_Code_BitAt takes integer this,integer pos returns integer
-			return LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + pos)
+			return LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + pos)
   endfunction
 		
   function s__NSL_Code_EncodeImpl takes integer this,integer offset returns integer
-   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad__NSL_BitPerChar)
+   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad___NSL_BitPerChar)
    local integer value= 0
    local integer exponent= ( last_index - offset ) - 1
    local integer i= offset
 			
 			loop
-				if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-					set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+				if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+					set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
 				endif
 				set exponent=exponent - 1
 				set i=i + 1
 				exitwhen i == last_index
 			endloop
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, last_index)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, last_index)
 			return value
   endfunction
 		
   function s__NSL_Code_Encode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_bits_count[this] ) then
 				return - 1
 			endif
@@ -4740,17 +4742,17 @@ endfunction
   endfunction
 		
   function s__NSL_Code_GenerateSecurity takes integer this returns nothing
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen))
 			
-            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen))
+            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen))
 
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad___NSL_CharsetLen))
   endfunction
 		
   function s__NSL_Code_GenerateImpl takes integer this returns nothing
@@ -4763,10 +4765,10 @@ endfunction
 				return
 			endif
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
             
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
   endfunction
 		
   function s__NSL_Code_Generate takes integer this returns nothing
@@ -4779,37 +4781,37 @@ endfunction
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
 			endif
 
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_Decode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_code_length[this] ) then
 				return - 1
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-			return ModuloInteger(NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+			return ModuloInteger(NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen)
   endfunction
 
   function s__NSL_Code_CheckSecurity takes integer this returns boolean
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen) ) then
                 return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen) ) then
 				return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen) ) then
 				return false
 			endif
 			return true
@@ -4827,9 +4829,9 @@ endfunction
 				return
 			endif
 			
-			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad__NSL_BitPerChar)
+			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad___NSL_BitPerChar)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
   endfunction
 
   function s__NSL_Code_Load takes integer this returns boolean
@@ -4838,36 +4840,36 @@ endfunction
 				return true
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
 			
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
 			return true
   endfunction
 		
@@ -4877,8 +4879,8 @@ endfunction
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -4972,7 +4974,7 @@ endfunction
 //library SaveFile ends
 //library NSLSaveLoadExecutor:
     
-    function NSLSaveLoadExecutor__LoadSaveSlot takes player p,string charId returns nothing
+    function NSLSaveLoadExecutor___LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -4989,7 +4991,7 @@ endfunction
         endif
     endfunction
 
-    function NSLSaveLoadExecutor__OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
+    function NSLSaveLoadExecutor___OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
         local string charId= NSL_PlayerCharId[player_id]
 		call s__SaveFile_create(Player(player_id) , charId , charId , generated_code)
         if ( player_id == GetPlayerId(GetLocalPlayer()) ) then
@@ -4998,7 +5000,7 @@ endfunction
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     endfunction
     
-    function NSLSaveLoadExecutor__CheckSaveCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor___CheckSaveCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerSave ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Save Error]|r You are not allowed to save.")) // INLINED!!
             return
@@ -5008,13 +5010,13 @@ endfunction
         set udg_NSL_EventCheckSaveCompleted=0.0
     endfunction
     
-    function NSLSaveLoadExecutor__CheckLoadCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor___CheckLoadCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerLoad ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r You are not allowed to load.")) // INLINED!!
             return
         endif
 
-        call NSLSaveLoadExecutor__LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
+        call NSLSaveLoadExecutor___LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
         
         set udg_NSL_EventCheckLoadCompleted=0.0
     endfunction
@@ -5033,14 +5035,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerCheckSave)
     endfunction
 
-    function NSLSaveLoadExecutor__Init takes nothing returns nothing
+    function NSLSaveLoadExecutor___Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckSaveCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckSaveCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckLoadCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckLoadCompleted)
     endfunction
 
 
@@ -5063,22 +5065,22 @@ endfunction
         call NSLSaveLoadExecutor_Save(GetPlayerId(savingPlayer) , SubString(input, 6, 999))
     endfunction
 
-    function NSLUtils__OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
+    function NSLUtils___OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
         if ( is_valid ) then
-            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils__format == null ) then
+            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils___format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
                 return
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
         endif
     endfunction
         
-    function NSLUtils__LoadSaveSlot takes player p,string charId returns nothing
+    function NSLUtils___LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -5112,7 +5114,7 @@ endfunction
         call NSLSaveLoadExecutor_Load(GetPlayerId(loadingPlayer) , SubString(input, 6, 999))
 	endfunction
     
-    function NSLUtils__LoadSaveSlot_OnLoadCount takes nothing returns nothing
+    function NSLUtils___LoadSaveSlot_OnLoadCount takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -5122,7 +5124,7 @@ endfunction
         set NSL_PlayerLoadingCode[s__User_id[user]]=""
     endfunction
     
-    function NSLUtils__LoadSaveSlot_OnLoad takes nothing returns nothing
+    function NSLUtils___LoadSaveSlot_OnLoad takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -5136,11 +5138,11 @@ endfunction
         endif
     endfunction
     
- function NSLUtils__Init takes nothing returns nothing
+ function NSLUtils___Init takes nothing returns nothing
   local integer i= 0
 
-call TriggerAddAction(s__SyncHelper__Sync_TriggerCount, (function NSLUtils__LoadSaveSlot_OnLoadCount)) // INLINED!!
-call TriggerAddAction(s__SyncHelper__Sync_Trigger, (function NSLUtils__LoadSaveSlot_OnLoad)) // INLINED!!
+call TriggerAddAction(s__SyncHelper___Sync_TriggerCount, (function NSLUtils___LoadSaveSlot_OnLoadCount)) // INLINED!!
+call TriggerAddAction(s__SyncHelper___Sync_Trigger, (function NSLUtils___LoadSaveSlot_OnLoad)) // INLINED!!
 
 		loop
             if ( NSL_UseSimpleSaveLoad ) then
@@ -5611,10 +5613,6 @@ function InitGlobals takes nothing returns nothing
     set udg_SurgeOfMaliceUG=CreateGroup()
     set udg_HeadhunterUG=CreateGroup()
     set udg_HeadhunterPG=CreateForce()
-    set udg_EnrageUG=CreateGroup()
-    set udg_RuthlessnessUG=CreateGroup()
-    set udg_SuperstitionUG=CreateGroup()
-    set udg_AmbushUG=CreateGroup()
     set udg_FortitudeUG=CreateGroup()
     set udg_TrainedReactionUG=CreateGroup()
     set udg_MusicTimer=CreateTimer()
@@ -6098,6 +6096,20 @@ function InitGlobals takes nothing returns nothing
     set udg_whirlwind_bonus=0
     set udg_whirlwind_timer=CreateTimer()
     set udg_decimate_targets=0
+    set udg_decimate_overpower_hits=0
+    set udg_HeroesAlive_UG=CreateGroup()
+    set udg_heavens_fury_avaible=true
+    set udg_rune_of_apocalypse_avaible=true
+    set udg_terror_is_avaible=true
+    set udg_morddigan_previous_dmg=0
+    set udg_unlocked_rokfor=false
+    set i=0
+    loop
+        exitwhen ( i > 0 )
+        set udg_multiboard_kills[i]=0
+        set i=i + 1
+    endloop
+
 endfunction
 
 //***************************************************************************
@@ -7190,9 +7202,9 @@ function InitSounds takes nothing returns nothing
     call SetSoundDistanceCutoff(gg_snd_ArmorUp, 3000.0)
     call SetSoundConeAngles(gg_snd_ArmorUp, 0.0, 0.0, 127)
     call SetSoundConeOrientation(gg_snd_ArmorUp, 0.0, 0.0, 0.0)
-    set gg_snd_DiabloSrineLifeSound=CreateSound("DiabloSrineLifeSound.mp3", false, true, true, 1, 1, "CombatSoundsEAX")
+    set gg_snd_DiabloSrineLifeSound=CreateSound("DiabloSrineLifeSound.mp3", false, true, true, 1, 1, "SpellsEAX")
     call SetSoundDuration(gg_snd_DiabloSrineLifeSound, 1515)
-    call SetSoundChannel(gg_snd_DiabloSrineLifeSound, 5)
+    call SetSoundChannel(gg_snd_DiabloSrineLifeSound, 11)
     call SetSoundVolume(gg_snd_DiabloSrineLifeSound, 127)
     call SetSoundPitch(gg_snd_DiabloSrineLifeSound, 1.0)
     call SetSoundDistances(gg_snd_DiabloSrineLifeSound, 600.0, 3500.0)
@@ -7324,10 +7336,13 @@ function InitSounds takes nothing returns nothing
     call SetSoundParamsFromLabel(gg_snd_FacelessDeath101, "FacelessOneDeath")
     call SetSoundDuration(gg_snd_FacelessDeath101, 3494)
     call SetSoundVolume(gg_snd_FacelessDeath101, 127)
-    set gg_snd_OgreYesAttack3=CreateSound("Units/Creeps/Ogre/OgreYesAttack3.flac", false, true, true, 0, 0, "DefaultEAXON")
+    set gg_snd_OgreYesAttack3=CreateSound("Units/Creeps/Ogre/OgreYesAttack3.flac", false, true, true, 1, 1, "CombatSoundsEAX")
     call SetSoundParamsFromLabel(gg_snd_OgreYesAttack3, "OgreYesAttack")
     call SetSoundDuration(gg_snd_OgreYesAttack3, 1094)
+    call SetSoundChannel(gg_snd_OgreYesAttack3, 5)
     call SetSoundVolume(gg_snd_OgreYesAttack3, 127)
+    call SetSoundDistances(gg_snd_OgreYesAttack3, 100000.0, 100000.0)
+    call SetSoundDistanceCutoff(gg_snd_OgreYesAttack3, 3000.0)
     set gg_snd_TuskarrWhat2=CreateSound("Units/Creeps/tuskar/TuskarrWhat2.flac", false, true, true, 0, 0, "DefaultEAXON")
     call SetSoundParamsFromLabel(gg_snd_TuskarrWhat2, "TuskarrWhat")
     call SetSoundDuration(gg_snd_TuskarrWhat2, 1091)
@@ -7620,15 +7635,11 @@ function InitSounds takes nothing returns nothing
     call SetSoundChannel(gg_snd_diablo2arcaneportal, 0)
     call SetSoundVolume(gg_snd_diablo2arcaneportal, 127)
     call SetSoundPitch(gg_snd_diablo2arcaneportal, 1.0)
-    set gg_snd_Reincarnation_mp3=CreateSound("Reincarnation.mp3.mp3", false, true, false, 1, 1, "CombatSoundsEAX")
+    set gg_snd_Reincarnation_mp3=CreateSound("Reincarnation.mp3.mp3", false, false, false, 1, 1, "CombatSoundsEAX")
     call SetSoundDuration(gg_snd_Reincarnation_mp3, 6295)
     call SetSoundChannel(gg_snd_Reincarnation_mp3, 5)
     call SetSoundVolume(gg_snd_Reincarnation_mp3, 127)
     call SetSoundPitch(gg_snd_Reincarnation_mp3, 1.0)
-    call SetSoundDistances(gg_snd_Reincarnation_mp3, 0.0, 10000.0)
-    call SetSoundDistanceCutoff(gg_snd_Reincarnation_mp3, 3000.0)
-    call SetSoundConeAngles(gg_snd_Reincarnation_mp3, 0.0, 0.0, 127)
-    call SetSoundConeOrientation(gg_snd_Reincarnation_mp3, 0.0, 0.0, 0.0)
     set gg_snd_ricardessa_attack3=CreateSound("Units/Undead/HeroFemaleDeathKnight/HeroFemaleDeathKnightYesAttack2.flac", false, false, false, 1, 1, "DefaultEAXON")
     call SetSoundParamsFromLabel(gg_snd_ricardessa_attack3, "HeroFemaleDeathKnightYesAttack")
     call SetSoundDuration(gg_snd_ricardessa_attack3, 3744)
@@ -7807,6 +7818,28 @@ function InitSounds takes nothing returns nothing
     call SetSoundDistanceCutoff(gg_snd_Spell_WR_Ravager_Cast_03, 3000.0)
     call SetSoundConeAngles(gg_snd_Spell_WR_Ravager_Cast_03, 0.0, 0.0, 127)
     call SetSoundConeOrientation(gg_snd_Spell_WR_Ravager_Cast_03, 0.0, 0.0, 0.0)
+    set gg_snd_Spell_WR_Ravager_Cast_04=CreateSound("Spell_WR_Ravager_Cast_04.mp3", false, true, true, 1, 1, "CombatSoundsEAX")
+    call SetSoundDuration(gg_snd_Spell_WR_Ravager_Cast_04, 1671)
+    call SetSoundChannel(gg_snd_Spell_WR_Ravager_Cast_04, 5)
+    call SetSoundVolume(gg_snd_Spell_WR_Ravager_Cast_04, 127)
+    call SetSoundPitch(gg_snd_Spell_WR_Ravager_Cast_04, 1.0)
+    call SetSoundDistances(gg_snd_Spell_WR_Ravager_Cast_04, 0.0, 10000.0)
+    call SetSoundDistanceCutoff(gg_snd_Spell_WR_Ravager_Cast_04, 3000.0)
+    call SetSoundConeAngles(gg_snd_Spell_WR_Ravager_Cast_04, 0.0, 0.0, 127)
+    call SetSoundConeOrientation(gg_snd_Spell_WR_Ravager_Cast_04, 0.0, 0.0, 0.0)
+    set gg_snd_overpower=CreateSound("overpower.mp3", false, true, false, 1, 1, "CombatSoundsEAX")
+    call SetSoundDuration(gg_snd_overpower, 1632)
+    call SetSoundChannel(gg_snd_overpower, 5)
+    call SetSoundVolume(gg_snd_overpower, 5)
+    call SetSoundPitch(gg_snd_overpower, 1.0)
+    call SetSoundDistances(gg_snd_overpower, 0.0, 10000.0)
+    call SetSoundDistanceCutoff(gg_snd_overpower, 3000.0)
+    call SetSoundConeAngles(gg_snd_overpower, 0.0, 0.0, 127)
+    call SetSoundConeOrientation(gg_snd_overpower, 0.0, 0.0, 0.0)
+    set gg_snd_GarithosYesAttack2=CreateSound("Units/Creeps/LordGarithos/GarithosYesAttack2.flac", false, true, true, 0, 0, "HeroAcksEAX")
+    call SetSoundParamsFromLabel(gg_snd_GarithosYesAttack2, "GarithosYesAttack")
+    call SetSoundDuration(gg_snd_GarithosYesAttack2, 1886)
+    call SetSoundVolume(gg_snd_GarithosYesAttack2, 127)
 endfunction
 
 //***************************************************************************
@@ -7846,6 +7879,7 @@ endfunction
 function CreateAllItems takes nothing returns nothing
     local integer itemID
 
+    call BlzCreateItemWithSkin('I01R', 324.3, - 578.9, 'I01R')
     call BlzCreateItemWithSkin('I079', 20068.2, - 14469.0, 'I079')
     call BlzCreateItemWithSkin('I07C', 20084.5, - 14615.5, 'I07C')
     call BlzCreateItemWithSkin('I07F', 20097.2, - 14827.1, 'I07F')
@@ -8195,27 +8229,27 @@ function CreateUnitsForPlayer23 takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'n01A', 11461.6, - 11962.7, 292.342, 'n01A')
     set u=BlzCreateUnitWithSkin(p, 'nwwd', 10853.3, - 12655.3, 269.537, 'nwwd')
     set u=BlzCreateUnitWithSkin(p, 'n019', 11594.1, - 11969.6, 267.249, 'n019')
-    set gg_unit_E009_0214=BlzCreateUnitWithSkin(p, 'E009', - 9553.0, - 19571.6, 317.439, 'E009')
+    set gg_unit_E009_0214=BlzCreateUnitWithSkin(p, 'E009', - 9609.2, - 19857.0, 317.439, 'E009')
     set u=BlzCreateUnitWithSkin(p, 'n01B', 11454.1, - 11752.7, 282.278, 'n01B')
     set u=BlzCreateUnitWithSkin(p, 'nwzg', 11534.1, - 11909.0, 264.697, 'nwzg')
     set u=BlzCreateUnitWithSkin(p, 'ncks', 9630.7, - 11749.3, 284.834, 'ncks')
     set u=BlzCreateUnitWithSkin(p, 'h01T', 11626.7, - 11746.2, 253.433, 'h01T')
-    set gg_unit_O01W_0221=BlzCreateUnitWithSkin(p, 'O01W', - 9018.3, - 19415.9, 236.487, 'O01W')
+    set gg_unit_O01W_0221=BlzCreateUnitWithSkin(p, 'O01W', - 9942.9, - 20149.5, 236.487, 'O01W')
     set u=BlzCreateUnitWithSkin(p, 'n00Y', 10937.4, - 12429.4, 278.729, 'n00Y')
-    set gg_unit_N01N_0235=BlzCreateUnitWithSkin(p, 'N01N', - 8738.8, - 19384.6, 216.483, 'N01N')
-    set gg_unit_O01W_0238=BlzCreateUnitWithSkin(p, 'O01W', 12468.6, - 12595.5, 249.770, 'O01W')
-    set gg_unit_N01N_0239=BlzCreateUnitWithSkin(p, 'N01N', 10465.0, - 11714.9, 265.790, 'N01N')
+    set gg_unit_N01N_0235=BlzCreateUnitWithSkin(p, 'N01N', - 9757.6, - 20316.4, 216.483, 'N01N')
+    set u=BlzCreateUnitWithSkin(p, 'O01W', 12468.6, - 12595.5, 249.770, 'O01W')
+    set u=BlzCreateUnitWithSkin(p, 'N01N', 10411.9, - 11700.0, 265.790, 'N01N')
     set u=BlzCreateUnitWithSkin(p, 'E009', 9768.6, - 11691.4, 285.011, 'E009')
     set u=BlzCreateUnitWithSkin(p, 'H020', 9668.3, - 12372.8, 272.370, 'H020')
     set gg_unit_H020_0243=BlzCreateUnitWithSkin(p, 'H020', - 9371.1, - 19629.2, 312.929, 'H020')
     set u=BlzCreateUnitWithSkin(p, 'E00A', 11559.9, - 12357.6, 244.738, 'E00A')
     set u=BlzCreateUnitWithSkin(p, 'n00Q', 11474.8, - 12336.9, 279.400, 'n00Q')
-    set gg_unit_E00A_0257=BlzCreateUnitWithSkin(p, 'E00A', - 9389.6, - 19405.2, 269.398, 'E00A')
-    set gg_unit_U00I_0284=BlzCreateUnitWithSkin(p, 'U00I', 12114.0, - 11807.0, 266.800, 'U00I')
+    set gg_unit_E00A_0257=BlzCreateUnitWithSkin(p, 'E00A', - 9887.7, - 19580.2, 269.398, 'E00A')
+    set u=BlzCreateUnitWithSkin(p, 'U00I', 12114.0, - 11807.0, 266.800, 'U00I')
     set u=BlzCreateUnitWithSkin(p, 'n00X', 10933.7, - 12675.9, 262.669, 'n00X')
-    set gg_unit_O02P_0339=BlzCreateUnitWithSkin(p, 'O02P', 10262.8, - 12379.3, 275.477, 'O02P')
+    set u=BlzCreateUnitWithSkin(p, 'O02P', 10262.8, - 12379.3, 275.477, 'O02P')
     set u=BlzCreateUnitWithSkin(p, 'n01K', 10382.4, - 12508.0, 265.177, 'n01K')
-    set gg_unit_U00I_0341=BlzCreateUnitWithSkin(p, 'U00I', - 10325.0, - 19369.4, 290.457, 'U00I')
+    set gg_unit_U00I_0341=BlzCreateUnitWithSkin(p, 'U00I', - 10145.5, - 20242.8, 290.457, 'U00I')
     set u=BlzCreateUnitWithSkin(p, 'n00X', 10775.2, - 12631.7, 281.367, 'n00X')
     set u=BlzCreateUnitWithSkin(p, 'n016', 10779.3, - 11949.6, 283.729, 'n016')
     set u=BlzCreateUnitWithSkin(p, 'n013', 10816.2, - 11682.9, 276.679, 'n013')
@@ -8253,20 +8287,20 @@ function CreateUnitsForPlayer23 takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'ncnk', 9593.5, - 11557.7, 275.599, 'ncnk')
     set u=BlzCreateUnitWithSkin(p, 'n01I', 10292.7, - 11879.5, 267.839, 'n01I')
     set u=BlzCreateUnitWithSkin(p, 'H023', 11544.1, - 11636.3, 288.510, 'H023')
-    set gg_unit_H023_0404=BlzCreateUnitWithSkin(p, 'H023', - 8618.4, - 19654.6, 219.058, 'H023')
+    set gg_unit_H023_0404=BlzCreateUnitWithSkin(p, 'H023', - 9419.0, - 19837.7, 219.058, 'H023')
     set u=BlzCreateUnitWithSkin(p, 'O02N', 10758.3, - 12441.4, 289.322, 'O02N')
     set u=BlzCreateUnitWithSkin(p, 'o02O', 10657.6, - 12367.1, 264.828, 'o02O')
     set u=BlzCreateUnitWithSkin(p, 'n00U', 10651.8, - 12462.1, 270.537, 'n00U')
-    set gg_unit_O02N_0418=BlzCreateUnitWithSkin(p, 'O02N', - 9158.1, - 19640.1, 261.213, 'O02N')
+    set gg_unit_O02N_0418=BlzCreateUnitWithSkin(p, 'O02N', - 9803.8, - 19871.1, 261.213, 'O02N')
     set u=BlzCreateUnitWithSkin(p, 'h01X', 10553.4, - 11647.2, 301.562, 'h01X')
     set u=BlzCreateUnitWithSkin(p, 'h01Z', 9861.7, - 11612.4, 40.990, 'h01Z')
     set u=BlzCreateUnitWithSkin(p, 'U00J', 12217.6, - 13030.5, 254.230, 'U00J')
-    set gg_unit_U00J_0435=BlzCreateUnitWithSkin(p, 'U00J', - 9618.8, - 19806.8, 313.780, 'U00J')
+    set gg_unit_U00J_0435=BlzCreateUnitWithSkin(p, 'U00J', - 9973.8, - 19754.0, 313.780, 'U00J')
     set u=BlzCreateUnitWithSkin(p, 'n01L', 10286.5, - 12644.0, 255.540, 'n01L')
     set u=BlzCreateUnitWithSkin(p, 'o02Q', 10448.7, - 12299.5, 5.240, 'o02Q')
-    set gg_unit_O02P_0444=BlzCreateUnitWithSkin(p, 'O02P', - 9686.0, - 19338.3, 293.885, 'O02P')
-    set gg_unit_U00K_0470=BlzCreateUnitWithSkin(p, 'U00K', 10991.5, - 11772.2, 264.937, 'U00K')
-    set gg_unit_U00K_0485=BlzCreateUnitWithSkin(p, 'U00K', - 8833.4, - 19800.2, 189.230, 'U00K')
+    set gg_unit_O02P_0444=BlzCreateUnitWithSkin(p, 'O02P', - 9947.7, - 20315.0, 293.885, 'O02P')
+    set u=BlzCreateUnitWithSkin(p, 'U00K', 10991.5, - 11772.2, 264.937, 'U00K')
+    set gg_unit_U00K_0485=BlzCreateUnitWithSkin(p, 'U00K', - 9800.2, - 20498.7, 189.230, 'U00K')
 endfunction
 
 //===========================================================================
@@ -8294,7 +8328,6 @@ function CreateNeutralHostile takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'n011', - 306.5, 8771.7, 356.528, 'n011')
     set u=BlzCreateUnitWithSkin(p, 'n011', - 755.6, 8817.7, 161.641, 'n011')
     set u=BlzCreateUnitWithSkin(p, 'n011', - 6175.5, 8589.1, 189.884, 'n011')
-    set u=BlzCreateUnitWithSkin(p, 'n017', 3937.0, - 11258.5, 240.752, 'n017')
 endfunction
 
 //===========================================================================
@@ -8382,8 +8415,10 @@ function CreateNeutralPassive takes nothing returns nothing
     call SetUnitColor(gg_unit_H00A_0082, ConvertPlayerColor(5))
     call UnitAddItemToSlotById(gg_unit_H00A_0082, 'I001', 0)
     call UnitAddItemToSlotById(gg_unit_H00A_0082, 'I01S', 1)
-    set gg_unit_E00C_0088=BlzCreateUnitWithSkin(p, 'E00C', 395.2, 755.2, 315.053, 'E00C')
+    set gg_unit_E00C_0088=BlzCreateUnitWithSkin(p, 'E00C', 395.2, 755.2, 315.050, 'E00C')
     call SetUnitColor(gg_unit_E00C_0088, ConvertPlayerColor(16))
+    call UnitAddItemToSlotById(gg_unit_E00C_0088, 'I0A8', 0)
+    call UnitAddItemToSlotById(gg_unit_E00C_0088, 'I01S', 1)
     set u=BlzCreateUnitWithSkin(p, 'h00X', 1248.8, 363.3, 263.743, 'h00X')
     set u=BlzCreateUnitWithSkin(p, 'o00N', 1156.1, 471.3, 183.226, 'o00N')
     set gg_unit_H001_0116=BlzCreateUnitWithSkin(p, 'H001', - 690.5, 162.4, 305.180, 'H001')
@@ -8429,11 +8464,11 @@ function CreateNeutralPassive takes nothing returns nothing
     call SetUnitColor(gg_unit_H00M_0276, ConvertPlayerColor(1))
     call UnitAddItemToSlotById(gg_unit_H00M_0276, 'I006', 0)
     call UnitAddItemToSlotById(gg_unit_H00M_0276, 'I017', 1)
-    set gg_unit_H00N_0277=BlzCreateUnitWithSkin(p, 'H00N', 1210.4, 159.6, 209.203, 'H00N')
+    set gg_unit_H00N_0277=BlzCreateUnitWithSkin(p, 'H00N', 1210.4, 159.6, 209.200, 'H00N')
     call SetUnitColor(gg_unit_H00N_0277, ConvertPlayerColor(1))
-    call UnitAddItemToSlotById(gg_unit_H00N_0277, 'I00S', 0)
+    call UnitAddItemToSlotById(gg_unit_H00N_0277, 'I000', 0)
     call UnitAddItemToSlotById(gg_unit_H00N_0277, 'I01S', 1)
-    set gg_unit_H00O_0278=BlzCreateUnitWithSkin(p, 'H00O', 1148.2, - 92.3, 121.772, 'H00O')
+    set gg_unit_H00O_0278=BlzCreateUnitWithSkin(p, 'H00O', 1148.2, - 92.3, 121.770, 'H00O')
     call SetUnitColor(gg_unit_H00O_0278, ConvertPlayerColor(1))
     call UnitAddItemToSlotById(gg_unit_H00O_0278, 'I002', 0)
     call UnitAddItemToSlotById(gg_unit_H00O_0278, 'I01S', 1)
@@ -8556,10 +8591,10 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_RewardRoom1=Rect(- 7648.0, - 15552.0, - 7520.0, - 15424.0)
     set gg_rct_EnterRoom2=Rect(- 9760.0, - 10240.0, - 7968.0, - 9888.0)
     set gg_rct_Room2=Rect(- 11456.0, - 12960.0, - 7584.0, - 9536.0)
-    set gg_rct_EnemyRoom2=Rect(- 10272.0, - 11392.0, - 9760.0, - 10848.0)
+    set gg_rct_EnemyRoom2=Rect(- 10784.0, - 12448.0, - 10144.0, - 11328.0)
     set gg_rct_EnemyRoom2_Copy=Rect(- 10016.0, - 12512.0, - 9120.0, - 12064.0)
-    set gg_rct_EnemyRoom2_Copy_2=Rect(- 10656.0, - 10432.0, - 10240.0, - 10048.0)
-    set gg_rct_EnemyRoom2_Copy_3=Rect(- 9184.0, - 11584.0, - 8768.0, - 11104.0)
+    set gg_rct_EnemyRoom2_Copy_2=Rect(- 10144.0, - 12512.0, - 8896.0, - 11488.0)
+    set gg_rct_EnemyRoom2_Copy_3=Rect(- 10144.0, - 12032.0, - 8768.0, - 11104.0)
     set gg_rct_EnemyRoom2_Copy_4=Rect(- 10080.0, - 11936.0, - 9312.0, - 11552.0)
     set gg_rct_ChestRoom2=Rect(- 10112.0, - 10080.0, - 10016.0, - 9984.0)
     set gg_rct_RewardRoom2=Rect(- 9696.0, - 11104.0, - 9472.0, - 10944.0)
@@ -8583,13 +8618,13 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_ExitRoom3_Copy=Rect(4704.0, - 15200.0, 4832.0, - 15072.0)
     set gg_rct_Room4=Rect(9824.0, - 22048.0, 14656.0, - 18976.0)
     set gg_rct_EnterRoom4=Rect(14080.0, - 20288.0, 14560.0, - 19616.0)
-    set gg_rct_EnemyRoom4=Rect(13088.0, - 21952.0, 13664.0, - 21408.0)
-    set gg_rct_EnemyRoom4_Copy=Rect(12448.0, - 21952.0, 13088.0, - 21408.0)
-    set gg_rct_EnemyRoom4_Copy_2=Rect(12288.0, - 20544.0, 12864.0, - 20000.0)
+    set gg_rct_EnemyRoom4=Rect(12608.0, - 21984.0, 14400.0, - 21600.0)
+    set gg_rct_EnemyRoom4_Copy=Rect(10528.0, - 21632.0, 11168.0, - 21088.0)
+    set gg_rct_EnemyRoom4_Copy_2=Rect(12000.0, - 21632.0, 13024.0, - 20256.0)
     set gg_rct_EnemyRoom4_Copy_3=Rect(10496.0, - 20320.0, 11072.0, - 19776.0)
-    set gg_rct_EnemyRoom4_Copy_4=Rect(11168.0, - 21728.0, 11744.0, - 21184.0)
-    set gg_rct_RewardRoom4=Rect(12192.0, - 20768.0, 12288.0, - 20672.0)
-    set gg_rct_ChestRoom4=Rect(11936.0, - 21280.0, 12032.0, - 21184.0)
+    set gg_rct_EnemyRoom4_Copy_4=Rect(10240.0, - 21024.0, 10816.0, - 20480.0)
+    set gg_rct_RewardRoom4=Rect(12224.0, - 20704.0, 12288.0, - 20640.0)
+    set gg_rct_ChestRoom4=Rect(12064.0, - 20800.0, 12160.0, - 20704.0)
     set gg_rct_ExitRoom4=Rect(10016.0, - 20928.0, 10144.0, - 20800.0)
     set gg_rct_ExitRoom4_Copy=Rect(12032.0, - 19392.0, 12160.0, - 19264.0)
     set gg_rct_ExitRoom4_Copy_2=Rect(14240.0, - 21568.0, 14368.0, - 21440.0)
@@ -8628,11 +8663,11 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_ExitRoom8_Copy=Rect(15136.0, - 4288.0, 15264.0, - 4160.0)
     set gg_rct_ChestRoom8=Rect(14880.0, - 5280.0, 14976.0, - 5184.0)
     set gg_rct_RewardRoom8=Rect(14464.0, - 5024.0, 14528.0, - 4960.0)
-    set gg_rct_EnemyRoom8=Rect(14528.0, - 6048.0, 14944.0, - 5696.0)
-    set gg_rct_EnemyRoom8_Copy=Rect(14848.0, - 6528.0, 15328.0, - 6176.0)
-    set gg_rct_EnemyRoom8_Copy_2=Rect(13728.0, - 5440.0, 14144.0, - 4992.0)
-    set gg_rct_EnemyRoom8_Copy_3=Rect(14592.0, - 4928.0, 15008.0, - 4480.0)
-    set gg_rct_EnemyRoom8_Copy_4=Rect(14368.0, - 5600.0, 14784.0, - 4960.0)
+    set gg_rct_EnemyRoom8=Rect(14336.0, - 5984.0, 15136.0, - 5472.0)
+    set gg_rct_EnemyRoom8_Copy=Rect(14848.0, - 6720.0, 15424.0, - 5952.0)
+    set gg_rct_EnemyRoom8_Copy_2=Rect(13696.0, - 6080.0, 14592.0, - 4096.0)
+    set gg_rct_EnemyRoom8_Copy_3=Rect(14592.0, - 4928.0, 15424.0, - 4032.0)
+    set gg_rct_EnemyRoom8_Copy_4=Rect(14400.0, - 5664.0, 15008.0, - 4960.0)
     set gg_rct_Room9=Rect(15104.0, - 1920.0, 18048.0, 384.0)
     set gg_rct_ExitRoom9=Rect(15232.0, - 224.0, 15360.0, - 96.0)
     set gg_rct_RewardRoom9=Rect(16896.0, - 864.0, 17056.0, - 704.0)
@@ -9098,40 +9133,6 @@ function InitTrig_infoRemove takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: DeathPenalty
-//===========================================================================
-function Trig_DeathPenalty_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_HeroesGroup) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DeathPenalty_Func002C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_DevotionUG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DeathPenalty_Actions takes nothing returns nothing
-    call GroupAddUnitSimple(GetTriggerUnit(), udg_HeroesDead_UG)
-    if ( Trig_DeathPenalty_Func002C() ) then
-        call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 20 ) ))
-    else
-        call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 5 ) ))
-    endif
-endfunction
-
-//===========================================================================
-function InitTrig_DeathPenalty takes nothing returns nothing
-    set gg_trg_DeathPenalty=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_DeathPenalty, EVENT_PLAYER_UNIT_DEATH)
-    call TriggerAddCondition(gg_trg_DeathPenalty, Condition(function Trig_DeathPenalty_Conditions))
-    call TriggerAddAction(gg_trg_DeathPenalty, function Trig_DeathPenalty_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: GeneralPlayableMapAreaEnter
 //===========================================================================
 function Trig_GeneralPlayableMapAreaEnter_Func003Func007C takes nothing returns boolean
@@ -9154,49 +9155,94 @@ function Trig_GeneralPlayableMapAreaEnter_Func003C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func004C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func006Func001C takes nothing returns boolean
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'uabo' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00W' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n013' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n01K' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n01J' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n005' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'ninf' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00Y' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'nfot' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GeneralPlayableMapAreaEnter_Func006C takes nothing returns boolean
+    if ( not Trig_GeneralPlayableMapAreaEnter_Func006Func001C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralPlayableMapAreaEnter_Func009Func004C takes nothing returns boolean
     if ( not ( udg_tempInt == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func005C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009Func005C takes nothing returns boolean
     if ( not ( udg_tempInt == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func006C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009Func006C takes nothing returns boolean
     if ( not ( udg_tempInt == 3 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func007C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009Func007C takes nothing returns boolean
     if ( not ( udg_tempInt == 4 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func008C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009Func008C takes nothing returns boolean
     if ( not ( udg_tempInt == 5 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func009C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009Func009C takes nothing returns boolean
     if ( not ( udg_tempInt == 6 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006Func012C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009Func010C takes nothing returns boolean
+    if ( not ( udg_tempInt == 7 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralPlayableMapAreaEnter_Func009Func013C takes nothing returns boolean
     if ( ( GetOwningPlayer(GetTriggerUnit()) == Player(22) ) ) then
         return true
     endif
@@ -9206,45 +9252,45 @@ function Trig_GeneralPlayableMapAreaEnter_Func006Func012C takes nothing returns 
     return false
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func006C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func009C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= 8 ) ) then
         return false
     endif
-    if ( not Trig_GeneralPlayableMapAreaEnter_Func006Func012C() ) then
+    if ( not Trig_GeneralPlayableMapAreaEnter_Func009Func013C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func009Func001C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func012Func001C takes nothing returns boolean
     if ( not ( CountUnitsInGroup(udg_disobidience_of_deathUG[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]) >= udg_DISOBIDIENCE_OF_DEATH ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func009C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func012C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'e008' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func012Func003Func002C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func015Func003Func002C takes nothing returns boolean
     if ( not ( GetUnitFoodUsed(GetTriggerUnit()) >= 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func012Func003C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func015Func003C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) != 'e008' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func012C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func015C takes nothing returns boolean
     if ( not ( IsPlayerInForce(GetOwningPlayer(GetTriggerUnit()), udg_PlayerGroup) == true ) ) then
         return false
     endif
@@ -9263,28 +9309,28 @@ function Trig_GeneralPlayableMapAreaEnter_Func012C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func015Func002Func001C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func018Func002Func001C takes nothing returns boolean
     if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func015Func002A takes nothing returns nothing
-    if ( Trig_GeneralPlayableMapAreaEnter_Func015Func002Func001C() ) then
+function Trig_GeneralPlayableMapAreaEnter_Func018Func002A takes nothing returns nothing
+    if ( Trig_GeneralPlayableMapAreaEnter_Func018Func002Func001C() ) then
         call UnitDamageTargetBJ(gg_unit_H00B_0036, GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_INT, GetTriggerUnit(), true)) * 3.00 ), ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC)
     else
     endif
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func015C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n005' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func018Func004C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func021Func004C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n006' ) ) then
         return true
     endif
@@ -9303,14 +9349,14 @@ function Trig_GeneralPlayableMapAreaEnter_Func018Func004C takes nothing returns 
     return false
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func018C takes nothing returns boolean
-    if ( not Trig_GeneralPlayableMapAreaEnter_Func018Func004C() ) then
+function Trig_GeneralPlayableMapAreaEnter_Func021C takes nothing returns boolean
+    if ( not Trig_GeneralPlayableMapAreaEnter_Func021Func004C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func021Func006C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func024Func006C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n01O' ) ) then
         return true
     endif
@@ -9329,56 +9375,56 @@ function Trig_GeneralPlayableMapAreaEnter_Func021Func006C takes nothing returns 
     return false
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func021C takes nothing returns boolean
-    if ( not Trig_GeneralPlayableMapAreaEnter_Func021Func006C() ) then
-        return false
-    endif
-    return true
-endfunction
-
 function Trig_GeneralPlayableMapAreaEnter_Func024C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00K' ) ) then
+    if ( not Trig_GeneralPlayableMapAreaEnter_Func024Func006C() ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_GeneralPlayableMapAreaEnter_Func027C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n01K' ) ) then
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00K' ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_GeneralPlayableMapAreaEnter_Func030C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'h025' ) ) then
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n01K' ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_GeneralPlayableMapAreaEnter_Func033C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'h026' ) ) then
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'h025' ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_GeneralPlayableMapAreaEnter_Func036C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'h026' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralPlayableMapAreaEnter_Func039C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'h027' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func040C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func043C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00E' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GeneralPlayableMapAreaEnter_Func043C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func046C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'h01O' ) ) then
         return false
     endif
@@ -9398,33 +9444,43 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     else
     endif
     // ------------
-    // Elites Aura
+    // not_knockbackable_UG
     if ( Trig_GeneralPlayableMapAreaEnter_Func006C() ) then
+        call GroupAddUnitSimple(GetTriggerUnit(), udg_not_knockbackable_UG)
+    else
+    endif
+    // ------------
+    // Elites Aura
+    if ( Trig_GeneralPlayableMapAreaEnter_Func009C() ) then
         if IsUnitType(GetTriggerUnit(), UNIT_TYPE_GIANT) then
-        set udg_tempInt=GetRandomInt(1, 6)
+        set udg_tempInt=GetRandomInt(1, 7)
         call GroupAddUnitSimple(GetTriggerUnit(), udg_strong_aura_UG)
-        if ( Trig_GeneralPlayableMapAreaEnter_Func006Func004C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func004C() ) then
             call UnitAddAbilityBJ('A0JX', GetTriggerUnit())
         else
         endif
-        if ( Trig_GeneralPlayableMapAreaEnter_Func006Func005C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func005C() ) then
             call UnitAddAbilityBJ('A0JV', GetTriggerUnit())
         else
         endif
-        if ( Trig_GeneralPlayableMapAreaEnter_Func006Func006C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func006C() ) then
             call UnitAddAbilityBJ('S006', GetTriggerUnit())
         else
         endif
-        if ( Trig_GeneralPlayableMapAreaEnter_Func006Func007C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func007C() ) then
             call UnitAddAbilityBJ('A0JU', GetTriggerUnit())
         else
         endif
-        if ( Trig_GeneralPlayableMapAreaEnter_Func006Func008C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func008C() ) then
             call UnitAddAbilityBJ('A0JW', GetTriggerUnit())
         else
         endif
-        if ( Trig_GeneralPlayableMapAreaEnter_Func006Func009C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func009C() ) then
             call UnitAddAbilityBJ('A0JY', GetTriggerUnit())
+        else
+        endif
+        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func010C() ) then
+            call UnitAddAbilityBJ('A0KL', GetEnumUnit())
         else
         endif
         endif
@@ -9432,8 +9488,8 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // DisobidienceOfDeath
-    if ( Trig_GeneralPlayableMapAreaEnter_Func009C() ) then
-        if ( Trig_GeneralPlayableMapAreaEnter_Func009Func001C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func012C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func012Func001C() ) then
             call RemoveUnit(GetTriggerUnit())
         else
             call GroupAddUnitSimple(GetTriggerUnit(), udg_disobidience_of_deathUG[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))])
@@ -9442,12 +9498,12 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // Minions
-    if ( Trig_GeneralPlayableMapAreaEnter_Func012C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func015C() ) then
         call GroupAddUnitSimple(GetTriggerUnit(), udg_MinionsUG)
         call GroupRemoveUnitSimple(GetTriggerUnit(), udg_RoomEnemyUG)
-        if ( Trig_GeneralPlayableMapAreaEnter_Func012Func003C() ) then
+        if ( Trig_GeneralPlayableMapAreaEnter_Func015Func003C() ) then
             call UnitAddAbilityBJ('A071', GetTriggerUnit())
-            if ( Trig_GeneralPlayableMapAreaEnter_Func012Func003Func002C() ) then
+            if ( Trig_GeneralPlayableMapAreaEnter_Func015Func003Func002C() ) then
                 call UnitAddAbilityBJ('A0GE', GetTriggerUnit())
             else
             endif
@@ -9457,9 +9513,9 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // Luana's Infernal
-    if ( Trig_GeneralPlayableMapAreaEnter_Func015C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func018C() ) then
         set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-        call ForGroupBJ(GetUnitsInRangeOfLocAll(250.00, udg_tempLoc), function Trig_GeneralPlayableMapAreaEnter_Func015Func002A)
+        call ForGroupBJ(GetUnitsInRangeOfLocAll(250.00, udg_tempLoc), function Trig_GeneralPlayableMapAreaEnter_Func018Func002A)
         call BlzSetUnitMaxHP(GetTriggerUnit(), BlzGetUnitMaxMana(gg_unit_H00B_0036))
         call SetUnitLifePercentBJ(GetTriggerUnit(), 100)
         call BlzSetUnitBaseDamage(GetTriggerUnit(), R2I(( 1.25 * I2R(GetHeroStatBJ(bj_HEROSTAT_INT, gg_unit_H00B_0036, true)) )), 0)
@@ -9468,7 +9524,7 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // Luana's Felguards
-    if ( Trig_GeneralPlayableMapAreaEnter_Func018C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func021C() ) then
         call BlzSetUnitMaxHP(GetTriggerUnit(), ( 200 + ( ( BlzGetUnitMaxMana(gg_unit_H00B_0036) / 7 ) * GetUnitAbilityLevelSwapped('A01G', gg_unit_H00B_0036) ) ))
         call SetUnitLifePercentBJ(GetTriggerUnit(), 100)
         call BlzSetUnitBaseDamage(GetTriggerUnit(), R2I(( 0.75 * I2R(GetHeroStatBJ(bj_HEROSTAT_INT, gg_unit_H00B_0036, true)) )), 0)
@@ -9476,7 +9532,7 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // Koshaia's Turtle
-    if ( Trig_GeneralPlayableMapAreaEnter_Func021C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func024C() ) then
         set udg_KoshaiaFollower=GetTriggerUnit()
         call SetUnitAbilityLevelSwapped('A0IM', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A00G', gg_unit_H001_0116))
         call BlzSetUnitMaxHP(GetTriggerUnit(), ( BlzGetUnitMaxHP(gg_unit_H001_0116) * 3 ))
@@ -9486,20 +9542,20 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // Cactumans
-    if ( Trig_GeneralPlayableMapAreaEnter_Func024C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func027C() ) then
         call GroupRemoveUnitSimple(GetTriggerUnit(), udg_RoomEnemyUG)
         call SetUnitOwner(GetTriggerUnit(), Player(PLAYER_NEUTRAL_PASSIVE), true)
     else
     endif
     // ------------
     // Fomorian
-    if ( Trig_GeneralPlayableMapAreaEnter_Func027C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func030C() ) then
         call AddUnitAnimationPropertiesBJ(true, "cinematic", GetTriggerUnit())
     else
     endif
     // ------------
     // Cheed
-    if ( Trig_GeneralPlayableMapAreaEnter_Func030C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func033C() ) then
         set udg_Cheed=GetTriggerUnit()
         call CreateTextTagUnitBJ("TRIGSTR_8832", GetTriggerUnit(), 0, 10, 100, 100, 100, 0)
         call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
@@ -9510,7 +9566,7 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // ------------
     // GoldenConsul
-    if ( Trig_GeneralPlayableMapAreaEnter_Func033C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func036C() ) then
         set udg_GoldenConsul=GetTriggerUnit()
         call SetUnitColor(GetTriggerUnit(), PLAYER_COLOR_YELLOW)
         call CreateTextTagUnitBJ("TRIGSTR_8855", GetTriggerUnit(), 0, 10, 100, 100, 100, 0)
@@ -9522,16 +9578,16 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // -
     // Shrine
-    if ( Trig_GeneralPlayableMapAreaEnter_Func036C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func039C() ) then
         set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
         call DestroyEffectBJ(udg_ShrineSoulEff[1])
         call AddSpecialEffectLocBJ(udg_tempLoc, "units\\nightelf\\Wisp\\Wisp.mdl")
         call BlzSetSpecialEffectColorByPlayer(GetLastCreatedEffectBJ(), Player(14))
-        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), 220.00)
+        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) + 220.00 ))
         set udg_ShrineSoulEff[1]=GetLastCreatedEffectBJ()
         call DestroyEffectBJ(udg_ShrineSoulEff[2])
         call AddSpecialEffectLocBJ(udg_tempLoc, "Doodads\\Cinematic\\TownBurningFireEmitterBlue\\TownBurningFireEmitterBlue.mdl")
-        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( GetUnitFlyHeight(GetTriggerUnit()) + 190.00 ))
+        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) + 190.00 ))
         set udg_ShrineSoulEff[2]=GetLastCreatedEffectBJ()
         call RemoveLocation(udg_tempLoc)
     else
@@ -9539,7 +9595,7 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     // -
     // -
     // Town portal
-    if ( Trig_GeneralPlayableMapAreaEnter_Func040C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func043C() ) then
         call DestroyEffectBJ(udg_dialogEff1)
         call RemoveUnit(udg_town_portal_unit)
         set udg_town_portal_unit=GetTriggerUnit()
@@ -9550,13 +9606,13 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     endif
     // -
     // Fallen shrine
-    if ( Trig_GeneralPlayableMapAreaEnter_Func043C() ) then
+    if ( Trig_GeneralPlayableMapAreaEnter_Func046C() ) then
         set udg_FALLEN_SHRINE_DIFFICULTY_INT=100
         set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
         call DestroyEffectBJ(udg_fallen_shrine_eff)
         call AddSpecialEffectLocBJ(udg_tempLoc, "units\\nightelf\\Wisp\\Wisp.mdl")
         call BlzSetSpecialEffectColorByPlayer(GetLastCreatedEffectBJ(), Player(12))
-        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( GetUnitFlyHeight(GetTriggerUnit()) + 150.00 ))
+        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(GetTriggerUnit()) + 150.00 ))
         set udg_fallen_shrine_eff2=GetLastCreatedEffectBJ()
         call RemoveLocation(udg_tempLoc)
     else
@@ -9569,6 +9625,113 @@ function InitTrig_GeneralPlayableMapAreaEnter takes nothing returns nothing
     set gg_trg_GeneralPlayableMapAreaEnter=CreateTrigger()
     call TriggerRegisterEnterRectSimple(gg_trg_GeneralPlayableMapAreaEnter, gg_rct_PlayableMapAreaLoc)
     call TriggerAddAction(gg_trg_GeneralPlayableMapAreaEnter, function Trig_GeneralPlayableMapAreaEnter_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: GeneralDropsOnDeath
+//===========================================================================
+function Trig_GeneralDropsOnDeath_Func006C takes nothing returns boolean
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00K' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'h01H' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'o00T' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'h01I' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00P' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n012' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GeneralDropsOnDeath_Conditions takes nothing returns boolean
+    if ( not Trig_GeneralDropsOnDeath_Func006C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralDropsOnDeath_Func002C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00K' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralDropsOnDeath_Func003Func003C takes nothing returns boolean
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'h01H' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'o00T' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'h01I' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GeneralDropsOnDeath_Func003C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 100) == 1 ) ) then
+        return false
+    endif
+    if ( not Trig_GeneralDropsOnDeath_Func003Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralDropsOnDeath_Func004Func003C takes nothing returns boolean
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n00P' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'n012' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GeneralDropsOnDeath_Func004C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 100) == 1 ) ) then
+        return false
+    endif
+    if ( not Trig_GeneralDropsOnDeath_Func004Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralDropsOnDeath_Actions takes nothing returns nothing
+    set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
+    if ( Trig_GeneralDropsOnDeath_Func002C() ) then
+        call CreateItemLoc('I03Q', udg_tempLoc)
+    else
+    endif
+    if ( Trig_GeneralDropsOnDeath_Func003C() ) then
+        call CreateItemLoc('I01Z', udg_tempLoc)
+    else
+    endif
+    if ( Trig_GeneralDropsOnDeath_Func004C() ) then
+        call CreateItemLoc('I0A5', udg_tempLoc)
+    else
+    endif
+    call RemoveLocation(udg_tempLoc)
+endfunction
+
+//===========================================================================
+function InitTrig_GeneralDropsOnDeath takes nothing returns nothing
+    set gg_trg_GeneralDropsOnDeath=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_GeneralDropsOnDeath, EVENT_PLAYER_UNIT_DEATH)
+    call TriggerAddCondition(gg_trg_GeneralDropsOnDeath, Condition(function Trig_GeneralDropsOnDeath_Conditions))
+    call TriggerAddAction(gg_trg_GeneralDropsOnDeath, function Trig_GeneralDropsOnDeath_Actions)
 endfunction
 
 //===========================================================================
@@ -9852,8 +10015,6 @@ function Trig_CreatingQuestsInit_Actions takes nothing returns nothing
     set udg_Quests[10]=GetLastCreatedQuestBJ()
     call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED, "TRIGSTR_7862", "TRIGSTR_7863", "ReplaceableTextures\\CommandButtons\\BTNDarkPortal.blp")
     set udg_Quests[11]=GetLastCreatedQuestBJ()
-    call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED, "TRIGSTR_7874", "TRIGSTR_7875", "ReplaceableTextures\\CommandButtons\\BTNDepthsRevenant.blp")
-    set udg_Quests[12]=GetLastCreatedQuestBJ()
     // -
     call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED, "TRIGSTR_7876", "TRIGSTR_7877", "ReplaceableTextures\\CommandButtons\\BTNLightningRevenant.blp")
     set udg_Quests[13]=GetLastCreatedQuestBJ()
@@ -9865,8 +10026,6 @@ function Trig_CreatingQuestsInit_Actions takes nothing returns nothing
     set udg_Quests[16]=GetLastCreatedQuestBJ()
     call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED, "TRIGSTR_7884", "TRIGSTR_7885", "ReplaceableTextures\\CommandButtons\\BTNLightningRevenant.blp")
     set udg_Quests[17]=GetLastCreatedQuestBJ()
-    call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED, "TRIGSTR_7872", "TRIGSTR_7873", "ReplaceableTextures\\CommandButtons\\BTNUnholyAura.blp")
-    set udg_Quests[18]=GetLastCreatedQuestBJ()
     // -
     call CreateQuestBJ(bj_QUESTTYPE_REQ_DISCOVERED, "TRIGSTR_7901", "TRIGSTR_7902", "ReplaceableTextures\\CommandButtons\\BTNMagtheridon.blp")
     set udg_Quests[19]=GetLastCreatedQuestBJ()
@@ -10420,14 +10579,313 @@ function Trig_GlobalDamageEvent_Func008Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func002C takes nothing returns boolean
-    if ( not ( udg_overpower_avaible == true ) ) then
+function Trig_GlobalDamageEvent_Func008Func004Func002Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_DeterminationUG) == true ) ) then
+        return false
+    endif
+    if ( not ( GetUnitLifePercent(udg_DamageEventTarget) <= 20.00 ) ) then
+        return false
+    endif
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02D') == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func002C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_BlindingLightUG) == true ) ) then
         return false
     endif
     if ( not ( udg_IsDamageAttack == true ) ) then
         return false
     endif
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_ButcheryUG) == true ) ) then
+    if ( not ( GetRandomInt(1, 100) <= 8 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func003C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HeavensFuryUG) == true ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 5 ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( udg_tL11Int == 0 ) ) then
+        return false
+    endif
+    if ( not ( udg_heavens_fury_avaible == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func004C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_RuneofApocalypseUG) == true ) ) then
+        return false
+    endif
+    if ( not ( udg_rune_of_apocalypse_avaible == true ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= ( GetUnitAbilityLevelSwapped('A09H', udg_DamageEventSource) * 5 ) ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func005C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_BoneShieldUG) == true ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 20 ) ) then
+        return false
+    endif
+    if ( not ( UnitHasBuffBJ(udg_DamageEventSource, 'B02L') == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func006Func001Func001C takes nothing returns boolean
+    if ( not ( GetOwningPlayer(udg_DamageEventSource) == udg_Player[GetForLoopIndexA()] ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func006C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_SadismUG) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitType(udg_DamageEventTarget, UNIT_TYPE_HERO) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func007Func002C takes nothing returns boolean
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02N') == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspInactiveUG) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func007C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspUG) == true ) ) then
+        return false
+    endif
+    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) <= ( udg_DamageEventAmount + 25.00 ) ) ) then
+        return false
+    endif
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02O') == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func008C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspUG) == true ) ) then
+        return false
+    endif
+    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) <= ( udg_DamageEventAmount + 10.00 ) ) ) then
+        return false
+    endif
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02N') == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func009C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_SurgeOfMaliceUG) == true ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 8 ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func010Func003C takes nothing returns boolean
+    if ( not ( DistanceBetweenPoints(udg_TrainedReactionTempLoc[1], udg_TrainedReactionTempLoc[2]) >= ( 1400.00 - ( 100.00 * I2R(GetUnitAbilityLevelSwapped('A0AM', udg_DamageEventTarget)) ) ) ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 40 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002Func010C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0AM', udg_DamageEventTarget) >= 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func002C takes nothing returns boolean
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func002C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_AngerUG) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitIdType(GetUnitTypeId(udg_DamageEventTarget), UNIT_TYPE_HERO) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitAlly(udg_DamageEventTarget, GetOwningPlayer(udg_DamageEventSource)) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func003Func002C takes nothing returns boolean
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( GetEnumUnit() != udg_DamageEventSource ) ) then
+        return false
+    endif
+    if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc7) < udg_NearestUDistance ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func003A takes nothing returns nothing
+    set udg_tempLoc7=GetUnitLoc(GetEnumUnit())
+    if ( Trig_GlobalDamageEvent_Func008Func004Func004Func004Func003Func002C() ) then
+        set udg_NearestU=GetEnumUnit()
+        set udg_NearestUDistance=DistanceBetweenPoints(udg_tempLoc, udg_tempLoc7)
+        call RemoveLocation(udg_tempLoc7)
+    else
+    endif
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func006Func004Func002C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func006Func004C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 15) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func006C takes nothing returns boolean
+    if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2) <= 300.00 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func010C takes nothing returns boolean
+    if ( ( GetUnitAbilityLevelSwapped('A07Y', udg_DamageEventSource) >= 4 ) ) then
+        return true
+    endif
+    if ( ( GetUnitAbilityLevelSwapped('A07Z', udg_DamageEventSource) >= 4 ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func004C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func008Func004Func004Func004Func010C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func006C takes nothing returns boolean
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( GetUnitAbilityLevelSwapped('A07Y', udg_DamageEventSource) >= 8 ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 10 ) ) then
+        return false
+    endif
+    if ( not ( udg_terror_is_avaible == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func008C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0FL', udg_DamageEventSource) == 1 ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func010C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A08C', GetTriggerUnit()) == 1 ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 5 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004Func012C takes nothing returns boolean
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( GetUnitAbilityLevelSwapped('A08E', udg_DamageEventSource) == 1 ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 30 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func004C takes nothing returns boolean
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func006Func005Func002C takes nothing returns boolean
+    if ( not ( udg_decimate_overpower_hits == 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func006Func005C takes nothing returns boolean
+    if ( not ( UnitHasBuffBJ(udg_DamageEventSource, 'B047') == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func006Func008Func002C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_overpower_UG) == true ) ) then
         return false
     endif
     if ( not ( GetRandomInt(1, 100) <= 15 ) ) then
@@ -10436,14 +10894,37 @@ function Trig_GlobalDamageEvent_Func008Func004Func002C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func004Func005C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func006Func008C takes nothing returns boolean
+    if ( ( UnitHasBuffBJ(udg_DamageEventSource, 'B047') == true ) ) then
+        return true
+    endif
+    if ( Trig_GlobalDamageEvent_Func008Func004Func006Func008Func002C() ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func006C takes nothing returns boolean
+    if ( not ( udg_overpower_avaible == true ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not Trig_GlobalDamageEvent_Func008Func004Func006Func008C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func008Func005C takes nothing returns boolean
     if ( not ( GetPlayerState(GetOwningPlayer(udg_DamageEventSource), PLAYER_STATE_RESOURCE_GOLD) > 10 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func004C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func008C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I08A') == true ) ) then
         return false
     endif
@@ -10453,29 +10934,29 @@ function Trig_GlobalDamageEvent_Func008Func004Func004C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func005Func001Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func009Func001Func001C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(GetEnumUnit(), 'I089') == false ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func005Func001A takes nothing returns nothing
-    if ( Trig_GlobalDamageEvent_Func008Func004Func005Func001Func001C() ) then
+function Trig_GlobalDamageEvent_Func008Func004Func009Func001A takes nothing returns nothing
+    if ( Trig_GlobalDamageEvent_Func008Func004Func009Func001Func001C() ) then
         set udg_DamageEventAmount=( udg_DamageEventAmount * 0.85 )
     else
         call UnitDamageTargetBJ(udg_DamageEventSource, GetEnumUnit(), ( udg_DamageEventAmount * 0.15 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
     endif
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func005C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func009C takes nothing returns boolean
     if ( not ( udg_DeVagOshAvaible == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func006C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func010C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I08F') == true ) ) then
         return false
     endif
@@ -10485,21 +10966,21 @@ function Trig_GlobalDamageEvent_Func008Func004Func006C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func007Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func011Func001C takes nothing returns boolean
     if ( not ( udg_IsDamageMelee == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func007C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func011C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventTarget, 'I0AO') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func008C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func012C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventTarget, 'I0AN') == true ) ) then
         return false
     endif
@@ -10512,14 +10993,14 @@ function Trig_GlobalDamageEvent_Func008Func004Func008C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func009Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func013Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= 5 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func009C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func013C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventTarget, 'I09W') == true ) ) then
         return false
     endif
@@ -10529,7 +11010,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func009C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func010Func001Func002Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func014Func001Func002Func001C takes nothing returns boolean
     if ( not ( udg_DamageEventTarget != GetEnumUnit() ) ) then
         return false
     endif
@@ -10545,8 +11026,8 @@ function Trig_GlobalDamageEvent_Func008Func004Func010Func001Func002Func001C take
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func010Func001Func002A takes nothing returns nothing
-    if ( Trig_GlobalDamageEvent_Func008Func004Func010Func001Func002Func001C() ) then
+function Trig_GlobalDamageEvent_Func008Func004Func014Func001Func002A takes nothing returns nothing
+    if ( Trig_GlobalDamageEvent_Func008Func004Func014Func001Func002Func001C() ) then
         call UnitDamageTargetBJ(udg_DamageEventSource, GetEnumUnit(), udg_DamageEventAmount, ATTACK_TYPE_MAGIC, DAMAGE_TYPE_MAGIC)
         call AddSpecialEffectTargetUnitBJ("chest", GetEnumUnit(), "Abilities\\Weapons\\FarseerMissile\\FarseerMissile.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
@@ -10554,21 +11035,21 @@ function Trig_GlobalDamageEvent_Func008Func004Func010Func001Func002A takes nothi
     endif
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func010Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func014Func001C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventSource, 'B03Y') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func010C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func014C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I09S') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func011C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func015C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventTarget, 'I09M') == true ) ) then
         return false
     endif
@@ -10578,7 +11059,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func011C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func012C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func016C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I09F') == true ) ) then
         return false
     endif
@@ -10594,7 +11075,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func012C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func013C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func017C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I09D') == true ) ) then
         return false
     endif
@@ -10610,8 +11091,18 @@ function Trig_GlobalDamageEvent_Func008Func004Func013C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func014C takes nothing returns boolean
-    if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I0A6') == true ) ) then
+function Trig_GlobalDamageEvent_Func008Func004Func018Func001C takes nothing returns boolean
+    if ( ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I0A6') == true ) ) then
+        return true
+    endif
+    if ( ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I01R') == true ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func008Func004Func018C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func008Func004Func018Func001C() ) then
         return false
     endif
     if ( not ( udg_IsDamageAttack == true ) ) then
@@ -10626,7 +11117,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func014C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func015Func002Func001Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func019Func002Func001Func002C takes nothing returns boolean
     if ( not ( udg_DefenseStaffReal[GetForLoopIndexA()] > 0.00 ) ) then
         return false
     endif
@@ -10636,28 +11127,28 @@ function Trig_GlobalDamageEvent_Func008Func004Func015Func002Func001Func002C take
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func015Func002Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func019Func002Func001C takes nothing returns boolean
     if ( not ( udg_DamageEventTarget == udg_DefenseStaffUnit[GetForLoopIndexA()] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func015C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func019C takes nothing returns boolean
     if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_DefenseStaffUG) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func016Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func020Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_not_knockbackable_UG) == false ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func016C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func020C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I08O') == true ) ) then
         return false
     endif
@@ -10667,7 +11158,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func016C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func017C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func021C takes nothing returns boolean
     if ( not ( udg_IsDamageAttack == true ) ) then
         return false
     endif
@@ -10680,7 +11171,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func017C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func018C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func022C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I099') == true ) ) then
         return false
     endif
@@ -10693,7 +11184,7 @@ function Trig_GlobalDamageEvent_Func008Func004Func018C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func008Func004Func019C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func008Func004Func023C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I09A') == true ) ) then
         return false
     endif
@@ -11012,358 +11503,7 @@ function Trig_GlobalDamageEvent_Func008C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003C takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('Aspo', udg_DamageEventSource) == 1 ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= udg_POISON_CHANCE ) ) then
-        return false
-    endif
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_poisoned_UG) == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func004C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_poisoned_UG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func001C takes nothing returns boolean
-    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'U00K' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'U00K' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func002Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'U00K' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func002Func002C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'U00K' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func002C takes nothing returns boolean
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func003Func001C takes nothing returns boolean
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func003Func002C takes nothing returns boolean
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B03M') == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func003Func003C takes nothing returns boolean
-    if ( not ( udg_DamageEventTarget == udg_FuryClawsT ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003Func003C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'U00K' ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func003C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func007Func003Func001C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'O02P' ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006Func002C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006Func003C takes nothing returns boolean
-    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'O02P' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006Func004Func021C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006Func004C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 50 ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006Func005C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageSpell == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func006C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func007Func006Func003C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func009Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02N' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func009C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02N' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func012Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'U00J' ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func012Func002C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'U00J' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func012Func003C takes nothing returns boolean
-    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'U00J' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'U00J' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func012C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func007Func012Func003C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func015Func001C takes nothing returns boolean
-    if ( not ( udg_HydraTailOn == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func015Func002C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func015C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'U00I' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func018Func018C takes nothing returns boolean
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 10) <= 2 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func018C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'E00A' ) ) then
-        return false
-    endif
-    if ( not ( udg_DamageEventAmount > 0.00 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func021Func004C takes nothing returns boolean
-    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'U008' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func021C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func007Func021Func004C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func024Func001C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_not_knockbackable_UG) == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func024C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O01W' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func027C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'E009' ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func030Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'N01N' ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func030Func002C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'N01N' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func030Func003C takes nothing returns boolean
-    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'N01N' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'N01N' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func030C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func007Func030Func003C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007Func031C takes nothing returns boolean
-    if ( ( IsUnitInGroup(udg_DamageEventSource, udg_MiniBossUG) == true ) ) then
-        return true
-    endif
-    if ( ( IsUnitInGroup(udg_DamageEventTarget, udg_MiniBossUG) == true ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func007C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func007Func031C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func010Func003Func001Func003C takes nothing returns boolean
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_CHAOS ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func010Func003Func001C takes nothing returns boolean
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B043') == true ) ) then
-        return false
-    endif
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func003Func001Func003C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011Func010Func003Func002Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func003Func006Func002C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
         return true
     endif
@@ -11379,17 +11519,509 @@ function Trig_GlobalDamageEvent_Func011Func010Func003Func002Func003C takes nothi
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func003Func002C takes nothing returns boolean
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B042') == true ) ) then
-        return false
-    endif
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func003Func002Func003C() ) then
+function Trig_GlobalDamageEvent_Func011Func003Func006C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func003Func006Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func003Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func003Func009Func002C takes nothing returns boolean
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_CHAOS ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func003Func009C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func003Func009Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func003Func012C takes nothing returns boolean
+    if ( not ( IsUnitType(udg_DamageEventTarget, UNIT_TYPE_UNDEAD) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func003Func020C takes nothing returns boolean
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I08K') == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func003C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func006Func006Func002C takes nothing returns boolean
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_NORMAL ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_PIERCE ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SIEGE ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func006Func006C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func006Func006Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func006Func009Func002C takes nothing returns boolean
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_CHAOS ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func006Func009C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func006Func009Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func006Func012C takes nothing returns boolean
+    if ( not ( udg_DamageEventAmount <= ( udg_temp_damage * 0.10 ) ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func006C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_HeroesGroup) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func011Func009C takes nothing returns boolean
+    if ( ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
+        return true
+    endif
+    if ( ( IsUnitInGroup(udg_DamageEventTarget, udg_HeroesGroup) == true ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func011C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func009C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func003C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('Aspo', udg_DamageEventSource) == 1 ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= udg_POISON_CHANCE ) ) then
+        return false
+    endif
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_poisoned_UG) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func004C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_poisoned_UG) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func001C takes nothing returns boolean
+    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'U00K' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'U00K' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func002Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'U00K' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func002Func002C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'U00K' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func002C takes nothing returns boolean
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func003Func001C takes nothing returns boolean
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func003Func002C takes nothing returns boolean
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B03M') == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func003Func003C takes nothing returns boolean
+    if ( not ( udg_DamageEventTarget == udg_FuryClawsT ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003Func003C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'U00K' ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func003C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func007Func003Func001C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'O02P' ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006Func002C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006Func003C takes nothing returns boolean
+    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'O02P' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006Func004Func020C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006Func004C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 100) <= 50 ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006Func005C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02P' ) ) then
+        return false
+    endif
+    if ( not ( udg_IsDamageSpell == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func006C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func007Func006Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func009Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02N' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func009C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O02N' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func012Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'U00J' ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func012Func002C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'U00J' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func012Func003C takes nothing returns boolean
+    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'U00J' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'U00J' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func012C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func007Func012Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func015Func001C takes nothing returns boolean
+    if ( not ( udg_HydraTailOn == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func015Func002C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func015C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'U00I' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func018Func018C takes nothing returns boolean
+    if ( not ( udg_IsDamageAttack == true ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 10) <= 2 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func018C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'E00A' ) ) then
+        return false
+    endif
+    if ( not ( udg_DamageEventAmount > 0.00 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func021Func004C takes nothing returns boolean
+    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'U008' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func021C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func007Func021Func004C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func024Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func024C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'O01W' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func027C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'E009' ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func030Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'N01N' ) ) then
+        return false
+    endif
+    if ( not ( GetRandomInt(1, 5) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func030Func002C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'N01N' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func030Func003C takes nothing returns boolean
+    if ( ( GetUnitTypeId(udg_DamageEventSource) == 'N01N' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'N01N' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func030C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func007Func030Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007Func031C takes nothing returns boolean
+    if ( ( IsUnitInGroup(udg_DamageEventSource, udg_MiniBossUG) == true ) ) then
+        return true
+    endif
+    if ( ( IsUnitInGroup(udg_DamageEventTarget, udg_MiniBossUG) == true ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func007C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func007Func031C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func010Func003Func001Func003C takes nothing returns boolean
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_CHAOS ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func010Func003Func001C takes nothing returns boolean
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B043') == true ) ) then
+        return false
+    endif
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func003Func001Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func010Func003Func002Func003C takes nothing returns boolean
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_NORMAL ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_PIERCE ) ) then
+        return true
+    endif
+    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SIEGE ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func010Func003Func002C takes nothing returns boolean
+    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B042') == true ) ) then
+        return false
+    endif
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func003Func002Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GlobalDamageEvent_Func014Func010Func003Func003C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B044') == true ) ) then
         return false
     endif
@@ -11405,7 +12037,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func003Func003C takes nothing retu
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func003Func004C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func003Func004C takes nothing returns boolean
     if ( ( UnitHasBuffBJ(udg_DamageEventTarget, 'B043') == true ) ) then
         return true
     endif
@@ -11418,21 +12050,21 @@ function Trig_GlobalDamageEvent_Func011Func010Func003Func004C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func003C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func003Func004C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func003C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func003Func004C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func005Func002Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func005Func002Func002C takes nothing returns boolean
     if ( not ( udg_DIFFICULTY == 3 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func005Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func005Func002C takes nothing returns boolean
     if ( not ( udg_tempInt > 33 ) ) then
         return false
     endif
@@ -11442,7 +12074,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func005Func002C takes nothing retu
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func005C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func005C takes nothing returns boolean
     if ( not ( udg_DamageEventAmount >= GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) ) ) then
         return false
     endif
@@ -11455,14 +12087,14 @@ function Trig_GlobalDamageEvent_Func011Func010Func005C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func007C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func007C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'n012' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func009Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func009Func003C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
         return true
     endif
@@ -11472,17 +12104,17 @@ function Trig_GlobalDamageEvent_Func011Func010Func009Func003C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func009C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func009C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventSource, 'B03F') == true ) ) then
         return false
     endif
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func009Func003C() ) then
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func009Func003C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func011Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func011Func003C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
         return true
     endif
@@ -11495,31 +12127,31 @@ function Trig_GlobalDamageEvent_Func011Func010Func011Func003C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func011C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func011C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B03E') == true ) ) then
         return false
     endif
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func011Func003C() ) then
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func011Func003C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func013C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func013C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'n00Y' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func014C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func014C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'n00Y' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func016C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func016C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'nfot' ) ) then
         return false
     endif
@@ -11529,7 +12161,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func016C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func018C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func018C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B03C') == true ) ) then
         return false
     endif
@@ -11539,14 +12171,14 @@ function Trig_GlobalDamageEvent_Func011Func010Func018C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func020Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func020Func002C takes nothing returns boolean
     if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_not_knockbackable_UG) == false ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func020C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func020C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0G0', udg_DamageEventSource) == 1 ) ) then
         return false
     endif
@@ -11556,7 +12188,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func020C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func022C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func022C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'n01G' ) ) then
         return false
     endif
@@ -11569,7 +12201,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func022C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func024C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func024C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'nvdg' ) ) then
         return false
     endif
@@ -11588,7 +12220,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func024C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func026Func004C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func026Func004C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventSource) == 'n00W' ) ) then
         return true
     endif
@@ -11601,8 +12233,8 @@ function Trig_GlobalDamageEvent_Func011Func010Func026Func004C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func026C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func026Func004C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func026C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func026Func004C() ) then
         return false
     endif
     if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B03B') == true ) ) then
@@ -11611,210 +12243,210 @@ function Trig_GlobalDamageEvent_Func011Func010Func026C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func002C takes nothing returns boolean
     if ( not ( udg_tempInt == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func003C takes nothing returns boolean
     if ( not ( udg_tempInt == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func004C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func004C takes nothing returns boolean
     if ( not ( udg_tempInt == 3 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func005C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func005C takes nothing returns boolean
     if ( not ( udg_tempInt == 4 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func006C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func006C takes nothing returns boolean
     if ( not ( udg_tempInt == 5 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func007C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func007C takes nothing returns boolean
     if ( not ( udg_tempInt == 6 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func008C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func008C takes nothing returns boolean
     if ( not ( udg_tempInt == 7 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func009C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func009C takes nothing returns boolean
     if ( not ( udg_tempInt == 8 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func010C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func010C takes nothing returns boolean
     if ( not ( udg_tempInt == 9 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func011C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func011C takes nothing returns boolean
     if ( not ( udg_tempInt == 10 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func012C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func012C takes nothing returns boolean
     if ( not ( udg_tempInt == 11 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func013C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func013C takes nothing returns boolean
     if ( not ( udg_tempInt == 12 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func014C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func014C takes nothing returns boolean
     if ( not ( udg_tempInt == 13 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func015C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func015C takes nothing returns boolean
     if ( not ( udg_tempInt == 14 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func016C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func016C takes nothing returns boolean
     if ( not ( udg_tempInt == 15 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func017C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func017C takes nothing returns boolean
     if ( not ( udg_tempInt == 16 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func018C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func018C takes nothing returns boolean
     if ( not ( udg_tempInt == 17 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func019C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func019C takes nothing returns boolean
     if ( not ( udg_tempInt == 18 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func020C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func020C takes nothing returns boolean
     if ( not ( udg_tempInt == 19 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func021C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func021C takes nothing returns boolean
     if ( not ( udg_tempInt == 20 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func022C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func022C takes nothing returns boolean
     if ( not ( udg_tempInt == 21 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func023C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func023C takes nothing returns boolean
     if ( not ( udg_tempInt == 22 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func024C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func024C takes nothing returns boolean
     if ( not ( udg_tempInt == 23 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func025C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func025C takes nothing returns boolean
     if ( not ( udg_tempInt == 24 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func026C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func026C takes nothing returns boolean
     if ( not ( udg_tempInt == 25 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func027C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func027C takes nothing returns boolean
     if ( not ( udg_tempInt == 26 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func028C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func028C takes nothing returns boolean
     if ( not ( udg_tempInt == 27 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func029C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func029C takes nothing returns boolean
     if ( not ( udg_tempInt == 28 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func030C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func030C takes nothing returns boolean
     if ( not ( udg_tempInt == 29 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028Func033C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028Func033C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventSource) == 'n00S' ) ) then
         return true
     endif
@@ -11824,31 +12456,31 @@ function Trig_GlobalDamageEvent_Func011Func010Func028Func033C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func028C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func028C takes nothing returns boolean
     if ( not ( udg_IsDamageAttack == true ) ) then
         return false
     endif
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func028Func033C() ) then
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func028Func033C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func030Func003Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func030Func003Func001C takes nothing returns boolean
     if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2) <= 200.00 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func030Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func030Func003C takes nothing returns boolean
     if ( not ( AcosBJ(CosBJ(( AngleBetweenPoints(udg_tempLoc, udg_tempLoc2) - GetUnitFacing(udg_DamageEventTarget) ))) < 70.00 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func030Func006C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func030Func006C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'nrzs' ) ) then
         return true
     endif
@@ -11867,22 +12499,25 @@ function Trig_GlobalDamageEvent_Func011Func010Func030Func006C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func030C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func030Func006C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func030C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func030Func006C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func032Func004C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func032Func004C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'ncea' ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'E009' ) ) then
         return true
     endif
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func032C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func032Func004C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func032C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func032Func004C() ) then
         return false
     endif
     if ( not ( udg_IsDamageMelee == true ) ) then
@@ -11894,7 +12529,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func032C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func035Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func035Func003C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventSource) == 'n00W' ) ) then
         return true
     endif
@@ -11913,17 +12548,17 @@ function Trig_GlobalDamageEvent_Func011Func010Func035Func003C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func035C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func035C takes nothing returns boolean
     if ( not ( udg_IsDamageAttack == true ) ) then
         return false
     endif
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func035Func003C() ) then
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func035Func003C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func037Func005C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func037Func005C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'E009' ) ) then
         return true
     endif
@@ -11933,8 +12568,8 @@ function Trig_GlobalDamageEvent_Func011Func010Func037Func005C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func037C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func037Func005C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func037C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func037Func005C() ) then
         return false
     endif
     if ( not ( GetUnitStateSwap(UNIT_STATE_MANA, udg_DamageEventTarget) >= 100.00 ) ) then
@@ -11946,21 +12581,21 @@ function Trig_GlobalDamageEvent_Func011Func010Func037C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func039Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func039Func001C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'n00W' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func039Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func039Func002C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'n019' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func039Func003Func001C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func039Func003Func001C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventSource) == 'nwwd' ) ) then
         return true
     endif
@@ -11970,14 +12605,14 @@ function Trig_GlobalDamageEvent_Func011Func010Func039Func003Func001C takes nothi
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func039Func003C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func039Func003Func001C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func039Func003C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func039Func003Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func039Func004C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func039Func004C takes nothing returns boolean
     if ( ( GetOwningPlayer(udg_DamageEventSource) == Player(22) ) ) then
         return true
     endif
@@ -11987,8 +12622,8 @@ function Trig_GlobalDamageEvent_Func011Func010Func039Func004C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func039C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func039Func004C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func039C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func039Func004C() ) then
         return false
     endif
     if ( not ( udg_IsDamageAttack == true ) ) then
@@ -11997,7 +12632,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func039C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func041Func001Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func041Func001Func002C takes nothing returns boolean
     if ( ( GetUnitTypeId(udg_DamageEventTarget) == 'n015' ) ) then
         return true
     endif
@@ -12007,14 +12642,14 @@ function Trig_GlobalDamageEvent_Func011Func010Func041Func001Func002C takes nothi
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func041Func001C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func041Func001Func002C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func041Func001C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func041Func001Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func041Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func041Func002C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventTarget) == 'n01K' ) ) then
         return false
     endif
@@ -12024,7 +12659,7 @@ function Trig_GlobalDamageEvent_Func011Func010Func041Func002C takes nothing retu
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func041Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func041Func003C takes nothing returns boolean
     if ( ( GetOwningPlayer(udg_DamageEventTarget) == Player(22) ) ) then
         return true
     endif
@@ -12034,173 +12669,32 @@ function Trig_GlobalDamageEvent_Func011Func010Func041Func003C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func041C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func010Func041Func003C() ) then
+function Trig_GlobalDamageEvent_Func014Func010Func041C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func014Func010Func041Func003C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func043C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func043C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B00J') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010Func045C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func045C takes nothing returns boolean
     if ( not ( GetUnitTypeId(udg_DamageEventSource) == 'h01Z' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func010C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010C takes nothing returns boolean
     return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func011C takes nothing returns boolean
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003Func006Func002C takes nothing returns boolean
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_NORMAL ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_PIERCE ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SIEGE ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003Func006C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func014Func003Func006Func002C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003Func009Func002C takes nothing returns boolean
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_CHAOS ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003Func009C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func014Func003Func009Func002C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003Func012C takes nothing returns boolean
-    if ( not ( IsUnitType(udg_DamageEventTarget, UNIT_TYPE_UNDEAD) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003Func020C takes nothing returns boolean
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( UnitHasItemOfTypeBJ(udg_DamageEventSource, 'I08K') == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func003C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func006Func006Func002C takes nothing returns boolean
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_NORMAL ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_PIERCE ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SIEGE ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func006Func006C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func014Func006Func006Func002C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func006Func009Func002C takes nothing returns boolean
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_SPELLS ) ) then
-        return true
-    endif
-    if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_CHAOS ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func006Func009C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func014Func006Func009Func002C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func006Func012C takes nothing returns boolean
-    if ( not ( udg_DamageEventAmount <= ( udg_temp_damage * 0.10 ) ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func006C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_HeroesGroup) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GlobalDamageEvent_Func014Func009C takes nothing returns boolean
-    if ( ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
-        return true
-    endif
-    if ( ( IsUnitInGroup(udg_DamageEventTarget, udg_HeroesGroup) == true ) ) then
-        return true
-    endif
-    return false
 endfunction
 
 function Trig_GlobalDamageEvent_Func014C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func014Func009C() ) then
-        return false
-    endif
     return true
 endfunction
 
@@ -12519,7 +13013,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
     else
     endif
     // -
-    // ITEM ABILITIES
+    // ITEM ABILITIES + TALENTS & ALIG
     if ( Trig_GlobalDamageEvent_Func008C() ) then
         if ( Trig_GlobalDamageEvent_Func008Func001C() ) then
             set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))
@@ -12529,30 +13023,243 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
         // -
         // ALL
         if ( (true) ) then // INLINED!!
+            // TALENTS
+            if ( (true) ) then // INLINED!!
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func001C() ) then
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
+                    call SetUnitLifePercentBJ(udg_DamageEventTarget, ( GetUnitLifePercent(udg_DamageEventTarget) + ( 20.00 * I2R(GetUnitAbilityLevelSwapped('A099', udg_DamageEventTarget)) ) ))
+                    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
+                    call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                    call CreateNUnitsAtLoc(1, 'h00L', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
+                    call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
+                    call UnitApplyTimedLifeBJ(1.00, 'BTLF', GetLastCreatedUnit())
+                    call RemoveLocation(udg_tempLoc)
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func002C() ) then
+                    set udg_BlindingLightC[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))]=udg_DamageEventSource
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
+                    call CreateNUnitsAtLoc(1, 'h003', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
+                    call RemoveLocation(udg_tempLoc)
+                    set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventSource), 15.00, GetUnitFacing(udg_DamageEventSource))
+                    call IssuePointOrderLocBJ(GetLastCreatedUnit(), "breathoffrost", udg_tempLoc)
+                    call UnitApplyTimedLifeBJ(1.10, 'BTLF', GetLastCreatedUnit())
+                    call RemoveLocation(udg_tempLoc)
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func003C() ) then
+                    set udg_heavens_fury_avaible=false
+                    set udg_tL11Loc=GetUnitLoc(udg_DamageEventTarget)
+                    set udg_tL11C=udg_DamageEventSource
+                    set udg_tL11Int=1
+                    set udg_tL11Int2=0
+                    call StartTimerBJ(udg_tL11Timer, false, ( 3.00 + I2R(GetUnitAbilityLevelSwapped('A09E', udg_DamageEventSource)) ))
+                    call EnableTrigger(gg_trg_tL11Periodic)
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func004C() ) then
+                    set udg_rune_of_apocalypse_avaible=false
+                    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Undead\\DeathCoil\\DeathCoilSpecialArt.mdl")
+                    call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                    call PlaySoundOnUnitBJ(gg_snd_ImpaleHit, 100, udg_DamageEventTarget)
+                    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, 135.00, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL)
+                    set udg_RuneofApocalypseT=udg_DamageEventTarget
+                    set udg_RuneofApocalypseC=udg_DamageEventSource
+                    call TriggerExecute(gg_trg_RuneOfApocalypseFunc)
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func005C() ) then
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
+                    call CreateNUnitsAtLoc(1, 'h00J', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
+                    call SetUnitAbilityLevelSwapped('A09V', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A09W', udg_DamageEventSource))
+                    call IssueTargetOrderBJ(GetLastCreatedUnit(), "innerfire", udg_DamageEventSource)
+                    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
+                    set udg_tempZ=GetLocationZ(udg_tempLoc)
+                    call PlaySoundAtPointBJ(gg_snd_RaiseSkeleton, 100, udg_tempLoc, udg_tempZ)
+                    set udg_tempZ=0.00
+                    call RemoveLocation(udg_tempLoc)
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func006C() ) then
+                    set bj_forLoopAIndex=1
+                    set bj_forLoopAIndexEnd=udg_HeroNumber
+                    loop
+                        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+                        if ( Trig_GlobalDamageEvent_Func008Func004Func002Func006Func001Func001C() ) then
+                            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * ( 0.01 * I2R(udg_SadismInt[GetForLoopIndexA()]) ) ) )
+                        else
+                        endif
+                        set bj_forLoopAIndex=bj_forLoopAIndex + 1
+                    endloop
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func007C() ) then
+                    set udg_DamageEventAmount=0.00
+                    if ( Trig_GlobalDamageEvent_Func008Func004Func002Func007Func002C() ) then
+                        set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
+                        call PlaySoundOnUnitBJ(gg_snd_DevourMagic, 100, udg_DamageEventTarget)
+                        call GroupAddUnitSimple(udg_DamageEventTarget, udg_LastGraspInactiveUG)
+                        call CreateNUnitsAtLoc(1, 'h00J', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
+                        call SetUnitAbilityLevelSwapped('A0A5', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A4', udg_DamageEventTarget))
+                        call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
+                        call UnitApplyTimedLifeBJ(1.00, 'BTLF', GetLastCreatedUnit())
+                        call CreateNUnitsAtLoc(1, 'h01K', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
+                        call SetUnitAbilityLevelSwapped('A0A5', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A4', udg_DamageEventTarget))
+                        call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
+                        call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
+                        call RemoveLocation(udg_tempLoc)
+                    else
+                    endif
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func008C() ) then
+                    set udg_DamageEventAmount=0.00
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func009C() ) then
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
+                    call CreateNUnitsAtLoc(1, 'h01L', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
+                    call SetUnitAbilityLevelSwapped('A0A9', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A8', udg_DamageEventSource))
+                    call IssueTargetOrderBJ(GetLastCreatedUnit(), "chainlightning", udg_DamageEventTarget)
+                    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
+                    call SetUnitManaBJ(udg_DamageEventSource, ( GetUnitStateSwap(UNIT_STATE_MANA, udg_DamageEventSource) + ( GetUnitStateSwap(UNIT_STATE_MAX_MANA, udg_DamageEventSource) * 0.15 ) ))
+                    call RemoveLocation(udg_tempLoc)
+                else
+                endif
+                if ( Trig_GlobalDamageEvent_Func008Func004Func002Func010C() ) then
+                    set udg_TrainedReactionTempLoc[1]=GetUnitLoc(udg_DamageEventSource)
+                    set udg_TrainedReactionTempLoc[2]=GetUnitLoc(udg_DamageEventTarget)
+                    if ( Trig_GlobalDamageEvent_Func008Func004Func002Func010Func003C() ) then
+                        set udg_DamageEventAmount=0.00
+                        call CreateTextTagUnitBJ("TRIGSTR_910", udg_DamageEventTarget, 0, 9.00, 100, 100, 100, 0)
+                        call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
+                        call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 0.75)
+                        call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 70.00, 90.00)
+                        call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageMissile.mdl")
+                        call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                    else
+                    endif
+                    call RemoveLocation(udg_TrainedReactionTempLoc[1])
+                    call RemoveLocation(udg_TrainedReactionTempLoc[2])
+                else
+                endif
+            else
+            endif
+            // ALIG
+            if ( (true) ) then // INLINED!!
+                // ANGER
+                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func002C() ) then
+                    call UnitRemoveAbilityBJ('A08D', udg_DamageEventSource)
+                    call GroupRemoveUnitSimple(udg_DamageEventSource, udg_AngerUG)
+                    call UnitRemoveBuffBJ('B022', udg_DamageEventSource)
+                else
+                endif
+                // PRIDE
+                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func004C() ) then
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
+                    set udg_NearestUDistance=999999.00
+                    call ForGroupBJ(udg_HeroesGroup, function Trig_GlobalDamageEvent_Func008Func004Func004Func004Func003A)
+                    set udg_tempLoc2=GetUnitLoc(udg_NearestU)
+                    set udg_NearestU=null
+                    if ( Trig_GlobalDamageEvent_Func008Func004Func004Func004Func006C() ) then
+                        set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_DamageEventAmount * 0.25 ) )
+                        call AddSpecialEffectTargetUnitBJ("overhead", udg_DamageEventSource, "Burning Rage Teal.mdx")
+                        call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                        if ( Trig_GlobalDamageEvent_Func008Func004Func004Func004Func006Func004C() ) then
+                            if ( Trig_GlobalDamageEvent_Func008Func004Func004Func004Func006Func004Func002C() ) then
+                                call CreateTextTagUnitBJ("TRIGSTR_915", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                                call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
+                                call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.50)
+                                call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 135.00)
+                            else
+                                call CreateTextTagUnitBJ("TRIGSTR_911", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                                call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
+                                call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.50)
+                                call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 135.00)
+                            endif
+                        else
+                        endif
+                    else
+                    endif
+                    call RemoveLocation(udg_tempLoc)
+                    call RemoveLocation(udg_tempLoc2)
+                    call RemoveLocation(udg_tempLoc7)
+                else
+                endif
+                // TERROR
+                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func006C() ) then
+                    set udg_terror_is_avaible=false
+                    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventSource, "Abilities\\Spells\\Undead\\UnholyFrenzyAOE\\UnholyFrenzyAOETarget.mdl")
+                    call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                    set udg_TerrorC=udg_DamageEventSource
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
+                    call CreateNUnitsAtLoc(1, 'h00W', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
+                    call IssueImmediateOrderBJ(GetLastCreatedUnit(), "howlofterror")
+                    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
+                    call RemoveLocation(udg_tempLoc)
+                else
+                endif
+                // INEV END
+                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func008C() ) then
+                    set udg_inevitable_end_per_player_real[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))]=( udg_inevitable_end_per_player_real[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))] + ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventSource) * ( 0.01 / 2.00 ) ) )
+                    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventSource, udg_inevitable_end_per_player_real[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))], ATTACK_TYPE_CHAOS, DAMAGE_TYPE_MAGIC)
+                    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventSource, "Abilities\\Spells\\Undead\\DeathCoil\\DeathCoilSpecialArt.mdl")
+                    call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                else
+                endif
+                // DIVINE BULWARK
+                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func010C() ) then
+                    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Items\\AIlm\\AIlmTarget.mdl")
+                    call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                    call SetUnitLifeBJ(udg_DamageEventTarget, ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) + ( udg_DamageEventAmount * 0.75 ) ))
+                    set udg_DamageEventAmount=0.00
+                else
+                endif
+                // GIFT OF HEAVENS
+                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func012C() ) then
+                    call AddSpecialEffectTargetUnitBJ("overhead", udg_DamageEventSource, "Abilities\\Spells\\Undead\\ReplenishHealth\\ReplenishHealthCasterOverhead.mdl")
+                    call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
+                    call CreateNUnitsAtLoc(1, 'h00W', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
+                    call IssueImmediateOrderBJ(GetLastCreatedUnit(), "roar")
+                    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
+                    call RemoveLocation(udg_tempLoc)
+                else
+                endif
+            else
+            endif
             // Overpower
-            if ( Trig_GlobalDamageEvent_Func008Func004Func002C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func006C() ) then
                 set udg_tempUnit=udg_DamageEventSource
                 set udg_tempUnit2=udg_DamageEventTarget
                 set udg_tempReal=udg_DamageEventAmount
                 call TriggerExecute(gg_trg_OverpowerDamageFunc)
+                if ( Trig_GlobalDamageEvent_Func008Func004Func006Func005C() ) then
+                    set udg_decimate_overpower_hits=( udg_decimate_overpower_hits - 1 )
+                    if ( Trig_GlobalDamageEvent_Func008Func004Func006Func005Func002C() ) then
+                        call UnitRemoveBuffBJ('B047', udg_DamageEventSource)
+                    else
+                    endif
+                else
+                endif
             else
             endif
             // -
-            if ( Trig_GlobalDamageEvent_Func008Func004Func004C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func008C() ) then
                 call PlaySoundOnUnitBJ(gg_snd_AlchemistTransmuteDeath1, 100, udg_DamageEventSource)
                 call SetSoundPitchBJ(GetLastPlayedSound(), 2.00)
-                if ( Trig_GlobalDamageEvent_Func008Func004Func004Func005C() ) then
+                if ( Trig_GlobalDamageEvent_Func008Func004Func008Func005C() ) then
                     call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, ( I2R(GetPlayerState(GetOwningPlayer(udg_DamageEventSource), PLAYER_STATE_RESOURCE_GOLD)) / 2.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
                     call SetPlayerStateBJ(GetOwningPlayer(udg_DamageEventSource), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(udg_DamageEventSource), PLAYER_STATE_RESOURCE_GOLD) - 5 ))
                 else
                 endif
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func005C() ) then
-                call ForGroupBJ(udg_HeroesGroup, function Trig_GlobalDamageEvent_Func008Func004Func005Func001A)
+            if ( Trig_GlobalDamageEvent_Func008Func004Func009C() ) then
+                call ForGroupBJ(udg_HeroesGroup, function Trig_GlobalDamageEvent_Func008Func004Func009Func001A)
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func006C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func010C() ) then
                 set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
                 call CreateNUnitsAtLoc(1, 'h01Q', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
                 call UnitAddAbilityBJ('A0HK', GetLastCreatedUnit())
@@ -12561,8 +13268,8 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 call RemoveLocation(udg_tempLoc)
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func007C() ) then
-                if ( Trig_GlobalDamageEvent_Func008Func004Func007Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func011C() ) then
+                if ( Trig_GlobalDamageEvent_Func008Func004Func011Func001C() ) then
                     set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
                     set udg_tempLoc2=PolarProjectionBJ(udg_tempLoc, 256, GetRandomDirectionDeg())
                     call SetUnitPositionLoc(udg_DamageEventTarget, udg_tempLoc2)
@@ -12576,7 +13283,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 endif
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func008C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func012C() ) then
                 set udg_DamageEventAmount=0.00
                 call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\NightElf\\BattleRoar\\RoarCaster.mdl")
                 call DestroyEffectBJ(GetLastCreatedEffectBJ())
@@ -12588,9 +13295,9 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 call IssueImmediateOrderBJ(GetLastCreatedUnit(), "roar")
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func009C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func013C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_DamageEventAmount * 0.10 ) )
-                if ( Trig_GlobalDamageEvent_Func008Func004Func009Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func008Func004Func013Func002C() ) then
                     set udg_tempUnit=udg_DamageEventSource
                     call TriggerExecute(gg_trg_FreezeFunc)
                     set udg_tempUnit=null
@@ -12598,47 +13305,47 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 endif
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func010C() ) then
-                if ( Trig_GlobalDamageEvent_Func008Func004Func010Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func014C() ) then
+                if ( Trig_GlobalDamageEvent_Func008Func004Func014Func001C() ) then
                     set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
-                    call ForGroupBJ(GetUnitsInRangeOfLocAll(200.00, udg_tempLoc), function Trig_GlobalDamageEvent_Func008Func004Func010Func001Func002A)
+                    call ForGroupBJ(GetUnitsInRangeOfLocAll(200.00, udg_tempLoc), function Trig_GlobalDamageEvent_Func008Func004Func014Func001Func002A)
                     call RemoveLocation(udg_tempLoc)
                 else
                 endif
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func011C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func015C() ) then
                 set udg_DamageEventAmount=0.00
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func012C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func016C() ) then
                 set udg_tempUnit=udg_DamageEventTarget
                 set udg_DamageEventAmount=0.00
                 call TriggerExecute(gg_trg_FreezeFunc)
                 set udg_tempUnit=null
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func013C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func017C() ) then
                 set udg_tempUnit=udg_DamageEventTarget
                 set udg_DamageEventAmount=0.00
                 call TriggerExecute(gg_trg_FreezeFunc)
                 set udg_tempUnit=null
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func014C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func018C() ) then
                 set udg_tempUnit=udg_DamageEventTarget
                 call TriggerExecute(gg_trg_PoisonedFunc)
                 set udg_tempUnit=null
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func015C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func019C() ) then
                 set bj_forLoopAIndex=1
                 set bj_forLoopAIndexEnd=udg_HeroNumber
                 loop
                     exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-                    if ( Trig_GlobalDamageEvent_Func008Func004Func015Func002Func001C() ) then
+                    if ( Trig_GlobalDamageEvent_Func008Func004Func019Func002Func001C() ) then
                         set udg_DefenseStaffReal[GetForLoopIndexA()]=( udg_DefenseStaffReal[GetForLoopIndexA()] - udg_DamageEventAmount )
-                        if ( Trig_GlobalDamageEvent_Func008Func004Func015Func002Func001Func002C() ) then
+                        if ( Trig_GlobalDamageEvent_Func008Func004Func019Func002Func001Func002C() ) then
                             set udg_DamageEventAmount=0.00
                         else
                             set udg_DefenseStaffReal[GetForLoopIndexA()]=0.00
@@ -12651,8 +13358,8 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 endloop
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func016C() ) then
-                if ( Trig_GlobalDamageEvent_Func008Func004Func016Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func020C() ) then
+                if ( Trig_GlobalDamageEvent_Func008Func004Func020Func001C() ) then
                     set udg_KBA_Caster=udg_DamageEventSource
                     set udg_KBA_TargetUnit=udg_DamageEventTarget
                     set udg_KBA_StartingPosition=GetUnitLoc(udg_DamageEventSource)
@@ -12667,7 +13374,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 endif
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func017C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func021C() ) then
                 call CreateTextTagUnitBJ(( "|cffff00ff" + ( I2S(R2I(( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) * 0.05 ))) + "!" ) ), udg_DamageEventSource, 0, 9.00, 100, 100, 100, 0)
                 call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                 call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 1.00)
@@ -12679,7 +13386,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 call DestroyEffectBJ(GetLastCreatedEffectBJ())
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func018C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func022C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount + ( GetUnitStateSwap(UNIT_STATE_MAX_MANA, udg_DamageEventSource) * 1.00 ) )
                 set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
                 call CreateNUnitsAtLoc(1, 'h028', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
@@ -12689,7 +13396,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 call RemoveLocation(udg_tempLoc)
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func008Func004Func019C() ) then
+            if ( Trig_GlobalDamageEvent_Func008Func004Func023C() ) then
                 set udg_tempUnit=udg_DamageEventTarget
                 set udg_DamageEventAmount=0.00
                 call TriggerExecute(gg_trg_FreezeFunc)
@@ -12815,46 +13522,116 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
     else
     endif
     // -
+    // HERO DEF & DAMAGE AMP
+    if ( Trig_GlobalDamageEvent_Func011C() ) then
+        set udg_temp_damage=udg_DamageEventAmount
+        // HERO DAMAGE AMP
+        if ( Trig_GlobalDamageEvent_Func011Func003C() ) then
+            set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))
+            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_ALL[udg_tempInt]) / 100.00 ) ) )
+            // -
+            // HERO DAMAGE AMP PHYSICAL
+            if ( Trig_GlobalDamageEvent_Func011Func003Func006C() ) then
+                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
+            else
+            endif
+            // -
+            // HERO DAMAGE AMP MAGIC
+            if ( Trig_GlobalDamageEvent_Func011Func003Func009C() ) then
+                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_MAGIC[udg_tempInt]) / 100.00 ) ) )
+            else
+            endif
+            // -
+            // HERO DAMAGE AMP vs UNDEAD
+            if ( Trig_GlobalDamageEvent_Func011Func003Func012C() ) then
+                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_UNDEAD[udg_player_num]) / 100.00 ) ) )
+            else
+            endif
+            // -
+            // HERO DAMAGE AMP vs ELITE
+            if IsUnitType(udg_DamageEventTarget, UNIT_TYPE_GIANT) then
+            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_ELITES[udg_player_num]) / 100.00 ) ) )
+            endif
+            // -
+            // Blade of Doom
+            if ( Trig_GlobalDamageEvent_Func011Func003Func020C() ) then
+                set udg_DamageEventAmount=0.00
+                call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, udg_DamageEventPrevAmt, ATTACK_TYPE_MELEE, DAMAGE_TYPE_UNIVERSAL)
+            else
+            endif
+            // -
+        else
+        endif
+        // -
+        // HERO DAMAGE REDUCE
+        if ( Trig_GlobalDamageEvent_Func011Func006C() ) then
+            set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventTarget))
+            set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_ALL[udg_tempInt]) / 100.00 ) ) )
+            // -
+            // HERO DAMAGE DEF PHYSICAL
+            if ( Trig_GlobalDamageEvent_Func011Func006Func006C() ) then
+                set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
+            else
+            endif
+            // -
+            // HERO DAMAGE DEF MAGIC
+            if ( Trig_GlobalDamageEvent_Func011Func006Func009C() ) then
+                set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_MAGIC[udg_tempInt]) / 100.00 ) ) )
+            else
+            endif
+            // -
+            // minimal 10%
+            if ( Trig_GlobalDamageEvent_Func011Func006Func012C() ) then
+                set udg_DamageEventAmount=( udg_temp_damage * 0.10 )
+            else
+            endif
+        else
+        endif
+        // -
+        set udg_temp_damage=0.00
+    else
+    endif
+    // -
     // CREEP ABILITIES
     if ( (true) ) then // INLINED!!
         // -
         // Poison
-        if ( Trig_GlobalDamageEvent_Func011Func003C() ) then
+        if ( Trig_GlobalDamageEvent_Func014Func003C() ) then
             set udg_tempUnit=udg_DamageEventTarget
             call TriggerExecute(gg_trg_PoisonedFunc)
             set udg_tempUnit=null
         else
         endif
-        if ( Trig_GlobalDamageEvent_Func011Func004C() ) then
+        if ( Trig_GlobalDamageEvent_Func014Func004C() ) then
             set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * 0.75 ) )
         else
         endif
         // -
         // Miniboss
-        if ( Trig_GlobalDamageEvent_Func011Func007C() ) then
+        if ( Trig_GlobalDamageEvent_Func014Func007C() ) then
             // -
             // Mystic
-            if ( Trig_GlobalDamageEvent_Func011Func007Func003C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func003C() ) then
                 if ( (true) ) then // INLINED!!
-                    if ( Trig_GlobalDamageEvent_Func011Func007Func003Func002Func001C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func007Func003Func002Func001C() ) then
                         call IssueImmediateOrder(udg_DamageEventTarget, "frenzy")
                     else
                     endif
-                    if ( Trig_GlobalDamageEvent_Func011Func007Func003Func002Func002C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func007Func003Func002Func002C() ) then
                         call IssueImmediateOrder(udg_DamageEventSource, "frenzy")
                     else
                     endif
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func003Func003C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func003Func003C() ) then
                     if ( (true) ) then // INLINED!!
                     else
                     endif
-                    if ( Trig_GlobalDamageEvent_Func011Func007Func003Func003Func002C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func007Func003Func003Func002C() ) then
                         call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, ( ( udg_DamageEventAmount * 0.60 ) + ( ( udg_DamageEventAmount * 0.40 ) * I2R(GetUnitAbilityLevelSwapped('A0H9', udg_DamageEventSource)) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
                     else
                     endif
-                    if ( Trig_GlobalDamageEvent_Func011Func007Func003Func003Func003C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func007Func003Func003Func003C() ) then
                         call SetUnitAbilityLevelSwapped('A0H9', udg_DamageEventSource, ( GetUnitAbilityLevelSwapped('A0H9', udg_DamageEventSource) + 1 ))
                     else
                         call SetUnitAbilityLevelSwapped('A0H9', udg_DamageEventSource, 1)
@@ -12874,19 +13651,24 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Fomorian
-            if ( Trig_GlobalDamageEvent_Func011Func007Func006C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func007Func006Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func006C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func006Func001C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventTarget, "thunderbolt", udg_DamageEventSource)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func006Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func006Func002C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventSource, "thunderbolt", udg_DamageEventTarget)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func006Func004C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func006Func004C() ) then
+                    set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
                     call AddSpecialEffectTargetUnitBJ("weapon", udg_DamageEventSource, "Abilities\\Weapons\\FireBallMissile\\FireBallMissile.mdl")
                     call DestroyEffectBJ(GetLastCreatedEffectBJ())
-                    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, I2R(BlzGetUnitBaseDamage(udg_DamageEventSource, 0)), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+                    call CreateNUnitsAtLoc(1, 'h028', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
+                    call UnitAddAbilityBJ('A0H6', GetLastCreatedUnit())
+                    call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
+                    call UnitApplyTimedLifeBJ(1.00, 'BTLF', GetLastCreatedUnit())
+                    call EnableTrigger(gg_trg_FomorianPeriodic)
                     set udg_KBA_Caster=udg_DamageEventSource
                     set udg_KBA_TargetUnit=udg_DamageEventTarget
                     set udg_KBA_StartingPosition=GetUnitLoc(udg_DamageEventSource)
@@ -12897,25 +13679,20 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                     set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
                     set udg_KBA_DestroyTrees=false
                     call ConditionalTriggerExecute(gg_trg_Cast_A_Knockback)
-                    set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
-                    call CreateNUnitsAtLoc(1, 'h01R', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-                    call UnitAddAbilityBJ('A0H6', GetLastCreatedUnit())
-                    call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
-                    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
                     call RemoveLocation(udg_tempLoc)
-                    call EnableTrigger(gg_trg_FomorianPeriodic)
-                    if ( Trig_GlobalDamageEvent_Func011Func007Func006Func004Func021C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func007Func006Func004Func020C() ) then
                         call PlaySoundOnUnitBJ(gg_snd_OgreYesAttack3, 100, udg_DamageEventSource)
                     else
                     endif
                     call SetUnitAnimation(udg_DamageEventSource, "slam")
+                    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, I2R(BlzGetUnitBaseDamage(udg_DamageEventSource, 0)), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func006Func005C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func006Func005C() ) then
                     set udg_tempLoc2=GetUnitLoc(udg_DamageEventSource)
                     set udg_tempLoc3=GetUnitLoc(udg_DamageEventTarget)
                     set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventTarget), 90.00, AngleBetweenPoints(udg_tempLoc2, udg_tempLoc3))
-                    call CreateNUnitsAtLoc(1, 'o02Q', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, GetRandomDirectionDeg())
+                    call CreateNUnitsAtLoc(1, 'o02Q', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, GetRandomDirectionDeg())
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_FomorianSpireUG)
                     call SetUnitPositionLoc(GetLastCreatedUnit(), udg_tempLoc)
                     call RemoveLocation(udg_tempLoc)
@@ -12940,8 +13717,8 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Feral
-            if ( Trig_GlobalDamageEvent_Func011Func007Func009C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func007Func009Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func009C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func009Func001C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventSource, "slow", udg_DamageEventTarget)
                 else
                 endif
@@ -12949,12 +13726,12 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Devourer
-            if ( Trig_GlobalDamageEvent_Func011Func007Func012C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func007Func012Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func012C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func012Func001C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventTarget, "slow", udg_DamageEventSource)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func012Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func012Func002C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventSource, "cripple", udg_DamageEventTarget)
                 else
                 endif
@@ -12962,13 +13739,13 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Monster
-            if ( Trig_GlobalDamageEvent_Func011Func007Func015C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func007Func015Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func015C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func015Func001C() ) then
                     call EnableTrigger(gg_trg_HydraTailPeriodic)
                     set udg_HydraTailOn=true
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func015Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func015Func002C() ) then
                     call IssueImmediateOrderBJ(udg_DamageEventTarget, "stomp")
                 else
                 endif
@@ -12976,7 +13753,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Demon
-            if ( Trig_GlobalDamageEvent_Func011Func007Func018C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func018C() ) then
                 set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventTarget), 50.00, GetRandomDirectionDeg())
                 call CreateNUnitsAtLoc(1, 'h022', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
                 call UnitApplyTimedLifeBJ(5.00, 'BTLF', GetLastCreatedUnit())
@@ -12992,7 +13769,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 set udg_KBA_SpecialEffects[2]=""
                 set udg_KBA_DestroyTrees=false
                 call ConditionalTriggerExecute(gg_trg_Cast_A_Knockback)
-                if ( Trig_GlobalDamageEvent_Func011Func007Func018Func018C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func018Func018C() ) then
                     set bj_forLoopAIndex=1
                     set bj_forLoopAIndexEnd=3
                     loop
@@ -13012,7 +13789,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Undead
-            if ( Trig_GlobalDamageEvent_Func011Func007Func021C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func021C() ) then
                 call IssueTargetOrderBJ(udg_DamageEventSource, "slow", GroupPickRandomUnit(udg_HeroesGroup))
                 call IssueTargetOrderBJ(udg_DamageEventSource, "cripple", udg_DamageEventSource)
                 call IssueImmediateOrderBJ(udg_DamageEventSource, "summongrizzly")
@@ -13020,8 +13797,8 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Gnoll
-            if ( Trig_GlobalDamageEvent_Func011Func007Func024C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func007Func024Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func024C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func024Func001C() ) then
                     set udg_KBA_Caster=udg_DamageEventSource
                     set udg_KBA_TargetUnit=udg_DamageEventTarget
                     set udg_KBA_StartingPosition=GetUnitLoc(udg_DamageEventSource)
@@ -13038,18 +13815,18 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // -
             // Centaur
-            if ( Trig_GlobalDamageEvent_Func011Func007Func027C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func027C() ) then
                 call IssueTargetOrderBJ(udg_DamageEventTarget, "slow", udg_DamageEventSource)
             else
             endif
             // -
             // Goblin
-            if ( Trig_GlobalDamageEvent_Func011Func007Func030C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func007Func030Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func007Func030C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func030Func001C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventTarget, "creepthunderbolt", udg_DamageEventSource)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func007Func030Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func007Func030Func002C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventSource, "creepthunderbolt", udg_DamageEventTarget)
                     call IssueTargetOrderBJ(udg_DamageEventSource, "slow", udg_DamageEventTarget)
                 else
@@ -13063,16 +13840,16 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
         if ( (true) ) then // INLINED!!
             // -
             // Auras
-            if ( Trig_GlobalDamageEvent_Func011Func010Func003C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func010Func003Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func003C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func003Func001C() ) then
                     set udg_DamageEventAmount=( udg_DamageEventAmount * 0.50 )
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func003Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func003Func002C() ) then
                     set udg_DamageEventAmount=( udg_DamageEventAmount * 0.50 )
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func003Func003C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func003Func003C() ) then
                     set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
                     set udg_DamageEventAmount=0.00
                     call SetUnitLifePercentBJ(udg_DamageEventTarget, 50.00)
@@ -13084,11 +13861,11 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // unholy reincarnation
-            if ( Trig_GlobalDamageEvent_Func011Func010Func005C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func005C() ) then
                 set udg_tempInt=GetRandomInt(1, 100)
-                if ( Trig_GlobalDamageEvent_Func011Func010Func005Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func005Func002C() ) then
                     call DisableTrigger(GetTriggeringTrigger())
-                    if ( Trig_GlobalDamageEvent_Func011Func010Func005Func002Func002C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func010Func005Func002Func002C() ) then
                     else
                         call UnitRemoveAbilityBJ('A0GH', udg_DamageEventTarget)
                     endif
@@ -13096,7 +13873,9 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                     call PauseUnitBJ(true, GetTriggerUnit())
                     call SetUnitAnimation(GetTriggerUnit(), "death")
                     call SetUnitInvulnerable(GetTriggerUnit(), true)
+                    call StopSoundBJ(udg_unholy_reincarnation_sound, false)
                     call PlaySoundBJ(gg_snd_Reincarnation_mp3)
+                    set udg_unholy_reincarnation_sound=GetLastPlayedSound()
                     call TriggerSleepAction(1.50)
                     call SetUnitLifePercentBJ(GetTriggerUnit(), 100.00)
                     call SetUnitInvulnerable(GetTriggerUnit(), false)
@@ -13116,22 +13895,22 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // satiety
-            if ( Trig_GlobalDamageEvent_Func011Func010Func007C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func007C() ) then
                 call IssueTargetOrderBJ(udg_DamageEventSource, "slow", udg_DamageEventTarget)
             else
             endif
             // aura of spellcasting
-            if ( Trig_GlobalDamageEvent_Func011Func010Func009C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func009C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * 0.20 ) )
             else
             endif
             // aura of magic resistance
-            if ( Trig_GlobalDamageEvent_Func011Func010Func011C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func011C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_DamageEventAmount * 0.25 ) )
             else
             endif
             // bear cleave & resistance
-            if ( Trig_GlobalDamageEvent_Func011Func010Func013C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func013C() ) then
                 set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
                 set udg_tempZ=GetLocationZ(udg_tempLoc)
                 call AddSpecialEffectLocBJ(udg_tempLoc, "Reaper's Claws Gold.mdx")
@@ -13146,24 +13925,24 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
                 call RemoveLocation(udg_tempLoc)
             else
             endif
-            if ( Trig_GlobalDamageEvent_Func011Func010Func014C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func014C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount * 0.70 )
             else
             endif
             // telekinesis
-            if ( Trig_GlobalDamageEvent_Func011Func010Func016C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func016C() ) then
                 call IssueTargetOrderBJ(udg_DamageEventTarget, "slow", udg_DamageEventSource)
             else
             endif
             // aura of dexterity
-            if ( Trig_GlobalDamageEvent_Func011Func010Func018C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func018C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount * 0.80 )
             else
             endif
             // giant's strike
-            if ( Trig_GlobalDamageEvent_Func011Func010Func020C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func020C() ) then
                 call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, I2R(BlzGetUnitBaseDamage(udg_DamageEventSource, 0)), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
-                if ( Trig_GlobalDamageEvent_Func011Func010Func020Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func020Func002C() ) then
                     set udg_KBA_Caster=udg_DamageEventSource
                     set udg_KBA_TargetUnit=udg_DamageEventTarget
                     set udg_KBA_StartingPosition=GetUnitLoc(udg_DamageEventSource)
@@ -13179,7 +13958,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // infector
-            if ( Trig_GlobalDamageEvent_Func011Func010Func022C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func022C() ) then
                 set udg_DamageEventAmount=0.00
                 call UnitAddAbilityBJ('Avul', udg_DamageEventTarget)
                 call UnitAddAbilityBJ('Abun', udg_DamageEventTarget)
@@ -13191,7 +13970,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // demonic trick
-            if ( Trig_GlobalDamageEvent_Func011Func010Func024C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func024C() ) then
                 call SetUnitManaBJ(udg_DamageEventTarget, ( GetUnitStateSwap(UNIT_STATE_MANA, udg_DamageEventTarget) - 150.00 ))
                 set udg_DamageEventAmount=0.00
                 set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
@@ -13213,242 +13992,242 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // eviscerate
-            if ( Trig_GlobalDamageEvent_Func011Func010Func026C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func026C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * 0.33 ) )
                 call AddSpecialEffectTargetUnitBJ("chest", udg_DamageEventTarget, "Objects\\Spawnmodels\\Human\\HumanBlood\\HumanBloodMortarTeam.mdl")
                 call DestroyEffectBJ(GetLastCreatedEffectBJ())
             else
             endif
             // goblin's flood
-            if ( Trig_GlobalDamageEvent_Func011Func010Func028C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func028C() ) then
                 set udg_tempInt=GetRandomInt(1, 90)
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func002C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_526", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_788", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func003C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func003C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_527", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_844", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func004C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func004C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_528", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_847", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func005C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func005C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_529", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_849", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func006C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func006C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_530", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_850", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func007C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func007C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_531", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_851", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func008C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func008C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_532", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_880", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func009C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func009C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_533", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_881", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func010C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func010C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_534", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_882", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func011C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func011C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_535", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_883", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func012C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func012C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_536", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_884", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func013C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func013C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_537", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_885", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func014C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func014C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_538", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_886", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func015C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func015C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_540", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_887", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func016C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func016C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_541", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_888", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func017C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func017C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_542", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_894", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func018C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func018C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_543", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_896", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func019C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func019C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_544", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_897", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func020C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func020C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_545", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_898", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func021C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func021C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_546", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_899", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func022C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func022C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_547", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_901", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func023C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func023C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_548", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_902", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func024C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func024C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_550", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_903", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func025C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func025C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_551", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_904", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func026C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func026C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_552", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_905", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func027C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func027C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_553", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_906", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func028C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func028C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_554", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_907", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func029C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func029C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_555", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_908", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func028Func030C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func028Func030C() ) then
                     call BlzSetUnitBaseDamage(udg_DamageEventSource, ( BlzGetUnitBaseDamage(udg_DamageEventSource, 0) + 2 ), 0)
-                    call CreateTextTagUnitBJ("TRIGSTR_556", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
+                    call CreateTextTagUnitBJ("TRIGSTR_909", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
                     call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
                     call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
                     call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
@@ -13458,11 +14237,11 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // bristleback
-            if ( Trig_GlobalDamageEvent_Func011Func010Func030C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func030C() ) then
                 set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
                 set udg_tempLoc2=GetUnitLoc(udg_DamageEventTarget)
-                if ( Trig_GlobalDamageEvent_Func011Func010Func030Func003C() ) then
-                    if ( Trig_GlobalDamageEvent_Func011Func010Func030Func003Func001C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func030Func003C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func010Func030Func003Func001C() ) then
                         call UnitDamageTargetBJ(udg_DamageEventTarget, udg_DamageEventSource, ( udg_DamageEventAmount * 0.25 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
                         call AddSpecialEffectTargetUnitBJ("chest", udg_DamageEventSource, "Objects\\Spawnmodels\\Human\\HumanBlood\\HumanBloodPriest.mdl")
                         call DestroyEffectBJ(GetLastCreatedEffectBJ())
@@ -13476,7 +14255,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // centaur's kite
-            if ( Trig_GlobalDamageEvent_Func011Func010Func032C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func032C() ) then
                 set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventTarget), GetRandomReal(250.00, 450.00), GetRandomDirectionDeg())
                 call IssuePointOrderLocBJ(udg_DamageEventTarget, "move", udg_tempLoc)
                 call RemoveLocation(udg_tempLoc)
@@ -13484,12 +14263,12 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
             // TECHNICAL
             // attacks give mana
-            if ( Trig_GlobalDamageEvent_Func011Func010Func035C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func035C() ) then
                 call SetUnitManaBJ(udg_DamageEventSource, ( GetUnitStateSwap(UNIT_STATE_MANA, udg_DamageEventSource) + 20.00 ))
             else
             endif
             // fullmana evasion
-            if ( Trig_GlobalDamageEvent_Func011Func010Func037C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func037C() ) then
                 call SetUnitManaBJ(udg_DamageEventTarget, ( GetUnitStateSwap(UNIT_STATE_MANA, udg_DamageEventTarget) - 100.00 ))
                 set udg_DamageEventAmount=0.00
                 call AddSpecialEffectTargetUnitBJ("chest", udg_DamageEventTarget, "Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageMissile.mdl")
@@ -13497,40 +14276,40 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             else
             endif
             // creeps ability on receive damage
-            if ( Trig_GlobalDamageEvent_Func011Func010Func039C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func010Func039Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func039C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func039Func001C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventSource, "slow", udg_DamageEventTarget)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func039Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func039Func002C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventSource, "acidbomb", udg_DamageEventTarget)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func039Func003C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func039Func003C() ) then
                     call IssueImmediateOrderBJ(udg_DamageEventSource, "roar")
                 else
                 endif
             else
             endif
             // creeps ability on attack
-            if ( Trig_GlobalDamageEvent_Func011Func010Func041C() ) then
-                if ( Trig_GlobalDamageEvent_Func011Func010Func041Func001C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func041C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func041Func001C() ) then
                     call IssueTargetOrderBJ(udg_DamageEventTarget, "slow", udg_DamageEventSource)
                 else
                 endif
-                if ( Trig_GlobalDamageEvent_Func011Func010Func041Func002C() ) then
+                if ( Trig_GlobalDamageEvent_Func014Func010Func041Func002C() ) then
                     call IssueImmediateOrderBJ(udg_DamageEventTarget, "howlofterror")
                 else
                 endif
             else
             endif
             // fear remove
-            if ( Trig_GlobalDamageEvent_Func011Func010Func043C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func043C() ) then
                 call UnitRemoveBuffBJ('B00J', udg_DamageEventTarget)
             else
             endif
             // freeze trap (miniboss centaur)
-            if ( Trig_GlobalDamageEvent_Func011Func010Func045C() ) then
+            if ( Trig_GlobalDamageEvent_Func014Func010Func045C() ) then
                 call PlaySoundOnUnitBJ(gg_snd_SpellStealTarget, 100, udg_DamageEventSource)
                 set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
                 call CreateNUnitsAtLoc(1, 'h01Q', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
@@ -13543,76 +14322,6 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             endif
         else
         endif
-    else
-    endif
-    // -
-    // HERO DEF & DAMAGE AMP
-    if ( Trig_GlobalDamageEvent_Func014C() ) then
-        set udg_temp_damage=udg_DamageEventAmount
-        // HERO DAMAGE AMP
-        if ( Trig_GlobalDamageEvent_Func014Func003C() ) then
-            set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))
-            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_ALL[udg_tempInt]) / 100.00 ) ) )
-            // -
-            // HERO DAMAGE AMP PHYSICAL
-            if ( Trig_GlobalDamageEvent_Func014Func003Func006C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
-            else
-            endif
-            // -
-            // HERO DAMAGE AMP MAGIC
-            if ( Trig_GlobalDamageEvent_Func014Func003Func009C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_MAGIC[udg_tempInt]) / 100.00 ) ) )
-            else
-            endif
-            // -
-            // HERO DAMAGE AMP vs UNDEAD
-            if ( Trig_GlobalDamageEvent_Func014Func003Func012C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_UNDEAD[udg_player_num]) / 100.00 ) ) )
-            else
-            endif
-            // -
-            // HERO DAMAGE AMP vs ELITE
-            if IsUnitType(udg_DamageEventTarget, UNIT_TYPE_GIANT) then
-            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_ELITES[udg_player_num]) / 100.00 ) ) )
-            endif
-            // -
-            // Blade of Doom
-            if ( Trig_GlobalDamageEvent_Func014Func003Func020C() ) then
-                set udg_DamageEventAmount=0.00
-                call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, udg_DamageEventPrevAmt, ATTACK_TYPE_MELEE, DAMAGE_TYPE_UNIVERSAL)
-            else
-            endif
-            // -
-        else
-        endif
-        // -
-        // HERO DAMAGE REDUCE
-        if ( Trig_GlobalDamageEvent_Func014Func006C() ) then
-            set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventTarget))
-            set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_ALL[udg_tempInt]) / 100.00 ) ) )
-            // -
-            // HERO DAMAGE DEF PHYSICAL
-            if ( Trig_GlobalDamageEvent_Func014Func006Func006C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
-            else
-            endif
-            // -
-            // HERO DAMAGE DEF MAGIC
-            if ( Trig_GlobalDamageEvent_Func014Func006Func009C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_MAGIC[udg_tempInt]) / 100.00 ) ) )
-            else
-            endif
-            // -
-            // minimal 10%
-            if ( Trig_GlobalDamageEvent_Func014Func006Func012C() ) then
-                set udg_DamageEventAmount=( udg_temp_damage * 0.10 )
-            else
-            endif
-        else
-        endif
-        // -
-        set udg_temp_damage=0.00
     else
     endif
     // -
@@ -13645,6 +14354,7 @@ endfunction
 function Trig_HeroResFunc_Func001A takes nothing returns nothing
     if ( Trig_HeroResFunc_Func001Func001C() ) then
         call GroupRemoveUnitSimple(GetEnumUnit(), udg_HeroesDead_UG)
+        call GroupAddUnitSimple(GetEnumUnit(), udg_HeroesAlive_UG)
         call ReviveHeroLoc(GetEnumUnit(), udg_tempLoc, true)
         call SetUnitLifePercentBJ(GetEnumUnit(), 20.00)
         call SetUnitManaPercentBJ(GetEnumUnit(), 20.00)
@@ -13661,6 +14371,41 @@ endfunction
 function InitTrig_HeroResFunc takes nothing returns nothing
     set gg_trg_HeroResFunc=CreateTrigger()
     call TriggerAddAction(gg_trg_HeroResFunc, function Trig_HeroResFunc_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: DeathPenalty
+//===========================================================================
+function Trig_DeathPenalty_Conditions takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_HeroesGroup) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DeathPenalty_Func003C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_DevotionUG) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DeathPenalty_Actions takes nothing returns nothing
+    call GroupAddUnitSimple(GetTriggerUnit(), udg_HeroesDead_UG)
+    call GroupRemoveUnitSimple(GetEnumUnit(), udg_HeroesAlive_UG)
+    if ( Trig_DeathPenalty_Func003C() ) then
+        call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 20 ) ))
+    else
+        call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 5 ) ))
+    endif
+endfunction
+
+//===========================================================================
+function InitTrig_DeathPenalty takes nothing returns nothing
+    set gg_trg_DeathPenalty=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_DeathPenalty, EVENT_PLAYER_UNIT_DEATH)
+    call TriggerAddCondition(gg_trg_DeathPenalty, Condition(function Trig_DeathPenalty_Conditions))
+    call TriggerAddAction(gg_trg_DeathPenalty, function Trig_DeathPenalty_Actions)
 endfunction
 
 //===========================================================================
@@ -13980,6 +14725,7 @@ endfunction
 // Trigger: dps
 //===========================================================================
 function Trig_dps_Actions takes nothing returns nothing
+    call EnableTrigger(gg_trg_DPScheck)
     call CreateNUnitsAtLoc(1, 'n00C', Player(PLAYER_NEUTRAL_PASSIVE), GetCameraTargetPositionLoc(), bj_UNIT_FACING)
 endfunction
 
@@ -14084,6 +14830,34 @@ function InitTrig_kill takes nothing returns nothing
     set gg_trg_kill=CreateTrigger()
     call TriggerRegisterPlayerChatEvent(gg_trg_kill, Player(0), "-kill", true)
     call TriggerAddAction(gg_trg_kill, function Trig_kill_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: kilall
+//===========================================================================
+function Trig_kilall_Func001Func001C takes nothing returns boolean
+    if ( not ( IsUnitEnemy(GetEnumUnit(), Player(12)) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_kilall_Func001A takes nothing returns nothing
+    if ( Trig_kilall_Func001Func001C() ) then
+        call KillUnit(GetEnumUnit())
+    else
+    endif
+endfunction
+
+function Trig_kilall_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(1500.00, GetUnitLoc(GroupPickRandomUnit(udg_HeroesGroup))), function Trig_kilall_Func001A)
+endfunction
+
+//===========================================================================
+function InitTrig_kilall takes nothing returns nothing
+    set gg_trg_kilall=CreateTrigger()
+    call TriggerRegisterPlayerChatEvent(gg_trg_kilall, Player(0), "-killall", true)
+    call TriggerAddAction(gg_trg_kilall, function Trig_kilall_Actions)
 endfunction
 
 //===========================================================================
@@ -14378,6 +15152,20 @@ function InitTrig_res2 takes nothing returns nothing
 endfunction
 
 //===========================================================================
+// Trigger: unlock
+//===========================================================================
+function Trig_unlock_Actions takes nothing returns nothing
+    call ShowUnitShow(gg_unit_E00C_0088)
+endfunction
+
+//===========================================================================
+function InitTrig_unlock takes nothing returns nothing
+    set gg_trg_unlock=CreateTrigger()
+    call TriggerRegisterPlayerChatEvent(gg_trg_unlock, Player(0), "-unlock", true)
+    call TriggerAddAction(gg_trg_unlock, function Trig_unlock_Actions)
+endfunction
+
+//===========================================================================
 // Trigger: reinacrnations
 //===========================================================================
 function Trig_reinacrnations_Func001Func001A takes nothing returns nothing
@@ -14426,16 +15214,7 @@ endfunction
 // Trigger: test2
 //===========================================================================
 function Trig_test2_Actions takes nothing returns nothing
-    call SetUnitInvulnerable(gg_unit_E001_0061, true)
-    call SetUnitInvulnerable(gg_unit_H008_0079, true)
-    call SetUnitInvulnerable(gg_unit_H00M_0276, true)
-    set bj_forLoopAIndex=1
-    set bj_forLoopAIndexEnd=100
-    loop
-        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        call CreateNUnitsAtLoc(1, 'n01H', Player(23), GetUnitLoc(gg_unit_E001_0061), bj_UNIT_FACING)
-        set bj_forLoopAIndex=bj_forLoopAIndex + 1
-    endloop
+    set udg_player_rooms_normal[GetConvertedPlayerId(Player(0))]=500
 endfunction
 
 //===========================================================================
@@ -14448,13 +15227,9 @@ endfunction
 //===========================================================================
 // Trigger: test3
 //===========================================================================
-function Trig_test3_Func001A takes nothing returns nothing
-    call UnitAddItemByIdSwapped('I0A6', GetEnumUnit())
-    call UnitAddItemByIdSwapped('I08N', GetEnumUnit())
-endfunction
-
 function Trig_test3_Actions takes nothing returns nothing
-    call ForGroupBJ(udg_HeroesGroup, function Trig_test3_Func001A)
+    call SetUnitPositionLoc(gg_unit_U00J_0435, GetUnitLoc(GroupPickRandomUnit(udg_HeroesGroup)))
+    call GroupAddUnitSimple(gg_unit_U00J_0435, udg_MiniBossUG)
 endfunction
 
 //===========================================================================
@@ -15063,42 +15838,42 @@ function Trig_PathOrc_Func016Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_PathOrc_Func020C takes nothing returns boolean
+function Trig_PathOrc_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func021C takes nothing returns boolean
+function Trig_PathOrc_Func019C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func022C takes nothing returns boolean
+function Trig_PathOrc_Func020C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func024Func001Func007C takes nothing returns boolean
+function Trig_PathOrc_Func022Func001Func007C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func024Func001A takes nothing returns nothing
+function Trig_PathOrc_Func022Func001A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom6_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room6_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), gg_rct_Room6_TRADE)
     // !
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathOrc_Func024Func001Func007C() ) then
+    if ( Trig_PathOrc_Func022Func001Func007C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -15107,7 +15882,7 @@ function Trig_PathOrc_Func024Func001A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathOrc_Func024Func002A takes nothing returns nothing
+function Trig_PathOrc_Func022Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom6_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room6_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -15115,7 +15890,7 @@ function Trig_PathOrc_Func024Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathOrc_Func024Func005Func020C takes nothing returns boolean
+function Trig_PathOrc_Func022Func005Func020C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 24.00 ) ) then
         return true
     endif
@@ -15155,48 +15930,48 @@ function Trig_PathOrc_Func024Func005Func020C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathOrc_Func024Func005C takes nothing returns boolean
-    if ( not Trig_PathOrc_Func024Func005Func020C() ) then
+function Trig_PathOrc_Func022Func005C takes nothing returns boolean
+    if ( not Trig_PathOrc_Func022Func005Func020C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func024Func007C takes nothing returns boolean
+function Trig_PathOrc_Func022Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func024Func008C takes nothing returns boolean
+function Trig_PathOrc_Func022Func008C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func024C takes nothing returns boolean
+function Trig_PathOrc_Func022C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func026Func002Func006C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func002A takes nothing returns nothing
+function Trig_PathOrc_Func026Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), udg_RoomReg[udg_RoomInt])
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathOrc_Func028Func002Func006C() ) then
+    if ( Trig_PathOrc_Func026Func002Func006C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -15205,7 +15980,7 @@ function Trig_PathOrc_Func028Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathOrc_Func028Func003A takes nothing returns nothing
+function Trig_PathOrc_Func026Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -15213,14 +15988,14 @@ function Trig_PathOrc_Func028Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathOrc_Func028Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[( 20 + ( udg_tempInt2 * 20 ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007Func002Func002Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func002Func002Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -15230,14 +16005,14 @@ function Trig_PathOrc_Func028Func007Func002Func002Func002Func006C takes nothing 
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[20]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007Func002Func003Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func002Func003Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -15247,21 +16022,21 @@ function Trig_PathOrc_Func028Func007Func002Func003Func002Func006C takes nothing 
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007Func002C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007Func005Func002Func006Func001C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func005Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007Func005Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007Func005Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -15271,14 +16046,14 @@ function Trig_PathOrc_Func028Func007Func005Func002Func006C takes nothing returns
     return true
 endfunction
 
-function Trig_PathOrc_Func028Func007C takes nothing returns boolean
+function Trig_PathOrc_Func026Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func028C takes nothing returns boolean
+function Trig_PathOrc_Func026C takes nothing returns boolean
     if ( not ( udg_PathTown == 0 ) ) then
         return false
     endif
@@ -15316,25 +16091,25 @@ function Trig_PathOrc_Actions takes nothing returns nothing
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_RoomPreviousInt=udg_RoomInt
-    if ( Trig_PathOrc_Func020C() ) then
+    if ( Trig_PathOrc_Func018C() ) then
         set udg_PathArtifact=1
     else
     endif
-    if ( Trig_PathOrc_Func021C() ) then
+    if ( Trig_PathOrc_Func019C() ) then
         set udg_PathGold=1
     else
     endif
-    if ( Trig_PathOrc_Func022C() ) then
+    if ( Trig_PathOrc_Func020C() ) then
         set udg_PathObject=1
     else
     endif
     // IF TOWN
-    if ( Trig_PathOrc_Func024C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func024Func001A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func024Func002A)
+    if ( Trig_PathOrc_Func022C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func022Func001A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func022Func002A)
         set udg_PathTown=1
         // IF BOSS
-        if ( Trig_PathOrc_Func024Func005C() ) then
+        if ( Trig_PathOrc_Func022Func005C() ) then
             call ConditionalTriggerExecute(gg_trg_ToBoss)
         else
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom6)
@@ -15357,13 +16132,13 @@ function Trig_PathOrc_Actions takes nothing returns nothing
             call RemoveLocation(udg_tempLoc)
         endif
         // Traders - Orc
-        if ( Trig_PathOrc_Func024Func007C() ) then
+        if ( Trig_PathOrc_Func022Func007C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_cheed3)
             call CreateNUnitsAtLoc(1, 'h025', Player(20), udg_tempLoc, 45.00)
             call RemoveLocation(udg_tempLoc)
         else
         endif
-        if ( Trig_PathOrc_Func024Func008C() ) then
+        if ( Trig_PathOrc_Func022Func008C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_goldenconsul3)
             call CreateNUnitsAtLoc(1, 'h026', Player(20), udg_tempLoc, 0.00)
             call RemoveLocation(udg_tempLoc)
@@ -15374,13 +16149,13 @@ function Trig_PathOrc_Actions takes nothing returns nothing
     // IF NOT TOWN
     // IF NOT TOWN
     // IF NOT TOWN
-    if ( Trig_PathOrc_Func028C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func028Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func028Func003A)
+    if ( Trig_PathOrc_Func026C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func026Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func026Func003A)
         // MAKING ENEMIES
         set udg_RoomInt=( udg_RoomInt * 5 )
         // regional enemies or not
-        if ( Trig_PathOrc_Func028Func007C() ) then
+        if ( Trig_PathOrc_Func026Func007C() ) then
             set udg_tempInt=GetRandomInt(0, 2)
             // room
             set bj_forLoopBIndex=1
@@ -15397,8 +16172,8 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                     call RemoveLocation(udg_tempLoc)
                     // MAKING REGIONAL HERO
-                    if ( Trig_PathOrc_Func028Func007Func005Func002Func006C() ) then
-                        if ( Trig_PathOrc_Func028Func007Func005Func002Func006Func001C() ) then
+                    if ( Trig_PathOrc_Func026Func007Func005Func002Func006C() ) then
+                        if ( Trig_PathOrc_Func026Func007Func005Func002Func006Func001C() ) then
                             set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                             call SetUnitPositionLocFacingBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )], udg_tempLoc, GetRandomDirectionDeg())
                             call GroupAddUnitSimple(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )], udg_RoomEnemyUG)
@@ -15416,7 +16191,7 @@ function Trig_PathOrc_Actions takes nothing returns nothing
             endloop
         else
             // undead or not
-            if ( Trig_PathOrc_Func028Func007Func002C() ) then
+            if ( Trig_PathOrc_Func026Func007Func002C() ) then
                 set bj_forLoopBIndex=1
                 set bj_forLoopBIndexEnd=5
                 loop
@@ -15431,8 +16206,8 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING UNDEAD HERO
-                        if ( Trig_PathOrc_Func028Func007Func002Func003Func002Func006C() ) then
-                            if ( Trig_PathOrc_Func028Func007Func002Func003Func002Func006Func001C() ) then
+                        if ( Trig_PathOrc_Func026Func007Func002Func003Func002Func006C() ) then
+                            if ( Trig_PathOrc_Func026Func007Func002Func003Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[20], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[20], udg_RoomEnemyUG)
@@ -15464,8 +16239,8 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING ALL HERO
-                        if ( Trig_PathOrc_Func028Func007Func002Func002Func002Func006C() ) then
-                            if ( Trig_PathOrc_Func028Func007Func002Func002Func002Func006Func001C() ) then
+                        if ( Trig_PathOrc_Func026Func007Func002Func002Func002Func006C() ) then
+                            if ( Trig_PathOrc_Func026Func007Func002Func002Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_RoomEnemyUG)
@@ -15599,35 +16374,35 @@ function Trig_PathNaluara_Func016Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_PathNaluara_Func020C takes nothing returns boolean
+function Trig_PathNaluara_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func021C takes nothing returns boolean
+function Trig_PathNaluara_Func019C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func022C takes nothing returns boolean
+function Trig_PathNaluara_Func020C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func024Func001Func008C takes nothing returns boolean
+function Trig_PathNaluara_Func022Func001Func008C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func024Func001A takes nothing returns nothing
+function Trig_PathNaluara_Func022Func001A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom12_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room6_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -15635,7 +16410,7 @@ function Trig_PathNaluara_Func024Func001A takes nothing returns nothing
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), gg_rct_Room12_TRADE)
     // !
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathNaluara_Func024Func001Func008C() ) then
+    if ( Trig_PathNaluara_Func022Func001Func008C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -15643,7 +16418,7 @@ function Trig_PathNaluara_Func024Func001A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathNaluara_Func024Func002A takes nothing returns nothing
+function Trig_PathNaluara_Func022Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom12_TRADE)
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -15651,7 +16426,7 @@ function Trig_PathNaluara_Func024Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathNaluara_Func024Func005Func014C takes nothing returns boolean
+function Trig_PathNaluara_Func022Func005Func014C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 24.00 ) ) then
         return true
     endif
@@ -15691,48 +16466,48 @@ function Trig_PathNaluara_Func024Func005Func014C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathNaluara_Func024Func005C takes nothing returns boolean
-    if ( not Trig_PathNaluara_Func024Func005Func014C() ) then
+function Trig_PathNaluara_Func022Func005C takes nothing returns boolean
+    if ( not Trig_PathNaluara_Func022Func005Func014C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func024Func007C takes nothing returns boolean
+function Trig_PathNaluara_Func022Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func024Func008C takes nothing returns boolean
+function Trig_PathNaluara_Func022Func008C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func024C takes nothing returns boolean
+function Trig_PathNaluara_Func022C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func002Func006C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func002A takes nothing returns nothing
+function Trig_PathNaluara_Func026Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(gg_rct_Room12_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), udg_RoomReg[udg_RoomInt])
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathNaluara_Func028Func002Func006C() ) then
+    if ( Trig_PathNaluara_Func026Func002Func006C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -15741,7 +16516,7 @@ function Trig_PathNaluara_Func028Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathNaluara_Func028Func003A takes nothing returns nothing
+function Trig_PathNaluara_Func026Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -15749,14 +16524,14 @@ function Trig_PathNaluara_Func028Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[( 20 + ( udg_tempInt2 * 20 ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func002Func002Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func002Func002Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -15766,14 +16541,14 @@ function Trig_PathNaluara_Func028Func007Func002Func002Func002Func006C takes noth
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[20]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func002Func003Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func002Func003Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -15783,21 +16558,21 @@ function Trig_PathNaluara_Func028Func007Func002Func003Func002Func006C takes noth
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func002C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func005Func002Func006Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func005Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007Func005Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007Func005Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -15807,14 +16582,14 @@ function Trig_PathNaluara_Func028Func007Func005Func002Func006C takes nothing ret
     return true
 endfunction
 
-function Trig_PathNaluara_Func028Func007C takes nothing returns boolean
+function Trig_PathNaluara_Func026Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func028C takes nothing returns boolean
+function Trig_PathNaluara_Func026C takes nothing returns boolean
     if ( not ( udg_PathTown == 0 ) ) then
         return false
     endif
@@ -15852,25 +16627,25 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_RoomPreviousInt=udg_RoomInt
-    if ( Trig_PathNaluara_Func020C() ) then
+    if ( Trig_PathNaluara_Func018C() ) then
         set udg_PathArtifact=1
     else
     endif
-    if ( Trig_PathNaluara_Func021C() ) then
+    if ( Trig_PathNaluara_Func019C() ) then
         set udg_PathGold=1
     else
     endif
-    if ( Trig_PathNaluara_Func022C() ) then
+    if ( Trig_PathNaluara_Func020C() ) then
         set udg_PathObject=1
     else
     endif
     // IF TOWN
-    if ( Trig_PathNaluara_Func024C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func024Func001A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func024Func002A)
+    if ( Trig_PathNaluara_Func022C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func022Func001A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func022Func002A)
         set udg_PathTown=1
         // IF BOSS
-        if ( Trig_PathNaluara_Func024Func005C() ) then
+        if ( Trig_PathNaluara_Func022Func005C() ) then
             call ConditionalTriggerExecute(gg_trg_ToBoss)
         else
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom12)
@@ -15887,13 +16662,13 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
             call RemoveLocation(udg_tempLoc)
         endif
         // Traders - Naluara
-        if ( Trig_PathNaluara_Func024Func007C() ) then
+        if ( Trig_PathNaluara_Func022Func007C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_cheed1)
             call CreateNUnitsAtLoc(1, 'h025', Player(20), udg_tempLoc, 230.00)
             call RemoveLocation(udg_tempLoc)
         else
         endif
-        if ( Trig_PathNaluara_Func024Func008C() ) then
+        if ( Trig_PathNaluara_Func022Func008C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_goldenconsul1)
             call CreateNUnitsAtLoc(1, 'h026', Player(20), udg_tempLoc, 150.00)
             call RemoveLocation(udg_tempLoc)
@@ -15904,13 +16679,13 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
     // IF NOT TOWN
     // IF NOT TOWN
     // IF NOT TOWN
-    if ( Trig_PathNaluara_Func028C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func028Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func028Func003A)
+    if ( Trig_PathNaluara_Func026C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func026Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func026Func003A)
         // MAKING ENEMIES
         set udg_RoomInt=( udg_RoomInt * 5 )
         // regional enemies or not
-        if ( Trig_PathNaluara_Func028Func007C() ) then
+        if ( Trig_PathNaluara_Func026Func007C() ) then
             set udg_tempInt=GetRandomInt(0, 2)
             // room
             set bj_forLoopBIndex=1
@@ -15927,8 +16702,8 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                     call RemoveLocation(udg_tempLoc)
                     // MAKING REGIONAL HERO
-                    if ( Trig_PathNaluara_Func028Func007Func005Func002Func006C() ) then
-                        if ( Trig_PathNaluara_Func028Func007Func005Func002Func006Func001C() ) then
+                    if ( Trig_PathNaluara_Func026Func007Func005Func002Func006C() ) then
+                        if ( Trig_PathNaluara_Func026Func007Func005Func002Func006Func001C() ) then
                             set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                             call SetUnitPositionLocFacingBJ(udg_EnemyRoomMinibossNaluara[( 20 + ( 20 * udg_tempInt ) )], udg_tempLoc, GetRandomDirectionDeg())
                             call GroupAddUnitSimple(udg_EnemyRoomMinibossNaluara[( 20 + ( 20 * udg_tempInt ) )], udg_RoomEnemyUG)
@@ -15946,7 +16721,7 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
             endloop
         else
             // undead or not
-            if ( Trig_PathNaluara_Func028Func007Func002C() ) then
+            if ( Trig_PathNaluara_Func026Func007Func002C() ) then
                 set bj_forLoopBIndex=1
                 set bj_forLoopBIndexEnd=5
                 loop
@@ -15961,8 +16736,8 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING UNDEAD HERO
-                        if ( Trig_PathNaluara_Func028Func007Func002Func003Func002Func006C() ) then
-                            if ( Trig_PathNaluara_Func028Func007Func002Func003Func002Func006Func001C() ) then
+                        if ( Trig_PathNaluara_Func026Func007Func002Func003Func002Func006C() ) then
+                            if ( Trig_PathNaluara_Func026Func007Func002Func003Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[20], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[20], udg_RoomEnemyUG)
@@ -15994,8 +16769,8 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING ALL HERO
-                        if ( Trig_PathNaluara_Func028Func007Func002Func002Func002Func006C() ) then
-                            if ( Trig_PathNaluara_Func028Func007Func002Func002Func002Func006Func001C() ) then
+                        if ( Trig_PathNaluara_Func026Func007Func002Func002Func002Func006C() ) then
+                            if ( Trig_PathNaluara_Func026Func007Func002Func002Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_RoomEnemyUG)
@@ -16128,35 +16903,35 @@ function Trig_PathAlliance_Func016Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_PathAlliance_Func020C takes nothing returns boolean
+function Trig_PathAlliance_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func021C takes nothing returns boolean
+function Trig_PathAlliance_Func019C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func022C takes nothing returns boolean
+function Trig_PathAlliance_Func020C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func024Func001Func008C takes nothing returns boolean
+function Trig_PathAlliance_Func022Func001Func008C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func024Func001A takes nothing returns nothing
+function Trig_PathAlliance_Func022Func001A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom18_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room18_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -16164,7 +16939,7 @@ function Trig_PathAlliance_Func024Func001A takes nothing returns nothing
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), gg_rct_Room18_TRADE)
     // !
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathAlliance_Func024Func001Func008C() ) then
+    if ( Trig_PathAlliance_Func022Func001Func008C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -16172,7 +16947,7 @@ function Trig_PathAlliance_Func024Func001A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathAlliance_Func024Func002A takes nothing returns nothing
+function Trig_PathAlliance_Func022Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom18_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room18_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -16180,7 +16955,7 @@ function Trig_PathAlliance_Func024Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathAlliance_Func024Func005Func014C takes nothing returns boolean
+function Trig_PathAlliance_Func022Func005Func014C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 24.00 ) ) then
         return true
     endif
@@ -16220,48 +16995,48 @@ function Trig_PathAlliance_Func024Func005Func014C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathAlliance_Func024Func005C takes nothing returns boolean
-    if ( not Trig_PathAlliance_Func024Func005Func014C() ) then
+function Trig_PathAlliance_Func022Func005C takes nothing returns boolean
+    if ( not Trig_PathAlliance_Func022Func005Func014C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func024Func007C takes nothing returns boolean
+function Trig_PathAlliance_Func022Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func024Func008C takes nothing returns boolean
+function Trig_PathAlliance_Func022Func008C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func024C takes nothing returns boolean
+function Trig_PathAlliance_Func022C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func002Func006C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func002A takes nothing returns nothing
+function Trig_PathAlliance_Func026Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), udg_RoomReg[udg_RoomInt])
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathAlliance_Func028Func002Func006C() ) then
+    if ( Trig_PathAlliance_Func026Func002Func006C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -16270,7 +17045,7 @@ function Trig_PathAlliance_Func028Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathAlliance_Func028Func003A takes nothing returns nothing
+function Trig_PathAlliance_Func026Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -16278,14 +17053,14 @@ function Trig_PathAlliance_Func028Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[( 20 + ( udg_tempInt2 * 20 ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func002Func002Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func002Func002Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -16295,14 +17070,14 @@ function Trig_PathAlliance_Func028Func007Func002Func002Func002Func006C takes not
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[20]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func002Func003Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func002Func003Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -16312,21 +17087,21 @@ function Trig_PathAlliance_Func028Func007Func002Func003Func002Func006C takes not
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func002C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func005Func002Func006Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func005Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007Func005Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007Func005Func002Func006C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_MINIBOSS_SPAWN_CHANCE ) ) then
         return false
     endif
@@ -16336,14 +17111,14 @@ function Trig_PathAlliance_Func028Func007Func005Func002Func006C takes nothing re
     return true
 endfunction
 
-function Trig_PathAlliance_Func028Func007C takes nothing returns boolean
+function Trig_PathAlliance_Func026Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func028C takes nothing returns boolean
+function Trig_PathAlliance_Func026C takes nothing returns boolean
     if ( not ( udg_PathTown == 0 ) ) then
         return false
     endif
@@ -16381,25 +17156,25 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_RoomPreviousInt=udg_RoomInt
-    if ( Trig_PathAlliance_Func020C() ) then
+    if ( Trig_PathAlliance_Func018C() ) then
         set udg_PathArtifact=1
     else
     endif
-    if ( Trig_PathAlliance_Func021C() ) then
+    if ( Trig_PathAlliance_Func019C() ) then
         set udg_PathGold=1
     else
     endif
-    if ( Trig_PathAlliance_Func022C() ) then
+    if ( Trig_PathAlliance_Func020C() ) then
         set udg_PathObject=1
     else
     endif
     // IF TOWN
-    if ( Trig_PathAlliance_Func024C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func024Func001A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func024Func002A)
+    if ( Trig_PathAlliance_Func022C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func022Func001A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func022Func002A)
         set udg_PathTown=1
         // IF BOSS
-        if ( Trig_PathAlliance_Func024Func005C() ) then
+        if ( Trig_PathAlliance_Func022Func005C() ) then
             call ConditionalTriggerExecute(gg_trg_ToBoss)
         else
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom18_Copy)
@@ -16416,13 +17191,13 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
             call RemoveLocation(udg_tempLoc)
         endif
         // Traders - Alliance
-        if ( Trig_PathAlliance_Func024Func007C() ) then
+        if ( Trig_PathAlliance_Func022Func007C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_cheed2)
             call CreateNUnitsAtLoc(1, 'h025', Player(20), udg_tempLoc, 270.00)
             call RemoveLocation(udg_tempLoc)
         else
         endif
-        if ( Trig_PathAlliance_Func024Func008C() ) then
+        if ( Trig_PathAlliance_Func022Func008C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_goldenconsul2)
             call CreateNUnitsAtLoc(1, 'h026', Player(20), udg_tempLoc, 230.00)
             call RemoveLocation(udg_tempLoc)
@@ -16433,13 +17208,13 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
     // IF NOT TOWN
     // IF NOT TOWN
     // IF NOT TOWN
-    if ( Trig_PathAlliance_Func028C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func028Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func028Func003A)
+    if ( Trig_PathAlliance_Func026C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func026Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func026Func003A)
         // MAKING ENEMIES
         set udg_RoomInt=( udg_RoomInt * 5 )
         // regional enemies or not
-        if ( Trig_PathAlliance_Func028Func007C() ) then
+        if ( Trig_PathAlliance_Func026Func007C() ) then
             set udg_tempInt=GetRandomInt(0, 2)
             // room
             set bj_forLoopBIndex=1
@@ -16456,8 +17231,8 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                     call RemoveLocation(udg_tempLoc)
                     // MAKING REGIONAL HERO
-                    if ( Trig_PathAlliance_Func028Func007Func005Func002Func006C() ) then
-                        if ( Trig_PathAlliance_Func028Func007Func005Func002Func006Func001C() ) then
+                    if ( Trig_PathAlliance_Func026Func007Func005Func002Func006C() ) then
+                        if ( Trig_PathAlliance_Func026Func007Func005Func002Func006Func001C() ) then
                             set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                             call SetUnitPositionLocFacingBJ(udg_EnemyRoomMinibossAlliance[( 20 + ( 20 * udg_tempInt ) )], udg_tempLoc, GetRandomDirectionDeg())
                             call GroupAddUnitSimple(udg_EnemyRoomMinibossAlliance[( 20 + ( 20 * udg_tempInt ) )], udg_RoomEnemyUG)
@@ -16475,7 +17250,7 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
             endloop
         else
             // undead or not
-            if ( Trig_PathAlliance_Func028Func007Func002C() ) then
+            if ( Trig_PathAlliance_Func026Func007Func002C() ) then
                 set bj_forLoopBIndex=1
                 set bj_forLoopBIndexEnd=5
                 loop
@@ -16490,8 +17265,8 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING UNDEAD HERO
-                        if ( Trig_PathAlliance_Func028Func007Func002Func003Func002Func006C() ) then
-                            if ( Trig_PathAlliance_Func028Func007Func002Func003Func002Func006Func001C() ) then
+                        if ( Trig_PathAlliance_Func026Func007Func002Func003Func002Func006C() ) then
+                            if ( Trig_PathAlliance_Func026Func007Func002Func003Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[20], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[20], udg_RoomEnemyUG)
@@ -16523,8 +17298,8 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING ALL HERO
-                        if ( Trig_PathAlliance_Func028Func007Func002Func002Func002Func006C() ) then
-                            if ( Trig_PathAlliance_Func028Func007Func002Func002Func002Func006Func001C() ) then
+                        if ( Trig_PathAlliance_Func026Func007Func002Func002Func002Func006C() ) then
+                            if ( Trig_PathAlliance_Func026Func007Func002Func002Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_RoomEnemyUG)
@@ -18655,41 +19430,6 @@ function InitTrig_tL3 takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL3 copy
-//===========================================================================
-function Trig_tL3_copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_DeterminationUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitLifePercent(udg_DamageEventTarget) <= 20.00 ) ) then
-        return false
-    endif
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02D') == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL3_copy_Actions takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
-    call SetUnitLifePercentBJ(udg_DamageEventTarget, ( GetUnitLifePercent(udg_DamageEventTarget) + ( 20.00 * I2R(GetUnitAbilityLevelSwapped('A099', udg_DamageEventTarget)) ) ))
-    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    call CreateNUnitsAtLoc(1, 'h00L', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
-    call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
-    call UnitApplyTimedLifeBJ(1.00, 'BTLF', GetLastCreatedUnit())
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_tL3_copy takes nothing returns nothing
-    set gg_trg_tL3_copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL3_copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL3_copy, Condition(function Trig_tL3_copy_Conditions))
-    call TriggerAddAction(gg_trg_tL3_copy, function Trig_tL3_copy_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: TalentPursuitOfJusticeLVL
 //===========================================================================
 function Trig_TalentPursuitOfJusticeLVL_Conditions takes nothing returns boolean
@@ -18855,41 +19595,6 @@ function InitTrig_tL7 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL7, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL7, Condition(function Trig_tL7_Conditions))
     call TriggerAddAction(gg_trg_tL7, function Trig_tL7_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL7 Copy
-//===========================================================================
-function Trig_tL7_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_BlindingLightUG) == true ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 8 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL7_Copy_Actions takes nothing returns nothing
-    set udg_BlindingLightC[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))]=udg_DamageEventSource
-    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-    call CreateNUnitsAtLoc(1, 'h003', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-    call RemoveLocation(udg_tempLoc)
-    set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventSource), 15.00, GetUnitFacing(udg_DamageEventSource))
-    call IssuePointOrderLocBJ(GetLastCreatedUnit(), "breathoffrost", udg_tempLoc)
-    call UnitApplyTimedLifeBJ(1.10, 'BTLF', GetLastCreatedUnit())
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_tL7_Copy takes nothing returns nothing
-    set gg_trg_tL7_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL7_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL7_Copy, Condition(function Trig_tL7_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL7_Copy, function Trig_tL7_Copy_Actions)
 endfunction
 
 //===========================================================================
@@ -19165,43 +19870,6 @@ function InitTrig_tL11 takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL11 Copy
-//===========================================================================
-function Trig_tL11_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HeavensFuryUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 5 ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( udg_tL11Int == 0 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL11_Copy_Actions takes nothing returns nothing
-    set udg_tL11Loc=GetUnitLoc(udg_DamageEventTarget)
-    set udg_tL11C=udg_DamageEventSource
-    set udg_tL11Int=1
-    set udg_tL11Int2=0
-    call StartTimerBJ(udg_tL11Timer, false, ( 3.00 + I2R(GetUnitAbilityLevelSwapped('A09E', udg_DamageEventSource)) ))
-    call EnableTrigger(gg_trg_tL11Periodic)
-    call DisableTrigger(GetTriggeringTrigger())
-endfunction
-
-//===========================================================================
-function InitTrig_tL11_Copy takes nothing returns nothing
-    set gg_trg_tL11_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL11_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL11_Copy, Condition(function Trig_tL11_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL11_Copy, function Trig_tL11_Copy_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: tL11Timer
 //===========================================================================
 function Trig_tL11Timer_Actions takes nothing returns nothing
@@ -19209,7 +19877,7 @@ function Trig_tL11Timer_Actions takes nothing returns nothing
     set udg_tL11C=null
     set udg_tL11Int=0
     call DisableTrigger(gg_trg_tL11Periodic)
-    call EnableTrigger(gg_trg_tL11_Copy)
+    set udg_heavens_fury_avaible=true
 endfunction
 
 //===========================================================================
@@ -19483,10 +20151,8 @@ endfunction
 
 function Trig_tL15_Func001A takes nothing returns nothing
     if ( Trig_tL15_Func001Func001C() ) then
-        call GroupAddUnitSimple(GetEnumUnit(), udg_SmiteUG)
-        call IncUnitAbilityLevelSwapped('A09G', GetEnumUnit())
-        call UnitAddAbilityBJ('A09G', GetEnumUnit())
         call PlaySoundOnUnitBJ(gg_snd_HolyBolt, 100, GetEnumUnit())
+        set udg_HERO_DAMAGE_BONUS_VS_UNDEAD[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_VS_UNDEAD[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 10 )
     else
     endif
 endfunction
@@ -19501,39 +20167,6 @@ function InitTrig_tL15 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL15, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL15, Condition(function Trig_tL15_Conditions))
     call TriggerAddAction(gg_trg_tL15, function Trig_tL15_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL15 Copy
-//===========================================================================
-function Trig_tL15_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_SmiteUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= ( 0 + ( 25 * GetUnitAbilityLevelSwapped('A09G', udg_DamageEventSource) ) ) ) ) then
-        return false
-    endif
-    if ( not ( IsUnitType(udg_DamageEventTarget, UNIT_TYPE_UNDEAD) == true ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL15_Copy_Actions takes nothing returns nothing
-    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, 135.00, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL)
-    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-endfunction
-
-//===========================================================================
-function InitTrig_tL15_Copy takes nothing returns nothing
-    set gg_trg_tL15_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL15_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL15_Copy, Condition(function Trig_tL15_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL15_Copy, function Trig_tL15_Copy_Actions)
 endfunction
 
 //===========================================================================
@@ -19680,43 +20313,25 @@ function InitTrig_tL18 takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL18 Copy
+// Trigger: RuneOfApocalypseFunc
+//
+// expects RuneOfApocalypseT, RuneOfApocalypseC
 //===========================================================================
-function Trig_tL18_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_RuneofApocalypseUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= ( GetUnitAbilityLevelSwapped('A09H', udg_DamageEventSource) * 5 ) ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL18_Copy_Func029C takes nothing returns boolean
+function Trig_RuneOfApocalypseFunc_Func029C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 2) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL18_Copy_Func031C takes nothing returns boolean
+function Trig_RuneOfApocalypseFunc_Func031C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 2) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL18_Copy_Actions takes nothing returns nothing
-    call DisableTrigger(GetTriggeringTrigger())
-    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Undead\\DeathCoil\\DeathCoilSpecialArt.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    call PlaySoundOnUnitBJ(gg_snd_ImpaleHit, 100, udg_DamageEventTarget)
-    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, 135.00, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL)
-    set udg_RuneofApocalypseT=udg_DamageEventTarget
-    set udg_RuneofApocalypseC=udg_DamageEventSource
+function Trig_RuneOfApocalypseFunc_Actions takes nothing returns nothing
     call TriggerSleepAction(0.30)
     set udg_tempLoc=GetUnitLoc(udg_RuneofApocalypseT)
     call CreateNUnitsAtLocFacingLocBJ(1, 'u00F', GetOwningPlayer(udg_RuneofApocalypseC), PolarProjectionBJ(udg_tempLoc, GetRandomReal(200.00, 400.00), GetRandomDirectionDeg()), udg_tempLoc)
@@ -19735,7 +20350,7 @@ function Trig_tL18_Copy_Actions takes nothing returns nothing
     call IssueTargetOrderBJ(GetLastCreatedUnit(), "chainlightning", udg_RuneofApocalypseU[udg_RuneofApocalypseInt])
     call RemoveLocation(udg_tempLoc)
     call TriggerSleepAction(0.30)
-    if ( Trig_tL18_Copy_Func029C() ) then
+    if ( Trig_RuneOfApocalypseFunc_Func029C() ) then
         set udg_tempLoc=GetUnitLoc(udg_RuneofApocalypseT)
         call CreateNUnitsAtLocFacingLocBJ(1, 'u00F', GetOwningPlayer(udg_RuneofApocalypseC), PolarProjectionBJ(udg_tempLoc, GetRandomReal(200.00, 400.00), GetRandomDirectionDeg()), udg_tempLoc)
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_MinionsUG)
@@ -19754,7 +20369,7 @@ function Trig_tL18_Copy_Actions takes nothing returns nothing
     else
     endif
     call TriggerSleepAction(0.30)
-    if ( Trig_tL18_Copy_Func031C() ) then
+    if ( Trig_RuneOfApocalypseFunc_Func031C() ) then
         set udg_tempLoc=GetUnitLoc(udg_RuneofApocalypseT)
         call CreateNUnitsAtLocFacingLocBJ(1, 'u00F', GetOwningPlayer(udg_RuneofApocalypseC), PolarProjectionBJ(udg_tempLoc, GetRandomReal(200.00, 400.00), GetRandomDirectionDeg()), udg_tempLoc)
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_MinionsUG)
@@ -19790,15 +20405,15 @@ function Trig_tL18_Copy_Actions takes nothing returns nothing
         set udg_RuneofApocalypseU[GetForLoopIndexB()]=null
         set bj_forLoopBIndex=bj_forLoopBIndex + 1
     endloop
-    call EnableTrigger(GetTriggeringTrigger())
+    set udg_RuneofApocalypseT=null
+    set udg_RuneofApocalypseC=null
+    set udg_rune_of_apocalypse_avaible=true
 endfunction
 
 //===========================================================================
-function InitTrig_tL18_Copy takes nothing returns nothing
-    set gg_trg_tL18_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL18_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL18_Copy, Condition(function Trig_tL18_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL18_Copy, function Trig_tL18_Copy_Actions)
+function InitTrig_RuneOfApocalypseFunc takes nothing returns nothing
+    set gg_trg_RuneOfApocalypseFunc=CreateTrigger()
+    call TriggerAddAction(gg_trg_RuneOfApocalypseFunc, function Trig_RuneOfApocalypseFunc_Actions)
 endfunction
 
 //===========================================================================
@@ -20030,52 +20645,6 @@ function InitTrig_tL21 takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL21 Copy
-//===========================================================================
-function Trig_tL21_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_BoneShieldUG) == true ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 20 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL21_Copy_Func001C takes nothing returns boolean
-    if ( not ( UnitHasBuffBJ(udg_DamageEventSource, 'B02L') == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL21_Copy_Actions takes nothing returns nothing
-    if ( Trig_tL21_Copy_Func001C() ) then
-        set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-        call CreateNUnitsAtLoc(1, 'h00J', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-        call SetUnitAbilityLevelSwapped('A09V', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A09W', udg_DamageEventSource))
-        call IssueTargetOrderBJ(GetLastCreatedUnit(), "innerfire", udg_DamageEventSource)
-        call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
-        set udg_tempZ=GetLocationZ(udg_tempLoc)
-        call PlaySoundAtPointBJ(gg_snd_RaiseSkeleton, 100, udg_tempLoc, udg_tempZ)
-        set udg_tempZ=0.00
-        call RemoveLocation(udg_tempLoc)
-    else
-    endif
-endfunction
-
-//===========================================================================
-function InitTrig_tL21_Copy takes nothing returns nothing
-    set gg_trg_tL21_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL21_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL21_Copy, Condition(function Trig_tL21_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL21_Copy, function Trig_tL21_Copy_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: tL22
 //===========================================================================
 function Trig_tL22_Conditions takes nothing returns boolean
@@ -20133,47 +20702,6 @@ function InitTrig_tL22 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL22, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL22, Condition(function Trig_tL22_Conditions))
     call TriggerAddAction(gg_trg_tL22, function Trig_tL22_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL22 copy
-//===========================================================================
-function Trig_tL22_copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_SadismUG) == true ) ) then
-        return false
-    endif
-    if ( not ( IsUnitType(udg_DamageEventTarget, UNIT_TYPE_HERO) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL22_copy_Func001Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(udg_DamageEventSource) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL22_copy_Actions takes nothing returns nothing
-    set bj_forLoopAIndex=1
-    set bj_forLoopAIndexEnd=udg_HeroNumber
-    loop
-        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_tL22_copy_Func001Func001C() ) then
-            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * ( 0.01 * I2R(udg_SadismInt[GetForLoopIndexA()]) ) ) )
-        else
-        endif
-        set bj_forLoopAIndex=bj_forLoopAIndex + 1
-    endloop
-endfunction
-
-//===========================================================================
-function InitTrig_tL22_copy takes nothing returns nothing
-    set gg_trg_tL22_copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL22_copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL22_copy, Condition(function Trig_tL22_copy_Conditions))
-    call TriggerAddAction(gg_trg_tL22_copy, function Trig_tL22_copy_Actions)
 endfunction
 
 //===========================================================================
@@ -20575,87 +21103,6 @@ function InitTrig_tL28 takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL28 Copy Copy 2
-//===========================================================================
-function Trig_tL28_Copy_Copy_2_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) <= ( udg_DamageEventAmount + 25.00 ) ) ) then
-        return false
-    endif
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02O') == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL28_Copy_Copy_2_Func002C takes nothing returns boolean
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02N') == false ) ) then
-        return false
-    endif
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspInactiveUG) == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL28_Copy_Copy_2_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=0.00
-    if ( Trig_tL28_Copy_Copy_2_Func002C() ) then
-        set udg_tempLoc=GetUnitLoc(udg_DamageEventTarget)
-        call PlaySoundOnUnitBJ(gg_snd_DevourMagic, 100, udg_DamageEventTarget)
-        call GroupAddUnitSimple(udg_DamageEventTarget, udg_LastGraspInactiveUG)
-        call CreateNUnitsAtLoc(1, 'h00J', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
-        call SetUnitAbilityLevelSwapped('A0A5', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A4', udg_DamageEventTarget))
-        call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
-        call UnitApplyTimedLifeBJ(1.00, 'BTLF', GetLastCreatedUnit())
-        call CreateNUnitsAtLoc(1, 'h01K', GetOwningPlayer(udg_DamageEventTarget), udg_tempLoc, bj_UNIT_FACING)
-        call SetUnitAbilityLevelSwapped('A0A5', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A4', udg_DamageEventTarget))
-        call IssueTargetOrderBJ(GetLastCreatedUnit(), "acidbomb", udg_DamageEventTarget)
-        call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
-        call RemoveLocation(udg_tempLoc)
-    else
-    endif
-endfunction
-
-//===========================================================================
-function InitTrig_tL28_Copy_Copy_2 takes nothing returns nothing
-    set gg_trg_tL28_Copy_Copy_2=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL28_Copy_Copy_2, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL28_Copy_Copy_2, Condition(function Trig_tL28_Copy_Copy_2_Conditions))
-    call TriggerAddAction(gg_trg_tL28_Copy_Copy_2, function Trig_tL28_Copy_Copy_2_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL28 Copy Copy 2 Copy
-//===========================================================================
-function Trig_tL28_Copy_Copy_2_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_LastGraspUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) <= ( udg_DamageEventAmount + 10.00 ) ) ) then
-        return false
-    endif
-    if ( not ( UnitHasBuffBJ(udg_DamageEventTarget, 'B02N') == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL28_Copy_Copy_2_Copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=0.00
-endfunction
-
-//===========================================================================
-function InitTrig_tL28_Copy_Copy_2_Copy takes nothing returns nothing
-    set gg_trg_tL28_Copy_Copy_2_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL28_Copy_Copy_2_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL28_Copy_Copy_2_Copy, Condition(function Trig_tL28_Copy_Copy_2_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL28_Copy_Copy_2_Copy, function Trig_tL28_Copy_Copy_2_Copy_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: tL28 Copy Copy
 //===========================================================================
 function Trig_tL28_Copy_Copy_Conditions takes nothing returns boolean
@@ -20819,40 +21266,6 @@ function InitTrig_tL30 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL30, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL30, Condition(function Trig_tL30_Conditions))
     call TriggerAddAction(gg_trg_tL30, function Trig_tL30_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL30 Copy
-//===========================================================================
-function Trig_tL30_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_SurgeOfMaliceUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 8 ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL30_Copy_Actions takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-    call CreateNUnitsAtLoc(1, 'h01L', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-    call SetUnitAbilityLevelSwapped('A0A9', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0A8', udg_DamageEventSource))
-    call IssueTargetOrderBJ(GetLastCreatedUnit(), "chainlightning", udg_DamageEventTarget)
-    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
-    call SetUnitManaBJ(udg_DamageEventSource, ( GetUnitStateSwap(UNIT_STATE_MANA, udg_DamageEventSource) + ( GetUnitStateSwap(UNIT_STATE_MAX_MANA, udg_DamageEventSource) * 0.15 ) ))
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_tL30_Copy takes nothing returns nothing
-    set gg_trg_tL30_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL30_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL30_Copy, Condition(function Trig_tL30_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL30_Copy, function Trig_tL30_Copy_Actions)
 endfunction
 
 //===========================================================================
@@ -21110,16 +21523,16 @@ function InitTrig_tL33_Copy_Copy takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: tL34
+// Trigger: TalentBigGameHunt
 //===========================================================================
-function Trig_tL34_Conditions takes nothing returns boolean
+function Trig_TalentBigGameHunt_Conditions takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == udg_TalentUnitType[34] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_tL34_Func001Func001C takes nothing returns boolean
+function Trig_TalentBigGameHunt_Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
@@ -21129,92 +21542,24 @@ function Trig_tL34_Func001Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_tL34_Func001A takes nothing returns nothing
-    if ( Trig_tL34_Func001Func001C() ) then
-        call GroupAddUnitSimple(GetEnumUnit(), udg_EnrageUG)
-        call IncUnitAbilityLevelSwapped('A0AB', GetEnumUnit())
-        call UnitAddAbilityBJ('A0AB', GetEnumUnit())
-        call PlaySoundOnUnitBJ(gg_snd_BerserkerCaster, 100, GetEnumUnit())
+function Trig_TalentBigGameHunt_Func001A takes nothing returns nothing
+    if ( Trig_TalentBigGameHunt_Func001Func001C() ) then
+        set udg_HERO_DAMAGE_BONUS_VS_ELITES[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_VS_ELITES[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 12 )
+        call PlaySoundOnUnitBJ(gg_snd_Hunter_LockAndLoad_3, 100, GetEnumUnit())
     else
     endif
 endfunction
 
-function Trig_tL34_Actions takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_tL34_Func001A)
+function Trig_TalentBigGameHunt_Actions takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetOwningPlayer(GetTriggerUnit())), function Trig_TalentBigGameHunt_Func001A)
 endfunction
 
 //===========================================================================
-function InitTrig_tL34 takes nothing returns nothing
-    set gg_trg_tL34=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_tL34, EVENT_PLAYER_UNIT_SELL)
-    call TriggerAddCondition(gg_trg_tL34, Condition(function Trig_tL34_Conditions))
-    call TriggerAddAction(gg_trg_tL34, function Trig_tL34_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL34 copy
-//===========================================================================
-function Trig_tL34_copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_EnrageUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventSource) <= ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_DamageEventSource) * 0.50 ) ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL34_copy_Func002C takes nothing returns boolean
-    if ( not ( UnitHasBuffBJ(udg_DamageEventSource, 'B02P') == false ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL34_copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * ( 0.00 + ( 0.25 * I2R(GetUnitAbilityLevelSwapped('A0AB', udg_DamageEventSource)) ) ) ) )
-    if ( Trig_tL34_copy_Func002C() ) then
-        set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-        call CreateNUnitsAtLoc(1, 'h00L', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-        call SetUnitAbilityLevelSwapped('A0AC', GetLastCreatedUnit(), GetUnitAbilityLevelSwapped('A0AB', udg_DamageEventSource))
-        call IssueTargetOrderBJ(GetLastCreatedUnit(), "lightningshield", udg_DamageEventSource)
-        call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
-        call RemoveLocation(udg_tempLoc)
-    else
-    endif
-endfunction
-
-//===========================================================================
-function InitTrig_tL34_copy takes nothing returns nothing
-    set gg_trg_tL34_copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL34_copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL34_copy, Condition(function Trig_tL34_copy_Conditions))
-    call TriggerAddAction(gg_trg_tL34_copy, function Trig_tL34_copy_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL34 copy Copy
-//===========================================================================
-function Trig_tL34_copy_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_EnrageUG) == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventSource) > ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_DamageEventSource) * 0.50 ) ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL34_copy_Copy_Actions takes nothing returns nothing
-    call UnitRemoveBuffBJ('B02P', udg_DamageEventSource)
-endfunction
-
-//===========================================================================
-function InitTrig_tL34_copy_Copy takes nothing returns nothing
-    set gg_trg_tL34_copy_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL34_copy_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL34_copy_Copy, Condition(function Trig_tL34_copy_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL34_copy_Copy, function Trig_tL34_copy_Copy_Actions)
+function InitTrig_TalentBigGameHunt takes nothing returns nothing
+    set gg_trg_TalentBigGameHunt=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_TalentBigGameHunt, EVENT_PLAYER_UNIT_SELL)
+    call TriggerAddCondition(gg_trg_TalentBigGameHunt, Condition(function Trig_TalentBigGameHunt_Conditions))
+    call TriggerAddAction(gg_trg_TalentBigGameHunt, function Trig_TalentBigGameHunt_Actions)
 endfunction
 
 //===========================================================================
@@ -21609,6 +21954,8 @@ function Trig_tL42_Func001A takes nothing returns nothing
         call IncUnitAbilityLevelSwapped('A0AJ', GetEnumUnit())
         call UnitAddAbilityBJ('A0AJ', GetEnumUnit())
         call PlaySoundOnUnitBJ(gg_snd_BarkSkinTarget1, 100, GetEnumUnit())
+        set udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 8 )
+        set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] - 8 )
     else
     endif
 endfunction
@@ -21623,50 +21970,6 @@ function InitTrig_tL42 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL42, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL42, Condition(function Trig_tL42_Conditions))
     call TriggerAddAction(gg_trg_tL42, function Trig_tL42_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL42 Copy
-//===========================================================================
-function Trig_tL42_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_FortitudeUG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL42_Copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount * ( 1.00 - ( 0.08 * ( 1.00 * I2R(GetUnitAbilityLevelSwapped('A0AJ', udg_DamageEventSource)) ) ) ) )
-endfunction
-
-//===========================================================================
-function InitTrig_tL42_Copy takes nothing returns nothing
-    set gg_trg_tL42_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL42_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL42_Copy, Condition(function Trig_tL42_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL42_Copy, function Trig_tL42_Copy_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL42 Copy Copy
-//===========================================================================
-function Trig_tL42_Copy_Copy_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_FortitudeUG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL42_Copy_Copy_Actions takes nothing returns nothing
-    set udg_DamageEventAmount=( udg_DamageEventAmount * ( 1.00 - ( 0.08 * ( 1.00 * I2R(GetUnitAbilityLevelSwapped('A0AJ', udg_DamageEventTarget)) ) ) ) )
-endfunction
-
-//===========================================================================
-function InitTrig_tL42_Copy_Copy takes nothing returns nothing
-    set gg_trg_tL42_Copy_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL42_Copy_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL42_Copy_Copy, Condition(function Trig_tL42_Copy_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL42_Copy_Copy, function Trig_tL42_Copy_Copy_Actions)
 endfunction
 
 //===========================================================================
@@ -21817,51 +22120,6 @@ function InitTrig_tL45 takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_tL45, EVENT_PLAYER_UNIT_SELL)
     call TriggerAddCondition(gg_trg_tL45, Condition(function Trig_tL45_Conditions))
     call TriggerAddAction(gg_trg_tL45, function Trig_tL45_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: tL45 Copy
-//===========================================================================
-function Trig_tL45_Copy_Conditions takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A0AM', udg_DamageEventTarget) >= 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL45_Copy_Func003C takes nothing returns boolean
-    if ( not ( DistanceBetweenPoints(udg_TrainedReactionTempLoc[1], udg_TrainedReactionTempLoc[2]) >= ( 1400.00 - ( 100.00 * I2R(GetUnitAbilityLevelSwapped('A0AM', udg_DamageEventTarget)) ) ) ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 40 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_tL45_Copy_Actions takes nothing returns nothing
-    set udg_TrainedReactionTempLoc[1]=GetUnitLoc(udg_DamageEventSource)
-    set udg_TrainedReactionTempLoc[2]=GetUnitLoc(udg_DamageEventTarget)
-    if ( Trig_tL45_Copy_Func003C() ) then
-        set udg_DamageEventAmount=0.00
-        call CreateTextTagUnitBJ("TRIGSTR_169", udg_DamageEventTarget, 0, 9.00, 100, 100, 100, 0)
-        call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
-        call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 0.75)
-        call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 70.00, 90.00)
-        call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageMissile.mdl")
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    else
-    endif
-    call RemoveLocation(udg_TrainedReactionTempLoc[1])
-    call RemoveLocation(udg_TrainedReactionTempLoc[2])
-endfunction
-
-//===========================================================================
-function InitTrig_tL45_Copy takes nothing returns nothing
-    set gg_trg_tL45_Copy=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_tL45_Copy, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_tL45_Copy, Condition(function Trig_tL45_Copy_Conditions))
-    call TriggerAddAction(gg_trg_tL45_Copy, function Trig_tL45_Copy_Actions)
 endfunction
 
 //===========================================================================
@@ -22045,10 +22303,10 @@ function Trig_TalentsSell_Actions takes nothing returns nothing
         call ForGroupBJ(GetUnitsOfPlayerMatching(GetOwningPlayer(GetTriggerUnit()), Condition(function Trig_TalentsSell_Func009Func001001002)), function Trig_TalentsSell_Func009Func001A)
         set bj_forLoopBIndex=bj_forLoopBIndex + 1
     endloop
+    // KarmaSystem
     set udg_KarmaU=GetTriggerUnit()
     call TriggerExecute(gg_trg_KarmaSystem)
     set udg_KarmaU=null
-    // KarmaSystem
 endfunction
 
 //===========================================================================
@@ -22084,13 +22342,6 @@ endfunction
 
 function Trig_TalentsCheck_Func003Func003Func001Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A0AA', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func003Func003Func001Func002C takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A0AB', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
@@ -22145,189 +22396,91 @@ function Trig_TalentsCheck_Func005Func003Func001Func001C takes nothing returns b
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func003Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func004Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func002C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A099', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func004Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func005Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func003C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A08Z', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func005Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func006Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func004C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A090', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func006Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func007Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func005C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A091', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func007Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func008Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func006C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A09B', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func008Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func009Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func007C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A09C', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func009Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func010Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func008C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A09D', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func010Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func011Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func009C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A094', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func011Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func012Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func010C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A09E', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func012Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func013Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func011C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A095', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func013Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func014Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func012C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A096', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func014Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func015Func001Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001Func013C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A09F', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TalentsCheck_Func005Func015Func001C takes nothing returns boolean
-    if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func016Func001Func001C takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A09G', udg_Hero[GetForLoopIndexA()]) > 0 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TalentsCheck_Func005Func016Func001C takes nothing returns boolean
+function Trig_TalentsCheck_Func005Func003Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
         return false
     endif
@@ -22482,16 +22635,6 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-                if ( Trig_TalentsCheck_Func003Func003Func001Func002C() ) then
-                    set udg_tempString="|cffc0c0c0Enrage|r"
-                    set udg_tempInt=GetUnitAbilityLevelSwapped('A0AB', udg_Hero[GetForLoopIndexA()])
-                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A0AB', udg_Hero[GetForLoopIndexA()]) * 25 )
-                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current bonus: |cffff0000" + ( I2S(udg_tempInt2) + "%|r" ) ) ) ) ))
-                    set udg_tempString=""
-                    set udg_tempInt=0
-                    set udg_tempInt2=0
-                else
-                endif
                 if ( Trig_TalentsCheck_Func003Func003Func001Func005C() ) then
                     set udg_tempString="|cffc0c0c0Armor Up!|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A0AF', udg_Hero[GetForLoopIndexA()])
@@ -22554,16 +22697,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func004Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func004Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func002C() ) then
                     set udg_tempString="|cffffff00Determination|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A099', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A099', udg_Hero[GetForLoopIndexA()]) * 20 )
@@ -22573,16 +22707,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func005Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func005Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func003C() ) then
                     set udg_tempString="|cffffff00Pursuit of Justice|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A08Z', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A08Z', udg_Hero[GetForLoopIndexA()]) * 5 )
@@ -22592,16 +22717,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func006Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func006Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func004C() ) then
                     set udg_tempString="|cffffff00Holy Fire|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A090', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A090', udg_Hero[GetForLoopIndexA()]) * 10 )
@@ -22611,16 +22727,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func007Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func007Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func005C() ) then
                     set udg_tempString="|cffffff00Rune of Vindication|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A091', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A091', udg_Hero[GetForLoopIndexA()]) * 15 )
@@ -22630,16 +22737,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func008Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func008Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func006C() ) then
                     set udg_tempString="|cffffff00Blinding Light|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A09B', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09B', udg_Hero[GetForLoopIndexA()]) + 1 )
@@ -22649,16 +22747,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func009Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func009Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func007C() ) then
                     set udg_tempString="|cffffff00Divine Purpose|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A09C', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09C', udg_Hero[GetForLoopIndexA()]) * 7 )
@@ -22668,16 +22757,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func010Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func010Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func008C() ) then
                     set udg_tempString="|cffffff00Dawnbreaker|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A09D', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09D', udg_Hero[GetForLoopIndexA()]) * 4 )
@@ -22687,16 +22767,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func011Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func011Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func009C() ) then
                     set udg_tempString="|cffffff00Heaven's Shield|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A094', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A094', udg_Hero[GetForLoopIndexA()]) * 2 )
@@ -22706,16 +22777,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func012Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func012Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func010C() ) then
                     set udg_tempString="|cffffff00Heaven's Fury|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A09E', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09E', udg_Hero[GetForLoopIndexA()]) + 3 )
@@ -22725,16 +22787,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func013Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func013Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func011C() ) then
                     set udg_tempString="|cffffff00Laws of Valor|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A095', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A095', udg_Hero[GetForLoopIndexA()]) * 8 )
@@ -22744,16 +22797,7 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func014Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func014Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func012C() ) then
                     set udg_tempString="|cffffff00Laws of Hope|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A096', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A096', udg_Hero[GetForLoopIndexA()]) * 3 )
@@ -22763,39 +22807,11 @@ function Trig_TalentsCheck_Actions takes nothing returns nothing
                     set udg_tempInt2=0
                 else
                 endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func015Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func015Func001Func001C() ) then
+                if ( Trig_TalentsCheck_Func005Func003Func001Func013C() ) then
                     set udg_tempString="|cffffff00Condemn|r"
                     set udg_tempInt=GetUnitAbilityLevelSwapped('A09F', udg_Hero[GetForLoopIndexA()])
                     set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09F', udg_Hero[GetForLoopIndexA()]) * 100 )
                     call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current damage: |cffff0000" + ( I2S(udg_tempInt2) + "|r" ) ) ) ) ))
-                    set udg_tempString=""
-                    set udg_tempInt=0
-                    set udg_tempInt2=0
-                else
-                endif
-            else
-            endif
-            set bj_forLoopAIndex=bj_forLoopAIndex + 1
-        endloop
-        set bj_forLoopAIndex=1
-        set bj_forLoopAIndexEnd=udg_HeroNumber
-        loop
-            exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-            if ( Trig_TalentsCheck_Func005Func016Func001C() ) then
-                if ( Trig_TalentsCheck_Func005Func016Func001Func001C() ) then
-                    set udg_tempString="|cffffff00Smite|r"
-                    set udg_tempInt=GetUnitAbilityLevelSwapped('A09G', udg_Hero[GetForLoopIndexA()])
-                    set udg_tempInt2=( GetUnitAbilityLevelSwapped('A09G', udg_Hero[GetForLoopIndexA()]) * 25 )
-                    call DisplayTimedTextToForce(GetForceOfPlayer(GetOwningPlayer(GetTriggerUnit())), 12.00, ( udg_tempString + ( " - Level |cffff0000" + ( I2S(udg_tempInt) + ( "|r - Current chance: |cffff0000" + ( I2S(udg_tempInt2) + "|r%" ) ) ) ) ))
                     set udg_tempString=""
                     set udg_tempInt=0
                     set udg_tempInt2=0
@@ -23063,36 +23079,6 @@ function InitTrig_Anger takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: AngerStop
-//===========================================================================
-function Trig_AngerStop_Conditions takes nothing returns boolean
-    if ( not ( IsUnitIdType(GetUnitTypeId(udg_DamageEventTarget), UNIT_TYPE_HERO) == true ) ) then
-        return false
-    endif
-    if ( not ( IsUnitAlly(udg_DamageEventTarget, GetOwningPlayer(udg_DamageEventSource)) == true ) ) then
-        return false
-    endif
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_AngerUG) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_AngerStop_Actions takes nothing returns nothing
-    call UnitRemoveAbilityBJ('A08D', udg_DamageEventSource)
-    call GroupRemoveUnitSimple(udg_DamageEventSource, udg_AngerUG)
-    call UnitRemoveBuffBJ('B022', udg_DamageEventSource)
-endfunction
-
-//===========================================================================
-function InitTrig_AngerStop takes nothing returns nothing
-    set gg_trg_AngerStop=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_AngerStop, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_AngerStop, Condition(function Trig_AngerStop_Conditions))
-    call TriggerAddAction(gg_trg_AngerStop, function Trig_AngerStop_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: AngerStopDying
 //===========================================================================
 function Trig_AngerStopDying_Conditions takes nothing returns boolean
@@ -23114,109 +23100,6 @@ function InitTrig_AngerStopDying takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_AngerStopDying, EVENT_PLAYER_UNIT_DEATH)
     call TriggerAddCondition(gg_trg_AngerStopDying, Condition(function Trig_AngerStopDying_Conditions))
     call TriggerAddAction(gg_trg_AngerStopDying, function Trig_AngerStopDying_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: Pride
-//===========================================================================
-function Trig_Pride_Func010C takes nothing returns boolean
-    if ( ( GetUnitAbilityLevelSwapped('A07Y', udg_DamageEventSource) >= 4 ) ) then
-        return true
-    endif
-    if ( ( GetUnitAbilityLevelSwapped('A07Z', udg_DamageEventSource) >= 4 ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_Pride_Conditions takes nothing returns boolean
-    if ( not Trig_Pride_Func010C() ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Pride_Func003Func002C takes nothing returns boolean
-    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
-        return false
-    endif
-    if ( not ( GetEnumUnit() != udg_DamageEventSource ) ) then
-        return false
-    endif
-    if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc7) < udg_NearestUDistance ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Pride_Func003A takes nothing returns nothing
-    set udg_tempLoc7=GetUnitLoc(GetEnumUnit())
-    if ( Trig_Pride_Func003Func002C() ) then
-        set udg_NearestU=GetEnumUnit()
-        set udg_NearestUDistance=DistanceBetweenPoints(udg_tempLoc, udg_tempLoc7)
-        call RemoveLocation(udg_tempLoc7)
-    else
-    endif
-endfunction
-
-function Trig_Pride_Func006Func004Func002C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Pride_Func006Func004C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 15) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Pride_Func006C takes nothing returns boolean
-    if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2) <= 300.00 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Pride_Actions takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-    set udg_NearestUDistance=999999.00
-    call ForGroupBJ(udg_HeroesGroup, function Trig_Pride_Func003A)
-    set udg_tempLoc2=GetUnitLoc(udg_NearestU)
-    set udg_NearestU=null
-    if ( Trig_Pride_Func006C() ) then
-        set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_DamageEventAmount * 0.25 ) )
-        call AddSpecialEffectTargetUnitBJ("overhead", udg_DamageEventSource, "Burning Rage Teal.mdx")
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        if ( Trig_Pride_Func006Func004C() ) then
-            if ( Trig_Pride_Func006Func004Func002C() ) then
-                call CreateTextTagUnitBJ("TRIGSTR_4573", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
-                call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
-                call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.50)
-                call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 135.00)
-            else
-                call CreateTextTagUnitBJ("TRIGSTR_4574", udg_DamageEventSource, 0, 10, 100, 100, 100, 0)
-                call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
-                call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.50)
-                call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 135.00)
-            endif
-        else
-        endif
-    else
-    endif
-    call RemoveLocation(udg_tempLoc)
-    call RemoveLocation(udg_tempLoc2)
-    call RemoveLocation(udg_tempLoc7)
-endfunction
-
-//===========================================================================
-function InitTrig_Pride takes nothing returns nothing
-    set gg_trg_Pride=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_Pride, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_Pride, Condition(function Trig_Pride_Conditions))
-    call TriggerAddAction(gg_trg_Pride, function Trig_Pride_Actions)
 endfunction
 
 //===========================================================================
@@ -23428,42 +23311,6 @@ function InitTrig_Supression takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: TerrorProc
-//===========================================================================
-function Trig_TerrorProc_Conditions takes nothing returns boolean
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitAbilityLevelSwapped('A07Y', udg_DamageEventSource) >= 8 ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 10 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_TerrorProc_Actions takes nothing returns nothing
-    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventSource, "Abilities\\Spells\\Undead\\UnholyFrenzyAOE\\UnholyFrenzyAOETarget.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    set udg_TerrorC=udg_DamageEventSource
-    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-    call CreateNUnitsAtLoc(1, 'h00W', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-    call IssueImmediateOrderBJ(GetLastCreatedUnit(), "howlofterror")
-    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
-    call RemoveLocation(udg_tempLoc)
-    call DisableTrigger(GetTriggeringTrigger())
-endfunction
-
-//===========================================================================
-function InitTrig_TerrorProc takes nothing returns nothing
-    set gg_trg_TerrorProc=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_TerrorProc, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_TerrorProc, Condition(function Trig_TerrorProc_Conditions))
-    call TriggerAddAction(gg_trg_TerrorProc, function Trig_TerrorProc_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: Terror
 //===========================================================================
 function Trig_Terror_Conditions takes nothing returns boolean
@@ -23513,7 +23360,7 @@ function Trig_Terror_Actions takes nothing returns nothing
     call RemoveLocation(udg_TerrorLoc)
     call DisableTrigger(gg_trg_TerrorMove)
     call EnableTrigger(GetTriggeringTrigger())
-    call EnableTrigger(gg_trg_TerrorProc)
+    set udg_terror_is_avaible=true
 endfunction
 
 //===========================================================================
@@ -23558,34 +23405,6 @@ function InitTrig_TerrorMove takes nothing returns nothing
     call DisableTrigger(gg_trg_TerrorMove)
     call TriggerRegisterTimerEventPeriodic(gg_trg_TerrorMove, 0.25)
     call TriggerAddAction(gg_trg_TerrorMove, function Trig_TerrorMove_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: InevitableEndAutoattacks
-//===========================================================================
-function Trig_InevitableEndAutoattacks_Conditions takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A0FL', udg_DamageEventSource) == 1 ) ) then
-        return false
-    endif
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_InevitableEndAutoattacks_Actions takes nothing returns nothing
-    set udg_inevitable_end_per_player_real[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))]=( udg_inevitable_end_per_player_real[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))] + ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventSource) * ( 0.01 / 2.00 ) ) )
-    call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventSource, udg_inevitable_end_per_player_real[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))], ATTACK_TYPE_CHAOS, DAMAGE_TYPE_MAGIC)
-    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventSource, "Abilities\\Spells\\Undead\\DeathCoil\\DeathCoilSpecialArt.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-endfunction
-
-//===========================================================================
-function InitTrig_InevitableEndAutoattacks takes nothing returns nothing
-    set gg_trg_InevitableEndAutoattacks=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_InevitableEndAutoattacks, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_InevitableEndAutoattacks, Condition(function Trig_InevitableEndAutoattacks_Conditions))
-    call TriggerAddAction(gg_trg_InevitableEndAutoattacks, function Trig_InevitableEndAutoattacks_Actions)
 endfunction
 
 //===========================================================================
@@ -23863,68 +23682,6 @@ function InitTrig_DetonationDie takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_DetonationDie, EVENT_PLAYER_UNIT_DEATH)
     call TriggerAddCondition(gg_trg_DetonationDie, Condition(function Trig_DetonationDie_Conditions))
     call TriggerAddAction(gg_trg_DetonationDie, function Trig_DetonationDie_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: DivineBulwark
-//===========================================================================
-function Trig_DivineBulwark_Conditions takes nothing returns boolean
-    if ( not ( GetUnitAbilityLevelSwapped('A08C', GetTriggerUnit()) == 1 ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 5 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_DivineBulwark_Actions takes nothing returns nothing
-    call AddSpecialEffectTargetUnitBJ("origin", udg_DamageEventTarget, "Abilities\\Spells\\Items\\AIlm\\AIlmTarget.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    call SetUnitLifeBJ(udg_DamageEventTarget, ( GetUnitStateSwap(UNIT_STATE_LIFE, udg_DamageEventTarget) + ( udg_DamageEventAmount * 0.75 ) ))
-    set udg_DamageEventAmount=0.00
-endfunction
-
-//===========================================================================
-function InitTrig_DivineBulwark takes nothing returns nothing
-    set gg_trg_DivineBulwark=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_DivineBulwark, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_DivineBulwark, Condition(function Trig_DivineBulwark_Conditions))
-    call TriggerAddAction(gg_trg_DivineBulwark, function Trig_DivineBulwark_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: GiftOfHeavens
-//===========================================================================
-function Trig_GiftOfHeavens_Conditions takes nothing returns boolean
-    if ( not ( udg_IsDamageAttack == true ) ) then
-        return false
-    endif
-    if ( not ( GetUnitAbilityLevelSwapped('A08E', udg_DamageEventSource) == 1 ) ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) <= 30 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_GiftOfHeavens_Actions takes nothing returns nothing
-    call AddSpecialEffectTargetUnitBJ("overhead", udg_DamageEventSource, "Abilities\\Spells\\Undead\\ReplenishHealth\\ReplenishHealthCasterOverhead.mdl")
-    call DestroyEffectBJ(GetLastCreatedEffectBJ())
-    set udg_tempLoc=GetUnitLoc(udg_DamageEventSource)
-    call CreateNUnitsAtLoc(1, 'h00W', GetOwningPlayer(udg_DamageEventSource), udg_tempLoc, bj_UNIT_FACING)
-    call IssueImmediateOrderBJ(GetLastCreatedUnit(), "roar")
-    call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_GiftOfHeavens takes nothing returns nothing
-    set gg_trg_GiftOfHeavens=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_GiftOfHeavens, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_GiftOfHeavens, Condition(function Trig_GiftOfHeavens_Conditions))
-    call TriggerAddAction(gg_trg_GiftOfHeavens, function Trig_GiftOfHeavens_Actions)
 endfunction
 
 //===========================================================================
@@ -24548,6 +24305,7 @@ function Trig_MutagenApplyEffect_Actions takes nothing returns nothing
             call SetItemCharges(GetItemOfTypeFromUnitBJ(udg_MutagenSeller, 'I08S'), ( GetItemCharges(GetItemOfTypeFromUnitBJ(udg_MutagenSeller, 'I08S')) + udg_MutagenPrice ))
         else
             set udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.04 )
+            set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 4 )
         endif
         set udg_tempInt=R2I(( ( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.01 ) * 100.00 ))
         call CreateTextTagUnitBJ(( "Текущее сопротивление урону:  |cffff0000" + ( I2S(udg_tempInt) + "%|r из |cffff000040%|r" ) ), udg_MutagenHero, 0, 10, 100, 100, 100, 0)
@@ -24564,6 +24322,7 @@ function Trig_MutagenApplyEffect_Actions takes nothing returns nothing
             call SetItemCharges(GetItemOfTypeFromUnitBJ(udg_MutagenSeller, 'I08S'), ( GetItemCharges(GetItemOfTypeFromUnitBJ(udg_MutagenSeller, 'I08S')) + udg_MutagenPrice ))
         else
             set udg_MutagenDamageModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_MutagenDamageModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.06 )
+            set udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 6 )
         endif
         set udg_tempInt=R2I(( ( udg_MutagenDamageModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.01 ) * 100.00 ))
         call CreateTextTagUnitBJ(( "Текущий бонус к урону:  |cffff0000" + ( I2S(udg_tempInt) + "%|r из |cffff0000300%|r" ) ), udg_MutagenHero, 0, 10, 100, 100, 100, 0)
@@ -24713,73 +24472,9 @@ function InitTrig_MutagenAquiring takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: MutagenDefenseModifier
-//===========================================================================
-function Trig_MutagenDefenseModifier_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_HeroesGroup) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_MutagenDefenseModifier_Func002C takes nothing returns boolean
-    if ( not ( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventTarget))] > 0.00 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_MutagenDefenseModifier_Actions takes nothing returns nothing
-    if ( Trig_MutagenDefenseModifier_Func002C() ) then
-        set udg_DamageEventAmount=( udg_DamageEventAmount * ( 1.00 - udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventTarget))] ) )
-    else
-    endif
-endfunction
-
-//===========================================================================
-function InitTrig_MutagenDefenseModifier takes nothing returns nothing
-    set gg_trg_MutagenDefenseModifier=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_MutagenDefenseModifier, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_MutagenDefenseModifier, Condition(function Trig_MutagenDefenseModifier_Conditions))
-    call TriggerAddAction(gg_trg_MutagenDefenseModifier, function Trig_MutagenDefenseModifier_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: MutagenDamageModifier
-//===========================================================================
-function Trig_MutagenDamageModifier_Conditions takes nothing returns boolean
-    if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_MutagenDamageModifier_Func001C takes nothing returns boolean
-    if ( not ( udg_MutagenDamageModifier[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))] > 0.00 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_MutagenDamageModifier_Actions takes nothing returns nothing
-    if ( Trig_MutagenDamageModifier_Func001C() ) then
-        set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_DamageEventAmount * udg_MutagenDamageModifier[GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))] ) )
-    else
-    endif
-endfunction
-
-//===========================================================================
-function InitTrig_MutagenDamageModifier takes nothing returns nothing
-    set gg_trg_MutagenDamageModifier=CreateTrigger()
-    call h__TriggerRegisterVariableEvent(gg_trg_MutagenDamageModifier, "udg_DamageEvent", EQUAL, 1.00)
-    call TriggerAddCondition(gg_trg_MutagenDamageModifier, Condition(function Trig_MutagenDamageModifier_Conditions))
-    call TriggerAddAction(gg_trg_MutagenDamageModifier, function Trig_MutagenDamageModifier_Actions)
-endfunction
-
-//===========================================================================
 // Trigger: TimeElapsedUnits
 //===========================================================================
-function Trig_TimeElapsedUnits_Func215C takes nothing returns boolean
+function Trig_TimeElapsedUnits_Func216C takes nothing returns boolean
     if ( not ( udg_DIFFICULTY == 3 ) ) then
         return false
     endif
@@ -25185,12 +24880,13 @@ function Trig_TimeElapsedUnits_Actions takes nothing returns nothing
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set bj_forLoopAIndex=37
-    set bj_forLoopAIndexEnd=40
+    set bj_forLoopAIndexEnd=39
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        set udg_EnemyRoomRegionalNaluara[GetForLoopIndexA()]='n00X'
+        set udg_EnemyRoomRegionalNaluara[GetForLoopIndexA()]='n01L'
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
+    set udg_EnemyRoomRegionalNaluara[40]='n01K'
     // -
     // GOBLINS
     set bj_forLoopAIndex=41
@@ -25301,7 +24997,7 @@ function Trig_TimeElapsedUnits_Actions takes nothing returns nothing
     endloop
     // -
     // NIGHTMARE
-    if ( Trig_TimeElapsedUnits_Func215C() ) then
+    if ( Trig_TimeElapsedUnits_Func216C() ) then
         set udg_EnemyRoom[17]='h011'
         set udg_EnemyRoom[40]='h01T'
         set udg_EnemyRoom[59]='n011'
@@ -28187,7 +27883,7 @@ endfunction
 //===========================================================================
 // Trigger: EmilismaDies
 //===========================================================================
-function Trig_EmilismaDies_Func010A takes nothing returns nothing
+function Trig_EmilismaDies_Func011A takes nothing returns nothing
     call SetCameraFieldForPlayer(GetEnumPlayer(), CAMERA_FIELD_TARGET_DISTANCE, 1650.00, 1.20)
 endfunction
 
@@ -28204,10 +27900,11 @@ function Trig_EmilismaDies_Actions takes nothing returns nothing
     call DisableTrigger(gg_trg_EmilismaPeriodic)
     call DisableTrigger(gg_trg_MagicStormPeriodic)
     call DisableTrigger(gg_trg_HarvestPeriodic)
+    call DisableTrigger(gg_trg_HarvestMovePeriodic)
     call DisableTrigger(gg_trg_HopesEndPeriodic)
     call TriggerExecute(gg_trg_HopesEndTimer)
     call TriggerExecute(gg_trg_AtkivusEnd)
-    call ForForce(udg_PlayerGroup, function Trig_EmilismaDies_Func010A)
+    call ForForce(udg_PlayerGroup, function Trig_EmilismaDies_Func011A)
 endfunction
 
 //===========================================================================
@@ -34220,6 +33917,12 @@ function Trig_ThunderStrike_Func004Func001Func004C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
         return false
     endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetTriggerUnit()) == false ) ) then
+        return false
+    endif
     return true
 endfunction
 
@@ -34680,6 +34383,12 @@ endfunction
 
 function Trig_WaveOfForce_Func005Func001Func007C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetTriggerUnit()) == false ) ) then
         return false
     endif
     return true
@@ -36305,13 +36014,9 @@ function Trig_ShieldOfVengeanceReset_Actions takes nothing returns nothing
         call AddSpecialEffectTargetUnitBJ("overhead", gg_unit_H00N_0277, "Abilities\\Spells\\Human\\InnerFire\\InnerFireTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
         if ( Trig_ShieldOfVengeanceReset_Func001Func005C() ) then
-            call UnitRemoveAbilityBJ('A04K', gg_unit_H00N_0277)
-            call UnitAddAbilityBJ('A04K', gg_unit_H00N_0277)
-            call SetUnitAbilityLevelSwapped('A04K', gg_unit_H00N_0277, udg_BladeOfJusticeLvl)
+            call BlzEndUnitAbilityCooldown(gg_unit_H00N_0277, 'A04K')
         else
-            call UnitRemoveAbilityBJ('A04O', gg_unit_H00N_0277)
-            call UnitAddAbilityBJ('A04O', gg_unit_H00N_0277)
-            call SetUnitAbilityLevelSwapped('A04O', gg_unit_H00N_0277, udg_BladeOfJusticeLvl)
+            call BlzEndUnitAbilityCooldown(gg_unit_H00N_0277, 'A04O')
         endif
         call SetUnitManaBJ(gg_unit_H00N_0277, ( GetUnitStateSwap(UNIT_STATE_MANA, gg_unit_H00N_0277) + 50.00 ))
         call DisableTrigger(GetTriggeringTrigger())
@@ -37893,21 +37598,21 @@ function Trig_OneManArmy_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_OneManArmy_Func008Func001C takes nothing returns boolean
+function Trig_OneManArmy_Func009Func001C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= 50 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_OneManArmy_Func008C takes nothing returns boolean
+function Trig_OneManArmy_Func009C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= 35 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_OneManArmy_Func018C takes nothing returns boolean
+function Trig_OneManArmy_Func019C takes nothing returns boolean
     if ( not ( udg_musicOn == 0 ) ) then
         return false
     endif
@@ -37923,13 +37628,14 @@ endfunction
 function Trig_OneManArmy_Actions takes nothing returns nothing
     set udg_TrueFormStrength=GetHeroStatBJ(bj_HEROSTAT_STR, gg_unit_E001_0061, false)
     set udg_TrueFormLvl=GetUnitAbilityLevelSwapped('A02O', GetTriggerUnit())
+    set udg_morddigan_previous_dmg=BlzGetUnitBaseDamage(GetTriggerUnit(), 0)
     set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E001_0061))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E001_0061))] + ( GetUnitAbilityLevelSwapped('A02O', GetTriggerUnit()) * 15 ) )
     call SetPlayerAbilityAvailableBJ(false, 'A02O', GetOwningPlayer(gg_unit_E001_0061))
     call DestroyEffectBJ(udg_OneManEff)
     call DestroyEffectBJ(udg_OneManEff_Copy)
     call DestroyEffectBJ(udg_OneManEff_Copy_2)
-    if ( Trig_OneManArmy_Func008C() ) then
-        if ( Trig_OneManArmy_Func008Func001C() ) then
+    if ( Trig_OneManArmy_Func009C() ) then
+        if ( Trig_OneManArmy_Func009Func001C() ) then
             call PlaySoundOnUnitBJ(gg_snd_Legcom_econ_rare_01_rump3, 100.00, gg_unit_E001_0061)
         else
             call PlaySoundOnUnitBJ(gg_snd_Legcom_fastres_01_rump3, 100.00, gg_unit_E001_0061)
@@ -37946,7 +37652,7 @@ function Trig_OneManArmy_Actions takes nothing returns nothing
     call AddSpecialEffectTargetUnitBJ("weapon", GetTriggerUnit(), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     set udg_OneManEff_Copy_2=GetLastCreatedEffectBJ()
     call EnableTrigger(gg_trg_OneManPeriodic)
-    if ( Trig_OneManArmy_Func018C() ) then
+    if ( Trig_OneManArmy_Func019C() ) then
         call PlayThematicMusicBJ("MorddUlti.mp3")
         call SetMusicVolumeBJ(100.00)
         set udg_musicOn=1
@@ -38002,7 +37708,14 @@ function Trig_Duel_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Duel_Func032C takes nothing returns boolean
+function Trig_Duel_Func001C takes nothing returns boolean
+    if ( not ( UnitHasBuffBJ(GetTriggerUnit(), 'B00R') == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Duel_Func033C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) > 50 ) ) then
         return false
     endif
@@ -38010,6 +37723,10 @@ function Trig_Duel_Func032C takes nothing returns boolean
 endfunction
 
 function Trig_Duel_Actions takes nothing returns nothing
+    if ( Trig_Duel_Func001C() ) then
+        set udg_morddigan_previous_dmg=BlzGetUnitBaseDamage(GetTriggerUnit(), 0)
+    else
+    endif
     set udg_DuelT=GetSpellTargetUnit()
     if IsUnitType(udg_DuelT, UNIT_TYPE_GIANT) then
     call SetUnitPositionLoc(GetSpellTargetUnit(), PolarProjectionBJ(GetUnitLoc(GetTriggerUnit()), 100.00, GetUnitFacing(GetTriggerUnit())))
@@ -38041,13 +37758,13 @@ function Trig_Duel_Actions takes nothing returns nothing
     call IssueTargetOrderBJ(udg_DuelC, "attack", udg_DuelT)
     call RemoveLocation(udg_tempLoc)
     call RemoveLocation(udg_tempLoc2)
-    if ( Trig_Duel_Func032C() ) then
+    if ( Trig_Duel_Func033C() ) then
         call PlaySoundOnUnitBJ(gg_snd_Legcom_duelhero_05_rump3, 100.00, gg_unit_E001_0061)
     else
         call PlaySoundOnUnitBJ(gg_snd_Legcom_duel_05_rump3, 100.00, gg_unit_E001_0061)
     endif
     call TriggerExecute(gg_trg_DuelEff)
-    call TriggerSleepAction(1.00)
+    call TriggerSleepAction(0.20)
     call EnableTrigger(gg_trg_DuelTimer)
     call TriggerSleepAction(2.00)
     call RemoveUnit(udg_tempUnit)
@@ -38073,31 +37790,24 @@ function Trig_DuelEff_Actions takes nothing returns nothing
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, 135.00, 0), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 45.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 90.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy_2=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 135.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy_3=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 180.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy_4=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 225.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy_5=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 270.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy_6=GetLastCreatedEffectBJ()
-    call TriggerSleepAction(0.05)
     call AddSpecialEffectLocBJ(PolarProjectionBJ(udg_DuelCenter, udg_DuelEffOffset, 315.00), "Environment\\SmallBuildingFire\\SmallBuildingFire2.mdl")
     call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 1.50)
     set udg_DuelEff1_Copy_7=GetLastCreatedEffectBJ()
@@ -38159,7 +37869,7 @@ function Trig_DuelC_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_DuelC_Actions takes nothing returns nothing
-    call BlzSetUnitBaseDamage(udg_DuelC, ( BlzGetUnitBaseDamage(udg_DuelC, 0) + ( BlzGetUnitBaseDamage(udg_DuelC, 0) / 10 ) ), 0)
+    call BlzSetUnitBaseDamage(udg_DuelC, ( BlzGetUnitBaseDamage(udg_DuelC, 0) + ( udg_morddigan_previous_dmg / 10 ) ), 0)
     call UnitRemoveBuffBJ('B00O', udg_DuelC)
     call UnitRemoveBuffBJ('B00O', udg_DuelT)
     call UnitRemoveBuffBJ('B02J', udg_DuelT)
@@ -38298,15 +38008,7 @@ endfunction
 function Trig_MomentOfCourageReset_Actions takes nothing returns nothing
     if ( Trig_MomentOfCourageReset_Func002C() ) then
         set udg_MomentOfCourageLevel=GetUnitAbilityLevelSwapped('A02G', gg_unit_E001_0061)
-        call UnitRemoveAbilityBJ('A02G', gg_unit_E001_0061)
-        call UnitAddAbilityBJ('A02G', gg_unit_E001_0061)
-        call SetUnitAbilityLevelSwapped('A02G', gg_unit_E001_0061, udg_MomentOfCourageLevel)
-        call SetUnitManaBJ(gg_unit_E001_0061, ( GetUnitStateSwap(UNIT_STATE_MANA, gg_unit_E001_0061) + 10.00 ))
-        call AddSpecialEffectTargetUnitBJ("head", gg_unit_E001_0061, "Abilities\\Spells\\Orc\\Bloodlust\\BloodlustTarget.mdl")
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        call DisableTrigger(GetTriggeringTrigger())
-        call TriggerSleepAction(2)
-        call EnableTrigger(GetTriggeringTrigger())
+        call BlzEndUnitAbilityCooldown(gg_unit_E001_0061, 'A02G')
     else
     endif
 endfunction
@@ -38452,6 +38154,12 @@ endfunction
 
 function Trig_ManaBurst_Func002Func001Func002C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetTriggerUnit()) == false ) ) then
         return false
     endif
     return true
@@ -40082,6 +39790,21 @@ function InitTrig_LifeDrainPeridoic takes nothing returns nothing
 endfunction
 
 //===========================================================================
+// Trigger: Juggernaut
+//===========================================================================
+function Trig_Juggernaut_Actions takes nothing returns nothing
+    call BlzSetUnitMaxHP(GetTriggerUnit(), ( BlzGetUnitMaxHP(GetTriggerUnit()) + 100 ))
+    call SetUnitLifeBJ(GetTriggerUnit(), ( GetUnitStateSwap(UNIT_STATE_LIFE, GetTriggerUnit()) + 100.00 ))
+endfunction
+
+//===========================================================================
+function InitTrig_Juggernaut takes nothing returns nothing
+    set gg_trg_Juggernaut=CreateTrigger()
+    call TriggerRegisterUnitEvent(gg_trg_Juggernaut, gg_unit_E00C_0088, EVENT_UNIT_HERO_SKILL)
+    call TriggerAddAction(gg_trg_Juggernaut, function Trig_Juggernaut_Actions)
+endfunction
+
+//===========================================================================
 // Trigger: Decimate
 //===========================================================================
 function Trig_Decimate_Conditions takes nothing returns boolean
@@ -40091,21 +39814,24 @@ function Trig_Decimate_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Decimate_Func009C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 2) == 1 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Decimate_Func011Func001Func004C takes nothing returns boolean
+function Trig_Decimate_Func002C takes nothing returns boolean
     if ( not ( udg_battle_stance_offensive == true ) ) then
         return false
     endif
     return true
 endfunction
 
+function Trig_Decimate_Func003C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 100) <= 7 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_Decimate_Func011Func001C takes nothing returns boolean
+    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return false
+    endif
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
@@ -40119,12 +39845,7 @@ function Trig_Decimate_Func011A takes nothing returns nothing
     if ( Trig_Decimate_Func011Func001C() ) then
         set udg_decimate_targets=( udg_decimate_targets + 1 )
         set udg_tempUnit=GetEnumUnit()
-        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( ( ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) + 50.00 ) + ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * ( I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) * 0.60 ) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
-        if ( Trig_Decimate_Func011Func001Func004C() ) then
-        else
-            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * 1.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
-            set udg_whirlwind_bonus=( udg_whirlwind_bonus + ( 1 + GetUnitAbilityLevelSwapped('A0KG', GetTriggerUnit()) ) )
-        endif
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
     else
     endif
 endfunction
@@ -40136,38 +39857,38 @@ function Trig_Decimate_Func012C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Decimate_Func013C takes nothing returns boolean
-    return true
-endfunction
-
 function Trig_Decimate_Actions takes nothing returns nothing
-    call UnitAddAbilityBJ('Amrf', GetTriggerUnit())
-    call BlzUnitHideAbility(GetTriggerUnit(), 'Amrf', true)
-    call SetUnitFlyHeightBJ(GetTriggerUnit(), 150.00, 800.00)
+    set udg_decimate_loc=GetSpellTargetLoc()
+    if ( Trig_Decimate_Func002C() ) then
+        call CreateNUnitsAtLoc(1, 'h028', GetOwningPlayer(GetTriggerUnit()), udg_decimate_loc, bj_UNIT_FACING)
+        call UnitApplyTimedLifeBJ(1.50, 'BTLF', GetLastCreatedUnit())
+        call UnitAddAbilityBJ('A0KI', GetLastCreatedUnit())
+        call IssueTargetOrderBJ(GetLastCreatedUnit(), "innerfire", GetTriggerUnit())
+        set udg_decimate_overpower_hits=2
+    else
+    endif
+    if ( Trig_Decimate_Func003C() ) then
+        call PlaySoundOnUnitBJ(gg_snd_GarithosYesAttack2, 100, GetTriggerUnit())
+    else
+    endif
     call TriggerSleepAction(0.15)
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    set udg_tempLoc2=GetSpellTargetLoc()
+    set udg_tempLoc2=udg_decimate_loc
+    set udg_tempReal=( ( 50.00 + ( 50.00 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) ) + ( ( 0.60 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) )
     set udg_tempZ=GetLocationZ(udg_tempLoc)
-    if ( Trig_Decimate_Func009C() ) then
-        call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_02, 100.00, udg_tempLoc, udg_tempZ)
-    else
-        call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_03, 100.00, udg_tempLoc, udg_tempZ)
-    endif
+    call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_04, 100.00, udg_tempLoc, udg_tempZ)
     call ForGroupBJ(GetUnitsInRangeOfLocAll(125.00, udg_tempLoc2), function Trig_Decimate_Func011A)
     if ( Trig_Decimate_Func012C() ) then
-        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, ( ( ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) + 50.00 ) + ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * ( I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) * 0.60 ) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
-        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, ( ( ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) + 50.00 ) + ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * ( I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) * 0.60 ) ) ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
-    else
-    endif
-    if ( (true) ) then // INLINED!!
+        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
     else
     endif
     set udg_decimate_targets=0
     set udg_tempUnit=null
     call RemoveLocation(udg_tempLoc)
     call RemoveLocation(udg_tempLoc2)
+    call RemoveLocation(udg_decimate_loc)
     set udg_tempZ=0.00
-    call SetUnitFlyHeightBJ(GetTriggerUnit(), 0.00, 800.00)
+    set udg_tempReal=0.00
 endfunction
 
 //===========================================================================
@@ -40189,13 +39910,19 @@ function Trig_Warstomp_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_Warstomp_Func003Func002Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
     if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
         return false
     endif
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
         return false
     endif
-    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetTriggerUnit()) == false ) ) then
         return false
     endif
     return true
@@ -40208,7 +39935,7 @@ function Trig_Warstomp_Func003Func002A takes nothing returns nothing
         set udg_KBA_Level=1
         set udg_KBA_StartingPosition=GetUnitLoc(GetTriggerUnit())
         set udg_KBA_Speed=8.00
-        set udg_KBA_DistancePerLevel=250.00
+        set udg_KBA_DistancePerLevel=150.00
         set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
         set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
         set udg_KBA_DestroyTrees=false
@@ -40218,13 +39945,19 @@ function Trig_Warstomp_Func003Func002A takes nothing returns nothing
 endfunction
 
 function Trig_Warstomp_Func003Func003Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
     if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
         return false
     endif
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
         return false
     endif
-    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    if ( not ( BlzIsUnitInvulnerable(GetTriggerUnit()) == false ) ) then
         return false
     endif
     return true
@@ -40238,7 +39971,7 @@ function Trig_Warstomp_Func003Func003A takes nothing returns nothing
         set udg_KBA_Level=1
         set udg_KBA_StartingPosition=PolarProjectionBJ(udg_tempLoc, 50.00, AngleBetweenPoints(udg_tempLoc2, udg_tempLoc))
         set udg_KBA_Speed=8.00
-        set udg_KBA_DistancePerLevel=250.00
+        set udg_KBA_DistancePerLevel=150.00
         set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
         set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
         set udg_KBA_DestroyTrees=false
@@ -40284,21 +40017,31 @@ function Trig_Whirlwind_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Whirlwind_Func003C takes nothing returns boolean
+function Trig_Whirlwind_Func004C takes nothing returns boolean
+    if ( not ( udg_battle_stance_offensive == false ) ) then
+        return false
+    endif
+    if ( not ( udg_whirlwind_bonus > 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Whirlwind_Func005C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 2) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Whirlwind_Func005Func001Func001C takes nothing returns boolean
+function Trig_Whirlwind_Func007Func001Func002C takes nothing returns boolean
     if ( not ( udg_battle_stance_offensive == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Whirlwind_Func005Func001C takes nothing returns boolean
+function Trig_Whirlwind_Func007Func001C takes nothing returns boolean
     if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
         return false
     endif
@@ -40311,19 +40054,19 @@ function Trig_Whirlwind_Func005Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Whirlwind_Func005A takes nothing returns nothing
-    if ( Trig_Whirlwind_Func005Func001C() ) then
-        if ( Trig_Whirlwind_Func005Func001Func001C() ) then
-            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * 3.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+function Trig_Whirlwind_Func007A takes nothing returns nothing
+    if ( Trig_Whirlwind_Func007Func001C() ) then
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        if ( Trig_Whirlwind_Func007Func001Func002C() ) then
+            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
         else
-            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) * 1.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
             set udg_whirlwind_bonus=( udg_whirlwind_bonus + ( 1 + GetUnitAbilityLevelSwapped('A0KG', GetTriggerUnit()) ) )
         endif
     else
     endif
 endfunction
 
-function Trig_Whirlwind_Func006C takes nothing returns boolean
+function Trig_Whirlwind_Func008C takes nothing returns boolean
     if ( not ( udg_battle_stance_offensive == false ) ) then
         return false
     endif
@@ -40332,19 +40075,26 @@ endfunction
 
 function Trig_Whirlwind_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
+    set udg_tempReal=( ( 50.00 + ( 50.00 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) ) + ( ( 0.60 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) )
     set udg_tempZ=GetLocationZ(udg_tempLoc)
-    if ( Trig_Whirlwind_Func003C() ) then
+    if ( Trig_Whirlwind_Func004C() ) then
+        set udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))]=( udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))] - udg_whirlwind_bonus )
+        set udg_whirlwind_bonus=0
+    else
+    endif
+    if ( Trig_Whirlwind_Func005C() ) then
         call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_02, 100.00, udg_tempLoc, udg_tempZ)
     else
         call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_03, 100.00, udg_tempLoc, udg_tempZ)
     endif
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(250.00, udg_tempLoc), function Trig_Whirlwind_Func005A)
-    if ( Trig_Whirlwind_Func006C() ) then
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(250.00, udg_tempLoc), function Trig_Whirlwind_Func007A)
+    if ( Trig_Whirlwind_Func008C() ) then
         set udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))]=( udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))] + udg_whirlwind_bonus )
         call StartTimerBJ(udg_whirlwind_timer, false, 5.90)
     else
     endif
     call RemoveLocation(udg_tempLoc)
+    set udg_tempReal=0.00
     set udg_tempZ=0.00
 endfunction
 
@@ -40404,8 +40154,7 @@ function Trig_BattleStance_Actions takes nothing returns nothing
         call UnitAddAbilityBJ('A0KF', GetTriggerUnit())
         call SetUnitAbilityLevelSwapped('A0KF', GetTriggerUnit(), GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit()))
         set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 10 )
-        call UnitAddAbilityBJ('A0KE', GetTriggerUnit())
-        call SetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KD', GetTriggerUnit()))
+        call BlzUnitHideAbility(GetTriggerUnit(), 'A0KE', false)
         // ---
         call BlzUnitHideAbility(GetTriggerUnit(), 'A0KD', true)
         set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] - ( 30 * GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit()) ) )
@@ -40414,7 +40163,7 @@ function Trig_BattleStance_Actions takes nothing returns nothing
         set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + ( 30 * GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit()) ) )
         call BlzUnitHideAbility(GetTriggerUnit(), 'A0KD', false)
         // ---
-        call UnitRemoveAbilityBJ('A0KE', GetTriggerUnit())
+        call BlzUnitHideAbility(GetTriggerUnit(), 'A0KE', true)
         call UnitRemoveAbilityBJ('A0KF', GetTriggerUnit())
         set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] - 10 )
     endif
@@ -40439,6 +40188,13 @@ function Trig_BattleStanceLearn_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_BattleStanceLearn_Func001C takes nothing returns boolean
+    if ( not ( GetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit()) == 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_BattleStanceLearn_Func002C takes nothing returns boolean
     if ( not ( udg_battle_stance_offensive == true ) ) then
         return false
     endif
@@ -40447,11 +40203,14 @@ endfunction
 
 function Trig_BattleStanceLearn_Actions takes nothing returns nothing
     if ( Trig_BattleStanceLearn_Func001C() ) then
+        call UnitAddAbilityBJ('A0KE', GetTriggerUnit())
+        call BlzUnitHideAbility(GetTriggerUnit(), 'A0KE', true)
+    else
+        call SetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KD', GetTriggerUnit()))
+    endif
+    if ( Trig_BattleStanceLearn_Func002C() ) then
         set udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=( udg_HERO_DAMAGE_BONUS_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] + 30 )
     else
-        call UnitRemoveAbilityBJ('A0KE', GetTriggerUnit())
-        call UnitAddAbilityBJ('A0KE', GetTriggerUnit())
-        call SetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KD', GetTriggerUnit()))
         call SetUnitAbilityLevelSwapped('A0KF', GetTriggerUnit(), GetUnitAbilityLevelSwapped('A0KE', GetTriggerUnit()))
     endif
 endfunction
@@ -45200,7 +44959,7 @@ function Trig_OverpowerItemPickup_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_OverpowerItemPickup_Actions takes nothing returns nothing
-    call GroupAddUnitSimple(GetTriggerUnit(), udg_ButcheryUG)
+    call GroupAddUnitSimple(GetTriggerUnit(), udg_overpower_UG)
 endfunction
 
 //===========================================================================
@@ -45235,7 +44994,7 @@ function Trig_OverpowerItemDrop_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_OverpowerItemDrop_Actions takes nothing returns nothing
-    call GroupRemoveUnitSimple(GetTriggerUnit(), udg_ButcheryUG)
+    call GroupRemoveUnitSimple(GetTriggerUnit(), udg_overpower_UG)
 endfunction
 
 //===========================================================================
@@ -45253,7 +45012,7 @@ function Trig_BloodOfDarkTitan_Conditions takes nothing returns boolean
     if ( not ( GetItemTypeId(GetManipulatedItem()) == 'I0A5' ) ) then
         return false
     endif
-    if ( not ( GetItemCharges(GetManipulatedItem()) == 4 ) ) then
+    if ( not ( GetItemCharges(GetManipulatedItem()) == 3 ) ) then
         return false
     endif
     return true
@@ -46512,7 +46271,7 @@ endfunction
 // Trigger: FomorianPeriodic
 //===========================================================================
 function Trig_FomorianPeriodic_Func001Func003Func002C takes nothing returns boolean
-    if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2) <= ( ( BlzGetUnitCollisionSize(GetEnumUnit()) + BlzGetUnitCollisionSize(udg_tempUnit) ) + 48.00 ) ) ) then
+    if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2) <= ( ( BlzGetUnitCollisionSize(GetEnumUnit()) + BlzGetUnitCollisionSize(udg_tempUnit) ) + 50.00 ) ) ) then
         return false
     endif
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
@@ -46539,7 +46298,7 @@ function Trig_FomorianPeriodic_Func001Func003A takes nothing returns nothing
         set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
         set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
         set udg_KBA_DestroyTrees=false
-        call UnitDamageTargetBJ(gg_unit_O02P_0444, GetEnumUnit(), ( I2R(BlzGetUnitBaseDamage(gg_unit_O02P_0444, 0)) * 2.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(gg_unit_O02P_0444, GetEnumUnit(), ( I2R(BlzGetUnitBaseDamage(gg_unit_O02P_0444, 0)) * 1.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
         call ConditionalTriggerExecute(gg_trg_Cast_A_Knockback)
         call DisableTrigger(gg_trg_FomorianPeriodic)
     else
@@ -46812,8 +46571,15 @@ endfunction
 //===========================================================================
 // Trigger: SoulShatterPeriodic
 //===========================================================================
-function Trig_SoulShatterPeriodic_Func001Func003C takes nothing returns boolean
+function Trig_SoulShatterPeriodic_Func001Func001Func003C takes nothing returns boolean
     if ( not ( DistanceBetweenPoints(udg_tempLoc, udg_tempLoc2) <= 50.00 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SoulShatterPeriodic_Func001Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(udg_SoulShatterDummy[GetForLoopIndexA()], udg_SoulShatterUG) == true ) ) then
         return false
     endif
     return true
@@ -46824,21 +46590,24 @@ function Trig_SoulShatterPeriodic_Actions takes nothing returns nothing
     set bj_forLoopAIndexEnd=udg_HeroNumber
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        set udg_tempLoc=GetUnitLoc(udg_Hero[GetForLoopIndexA()])
-        set udg_tempLoc2=GetUnitLoc(udg_SoulShatterDummy[GetForLoopIndexA()])
-        if ( Trig_SoulShatterPeriodic_Func001Func003C() ) then
-            call UnitDamageTargetBJ(udg_SoulShatterDummy[GetForLoopIndexA()], udg_Hero[GetForLoopIndexA()], ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_Hero[GetForLoopIndexA()]) * 3.00 ), ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC)
-            call GroupRemoveUnitSimple(udg_SoulShatterDummy[GetForLoopIndexA()], udg_SoulShatterUG)
-            call RemoveUnit(udg_SoulShatterDummy[GetForLoopIndexA()])
-            call AddSpecialEffectTargetUnitBJ("origin", udg_Hero[GetForLoopIndexA()], "Soul Discharge.mdx")
-            call DestroyEffectBJ(GetLastCreatedEffectBJ())
-            call AddSpecialEffectTargetUnitBJ("origin", udg_Hero[GetForLoopIndexA()], "Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl")
-            call DestroyEffectBJ(GetLastCreatedEffectBJ())
+        if ( Trig_SoulShatterPeriodic_Func001Func001C() ) then
+            set udg_tempLoc=GetUnitLoc(udg_Hero[GetForLoopIndexA()])
+            set udg_tempLoc2=GetUnitLoc(udg_SoulShatterDummy[GetForLoopIndexA()])
+            if ( Trig_SoulShatterPeriodic_Func001Func001Func003C() ) then
+                call UnitDamageTargetBJ(udg_SoulShatterDummy[GetForLoopIndexA()], udg_Hero[GetForLoopIndexA()], ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_Hero[GetForLoopIndexA()]) * 3.00 ), ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC)
+                call GroupRemoveUnitSimple(udg_SoulShatterDummy[GetForLoopIndexA()], udg_SoulShatterUG)
+                call RemoveUnit(udg_SoulShatterDummy[GetForLoopIndexA()])
+                call AddSpecialEffectTargetUnitBJ("origin", udg_Hero[GetForLoopIndexA()], "Soul Discharge.mdx")
+                call DestroyEffectBJ(GetLastCreatedEffectBJ())
+                call AddSpecialEffectTargetUnitBJ("origin", udg_Hero[GetForLoopIndexA()], "Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl")
+                call DestroyEffectBJ(GetLastCreatedEffectBJ())
+            else
+                call IssuePointOrderLocBJ(udg_SoulShatterDummy[GetForLoopIndexA()], "move", udg_tempLoc)
+            endif
+            call RemoveLocation(udg_tempLoc)
+            call RemoveLocation(udg_tempLoc2)
         else
-            call IssuePointOrderLocBJ(udg_SoulShatterDummy[GetForLoopIndexA()], "move", udg_tempLoc)
         endif
-        call RemoveLocation(udg_tempLoc)
-        call RemoveLocation(udg_tempLoc2)
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
 endfunction
@@ -47064,21 +46833,98 @@ function Trig_SummonLoskutik_Conditions takes nothing returns boolean
     return true
 endfunction
 
+function Trig_SummonLoskutik_Func017C takes nothing returns boolean
+    if ( not ( udg_tempInt == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SummonLoskutik_Func018C takes nothing returns boolean
+    if ( not ( udg_tempInt == 2 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SummonLoskutik_Func019C takes nothing returns boolean
+    if ( not ( udg_tempInt == 3 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SummonLoskutik_Func020C takes nothing returns boolean
+    if ( not ( udg_tempInt == 4 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SummonLoskutik_Func021C takes nothing returns boolean
+    if ( not ( udg_tempInt == 5 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SummonLoskutik_Func022C takes nothing returns boolean
+    if ( not ( udg_tempInt == 6 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_SummonLoskutik_Func023C takes nothing returns boolean
+    if ( not ( udg_tempInt == 7 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_SummonLoskutik_Actions takes nothing returns nothing
     set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(GetTriggerUnit()), GetRandomReal(100.00, 250.00), GetRandomDirectionDeg())
     call CreateNUnitsAtLoc(1, 'uabo', GetOwningPlayer(GetTriggerUnit()), udg_tempLoc, GetUnitFacing(GetTriggerUnit()))
+    call PlaySoundOnUnitBJ(gg_snd_AbominationYesAttack1, 100, GetLastCreatedUnit())
     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_frozen_immune_UG)
-    call PlaySoundOnUnitBJ(gg_snd_AbominationYesAttack1, 100, GetLastCreatedUnit())
-    call BlzSetUnitMaxHP(GetLastCreatedUnit(), ( BlzGetUnitMaxHP(GetTriggerUnit()) / 2 ))
-    call BlzSetUnitBaseDamage(GetLastCreatedUnit(), ( BlzGetUnitBaseDamage(GetTriggerUnit(), 0) + 0 ), 0)
-    call SetUnitLifePercentBJ(GetLastCreatedUnit(), 100)
     call BlzSetUnitName(GetLastCreatedUnit(), "|cffff8080Лоскутик|r")
     call UnitAddAbilityBJ('ACce', GetLastCreatedUnit())
     call UnitAddAbilityBJ('Arsk', GetLastCreatedUnit())
     call UnitAddAbilityBJ('ANta', GetLastCreatedUnit())
     call SetUnitColor(GetLastCreatedUnit(), PLAYER_COLOR_PINK)
     call UnitApplyTimedLifeBJ(300.00, 'BTLF', GetLastCreatedUnit())
+    set udg_tempInt=GetRandomInt(1, 7)
+    call GroupAddUnitSimple(GetLastCreatedUnit(), udg_strong_aura_UG)
+    if ( Trig_SummonLoskutik_Func017C() ) then
+        call UnitAddAbilityBJ('A0JX', GetLastCreatedUnit())
+    else
+    endif
+    if ( Trig_SummonLoskutik_Func018C() ) then
+        call UnitAddAbilityBJ('A0JV', GetLastCreatedUnit())
+    else
+    endif
+    if ( Trig_SummonLoskutik_Func019C() ) then
+        call UnitAddAbilityBJ('S006', GetLastCreatedUnit())
+    else
+    endif
+    if ( Trig_SummonLoskutik_Func020C() ) then
+        call UnitAddAbilityBJ('A0JU', GetLastCreatedUnit())
+    else
+    endif
+    if ( Trig_SummonLoskutik_Func021C() ) then
+        call UnitAddAbilityBJ('A0JW', GetLastCreatedUnit())
+    else
+    endif
+    if ( Trig_SummonLoskutik_Func022C() ) then
+        call UnitAddAbilityBJ('A0JY', GetLastCreatedUnit())
+    else
+    endif
+    if ( Trig_SummonLoskutik_Func023C() ) then
+        call UnitAddAbilityBJ('A0KL', GetLastCreatedUnit())
+    else
+    endif
+    set udg_tempInt=0
     call AddSpecialEffectTargetUnitBJ("origin", GetLastCreatedUnit(), "Abilities\\Spells\\Undead\\AnimateDead\\AnimateDeadTarget.mdl")
     call DestroyEffectBJ(GetLastCreatedEffectBJ())
     call RemoveLocation(udg_tempLoc)
@@ -47256,7 +47102,7 @@ endfunction
 
 function Trig_Rockets_Func002A takes nothing returns nothing
     if ( Trig_Rockets_Func002Func001C() ) then
-        call CreateNUnitsAtLoc(1, 'h01Y', GetOwningPlayer(GetTriggerUnit()), udg_tempLoc, bj_UNIT_FACING)
+        call CreateNUnitsAtLoc(1, 'h028', GetOwningPlayer(GetTriggerUnit()), udg_tempLoc, bj_UNIT_FACING)
         call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
         call UnitAddAbilityBJ('A0GL', GetLastCreatedUnit())
         call IssueTargetOrderBJ(GetLastCreatedUnit(), "creepthunderbolt", GetEnumUnit())
@@ -47300,8 +47146,18 @@ function Trig_Bombs_Conditions takes nothing returns boolean
     return true
 endfunction
 
+function Trig_Bombs_Func001C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 4) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_Bombs_Actions takes nothing returns nothing
-    call PlaySoundBJ(gg_snd_GoblinZeppelinPissed6)
+    if ( Trig_Bombs_Func001C() ) then
+        call PlaySoundBJ(gg_snd_GoblinZeppelinPissed6)
+    else
+    endif
     set bj_forLoopAIndex=1
     set bj_forLoopAIndexEnd=GetRandomInt(30, 60)
     loop
@@ -47309,7 +47165,7 @@ function Trig_Bombs_Actions takes nothing returns nothing
         set udg_tempLoc=GetRandomLocInRect(udg_RoomReg[udg_RoomInt])
         call AddSpecialEffectLocBJ(udg_tempLoc, "Gravity Storm.mdx")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
-        call CreateNUnitsAtLoc(1, 'h01X', GetOwningPlayer(GetTriggerUnit()), udg_tempLoc, bj_UNIT_FACING)
+        call CreateNUnitsAtLoc(1, 'h01X', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, GetRandomDirectionDeg())
         call UnitApplyTimedLifeBJ(GetRandomReal(4.00, 7.00), 'BTLF', GetLastCreatedUnit())
         call SetUnitAnimation(GetLastCreatedUnit(), "work")
         call RemoveLocation(udg_tempLoc)
@@ -47336,7 +47192,30 @@ function Trig_BombsDamage_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_BombsDamage_Func002Func001C takes nothing returns boolean
-    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+    if ( not ( GetUnitTypeId(GetEnumUnit()) != 'h01X' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_BombsDamage_Func002Func002Func011C takes nothing returns boolean
+    if ( ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return true
+    endif
+    if ( ( GetUnitTypeId(GetEnumUnit()) == 'h01X' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_BombsDamage_Func002Func002C takes nothing returns boolean
+    if ( not Trig_BombsDamage_Func002Func002Func011C() ) then
+        return false
+    endif
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
@@ -47344,13 +47223,16 @@ endfunction
 
 function Trig_BombsDamage_Func002A takes nothing returns nothing
     if ( Trig_BombsDamage_Func002Func001C() ) then
-        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(BlzGetUnitBaseDamage(udg_EnemyRoomMinibossNaluara[60], 0)) * 7.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), ( I2R(BlzGetUnitBaseDamage(udg_EnemyRoomMinibossNaluara[60], 0)) * 3.00 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+    else
+    endif
+    if ( Trig_BombsDamage_Func002Func002C() ) then
         set udg_KBA_Caster=GetTriggerUnit()
         set udg_KBA_TargetUnit=GetEnumUnit()
         set udg_KBA_Level=1
         set udg_KBA_StartingPosition=GetUnitLoc(GetTriggerUnit())
-        set udg_KBA_Speed=12.00
-        set udg_KBA_DistancePerLevel=175.00
+        set udg_KBA_Speed=6.00
+        set udg_KBA_DistancePerLevel=GetRandomReal(200.00, 400.00)
         set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
         set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
         set udg_KBA_DestroyTrees=false
@@ -47361,7 +47243,7 @@ endfunction
 
 function Trig_BombsDamage_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(200.00, udg_tempLoc), function Trig_BombsDamage_Func002A)
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(175.00, udg_tempLoc), function Trig_BombsDamage_Func002A)
     call DestroyGroup(GetLastCreatedGroup())
     call RemoveLocation(udg_tempLoc)
 endfunction
@@ -47419,6 +47301,13 @@ function Trig_AurasForMinibossGiveaway_Func002Func006C takes nothing returns boo
     return true
 endfunction
 
+function Trig_AurasForMinibossGiveaway_Func002Func007C takes nothing returns boolean
+    if ( not ( udg_tempInt == 7 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_AurasForMinibossGiveaway_Func002A takes nothing returns nothing
     if ( Trig_AurasForMinibossGiveaway_Func002Func001C() ) then
         call UnitAddAbilityBJ('A0JX', GetEnumUnit())
@@ -47442,6 +47331,10 @@ function Trig_AurasForMinibossGiveaway_Func002A takes nothing returns nothing
     endif
     if ( Trig_AurasForMinibossGiveaway_Func002Func006C() ) then
         call UnitAddAbilityBJ('A0JY', GetEnumUnit())
+    else
+    endif
+    if ( Trig_AurasForMinibossGiveaway_Func002Func007C() ) then
+        call UnitAddAbilityBJ('A0KL', GetEnumUnit())
     else
     endif
 endfunction
@@ -47488,6 +47381,13 @@ function Trig_AurasForMinibossGiveaway_Func003Func002Func006C takes nothing retu
     return true
 endfunction
 
+function Trig_AurasForMinibossGiveaway_Func003Func002Func007C takes nothing returns boolean
+    if ( not ( udg_tempInt == 7 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_AurasForMinibossGiveaway_Func003Func002A takes nothing returns nothing
     if ( Trig_AurasForMinibossGiveaway_Func003Func002Func001C() ) then
         call UnitAddAbilityBJ('A0JX', GetEnumUnit())
@@ -47513,6 +47413,10 @@ function Trig_AurasForMinibossGiveaway_Func003Func002A takes nothing returns not
         call UnitAddAbilityBJ('A0JY', GetEnumUnit())
     else
     endif
+    if ( Trig_AurasForMinibossGiveaway_Func003Func002Func007C() ) then
+        call UnitAddAbilityBJ('A0KL', GetEnumUnit())
+    else
+    endif
 endfunction
 
 function Trig_AurasForMinibossGiveaway_Func003C takes nothing returns boolean
@@ -47523,10 +47427,10 @@ function Trig_AurasForMinibossGiveaway_Func003C takes nothing returns boolean
 endfunction
 
 function Trig_AurasForMinibossGiveaway_Actions takes nothing returns nothing
-    set udg_tempInt=GetRandomInt(1, 6)
+    set udg_tempInt=GetRandomInt(1, 7)
     call ForGroupBJ(udg_MiniBossUG, function Trig_AurasForMinibossGiveaway_Func002A)
     if ( Trig_AurasForMinibossGiveaway_Func003C() ) then
-        set udg_tempInt=GetRandomInt(1, 6)
+        set udg_tempInt=GetRandomInt(1, 7)
         call ForGroupBJ(udg_MiniBossUG, function Trig_AurasForMinibossGiveaway_Func003Func002A)
     else
     endif
@@ -47559,7 +47463,7 @@ function Trig_AurasOnDeath_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_AurasOnDeath_Func003Func001C takes nothing returns boolean
+function Trig_AurasOnDeath_Func004Func001C takes nothing returns boolean
     if ( not ( IsUnitAlly(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
         return false
     endif
@@ -47575,21 +47479,22 @@ function Trig_AurasOnDeath_Func003Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_AurasOnDeath_Func003A takes nothing returns nothing
-    if ( Trig_AurasOnDeath_Func003Func001C() ) then
+function Trig_AurasOnDeath_Func004A takes nothing returns nothing
+    if ( Trig_AurasOnDeath_Func004Func001C() ) then
+        call AddSpecialEffectLocBJ(udg_tempLoc, "Models\\WhiteChakraExplosion.mdx")
+        call DestroyEffectBJ(GetLastCreatedEffectBJ())
         set udg_tempInt=( BlzGetUnitMaxHP(GetEnumUnit()) / 5 )
         call BlzSetUnitMaxHP(GetEnumUnit(), ( BlzGetUnitMaxHP(GetEnumUnit()) + udg_tempInt ))
         call SetUnitLifeBJ(GetEnumUnit(), ( GetUnitStateSwap(UNIT_STATE_LIFE, GetEnumUnit()) + I2R(udg_tempInt) ))
         set udg_tempInt=0
-        call AddSpecialEffectTargetUnitBJ("head", GetEnumUnit(), "Abilities\\Spells\\Orc\\Bloodlust\\BloodlustTarget.mdl")
-        call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
     endif
 endfunction
 
 function Trig_AurasOnDeath_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(300.00, udg_tempLoc), function Trig_AurasOnDeath_Func003A)
+    call BlzSetSpecialEffectZ(GetLastCreatedEffectBJ(), BlzGetLocalUnitZ(GetTriggerUnit()))
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(300.00, udg_tempLoc), function Trig_AurasOnDeath_Func004A)
     call RemoveLocation(udg_tempLoc)
 endfunction
 
@@ -47730,9 +47635,6 @@ function Trig_Satiety_Actions takes nothing returns nothing
     call UnitApplyTimedLifeBJ(1.00, 'BTLF', GetLastCreatedUnit())
     set udg_tempUnit=GetLastCreatedUnit()
     call CreateNUnitsAtLoc(1, 'n012', GetOwningPlayer(GetTriggerUnit()), udg_tempLoc2, GetUnitFacing(GetTriggerUnit()))
-    call BlzSetUnitMaxHP(GetLastCreatedUnit(), BlzGetUnitMaxHP(GetTriggerUnit()))
-    call SetUnitLifeBJ(GetLastCreatedUnit(), GetUnitStateSwap(UNIT_STATE_LIFE, GetTriggerUnit()))
-    call BlzSetUnitBaseDamage(GetLastCreatedUnit(), BlzGetUnitBaseDamage(GetTriggerUnit(), 0), 0)
     set udg_SatietyU=GetLastCreatedUnit()
     call SetUnitPathing(udg_SatietyU, false)
     set udg_KBA_Caster=udg_tempUnit
@@ -48276,11 +48178,13 @@ endfunction
 // func expects tempUnit, tempUnit2, tempReal
 //===========================================================================
 function Trig_OverpowerDamageFunc_Actions takes nothing returns nothing
-    set udg_overpower_avaible=false
     set udg_tempLoc=GetUnitLoc(udg_tempUnit2)
     call UnitDamageTargetBJ(udg_tempUnit, udg_tempUnit2, ( GetUnitStateSwap(UNIT_STATE_MAX_LIFE, udg_tempUnit) * 0.20 ), ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+    call DestroyEffectBJ(udg_overpower_eff)
     call AddSpecialEffectLocBJ(udg_tempLoc, "Doodads\\Cinematic\\Lightningbolt\\Lightningbolt.mdl")
-    call PlaySoundOnUnitBJ(gg_snd_MonsoonLightningHit, 100, udg_tempUnit)
+    call StopSoundBJ(udg_overpower_sound, false)
+    call PlaySoundOnUnitBJ(gg_snd_overpower, 100, udg_tempUnit2)
+    set udg_overpower_sound=GetLastPlayedSound()
     set udg_overpower_eff=GetLastCreatedEffectBJ()
     call RemoveLocation(udg_tempLoc)
     call StartTimerBJ(udg_overpower_cd_timer, false, 0.80)
@@ -48686,125 +48590,125 @@ function Trig_Choosing_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Choosing_Func008A takes nothing returns nothing
+function Trig_Choosing_Func009A takes nothing returns nothing
     call SetPlayerAllianceBJ(GetEnumPlayer(), ALLIANCE_SHARED_VISION, true, GetOwningPlayer(GetSpellTargetUnit()))
     call CreateFogModifierRectBJ(true, GetEnumPlayer(), FOG_OF_WAR_VISIBLE, gg_rct_MainBossLoc)
     set udg_VisibilityMainBossLoc[udg_HeroNumber]=GetLastCreatedFogModifier()
 endfunction
 
-function Trig_Choosing_Func010Func001Func001Func001Func001Func001Func001Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001Func001Func001Func001Func001Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 9 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001Func001Func001Func001Func001Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001Func001Func001Func001Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 8 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001Func001Func001Func001Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001Func001Func001Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 7 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001Func001Func001Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001Func001Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 6 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001Func001Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 5 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 4 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 3 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010Func001C takes nothing returns boolean
+function Trig_Choosing_Func011Func001C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func010C takes nothing returns boolean
+function Trig_Choosing_Func011C takes nothing returns boolean
     if ( not ( udg_HeroNumber == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func016C takes nothing returns boolean
+function Trig_Choosing_Func017C takes nothing returns boolean
     if ( not ( udg_player_mutagens[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))] > 0 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func018Func001C takes nothing returns boolean
+function Trig_Choosing_Func019Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func020C takes nothing returns boolean
+function Trig_Choosing_Func021C takes nothing returns boolean
     if ( not ( GetSpellTargetUnit() == gg_unit_O000_0013 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func021C takes nothing returns boolean
+function Trig_Choosing_Func022C takes nothing returns boolean
     if ( not ( GetSpellTargetUnit() == gg_unit_H001_0116 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func022C takes nothing returns boolean
+function Trig_Choosing_Func023C takes nothing returns boolean
     if ( not ( GetSpellTargetUnit() == gg_unit_H00A_0082 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func026C takes nothing returns boolean
+function Trig_Choosing_Func028C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func027C takes nothing returns boolean
+function Trig_Choosing_Func029C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func028C takes nothing returns boolean
+function Trig_Choosing_Func030C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 3 ) ) then
         return false
     endif
@@ -48817,11 +48721,12 @@ function Trig_Choosing_Actions takes nothing returns nothing
     call SetUnitOwner(GetSpellTargetUnit(), GetOwningPlayer(GetTriggerUnit()), false)
     call DisplayTextToForce(GetPlayersAll(), ( StringIdentity(GetPlayerName(GetTriggerPlayer())) + ( " chooses " + GetHeroProperName(GetSpellTargetUnit()) ) ))
     call GroupAddUnitSimple(GetSpellTargetUnit(), udg_HeroesGroup)
+    call GroupAddUnitSimple(GetSpellTargetUnit(), udg_HeroesAlive_UG)
     call SetPlayerHandicapXPBJ(GetOwningPlayer(GetSpellTargetUnit()), 250.00)
     set udg_HeroNumber=( udg_HeroNumber + 1 )
-    call ForForce(udg_PlayerGroup, function Trig_Choosing_Func008A)
+    call ForForce(udg_PlayerGroup, function Trig_Choosing_Func009A)
     // BACKPACK
-    if ( Trig_Choosing_Func010C() ) then
+    if ( Trig_Choosing_Func011C() ) then
         set udg_Hero1=GetSpellTargetUnit()
         set udg_Backpack[udg_HeroNumber]=GetLastCreatedUnit()
         call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
@@ -48829,49 +48734,49 @@ function Trig_Choosing_Actions takes nothing returns nothing
         call SuspendHeroXPBJ(false, GetLastCreatedUnit())
         set udg_Hero[udg_HeroNumber]=GetSpellTargetUnit()
     else
-        if ( Trig_Choosing_Func010Func001C() ) then
+        if ( Trig_Choosing_Func011Func001C() ) then
             set udg_Hero2=GetSpellTargetUnit()
             call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
             set udg_BP2=GetLastCreatedUnit()
             call SuspendHeroXPBJ(false, GetLastCreatedUnit())
         else
-            if ( Trig_Choosing_Func010Func001Func001C() ) then
+            if ( Trig_Choosing_Func011Func001Func001C() ) then
                 set udg_Hero3=GetSpellTargetUnit()
                 call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                 set udg_BP3=GetLastCreatedUnit()
                 call SuspendHeroXPBJ(false, GetLastCreatedUnit())
             else
-                if ( Trig_Choosing_Func010Func001Func001Func001C() ) then
+                if ( Trig_Choosing_Func011Func001Func001Func001C() ) then
                     set udg_Hero4=GetSpellTargetUnit()
                     call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                     set udg_BP4=GetLastCreatedUnit()
                     call SuspendHeroXPBJ(false, GetLastCreatedUnit())
                 else
-                    if ( Trig_Choosing_Func010Func001Func001Func001Func001C() ) then
+                    if ( Trig_Choosing_Func011Func001Func001Func001Func001C() ) then
                         set udg_Hero5=GetSpellTargetUnit()
                         call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                         set udg_BP5=GetLastCreatedUnit()
                         call SuspendHeroXPBJ(false, GetLastCreatedUnit())
                     else
-                        if ( Trig_Choosing_Func010Func001Func001Func001Func001Func001C() ) then
+                        if ( Trig_Choosing_Func011Func001Func001Func001Func001Func001C() ) then
                             set udg_Hero6=GetSpellTargetUnit()
                             call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                             set udg_BP6=GetLastCreatedUnit()
                             call SuspendHeroXPBJ(false, GetLastCreatedUnit())
                         else
-                            if ( Trig_Choosing_Func010Func001Func001Func001Func001Func001Func001C() ) then
+                            if ( Trig_Choosing_Func011Func001Func001Func001Func001Func001Func001C() ) then
                                 set udg_Hero7=GetSpellTargetUnit()
                                 call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                                 set udg_BP7=GetLastCreatedUnit()
                                 call SuspendHeroXPBJ(false, GetLastCreatedUnit())
                             else
-                                if ( Trig_Choosing_Func010Func001Func001Func001Func001Func001Func001Func001C() ) then
+                                if ( Trig_Choosing_Func011Func001Func001Func001Func001Func001Func001Func001C() ) then
                                     set udg_Hero8=GetSpellTargetUnit()
                                     call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                                     set udg_BP8=GetLastCreatedUnit()
                                     call SuspendHeroXPBJ(false, GetLastCreatedUnit())
                                 else
-                                    if ( Trig_Choosing_Func010Func001Func001Func001Func001Func001Func001Func001Func001C() ) then
+                                    if ( Trig_Choosing_Func011Func001Func001Func001Func001Func001Func001Func001Func001C() ) then
                                         set udg_Hero9=GetSpellTargetUnit()
                                         call CreateNUnitsAtLoc(1, 'H004', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetSpellTargetUnit()), bj_UNIT_FACING)
                                         set udg_BP9=GetLastCreatedUnit()
@@ -48891,7 +48796,7 @@ function Trig_Choosing_Actions takes nothing returns nothing
     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_BackpackGroup)
     set udg_backpack_by_player[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=GetLastCreatedUnit()
     set udg_hero_by_player[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]=GetSpellTargetUnit()
-    if ( Trig_Choosing_Func016C() ) then
+    if ( Trig_Choosing_Func017C() ) then
         set bj_forLoopAIndex=1
         set bj_forLoopAIndexEnd=udg_player_mutagens[GetConvertedPlayerId(GetOwningPlayer(GetTriggerUnit()))]
         loop
@@ -48906,42 +48811,43 @@ function Trig_Choosing_Actions takes nothing returns nothing
     set bj_forLoopAIndexEnd=7
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_Choosing_Func018Func001C() ) then
+        if ( Trig_Choosing_Func019Func001C() ) then
             call MultiboardSetItemValueBJ(udg_Multiboard1, 1, ( GetForLoopIndexA() + 1 ), GetHeroProperName(GetSpellTargetUnit()))
         else
         endif
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     // ------------
-    if ( Trig_Choosing_Func020C() ) then
+    if ( Trig_Choosing_Func021C() ) then
         call CreateNUnitsAtLoc(1, 'e008', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetLastCreatedUnit()), bj_UNIT_FACING)
         set udg_DISOBIDIENCE_OF_DEATH=( udg_DISOBIDIENCE_OF_DEATH + 1 )
     else
     endif
-    if ( Trig_Choosing_Func021C() ) then
+    if ( Trig_Choosing_Func022C() ) then
         call EnableTrigger(gg_trg_KoshaiaStandingPeriodic)
     else
     endif
-    if ( Trig_Choosing_Func022C() ) then
+    if ( Trig_Choosing_Func023C() ) then
         call GroupAddUnitSimple(gg_unit_H00A_0082, udg_toughness_UG)
         set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_H00A_0082))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_H00A_0082))] + 30 )
     else
     endif
     // ------------
     // ------------
-    if ( Trig_Choosing_Func026C() ) then
+    set udg_vote_on=false
+    if ( Trig_Choosing_Func028C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegOrc[udg_HeroNumber]), bj_UNIT_FACING)
         set udg_StashU[udg_HeroNumber]=GetLastCreatedUnit()
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_StashUG)
     else
     endif
-    if ( Trig_Choosing_Func027C() ) then
+    if ( Trig_Choosing_Func029C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegNaluara[udg_HeroNumber]), bj_UNIT_FACING)
         set udg_StashU[udg_HeroNumber]=GetLastCreatedUnit()
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_StashUG)
     else
     endif
-    if ( Trig_Choosing_Func028C() ) then
+    if ( Trig_Choosing_Func030C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegAlliance[udg_HeroNumber]), bj_UNIT_FACING)
         set udg_StashU[udg_HeroNumber]=GetLastCreatedUnit()
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_StashUG)
@@ -48979,7 +48885,7 @@ function Trig_GameInit_Conditions takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GameInit_Func009Func001Func002C takes nothing returns boolean
+function Trig_GameInit_Func008Func001Func002C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetEnumUnit()) == 'H004' ) ) then
         return true
     endif
@@ -48989,25 +48895,25 @@ function Trig_GameInit_Func009Func001Func002C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_GameInit_Func009Func001C takes nothing returns boolean
-    if ( not Trig_GameInit_Func009Func001Func002C() ) then
+function Trig_GameInit_Func008Func001C takes nothing returns boolean
+    if ( not Trig_GameInit_Func008Func001Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GameInit_Func009A takes nothing returns nothing
-    if ( Trig_GameInit_Func009Func001C() ) then
+function Trig_GameInit_Func008A takes nothing returns nothing
+    if ( Trig_GameInit_Func008Func001C() ) then
     else
         call RemoveUnit(GetEnumUnit())
     endif
 endfunction
 
-function Trig_GameInit_Func010A takes nothing returns nothing
+function Trig_GameInit_Func009A takes nothing returns nothing
     call PauseUnitBJ(false, GetEnumUnit())
 endfunction
 
-function Trig_GameInit_Func011A takes nothing returns nothing
+function Trig_GameInit_Func010A takes nothing returns nothing
     call PauseUnitBJ(false, GetEnumUnit())
 endfunction
 
@@ -49019,9 +48925,9 @@ function Trig_GameInit_Actions takes nothing returns nothing
     call EnableTrigger(gg_trg_BackpackAndDisobidienceMove)
     call DisableTrigger(GetTriggeringTrigger())
     call TriggerSleepAction(2)
-    call ForGroupBJ(GetUnitsInRectAll(gg_rct_MainBossLoc), function Trig_GameInit_Func009A)
-    call ForGroupBJ(udg_HeroesGroup, function Trig_GameInit_Func010A)
-    call ForGroupBJ(udg_BackpackGroup, function Trig_GameInit_Func011A)
+    call ForGroupBJ(GetUnitsInRectAll(gg_rct_MainBossLoc), function Trig_GameInit_Func008A)
+    call ForGroupBJ(udg_HeroesGroup, function Trig_GameInit_Func009A)
+    call ForGroupBJ(udg_BackpackGroup, function Trig_GameInit_Func010A)
 endfunction
 
 //===========================================================================
@@ -49320,6 +49226,7 @@ function Trig_Initialization_Actions takes nothing returns nothing
     call PauseUnitBJ(true, gg_unit_Hamg_0135)
     call PauseUnitBJ(true, gg_unit_E006_0186)
     // ---
+    call ShowUnitHide(gg_unit_E00C_0088)
 endfunction
 
 //===========================================================================
@@ -49404,15 +49311,22 @@ endfunction
 //===========================================================================
 // Trigger: TimeElapsedRegion
 //===========================================================================
-function Trig_TimeElapsedRegion_Func002Func001C takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'e000' ) ) then
+function Trig_TimeElapsedRegion_Conditions takes nothing returns boolean
+    if ( not ( udg_vote_on == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TimeElapsedRegion_Func002A takes nothing returns nothing
-    if ( Trig_TimeElapsedRegion_Func002Func001C() ) then
+function Trig_TimeElapsedRegion_Func003Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetEnumUnit()) == 'e000' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_TimeElapsedRegion_Func003A takes nothing returns nothing
+    if ( Trig_TimeElapsedRegion_Func003Func001C() ) then
         call UnitRemoveAbilityBJ('A0K8', GetEnumUnit())
         call UnitRemoveAbilityBJ('A0K9', GetEnumUnit())
         call UnitRemoveAbilityBJ('A0KA', GetEnumUnit())
@@ -49420,7 +49334,7 @@ function Trig_TimeElapsedRegion_Func002A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_TimeElapsedRegion_Func003Func001Func001C takes nothing returns boolean
+function Trig_TimeElapsedRegion_Func004Func001Func001C takes nothing returns boolean
     if ( not ( udg_region_votes[3] > udg_region_votes[1] ) ) then
         return false
     endif
@@ -49430,7 +49344,7 @@ function Trig_TimeElapsedRegion_Func003Func001Func001C takes nothing returns boo
     return true
 endfunction
 
-function Trig_TimeElapsedRegion_Func003Func001C takes nothing returns boolean
+function Trig_TimeElapsedRegion_Func004Func001C takes nothing returns boolean
     if ( not ( udg_region_votes[2] > udg_region_votes[1] ) ) then
         return false
     endif
@@ -49440,7 +49354,7 @@ function Trig_TimeElapsedRegion_Func003Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_TimeElapsedRegion_Func003C takes nothing returns boolean
+function Trig_TimeElapsedRegion_Func004C takes nothing returns boolean
     if ( not ( udg_region_votes[1] > udg_region_votes[2] ) ) then
         return false
     endif
@@ -49452,16 +49366,16 @@ endfunction
 
 function Trig_TimeElapsedRegion_Actions takes nothing returns nothing
     set udg_vote_on=false
-    call ForGroupBJ(GetUnitsInRectAll(gg_rct_BossfightInnerLoc), function Trig_TimeElapsedRegion_Func002A)
-    if ( Trig_TimeElapsedRegion_Func003C() ) then
+    call ForGroupBJ(GetUnitsInRectAll(gg_rct_BossfightInnerLoc), function Trig_TimeElapsedRegion_Func003A)
+    if ( Trig_TimeElapsedRegion_Func004C() ) then
         set udg_CurrentLocation=1
         call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_594")
     else
-        if ( Trig_TimeElapsedRegion_Func003Func001C() ) then
+        if ( Trig_TimeElapsedRegion_Func004Func001C() ) then
             set udg_CurrentLocation=2
             call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_595")
         else
-            if ( Trig_TimeElapsedRegion_Func003Func001Func001C() ) then
+            if ( Trig_TimeElapsedRegion_Func004Func001Func001C() ) then
                 set udg_CurrentLocation=3
                 call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_596")
             else
@@ -49476,6 +49390,7 @@ endfunction
 function InitTrig_TimeElapsedRegion takes nothing returns nothing
     set gg_trg_TimeElapsedRegion=CreateTrigger()
     call TriggerRegisterTimerEventSingle(gg_trg_TimeElapsedRegion, 30.50)
+    call TriggerAddCondition(gg_trg_TimeElapsedRegion, Condition(function Trig_TimeElapsedRegion_Conditions))
     call TriggerAddAction(gg_trg_TimeElapsedRegion, function Trig_TimeElapsedRegion_Actions)
 endfunction
 
@@ -49487,7 +49402,7 @@ function Trig_TimeElapsedInit_Func007A takes nothing returns nothing
     call SetCameraBoundsToRectForPlayerBJ(GetEnumPlayer(), gg_rct_MainBossLoc)
 endfunction
 
-function Trig_TimeElapsedInit_Func052Func001C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func055Func001C takes nothing returns boolean
     if ( not ( GetPlayerColor(GetEnumPlayer()) != PLAYER_COLOR_PEANUT ) ) then
         return false
     endif
@@ -49509,8 +49424,8 @@ function Trig_TimeElapsedInit_Func052Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_TimeElapsedInit_Func052A takes nothing returns nothing
-    if ( Trig_TimeElapsedInit_Func052Func001C() ) then
+function Trig_TimeElapsedInit_Func055A takes nothing returns nothing
+    if ( Trig_TimeElapsedInit_Func055Func001C() ) then
         set udg_PlayerCountChoosing=( udg_PlayerCountChoosing + 1 )
         call SetPlayerAllianceStateBJ(Player(19), GetEnumPlayer(), bj_ALLIANCE_UNALLIED)
         call SetPlayerAllianceStateBJ(GetEnumPlayer(), Player(19), bj_ALLIANCE_UNALLIED)
@@ -49522,7 +49437,7 @@ function Trig_TimeElapsedInit_Func052A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_TimeElapsedInit_Func053Func001Func001C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func056Func001Func001C takes nothing returns boolean
     if ( ( GetPlayerColor(GetEnumPlayer()) == PLAYER_COLOR_SNOW ) ) then
         return true
     endif
@@ -49535,30 +49450,30 @@ function Trig_TimeElapsedInit_Func053Func001Func001C takes nothing returns boole
     return false
 endfunction
 
-function Trig_TimeElapsedInit_Func053Func001C takes nothing returns boolean
-    if ( not Trig_TimeElapsedInit_Func053Func001Func001C() ) then
+function Trig_TimeElapsedInit_Func056Func001C takes nothing returns boolean
+    if ( not Trig_TimeElapsedInit_Func056Func001Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TimeElapsedInit_Func053A takes nothing returns nothing
-    if ( Trig_TimeElapsedInit_Func053Func001C() ) then
+function Trig_TimeElapsedInit_Func056A takes nothing returns nothing
+    if ( Trig_TimeElapsedInit_Func056Func001C() ) then
         call ForceAddPlayerSimple(GetEnumPlayer(), udg_PlayerBotsUG)
     else
     endif
 endfunction
 
-function Trig_TimeElapsedInit_Func089A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func092A takes nothing returns nothing
     call DialogDisplayBJ(true, udg_dialogDifficulty, GetEnumPlayer())
 endfunction
 
-function Trig_TimeElapsedInit_Func098Func001A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func101Func001A takes nothing returns nothing
     call SetUnitInvulnerable(GetEnumUnit(), true)
 endfunction
 
-function Trig_TimeElapsedInit_Func098A takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetEnumPlayer()), function Trig_TimeElapsedInit_Func098Func001A)
+function Trig_TimeElapsedInit_Func101A takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetEnumPlayer()), function Trig_TimeElapsedInit_Func101Func001A)
 endfunction
 
 function Trig_TimeElapsedInit_Actions takes nothing returns nothing
@@ -49576,11 +49491,13 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call MeleeStartingHeroLimit()
     // ----
     call GroupAddUnitSimple(gg_unit_H013_0011, udg_not_knockbackable_UG)
-    call GroupAddUnitSimple(gg_unit_O02P_0339, udg_not_knockbackable_UG)
-    call GroupAddUnitSimple(gg_unit_U00I_0284, udg_not_knockbackable_UG)
-    call GroupAddUnitSimple(gg_unit_N01N_0239, udg_not_knockbackable_UG)
-    call GroupAddUnitSimple(gg_unit_O01W_0238, udg_not_knockbackable_UG)
-    call GroupAddUnitSimple(gg_unit_U00K_0470, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_U007_0220, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_U00I_0341, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_O02P_0444, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_N01N_0235, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_U00K_0485, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_O01W_0221, udg_not_knockbackable_UG)
+    call GroupAddUnitSimple(gg_unit_E00C_0088, udg_not_knockbackable_UG)
     // ----
     call GroupAddUnitSimple(gg_unit_O002_0064, udg_WarriorsGroup)
     call GroupAddUnitSimple(gg_unit_H00A_0082, udg_WarriorsGroup)
@@ -49588,6 +49505,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call GroupAddUnitSimple(gg_unit_H00O_0278, udg_WarriorsGroup)
     call GroupAddUnitSimple(gg_unit_E001_0061, udg_WarriorsGroup)
     call GroupAddUnitSimple(gg_unit_O024_0311, udg_WarriorsGroup)
+    call GroupAddUnitSimple(gg_unit_E00C_0088, udg_WarriorsGroup)
     call GroupAddUnitSimple(gg_unit_H00B_0036, udg_WarlockGroup)
     call GroupAddUnitSimple(gg_unit_O001_0069, udg_WarlockGroup)
     // ----
@@ -49613,8 +49531,8 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call GroupAddUnitSimple(gg_unit_H00M_0276, udg_NotAlliance)
     call GroupAddUnitSimple(gg_unit_O024_0311, udg_NotAlliance)
     // ----
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func052A)
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func053A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func055A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func056A)
     call SetPlayerAllianceStateBJ(Player(22), Player(11), bj_ALLIANCE_ALLIED)
     call SetPlayerAllianceStateBJ(Player(23), Player(11), bj_ALLIANCE_ALLIED)
     call SetPlayerAllianceStateBJ(Player(11), Player(22), bj_ALLIANCE_ALLIED)
@@ -49661,7 +49579,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     set udg_dialogDifficultyButton[3]=GetLastCreatedButtonBJ()
     call DialogAddButtonBJ(udg_dialogDifficulty, "TRIGSTR_7291")
     set udg_dialogDifficultyButton[4]=GetLastCreatedButtonBJ()
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func089A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func092A)
     call SetTimeOfDay(12.00)
     call UseTimeOfDayBJ(false)
     set udg_tempLoc=GetUnitLoc(gg_unit_H00A_0082)
@@ -49670,7 +49588,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
     call IssueTargetOrderBJ(GetLastCreatedUnit(), "innerfire", gg_unit_H00A_0082)
     set udg_CurrentLocation=GetRandomInt(1, 3)
-    call ForForce(udg_PlayerBotsUG, function Trig_TimeElapsedInit_Func098A)
+    call ForForce(udg_PlayerBotsUG, function Trig_TimeElapsedInit_Func101A)
     call ConditionalTriggerExecute(gg_trg_InitCosmetic)
 endfunction
 
@@ -49817,11 +49735,26 @@ function Trig_Autoload_Func011A takes nothing returns nothing
     set udg_Player[udg_tempInt]=GetEnumPlayer()
 endfunction
 
+function Trig_Autoload_Func016Func005C takes nothing returns boolean
+    if ( not ( udg_player_rooms_normal[GetConvertedPlayerId(GetEnumPlayer())] >= 500 ) ) then
+        return false
+    endif
+    if ( not ( udg_unlocked_rokfor == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_Autoload_Func016A takes nothing returns nothing
     call MultiboardSetItemValueBJ(udg_Multiboard1, 4, ( udg_tempInt + 1 ), I2S(udg_player_rooms_normal[GetConvertedPlayerId(GetEnumPlayer())]))
     call MultiboardSetItemValueBJ(udg_Multiboard1, 5, ( udg_tempInt + 1 ), I2S(udg_player_rooms_nightmare[GetConvertedPlayerId(GetEnumPlayer())]))
     set udg_tempInt=( udg_tempInt + 1 )
-    call DisplayTextToForce(GetPlayersAll(), ( ( GetPlayerName(GetEnumPlayer()) + ": |cff00ff00" ) + ( I2S(udg_player_mutagens[GetConvertedPlayerId(GetEnumPlayer())]) + "|r мутагенов" ) ))
+    if ( Trig_Autoload_Func016Func005C() ) then
+        set udg_unlocked_rokfor=true
+        call ShowUnitShow(gg_unit_E00C_0088)
+        call DisplayTextToForce(GetPlayersAll(), ( ( GetPlayerName(GetEnumPlayer()) + " разблокирует секретного персонажа: " ) + GetHeroProperName(gg_unit_E00C_0088) ))
+    else
+    endif
 endfunction
 
 function Trig_Autoload_Actions takes nothing returns nothing
@@ -49834,7 +49767,7 @@ function Trig_Autoload_Actions takes nothing returns nothing
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
         call MultiboardSetItemValueBJ(udg_Multiboard1, 1, ( GetForLoopIndexA() + 1 ), GetPlayerName(udg_Player[GetForLoopIndexA()]))
         call MultiboardSetItemValueBJ(udg_Multiboard1, 2, ( GetForLoopIndexA() + 1 ), "TRIGSTR_8527")
-        call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), R2S(udg_DPStempReal[GetForLoopIndexA()]))
+        call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), I2S(udg_multiboard_kills[GetForLoopIndexA()]))
         call MultiboardSetItemValueBJ(udg_Multiboard1, 4, ( GetForLoopIndexA() + 1 ), "TRIGSTR_8532")
         call MultiboardSetItemValueBJ(udg_Multiboard1, 5, ( GetForLoopIndexA() + 1 ), "TRIGSTR_8533")
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
@@ -49852,13 +49785,12 @@ function Trig_Autoload_Actions takes nothing returns nothing
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
         call MultiboardSetItemValueBJ(udg_Multiboard1, 1, ( GetForLoopIndexA() + 1 ), GetPlayerName(udg_Player[GetForLoopIndexA()]))
         call MultiboardSetItemValueBJ(udg_Multiboard1, 2, ( GetForLoopIndexA() + 1 ), "TRIGSTR_8872")
-        call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), R2S(udg_DPStempReal[GetForLoopIndexA()]))
+        call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), I2S(udg_multiboard_kills[GetForLoopIndexA()]))
         call MultiboardSetItemValueBJ(udg_Multiboard1, 4, ( GetForLoopIndexA() + 1 ), "TRIGSTR_8873")
         call MultiboardSetItemValueBJ(udg_Multiboard1, 5, ( GetForLoopIndexA() + 1 ), "TRIGSTR_8874")
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_tempInt=1
-    call DisplayTextToForce(GetPlayersAll(), "TRIGSTR_8875")
     call ForForce(udg_PlayerGroup, function Trig_Autoload_Func016A)
     set udg_tempInt=0
 endfunction
@@ -51294,6 +51226,9 @@ function Trig_NoOrb_Conditions takes nothing returns boolean
     if ( not ( UnitHasItem(GetAttacker(), GetItemOfTypeFromUnitBJ(GetAttacker(), 'I05X')) == false ) ) then
         return false
     endif
+    if ( not ( UnitHasItem(GetAttacker(), GetItemOfTypeFromUnitBJ(GetAttacker(), 'I01R')) == false ) ) then
+        return false
+    endif
     return true
 endfunction
 
@@ -51389,6 +51324,9 @@ function Trig_NoOrbMsg_Conditions takes nothing returns boolean
     if ( not ( UnitHasItem(GetAttacker(), GetItemOfTypeFromUnitBJ(GetAttacker(), 'I05X')) == false ) ) then
         return false
     endif
+    if ( not ( UnitHasItem(GetAttacker(), GetItemOfTypeFromUnitBJ(GetAttacker(), 'I01R')) == false ) ) then
+        return false
+    endif
     return true
 endfunction
 
@@ -51453,25 +51391,59 @@ function InitTrig_Minions takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: MinionsUGremove
+// Trigger: GeneralUGremove on Death
 //===========================================================================
-function Trig_MinionsUGremove_Conditions takes nothing returns boolean
+function Trig_GeneralUGremove_on_Death_Func003C takes nothing returns boolean
+    if ( ( IsUnitInGroup(GetTriggerUnit(), udg_MinionsUG) == true ) ) then
+        return true
+    endif
+    if ( ( IsUnitInGroup(GetTriggerUnit(), udg_not_knockbackable_UG) == true ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GeneralUGremove_on_Death_Conditions takes nothing returns boolean
+    if ( not Trig_GeneralUGremove_on_Death_Func003C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralUGremove_on_Death_Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_MinionsUG) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MinionsUGremove_Actions takes nothing returns nothing
-    call GroupRemoveUnitSimple(GetTriggerUnit(), udg_MinionsUG)
+function Trig_GeneralUGremove_on_Death_Func002C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetTriggerUnit(), udg_not_knockbackable_UG) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitEnemy(GetTriggerUnit(), Player(12)) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralUGremove_on_Death_Actions takes nothing returns nothing
+    if ( Trig_GeneralUGremove_on_Death_Func001C() ) then
+        call GroupRemoveUnitSimple(GetTriggerUnit(), udg_MinionsUG)
+    else
+    endif
+    if ( Trig_GeneralUGremove_on_Death_Func002C() ) then
+        call GroupRemoveUnitSimple(GetTriggerUnit(), udg_not_knockbackable_UG)
+    else
+    endif
 endfunction
 
 //===========================================================================
-function InitTrig_MinionsUGremove takes nothing returns nothing
-    set gg_trg_MinionsUGremove=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_MinionsUGremove, EVENT_PLAYER_UNIT_DEATH)
-    call TriggerAddCondition(gg_trg_MinionsUGremove, Condition(function Trig_MinionsUGremove_Conditions))
-    call TriggerAddAction(gg_trg_MinionsUGremove, function Trig_MinionsUGremove_Actions)
+function InitTrig_GeneralUGremove_on_Death takes nothing returns nothing
+    set gg_trg_GeneralUGremove_on_Death=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_GeneralUGremove_on_Death, EVENT_PLAYER_UNIT_DEATH)
+    call TriggerAddCondition(gg_trg_GeneralUGremove_on_Death, Condition(function Trig_GeneralUGremove_on_Death_Conditions))
+    call TriggerAddAction(gg_trg_GeneralUGremove_on_Death, function Trig_GeneralUGremove_on_Death_Actions)
 endfunction
 
 //===========================================================================
@@ -52922,7 +52894,9 @@ endfunction
 function Trig_Globe_Actions takes nothing returns nothing
     set udg_tempLoc=GetItemLoc(GetManipulatedItem())
     set udg_tempZ=GetLocationZ(udg_tempLoc)
+    call StopSoundBJ(udg_GlobeSound, false)
     call PlaySoundOnUnitBJ(gg_snd_DiabloSrineLifeSound, 100, GetTriggerUnit())
+    set udg_GlobeSound=GetLastPlayedSound()
     set udg_tempZ=0.00
     call ForGroupBJ(GetUnitsInRangeOfLocAll(800.00, udg_tempLoc), function Trig_Globe_Func007A)
     call RemoveLocation(udg_tempLoc)
@@ -53028,70 +53002,6 @@ function InitTrig_GoldDropCobold takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_GoldDropCobold, EVENT_PLAYER_UNIT_DEATH)
     call TriggerAddCondition(gg_trg_GoldDropCobold, Condition(function Trig_GoldDropCobold_Conditions))
     call TriggerAddAction(gg_trg_GoldDropCobold, function Trig_GoldDropCobold_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: Cactumans
-//===========================================================================
-function Trig_Cactumans_Conditions takes nothing returns boolean
-    if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00K' ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Cactumans_Actions takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    call CreateItemLoc('I03Q', udg_tempLoc)
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_Cactumans takes nothing returns nothing
-    set gg_trg_Cactumans=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_Cactumans, EVENT_PLAYER_UNIT_DEATH)
-    call TriggerAddCondition(gg_trg_Cactumans, Condition(function Trig_Cactumans_Conditions))
-    call TriggerAddAction(gg_trg_Cactumans, function Trig_Cactumans_Actions)
-endfunction
-
-//===========================================================================
-// Trigger: Ghosts
-//===========================================================================
-function Trig_Ghosts_Func001C takes nothing returns boolean
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'h01H' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'o00T' ) ) then
-        return true
-    endif
-    if ( ( GetUnitTypeId(GetTriggerUnit()) == 'h01I' ) ) then
-        return true
-    endif
-    return false
-endfunction
-
-function Trig_Ghosts_Conditions takes nothing returns boolean
-    if ( not Trig_Ghosts_Func001C() ) then
-        return false
-    endif
-    if ( not ( GetRandomInt(1, 100) == 100 ) ) then
-        return false
-    endif
-    return true
-endfunction
-
-function Trig_Ghosts_Actions takes nothing returns nothing
-    set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    call CreateItemLoc('I01Z', udg_tempLoc)
-    call RemoveLocation(udg_tempLoc)
-endfunction
-
-//===========================================================================
-function InitTrig_Ghosts takes nothing returns nothing
-    set gg_trg_Ghosts=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_Ghosts, EVENT_PLAYER_UNIT_DEATH)
-    call TriggerAddCondition(gg_trg_Ghosts, Condition(function Trig_Ghosts_Conditions))
-    call TriggerAddAction(gg_trg_Ghosts, function Trig_Ghosts_Actions)
 endfunction
 
 //===========================================================================
@@ -64080,6 +63990,61 @@ function InitTrig_JuiceCactus takes nothing returns nothing
 endfunction
 
 //===========================================================================
+// Trigger: MultiboardKillsUpdate
+//===========================================================================
+function Trig_MultiboardKillsUpdate_Func002C takes nothing returns boolean
+    if ( ( GetOwningPlayer(GetTriggerUnit()) == Player(22) ) ) then
+        return true
+    endif
+    if ( ( GetOwningPlayer(GetTriggerUnit()) == Player(19) ) ) then
+        return true
+    endif
+    if ( ( GetOwningPlayer(GetTriggerUnit()) == Player(23) ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_MultiboardKillsUpdate_Conditions takes nothing returns boolean
+    if ( not Trig_MultiboardKillsUpdate_Func002C() ) then
+        return false
+    endif
+    if ( not ( IsPlayerInForce(GetOwningPlayer(GetKillingUnitBJ()), udg_PlayerGroup) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MultiboardKillsUpdate_Func001Func001C takes nothing returns boolean
+    if ( not ( GetOwningPlayer(GetKillingUnitBJ()) == GetOwningPlayer(udg_Hero[GetForLoopIndexA()]) ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MultiboardKillsUpdate_Actions takes nothing returns nothing
+    set bj_forLoopAIndex=1
+    set bj_forLoopAIndexEnd=CountUnitsInGroup(udg_HeroesGroup)
+    loop
+        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+        if ( Trig_MultiboardKillsUpdate_Func001Func001C() ) then
+            set udg_multiboard_kills[GetForLoopIndexA()]=( udg_multiboard_kills[GetForLoopIndexA()] + 1 )
+            call MultiboardSetItemValueBJ(udg_Multiboard1, 3, ( GetForLoopIndexA() + 1 ), I2S(udg_multiboard_kills[GetForLoopIndexA()]))
+        else
+        endif
+        set bj_forLoopAIndex=bj_forLoopAIndex + 1
+    endloop
+endfunction
+
+//===========================================================================
+function InitTrig_MultiboardKillsUpdate takes nothing returns nothing
+    set gg_trg_MultiboardKillsUpdate=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_MultiboardKillsUpdate, EVENT_PLAYER_UNIT_DEATH)
+    call TriggerAddCondition(gg_trg_MultiboardKillsUpdate, Condition(function Trig_MultiboardKillsUpdate_Conditions))
+    call TriggerAddAction(gg_trg_MultiboardKillsUpdate, function Trig_MultiboardKillsUpdate_Actions)
+endfunction
+
+//===========================================================================
 // Trigger: DPScheck
 //===========================================================================
 function Trig_DPScheck_Func001C takes nothing returns boolean
@@ -64103,6 +64068,7 @@ endfunction
 //===========================================================================
 function InitTrig_DPScheck takes nothing returns nothing
     set gg_trg_DPScheck=CreateTrigger()
+    call DisableTrigger(gg_trg_DPScheck)
     call h__TriggerRegisterVariableEvent(gg_trg_DPScheck, "udg_DamageEvent", EQUAL, 1.00)
     call TriggerAddCondition(gg_trg_DPScheck, Condition(function Trig_DPScheck_Conditions))
     call TriggerAddAction(gg_trg_DPScheck, function Trig_DPScheck_Actions)
@@ -64123,7 +64089,20 @@ endfunction
 //===========================================================================
 // Trigger: MusicMiscStart
 //===========================================================================
+function Trig_MusicMiscStart_Func001C takes nothing returns boolean
+    if ( ( GetSpellAbilityId() != 'A0KE' ) ) then
+        return true
+    endif
+    if ( ( GetSpellAbilityId() != 'A0KD' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
 function Trig_MusicMiscStart_Conditions takes nothing returns boolean
+    if ( not Trig_MusicMiscStart_Func001C() ) then
+        return false
+    endif
     if ( not ( GetRandomInt(1, 100) <= ( 2 * ( 7 - CountPlayersInForceBJ(udg_PlayerGroup) ) ) ) ) then
         return false
     endif
@@ -64320,8 +64299,8 @@ endfunction
 function InitCustomTriggers takes nothing returns nothing
     call InitTrig_GlobalPeriodic()
     call InitTrig_infoRemove()
-    call InitTrig_DeathPenalty()
     call InitTrig_GeneralPlayableMapAreaEnter()
+    call InitTrig_GeneralDropsOnDeath()
     call InitTrig_BuyingMercenaries()
     call InitTrig_BackpackAndDisobidienceMove()
     call InitTrig_DemonDying()
@@ -64333,6 +64312,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_DisobidienceOfDeathResAndRemove()
     call InitTrig_GlobalDamageEvent()
     call InitTrig_HeroResFunc()
+    call InitTrig_DeathPenalty()
     call InitTrig_Leave()
     call InitTrig_bossfight1()
     call InitTrig_bossfight2()
@@ -64351,6 +64331,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_difficulty2()
     call InitTrig_difficulty3()
     call InitTrig_kill()
+    call InitTrig_kilall()
     call InitTrig_kill2()
     call InitTrig_remove()
     call InitTrig_seeall()
@@ -64366,6 +64347,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_enemies()
     call InitTrig_res()
     call InitTrig_res2()
+    call InitTrig_unlock()
     call InitTrig_reinacrnations()
     call InitTrig_test()
     call InitTrig_test2()
@@ -64408,12 +64390,10 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_tL2()
     call InitTrig_tL2_Copy()
     call InitTrig_tL3()
-    call InitTrig_tL3_copy()
     call InitTrig_TalentPursuitOfJusticeLVL()
     call InitTrig_TalentHolyFireLVL()
     call InitTrig_TalentRuneOfVindicationLVL()
     call InitTrig_tL7()
-    call InitTrig_tL7_Copy()
     call InitTrig_tL7_Copy_Copy()
     call InitTrig_tL8()
     call InitTrig_tL8_Copy()
@@ -64421,7 +64401,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_tL9_Copy()
     call InitTrig_TalentHeavensShieldLVL()
     call InitTrig_tL11()
-    call InitTrig_tL11_Copy()
     call InitTrig_tL11Timer()
     call InitTrig_tL11Periodic()
     call InitTrig_TalentLawsOfValorLVL()
@@ -64429,19 +64408,16 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_tL14()
     call InitTrig_tL14_Copy()
     call InitTrig_tL15()
-    call InitTrig_tL15_Copy()
     call InitTrig_TalentUnholyStrength()
     call InitTrig_TalentGreed()
     call InitTrig_tL18()
-    call InitTrig_tL18_Copy()
+    call InitTrig_RuneOfApocalypseFunc()
     call InitTrig_tL18_Copy_Copy()
     call InitTrig_TalentCorpseExplosion()
     call InitTrig_tL19_Copy()
     call InitTrig_tL20()
     call InitTrig_tL21()
-    call InitTrig_tL21_Copy()
     call InitTrig_tL22()
-    call InitTrig_tL22_copy()
     call InitTrig_tL22_copy_Copy()
     call InitTrig_TalentFelEnergy()
     call InitTrig_tL24()
@@ -64450,21 +64426,16 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_TalentFoulBulwark()
     call InitTrig_TalentHemostasis()
     call InitTrig_tL28()
-    call InitTrig_tL28_Copy_Copy_2()
-    call InitTrig_tL28_Copy_Copy_2_Copy()
     call InitTrig_tL28_Copy_Copy()
     call InitTrig_tL29()
     call InitTrig_tL29_Copy()
     call InitTrig_tL30()
-    call InitTrig_tL30_Copy()
     call InitTrig_TalentRuneOfBounty()
     call InitTrig_TalentRuneOfMentorship()
     call InitTrig_tL33()
     call InitTrig_tL33_Copy()
     call InitTrig_tL33_Copy_Copy()
-    call InitTrig_tL34()
-    call InitTrig_tL34_copy()
-    call InitTrig_tL34_copy_Copy()
+    call InitTrig_TalentBigGameHunt()
     call InitTrig_TalentMight()
     call InitTrig_TalentSuperstition()
     call InitTrig_TalentArmorupLVL()
@@ -64473,33 +64444,24 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_TalentArcana()
     call InitTrig_TalentEvasionLVL()
     call InitTrig_tL42()
-    call InitTrig_tL42_Copy()
-    call InitTrig_tL42_Copy_Copy()
     call InitTrig_TalentFoodEat()
     call InitTrig_tL44()
     call InitTrig_tL45()
-    call InitTrig_tL45_Copy()
     call InitTrig_TalentsInit()
     call InitTrig_TalentsSell()
     call InitTrig_TalentsCheck()
     call InitTrig_TalentPointsGiveaway()
     call InitTrig_Anger()
-    call InitTrig_AngerStop()
     call InitTrig_AngerStopDying()
-    call InitTrig_Pride()
     call InitTrig_Envy()
     call InitTrig_Supression()
-    call InitTrig_TerrorProc()
     call InitTrig_Terror()
     call InitTrig_TerrorMove()
-    call InitTrig_InevitableEndAutoattacks()
     call InitTrig_InevitableEndSpells()
     call InitTrig_Radiance()
     call InitTrig_RadianceBuffed()
     call InitTrig_Detonation()
     call InitTrig_DetonationDie()
-    call InitTrig_DivineBulwark()
-    call InitTrig_GiftOfHeavens()
     call InitTrig_Charity()
     call InitTrig_CharityPeriodic()
     call InitTrig_Despair()
@@ -64511,8 +64473,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_MutagenApplyEffect()
     call InitTrig_MutagenDropMiniboss()
     call InitTrig_MutagenAquiring()
-    call InitTrig_MutagenDefenseModifier()
-    call InitTrig_MutagenDamageModifier()
     call InitTrig_TimeElapsedUnits()
     call InitTrig_GracePeriodEnd()
     call InitTrig_RaiseDeadUp()
@@ -64787,6 +64747,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_LifeDrain()
     call InitTrig_LifeDrainDying()
     call InitTrig_LifeDrainPeridoic()
+    call InitTrig_Juggernaut()
     call InitTrig_Decimate()
     call InitTrig_Warstomp()
     call InitTrig_Whirlwind()
@@ -64954,7 +64915,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_NoOrb()
     call InitTrig_NoOrbMsg()
     call InitTrig_Minions()
-    call InitTrig_MinionsUGremove()
+    call InitTrig_GeneralUGremove_on_Death()
     call InitTrig_PoisonedFunc()
     call InitTrig_FrostExplosion()
     call InitTrig_FreezeFunc()
@@ -64979,8 +64940,6 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_Globe()
     call InitTrig_GoldDropRandomMob()
     call InitTrig_GoldDropCobold()
-    call InitTrig_Cactumans()
-    call InitTrig_Ghosts()
     call InitTrig_ChestOpen()
     call InitTrig_ChestsTrapTimer()
     call InitTrig_GoldDropChestTimer()
@@ -65218,6 +65177,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_CraftSound()
     call InitTrig_Slots()
     call InitTrig_JuiceCactus()
+    call InitTrig_MultiboardKillsUpdate()
     call InitTrig_DPScheck()
     call InitTrig_MultiboardKarma()
     call InitTrig_MusicMiscStart()
@@ -65718,12 +65678,12 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs35569671")
-call ExecuteFunc("NSLHelper__Init")
-call ExecuteFunc("NSLImpl__Init")
-call ExecuteFunc("NSLSaveLoad__Init")
-call ExecuteFunc("NSLSaveLoadExecutor__Init")
-call ExecuteFunc("NSLUtils__Init")
+call ExecuteFunc("jasshelper__initstructs51396921")
+call ExecuteFunc("NSLHelper___Init")
+call ExecuteFunc("NSLImpl___Init")
+call ExecuteFunc("NSLSaveLoad___Init")
+call ExecuteFunc("NSLSaveLoadExecutor___Init")
+call ExecuteFunc("NSLUtils___Init")
 
     call InitGlobals()
     call InitCustomTriggers()
@@ -65782,8 +65742,8 @@ local integer player_id=f__arg_integer1
 			set s__NSL_Code_code_length[inst]=0
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
-			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
 set f__result_integer= inst
    return true
 endfunction
@@ -65794,8 +65754,8 @@ local integer size=f__arg_integer2
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
    return true
 endfunction
@@ -65809,15 +65769,15 @@ return true
 				call s__NSL_Code_GenerateImpl(this)
 return true
 			endif
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
 			endif
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
    return true
 endfunction
 function sa__NSL_Code_Load takes nothing returns boolean
@@ -65827,33 +65787,33 @@ local integer this=f__arg_this
 set f__result_boolean= true
 return true
 			endif
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
 set f__result_boolean= true
    return true
 endfunction
@@ -65865,8 +65825,8 @@ local integer size=f__arg_integer1
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -65896,7 +65856,7 @@ function sa___prototype2_DamageEngine_RegisterFromHook takes nothing returns boo
     call DamageEngine_RegisterFromHook(f__arg_trigger1,f__arg_string1,f__arg_limitop1,f__arg_real1)
     return true
 endfunction
-function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated takes nothing returns boolean
+function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local string generated_code=f__arg_string1
 
@@ -65907,19 +65867,19 @@ function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated takes nothi
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     return true
 endfunction
-function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boolean
+function sa___prototype19_NSLUtils___OnPlayerCodeLoaded takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local boolean is_valid=f__arg_boolean1
  local integer loader=f__arg_integer2
 
         if ( is_valid ) then
-            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils__format == null ) then
+            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils___format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
     return true
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
@@ -65927,7 +65887,7 @@ function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boo
     return true
 endfunction
 
-function jasshelper__initstructs35569671 takes nothing returns nothing
+function jasshelper__initstructs51396921 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -65946,19 +65906,19 @@ function jasshelper__initstructs35569671 takes nothing returns nothing
     call TriggerAddAction(st___prototype2[1],function sa___prototype2_DamageEngine_RegisterFromHook)
     call TriggerAddCondition(st___prototype2[1],Condition(function sa___prototype2_DamageEngine_RegisterFromHook))
     set st___prototype13[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype13[1],function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated)
-    call TriggerAddCondition(st___prototype13[1],Condition(function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated))
+    call TriggerAddAction(st___prototype13[1],function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated)
+    call TriggerAddCondition(st___prototype13[1],Condition(function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated))
     set st___prototype19[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype19[1],function sa___prototype19_NSLUtils__OnPlayerCodeLoaded)
-    call TriggerAddCondition(st___prototype19[1],Condition(function sa___prototype19_NSLUtils__OnPlayerCodeLoaded))
+    call TriggerAddAction(st___prototype19[1],function sa___prototype19_NSLUtils___OnPlayerCodeLoaded)
+    call TriggerAddCondition(st___prototype19[1],Condition(function sa___prototype19_NSLUtils___OnPlayerCodeLoaded))
 
 
 
-call ExecuteFunc("s__File_FileIO__FileInit___onInit")
+call ExecuteFunc("s__File_FileIO___FileInit___onInit")
 
-call ExecuteFunc("s__User_PlayerUtils__PlayerUtilsInit___onInit")
+call ExecuteFunc("s__User_PlayerUtils___PlayerUtilsInit___onInit")
 
-call ExecuteFunc("s__SyncHelper__Sync_SyncHelper__INITS___onInit")
+call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
 
 
 
