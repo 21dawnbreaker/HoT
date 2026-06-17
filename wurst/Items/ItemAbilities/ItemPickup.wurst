@@ -1,0 +1,17 @@
+package ItemPickup
+
+import ClosureEvents
+
+import GeneratorItems
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) -> 
+        let _unit = GetManipulatingUnit()
+        let _player = _unit.getOwner()
+        let _id = _player.getId() + 1
+        let _item_id = GetManipulatedItem().getTypeId()
+
+        if _item_id == BOUNTY_HUNT_ITEM_ID and udg_HeroesGroup.has(_unit) and udg_PlayerGroup.containsPlayer(_player)
+            udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] = udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] + 15
+            udg_MINIBOSS_SPAWN_CHANCE = udg_MINIBOSS_SPAWN_CHANCE + 25

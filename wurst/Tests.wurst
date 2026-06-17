@@ -1,13 +1,18 @@
 package Tests
 import ClosureEvents
 
-import TestSkillObjects
+import GeneratorItems
+
 
 init
     EventListener.add(EVENT_PLAYER_CHAT_FILTER) ->
         let msg = GetEventPlayerChatString()
         let plyer = GetTriggerPlayer()
+
         if msg == "-test4"
             let u = udg_hero_by_player[plyer.getId() + 1]
-            u.addPermanentAbility(SPELL_ID)
+            print(u.getProperName())
+            CreateItem(BOUNTY_HUNT_ITEM_ID, u.getX(), u.getY())
+        if msg == "-test5"
+            print(udg_MINIBOSS_SPAWN_CHANCE.toString())
         

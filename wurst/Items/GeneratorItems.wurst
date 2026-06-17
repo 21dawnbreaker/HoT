@@ -1,0 +1,21 @@
+package GeneratorItems
+
+import ItemObjEditing
+import ObjectIdGenerator
+
+let ORIGIN_ITEM_ID = 'rst1'
+
+public constant BOUNTY_HUNT_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
+@compiletime function gen()
+    new ItemDefinition(BOUNTY_HUNT_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff8080ffЛисты розыска|r")..setTooltipBasic("|cff8080ffЛисты розыска|r")
+        ..setTooltipExtended("+15% урона по элитным противникам и боссам. |n|cff8080ff+25% к шансу столкновения с чемпионом в начале каждого боя|r.")
+        ..setDescription("+15% урона по элитным противникам и боссам. |n|cff8080ff+25% к шансу столкновения с чемпионом в начале каждого боя|r. |n|n[|cff00ffffУкрашение|r]")
+        ..setLevel(3)..setLevelUnclassified(3)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCritter Two-Thumbs Portrait.blp")..setModelUsed("war3mapImported\\Scroll.mdl")..setScalingValue(1)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities("")
+        ..setClassification("Purchasable")
+        ..setGoldCost(300)

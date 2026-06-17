@@ -1,0 +1,14 @@
+package Riposte
+
+import ClosureEvents
+import SoundUtils
+
+
+let sound_eff = new SoundDefinition("Sounds/Spell_WR_Slam_Revamp_Impact_04.mp3")
+
+@compiletime function applySpecificParamsForSoundEffect()
+    sound_eff.is3D = true
+
+init
+    EventListener.onCast('A09K') (unit caster) ->
+        sound_eff.playOnPoint(caster.getPos3Real())
