@@ -1,0 +1,17 @@
+package ExcaliburSpell
+
+import ClosureEvents
+import ClosureTimers
+import SoundUtils
+
+import ExcaliburObjects
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SPELL_CAST) -> 
+        let caster = GetTriggerUnit()
+        if spellbeingcast lol
+        
+    EventListener.onCast(EXCALIBUR_ABIL) (unit caster) ->
+        SOUND_EFFECT.playOnPoint(caster.getPos3Real())
+            
+        

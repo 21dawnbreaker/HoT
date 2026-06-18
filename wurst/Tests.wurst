@@ -1,7 +1,8 @@
 package Tests
 import ClosureEvents
 
-import GeneratorItems
+import ItemCreation
+import AbilityID
 
 
 init
@@ -12,7 +13,7 @@ init
         if msg == "-test4"
             let u = udg_hero_by_player[plyer.getId() + 1]
             print(u.getProperName())
-            CreateItem(BOUNTY_HUNT_ITEM_ID, u.getX(), u.getY())
+            CreateItem(EXCALIBUR_ITEM_ID, u.getX(), u.getY())
         if msg == "-test5"
-            print(udg_MINIBOSS_SPAWN_CHANCE.toString())
+            print(EXCALIBUR_SPELL_ID.toString())
         

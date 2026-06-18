@@ -1,0 +1,24 @@
+package ExcaliburObjects
+
+import ChannelAbilityPreset
+import SoundUtils
+import public Assets
+import public BuffObjEditing
+
+
+public constant EXCALIBUR_ABIL = compiletime(ABIL_ID_GEN.next())
+public var FLASH_EFFECT = "Divine Edict.mdx"
+public var SOUND_EFFECT = new SoundDefinition("Sounds/ExcaliburSound.mp3")
+
+@compiletime function applySpecificParamsForSoundEffect()
+    SOUND_EFFECT.is3D = true
+
+@compiletime function genObj()
+    new ChannelAbilityPreset(EXCALIBUR_ABIL, 1, true)
+    ..setName("Excalibur")
+    ..setItemAbility(true)
+
+    ..setCooldown(1, 600.0)
+    ..setCastingTime(1, 5.0)
+    ..setTargetType(1, 0)
+        
