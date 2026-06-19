@@ -18,3 +18,10 @@ init
 
         if _item_id == EXCALIBUR_ITEM_ID and udg_HeroesGroup.has(_unit)
             udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] = udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] + 50
+
+        if _item_id == GIFT_OF_LORD_OF_LIES_ITEM_ID and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 20
+
+        if _item_id == EYE_OF_AVADRAAH_ITEM_ID and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 15
+            udg_HERO_DAMAGE_BONUS_ALL[_id] = udg_HERO_DAMAGE_BONUS_ALL[_id] + 15

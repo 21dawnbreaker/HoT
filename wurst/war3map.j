@@ -1,31 +1,31 @@
 globals
 //globals from DamageEngine:
 constant boolean LIBRARY_DamageEngine=true
-constant boolean DamageEngine__USE_GUI= true
+constant boolean DamageEngine___USE_GUI= true
                                                        
-constant boolean DamageEngine__USE_SCALING= DamageEngine__USE_GUI
-constant boolean DamageEngine__USE_EXTRA= true
-constant boolean DamageEngine__USE_ARMOR_MOD= true
-constant boolean DamageEngine__USE_MELEE_RANGE= true
-constant boolean DamageEngine__USE_LETHAL= true
+constant boolean DamageEngine___USE_SCALING= DamageEngine___USE_GUI
+constant boolean DamageEngine___USE_EXTRA= true
+constant boolean DamageEngine___USE_ARMOR_MOD= true
+constant boolean DamageEngine___USE_MELEE_RANGE= true
+constant boolean DamageEngine___USE_LETHAL= true
    
-constant integer DamageEngine__LIMBO= 16
+constant integer DamageEngine___LIMBO= 16
    
 constant integer DamageEngine_TYPE_CODE= 1
 constant integer DamageEngine_TYPE_PURE= 2
-constant real DamageEngine__DEATH_VAL= 0.405
-timer DamageEngine__alarm= CreateTimer()
-boolean DamageEngine__alarmSet= false
+constant real DamageEngine___DEATH_VAL= 0.405
+timer DamageEngine___alarm= CreateTimer()
+boolean DamageEngine___alarmSet= false
     //Values to track the original pre-spirit Link/defensive damage values
-integer DamageEngine__lastInstance= 0
-boolean DamageEngine__canKick= true
-boolean DamageEngine__totem= false
-boolean array DamageEngine__attacksImmune
-boolean array DamageEngine__damagesImmune
+integer DamageEngine___lastInstance= 0
+boolean DamageEngine___canKick= true
+boolean DamageEngine___totem= false
+boolean array DamageEngine___attacksImmune
+boolean array DamageEngine___damagesImmune
     //Made global in order to use enable/disable behavior.
-trigger DamageEngine__t1= CreateTrigger()
-trigger DamageEngine__t2= CreateTrigger()
-trigger DamageEngine__t3= CreateTrigger()
+trigger DamageEngine___t1= CreateTrigger()
+trigger DamageEngine___t2= CreateTrigger()
+trigger DamageEngine___t3= CreateTrigger()
     //These variables coincide with Blizzard's "limitop" type definitions so as to enable users (GUI in particular) with some nice performance perks.
 constant integer DamageEngine_FILTER_ATTACK= 0
 constant integer DamageEngine_FILTER_MELEE= 1
@@ -34,16 +34,16 @@ constant integer DamageEngine_FILTER_RANGED= 3
 constant integer DamageEngine_FILTER_SPELL= 4
 constant integer DamageEngine_FILTER_CODE= 5
 constant integer DamageEngine_FILTER_MAX= 6
-integer DamageEngine__eventFilter= DamageEngine_FILTER_OTHER
+integer DamageEngine___eventFilter= DamageEngine_FILTER_OTHER
 boolean DamageEngine_inception= false
-boolean DamageEngine__dreaming= false
-integer DamageEngine__sleepLevel= 0
-group DamageEngine__proclusGlobal= CreateGroup()
-group DamageEngine__fischerMorrow= CreateGroup()
-boolean DamageEngine__kicking= false
-boolean DamageEngine__eventsRun= false
+boolean DamageEngine___dreaming= false
+integer DamageEngine___sleepLevel= 0
+group DamageEngine___proclusGlobal= CreateGroup()
+group DamageEngine___fischerMorrow= CreateGroup()
+boolean DamageEngine___kicking= false
+boolean DamageEngine___eventsRun= false
    
-boolean DamageEngine__hasLethal= false
+boolean DamageEngine___hasLethal= false
 //endglobals from DamageEngine
 //globals from FileIO:
 constant boolean LIBRARY_FileIO=true
@@ -2098,7 +2098,7 @@ trigger gg_trg_RiposteBlock= null
 trigger gg_trg_Bladework= null
 trigger gg_trg_BladeworkUse= null
 trigger gg_trg_BladeworkCrit= null
-trigger gg_trg_FrostStrike= null
+trigger gg_trg_HeavySlam= null
 trigger gg_trg_Finale= null
 trigger gg_trg_FinalePass= null
 trigger gg_trg_Commander= null
@@ -2678,13 +2678,13 @@ unit gg_unit_n00R_0715= null
 unit gg_unit_ogru_0290= null
 unit gg_unit_U00I_0341= null
 unit gg_unit_E00A_0257= null
+unit gg_unit_E00D_0111= null
 destructable gg_dest_LTlt_12813= null
 destructable gg_dest_FTtw_12843= null
 destructable gg_dest_BTtw_12095= null
 destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
-unit gg_unit_E00D_0111= null
 
 trigger l__library_init
 
@@ -2708,9 +2708,9 @@ boolean array s__DamageTrigger_configured
 boolean array s__DamageTrigger_usingGUI
 integer array s__DamageTrigger_next
 trigger array s__DamageTrigger_rootTrig
-boolean array s__DamageTrigger_DamageEngine__trigFrozen
-integer array s__DamageTrigger_DamageEngine__levelsDeep
-boolean array s__DamageTrigger_DamageEngine__inceptionTrig
+boolean array s__DamageTrigger_DamageEngine___trigFrozen
+integer array s__DamageTrigger_DamageEngine___levelsDeep
+boolean array s__DamageTrigger_DamageEngine___inceptionTrig
 unit array s__DamageTrigger_source
 unit array s__DamageTrigger_target
 integer array s__DamageTrigger_sourceType
@@ -3112,8 +3112,8 @@ endfunction
             return 0
         endif
  
-        if not DamageEngine__hasLethal and index == s__DamageTrigger_LETHAL then
-            set DamageEngine__hasLethal=true
+        if not DamageEngine___hasLethal and index == s__DamageTrigger_LETHAL then
+            set DamageEngine___hasLethal=true
         endif
         if s__DamageTrigger_trigIndexStack[0] == 0 then
             set s__DamageTrigger_count=s__DamageTrigger_count + 1 //List runs from index 10 and up
@@ -3175,7 +3175,7 @@ endfunction
         endif
         return true
     endfunction
-    function s__DamageTrigger_DamageEngine__run takes integer this returns nothing
+    function s__DamageTrigger_DamageEngine___run takes integer this returns nothing
         local integer cat= this
         local integer d= s__Damage_index
 
@@ -3183,13 +3183,13 @@ endfunction
         local boolean guiUnset= false
         local boolean mod= cat <= s__DamageTrigger_DAMAGE
 
-        if DamageEngine__dreaming then
+        if DamageEngine___dreaming then
             return
         endif
-        set DamageEngine__dreaming=true
-        call DisableTrigger(DamageEngine__t1)
-        call DisableTrigger(DamageEngine__t2)
-        call EnableTrigger(DamageEngine__t3)
+        set DamageEngine___dreaming=true
+        call DisableTrigger(DamageEngine___t1)
+        call DisableTrigger(DamageEngine___t2)
+        call EnableTrigger(DamageEngine___t3)
         //call BJDebugMsg("Start of event running")
         loop
             set this=s__DamageTrigger_next[this]
@@ -3197,11 +3197,11 @@ endfunction
             exitwhen cat == s__DamageTrigger_MOD and ( udg_DamageEventOverride or udg_DamageEventType == DamageEngine_TYPE_PURE )
             exitwhen cat == s__DamageTrigger_SHIELD and udg_DamageEventAmount <= 0.00
 
-            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine__DEATH_VAL
+            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine___DEATH_VAL
 
          
             set s__DamageTrigger_eventIndex=this
-            if not s__DamageTrigger_DamageEngine__trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
+            if not s__DamageTrigger_DamageEngine___trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
 
                 if mod then
                     if s__DamageTrigger_usingGUI[this] then
@@ -3261,10 +3261,10 @@ endfunction
 
 
         //call BJDebugMsg("End of event running")
-        call DisableTrigger(DamageEngine__t3)
-        call EnableTrigger(DamageEngine__t1)
-        call EnableTrigger(DamageEngine__t2)
-        set DamageEngine__dreaming=false
+        call DisableTrigger(DamageEngine___t3)
+        call EnableTrigger(DamageEngine___t1)
+        call EnableTrigger(DamageEngine___t2)
+        set DamageEngine___dreaming=false
     endfunction
     function s__DamageTrigger__staticgetindex takes code c returns trigger
         local integer i= 0
@@ -3334,7 +3334,7 @@ endfunction
 
     function s__Damage_onAOEEnd takes nothing returns nothing
         if udg_DamageEventAOE > 1 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AOE)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AOE)
         endif
         set udg_DamageEventAOE=0
         set udg_DamageEventLevel=0
@@ -3346,7 +3346,7 @@ endfunction
    
     function s__Damage_afterDamage takes nothing returns nothing
         if udg_DamageEventPrevAmt != 0.00 and udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AFTER)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AFTER)
             set udg_DamageEventDamageT=0
             set udg_DamageEventPrevAmt=0.00
         endif
@@ -3362,8 +3362,8 @@ endfunction
         set s__Damage_index=this
         call s__DamageTrigger_setGUIFromStruct(true)
        
-        call GroupAddUnit(DamageEngine__proclusGlobal, udg_DamageEventSource)
-        call GroupAddUnit(DamageEngine__fischerMorrow, udg_DamageEventTarget)
+        call GroupAddUnit(DamageEngine___proclusGlobal, udg_DamageEventSource)
+        call GroupAddUnit(DamageEngine___fischerMorrow, udg_DamageEventTarget)
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_01()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_02()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_03()
@@ -3371,7 +3371,7 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_05()
         if udg_DamageEventAmount != 0.00 then
             set udg_DamageEventOverride=udg_DamageEventDamageT == 0
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_MOD)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_MOD)
 
 
 
@@ -3393,46 +3393,46 @@ endfunction
         loop
             exitwhen i == 0
             set i=i - 1
-            set s__DamageTrigger_DamageEngine__trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
-            set s__DamageTrigger_DamageEngine__levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
+            set s__DamageTrigger_DamageEngine___trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
+            set s__DamageTrigger_DamageEngine___levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
         endloop
-        call EnableTrigger(DamageEngine__t1)
-        call EnableTrigger(DamageEngine__t2)
-        set DamageEngine__kicking=false
+        call EnableTrigger(DamageEngine___t1)
+        call EnableTrigger(DamageEngine___t2)
+        set DamageEngine___kicking=false
         set s__Damage_damageStack=0
         set s__Damage_prepped=0
-        set DamageEngine__dreaming=false
-        set DamageEngine__sleepLevel=0
-        call GroupClear(DamageEngine__proclusGlobal)
-        call GroupClear(DamageEngine__fischerMorrow)
+        set DamageEngine___dreaming=false
+        set DamageEngine___sleepLevel=0
+        call GroupClear(DamageEngine___proclusGlobal)
+        call GroupClear(DamageEngine___fischerMorrow)
         //call BJDebugMsg("Cleared up the groups")
     endfunction
     function s__Damage_finish takes nothing returns nothing
         local integer i= 0
         local integer exit
-        if DamageEngine__eventsRun then
-            set DamageEngine__eventsRun=false
+        if DamageEngine___eventsRun then
+            set DamageEngine___eventsRun=false
             call s__Damage_afterDamage()
         endif
-        if DamageEngine__canKick and not DamageEngine__kicking then
+        if DamageEngine___canKick and not DamageEngine___kicking then
             if s__Damage_damageStack != 0 then
-                set DamageEngine__kicking=true
+                set DamageEngine___kicking=true
                 loop
-                    set DamageEngine__sleepLevel=DamageEngine__sleepLevel + 1
+                    set DamageEngine___sleepLevel=DamageEngine___sleepLevel + 1
                     set exit=s__Damage_damageStack
                     loop
                         set s__Damage_prepped=s__Damage_stackRef[i]
                         if UnitAlive(s__Damage_targetUnit[s__Damage_prepped]) then //Added just in case dead units had issues.
                             call s__Damage_doPreEvents(s__Damage_prepped,false) //don't evaluate the pre-event
                             if s__Damage_damage[s__Damage_prepped] > 0.00 then
-                                call DisableTrigger(DamageEngine__t1) //Force only the after armor event to run.
-                                call EnableTrigger(DamageEngine__t2) //in case the user forgot to re-enable this
-                                set DamageEngine__totem=true
+                                call DisableTrigger(DamageEngine___t1) //Force only the after armor event to run.
+                                call EnableTrigger(DamageEngine___t2) //in case the user forgot to re-enable this
+                                set DamageEngine___totem=true
                                 call UnitDamageTarget(s__Damage_sourceUnit[s__Damage_prepped], s__Damage_targetUnit[s__Damage_prepped], s__Damage_damage[s__Damage_prepped], s__Damage_isAttack[s__Damage_prepped], s__Damage_isRanged[s__Damage_prepped], s__Damage_attackType[s__Damage_prepped], s__Damage_damageType[s__Damage_prepped], s__Damage_weaponType[s__Damage_prepped])
                             else
                                 //No new events run at all in this case
                                 if udg_DamageEventDamageT != 0 then
-                                    call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
+                                    call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
                                 endif
                                 if s__Damage_damage[s__Damage_prepped] < 0.00 then
                                     //No need for BlzSetEventDamage here
@@ -3457,43 +3457,43 @@ endfunction
 
         call s__Damage_setArmor(s__Damage_index,true)
 
-        set DamageEngine__canKick=true
-        set DamageEngine__kicking=false
-        set DamageEngine__totem=false
+        set DamageEngine___canKick=true
+        set DamageEngine___kicking=false
+        set DamageEngine___totem=false
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
-            set DamageEngine__eventsRun=true
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
+            set DamageEngine___eventsRun=true
         endif
         call s__Damage_finish()
     endfunction
     function s__Damage__set_enabled takes boolean b returns nothing
         if b then
-            if DamageEngine__dreaming then
-                call EnableTrigger(DamageEngine__t3)
+            if DamageEngine___dreaming then
+                call EnableTrigger(DamageEngine___t3)
             else
-                call EnableTrigger(DamageEngine__t1)
-                call EnableTrigger(DamageEngine__t2)
+                call EnableTrigger(DamageEngine___t1)
+                call EnableTrigger(DamageEngine___t2)
             endif
         else
-            if DamageEngine__dreaming then
-                call DisableTrigger(DamageEngine__t3)
+            if DamageEngine___dreaming then
+                call DisableTrigger(DamageEngine___t3)
             else
-                call DisableTrigger(DamageEngine__t1)
-                call DisableTrigger(DamageEngine__t2)
+                call DisableTrigger(DamageEngine___t1)
+                call DisableTrigger(DamageEngine___t2)
             endif
         endif
     endfunction
     function s__Damage__get_enabled takes nothing returns boolean
-        return IsTriggerEnabled(DamageEngine__t1)
+        return IsTriggerEnabled(DamageEngine___t1)
     endfunction
    
    
     function s__Damage_getOutOfBed takes nothing returns nothing
-        if DamageEngine__totem then
+        if DamageEngine___totem then
             call s__Damage_failsafeClear() //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
         else
-            set DamageEngine__canKick=true
-            set DamageEngine__kicking=false
+            set DamageEngine___canKick=true
+            set DamageEngine___kicking=false
             call s__Damage_finish()
         endif
 
@@ -3503,7 +3503,7 @@ endfunction
     endfunction
    
     function s__Damage_wakeUp takes nothing returns nothing
-        set DamageEngine__dreaming=false
+        set DamageEngine___dreaming=false
         call s__Damage__set_enabled(true)
         call ForForce(bj_FORCE_PLAYER[0], function s__Damage_getOutOfBed) //Moved to a new thread in case of a thread crash
         if not s__Damage_arisen then
@@ -3514,7 +3514,7 @@ endfunction
         endif
         set s__Damage_count=0
         set s__Damage_index=0
-        set DamageEngine__alarmSet=false
+        set DamageEngine___alarmSet=false
         //call BJDebugMsg("Timer wrapped up")
     endfunction
     function s__Damage_addRecursive takes integer this returns nothing
@@ -3524,16 +3524,16 @@ endfunction
                 set s__Damage_isCode[this]=true
                 set s__Damage_userType[this]=DamageEngine_TYPE_CODE
             endif
-            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]
-            if DamageEngine__kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine__proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine__fischerMorrow) then
+            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]
+            if DamageEngine___kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine___proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine___fischerMorrow) then
                 if not DamageEngine_inception then
-                    set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
-                elseif not s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex] then
-                    set s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]=true
-                    if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine__sleepLevel then
-                        set s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] + 1
-                        if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine__LIMBO then
-                            set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
+                    set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
+                elseif not s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex] then
+                    set s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]=true
+                    if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine___sleepLevel then
+                        set s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] + 1
+                        if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine___LIMBO then
+                            set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
                         endif
                     endif
                 endif
@@ -3632,12 +3632,12 @@ endfunction
     function s__Damage_onDamaging takes nothing returns boolean
         local integer d= s__Damage_createFromEvent()
         //call BJDebugMsg("Pre-damage event running for " + GetUnitName(GetTriggerUnit()))
-        if DamageEngine__alarmSet then
-            if DamageEngine__totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
+        if DamageEngine___alarmSet then
+            if DamageEngine___totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
                 if s__Damage_damageType[d] == DAMAGE_TYPE_SPIRIT_LINK or s__Damage_damageType[d] == DAMAGE_TYPE_DEFENSIVE or s__Damage_damageType[d] == DAMAGE_TYPE_PLANT then
-                    set DamageEngine__totem=false
-                    set DamageEngine__lastInstance=s__Damage_index
-                    set DamageEngine__canKick=false
+                    set DamageEngine___totem=false
+                    set DamageEngine___lastInstance=s__Damage_index
+                    set DamageEngine___canKick=false
                 else
                     call s__Damage_failsafeClear() //Not an overlapping event - just wrap it up
                 endif
@@ -3656,8 +3656,8 @@ endfunction
             endif
 
         else
-            call TimerStart(DamageEngine__alarm, 0.00, false, function s__Damage_wakeUp)
-            set DamageEngine__alarmSet=true
+            call TimerStart(DamageEngine___alarm, 0.00, false, function s__Damage_wakeUp)
+            set DamageEngine___alarmSet=true
 
             set udg_AOEDamageSource=s__Damage_sourceUnit[d]
             set udg_EnhancedDamageTarget=s__Damage_targetUnit[d]
@@ -3667,11 +3667,11 @@ endfunction
         call GroupAddUnit(udg_DamageEventAOEGroup, s__Damage_targetUnit[d])
 
         if s__Damage_doPreEvents(d,true) then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_ZERO)
-            set DamageEngine__canKick=true
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_ZERO)
+            set DamageEngine___canKick=true
             call s__Damage_finish()
         endif
-        set DamageEngine__totem=DamageEngine__lastInstance == 0 or DamageEngine__attacksImmune[udg_DamageEventAttackT] or DamageEngine__damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
+        set DamageEngine___totem=DamageEngine___lastInstance == 0 or DamageEngine___attacksImmune[udg_DamageEventAttackT] or DamageEngine___damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
         return false
     endfunction
     function s__Damage_onDamaged takes nothing returns boolean
@@ -3680,17 +3680,17 @@ endfunction
         //call BJDebugMsg("Second damage event running for " + GetUnitName(GetTriggerUnit()))
         if s__Damage_prepped > 0 then
             set s__Damage_prepped=0
-        elseif DamageEngine__dreaming or s__Damage_prevAmt[d] == 0.00 then
+        elseif DamageEngine___dreaming or s__Damage_prevAmt[d] == 0.00 then
             return false
-        elseif DamageEngine__totem then
-            set DamageEngine__totem=false
+        elseif DamageEngine___totem then
+            set DamageEngine___totem=false
         else
             //This should only happen for stuff like Spirit Link or Thorns Aura/Carapace
             call s__Damage_afterDamage()
-            set s__Damage_index=DamageEngine__lastInstance
-            set DamageEngine__lastInstance=0
+            set s__Damage_index=DamageEngine___lastInstance
+            set DamageEngine___lastInstance=0
             set d=s__Damage_index
-            set DamageEngine__canKick=true
+            set DamageEngine___canKick=true
             call s__DamageTrigger_setGUIFromStruct(true)
         endif
 
@@ -3723,21 +3723,21 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_VARS_PLUGIN_05()
  
         if udg_DamageEventAmount > 0.00 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_SHIELD)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_SHIELD)
 
 
 
 
-            if DamageEngine__hasLethal or udg_DamageEventType < 0 then
+            if DamageEngine___hasLethal or udg_DamageEventType < 0 then
                 set udg_LethalDamageHP=GetWidgetLife(udg_DamageEventTarget) - udg_DamageEventAmount
-                if udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
-                    if DamageEngine__hasLethal then
-                        call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_LETHAL)
+                if udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
+                    if DamageEngine___hasLethal then
+                        call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_LETHAL)
            
                         set udg_DamageEventAmount=GetWidgetLife(udg_DamageEventTarget) - udg_LethalDamageHP
                         set s__Damage_damage[d]=udg_DamageEventAmount
                     endif
-                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
+                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
                         call SetUnitExploded(udg_DamageEventTarget, true)
                     endif
                 endif
@@ -3752,10 +3752,10 @@ endfunction
 
         endif
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
         endif
         call BlzSetEventDamage(udg_DamageEventAmount)
-        set DamageEngine__eventsRun=true
+        set DamageEngine___eventsRun=true
         if udg_DamageEventAmount == 0.00 then
             call s__Damage_finish()
         endif
@@ -3766,7 +3766,7 @@ endfunction
         if udg_NextDamageType == 0 then
            set udg_NextDamageType=DamageEngine_TYPE_CODE
         endif
-        if DamageEngine__dreaming then
+        if DamageEngine___dreaming then
             set d=s__Damage_create(src , tgt , amt , a , at , dt , wt)
             set s__Damage_isCode[d]=true
             set s__Damage_eFilter[d]=DamageEngine_FILTER_CODE
@@ -3795,49 +3795,49 @@ endfunction
     endfunction
     //===========================================================================
     function s__Damage_onInit takes nothing returns nothing
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t1, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine__t1, Filter(function s__Damage_onDamaging))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t1, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine___t1, Filter(function s__Damage_onDamaging))
  
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t2, EVENT_PLAYER_UNIT_DAMAGED)
-        call TriggerAddCondition(DamageEngine__t2, Filter(function s__Damage_onDamaged))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t2, EVENT_PLAYER_UNIT_DAMAGED)
+        call TriggerAddCondition(DamageEngine___t2, Filter(function s__Damage_onDamaged))
  
         //For recursion
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t3, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine__t3, Filter(function s__Damage_onRecursion))
-        call DisableTrigger(DamageEngine__t3)
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t3, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine___t3, Filter(function s__Damage_onRecursion))
+        call DisableTrigger(DamageEngine___t3)
  
         //For preventing Thorns/Defensive glitch.
         //Data gathered from https://www.hiveworkshop.com/threads/repo-in-progress-mapping-damage-types-to-their-abilities.316271/
-        set DamageEngine__attacksImmune[0]=false //ATTACK_TYPE_NORMAL
-        set DamageEngine__attacksImmune[1]=true //ATTACK_TYPE_MELEE  
-        set DamageEngine__attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
-        set DamageEngine__attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
-        set DamageEngine__attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
-        set DamageEngine__attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
-        set DamageEngine__attacksImmune[6]=true //ATTACK_TYPE_HERO    
+        set DamageEngine___attacksImmune[0]=false //ATTACK_TYPE_NORMAL
+        set DamageEngine___attacksImmune[1]=true //ATTACK_TYPE_MELEE  
+        set DamageEngine___attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
+        set DamageEngine___attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
+        set DamageEngine___attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
+        set DamageEngine___attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
+        set DamageEngine___attacksImmune[6]=true //ATTACK_TYPE_HERO    
  
-        set DamageEngine__damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
-        set DamageEngine__damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
-        set DamageEngine__damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
-        set DamageEngine__damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
-        set DamageEngine__damagesImmune[9]=false //DAMAGE_TYPE_COLD              
-        set DamageEngine__damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
-        set DamageEngine__damagesImmune[11]=true //DAMAGE_TYPE_POISON          
-        set DamageEngine__damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
-        set DamageEngine__damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
-        set DamageEngine__damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
-        set DamageEngine__damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
-        set DamageEngine__damagesImmune[16]=true //DAMAGE_TYPE_ACID            
-        set DamageEngine__damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
-        set DamageEngine__damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
-        set DamageEngine__damagesImmune[19]=false //DAMAGE_TYPE_MIND              
-        set DamageEngine__damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
-        set DamageEngine__damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
-        set DamageEngine__damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
-        set DamageEngine__damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
-        set DamageEngine__damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
-        set DamageEngine__damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
-        set DamageEngine__damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
+        set DamageEngine___damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
+        set DamageEngine___damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
+        set DamageEngine___damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
+        set DamageEngine___damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
+        set DamageEngine___damagesImmune[9]=false //DAMAGE_TYPE_COLD              
+        set DamageEngine___damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
+        set DamageEngine___damagesImmune[11]=true //DAMAGE_TYPE_POISON          
+        set DamageEngine___damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
+        set DamageEngine___damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
+        set DamageEngine___damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
+        set DamageEngine___damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
+        set DamageEngine___damagesImmune[16]=true //DAMAGE_TYPE_ACID            
+        set DamageEngine___damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
+        set DamageEngine___damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
+        set DamageEngine___damagesImmune[19]=false //DAMAGE_TYPE_MIND              
+        set DamageEngine___damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
+        set DamageEngine___damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
+        set DamageEngine___damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
+        set DamageEngine___damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
+        set DamageEngine___damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
+        set DamageEngine___damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
+        set DamageEngine___damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
     endfunction
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_DMGPKG()
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_01()
@@ -4117,7 +4117,7 @@ endfunction
         endfunction
     
 //Implemented from module FileIO__FileInit:
-        function s__File_FileIO__FileInit___onInit takes nothing returns nothing
+        function s__File_FileIO__FileInit__onInit takes nothing returns nothing
             // Read check
             set s__File_ReadEnabled=(s__File_readEx((s__File_write(s__File_open("FileTester.pld"),"FileIO_")),true)) == "FileIO_" // INLINED!!
         endfunction
@@ -4320,7 +4320,7 @@ endfunction
         endfunction
    
 //Implemented from module PlayerUtils__PlayerUtilsInit:
-        function s__User_PlayerUtils__PlayerUtilsInit___onInit takes nothing returns nothing
+        function s__User_PlayerUtils__PlayerUtilsInit__onInit takes nothing returns nothing
             local trigger t= CreateTrigger()
             local integer i= 0
             local integer p
@@ -4420,7 +4420,7 @@ endfunction
     
     
 //Implemented from module SyncHelper__INITS:
-        function s__SyncHelper__Sync_SyncHelper__INITS___onInit takes nothing returns nothing
+        function s__SyncHelper__Sync_SyncHelper__INITS__onInit takes nothing returns nothing
             local integer i= 0
             
             loop
@@ -7014,7 +7014,7 @@ function InitSounds takes nothing returns nothing
     call SetSoundConeAngles(gg_snd_FioraVoice2, 0.0, 0.0, 127)
     call SetSoundConeOrientation(gg_snd_FioraVoice2, 0.0, 0.0, 0.0)
     set gg_snd_Spell_DK_FrostStrike_Impact01=CreateSound("Spell_DK_FrostStrike_Impact01.mp3", false, true, true, 1, 1, "DoodadsEAX")
-    call SetSoundDuration(gg_snd_Spell_DK_FrostStrike_Impact01, 1724)
+    call SetSoundDuration(gg_snd_Spell_DK_FrostStrike_Impact01, 2560)
     call SetSoundChannel(gg_snd_Spell_DK_FrostStrike_Impact01, 0)
     call SetSoundVolume(gg_snd_Spell_DK_FrostStrike_Impact01, 127)
     call SetSoundPitch(gg_snd_Spell_DK_FrostStrike_Impact01, 1.0)
@@ -8361,7 +8361,7 @@ function CreateNeutralPassive takes nothing returns nothing
     call SetUnitColor(gg_unit_O000_0013, ConvertPlayerColor(9))
     call UnitAddItemToSlotById(gg_unit_O000_0013, 'I006', 0)
     call UnitAddItemToSlotById(gg_unit_O000_0013, 'I015', 1)
-    set gg_unit_H00B_0036=BlzCreateUnitWithSkin(p, 'H00B', - 194.3, 762.4, - 43.643, 'H00B')
+    set gg_unit_H00B_0036=BlzCreateUnitWithSkin(p, 'H00B', - 194.3, 762.4, 316.357, 'H00B')
     call SetUnitState(gg_unit_H00B_0036, UNIT_STATE_MANA, 1000)
     call SetUnitColor(gg_unit_H00B_0036, ConvertPlayerColor(12))
     call UnitAddItemToSlotById(gg_unit_H00B_0036, 'I01S', 0)
@@ -8371,7 +8371,7 @@ function CreateNeutralPassive takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'ntnt', 12896.0, - 12512.0, 239.709, 'ntnt')
     set u=BlzCreateUnitWithSkin(p, 'ntnt', 8960.0, - 10976.0, 342.763, 'ntnt')
     set u=BlzCreateUnitWithSkin(p, 'ntt2', 11200.0, - 11264.0, 270.000, 'ntt2')
-    set gg_unit_H00D_0059=BlzCreateUnitWithSkin(p, 'H00D', - 177.3, - 597.8, - 20.628, 'H00D')
+    set gg_unit_H00D_0059=BlzCreateUnitWithSkin(p, 'H00D', - 177.3, - 597.8, 339.372, 'H00D')
     call SetUnitState(gg_unit_H00D_0059, UNIT_STATE_MANA, 500)
     call SetUnitColor(gg_unit_H00D_0059, ConvertPlayerColor(3))
     call UnitAddItemToSlotById(gg_unit_H00D_0059, 'I006', 0)
@@ -8383,7 +8383,7 @@ function CreateNeutralPassive takes nothing returns nothing
     call UnitAddItemToSlotById(gg_unit_H00E_0060, 'I017', 1)
     call UnitAddItemToSlotById(gg_unit_H00E_0060, 'I01H', 2)
     call UnitAddItemToSlotById(gg_unit_H00E_0060, 'I074', 3)
-    set gg_unit_E001_0061=BlzCreateUnitWithSkin(p, 'E001', 441.2, 801.3, - 57.169, 'E001')
+    set gg_unit_E001_0061=BlzCreateUnitWithSkin(p, 'E001', 441.2, 801.3, 302.831, 'E001')
     call SetUnitColor(gg_unit_E001_0061, ConvertPlayerColor(12))
     call UnitAddItemToSlotById(gg_unit_E001_0061, 'I00B', 0)
     call UnitAddItemToSlotById(gg_unit_E001_0061, 'I01S', 1)
@@ -10470,7 +10470,7 @@ function Trig_GlobalDamageEvent_Func005Func042C takes nothing returns boolean
     if ( not ( udg_DamageEventSource == gg_unit_O024_0311 ) ) then
         return false
     endif
-    if ( not ( GetRandomInt(1, 100) <= 10 ) ) then
+    if ( not ( GetRandomInt(1, 100) <= 20 ) ) then
         return false
     endif
     if ( not ( IsUnitEnemy(udg_DamageEventTarget, GetOwningPlayer(udg_DamageEventSource)) == true ) ) then
@@ -13548,13 +13548,13 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             // -
             // HERO DAMAGE AMP vs UNDEAD
             if ( Trig_GlobalDamageEvent_Func011Func003Func012C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_UNDEAD[udg_player_num]) / 100.00 ) ) )
+                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_UNDEAD[udg_tempInt]) / 100.00 ) ) )
             else
             endif
             // -
             // HERO DAMAGE AMP vs ELITE
             if IsUnitType(udg_DamageEventTarget, UNIT_TYPE_GIANT) then
-            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_ELITES[udg_player_num]) / 100.00 ) ) )
+            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_ELITES[udg_tempInt]) / 100.00 ) ) )
             endif
             // -
             // Blade of Doom
@@ -38578,23 +38578,23 @@ function InitTrig_BladeworkCrit takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: FrostStrike
+// Trigger: HeavySlam
 //===========================================================================
-function Trig_FrostStrike_Conditions takes nothing returns boolean
+function Trig_HeavySlam_Conditions takes nothing returns boolean
     if ( not ( GetSpellAbilityId() == 'A09I' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_FrostStrike_Func011C takes nothing returns boolean
+function Trig_HeavySlam_Func010C takes nothing returns boolean
     if ( not ( UnitHasBuffBJ(GetSpellTargetUnit(), 'B02E') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_FrostStrike_Actions takes nothing returns nothing
+function Trig_HeavySlam_Actions takes nothing returns nothing
     call AddSpecialEffectTargetUnitBJ("weapon", GetTriggerUnit(), "Abilities\\Weapons\\FrostWyrmMissile\\FrostWyrmMissile.mdl")
     call DestroyEffectBJ(GetLastCreatedEffectBJ())
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
@@ -38603,22 +38603,20 @@ function Trig_FrostStrike_Actions takes nothing returns nothing
     call PlaySoundAtPointBJ(gg_snd_Spell_DK_FrostStrike_Impact01, 100, udg_tempLoc, udg_tempZ)
     call RemoveLocation(udg_tempLoc)
     set udg_tempZ=0.00
-    call UnitDamageTargetBJ(GetTriggerUnit(), GetSpellTargetUnit(), ( ( ( 0.50 + ( 0.10 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) + ( 30.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ), ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
-    call UnitDamageTargetBJ(GetTriggerUnit(), GetSpellTargetUnit(), ( ( ( 0.50 + ( 0.10 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) + ( 30.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ), ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC)
-    if ( Trig_FrostStrike_Func011C() ) then
-        call UnitDamageTargetBJ(GetTriggerUnit(), GetSpellTargetUnit(), ( ( ( 0.50 + ( 0.10 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) + ( 30.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ), ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
-        call UnitDamageTargetBJ(GetTriggerUnit(), GetSpellTargetUnit(), ( ( ( 0.50 + ( 0.10 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) + ( 30.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ), ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC)
+    call UnitDamageTargetBJ(GetTriggerUnit(), GetSpellTargetUnit(), ( ( ( 0.50 + ( 0.50 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) + ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ), ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
+    if ( Trig_HeavySlam_Func010C() ) then
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetSpellTargetUnit(), ( ( ( 0.50 + ( 0.50 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) + ( 50.00 * I2R(GetUnitAbilityLevelSwapped(GetSpellAbilityId(), GetTriggerUnit())) ) ), ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
         call UnitRemoveBuffBJ('B02E', GetSpellTargetUnit())
     else
     endif
 endfunction
 
 //===========================================================================
-function InitTrig_FrostStrike takes nothing returns nothing
-    set gg_trg_FrostStrike=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_FrostStrike, EVENT_PLAYER_UNIT_SPELL_EFFECT)
-    call TriggerAddCondition(gg_trg_FrostStrike, Condition(function Trig_FrostStrike_Conditions))
-    call TriggerAddAction(gg_trg_FrostStrike, function Trig_FrostStrike_Actions)
+function InitTrig_HeavySlam takes nothing returns nothing
+    set gg_trg_HeavySlam=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_HeavySlam, EVENT_PLAYER_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_HeavySlam, Condition(function Trig_HeavySlam_Conditions))
+    call TriggerAddAction(gg_trg_HeavySlam, function Trig_HeavySlam_Actions)
 endfunction
 
 //===========================================================================
@@ -64759,7 +64757,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_Riposte()
     call InitTrig_BladeworkUse()
     call InitTrig_BladeworkCrit()
-    call InitTrig_FrostStrike()
+    call InitTrig_HeavySlam()
     call InitTrig_Finale()
     call InitTrig_Commander()
     call InitTrig_Shockwave()
@@ -65709,7 +65707,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs57918437")
+call ExecuteFunc("jasshelper__initstructs44550703")
 call ExecuteFunc("NSLHelper__Init")
 call ExecuteFunc("NSLImpl__Init")
 call ExecuteFunc("NSLSaveLoad__Init")
@@ -65918,7 +65916,7 @@ function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boo
     return true
 endfunction
 
-function jasshelper__initstructs57918437 takes nothing returns nothing
+function jasshelper__initstructs44550703 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -65945,11 +65943,11 @@ function jasshelper__initstructs57918437 takes nothing returns nothing
 
 
 
-call ExecuteFunc("s__File_FileIO__FileInit___onInit")
+call ExecuteFunc("s__File_FileIO__FileInit__onInit")
 
-call ExecuteFunc("s__User_PlayerUtils__PlayerUtilsInit___onInit")
+call ExecuteFunc("s__User_PlayerUtils__PlayerUtilsInit__onInit")
 
-call ExecuteFunc("s__SyncHelper__Sync_SyncHelper__INITS___onInit")
+call ExecuteFunc("s__SyncHelper__Sync_SyncHelper__INITS__onInit")
 
 
 

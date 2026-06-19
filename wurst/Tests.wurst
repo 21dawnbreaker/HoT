@@ -14,6 +14,9 @@ init
             let u = udg_hero_by_player[plyer.getId() + 1]
             print(u.getProperName())
             CreateItem(EXCALIBUR_ITEM_ID, u.getX(), u.getY())
-        if msg == "-test5"
-            print(EXCALIBUR_SPELL_ID.toString())
+            CreateItem(EYE_OF_AVADRAAH_ITEM_ID, u.getX(), u.getY())
+            CreateItem(GIFT_OF_LORD_OF_LIES_ITEM_ID, u.getX(), u.getY())
+        if msg == "-legendary"
+            let u = udg_hero_by_player[plyer.getId() + 1]
+            CreateItem(ChooseRandomItem(5), u.getX(), u.getY())
         

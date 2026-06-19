@@ -2,16 +2,73 @@ package ExcaliburSpell
 
 import ClosureEvents
 import ClosureTimers
+import ClosureForGroups
 import SoundUtils
+import HashMap
 
+import AbilityID
 import ExcaliburObjects
 
+var dict = new HashMap<unit, effect>
+var unit_group = CreateGroup()
+
+function add_to_unit_group(unit u, unit caster)
+    if not unit_group.has(u) and u.isEnemyOf(caster.getOwner()) and u.isAliveTrick()
+        unit_group.add(u)
+
 init
-    EventListener.add(EVENT_PLAYER_UNIT_SPELL_CAST) -> 
-        let caster = GetTriggerUnit()
-        if spellbeingcast lol
+    EventListener.add(EVENT_PLAYER_UNIT_SPELL_CHANNEL) -> 
+        if GetSpellAbilityId() == EXCALIBUR_SPELL_ID
+            let caster = GetTriggerUnit()
+            caster.setAnimation("ready")
+            let eff = addEffect(CAST_EFFECT, caster.getPos3Real() - vec3(10, 10, 45))
+            dict.put(caster, eff)
         
-    EventListener.onCast(EXCALIBUR_ABIL) (unit caster) ->
-        SOUND_EFFECT.playOnPoint(caster.getPos3Real())
+    EventListener.onCast(EXCALIBUR_SPELL_ID) (unit caster) ->
+        SOUND_EFFECT.play()
+
+        let caster_angle = caster.getFacingAngle()
+        let offset = 200.0
+        let radius = 250.0
+        let dmg = (max(caster.getAgi(true), caster.getStr(true), caster.getInt(true)) * 50).toReal()
+        let z = caster.getLocalZ()
+
+        for i = 1 to 10
+            let current_pos = caster.getPos().polarOffset(caster_angle, offset * i)
+
+            flashEffect(FLASH_EFFECT, current_pos + vec3(0, 0, z))
+            flashEffect(FLASH_EFFECT, current_pos.polarOffset(caster_angle + angle(90.0), offset) + vec3(0, 0, z))
+            flashEffect(FLASH_EFFECT, current_pos.polarOffset(caster_angle + angle(90.0), offset * 2) + vec3(0, 0, z))
+            flashEffect(FLASH_EFFECT, current_pos.polarOffset(caster_angle - angle(90.0), offset) + vec3(0, 0, z))
+            flashEffect(FLASH_EFFECT, current_pos.polarOffset(caster_angle - angle(90.0), offset * 2) + vec3(0, 0, z))
+
+            forUnitsInRange(current_pos, 125) (unit u) ->
+                add_to_unit_group(u, caster)
+            forUnitsInRange(current_pos.polarOffset(caster_angle + angle(90.0), offset), radius) (unit u) ->
+                add_to_unit_group(u, caster)
+            forUnitsInRange(current_pos.polarOffset(caster_angle + angle(90.0), offset * 2), radius) (unit u) ->
+                add_to_unit_group(u, caster)
+            forUnitsInRange(current_pos.polarOffset(caster_angle - angle(90.0), offset), radius) (unit u) ->
+                add_to_unit_group(u, caster)
+            forUnitsInRange(current_pos.polarOffset(caster_angle - angle(90.0), offset * 2), radius) (unit u) ->
+                add_to_unit_group(u, caster)
+
+        for u in unit_group
+            if not u.isType(UNIT_TYPE_HERO)
+                caster.damageTarget(u, dmg, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS)
+            else
+                caster.damageTarget(u, dmg * 3, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS)
+        unit_group.clear()
+
+        doAfter(0.1) -> 
+            caster.setAnimation("Attack Slam")
+        doAfter(0.8) -> 
+            caster.setAnimation("ready")
             
+    EventListener.add(EVENT_PLAYER_UNIT_SPELL_ENDCAST) -> 
+        if GetSpellAbilityId() == EXCALIBUR_SPELL_ID
+            let caster = GetTriggerUnit()
+            if dict.has(caster)
+                dict.getAndRemove(caster).destr()
+        
         

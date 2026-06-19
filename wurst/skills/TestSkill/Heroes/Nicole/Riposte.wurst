@@ -4,11 +4,15 @@ import ClosureEvents
 import SoundUtils
 
 
-let sound_eff = new SoundDefinition("Sounds/Spell_WR_Slam_Revamp_Impact_04.mp3")
+let sound_eff = new SoundDefinition("Sounds/SPELL_WR_MORTAL_STRIKE_44_02.mp3")
+let sound_eff2 = new SoundDefinition("Sounds/SPELL_WR_MORTAL_STRIKE_44_04.mp3")
 
 @compiletime function applySpecificParamsForSoundEffect()
     sound_eff.is3D = true
 
 init
     EventListener.onCast('A09K') (unit caster) ->
-        sound_eff.playOnPoint(caster.getPos3Real())
+        if GetRandomInt(0, 1) == 0
+            sound_eff.playOnPoint(caster.getPos3Real())
+        else
+            sound_eff2.playOnPoint(caster.getPos3Real())
