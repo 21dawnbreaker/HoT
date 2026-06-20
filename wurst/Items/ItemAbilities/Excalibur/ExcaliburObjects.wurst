@@ -7,9 +7,9 @@ import public BuffObjEditing
 
 
 public constant EXCALIBUR_ABIL = compiletime(ABIL_ID_GEN.next())
-public var CAST_EFFECT = "Models/SacredStorm.mdx"
-public var FLASH_EFFECT = "Divine Edict.mdx"
-public var SOUND_EFFECT = new SoundDefinition("Sounds/ExcaliburSound.mp3")
+public let CAST_EFFECT = "Models/SacredStorm.mdx"
+public let FLASH_EFFECT = "Divine Edict.mdx"
+public let SOUND_EFFECT = new SoundDefinition("Sounds/ExcaliburSound.mp3")
 
 @compiletime function applySpecificParamsForSoundEffect()
     SOUND_EFFECT.is3D = false

@@ -1053,6 +1053,12 @@ integer udg_morddigan_previous_dmg= 0
 boolean udg_unlocked_rokfor= false
 integer array udg_multiboard_kills
 boolean udg_miniboss_spawn= false
+integer udg_squad_TO= 0
+integer udg_squad_Naluara= 0
+integer udg_squad_Orc= 0
+boolean udg_game_over_incoming= false
+timer array udg_game_over_timer
+integer udg_NUMBER_OF_ENEMIES_PER_SPAWN= 0
 
     // Generated
 rect gg_rct_StartLoc= null
@@ -1471,7 +1477,6 @@ sound gg_snd_GhoulDeath= null
 sound gg_snd_RaiseSkeleton= null
 sound gg_snd_Combat1= null
 sound gg_snd_Combat2= null
-sound gg_snd_Combat3= null
 sound gg_snd_Combat4= null
 sound gg_snd_Taunt__mp3cut_net_u= null
 sound gg_snd_ChestOpen= null
@@ -2685,6 +2690,13 @@ destructable gg_dest_BTtw_12095= null
 destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
+sound gg_snd_Combat3= null
+sound gg_snd_Combat7= null
+sound gg_snd_UnleashTheDrakar= null
+sound gg_snd_KedBardu= null
+sound gg_snd_IntroMusic= null
+trigger gg_trg_GameOverIncoming= null
+trigger gg_trg_GameOver= null
 
 trigger l__library_init
 
@@ -6113,6 +6125,18 @@ function InitGlobals takes nothing returns nothing
     endloop
 
     set udg_miniboss_spawn=false
+    set udg_squad_TO=0
+    set udg_squad_Naluara=0
+    set udg_squad_Orc=0
+    set udg_game_over_incoming=false
+    set i=0
+    loop
+        exitwhen ( i > 1 )
+        set udg_game_over_timer[i]=CreateTimer()
+        set i=i + 1
+    endloop
+
+    set udg_NUMBER_OF_ENEMIES_PER_SPAWN=6
 endfunction
 
 //***************************************************************************
@@ -7081,11 +7105,6 @@ function InitSounds takes nothing returns nothing
     call SetSoundChannel(gg_snd_Combat2, 0)
     call SetSoundVolume(gg_snd_Combat2, 127)
     call SetSoundPitch(gg_snd_Combat2, 1.0)
-    set gg_snd_Combat3=CreateSound("Combat3.mp3", false, false, false, 1, 1, "DoodadsEAX")
-    call SetSoundDuration(gg_snd_Combat3, 290768)
-    call SetSoundChannel(gg_snd_Combat3, 0)
-    call SetSoundVolume(gg_snd_Combat3, 90)
-    call SetSoundPitch(gg_snd_Combat3, 1.0)
     set gg_snd_Combat4=CreateSound("Combat4.mp3", false, false, false, 0, 0, "DefaultEAXON")
     call SetSoundDuration(gg_snd_Combat4, 132336)
     call SetSoundChannel(gg_snd_Combat4, 0)
@@ -7843,6 +7862,31 @@ function InitSounds takes nothing returns nothing
     call SetSoundParamsFromLabel(gg_snd_GarithosYesAttack2, "GarithosYesAttack")
     call SetSoundDuration(gg_snd_GarithosYesAttack2, 1886)
     call SetSoundVolume(gg_snd_GarithosYesAttack2, 127)
+    set gg_snd_Combat3=CreateSound("Combat3.mp3", false, false, false, 1, 1, "SpellsEAX")
+    call SetSoundDuration(gg_snd_Combat3, 88084)
+    call SetSoundChannel(gg_snd_Combat3, 0)
+    call SetSoundVolume(gg_snd_Combat3, 90)
+    call SetSoundPitch(gg_snd_Combat3, 1.0)
+    set gg_snd_Combat7=CreateSound("Combat7.mp3", false, false, false, 1, 1, "SpellsEAX")
+    call SetSoundDuration(gg_snd_Combat7, 67160)
+    call SetSoundChannel(gg_snd_Combat7, 0)
+    call SetSoundVolume(gg_snd_Combat7, 45)
+    call SetSoundPitch(gg_snd_Combat7, 1.0)
+    set gg_snd_UnleashTheDrakar=CreateSound("UnleashTheDrakar.mp3", false, false, false, 1, 1, "SpellsEAX")
+    call SetSoundDuration(gg_snd_UnleashTheDrakar, 109740)
+    call SetSoundChannel(gg_snd_UnleashTheDrakar, 0)
+    call SetSoundVolume(gg_snd_UnleashTheDrakar, 80)
+    call SetSoundPitch(gg_snd_UnleashTheDrakar, 1.0)
+    set gg_snd_KedBardu=CreateSound("KedBardu.mp3", false, false, false, 1, 1, "SpellsEAX")
+    call SetSoundDuration(gg_snd_KedBardu, 152058)
+    call SetSoundChannel(gg_snd_KedBardu, 0)
+    call SetSoundVolume(gg_snd_KedBardu, 80)
+    call SetSoundPitch(gg_snd_KedBardu, 1.0)
+    set gg_snd_IntroMusic=CreateSound("IntroMusic.mp3", false, false, false, 1, 1, "SpellsEAX")
+    call SetSoundDuration(gg_snd_IntroMusic, 200856)
+    call SetSoundChannel(gg_snd_IntroMusic, 0)
+    call SetSoundVolume(gg_snd_IntroMusic, 80)
+    call SetSoundPitch(gg_snd_IntroMusic, 1.0)
 endfunction
 
 //***************************************************************************
@@ -9139,7 +9183,14 @@ endfunction
 //===========================================================================
 // Trigger: GeneralPlayableMapAreaEnter
 //===========================================================================
-function Trig_GeneralPlayableMapAreaEnter_Func003Func007C takes nothing returns boolean
+function Trig_GeneralPlayableMapAreaEnter_Func003Func002C takes nothing returns boolean
+    if ( not ( IsUnitType(GetTriggerUnit(), UNIT_TYPE_HERO) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GeneralPlayableMapAreaEnter_Func003Func008C takes nothing returns boolean
     if ( ( GetOwningPlayer(GetTriggerUnit()) == Player(22) ) ) then
         return true
     endif
@@ -9150,7 +9201,7 @@ function Trig_GeneralPlayableMapAreaEnter_Func003Func007C takes nothing returns 
 endfunction
 
 function Trig_GeneralPlayableMapAreaEnter_Func003C takes nothing returns boolean
-    if ( not Trig_GeneralPlayableMapAreaEnter_Func003Func007C() ) then
+    if ( not Trig_GeneralPlayableMapAreaEnter_Func003Func008C() ) then
         return false
     endif
     if ( not ( udg_RoomMultiboardCounting > 1.00 ) ) then
@@ -9440,6 +9491,10 @@ function Trig_GeneralPlayableMapAreaEnter_Actions takes nothing returns nothing
     // Difficulty
     if ( Trig_GeneralPlayableMapAreaEnter_Func003C() ) then
         call BlzSetUnitMaxHP(GetTriggerUnit(), ( BlzGetUnitMaxHP(GetTriggerUnit()) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetTriggerUnit()) )) * R2I(udg_RoomMultiboardCounting) ) ))
+        if ( Trig_GeneralPlayableMapAreaEnter_Func003Func002C() ) then
+            call BlzSetUnitMaxHP(GetTriggerUnit(), ( BlzGetUnitMaxHP(GetTriggerUnit()) + ( BlzGetUnitMaxHP(GetTriggerUnit()) / 2 ) ))
+        else
+        endif
         call SetUnitLifeBJ(GetTriggerUnit(), GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetTriggerUnit()))
         set udg_tempReal=I2R(BlzGetUnitBaseDamage(GetTriggerUnit(), 0))
         call BlzSetUnitBaseDamage(GetTriggerUnit(), ( BlzGetUnitBaseDamage(GetTriggerUnit(), 0) + 2 ), 0)
@@ -10143,8 +10198,31 @@ function Trig_DisobidienceOfDeathResAndRemove_Func001A takes nothing returns not
     endif
 endfunction
 
+function Trig_DisobidienceOfDeathResAndRemove_Func003C takes nothing returns boolean
+    if ( not ( udg_game_over_incoming == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_DisobidienceOfDeathResAndRemove_Actions takes nothing returns nothing
     call ForGroupBJ(udg_HeroesGroup, function Trig_DisobidienceOfDeathResAndRemove_Func001A)
+    // -
+    if ( Trig_DisobidienceOfDeathResAndRemove_Func003C() ) then
+        set udg_game_over_incoming=false
+        call CinematicFadeBJ(bj_CINEFADETYPE_FADEIN, 1.00, "ReplaceableTextures\\CameraMasks\\Black_mask.blp", 0, 0, 0, 0)
+        call EndThematicMusicBJ()
+        call SetMusicVolumeBJ(100.00)
+        set udg_musicOn=0
+        call EnableTrigger(gg_trg_MusicEnd)
+        call EnableTrigger(gg_trg_BossMusicTimer)
+        call EnableTrigger(gg_trg_BossMusicHeroes)
+        call EnableTrigger(gg_trg_BossMusicHeroesKilling)
+        call EnableTrigger(gg_trg_BossMusicBoss)
+        call DisableTrigger(gg_trg_GameOverIncoming)
+        call DisableTrigger(gg_trg_GameOver)
+    else
+    endif
 endfunction
 
 //===========================================================================
@@ -12061,7 +12139,7 @@ function Trig_GlobalDamageEvent_Func014Func010Func003C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func014Func010Func005Func002Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func014Func010Func005Func002Func001C takes nothing returns boolean
     if ( not ( udg_DIFFICULTY == 3 ) ) then
         return false
     endif
@@ -12069,7 +12147,7 @@ function Trig_GlobalDamageEvent_Func014Func010Func005Func002Func002C takes nothi
 endfunction
 
 function Trig_GlobalDamageEvent_Func014Func010Func005Func002C takes nothing returns boolean
-    if ( not ( udg_tempInt > 33 ) ) then
+    if ( not ( udg_tempInt > 35 ) ) then
         return false
     endif
     if ( not ( GetUnitAbilityLevelSwapped('A0GH', udg_DamageEventTarget) >= 1 ) ) then
@@ -13868,8 +13946,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
             if ( Trig_GlobalDamageEvent_Func014Func010Func005C() ) then
                 set udg_tempInt=GetRandomInt(1, 100)
                 if ( Trig_GlobalDamageEvent_Func014Func010Func005Func002C() ) then
-                    call DisableTrigger(GetTriggeringTrigger())
-                    if ( Trig_GlobalDamageEvent_Func014Func010Func005Func002Func002C() ) then
+                    if ( Trig_GlobalDamageEvent_Func014Func010Func005Func002Func001C() ) then
                     else
                         call UnitRemoveAbilityBJ('A0GH', udg_DamageEventTarget)
                     endif
@@ -14367,8 +14444,30 @@ function Trig_HeroResFunc_Func001A takes nothing returns nothing
     endif
 endfunction
 
+function Trig_HeroResFunc_Func002C takes nothing returns boolean
+    if ( not ( udg_game_over_incoming == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_HeroResFunc_Actions takes nothing returns nothing
     call ForGroupBJ(udg_HeroesGroup, function Trig_HeroResFunc_Func001A)
+    if ( Trig_HeroResFunc_Func002C() ) then
+        set udg_game_over_incoming=false
+        call CinematicFadeBJ(bj_CINEFADETYPE_FADEIN, 1.00, "ReplaceableTextures\\CameraMasks\\Black_mask.blp", 0, 0, 0, 0)
+        call EndThematicMusicBJ()
+        call SetMusicVolumeBJ(100.00)
+        set udg_musicOn=0
+        call EnableTrigger(gg_trg_MusicEnd)
+        call EnableTrigger(gg_trg_BossMusicTimer)
+        call EnableTrigger(gg_trg_BossMusicHeroes)
+        call EnableTrigger(gg_trg_BossMusicHeroesKilling)
+        call EnableTrigger(gg_trg_BossMusicBoss)
+        call DisableTrigger(gg_trg_GameOverIncoming)
+        call DisableTrigger(gg_trg_GameOver)
+    else
+    endif
 endfunction
 
 //===========================================================================
@@ -14394,6 +14493,13 @@ function Trig_DeathPenalty_Func003C takes nothing returns boolean
     return true
 endfunction
 
+function Trig_DeathPenalty_Func004C takes nothing returns boolean
+    if ( not ( CountUnitsInGroup(udg_HeroesGroup) == CountUnitsInGroup(udg_HeroesDead_UG) ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_DeathPenalty_Actions takes nothing returns nothing
     call GroupAddUnitSimple(GetTriggerUnit(), udg_HeroesDead_UG)
     call GroupRemoveUnitSimple(GetEnumUnit(), udg_HeroesAlive_UG)
@@ -14401,6 +14507,12 @@ function Trig_DeathPenalty_Actions takes nothing returns nothing
         call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 20 ) ))
     else
         call SetPlayerStateBJ(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD, ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) - ( GetPlayerState(GetOwningPlayer(GetTriggerUnit()), PLAYER_STATE_RESOURCE_GOLD) / 5 ) ))
+    endif
+    if ( Trig_DeathPenalty_Func004C() ) then
+        set udg_game_over_incoming=true
+        call EnableTrigger(gg_trg_GameOverIncoming)
+        call StartTimerBJ(udg_game_over_timer[1], false, 20.00)
+    else
     endif
 endfunction
 
@@ -14410,6 +14522,78 @@ function InitTrig_DeathPenalty takes nothing returns nothing
     call TriggerRegisterAnyUnitEventBJ(gg_trg_DeathPenalty, EVENT_PLAYER_UNIT_DEATH)
     call TriggerAddCondition(gg_trg_DeathPenalty, Condition(function Trig_DeathPenalty_Conditions))
     call TriggerAddAction(gg_trg_DeathPenalty, function Trig_DeathPenalty_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: GameOverIncoming
+//===========================================================================
+function Trig_GameOverIncoming_Conditions takes nothing returns boolean
+    if ( not ( CountUnitsInGroup(udg_HeroesGroup) == CountUnitsInGroup(udg_HeroesDead_UG) ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GameOverIncoming_Actions takes nothing returns nothing
+    call CinematicFadeBJ(bj_CINEFADETYPE_FADEOUT, 180.00, "ReplaceableTextures\\CameraMasks\\Black_mask.blp", 0, 0, 0, 0)
+    call EndThematicMusicBJ()
+    call SetMusicVolumeBJ(100.00)
+    call PlayThematicMusicBJ("IntroMusic.mp3")
+    set udg_musicOn=1
+    call DisableTrigger(gg_trg_MusicEnd)
+    call DisableTrigger(gg_trg_BossMusicTimer)
+    call DisableTrigger(gg_trg_BossMusicHeroes)
+    call DisableTrigger(gg_trg_BossMusicHeroesKilling)
+    call DisableTrigger(gg_trg_BossMusicBoss)
+    call EnableTrigger(gg_trg_GameOver)
+    call StartTimerBJ(udg_game_over_timer[2], false, 200.00)
+endfunction
+
+//===========================================================================
+function InitTrig_GameOverIncoming takes nothing returns nothing
+    set gg_trg_GameOverIncoming=CreateTrigger()
+    call TriggerRegisterTimerExpireEventBJ(gg_trg_GameOverIncoming, udg_game_over_timer[1])
+    call TriggerAddCondition(gg_trg_GameOverIncoming, Condition(function Trig_GameOverIncoming_Conditions))
+    call TriggerAddAction(gg_trg_GameOverIncoming, function Trig_GameOverIncoming_Actions)
+endfunction
+
+//===========================================================================
+// Trigger: GameOver
+//===========================================================================
+function Trig_GameOver_Func001Func013A takes nothing returns nothing
+endfunction
+
+function Trig_GameOver_Func001C takes nothing returns boolean
+    if ( not ( CountUnitsInGroup(udg_HeroesGroup) == CountUnitsInGroup(udg_HeroesDead_UG) ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_GameOver_Actions takes nothing returns nothing
+    if ( Trig_GameOver_Func001C() ) then
+        call ForForce(udg_PlayerGroup, function Trig_GameOver_Func001Func013A)
+    else
+        set udg_game_over_incoming=false
+        call CinematicFadeBJ(bj_CINEFADETYPE_FADEIN, 1.00, "ReplaceableTextures\\CameraMasks\\Black_mask.blp", 0, 0, 0, 0)
+        call EndThematicMusicBJ()
+        call SetMusicVolumeBJ(100.00)
+        set udg_musicOn=0
+        call EnableTrigger(gg_trg_MusicEnd)
+        call EnableTrigger(gg_trg_BossMusicTimer)
+        call EnableTrigger(gg_trg_BossMusicHeroes)
+        call EnableTrigger(gg_trg_BossMusicHeroesKilling)
+        call EnableTrigger(gg_trg_BossMusicBoss)
+        call DisableTrigger(gg_trg_GameOverIncoming)
+        call DisableTrigger(gg_trg_GameOver)
+    endif
+endfunction
+
+//===========================================================================
+function InitTrig_GameOver takes nothing returns nothing
+    set gg_trg_GameOver=CreateTrigger()
+    call TriggerRegisterTimerExpireEventBJ(gg_trg_GameOver, udg_game_over_timer[2])
+    call TriggerAddAction(gg_trg_GameOver, function Trig_GameOver_Actions)
 endfunction
 
 //===========================================================================
@@ -14447,6 +14631,9 @@ function Trig_Leave_Actions takes nothing returns nothing
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     call GroupRemoveUnitSimple(udg_hero_by_player[GetConvertedPlayerId(GetTriggerPlayer())], udg_HeroesGroup)
+    call GroupRemoveUnitSimple(udg_hero_by_player[GetConvertedPlayerId(GetTriggerPlayer())], udg_HeroesDead_UG)
+    call GroupRemoveUnitSimple(udg_hero_by_player[GetConvertedPlayerId(GetTriggerPlayer())], udg_HeroesAlive_UG)
+    call GroupRemoveUnitSimple(udg_hero_by_player[GetConvertedPlayerId(GetTriggerPlayer())], udg_HeroesBossfightUG)
     call GroupRemoveUnitSimple(udg_backpack_by_player[GetConvertedPlayerId(GetTriggerPlayer())], udg_BackpackGroup)
     call RemoveUnit(udg_backpack_by_player[GetConvertedPlayerId(GetTriggerPlayer())])
     call RemoveUnit(udg_hero_by_player[GetConvertedPlayerId(GetTriggerPlayer())])
@@ -16188,7 +16375,7 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                 exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                 // number of enemies
                 set bj_forLoopAIndex=1
-                set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                 loop
                     exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                     set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -16222,7 +16409,7 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                     exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                     // number of enemies
                     set bj_forLoopAIndex=1
-                    set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                    set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                     loop
                         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                         set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -16255,7 +16442,7 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                     exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                     // number of enemies
                     set bj_forLoopAIndex=1
-                    set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                    set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                     loop
                         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                         set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -16718,7 +16905,7 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                 exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                 // number of enemies
                 set bj_forLoopAIndex=1
-                set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                 loop
                     exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                     set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -16752,7 +16939,7 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                     exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                     // number of enemies
                     set bj_forLoopAIndex=1
-                    set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                    set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                     loop
                         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                         set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -16785,7 +16972,7 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                     exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                     // number of enemies
                     set bj_forLoopAIndex=1
-                    set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                    set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                     loop
                         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                         set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -17247,7 +17434,7 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                 exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                 // number of enemies
                 set bj_forLoopAIndex=1
-                set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                 loop
                     exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                     set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -17281,7 +17468,7 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                     exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                     // number of enemies
                     set bj_forLoopAIndex=1
-                    set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                    set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                     loop
                         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                         set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -17308,13 +17495,13 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                 endloop
             else
                 set udg_tempInt2=GetRandomInt(1, 5)
-                set bj_forLoopBIndex=1
-                set bj_forLoopBIndexEnd=5
+                set bj_forLoopBIndex=3
+                set bj_forLoopBIndexEnd=6
                 loop
                     exitwhen bj_forLoopBIndex > bj_forLoopBIndexEnd
                     // number of enemies
                     set bj_forLoopAIndex=1
-                    set bj_forLoopAIndexEnd=GetRandomInt(1, 5)
+                    set bj_forLoopAIndexEnd=GetRandomInt(( udg_NUMBER_OF_ENEMIES_PER_SPAWN - 3 ), udg_NUMBER_OF_ENEMIES_PER_SPAWN)
                     loop
                         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
                         set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
@@ -33810,6 +33997,7 @@ endfunction
 function Trig_AncestralVision_Func002A takes nothing returns nothing
     if ( Trig_AncestralVision_Func002Func001C() ) then
         call GroupRemoveUnitSimple(GetEnumUnit(), udg_HeroesDead_UG)
+        call GroupAddUnitSimple(GetEnumUnit(), udg_HeroesAlive_UG)
         set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(gg_unit_O000_0013), 150.00, GetRandomDirectionDeg())
         call AddSpecialEffectLocBJ(udg_tempLoc, "Stormfall.mdx")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
@@ -39850,8 +40038,18 @@ function Trig_Decimate_Func003C takes nothing returns boolean
     return true
 endfunction
 
+function Trig_Decimate_Func011Func001Func001C takes nothing returns boolean
+    if ( ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return true
+    endif
+    if ( ( GetOwningPlayer(GetEnumUnit()) == Player(PLAYER_NEUTRAL_PASSIVE) ) ) then
+        return true
+    endif
+    return false
+endfunction
+
 function Trig_Decimate_Func011Func001C takes nothing returns boolean
-    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+    if ( not Trig_Decimate_Func011Func001Func001C() ) then
         return false
     endif
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
@@ -39870,7 +40068,7 @@ function Trig_Decimate_Func011A takes nothing returns nothing
     if ( Trig_Decimate_Func011Func001C() ) then
         set udg_decimate_targets=( udg_decimate_targets + 1 )
         set udg_tempUnit=GetEnumUnit()
-        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
     else
     endif
 endfunction
@@ -39904,7 +40102,7 @@ function Trig_Decimate_Actions takes nothing returns nothing
     call PlaySoundAtPointBJ(gg_snd_Spell_WR_Ravager_Cast_04, 100.00, udg_tempLoc, udg_tempZ)
     call ForGroupBJ(GetUnitsInRangeOfLocAll(125.00, udg_tempLoc2), function Trig_Decimate_Func011A)
     if ( Trig_Decimate_Func012C() ) then
-        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(GetTriggerUnit(), udg_tempUnit, udg_tempReal, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
     else
     endif
     set udg_decimate_targets=0
@@ -40059,7 +40257,17 @@ function Trig_Whirlwind_Func005C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Whirlwind_Func007Func001Func002C takes nothing returns boolean
+function Trig_Whirlwind_Func007Func001Func001C takes nothing returns boolean
+    if ( ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return true
+    endif
+    if ( ( GetOwningPlayer(GetEnumUnit()) == Player(PLAYER_NEUTRAL_PASSIVE) ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_Whirlwind_Func007Func001Func003C takes nothing returns boolean
     if ( not ( udg_battle_stance_offensive == true ) ) then
         return false
     endif
@@ -40067,7 +40275,7 @@ function Trig_Whirlwind_Func007Func001Func002C takes nothing returns boolean
 endfunction
 
 function Trig_Whirlwind_Func007Func001C takes nothing returns boolean
-    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+    if ( not Trig_Whirlwind_Func007Func001Func001C() ) then
         return false
     endif
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
@@ -40084,9 +40292,9 @@ endfunction
 
 function Trig_Whirlwind_Func007A takes nothing returns nothing
     if ( Trig_Whirlwind_Func007Func001C() ) then
-        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
-        if ( Trig_Whirlwind_Func007Func001Func002C() ) then
-            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
+        if ( Trig_Whirlwind_Func007Func001Func003C() ) then
+            call UnitDamageTargetBJ(GetTriggerUnit(), GetEnumUnit(), udg_tempReal, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
         else
             set udg_whirlwind_bonus=( udg_whirlwind_bonus + ( 1 + GetUnitAbilityLevelSwapped('A0KG', GetTriggerUnit()) ) )
         endif
@@ -40103,7 +40311,7 @@ endfunction
 
 function Trig_Whirlwind_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    set udg_tempReal=( ( 50.00 + ( 50.00 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) ) + ( ( 0.60 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) )
+    set udg_tempReal=( ( 50.00 + ( 50.00 * I2R(GetUnitAbilityLevelSwapped('A0KH', GetTriggerUnit())) ) ) + ( 1.00 * I2R(GetHeroStatBJ(bj_HEROSTAT_STR, GetTriggerUnit(), true)) ) )
     set udg_tempZ=GetLocationZ(udg_tempLoc)
     if ( Trig_Whirlwind_Func004C() ) then
         set udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))]=( udg_HERO_DAMAGE_DEF_PHYSICAL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_E00C_0088))] - udg_whirlwind_bonus )
@@ -47708,6 +47916,13 @@ function Trig_ObeliskSpawnUndead_Func001Func002C takes nothing returns boolean
     return true
 endfunction
 
+function Trig_ObeliskSpawnUndead_Func002C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 10) == 1 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_ObeliskSpawnUndead_Actions takes nothing returns nothing
     set bj_forLoopAIndex=1
     set bj_forLoopAIndexEnd=5
@@ -47725,6 +47940,15 @@ function Trig_ObeliskSpawnUndead_Actions takes nothing returns nothing
         call RemoveLocation(udg_tempLoc)
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
+    if ( Trig_ObeliskSpawnUndead_Func002C() ) then
+        set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(GetTriggerUnit()), 200.00, GetRandomDirectionDeg())
+        call CreateNUnitsAtLoc(1, udg_EnemyRoom[GetRandomInt(17, 20)], GetOwningPlayer(GetTriggerUnit()), udg_tempLoc, GetRandomDirectionDeg())
+        call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
+        call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\Items\\RitualDagger\\RitualDaggerTarget.mdl")
+        call DestroyEffectBJ(GetLastCreatedEffectBJ())
+        call RemoveLocation(udg_tempLoc)
+    else
+    endif
 endfunction
 
 //===========================================================================
@@ -47823,6 +48047,7 @@ function Trig_ObeliskCoil_Actions takes nothing returns nothing
         set udg_tempLoc2=GetUnitLoc(GetTriggerUnit())
         set udg_tempUnit=GetLastCreatedUnit()
         call CreateNUnitsAtLoc(1, 'u00H', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc2, bj_UNIT_FACING)
+        call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
         call UnitAddAbilityBJ('A09S', GetLastCreatedUnit())
         call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
         call IssueTargetOrderBJ(GetLastCreatedUnit(), "chainlightning", udg_tempUnit)
@@ -48694,49 +48919,115 @@ function Trig_Choosing_Func017C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_Choosing_Func019Func001C takes nothing returns boolean
+function Trig_Choosing_Func019Func002C takes nothing returns boolean
+    if ( ( GetSpellTargetUnit() == gg_unit_E001_0061 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_E00C_0088 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_O024_0311 ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_Choosing_Func019C takes nothing returns boolean
+    if ( not Trig_Choosing_Func019Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Choosing_Func020Func002C takes nothing returns boolean
+    if ( ( GetSpellTargetUnit() == gg_unit_H00M_0276 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_H00N_0277 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_H00E_0060 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_H00O_0278 ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_Choosing_Func020C takes nothing returns boolean
+    if ( not Trig_Choosing_Func020Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Choosing_Func021Func002C takes nothing returns boolean
+    if ( ( GetSpellTargetUnit() == gg_unit_H001_0116 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_O000_0013 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_O002_0064 ) ) then
+        return true
+    endif
+    if ( ( GetSpellTargetUnit() == gg_unit_O001_0069 ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_Choosing_Func021C takes nothing returns boolean
+    if ( not Trig_Choosing_Func021Func002C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_Choosing_Func023Func001C takes nothing returns boolean
     if ( not ( GetOwningPlayer(GetTriggerUnit()) == udg_Player[GetForLoopIndexA()] ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func021C takes nothing returns boolean
+function Trig_Choosing_Func025C takes nothing returns boolean
     if ( not ( GetSpellTargetUnit() == gg_unit_O000_0013 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func022C takes nothing returns boolean
+function Trig_Choosing_Func026C takes nothing returns boolean
     if ( not ( GetSpellTargetUnit() == gg_unit_H001_0116 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func023C takes nothing returns boolean
+function Trig_Choosing_Func027C takes nothing returns boolean
     if ( not ( GetSpellTargetUnit() == gg_unit_H00A_0082 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func028C takes nothing returns boolean
+function Trig_Choosing_Func032C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func029C takes nothing returns boolean
+function Trig_Choosing_Func033C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_Choosing_Func030C takes nothing returns boolean
+function Trig_Choosing_Func034C takes nothing returns boolean
     if ( not ( udg_CurrentLocation == 3 ) ) then
         return false
     endif
@@ -48834,28 +49125,41 @@ function Trig_Choosing_Actions takes nothing returns nothing
         endloop
     else
     endif
+    // squads
+    if ( Trig_Choosing_Func019C() ) then
+        set udg_squad_TO=( udg_squad_TO + 1 )
+    else
+    endif
+    if ( Trig_Choosing_Func020C() ) then
+        set udg_squad_Naluara=( udg_squad_Naluara + 1 )
+    else
+    endif
+    if ( Trig_Choosing_Func021C() ) then
+        set udg_squad_Orc=( udg_squad_Orc + 1 )
+    else
+    endif
     // ------------
     set bj_forLoopAIndex=1
     set bj_forLoopAIndexEnd=7
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_Choosing_Func019Func001C() ) then
+        if ( Trig_Choosing_Func023Func001C() ) then
             call MultiboardSetItemValueBJ(udg_Multiboard1, 1, ( GetForLoopIndexA() + 1 ), GetHeroProperName(GetSpellTargetUnit()))
         else
         endif
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     // ------------
-    if ( Trig_Choosing_Func021C() ) then
+    if ( Trig_Choosing_Func025C() ) then
         call CreateNUnitsAtLoc(1, 'e008', GetOwningPlayer(GetTriggerUnit()), GetUnitLoc(GetLastCreatedUnit()), bj_UNIT_FACING)
         set udg_DISOBIDIENCE_OF_DEATH=( udg_DISOBIDIENCE_OF_DEATH + 1 )
     else
     endif
-    if ( Trig_Choosing_Func022C() ) then
+    if ( Trig_Choosing_Func026C() ) then
         call EnableTrigger(gg_trg_KoshaiaStandingPeriodic)
     else
     endif
-    if ( Trig_Choosing_Func023C() ) then
+    if ( Trig_Choosing_Func027C() ) then
         call GroupAddUnitSimple(gg_unit_H00A_0082, udg_toughness_UG)
         set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_H00A_0082))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(gg_unit_H00A_0082))] + 30 )
     else
@@ -48863,19 +49167,19 @@ function Trig_Choosing_Actions takes nothing returns nothing
     // ------------
     // ------------
     set udg_vote_on=false
-    if ( Trig_Choosing_Func028C() ) then
+    if ( Trig_Choosing_Func032C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegOrc[udg_HeroNumber]), bj_UNIT_FACING)
         set udg_StashU[udg_HeroNumber]=GetLastCreatedUnit()
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_StashUG)
     else
     endif
-    if ( Trig_Choosing_Func029C() ) then
+    if ( Trig_Choosing_Func033C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegNaluara[udg_HeroNumber]), bj_UNIT_FACING)
         set udg_StashU[udg_HeroNumber]=GetLastCreatedUnit()
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_StashUG)
     else
     endif
-    if ( Trig_Choosing_Func030C() ) then
+    if ( Trig_Choosing_Func034C() ) then
         call CreateNUnitsAtLoc(1, 'h01W', GetOwningPlayer(GetTriggerUnit()), GetRectCenter(udg_StashRegAlliance[udg_HeroNumber]), bj_UNIT_FACING)
         set udg_StashU[udg_HeroNumber]=GetLastCreatedUnit()
         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_StashUG)
@@ -49242,10 +49546,7 @@ endfunction
 // Default melee game initialization for all players
 //===========================================================================
 function Trig_Initialization_Actions takes nothing returns nothing
-    local framehandle frame= BlzGetOriginFrame(ORIGIN_FRAME_MINIMAP, 0)
-    call BlzFrameClearAllPoints(frame)
-    call BlzFrameSetPoint(frame, FRAMEPOINT_BOTTOMLEFT, frame, FRAMEPOINT_BOTTOMLEFT, 0.0200, 0.009)
-    call BlzFrameSetSize(frame, 0.10, 0.09)
+    call BlzChangeMinimapTerrainTex("war3mapImported\\black.blp")
     // BlackMinimap ^
     // - - -
     call ClearMapMusic()
@@ -49426,12 +49727,12 @@ endfunction
 //===========================================================================
 // Trigger: TimeElapsedInit
 //===========================================================================
-function Trig_TimeElapsedInit_Func007A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func008A takes nothing returns nothing
     call SetPlayerStateBJ(GetEnumPlayer(), PLAYER_STATE_RESOURCE_GOLD, 80)
     call SetCameraBoundsToRectForPlayerBJ(GetEnumPlayer(), gg_rct_MainBossLoc)
 endfunction
 
-function Trig_TimeElapsedInit_Func055Func001C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func056Func001C takes nothing returns boolean
     if ( not ( GetPlayerColor(GetEnumPlayer()) != PLAYER_COLOR_PEANUT ) ) then
         return false
     endif
@@ -49453,8 +49754,8 @@ function Trig_TimeElapsedInit_Func055Func001C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_TimeElapsedInit_Func055A takes nothing returns nothing
-    if ( Trig_TimeElapsedInit_Func055Func001C() ) then
+function Trig_TimeElapsedInit_Func056A takes nothing returns nothing
+    if ( Trig_TimeElapsedInit_Func056Func001C() ) then
         set udg_PlayerCountChoosing=( udg_PlayerCountChoosing + 1 )
         call SetPlayerAllianceStateBJ(Player(19), GetEnumPlayer(), bj_ALLIANCE_UNALLIED)
         call SetPlayerAllianceStateBJ(GetEnumPlayer(), Player(19), bj_ALLIANCE_UNALLIED)
@@ -49466,7 +49767,7 @@ function Trig_TimeElapsedInit_Func055A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_TimeElapsedInit_Func056Func001Func001C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func057Func001Func001C takes nothing returns boolean
     if ( ( GetPlayerColor(GetEnumPlayer()) == PLAYER_COLOR_SNOW ) ) then
         return true
     endif
@@ -49479,40 +49780,41 @@ function Trig_TimeElapsedInit_Func056Func001Func001C takes nothing returns boole
     return false
 endfunction
 
-function Trig_TimeElapsedInit_Func056Func001C takes nothing returns boolean
-    if ( not Trig_TimeElapsedInit_Func056Func001Func001C() ) then
+function Trig_TimeElapsedInit_Func057Func001C takes nothing returns boolean
+    if ( not Trig_TimeElapsedInit_Func057Func001Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_TimeElapsedInit_Func056A takes nothing returns nothing
-    if ( Trig_TimeElapsedInit_Func056Func001C() ) then
+function Trig_TimeElapsedInit_Func057A takes nothing returns nothing
+    if ( Trig_TimeElapsedInit_Func057Func001C() ) then
         call ForceAddPlayerSimple(GetEnumPlayer(), udg_PlayerBotsUG)
     else
     endif
 endfunction
 
-function Trig_TimeElapsedInit_Func092A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func093A takes nothing returns nothing
     call DialogDisplayBJ(true, udg_dialogDifficulty, GetEnumPlayer())
 endfunction
 
-function Trig_TimeElapsedInit_Func101Func001A takes nothing returns nothing
+function Trig_TimeElapsedInit_Func102Func001A takes nothing returns nothing
     call SetUnitInvulnerable(GetEnumUnit(), true)
 endfunction
 
-function Trig_TimeElapsedInit_Func101A takes nothing returns nothing
-    call ForGroupBJ(GetUnitsOfPlayerAll(GetEnumPlayer()), function Trig_TimeElapsedInit_Func101Func001A)
+function Trig_TimeElapsedInit_Func102A takes nothing returns nothing
+    call ForGroupBJ(GetUnitsOfPlayerAll(GetEnumPlayer()), function Trig_TimeElapsedInit_Func102Func001A)
 endfunction
 
 function Trig_TimeElapsedInit_Actions takes nothing returns nothing
+    call PlayThematicMusicBJ("IntroMusic.mp3")
     call SetPlayerName(Player(19), "TRIGSTR_9088")
     call SetPlayerAllianceStateBJ(Player(19), Player(22), bj_ALLIANCE_ALLIED_VISION)
     call SetPlayerAllianceStateBJ(Player(19), Player(23), bj_ALLIANCE_ALLIED_VISION)
     call SetPlayerAllianceStateBJ(Player(22), Player(19), bj_ALLIANCE_ALLIED_VISION)
     call SetPlayerAllianceStateBJ(Player(23), Player(19), bj_ALLIANCE_ALLIED_VISION)
     call BlzSetHeroProperName(gg_unit_U007_0220, "Ricardessa")
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func007A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func008A)
     call EnableTrigger(gg_trg_GameInit)
 
 
@@ -49560,8 +49862,8 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call GroupAddUnitSimple(gg_unit_H00M_0276, udg_NotAlliance)
     call GroupAddUnitSimple(gg_unit_O024_0311, udg_NotAlliance)
     // ----
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func055A)
     call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func056A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func057A)
     call SetPlayerAllianceStateBJ(Player(22), Player(11), bj_ALLIANCE_ALLIED)
     call SetPlayerAllianceStateBJ(Player(23), Player(11), bj_ALLIANCE_ALLIED)
     call SetPlayerAllianceStateBJ(Player(11), Player(22), bj_ALLIANCE_ALLIED)
@@ -49608,7 +49910,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     set udg_dialogDifficultyButton[3]=GetLastCreatedButtonBJ()
     call DialogAddButtonBJ(udg_dialogDifficulty, "TRIGSTR_7291")
     set udg_dialogDifficultyButton[4]=GetLastCreatedButtonBJ()
-    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func092A)
+    call ForForce(GetPlayersAll(), function Trig_TimeElapsedInit_Func093A)
     call SetTimeOfDay(12.00)
     call UseTimeOfDayBJ(false)
     set udg_tempLoc=GetUnitLoc(gg_unit_H00A_0082)
@@ -49617,7 +49919,7 @@ function Trig_TimeElapsedInit_Actions takes nothing returns nothing
     call UnitApplyTimedLifeBJ(2.00, 'BTLF', GetLastCreatedUnit())
     call IssueTargetOrderBJ(GetLastCreatedUnit(), "innerfire", gg_unit_H00A_0082)
     set udg_CurrentLocation=GetRandomInt(1, 3)
-    call ForForce(udg_PlayerBotsUG, function Trig_TimeElapsedInit_Func101A)
+    call ForForce(udg_PlayerBotsUG, function Trig_TimeElapsedInit_Func102A)
     call ConditionalTriggerExecute(gg_trg_InitCosmetic)
 endfunction
 
@@ -64147,81 +64449,168 @@ function Trig_MusicMiscStart_Conditions takes nothing returns boolean
     return true
 endfunction
 
+function Trig_MusicMiscStart_Func008Func002C takes nothing returns boolean
+    if ( not ( udg_squad_TO > 2 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MusicMiscStart_Func008Func003C takes nothing returns boolean
+    if ( not ( udg_squad_Orc > 2 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MusicMiscStart_Func008Func004C takes nothing returns boolean
+    if ( not ( udg_squad_Naluara > 2 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MusicMiscStart_Func008Func006C takes nothing returns boolean
+    if ( ( udg_squad_Naluara > 2 ) ) then
+        return true
+    endif
+    if ( ( udg_squad_Orc > 2 ) ) then
+        return true
+    endif
+    if ( ( udg_squad_TO > 2 ) ) then
+        return true
+    endif
+    return false
+endfunction
+
 function Trig_MusicMiscStart_Func008C takes nothing returns boolean
+    if ( not ( udg_tempInt == 4 ) ) then
+        return false
+    endif
+    if ( not Trig_MusicMiscStart_Func008Func006C() ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MusicMiscStart_Func010Func001C takes nothing returns boolean
     if ( not ( udg_tempInt == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MusicMiscStart_Func009C takes nothing returns boolean
+function Trig_MusicMiscStart_Func010Func002C takes nothing returns boolean
     if ( not ( udg_tempInt == 2 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MusicMiscStart_Func010C takes nothing returns boolean
+function Trig_MusicMiscStart_Func010Func003C takes nothing returns boolean
     if ( not ( udg_tempInt == 3 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MusicMiscStart_Func011C takes nothing returns boolean
+function Trig_MusicMiscStart_Func010Func004C takes nothing returns boolean
     if ( not ( udg_tempInt == 4 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MusicMiscStart_Func012C takes nothing returns boolean
+function Trig_MusicMiscStart_Func010Func005C takes nothing returns boolean
     if ( not ( udg_tempInt == 5 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_MusicMiscStart_Func013C takes nothing returns boolean
+function Trig_MusicMiscStart_Func010Func006C takes nothing returns boolean
     if ( not ( udg_tempInt == 6 ) ) then
         return false
     endif
     return true
 endfunction
 
+function Trig_MusicMiscStart_Func010Func007C takes nothing returns boolean
+    if ( not ( udg_tempInt == 7 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_MusicMiscStart_Func010C takes nothing returns boolean
+    if ( not ( udg_musicOn == 0 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_MusicMiscStart_Actions takes nothing returns nothing
-    set udg_musicOn=1
-    set udg_tempInt=GetRandomInt(1, 6)
+    set udg_tempInt=GetRandomInt(1, 7)
+    // squad music
     if ( Trig_MusicMiscStart_Func008C() ) then
-        call PlayThematicMusicBJ("Combat1.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 90.00)
+        set udg_musicOn=1
+        if ( Trig_MusicMiscStart_Func008Func002C() ) then
+            call PlayThematicMusicBJ("UnleashTheDrakar.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 115.00)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func008Func003C() ) then
+            call PlayThematicMusicBJ("LergzanUlti.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 45.00)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func008Func004C() ) then
+            call PlayThematicMusicBJ("HoMMBattle.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 65.00)
+        else
+        endif
     else
     endif
-    if ( Trig_MusicMiscStart_Func009C() ) then
-        call PlayThematicMusicBJ("Combat2.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 51.80)
-    else
-    endif
+    // - - -
     if ( Trig_MusicMiscStart_Func010C() ) then
-        call PlayThematicMusicBJ("Combat3.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 290.70)
+        if ( Trig_MusicMiscStart_Func010Func001C() ) then
+            call PlayThematicMusicBJ("Combat1.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 90.00)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func010Func002C() ) then
+            call PlayThematicMusicBJ("Combat2.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 51.80)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func010Func003C() ) then
+            call PlayThematicMusicBJ("Combat3.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 90.00)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func010Func004C() ) then
+            call PlayThematicMusicBJ("Combat4.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 132.30)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func010Func005C() ) then
+            call PlayThematicMusicBJ("combat5.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 70.00)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func010Func006C() ) then
+            call PlayThematicMusicBJ("Combat6.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 136.00)
+        else
+        endif
+        if ( Trig_MusicMiscStart_Func010Func007C() ) then
+            call PlayThematicMusicBJ("Combat7.mp3")
+            call StartTimerBJ(udg_MusicTimer, false, 70.00)
+        else
+        endif
     else
     endif
-    if ( Trig_MusicMiscStart_Func011C() ) then
-        call PlayThematicMusicBJ("Combat4.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 132.30)
-    else
-    endif
-    if ( Trig_MusicMiscStart_Func012C() ) then
-        call PlayThematicMusicBJ("combat5.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 70.00)
-    else
-    endif
-    if ( Trig_MusicMiscStart_Func013C() ) then
-        call PlayThematicMusicBJ("Combat6.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 136.00)
-    else
-    endif
+    set udg_musicOn=1
     call SetMusicVolumeBJ(100.00)
     set udg_tempInt=0
 endfunction
@@ -64342,6 +64731,8 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_GlobalDamageEvent()
     call InitTrig_HeroResFunc()
     call InitTrig_DeathPenalty()
+    call InitTrig_GameOverIncoming()
+    call InitTrig_GameOver()
     call InitTrig_Leave()
     call InitTrig_bossfight1()
     call InitTrig_bossfight2()
@@ -65240,29 +65631,29 @@ function InitCustomPlayerSlots takes nothing returns nothing
     // Player 1
     call SetPlayerStartLocation(Player(1), 1)
     call SetPlayerColor(Player(1), ConvertPlayerColor(1))
-    call SetPlayerRacePreference(Player(1), RACE_PREF_RANDOM)
-    call SetPlayerRaceSelectable(Player(1), true)
+    call SetPlayerRacePreference(Player(1), RACE_PREF_HUMAN)
+    call SetPlayerRaceSelectable(Player(1), false)
     call SetPlayerController(Player(1), MAP_CONTROL_USER)
 
     // Player 3
     call SetPlayerStartLocation(Player(3), 2)
     call SetPlayerColor(Player(3), ConvertPlayerColor(3))
-    call SetPlayerRacePreference(Player(3), RACE_PREF_RANDOM)
-    call SetPlayerRaceSelectable(Player(3), true)
+    call SetPlayerRacePreference(Player(3), RACE_PREF_HUMAN)
+    call SetPlayerRaceSelectable(Player(3), false)
     call SetPlayerController(Player(3), MAP_CONTROL_USER)
 
     // Player 5
     call SetPlayerStartLocation(Player(5), 3)
     call SetPlayerColor(Player(5), ConvertPlayerColor(5))
-    call SetPlayerRacePreference(Player(5), RACE_PREF_RANDOM)
-    call SetPlayerRaceSelectable(Player(5), true)
+    call SetPlayerRacePreference(Player(5), RACE_PREF_HUMAN)
+    call SetPlayerRaceSelectable(Player(5), false)
     call SetPlayerController(Player(5), MAP_CONTROL_USER)
 
     // Player 6
     call SetPlayerStartLocation(Player(6), 4)
     call SetPlayerColor(Player(6), ConvertPlayerColor(6))
-    call SetPlayerRacePreference(Player(6), RACE_PREF_RANDOM)
-    call SetPlayerRaceSelectable(Player(6), true)
+    call SetPlayerRacePreference(Player(6), RACE_PREF_HUMAN)
+    call SetPlayerRaceSelectable(Player(6), false)
     call SetPlayerController(Player(6), MAP_CONTROL_USER)
 
     // Player 12
@@ -65284,8 +65675,8 @@ function InitCustomPlayerSlots takes nothing returns nothing
     // Player 16
     call SetPlayerStartLocation(Player(16), 7)
     call SetPlayerColor(Player(16), ConvertPlayerColor(16))
-    call SetPlayerRacePreference(Player(16), RACE_PREF_RANDOM)
-    call SetPlayerRaceSelectable(Player(16), true)
+    call SetPlayerRacePreference(Player(16), RACE_PREF_HUMAN)
+    call SetPlayerRaceSelectable(Player(16), false)
     call SetPlayerController(Player(16), MAP_CONTROL_USER)
 
     // Player 18
@@ -65304,8 +65695,8 @@ function InitCustomPlayerSlots takes nothing returns nothing
     // Player 20
     call SetPlayerStartLocation(Player(20), 9)
     call SetPlayerColor(Player(20), ConvertPlayerColor(20))
-    call SetPlayerRacePreference(Player(20), RACE_PREF_RANDOM)
-    call SetPlayerRaceSelectable(Player(20), true)
+    call SetPlayerRacePreference(Player(20), RACE_PREF_HUMAN)
+    call SetPlayerRaceSelectable(Player(20), false)
     call SetPlayerController(Player(20), MAP_CONTROL_COMPUTER)
 
     // Player 21
@@ -65328,7 +65719,7 @@ function InitCustomPlayerSlots takes nothing returns nothing
     call SetPlayerStartLocation(Player(23), 12)
     call ForcePlayerStartLocation(Player(23), 12)
     call SetPlayerColor(Player(23), ConvertPlayerColor(23))
-    call SetPlayerRacePreference(Player(23), RACE_PREF_NIGHTELF)
+    call SetPlayerRacePreference(Player(23), RACE_PREF_UNDEAD)
     call SetPlayerRaceSelectable(Player(23), false)
     call SetPlayerController(Player(23), MAP_CONTROL_COMPUTER)
 
@@ -65707,7 +66098,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs44550703")
+call ExecuteFunc("jasshelper__initstructs127816468")
 call ExecuteFunc("NSLHelper__Init")
 call ExecuteFunc("NSLImpl__Init")
 call ExecuteFunc("NSLSaveLoad__Init")
@@ -65916,7 +66307,7 @@ function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boo
     return true
 endfunction
 
-function jasshelper__initstructs44550703 takes nothing returns nothing
+function jasshelper__initstructs127816468 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()

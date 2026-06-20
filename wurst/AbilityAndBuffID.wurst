@@ -1,0 +1,13 @@
+package AbilityAndBuffID
+
+import ExcaliburObjects
+import EyeOfAvadraahObjects
+
+
+// buffs
+public constant EYE_OF_AVADRAAH_BUFF_ID = EYE_OF_AVADRAAH_BUFF
+
+
+// items
+public constant EXCALIBUR_SPELL_ID = EXCALIBUR_ABIL
+public constant EYE_OF_AVADRAAH_SPELL_ID = EYE_OF_AVADRAAH_ABIL

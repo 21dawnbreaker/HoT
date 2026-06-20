@@ -2,7 +2,7 @@ package Tests
 import ClosureEvents
 
 import ItemCreation
-import AbilityID
+import AbilityAndBuffID
 
 
 init

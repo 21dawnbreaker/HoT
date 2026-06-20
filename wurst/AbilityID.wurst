@@ -1,7 +1,0 @@
-package AbilityID
-
-import ExcaliburObjects
-
-
-// items
-public constant EXCALIBUR_SPELL_ID = EXCALIBUR_ABIL

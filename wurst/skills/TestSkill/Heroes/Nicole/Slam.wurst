@@ -2,13 +2,24 @@ package Slam
 
 import ClosureEvents
 import SoundUtils
+import DamageEvent
 
-
-let sound_eff = new SoundDefinition("Sounds/Spell_WR_Slam_Revamp_Impact_04.mp3")
-
-@compiletime function applySpecificParamsForSoundEffect()
-    sound_eff.is3D = true
+let sound_eff = new SoundDefinition("Sounds/Spell_WR_Slam_Revamp_Impact_04.mp3", false, true)
 
 init
-    EventListener.onCast('A09I') (unit caster) ->
-        sound_eff.playOnPoint(caster.getPos3Real())
+    EventListener.onCast('A0KN') (unit caster) ->
+        caster.setAnimation("ready")
+
+    DamageEvent.addListener() ->
+        let unit_ = DamageEvent.getSource()
+        let target = DamageEvent.getTarget()
+
+        if unit_ == gg_unit_O024_0311 and DamageEvent.getAttackType() == ATTACK_TYPE_MELEE and unit_.hasAbility('B049')
+            let dmg = 50.0 * unit_.getAbilityLevel('A09I') + unit_.getStr(true) * (0.5 + (0.5 * unit_.getAbilityLevel('A09I')))
+
+            DamageEvent.setNextDamageFromCode()
+            sound_eff.playOnPoint(target.getPos3Real())
+            unit_.damageTarget(target, dmg, false, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS)
+            unit_.removeAbility('B049')
+            unit_.setAnimation("Attack Slam")
+            unit_.queueAnimation("ready")

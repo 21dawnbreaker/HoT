@@ -3,12 +3,10 @@ package Bladework
 import ClosureEvents
 import SoundUtils
 
-
-let sound_eff = new SoundDefinition("Sounds/Spell_WR_DieByTheSword_StateDone_02.mp3")
-
-@compiletime function applySpecificParamsForSoundEffect()
-    sound_eff.is3D = true
+let sound_eff = new SoundDefinition("Sounds/Spell_WR_DieByTheSword_StateDone_02.mp3", false, true)
 
 init
     EventListener.onCast('A09L') (unit caster) ->
         sound_eff.playOnPoint(caster.getPos3Real())
+
+    

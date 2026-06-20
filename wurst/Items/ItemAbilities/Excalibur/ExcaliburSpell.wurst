@@ -6,7 +6,7 @@ import ClosureForGroups
 import SoundUtils
 import HashMap
 
-import AbilityID
+import AbilityAndBuffID
 import ExcaliburObjects
 
 var dict = new HashMap<unit, effect>
@@ -59,6 +59,11 @@ init
             else
                 caster.damageTarget(u, dmg * 3, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS)
         unit_group.clear()
+
+        for p in udg_PlayerGroup
+            p.cameraSetEQNoise(6)
+            doAfter(0.8) -> 
+                p.cameraClearNoise()
 
         doAfter(0.1) -> 
             caster.setAnimation("Attack Slam")

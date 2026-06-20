@@ -1,0 +1,42 @@
+package EyeOfAvadraahObjects
+
+import ChannelAbilityPreset
+import public Assets
+import public BuffObjEditing
+
+public constant EYE_OF_AVADRAAH_ABIL = compiletime(ABIL_ID_GEN.next())
+public constant EYE_OF_AVADRAAH_AURA = compiletime(ABIL_ID_GEN.next())
+public constant EYE_OF_AVADRAAH_BUFF = compiletime(BUFF_ID_GEN.next())
+public constant FLASH_EFFECT = Abilities.feralspirittarget
+
+@compiletime function genBuff()
+    new BuffDefinition(EYE_OF_AVADRAAH_BUFF, 'Basl')
+        ..setName("Forbidden Might")
+        ..setTooltipNormal("Forbidden Might")
+        ..setTooltipNormalExtended("Damage output increased.")
+        ..setIcon("ReplaceableTextures\\CommandButtons\\BTNSnakeEyeAmulet.blp")
+        ..setArtTarget("Models\\Devil Aura.mdx")
+        ..setTargetAttachmentPoint0(AttachmentPoints.origin)
+
+@compiletime function genObjBuffAbil()
+    new AbilityDefinitionAuraDevotionCreep(EYE_OF_AVADRAAH_AURA)
+        ..setAreaofEffect(1, 1)
+        ..setTargetsAllowed(1, "self")
+        ..setArmorBonus(1, 0)
+        ..setDurationHero(1, 0.5)
+        ..setArtTarget("Models\\Devil Aura.mdx")
+        ..setBuffs(1, EYE_OF_AVADRAAH_BUFF.toRawCode())
+
+@compiletime function genObj()
+    new AbilityDefinitionRoarcreepSkeletalOrc(EYE_OF_AVADRAAH_ABIL)
+        ..setName("Eye Of Avadraah")
+        ..setItemAbility(true)
+        ..setAnimationNames("ready")
+        ..setArtCaster("")
+        ..setDamageIncrease(1, 0)
+        ..setAreaofEffect(1, 1.0)
+        ..setManaCost(1, 0)
+        ..setCooldown(1, 90.0)
+        ..setCastingTime(1, 0.0)
+        ..setDurationHero(1, 0.001)
+        ..setBuffs(1, "B01F")

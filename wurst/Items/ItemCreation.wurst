@@ -4,7 +4,7 @@ import ItemObjEditing
 import ObjectIdGenerator
 import ObjectIds
 
-import public AbilityID
+import public AbilityAndBuffID
 
 let ORIGIN_ITEM_ID = 'rst1'
 
@@ -48,6 +48,8 @@ let not_spawnable = 8
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCritter Two-Thumbs Portrait.blp")..setModelUsed("war3mapImported\\Scroll.mdl")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities("")
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(trinket)
         ..setGoldCost(300)
 
@@ -57,14 +59,15 @@ let not_spawnable = 8
 @compiletime function genEyeOfAvadraahItem()
     new ItemDefinition(EYE_OF_AVADRAAH_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc82596Око Авадрааха|r")..setTooltipBasic("|cffc82596Око Авадрааха|r")
-        ..setTooltipExtended("+40 ко всем характеристикам. |n+15% ко всему наносимому урону. |n+15% к сопротивлению магии |n|cffc82596Способность: \"Запретная мощь\" - вы обретаете +300% ко всему наносимому урону на 60 сек., но ваше мировоззрение навсегда снижается на -2|r.")
-        ..setDescription("+40 ко всем характеристикам. |n+15% ко всему наносимому урону. |n+15% к сопротивлению магии |n|cffc82596Способность: \"Запретная мощь\" - вы обретаете +300% ко всему наносимому урону на 60 сек., но ваше мировоззрение навсегда снижается на -2|n. |n|n[|cff00ffffУкрашение|r]")
+        ..setTooltipExtended("+40 ко всем характеристикам. |n+15% ко всему наносимому урону. |n+15% к сопротивлению магии |n|cffc82596Способность: \"Запретная мощь\" - вы обретаете +300% ко всему наносимому урону на 45 сек., но ваше мировоззрение навсегда снижается на -2|r.")
+        ..setDescription("+40 ко всем характеристикам. |n+15% ко всему наносимому урону. |n+15% к сопротивлению магии |n|cffc82596Способность: \"Запретная мощь\" - вы обретаете +300% ко всему наносимому урону на 45 сек., но ваше мировоззрение навсегда снижается на -2|n. |n|n[|cff00ffffУкрашение|r]")
         ..setLevel(epic)..setLevelUnclassified(epic)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(40)..setTintingColor3Blue(30)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNSnakeEyeAmulet.blp")..setModelUsed("SpellShieldAmulet_RFRGD.mdl")..setScalingValue(0.5)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("" + "A0I1")
+        ..setAbilities(EYE_OF_AVADRAAH_SPELL_ID.toRawCode() + "," + "A0I1")
         ..setActivelyUsed(true)
+        ..setCooldownGroup(EYE_OF_AVADRAAH_SPELL_ID.toRawCode())
         ..setClassification(trinket)
         ..setGoldCost(500)
 
@@ -79,6 +82,7 @@ let not_spawnable = 8
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities("" + "A0I1,A0CT,A0BH")
         ..setActivelyUsed(true)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(armor)
         ..setGoldCost(500)
 
@@ -96,5 +100,6 @@ let not_spawnable = 8
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities(EXCALIBUR_SPELL_ID.toRawCode() + "," + "A0IV,A0I5")
         ..setActivelyUsed(true)
+        ..setCooldownGroup(EXCALIBUR_SPELL_ID.toRawCode())
         ..setClassification(weapon)
         ..setGoldCost(1000)

@@ -4,8 +4,8 @@ import ClosureEvents
 import SoundUtils
 
 
-let sound_eff = new SoundDefinition("Sounds/SPELL_WR_MORTAL_STRIKE_44_02.mp3")
-let sound_eff2 = new SoundDefinition("Sounds/SPELL_WR_MORTAL_STRIKE_44_04.mp3")
+let sound_eff = new SoundDefinition("Sounds/SPELL_WR_MORTAL_STRIKE_44_02.mp3", false, true)
+let sound_eff2 = new SoundDefinition("Sounds/SPELL_WR_MORTAL_STRIKE_44_04.mp3", false, true)
 
 @compiletime function applySpecificParamsForSoundEffect()
     sound_eff.is3D = true
