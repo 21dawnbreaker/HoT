@@ -1,9 +1,14 @@
 package PotionDrinkSound
 
 import ClosureEvents
+import SoundUtils
+
+
+let drink_sound = new SoundDefinition("Sounds/diablo2potiondrink.wav", false, true)
 
 function doSoundEffect(unit u)
-    PlaySoundOnUnitBJ(gg_snd_diablo2potiondrink, 100, u)
+    // PlaySoundOnUnitBJ(gg_snd_diablo2potiondrink, 100, u)
+    drink_sound.playOnPoint(u.getPos3Real())
 
 init
     // HP

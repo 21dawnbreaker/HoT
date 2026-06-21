@@ -1,31 +1,31 @@
 globals
 //globals from DamageEngine:
 constant boolean LIBRARY_DamageEngine=true
-constant boolean DamageEngine___USE_GUI= true
+constant boolean DamageEngine__USE_GUI= true
                                                        
-constant boolean DamageEngine___USE_SCALING= DamageEngine___USE_GUI
-constant boolean DamageEngine___USE_EXTRA= true
-constant boolean DamageEngine___USE_ARMOR_MOD= true
-constant boolean DamageEngine___USE_MELEE_RANGE= true
-constant boolean DamageEngine___USE_LETHAL= true
+constant boolean DamageEngine__USE_SCALING= DamageEngine__USE_GUI
+constant boolean DamageEngine__USE_EXTRA= true
+constant boolean DamageEngine__USE_ARMOR_MOD= true
+constant boolean DamageEngine__USE_MELEE_RANGE= true
+constant boolean DamageEngine__USE_LETHAL= true
    
-constant integer DamageEngine___LIMBO= 16
+constant integer DamageEngine__LIMBO= 16
    
 constant integer DamageEngine_TYPE_CODE= 1
 constant integer DamageEngine_TYPE_PURE= 2
-constant real DamageEngine___DEATH_VAL= 0.405
-timer DamageEngine___alarm= CreateTimer()
-boolean DamageEngine___alarmSet= false
+constant real DamageEngine__DEATH_VAL= 0.405
+timer DamageEngine__alarm= CreateTimer()
+boolean DamageEngine__alarmSet= false
     //Values to track the original pre-spirit Link/defensive damage values
-integer DamageEngine___lastInstance= 0
-boolean DamageEngine___canKick= true
-boolean DamageEngine___totem= false
-boolean array DamageEngine___attacksImmune
-boolean array DamageEngine___damagesImmune
+integer DamageEngine__lastInstance= 0
+boolean DamageEngine__canKick= true
+boolean DamageEngine__totem= false
+boolean array DamageEngine__attacksImmune
+boolean array DamageEngine__damagesImmune
     //Made global in order to use enable/disable behavior.
-trigger DamageEngine___t1= CreateTrigger()
-trigger DamageEngine___t2= CreateTrigger()
-trigger DamageEngine___t3= CreateTrigger()
+trigger DamageEngine__t1= CreateTrigger()
+trigger DamageEngine__t2= CreateTrigger()
+trigger DamageEngine__t3= CreateTrigger()
     //These variables coincide with Blizzard's "limitop" type definitions so as to enable users (GUI in particular) with some nice performance perks.
 constant integer DamageEngine_FILTER_ATTACK= 0
 constant integer DamageEngine_FILTER_MELEE= 1
@@ -34,16 +34,16 @@ constant integer DamageEngine_FILTER_RANGED= 3
 constant integer DamageEngine_FILTER_SPELL= 4
 constant integer DamageEngine_FILTER_CODE= 5
 constant integer DamageEngine_FILTER_MAX= 6
-integer DamageEngine___eventFilter= DamageEngine_FILTER_OTHER
+integer DamageEngine__eventFilter= DamageEngine_FILTER_OTHER
 boolean DamageEngine_inception= false
-boolean DamageEngine___dreaming= false
-integer DamageEngine___sleepLevel= 0
-group DamageEngine___proclusGlobal= CreateGroup()
-group DamageEngine___fischerMorrow= CreateGroup()
-boolean DamageEngine___kicking= false
-boolean DamageEngine___eventsRun= false
+boolean DamageEngine__dreaming= false
+integer DamageEngine__sleepLevel= 0
+group DamageEngine__proclusGlobal= CreateGroup()
+group DamageEngine__fischerMorrow= CreateGroup()
+boolean DamageEngine__kicking= false
+boolean DamageEngine__eventsRun= false
    
-boolean DamageEngine___hasLethal= false
+boolean DamageEngine__hasLethal= false
 //endglobals from DamageEngine
 //globals from FileIO:
 constant boolean LIBRARY_FileIO=true
@@ -53,13 +53,13 @@ constant boolean LIBRARY_NSLCodeHelper=true
 //endglobals from NSLCodeHelper
 //globals from NSLCodexStore:
 constant boolean LIBRARY_NSLCodexStore=true
-trigger array NSLCodexStore__CodexArray
-integer array NSLCodexStore__CodexVersion
-integer NSLCodexStore__CodexSize= 0
+trigger array NSLCodexStore___CodexArray
+integer array NSLCodexStore___CodexVersion
+integer NSLCodexStore___CodexSize= 0
 //endglobals from NSLCodexStore
 //globals from NSLHelper:
 constant boolean LIBRARY_NSLHelper=true
-integer array NSLHelper__TWO_POW_CACHE
+integer array NSLHelper___TWO_POW_CACHE
 //endglobals from NSLHelper
 //globals from NSLSizeEnum:
 constant boolean LIBRARY_NSLSizeEnum=true
@@ -99,16 +99,16 @@ constant integer NSL_SIZE_LESS_THAN_2147483648= 31
 constant boolean LIBRARY_PlayerUtils=true
 constant force FORCE_PLAYING= CreateForce()
    
-string array PlayerUtils__Name
-string array PlayerUtils__Hex
-string array PlayerUtils__OriginalHex
-playercolor array PlayerUtils__CurrentColor
+string array PlayerUtils___Name
+string array PlayerUtils___Hex
+string array PlayerUtils___OriginalHex
+playercolor array PlayerUtils___CurrentColor
 //endglobals from PlayerUtils
 //globals from SyncHelper:
 constant boolean LIBRARY_SyncHelper=true
 constant string SyncHelper_SYNC_PREFIX_COUNT= "CP"
 constant string SyncHelper_SYNC_PREFIX= "CS"
-constant integer SyncHelper__SYNC_SIZE_CHUNK= 200
+constant integer SyncHelper___SYNC_SIZE_CHUNK= 200
 //endglobals from SyncHelper
 //globals from NSLImpl:
 constant boolean LIBRARY_NSLImpl=true
@@ -123,17 +123,17 @@ constant boolean NSL_UseSimpleSaveLoad= false
 //endglobals from NSLImpl
 //globals from NSLSaveLoad:
 constant boolean LIBRARY_NSLSaveLoad=true
-string NSLSaveLoad__NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
-integer NSLSaveLoad__NSL_CharsetLen= 64
-integer NSLSaveLoad__NSL_BitPerChar= 6
+string NSLSaveLoad___NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
+integer NSLSaveLoad___NSL_CharsetLen= 64
+integer NSLSaveLoad___NSL_BitPerChar= 6
 		
-integer NSLSaveLoad__NSL_HT_KEY_CODE_ID= 0
-integer NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX= 1
-integer NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET= 2
+integer NSLSaveLoad___NSL_HT_KEY_CODE_ID= 0
+integer NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX= 1
+integer NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET= 2
 
-hashtable NSLSaveLoad__NSL_Hashtable= InitHashtable()
-hashtable NSLSaveLoad__NSL_HashtableValue= InitHashtable()
-timer array NSLSaveLoad__NSL_Timers
+hashtable NSLSaveLoad___NSL_Hashtable= InitHashtable()
+hashtable NSLSaveLoad___NSL_HashtableValue= InitHashtable()
+timer array NSLSaveLoad___NSL_Timers
 //endglobals from NSLSaveLoad
 //globals from SaveFile:
 constant boolean LIBRARY_SaveFile=true
@@ -154,7 +154,7 @@ string array NSL_PlayerLoadingCode
 constant trigger SL_OnLoadedTrigger= CreateTrigger()
 integer SL_LoadedPlayerId
         
-trigger NSLUtils__format
+trigger NSLUtils___format
 //endglobals from NSLUtils
     // User-defined
 group udg_UnitGroup= null
@@ -2720,9 +2720,9 @@ boolean array s__DamageTrigger_configured
 boolean array s__DamageTrigger_usingGUI
 integer array s__DamageTrigger_next
 trigger array s__DamageTrigger_rootTrig
-boolean array s__DamageTrigger_DamageEngine___trigFrozen
-integer array s__DamageTrigger_DamageEngine___levelsDeep
-boolean array s__DamageTrigger_DamageEngine___inceptionTrig
+boolean array s__DamageTrigger_DamageEngine__trigFrozen
+integer array s__DamageTrigger_DamageEngine__levelsDeep
+boolean array s__DamageTrigger_DamageEngine__inceptionTrig
 unit array s__DamageTrigger_source
 unit array s__DamageTrigger_target
 integer array s__DamageTrigger_sourceType
@@ -2789,9 +2789,9 @@ integer s__User_AmountPlaying= 0
 playercolor array s__User_Color
 integer array s__User_PlayingPlayer
 integer array s__User_PlayingPlayerIndex
-constant integer si__SyncHelper__Sync=5
-trigger s__SyncHelper__Sync_TriggerCount= CreateTrigger()
-trigger s__SyncHelper__Sync_Trigger= CreateTrigger()
+constant integer si__SyncHelper___Sync=5
+trigger s__SyncHelper___Sync_TriggerCount= CreateTrigger()
+trigger s__SyncHelper___Sync_Trigger= CreateTrigger()
 constant integer si__NSL_Code=6
 integer si__NSL_Code_F=0
 integer si__NSL_Code_I=0
@@ -3124,8 +3124,8 @@ endfunction
             return 0
         endif
  
-        if not DamageEngine___hasLethal and index == s__DamageTrigger_LETHAL then
-            set DamageEngine___hasLethal=true
+        if not DamageEngine__hasLethal and index == s__DamageTrigger_LETHAL then
+            set DamageEngine__hasLethal=true
         endif
         if s__DamageTrigger_trigIndexStack[0] == 0 then
             set s__DamageTrigger_count=s__DamageTrigger_count + 1 //List runs from index 10 and up
@@ -3187,7 +3187,7 @@ endfunction
         endif
         return true
     endfunction
-    function s__DamageTrigger_DamageEngine___run takes integer this returns nothing
+    function s__DamageTrigger_DamageEngine__run takes integer this returns nothing
         local integer cat= this
         local integer d= s__Damage_index
 
@@ -3195,13 +3195,13 @@ endfunction
         local boolean guiUnset= false
         local boolean mod= cat <= s__DamageTrigger_DAMAGE
 
-        if DamageEngine___dreaming then
+        if DamageEngine__dreaming then
             return
         endif
-        set DamageEngine___dreaming=true
-        call DisableTrigger(DamageEngine___t1)
-        call DisableTrigger(DamageEngine___t2)
-        call EnableTrigger(DamageEngine___t3)
+        set DamageEngine__dreaming=true
+        call DisableTrigger(DamageEngine__t1)
+        call DisableTrigger(DamageEngine__t2)
+        call EnableTrigger(DamageEngine__t3)
         //call BJDebugMsg("Start of event running")
         loop
             set this=s__DamageTrigger_next[this]
@@ -3209,11 +3209,11 @@ endfunction
             exitwhen cat == s__DamageTrigger_MOD and ( udg_DamageEventOverride or udg_DamageEventType == DamageEngine_TYPE_PURE )
             exitwhen cat == s__DamageTrigger_SHIELD and udg_DamageEventAmount <= 0.00
 
-            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine___DEATH_VAL
+            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine__DEATH_VAL
 
          
             set s__DamageTrigger_eventIndex=this
-            if not s__DamageTrigger_DamageEngine___trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
+            if not s__DamageTrigger_DamageEngine__trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
 
                 if mod then
                     if s__DamageTrigger_usingGUI[this] then
@@ -3273,10 +3273,10 @@ endfunction
 
 
         //call BJDebugMsg("End of event running")
-        call DisableTrigger(DamageEngine___t3)
-        call EnableTrigger(DamageEngine___t1)
-        call EnableTrigger(DamageEngine___t2)
-        set DamageEngine___dreaming=false
+        call DisableTrigger(DamageEngine__t3)
+        call EnableTrigger(DamageEngine__t1)
+        call EnableTrigger(DamageEngine__t2)
+        set DamageEngine__dreaming=false
     endfunction
     function s__DamageTrigger__staticgetindex takes code c returns trigger
         local integer i= 0
@@ -3346,7 +3346,7 @@ endfunction
 
     function s__Damage_onAOEEnd takes nothing returns nothing
         if udg_DamageEventAOE > 1 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AOE)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AOE)
         endif
         set udg_DamageEventAOE=0
         set udg_DamageEventLevel=0
@@ -3358,7 +3358,7 @@ endfunction
    
     function s__Damage_afterDamage takes nothing returns nothing
         if udg_DamageEventPrevAmt != 0.00 and udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AFTER)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AFTER)
             set udg_DamageEventDamageT=0
             set udg_DamageEventPrevAmt=0.00
         endif
@@ -3374,8 +3374,8 @@ endfunction
         set s__Damage_index=this
         call s__DamageTrigger_setGUIFromStruct(true)
        
-        call GroupAddUnit(DamageEngine___proclusGlobal, udg_DamageEventSource)
-        call GroupAddUnit(DamageEngine___fischerMorrow, udg_DamageEventTarget)
+        call GroupAddUnit(DamageEngine__proclusGlobal, udg_DamageEventSource)
+        call GroupAddUnit(DamageEngine__fischerMorrow, udg_DamageEventTarget)
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_01()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_02()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_03()
@@ -3383,7 +3383,7 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_05()
         if udg_DamageEventAmount != 0.00 then
             set udg_DamageEventOverride=udg_DamageEventDamageT == 0
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_MOD)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_MOD)
 
 
 
@@ -3405,46 +3405,46 @@ endfunction
         loop
             exitwhen i == 0
             set i=i - 1
-            set s__DamageTrigger_DamageEngine___trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
-            set s__DamageTrigger_DamageEngine___levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
+            set s__DamageTrigger_DamageEngine__trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
+            set s__DamageTrigger_DamageEngine__levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
         endloop
-        call EnableTrigger(DamageEngine___t1)
-        call EnableTrigger(DamageEngine___t2)
-        set DamageEngine___kicking=false
+        call EnableTrigger(DamageEngine__t1)
+        call EnableTrigger(DamageEngine__t2)
+        set DamageEngine__kicking=false
         set s__Damage_damageStack=0
         set s__Damage_prepped=0
-        set DamageEngine___dreaming=false
-        set DamageEngine___sleepLevel=0
-        call GroupClear(DamageEngine___proclusGlobal)
-        call GroupClear(DamageEngine___fischerMorrow)
+        set DamageEngine__dreaming=false
+        set DamageEngine__sleepLevel=0
+        call GroupClear(DamageEngine__proclusGlobal)
+        call GroupClear(DamageEngine__fischerMorrow)
         //call BJDebugMsg("Cleared up the groups")
     endfunction
     function s__Damage_finish takes nothing returns nothing
         local integer i= 0
         local integer exit
-        if DamageEngine___eventsRun then
-            set DamageEngine___eventsRun=false
+        if DamageEngine__eventsRun then
+            set DamageEngine__eventsRun=false
             call s__Damage_afterDamage()
         endif
-        if DamageEngine___canKick and not DamageEngine___kicking then
+        if DamageEngine__canKick and not DamageEngine__kicking then
             if s__Damage_damageStack != 0 then
-                set DamageEngine___kicking=true
+                set DamageEngine__kicking=true
                 loop
-                    set DamageEngine___sleepLevel=DamageEngine___sleepLevel + 1
+                    set DamageEngine__sleepLevel=DamageEngine__sleepLevel + 1
                     set exit=s__Damage_damageStack
                     loop
                         set s__Damage_prepped=s__Damage_stackRef[i]
                         if UnitAlive(s__Damage_targetUnit[s__Damage_prepped]) then //Added just in case dead units had issues.
                             call s__Damage_doPreEvents(s__Damage_prepped,false) //don't evaluate the pre-event
                             if s__Damage_damage[s__Damage_prepped] > 0.00 then
-                                call DisableTrigger(DamageEngine___t1) //Force only the after armor event to run.
-                                call EnableTrigger(DamageEngine___t2) //in case the user forgot to re-enable this
-                                set DamageEngine___totem=true
+                                call DisableTrigger(DamageEngine__t1) //Force only the after armor event to run.
+                                call EnableTrigger(DamageEngine__t2) //in case the user forgot to re-enable this
+                                set DamageEngine__totem=true
                                 call UnitDamageTarget(s__Damage_sourceUnit[s__Damage_prepped], s__Damage_targetUnit[s__Damage_prepped], s__Damage_damage[s__Damage_prepped], s__Damage_isAttack[s__Damage_prepped], s__Damage_isRanged[s__Damage_prepped], s__Damage_attackType[s__Damage_prepped], s__Damage_damageType[s__Damage_prepped], s__Damage_weaponType[s__Damage_prepped])
                             else
                                 //No new events run at all in this case
                                 if udg_DamageEventDamageT != 0 then
-                                    call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
+                                    call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
                                 endif
                                 if s__Damage_damage[s__Damage_prepped] < 0.00 then
                                     //No need for BlzSetEventDamage here
@@ -3469,43 +3469,43 @@ endfunction
 
         call s__Damage_setArmor(s__Damage_index,true)
 
-        set DamageEngine___canKick=true
-        set DamageEngine___kicking=false
-        set DamageEngine___totem=false
+        set DamageEngine__canKick=true
+        set DamageEngine__kicking=false
+        set DamageEngine__totem=false
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
-            set DamageEngine___eventsRun=true
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
+            set DamageEngine__eventsRun=true
         endif
         call s__Damage_finish()
     endfunction
     function s__Damage__set_enabled takes boolean b returns nothing
         if b then
-            if DamageEngine___dreaming then
-                call EnableTrigger(DamageEngine___t3)
+            if DamageEngine__dreaming then
+                call EnableTrigger(DamageEngine__t3)
             else
-                call EnableTrigger(DamageEngine___t1)
-                call EnableTrigger(DamageEngine___t2)
+                call EnableTrigger(DamageEngine__t1)
+                call EnableTrigger(DamageEngine__t2)
             endif
         else
-            if DamageEngine___dreaming then
-                call DisableTrigger(DamageEngine___t3)
+            if DamageEngine__dreaming then
+                call DisableTrigger(DamageEngine__t3)
             else
-                call DisableTrigger(DamageEngine___t1)
-                call DisableTrigger(DamageEngine___t2)
+                call DisableTrigger(DamageEngine__t1)
+                call DisableTrigger(DamageEngine__t2)
             endif
         endif
     endfunction
     function s__Damage__get_enabled takes nothing returns boolean
-        return IsTriggerEnabled(DamageEngine___t1)
+        return IsTriggerEnabled(DamageEngine__t1)
     endfunction
    
    
     function s__Damage_getOutOfBed takes nothing returns nothing
-        if DamageEngine___totem then
+        if DamageEngine__totem then
             call s__Damage_failsafeClear() //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
         else
-            set DamageEngine___canKick=true
-            set DamageEngine___kicking=false
+            set DamageEngine__canKick=true
+            set DamageEngine__kicking=false
             call s__Damage_finish()
         endif
 
@@ -3515,7 +3515,7 @@ endfunction
     endfunction
    
     function s__Damage_wakeUp takes nothing returns nothing
-        set DamageEngine___dreaming=false
+        set DamageEngine__dreaming=false
         call s__Damage__set_enabled(true)
         call ForForce(bj_FORCE_PLAYER[0], function s__Damage_getOutOfBed) //Moved to a new thread in case of a thread crash
         if not s__Damage_arisen then
@@ -3526,7 +3526,7 @@ endfunction
         endif
         set s__Damage_count=0
         set s__Damage_index=0
-        set DamageEngine___alarmSet=false
+        set DamageEngine__alarmSet=false
         //call BJDebugMsg("Timer wrapped up")
     endfunction
     function s__Damage_addRecursive takes integer this returns nothing
@@ -3536,16 +3536,16 @@ endfunction
                 set s__Damage_isCode[this]=true
                 set s__Damage_userType[this]=DamageEngine_TYPE_CODE
             endif
-            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]
-            if DamageEngine___kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine___proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine___fischerMorrow) then
+            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]
+            if DamageEngine__kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine__proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine__fischerMorrow) then
                 if not DamageEngine_inception then
-                    set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
-                elseif not s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex] then
-                    set s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]=true
-                    if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine___sleepLevel then
-                        set s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] + 1
-                        if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine___LIMBO then
-                            set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
+                    set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
+                elseif not s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex] then
+                    set s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]=true
+                    if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine__sleepLevel then
+                        set s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] + 1
+                        if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine__LIMBO then
+                            set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
                         endif
                     endif
                 endif
@@ -3644,12 +3644,12 @@ endfunction
     function s__Damage_onDamaging takes nothing returns boolean
         local integer d= s__Damage_createFromEvent()
         //call BJDebugMsg("Pre-damage event running for " + GetUnitName(GetTriggerUnit()))
-        if DamageEngine___alarmSet then
-            if DamageEngine___totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
+        if DamageEngine__alarmSet then
+            if DamageEngine__totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
                 if s__Damage_damageType[d] == DAMAGE_TYPE_SPIRIT_LINK or s__Damage_damageType[d] == DAMAGE_TYPE_DEFENSIVE or s__Damage_damageType[d] == DAMAGE_TYPE_PLANT then
-                    set DamageEngine___totem=false
-                    set DamageEngine___lastInstance=s__Damage_index
-                    set DamageEngine___canKick=false
+                    set DamageEngine__totem=false
+                    set DamageEngine__lastInstance=s__Damage_index
+                    set DamageEngine__canKick=false
                 else
                     call s__Damage_failsafeClear() //Not an overlapping event - just wrap it up
                 endif
@@ -3668,8 +3668,8 @@ endfunction
             endif
 
         else
-            call TimerStart(DamageEngine___alarm, 0.00, false, function s__Damage_wakeUp)
-            set DamageEngine___alarmSet=true
+            call TimerStart(DamageEngine__alarm, 0.00, false, function s__Damage_wakeUp)
+            set DamageEngine__alarmSet=true
 
             set udg_AOEDamageSource=s__Damage_sourceUnit[d]
             set udg_EnhancedDamageTarget=s__Damage_targetUnit[d]
@@ -3679,11 +3679,11 @@ endfunction
         call GroupAddUnit(udg_DamageEventAOEGroup, s__Damage_targetUnit[d])
 
         if s__Damage_doPreEvents(d,true) then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_ZERO)
-            set DamageEngine___canKick=true
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_ZERO)
+            set DamageEngine__canKick=true
             call s__Damage_finish()
         endif
-        set DamageEngine___totem=DamageEngine___lastInstance == 0 or DamageEngine___attacksImmune[udg_DamageEventAttackT] or DamageEngine___damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
+        set DamageEngine__totem=DamageEngine__lastInstance == 0 or DamageEngine__attacksImmune[udg_DamageEventAttackT] or DamageEngine__damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
         return false
     endfunction
     function s__Damage_onDamaged takes nothing returns boolean
@@ -3692,17 +3692,17 @@ endfunction
         //call BJDebugMsg("Second damage event running for " + GetUnitName(GetTriggerUnit()))
         if s__Damage_prepped > 0 then
             set s__Damage_prepped=0
-        elseif DamageEngine___dreaming or s__Damage_prevAmt[d] == 0.00 then
+        elseif DamageEngine__dreaming or s__Damage_prevAmt[d] == 0.00 then
             return false
-        elseif DamageEngine___totem then
-            set DamageEngine___totem=false
+        elseif DamageEngine__totem then
+            set DamageEngine__totem=false
         else
             //This should only happen for stuff like Spirit Link or Thorns Aura/Carapace
             call s__Damage_afterDamage()
-            set s__Damage_index=DamageEngine___lastInstance
-            set DamageEngine___lastInstance=0
+            set s__Damage_index=DamageEngine__lastInstance
+            set DamageEngine__lastInstance=0
             set d=s__Damage_index
-            set DamageEngine___canKick=true
+            set DamageEngine__canKick=true
             call s__DamageTrigger_setGUIFromStruct(true)
         endif
 
@@ -3735,21 +3735,21 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_VARS_PLUGIN_05()
  
         if udg_DamageEventAmount > 0.00 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_SHIELD)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_SHIELD)
 
 
 
 
-            if DamageEngine___hasLethal or udg_DamageEventType < 0 then
+            if DamageEngine__hasLethal or udg_DamageEventType < 0 then
                 set udg_LethalDamageHP=GetWidgetLife(udg_DamageEventTarget) - udg_DamageEventAmount
-                if udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
-                    if DamageEngine___hasLethal then
-                        call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_LETHAL)
+                if udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
+                    if DamageEngine__hasLethal then
+                        call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_LETHAL)
            
                         set udg_DamageEventAmount=GetWidgetLife(udg_DamageEventTarget) - udg_LethalDamageHP
                         set s__Damage_damage[d]=udg_DamageEventAmount
                     endif
-                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
+                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
                         call SetUnitExploded(udg_DamageEventTarget, true)
                     endif
                 endif
@@ -3764,10 +3764,10 @@ endfunction
 
         endif
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
         endif
         call BlzSetEventDamage(udg_DamageEventAmount)
-        set DamageEngine___eventsRun=true
+        set DamageEngine__eventsRun=true
         if udg_DamageEventAmount == 0.00 then
             call s__Damage_finish()
         endif
@@ -3778,7 +3778,7 @@ endfunction
         if udg_NextDamageType == 0 then
            set udg_NextDamageType=DamageEngine_TYPE_CODE
         endif
-        if DamageEngine___dreaming then
+        if DamageEngine__dreaming then
             set d=s__Damage_create(src , tgt , amt , a , at , dt , wt)
             set s__Damage_isCode[d]=true
             set s__Damage_eFilter[d]=DamageEngine_FILTER_CODE
@@ -3807,49 +3807,49 @@ endfunction
     endfunction
     //===========================================================================
     function s__Damage_onInit takes nothing returns nothing
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t1, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine___t1, Filter(function s__Damage_onDamaging))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t1, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine__t1, Filter(function s__Damage_onDamaging))
  
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t2, EVENT_PLAYER_UNIT_DAMAGED)
-        call TriggerAddCondition(DamageEngine___t2, Filter(function s__Damage_onDamaged))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t2, EVENT_PLAYER_UNIT_DAMAGED)
+        call TriggerAddCondition(DamageEngine__t2, Filter(function s__Damage_onDamaged))
  
         //For recursion
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t3, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine___t3, Filter(function s__Damage_onRecursion))
-        call DisableTrigger(DamageEngine___t3)
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t3, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine__t3, Filter(function s__Damage_onRecursion))
+        call DisableTrigger(DamageEngine__t3)
  
         //For preventing Thorns/Defensive glitch.
         //Data gathered from https://www.hiveworkshop.com/threads/repo-in-progress-mapping-damage-types-to-their-abilities.316271/
-        set DamageEngine___attacksImmune[0]=false //ATTACK_TYPE_NORMAL
-        set DamageEngine___attacksImmune[1]=true //ATTACK_TYPE_MELEE  
-        set DamageEngine___attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
-        set DamageEngine___attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
-        set DamageEngine___attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
-        set DamageEngine___attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
-        set DamageEngine___attacksImmune[6]=true //ATTACK_TYPE_HERO    
+        set DamageEngine__attacksImmune[0]=false //ATTACK_TYPE_NORMAL
+        set DamageEngine__attacksImmune[1]=true //ATTACK_TYPE_MELEE  
+        set DamageEngine__attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
+        set DamageEngine__attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
+        set DamageEngine__attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
+        set DamageEngine__attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
+        set DamageEngine__attacksImmune[6]=true //ATTACK_TYPE_HERO    
  
-        set DamageEngine___damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
-        set DamageEngine___damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
-        set DamageEngine___damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
-        set DamageEngine___damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
-        set DamageEngine___damagesImmune[9]=false //DAMAGE_TYPE_COLD              
-        set DamageEngine___damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
-        set DamageEngine___damagesImmune[11]=true //DAMAGE_TYPE_POISON          
-        set DamageEngine___damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
-        set DamageEngine___damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
-        set DamageEngine___damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
-        set DamageEngine___damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
-        set DamageEngine___damagesImmune[16]=true //DAMAGE_TYPE_ACID            
-        set DamageEngine___damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
-        set DamageEngine___damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
-        set DamageEngine___damagesImmune[19]=false //DAMAGE_TYPE_MIND              
-        set DamageEngine___damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
-        set DamageEngine___damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
-        set DamageEngine___damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
-        set DamageEngine___damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
-        set DamageEngine___damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
-        set DamageEngine___damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
-        set DamageEngine___damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
+        set DamageEngine__damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
+        set DamageEngine__damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
+        set DamageEngine__damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
+        set DamageEngine__damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
+        set DamageEngine__damagesImmune[9]=false //DAMAGE_TYPE_COLD              
+        set DamageEngine__damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
+        set DamageEngine__damagesImmune[11]=true //DAMAGE_TYPE_POISON          
+        set DamageEngine__damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
+        set DamageEngine__damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
+        set DamageEngine__damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
+        set DamageEngine__damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
+        set DamageEngine__damagesImmune[16]=true //DAMAGE_TYPE_ACID            
+        set DamageEngine__damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
+        set DamageEngine__damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
+        set DamageEngine__damagesImmune[19]=false //DAMAGE_TYPE_MIND              
+        set DamageEngine__damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
+        set DamageEngine__damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
+        set DamageEngine__damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
+        set DamageEngine__damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
+        set DamageEngine__damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
+        set DamageEngine__damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
+        set DamageEngine__damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
     endfunction
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_DMGPKG()
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_01()
@@ -4128,8 +4128,8 @@ endfunction
             return s__File_write(s__File_open(filename),"")
         endfunction
     
-//Implemented from module FileIO__FileInit:
-        function s__File_FileIO__FileInit__onInit takes nothing returns nothing
+//Implemented from module FileIO___FileInit:
+        function s__File_FileIO___FileInit___onInit takes nothing returns nothing
             // Read check
             set s__File_ReadEnabled=(s__File_readEx((s__File_write(s__File_open("FileTester.pld"),"FileIO_")),true)) == "FileIO_" // INLINED!!
         endfunction
@@ -4146,14 +4146,14 @@ endfunction
 
 //library FileIO ends
 //library NSLCodeHelper:
-    function NSLCodeHelper__GetSign takes integer value returns integer
+    function NSLCodeHelper___GetSign takes integer value returns integer
         if ( value < 0 ) then
             return 1
         endif
         return 0
     endfunction
     
-    function NSLCodeHelper__GetSignInvert takes integer sign returns integer
+    function NSLCodeHelper___GetSignInvert takes integer sign returns integer
         if ( sign == 1 ) then
             return - 1
         endif
@@ -4161,12 +4161,12 @@ endfunction
     endfunction
     
     function NSLCodeHelper_Save_Int takes integer inst,integer value returns nothing
-        call sc__NSL_Code_SV(inst,NSLCodeHelper__GetSign(value) , NSL_SIZE_BOOLEAN)
+        call sc__NSL_Code_SV(inst,NSLCodeHelper___GetSign(value) , NSL_SIZE_BOOLEAN)
         call sc__NSL_Code_SV(inst,IAbsBJ(value) , NSL_SIZE_LESS_THAN_2147483648)
     endfunction
     
     function NSLCodeHelper_Read_Int takes integer inst returns integer
-        return NSLCodeHelper__GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
+        return NSLCodeHelper___GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
     endfunction
 
 //library NSLCodeHelper ends
@@ -4175,9 +4175,9 @@ endfunction
 //processed:     function interface CodexFormat takes integer playerId, NSL_Code loader returns nothing
 
     function NSLCodexStore_Add takes integer codex_version,trigger codex returns nothing
-        set NSLCodexStore__CodexArray[NSLCodexStore__CodexSize]=codex
-        set NSLCodexStore__CodexVersion[NSLCodexStore__CodexSize]=codex_version
-        set NSLCodexStore__CodexSize=NSLCodexStore__CodexSize + 1
+        set NSLCodexStore___CodexArray[NSLCodexStore___CodexSize]=codex
+        set NSLCodexStore___CodexVersion[NSLCodexStore___CodexSize]=codex_version
+        set NSLCodexStore___CodexSize=NSLCodexStore___CodexSize + 1
         call h__TriggerRegisterVariableEvent(codex, "udg_NSL_EventExecutorLoad", EQUAL, I2R(codex_version))
         call EnableTrigger(codex)
     endfunction
@@ -4185,9 +4185,9 @@ endfunction
     function NSLCodexStore_GetCodexForVersion takes integer codex_version returns trigger
         local integer i= 0
         loop
-            exitwhen i == NSLCodexStore__CodexSize
-            if ( NSLCodexStore__CodexVersion[i] == codex_version ) then
-                return NSLCodexStore__CodexArray[i]
+            exitwhen i == NSLCodexStore___CodexSize
+            if ( NSLCodexStore___CodexVersion[i] == codex_version ) then
+                return NSLCodexStore___CodexArray[i]
             endif
             set i=i + 1
         endloop
@@ -4199,43 +4199,43 @@ endfunction
 
     // vJass compiler should inline this function call
  function NSLHelper_TwoPow takes integer exp returns integer
-        return NSLHelper__TWO_POW_CACHE[exp]
+        return NSLHelper___TWO_POW_CACHE[exp]
 	endfunction
     
-    function NSLHelper__Init takes nothing returns nothing
+    function NSLHelper___Init takes nothing returns nothing
         // Cache for better performance
-        set NSLHelper__TWO_POW_CACHE[0]=1
-        set NSLHelper__TWO_POW_CACHE[1]=2
-        set NSLHelper__TWO_POW_CACHE[2]=4
-        set NSLHelper__TWO_POW_CACHE[3]=8
-        set NSLHelper__TWO_POW_CACHE[4]=16
-        set NSLHelper__TWO_POW_CACHE[5]=32
-        set NSLHelper__TWO_POW_CACHE[6]=64
-        set NSLHelper__TWO_POW_CACHE[7]=128
-        set NSLHelper__TWO_POW_CACHE[8]=256
-        set NSLHelper__TWO_POW_CACHE[9]=512
-        set NSLHelper__TWO_POW_CACHE[10]=1024
-        set NSLHelper__TWO_POW_CACHE[11]=2048
-        set NSLHelper__TWO_POW_CACHE[12]=4096
-        set NSLHelper__TWO_POW_CACHE[13]=8192
-        set NSLHelper__TWO_POW_CACHE[14]=16384
-        set NSLHelper__TWO_POW_CACHE[15]=32768
-        set NSLHelper__TWO_POW_CACHE[16]=65536
-        set NSLHelper__TWO_POW_CACHE[17]=131072
-        set NSLHelper__TWO_POW_CACHE[18]=262144
-        set NSLHelper__TWO_POW_CACHE[19]=524288
-        set NSLHelper__TWO_POW_CACHE[20]=1048576
-        set NSLHelper__TWO_POW_CACHE[21]=2097152
-        set NSLHelper__TWO_POW_CACHE[22]=4194304
-        set NSLHelper__TWO_POW_CACHE[23]=8388608
-        set NSLHelper__TWO_POW_CACHE[24]=16777216
-        set NSLHelper__TWO_POW_CACHE[25]=33554432
-        set NSLHelper__TWO_POW_CACHE[26]=67108864
-        set NSLHelper__TWO_POW_CACHE[27]=134217728
-        set NSLHelper__TWO_POW_CACHE[28]=268435456
-        set NSLHelper__TWO_POW_CACHE[29]=536870912
-        set NSLHelper__TWO_POW_CACHE[30]=1073741824
-        set NSLHelper__TWO_POW_CACHE[31]=2147483647
+        set NSLHelper___TWO_POW_CACHE[0]=1
+        set NSLHelper___TWO_POW_CACHE[1]=2
+        set NSLHelper___TWO_POW_CACHE[2]=4
+        set NSLHelper___TWO_POW_CACHE[3]=8
+        set NSLHelper___TWO_POW_CACHE[4]=16
+        set NSLHelper___TWO_POW_CACHE[5]=32
+        set NSLHelper___TWO_POW_CACHE[6]=64
+        set NSLHelper___TWO_POW_CACHE[7]=128
+        set NSLHelper___TWO_POW_CACHE[8]=256
+        set NSLHelper___TWO_POW_CACHE[9]=512
+        set NSLHelper___TWO_POW_CACHE[10]=1024
+        set NSLHelper___TWO_POW_CACHE[11]=2048
+        set NSLHelper___TWO_POW_CACHE[12]=4096
+        set NSLHelper___TWO_POW_CACHE[13]=8192
+        set NSLHelper___TWO_POW_CACHE[14]=16384
+        set NSLHelper___TWO_POW_CACHE[15]=32768
+        set NSLHelper___TWO_POW_CACHE[16]=65536
+        set NSLHelper___TWO_POW_CACHE[17]=131072
+        set NSLHelper___TWO_POW_CACHE[18]=262144
+        set NSLHelper___TWO_POW_CACHE[19]=524288
+        set NSLHelper___TWO_POW_CACHE[20]=1048576
+        set NSLHelper___TWO_POW_CACHE[21]=2097152
+        set NSLHelper___TWO_POW_CACHE[22]=4194304
+        set NSLHelper___TWO_POW_CACHE[23]=8388608
+        set NSLHelper___TWO_POW_CACHE[24]=16777216
+        set NSLHelper___TWO_POW_CACHE[25]=33554432
+        set NSLHelper___TWO_POW_CACHE[26]=67108864
+        set NSLHelper___TWO_POW_CACHE[27]=134217728
+        set NSLHelper___TWO_POW_CACHE[28]=268435456
+        set NSLHelper___TWO_POW_CACHE[29]=536870912
+        set NSLHelper___TWO_POW_CACHE[30]=1073741824
+        set NSLHelper___TWO_POW_CACHE[31]=2147483647
 	// set TWO_POW_CACHE[31] = 2147483648
     endfunction
 
@@ -4289,7 +4289,7 @@ endfunction
         endfunction
    
         function s__User__get_hex takes integer this returns string
-            return PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
+            return PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
         endfunction
    
         function s__User__set_color takes integer this,playercolor c returns nothing
@@ -4301,7 +4301,7 @@ endfunction
         endfunction
    
         function s__User__get_nameColored takes integer this returns string
-            return (PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
+            return (PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
         endfunction
    
         function s__User_onLeave takes nothing returns boolean
@@ -4331,8 +4331,8 @@ endfunction
             return false
         endfunction
    
-//Implemented from module PlayerUtils__PlayerUtilsInit:
-        function s__User_PlayerUtils__PlayerUtilsInit__onInit takes nothing returns nothing
+//Implemented from module PlayerUtils___PlayerUtilsInit:
+        function s__User_PlayerUtils___PlayerUtilsInit___onInit takes nothing returns nothing
             local trigger t= CreateTrigger()
             local integer i= 0
             local integer p
@@ -4340,32 +4340,32 @@ endfunction
             set s__User_Local=GetLocalPlayer()
             set s__User_LocalId=GetPlayerId(s__User_Local)
        
-            set PlayerUtils__OriginalHex[0]="|cffff0303"
-            set PlayerUtils__OriginalHex[1]="|cff0042ff"
-            set PlayerUtils__OriginalHex[2]="|cff1ce6b9"
-            set PlayerUtils__OriginalHex[3]="|cff540081"
-            set PlayerUtils__OriginalHex[4]="|cfffffc01"
-            set PlayerUtils__OriginalHex[5]="|cfffe8a0e"
-            set PlayerUtils__OriginalHex[6]="|cff20c000"
-            set PlayerUtils__OriginalHex[7]="|cffe55bb0"
-            set PlayerUtils__OriginalHex[8]="|cff959697"
-            set PlayerUtils__OriginalHex[9]="|cff7ebff1"
-            set PlayerUtils__OriginalHex[10]="|cff106246"
-            set PlayerUtils__OriginalHex[11]="|cff4e2a04"
+            set PlayerUtils___OriginalHex[0]="|cffff0303"
+            set PlayerUtils___OriginalHex[1]="|cff0042ff"
+            set PlayerUtils___OriginalHex[2]="|cff1ce6b9"
+            set PlayerUtils___OriginalHex[3]="|cff540081"
+            set PlayerUtils___OriginalHex[4]="|cfffffc01"
+            set PlayerUtils___OriginalHex[5]="|cfffe8a0e"
+            set PlayerUtils___OriginalHex[6]="|cff20c000"
+            set PlayerUtils___OriginalHex[7]="|cffe55bb0"
+            set PlayerUtils___OriginalHex[8]="|cff959697"
+            set PlayerUtils___OriginalHex[9]="|cff7ebff1"
+            set PlayerUtils___OriginalHex[10]="|cff106246"
+            set PlayerUtils___OriginalHex[11]="|cff4e2a04"
             
             if ( bj_MAX_PLAYERS > 12 ) then
-                set PlayerUtils__OriginalHex[12]="|cff9B0000"
-                set PlayerUtils__OriginalHex[13]="|cff0000C3"
-                set PlayerUtils__OriginalHex[14]="|cff00EAFF"
-                set PlayerUtils__OriginalHex[15]="|cffBE00FE"
-                set PlayerUtils__OriginalHex[16]="|cffEBCD87"
-                set PlayerUtils__OriginalHex[17]="|cffF8A48B"
-                set PlayerUtils__OriginalHex[18]="|cffBFFF80"
-                set PlayerUtils__OriginalHex[19]="|cffDCB9EB"
-                set PlayerUtils__OriginalHex[20]="|cff282828"
-                set PlayerUtils__OriginalHex[21]="|cffEBF0FF"
-                set PlayerUtils__OriginalHex[22]="|cff00781E"
-                set PlayerUtils__OriginalHex[23]="|cffA46F33"
+                set PlayerUtils___OriginalHex[12]="|cff9B0000"
+                set PlayerUtils___OriginalHex[13]="|cff0000C3"
+                set PlayerUtils___OriginalHex[14]="|cff00EAFF"
+                set PlayerUtils___OriginalHex[15]="|cffBE00FE"
+                set PlayerUtils___OriginalHex[16]="|cffEBCD87"
+                set PlayerUtils___OriginalHex[17]="|cffF8A48B"
+                set PlayerUtils___OriginalHex[18]="|cffBFFF80"
+                set PlayerUtils___OriginalHex[19]="|cffDCB9EB"
+                set PlayerUtils___OriginalHex[20]="|cff282828"
+                set PlayerUtils___OriginalHex[21]="|cffEBF0FF"
+                set PlayerUtils___OriginalHex[22]="|cff00781E"
+                set PlayerUtils___OriginalHex[23]="|cffA46F33"
             endif
          
             set s__User_first=s__User_NULL
@@ -4378,7 +4378,7 @@ endfunction
                 set s__User_id[p]=i
            
                 set s__User_Color[i]=GetPlayerColor(s__User_handle[p])
-                set PlayerUtils__CurrentColor[i]=s__User_Color[i]
+                set PlayerUtils___CurrentColor[i]=s__User_Color[i]
              
                 if ( GetPlayerController(s__User_handle[p]) == MAP_CONTROL_USER and GetPlayerSlotState(s__User_handle[p]) == PLAYER_SLOT_STATE_PLAYING ) then
 
@@ -4402,14 +4402,14 @@ endfunction
                     call TriggerRegisterPlayerEvent(t, s__User_handle[p], EVENT_PLAYER_LEAVE)
                     call ForceAddPlayer(FORCE_PLAYING, s__User_handle[p])
                
-                    set PlayerUtils__Hex[p]=PlayerUtils__OriginalHex[GetHandleId(s__User_Color[i])]
+                    set PlayerUtils___Hex[p]=PlayerUtils___OriginalHex[GetHandleId(s__User_Color[i])]
                
                     set s__User_AmountPlaying=s__User_AmountPlaying + 1
 
                 endif
            
-                set PlayerUtils__Name[p]=GetPlayerName(s__User_handle[p])
-                set s__User_originalName[p]=PlayerUtils__Name[p]
+                set PlayerUtils___Name[p]=GetPlayerName(s__User_handle[p])
+                set s__User_originalName[p]=PlayerUtils___Name[p]
            
                 set i=i + 1
             endloop
@@ -4431,13 +4431,13 @@ endfunction
 
     
     
-//Implemented from module SyncHelper__INITS:
-        function s__SyncHelper__Sync_SyncHelper__INITS__onInit takes nothing returns nothing
+//Implemented from module SyncHelper___INITS:
+        function s__SyncHelper___Sync_SyncHelper___INITS___onInit takes nothing returns nothing
             local integer i= 0
             
             loop
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
                 set i=i + 1
                 
                 exitwhen i == bj_MAX_PLAYER_SLOTS
@@ -4446,15 +4446,15 @@ endfunction
     
     function SyncString takes string s returns nothing
         local integer len= StringLength(s)
-        local integer parts= ( len / SyncHelper__SYNC_SIZE_CHUNK ) + 1
+        local integer parts= ( len / SyncHelper___SYNC_SIZE_CHUNK ) + 1
   local string sub
         local integer i= 0
-        if ( ModuloInteger(len, SyncHelper__SYNC_SIZE_CHUNK) == 0 ) then
+        if ( ModuloInteger(len, SyncHelper___SYNC_SIZE_CHUNK) == 0 ) then
             set parts=parts - 1
         endif
         call BlzSendSyncData(SyncHelper_SYNC_PREFIX_COUNT, I2S(parts))
 		loop
-			set sub=SubString(s, i * SyncHelper__SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper__SYNC_SIZE_CHUNK)
+			set sub=SubString(s, i * SyncHelper___SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper___SYNC_SIZE_CHUNK)
 			if ( StringLength(sub) > 0 ) then
                 call BlzSendSyncData(SyncHelper_SYNC_PREFIX, sub)
 			endif
@@ -4464,15 +4464,15 @@ endfunction
     endfunction
     
     function OnSyncString takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper__Sync_Trigger, func)
+        return TriggerAddAction(s__SyncHelper___Sync_Trigger, func)
     endfunction
     
     function OnSyncStringCount takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper__Sync_TriggerCount, func)
+        return TriggerAddAction(s__SyncHelper___Sync_TriggerCount, func)
     endfunction
     
     function RemoveSyncString takes triggeraction t returns nothing
-        call TriggerRemoveAction(s__SyncHelper__Sync_Trigger, t)
+        call TriggerRemoveAction(s__SyncHelper___Sync_Trigger, t)
     endfunction
     
 
@@ -4481,7 +4481,7 @@ endfunction
     
     
     
-    function NSLImpl__SaveCodeValues takes integer saver returns nothing
+    function NSLImpl___SaveCodeValues takes integer saver returns nothing
         local integer pid= GetPlayerId(udg_NSL_SavePlayer) + 1
         local integer i= 1
         loop
@@ -4491,7 +4491,7 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl__ReadCodeValues takes integer loader returns nothing
+    function NSLImpl___ReadCodeValues takes integer loader returns nothing
         local integer pid= GetPlayerId(udg_NSL_LoadPlayer) + 1
         local integer i= 1
         local integer v
@@ -4503,15 +4503,15 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl__SavePlayerCompleted takes nothing returns nothing
+    function NSLImpl___SavePlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_SavePlayer)
         local integer playerCode= udg_NSL_SaveCode[playerId]
-        call NSLImpl__SaveCodeValues(playerCode)
+        call NSLImpl___SaveCodeValues(playerCode)
         call sc__NSL_Code_Generate(playerCode)
         set udg_NSL_EventExecutorSaveCompleted=0.0
     endfunction
     
-    function NSLImpl__LoadPlayerCompleted takes nothing returns nothing
+    function NSLImpl___LoadPlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_LoadPlayer)
         local integer playerCode= udg_NSL_LoadCode[playerId]
         call s__NSL_Code_deallocate(playerCode)
@@ -4522,7 +4522,7 @@ endfunction
     function NSLImpl_LoadPlayer takes integer playerId,integer loader,trigger format returns nothing
         set udg_NSL_LoadPlayer=Player(playerId)
         set udg_NSL_LoadCode[playerId]=loader
-        call NSLImpl__ReadCodeValues(loader)
+        call NSLImpl___ReadCodeValues(loader)
         call TriggerExecute(format)
     endfunction
 
@@ -4532,14 +4532,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerExecutorSave)
     endfunction
     
-    function NSLImpl__Init takes nothing returns nothing
+    function NSLImpl___Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl__SavePlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl___SavePlayerCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl__LoadPlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl___LoadPlayerCompleted)
     endfunction
 
 //library NSLImpl ends
@@ -4548,52 +4548,52 @@ endfunction
 //processed: 	function interface NSL_PlayerLoadCallback takes integer playerId, boolean is_valid, NSL_Code loader returns nothing
 //processed: 	function interface NSL_PlayerSaveCallback takes integer playerId, string generated_code returns nothing
 	
- function NSLSaveLoad__Init takes nothing returns nothing
+ function NSLSaveLoad___Init takes nothing returns nothing
   local integer i= 0
 		
         loop
-			set NSLSaveLoad__NSL_Timers[i]=CreateTimer()
+			set NSLSaveLoad___NSL_Timers[i]=CreateTimer()
 			set i=i + 1
 			exitwhen i == 24
 		endloop
 	endfunction
 	
- function NSLSaveLoad__CharAt takes integer index returns string
-		return SubString(NSLSaveLoad__NSL_Charset, index, index + 1)
+ function NSLSaveLoad___CharAt takes integer index returns string
+		return SubString(NSLSaveLoad___NSL_Charset, index, index + 1)
 	endfunction
 	
- function NSLSaveLoad__GenerateTimerCallback takes nothing returns nothing
+ function NSLSaveLoad___GenerateTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Generate(inst)
 	endfunction
 	
- function NSLSaveLoad__LoadTimerCallback takes nothing returns nothing
+ function NSLSaveLoad___LoadTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Load(inst)
 	endfunction
 	
- function NSLSaveLoad__IndexOf takes string char returns integer
+ function NSLSaveLoad___IndexOf takes string char returns integer
   local integer i= 0
 		loop
-			if ( NSLSaveLoad__CharAt(i) == char ) then
+			if ( NSLSaveLoad___CharAt(i) == char ) then
 				return i
 			endif
 			set i=i + 1
-			exitwhen i == NSLSaveLoad__NSL_CharsetLen
+			exitwhen i == NSLSaveLoad___NSL_CharsetLen
 		endloop
 
 		return 0
 	endfunction
 	
- function NSLSaveLoad__GetPlayerHash takes integer player_id returns integer
+ function NSLSaveLoad___GetPlayerHash takes integer player_id returns integer
   local string name= GetPlayerName(Player(player_id))
   local integer len= StringLength(name)
   local integer hash= 0
   local integer i= 0
 		loop
-			set hash=hash + NSLSaveLoad__IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
+			set hash=hash + NSLSaveLoad___IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
 			set i=i + 1
 			exitwhen i == len
 		endloop
@@ -4639,14 +4639,14 @@ endfunction
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
 			
-			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
 			
 			return inst
   endfunction
 		
   function s__NSL_Code_StoreBit takes integer this,integer value returns nothing
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
 			set s__NSL_Code_bits_count[this]=s__NSL_Code_bits_count[this] + 1
   endfunction 
 		
@@ -4670,7 +4670,7 @@ endfunction
 			endif
 			
 			loop
-				set current=(NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+				set current=(NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
 				if ( value >= current ) then
 					call s__NSL_Code_StoreBit(this,1)
 					set size_done=size_done + 1
@@ -4691,63 +4691,63 @@ endfunction
   endfunction
 		
   function s__NSL_Code_Insert takes integer this returns nothing
-   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_value_count[this] ) then
 				set s__NSL_Code_is_started[this]=false
 				set s__NSL_Code_is_ready[this]=true
-				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
 				return
 			endif
 
 			if ( s__NSL_Code_is_started[this] ) then
-				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
-				call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
+				call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
             call s__NSL_Code_InsertImpl(this,NSL_CodeVersion , NSL_SIZE_LESS_THAN_1024)
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_SV takes integer this,integer value,integer size returns nothing
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
   endfunction
 		
   function s__NSL_Code_BitAt takes integer this,integer pos returns integer
-			return LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + pos)
+			return LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + pos)
   endfunction
 		
   function s__NSL_Code_EncodeImpl takes integer this,integer offset returns integer
-   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad__NSL_BitPerChar)
+   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad___NSL_BitPerChar)
    local integer value= 0
    local integer exponent= ( last_index - offset ) - 1
    local integer i= offset
 			
 			loop
-				if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-					set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+				if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+					set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
 				endif
 				set exponent=exponent - 1
 				set i=i + 1
 				exitwhen i == last_index
 			endloop
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, last_index)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, last_index)
 			return value
   endfunction
 		
   function s__NSL_Code_Encode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_bits_count[this] ) then
 				return - 1
 			endif
@@ -4756,17 +4756,17 @@ endfunction
   endfunction
 		
   function s__NSL_Code_GenerateSecurity takes integer this returns nothing
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen))
 			
-            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen))
+            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen))
 
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad___NSL_CharsetLen))
   endfunction
 		
   function s__NSL_Code_GenerateImpl takes integer this returns nothing
@@ -4779,10 +4779,10 @@ endfunction
 				return
 			endif
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
             
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
   endfunction
 		
   function s__NSL_Code_Generate takes integer this returns nothing
@@ -4795,37 +4795,37 @@ endfunction
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
 			endif
 
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_Decode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_code_length[this] ) then
 				return - 1
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-			return ModuloInteger(NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+			return ModuloInteger(NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen)
   endfunction
 
   function s__NSL_Code_CheckSecurity takes integer this returns boolean
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen) ) then
                 return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen) ) then
 				return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen) ) then
 				return false
 			endif
 			return true
@@ -4843,9 +4843,9 @@ endfunction
 				return
 			endif
 			
-			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad__NSL_BitPerChar)
+			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad___NSL_BitPerChar)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
   endfunction
 
   function s__NSL_Code_Load takes integer this returns boolean
@@ -4854,36 +4854,36 @@ endfunction
 				return true
 			endif
 			
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
 			
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
 			return true
   endfunction
 		
@@ -4893,8 +4893,8 @@ endfunction
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -4988,7 +4988,7 @@ endfunction
 //library SaveFile ends
 //library NSLSaveLoadExecutor:
     
-    function NSLSaveLoadExecutor__LoadSaveSlot takes player p,string charId returns nothing
+    function NSLSaveLoadExecutor___LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -5005,7 +5005,7 @@ endfunction
         endif
     endfunction
 
-    function NSLSaveLoadExecutor__OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
+    function NSLSaveLoadExecutor___OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
         local string charId= NSL_PlayerCharId[player_id]
 		call s__SaveFile_create(Player(player_id) , charId , charId , generated_code)
         if ( player_id == GetPlayerId(GetLocalPlayer()) ) then
@@ -5014,7 +5014,7 @@ endfunction
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     endfunction
     
-    function NSLSaveLoadExecutor__CheckSaveCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor___CheckSaveCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerSave ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Save Error]|r You are not allowed to save.")) // INLINED!!
             return
@@ -5024,13 +5024,13 @@ endfunction
         set udg_NSL_EventCheckSaveCompleted=0.0
     endfunction
     
-    function NSLSaveLoadExecutor__CheckLoadCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor___CheckLoadCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerLoad ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r You are not allowed to load.")) // INLINED!!
             return
         endif
 
-        call NSLSaveLoadExecutor__LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
+        call NSLSaveLoadExecutor___LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
         
         set udg_NSL_EventCheckLoadCompleted=0.0
     endfunction
@@ -5049,14 +5049,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerCheckSave)
     endfunction
 
-    function NSLSaveLoadExecutor__Init takes nothing returns nothing
+    function NSLSaveLoadExecutor___Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckSaveCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckSaveCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckLoadCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckLoadCompleted)
     endfunction
 
 
@@ -5079,22 +5079,22 @@ endfunction
         call NSLSaveLoadExecutor_Save(GetPlayerId(savingPlayer) , SubString(input, 6, 999))
     endfunction
 
-    function NSLUtils__OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
+    function NSLUtils___OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
         if ( is_valid ) then
-            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils__format == null ) then
+            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils___format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
                 return
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
         endif
     endfunction
         
-    function NSLUtils__LoadSaveSlot takes player p,string charId returns nothing
+    function NSLUtils___LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -5128,7 +5128,7 @@ endfunction
         call NSLSaveLoadExecutor_Load(GetPlayerId(loadingPlayer) , SubString(input, 6, 999))
 	endfunction
     
-    function NSLUtils__LoadSaveSlot_OnLoadCount takes nothing returns nothing
+    function NSLUtils___LoadSaveSlot_OnLoadCount takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -5138,7 +5138,7 @@ endfunction
         set NSL_PlayerLoadingCode[s__User_id[user]]=""
     endfunction
     
-    function NSLUtils__LoadSaveSlot_OnLoad takes nothing returns nothing
+    function NSLUtils___LoadSaveSlot_OnLoad takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -5152,11 +5152,11 @@ endfunction
         endif
     endfunction
     
- function NSLUtils__Init takes nothing returns nothing
+ function NSLUtils___Init takes nothing returns nothing
   local integer i= 0
 
-call TriggerAddAction(s__SyncHelper__Sync_TriggerCount, (function NSLUtils__LoadSaveSlot_OnLoadCount)) // INLINED!!
-call TriggerAddAction(s__SyncHelper__Sync_Trigger, (function NSLUtils__LoadSaveSlot_OnLoad)) // INLINED!!
+call TriggerAddAction(s__SyncHelper___Sync_TriggerCount, (function NSLUtils___LoadSaveSlot_OnLoadCount)) // INLINED!!
+call TriggerAddAction(s__SyncHelper___Sync_Trigger, (function NSLUtils___LoadSaveSlot_OnLoad)) // INLINED!!
 
 		loop
             if ( NSL_UseSimpleSaveLoad ) then
@@ -18260,8 +18260,8 @@ function Trig_TownWelcomeOrc_Actions takes nothing returns nothing
         call PlayThematicMusicBJ("Combat4.mp3")
         call StartTimerBJ(udg_MusicTimer, false, 132.30)
     else
-        call PlayThematicMusicBJ("OrcTown.mp3")
-        call StartTimerBJ(udg_MusicTimer, false, 107.00)
+        call PlayThematicMusicBJ("KedBardu.mp3")
+        call StartTimerBJ(udg_MusicTimer, false, 160.00)
     endif
     call SetMusicVolumeBJ(100.00)
     call DisableTrigger(GetTriggeringTrigger())
@@ -18786,7 +18786,7 @@ endfunction
 //
 // func expects KarmaU
 //===========================================================================
-function Trig_KarmaSystem_Func002Func001Func003Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func002Func001C takes nothing returns boolean
     if ( not ( udg_Karma[GetForLoopIndexA()] >= - 4 ) ) then
         return false
     endif
@@ -18796,14 +18796,14 @@ function Trig_KarmaSystem_Func002Func001Func003Func001C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func003Func002Func001Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func002Func002Func001Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A080', GetEnumUnit()) != 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func003Func002Func001Func006C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func002Func002Func001Func006C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Z', GetEnumUnit()) >= 1 ) ) then
         return false
     endif
@@ -18813,7 +18813,7 @@ function Trig_KarmaSystem_Func002Func001Func003Func002Func001Func006C takes noth
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func003Func002Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func002Func002Func001C takes nothing returns boolean
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
         return false
     endif
@@ -18823,9 +18823,9 @@ function Trig_KarmaSystem_Func002Func001Func003Func002Func001C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func003Func002A takes nothing returns nothing
-    if ( Trig_KarmaSystem_Func002Func001Func003Func002Func001C() ) then
-        if ( Trig_KarmaSystem_Func002Func001Func003Func002Func001Func001C() ) then
+function Trig_KarmaSystem_Func002Func001Func002Func002A takes nothing returns nothing
+    if ( Trig_KarmaSystem_Func002Func001Func002Func002Func001C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func002Func002Func001Func001C() ) then
             call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
         else
@@ -18834,7 +18834,7 @@ function Trig_KarmaSystem_Func002Func001Func003Func002A takes nothing returns no
         call UnitRemoveAbilityBJ('A08S', GetEnumUnit())
         call UnitRemoveAbilityBJ('A08T', GetEnumUnit())
         call UnitRemoveAbilityBJ('A07S', GetEnumUnit())
-        if ( Trig_KarmaSystem_Func002Func001Func003Func002Func001Func006C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func002Func002Func001Func006C() ) then
             set udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=( udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))] - 15 )
             call CreateTextTagUnitBJ("TRIGSTR_524", GetEnumUnit(), 0, 9.00, 100, 100, 100, 0)
             call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
@@ -18851,14 +18851,14 @@ function Trig_KarmaSystem_Func002Func001Func003Func002A takes nothing returns no
     endif
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func003C takes nothing returns boolean
-    if ( not Trig_KarmaSystem_Func002Func001Func003Func001C() ) then
+function Trig_KarmaSystem_Func002Func001Func002C takes nothing returns boolean
+    if ( not Trig_KarmaSystem_Func002Func001Func002Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func004Func001C takes nothing returns boolean
     if ( not ( udg_Karma[GetForLoopIndexA()] <= - 5 ) ) then
         return false
     endif
@@ -18868,21 +18868,21 @@ function Trig_KarmaSystem_Func002Func001Func005Func001C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005Func002Func002Func001Func012C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func004Func002Func002Func001Func012C takes nothing returns boolean
     if ( not ( UnitHasItemOfTypeBJ(GetEnumUnit(), 'I095') == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005Func002Func002Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func004Func002Func002Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Y', GetEnumUnit()) >= 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005Func002Func002Func004C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func004Func002Func002Func004C takes nothing returns boolean
     if ( ( GetUnitAbilityLevelSwapped('A080', GetEnumUnit()) == 1 ) ) then
         return true
     endif
@@ -18892,23 +18892,23 @@ function Trig_KarmaSystem_Func002Func001Func005Func002Func002Func004C takes noth
     return false
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005Func002Func002C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func004Func002Func002C takes nothing returns boolean
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
         return false
     endif
     if ( not ( GetUnitTypeId(GetEnumUnit()) != 'H004' ) ) then
         return false
     endif
-    if ( not Trig_KarmaSystem_Func002Func001Func005Func002Func002Func004C() ) then
+    if ( not Trig_KarmaSystem_Func002Func001Func004Func002Func002Func004C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005Func002A takes nothing returns nothing
+function Trig_KarmaSystem_Func002Func001Func004Func002A takes nothing returns nothing
     call SetUnitAbilityLevelSwapped('A07Z', GetEnumUnit(), ( ( udg_Karma[GetForLoopIndexA()] * - 1 ) - 3 ))
-    if ( Trig_KarmaSystem_Func002Func001Func005Func002Func002C() ) then
-        if ( Trig_KarmaSystem_Func002Func001Func005Func002Func002Func001C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func004Func002Func002C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func004Func002Func002Func001C() ) then
             call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call UnitRemoveAbilityBJ('A07Y', GetEnumUnit())
@@ -18921,7 +18921,7 @@ function Trig_KarmaSystem_Func002Func001Func005Func002A takes nothing returns no
             call UnitRemoveAbilityBJ('A080', GetEnumUnit())
             call UnitAddAbilityBJ('A07Z', GetEnumUnit())
             call SetUnitAbilityLevelSwapped('A07Z', GetEnumUnit(), ( ( udg_Karma[GetForLoopIndexA()] * - 1 ) - 3 ))
-            if ( Trig_KarmaSystem_Func002Func001Func005Func002Func002Func001Func012C() ) then
+            if ( Trig_KarmaSystem_Func002Func001Func004Func002Func002Func001Func012C() ) then
                 set udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))]=( udg_HERO_DAMAGE_BONUS_ALL[GetConvertedPlayerId(GetOwningPlayer(GetEnumUnit()))] + 15 )
                 call CreateTextTagUnitBJ("TRIGSTR_504", GetEnumUnit(), 0, 9.00, 100, 100, 100, 0)
                 call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
@@ -18934,14 +18934,14 @@ function Trig_KarmaSystem_Func002Func001Func005Func002A takes nothing returns no
     endif
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func005C takes nothing returns boolean
-    if ( not Trig_KarmaSystem_Func002Func001Func005Func001C() ) then
+function Trig_KarmaSystem_Func002Func001Func004C takes nothing returns boolean
+    if ( not Trig_KarmaSystem_Func002Func001Func004Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func007Func001Func002C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func006Func001Func002C takes nothing returns boolean
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
         return false
     endif
@@ -18954,9 +18954,9 @@ function Trig_KarmaSystem_Func002Func001Func007Func001Func002C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func007Func001A takes nothing returns nothing
+function Trig_KarmaSystem_Func002Func001Func006Func001A takes nothing returns nothing
     call SetUnitAbilityLevelSwapped('A07Y', GetEnumUnit(), ( ( udg_Karma[GetForLoopIndexA()] * - 1 ) - 4 ))
-    if ( Trig_KarmaSystem_Func002Func001Func007Func001Func002C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func006Func001Func002C() ) then
         call DisplayTextToForce(GetPlayersAll(), ( GetHeroProperName(GetEnumUnit()) + " обретает великое могущество |cffff0000Тьмы|r!" ))
         call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Stormfall Fel.mdx")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
@@ -18968,14 +18968,14 @@ function Trig_KarmaSystem_Func002Func001Func007Func001A takes nothing returns no
     endif
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func007C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func006C takes nothing returns boolean
     if ( not ( udg_Karma[GetForLoopIndexA()] <= - 10 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func009Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func008Func001C takes nothing returns boolean
     if ( not ( udg_Karma[GetForLoopIndexA()] >= 5 ) ) then
         return false
     endif
@@ -18985,14 +18985,14 @@ function Trig_KarmaSystem_Func002Func001Func009Func001C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func009Func002Func002Func003C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func008Func002Func002Func003C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A082', GetEnumUnit()) >= 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func009Func002Func002Func004C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func008Func002Func002Func004C takes nothing returns boolean
     if ( ( GetUnitAbilityLevelSwapped('A080', GetEnumUnit()) == 1 ) ) then
         return true
     endif
@@ -19002,23 +19002,23 @@ function Trig_KarmaSystem_Func002Func001Func009Func002Func002Func004C takes noth
     return false
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func009Func002Func002C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func008Func002Func002C takes nothing returns boolean
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
         return false
     endif
     if ( not ( GetUnitTypeId(GetEnumUnit()) != 'H004' ) ) then
         return false
     endif
-    if ( not Trig_KarmaSystem_Func002Func001Func009Func002Func002Func004C() ) then
+    if ( not Trig_KarmaSystem_Func002Func001Func008Func002Func002Func004C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func009Func002A takes nothing returns nothing
+function Trig_KarmaSystem_Func002Func001Func008Func002A takes nothing returns nothing
     call SetUnitAbilityLevelSwapped('A081', GetEnumUnit(), ( ( udg_Karma[GetForLoopIndexA()] * 1 ) - 3 ))
-    if ( Trig_KarmaSystem_Func002Func001Func009Func002Func002C() ) then
-        if ( Trig_KarmaSystem_Func002Func001Func009Func002Func002Func003C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func008Func002Func002C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func008Func002Func002Func003C() ) then
             call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call UnitRemoveAbilityBJ('A082', GetEnumUnit())
@@ -19036,14 +19036,14 @@ function Trig_KarmaSystem_Func002Func001Func009Func002A takes nothing returns no
     endif
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func009C takes nothing returns boolean
-    if ( not Trig_KarmaSystem_Func002Func001Func009Func001C() ) then
+function Trig_KarmaSystem_Func002Func001Func008C takes nothing returns boolean
+    if ( not Trig_KarmaSystem_Func002Func001Func008Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func011Func001Func002C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func010Func001Func002C takes nothing returns boolean
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == true ) ) then
         return false
     endif
@@ -19056,9 +19056,9 @@ function Trig_KarmaSystem_Func002Func001Func011Func001Func002C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func011Func001A takes nothing returns nothing
+function Trig_KarmaSystem_Func002Func001Func010Func001A takes nothing returns nothing
     call SetUnitAbilityLevelSwapped('A082', GetEnumUnit(), ( ( udg_Karma[GetForLoopIndexA()] * 1 ) - 4 ))
-    if ( Trig_KarmaSystem_Func002Func001Func011Func001Func002C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func010Func001Func002C() ) then
         call DisplayTextToForce(GetPlayersAll(), ( GetHeroProperName(GetEnumUnit()) + " становится |cffffff00Чемпионом Света|r!" ))
         call AddSpecialEffectTargetUnitBJ("origin", GetEnumUnit(), "Holy Light.mdx")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
@@ -19070,14 +19070,14 @@ function Trig_KarmaSystem_Func002Func001Func011Func001A takes nothing returns no
     endif
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func011C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func010C takes nothing returns boolean
     if ( not ( udg_Karma[GetForLoopIndexA()] >= 10 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func002Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func002Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Z', GetEnumUnit()) < 2 ) ) then
         return false
     endif
@@ -19090,7 +19090,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func002Func001C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func002C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func002C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Z', GetEnumUnit()) >= 2 ) ) then
         return false
     endif
@@ -19100,7 +19100,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func002C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func003Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func003Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Z', GetEnumUnit()) < 6 ) ) then
         return false
     endif
@@ -19113,14 +19113,14 @@ function Trig_KarmaSystem_Func002Func001Func013Func003Func001C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func003C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func003C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A083', GetEnumUnit()) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func004Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func004Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Y', GetEnumUnit()) < 9 ) ) then
         return false
     endif
@@ -19130,7 +19130,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func004Func001C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func004C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func004C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Y', GetEnumUnit()) >= 9 ) ) then
         return false
     endif
@@ -19140,7 +19140,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func004C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func005Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func005Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Y', GetEnumUnit()) < 10 ) ) then
         return false
     endif
@@ -19150,7 +19150,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func005Func001C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func005C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func005C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A07Y', GetEnumUnit()) >= 10 ) ) then
         return false
     endif
@@ -19160,7 +19160,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func005C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func007Func001C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func007Func001C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A082', GetEnumUnit()) < 1 ) ) then
         return false
     endif
@@ -19173,7 +19173,7 @@ function Trig_KarmaSystem_Func002Func001Func013Func007Func001C takes nothing ret
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013Func007C takes nothing returns boolean
+function Trig_KarmaSystem_Func002Func001Func012Func007C takes nothing returns boolean
     if ( not ( GetUnitAbilityLevelSwapped('A081', GetEnumUnit()) >= 2 ) ) then
         return false
     endif
@@ -19183,46 +19183,46 @@ function Trig_KarmaSystem_Func002Func001Func013Func007C takes nothing returns bo
     return true
 endfunction
 
-function Trig_KarmaSystem_Func002Func001Func013A takes nothing returns nothing
+function Trig_KarmaSystem_Func002Func001Func012A takes nothing returns nothing
     // ATTRIBUTES CHAOTIC
-    if ( Trig_KarmaSystem_Func002Func001Func013Func002C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func012Func002C() ) then
         call UnitAddAbilityBJ('A07R', GetEnumUnit())
     else
-        if ( Trig_KarmaSystem_Func002Func001Func013Func002Func001C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func012Func002Func001C() ) then
             call UnitRemoveAbilityBJ('A07R', GetEnumUnit())
         else
         endif
     endif
-    if ( Trig_KarmaSystem_Func002Func001Func013Func003C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func012Func003C() ) then
         call UnitAddAbilityBJ('A08S', GetEnumUnit())
     else
-        if ( Trig_KarmaSystem_Func002Func001Func013Func003Func001C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func012Func003Func001C() ) then
             call UnitRemoveAbilityBJ('A08S', GetEnumUnit())
         else
         endif
     endif
-    if ( Trig_KarmaSystem_Func002Func001Func013Func004C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func012Func004C() ) then
         call UnitAddAbilityBJ('A08T', GetEnumUnit())
     else
-        if ( Trig_KarmaSystem_Func002Func001Func013Func004Func001C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func012Func004Func001C() ) then
             call UnitRemoveAbilityBJ('A08T', GetEnumUnit())
         else
         endif
     endif
-    if ( Trig_KarmaSystem_Func002Func001Func013Func005C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func012Func005C() ) then
         call UnitAddAbilityBJ('A0FL', GetEnumUnit())
         call PlaySoundOnUnitBJ(gg_snd_DoomTarget, 100, GetEnumUnit())
     else
-        if ( Trig_KarmaSystem_Func002Func001Func013Func005Func001C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func012Func005Func001C() ) then
             call UnitRemoveAbilityBJ('A0FL', GetEnumUnit())
         else
         endif
     endif
     // ATTRIBUTES LAWFUL
-    if ( Trig_KarmaSystem_Func002Func001Func013Func007C() ) then
+    if ( Trig_KarmaSystem_Func002Func001Func012Func007C() ) then
         call UnitAddAbilityBJ('A07S', GetEnumUnit())
     else
-        if ( Trig_KarmaSystem_Func002Func001Func013Func007Func001C() ) then
+        if ( Trig_KarmaSystem_Func002Func001Func012Func007Func001C() ) then
             call UnitRemoveAbilityBJ('A07S', GetEnumUnit())
         else
         endif
@@ -19243,36 +19243,49 @@ function Trig_KarmaSystem_Actions takes nothing returns nothing
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
         if ( Trig_KarmaSystem_Func002Func001C() ) then
-            call MultiboardSetItemValueBJ(udg_Multiboard1, 2, ( GetForLoopIndexA() + 1 ), I2S(udg_Karma[GetForLoopIndexA()]))
             // N
-            if ( Trig_KarmaSystem_Func002Func001Func003C() ) then
-                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func003Func002A)
+            if ( Trig_KarmaSystem_Func002Func001Func002C() ) then
+                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func002Func002A)
             else
             endif
             // C - N
-            if ( Trig_KarmaSystem_Func002Func001Func005C() ) then
-                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func005Func002A)
+            if ( Trig_KarmaSystem_Func002Func001Func004C() ) then
+                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func004Func002A)
             else
             endif
             // C
-            if ( Trig_KarmaSystem_Func002Func001Func007C() ) then
-                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func007Func001A)
+            if ( Trig_KarmaSystem_Func002Func001Func006C() ) then
+                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func006Func001A)
             else
             endif
             // L - N
-            if ( Trig_KarmaSystem_Func002Func001Func009C() ) then
-                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func009Func002A)
+            if ( Trig_KarmaSystem_Func002Func001Func008C() ) then
+                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func008Func002A)
             else
             endif
             // L
-            if ( Trig_KarmaSystem_Func002Func001Func011C() ) then
-                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func011Func001A)
+            if ( Trig_KarmaSystem_Func002Func001Func010C() ) then
+                call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func010Func001A)
             else
             endif
             // ATTRIBUTES
-            call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func013A)
+            call ForGroupBJ(GetUnitsOfPlayerAll(udg_Player[GetForLoopIndexA()]), function Trig_KarmaSystem_Func002Func001Func012A)
         else
         endif
+        set bj_forLoopAIndex=bj_forLoopAIndex + 1
+    endloop
+    set bj_forLoopAIndex=1
+    set bj_forLoopAIndexEnd=udg_HeroNumber
+    loop
+        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+        call MultiboardSetItemValueBJ(udg_Multiboard1, 2, ( GetForLoopIndexA() + 1 ), I2S(udg_Karma[GetForLoopIndexA()]))
+        set bj_forLoopAIndex=bj_forLoopAIndex + 1
+    endloop
+    set bj_forLoopAIndex=1
+    set bj_forLoopAIndexEnd=udg_HeroNumber
+    loop
+        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+        call MultiboardSetItemValueBJ(udg_Multiboard1, 2, ( GetForLoopIndexA() + 1 ), I2S(udg_Karma[GetForLoopIndexA()]))
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_KarmaU=null
@@ -53224,11 +53237,6 @@ endfunction
 
 function Trig_Globe_Actions takes nothing returns nothing
     set udg_tempLoc=GetItemLoc(GetManipulatedItem())
-    set udg_tempZ=GetLocationZ(udg_tempLoc)
-    call StopSoundBJ(udg_GlobeSound, false)
-    call PlaySoundOnUnitBJ(gg_snd_DiabloSrineLifeSound, 100, GetTriggerUnit())
-    set udg_GlobeSound=GetLastPlayedSound()
-    set udg_tempZ=0.00
     call ForGroupBJ(GetUnitsInRangeOfLocAll(800.00, udg_tempLoc), function Trig_Globe_Func007A)
     call RemoveLocation(udg_tempLoc)
 endfunction
@@ -66098,12 +66106,12 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs127816468")
-call ExecuteFunc("NSLHelper__Init")
-call ExecuteFunc("NSLImpl__Init")
-call ExecuteFunc("NSLSaveLoad__Init")
-call ExecuteFunc("NSLSaveLoadExecutor__Init")
-call ExecuteFunc("NSLUtils__Init")
+call ExecuteFunc("jasshelper__initstructs138644828")
+call ExecuteFunc("NSLHelper___Init")
+call ExecuteFunc("NSLImpl___Init")
+call ExecuteFunc("NSLSaveLoad___Init")
+call ExecuteFunc("NSLSaveLoadExecutor___Init")
+call ExecuteFunc("NSLUtils___Init")
 
     call InitGlobals()
     call InitCustomTriggers()
@@ -66162,8 +66170,8 @@ local integer player_id=f__arg_integer1
 			set s__NSL_Code_code_length[inst]=0
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
-			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
 set f__result_integer= inst
    return true
 endfunction
@@ -66174,8 +66182,8 @@ local integer size=f__arg_integer2
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
    return true
 endfunction
@@ -66189,15 +66197,15 @@ return true
 				call s__NSL_Code_GenerateImpl(this)
 return true
 			endif
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
 			endif
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
    return true
 endfunction
 function sa__NSL_Code_Load takes nothing returns boolean
@@ -66207,33 +66215,33 @@ local integer this=f__arg_this
 set f__result_boolean= true
 return true
 			endif
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
+			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
 set f__result_boolean= true
    return true
 endfunction
@@ -66245,8 +66253,8 @@ local integer size=f__arg_integer1
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -66276,7 +66284,7 @@ function sa___prototype2_DamageEngine_RegisterFromHook takes nothing returns boo
     call DamageEngine_RegisterFromHook(f__arg_trigger1,f__arg_string1,f__arg_limitop1,f__arg_real1)
     return true
 endfunction
-function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated takes nothing returns boolean
+function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local string generated_code=f__arg_string1
 
@@ -66287,19 +66295,19 @@ function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated takes nothi
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     return true
 endfunction
-function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boolean
+function sa___prototype19_NSLUtils___OnPlayerCodeLoaded takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local boolean is_valid=f__arg_boolean1
  local integer loader=f__arg_integer2
 
         if ( is_valid ) then
-            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils__format == null ) then
+            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils___format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
     return true
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
@@ -66307,7 +66315,7 @@ function sa___prototype19_NSLUtils__OnPlayerCodeLoaded takes nothing returns boo
     return true
 endfunction
 
-function jasshelper__initstructs127816468 takes nothing returns nothing
+function jasshelper__initstructs138644828 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -66326,19 +66334,19 @@ function jasshelper__initstructs127816468 takes nothing returns nothing
     call TriggerAddAction(st___prototype2[1],function sa___prototype2_DamageEngine_RegisterFromHook)
     call TriggerAddCondition(st___prototype2[1],Condition(function sa___prototype2_DamageEngine_RegisterFromHook))
     set st___prototype13[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype13[1],function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated)
-    call TriggerAddCondition(st___prototype13[1],Condition(function sa___prototype13_NSLSaveLoadExecutor__OnPlayerCodeGenerated))
+    call TriggerAddAction(st___prototype13[1],function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated)
+    call TriggerAddCondition(st___prototype13[1],Condition(function sa___prototype13_NSLSaveLoadExecutor___OnPlayerCodeGenerated))
     set st___prototype19[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype19[1],function sa___prototype19_NSLUtils__OnPlayerCodeLoaded)
-    call TriggerAddCondition(st___prototype19[1],Condition(function sa___prototype19_NSLUtils__OnPlayerCodeLoaded))
+    call TriggerAddAction(st___prototype19[1],function sa___prototype19_NSLUtils___OnPlayerCodeLoaded)
+    call TriggerAddCondition(st___prototype19[1],Condition(function sa___prototype19_NSLUtils___OnPlayerCodeLoaded))
 
 
 
-call ExecuteFunc("s__File_FileIO__FileInit__onInit")
+call ExecuteFunc("s__File_FileIO___FileInit___onInit")
 
-call ExecuteFunc("s__User_PlayerUtils__PlayerUtilsInit__onInit")
+call ExecuteFunc("s__User_PlayerUtils___PlayerUtilsInit___onInit")
 
-call ExecuteFunc("s__SyncHelper__Sync_SyncHelper__INITS__onInit")
+call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
 
 
 

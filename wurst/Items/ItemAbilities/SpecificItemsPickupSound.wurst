@@ -1,0 +1,22 @@
+package SpecificItemsPickupSound
+
+import ClosureEvents
+import SoundUtils
+import HashMap
+
+    
+function doSoundEffect(unit u, SoundDefinition snd)
+    snd.playOnPoint(u.getPos3Real())
+
+let blood_orb_sound = new SoundDefinition("Sounds/blood_orb_sound.mp3", false, true)
+let dct = new HashMap<int, SoundDefinition>
+
+init
+    dct.put('I03W', blood_orb_sound)
+
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) ->
+        let u = GetTriggerUnit()
+        let item_ = GetManipulatedItem()
+
+        if dct.has(item_.getTypeId())
+            doSoundEffect(u, dct.get(item_.getTypeId()))

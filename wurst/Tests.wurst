@@ -16,7 +16,7 @@ init
             CreateItem(EXCALIBUR_ITEM_ID, u.getX(), u.getY())
             CreateItem(EYE_OF_AVADRAAH_ITEM_ID, u.getX(), u.getY())
             CreateItem(GIFT_OF_LORD_OF_LIES_ITEM_ID, u.getX(), u.getY())
-        if msg == "-legendary"
-            let u = udg_hero_by_player[plyer.getId() + 1]
-            CreateItem(ChooseRandomItem(5), u.getX(), u.getY())
+        if msg == "-test5"
+            for i = 1 to CountUnitsInGroup(udg_HeroesGroup)
+                print(udg_Hero[i].getName() + " - " + udg_Karma[i].toString())
         

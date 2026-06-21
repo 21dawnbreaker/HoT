@@ -6,15 +6,21 @@ import AbilityAndBuffID
 import EyeOfAvadraahObjects
 
 init
-    EventListener.onCast(EYE_OF_AVADRAAH_SPELL_ID, (unit caster) -> begin
+    EventListener.onCast(EYE_OF_AVADRAAH_SPELL_ID) (unit caster) -> 
         flashEffect(FLASH_EFFECT, caster.getPos3Real() + vec3(0, 0, 50))
         let id = caster.getOwner().getId() + 1
         caster.addAbility(EYE_OF_AVADRAAH_AURA)
         caster.hideAbility(EYE_OF_AVADRAAH_AURA, true)
         udg_HERO_DAMAGE_BONUS_ALL[id] += 300
-        doAfter(45, () -> begin
+
+        for i = 1 to CountUnitsInGroup(udg_HeroesGroup)
+            if udg_Hero[i] == caster
+                udg_Karma[i] = udg_Karma[i] - 2
+
+        udg_tempUnit = caster
+        TriggerExecuteBJ(gg_trg_KarmaSystem, false)
+
+        doAfter(45) -> 
             caster.hideAbility(EYE_OF_AVADRAAH_AURA, false)
             caster.removeAbility(EYE_OF_AVADRAAH_AURA)
             udg_HERO_DAMAGE_BONUS_ALL[id] -= 300
-        end)
-    end)
