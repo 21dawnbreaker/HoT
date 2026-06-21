@@ -13,8 +13,8 @@ init
         caster.hideAbility(EYE_OF_AVADRAAH_AURA, true)
         udg_HERO_DAMAGE_BONUS_ALL[id] += 300
 
-        for i = 1 to CountUnitsInGroup(udg_HeroesGroup)
-            if udg_Hero[i] == caster
+        for i = 1 to udg_HeroNumber
+            if udg_Player[i] == caster.getOwner()
                 udg_Karma[i] = udg_Karma[i] - 2
 
         udg_tempUnit = caster

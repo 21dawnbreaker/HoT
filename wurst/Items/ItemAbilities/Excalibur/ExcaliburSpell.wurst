@@ -75,5 +75,3 @@ init
             let caster = GetTriggerUnit()
             if dict.has(caster)
                 dict.getAndRemove(caster).destr()
-        
-        

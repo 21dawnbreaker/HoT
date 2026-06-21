@@ -17,7 +17,10 @@ init
         let target = DamageEvent.getTarget()
 
         if unit_ == gg_unit_O024_0311 and DamageEvent.getAttackType() == ATTACK_TYPE_MELEE and unit_.hasAbility(SLAM_BUFF_ID)
-            let dmg = 50.0 * unit_.getAbilityLevel(SLAM_ABIL_ID) + unit_.getStr(true) * (0.5 + (0.5 * unit_.getAbilityLevel(SLAM_ABIL_ID)))
+            var dmg = 50.0 * unit_.getAbilityLevel(SLAM_ABIL_ID) + unit_.getStr(true) * (0.5 + (0.5 * unit_.getAbilityLevel(SLAM_ABIL_ID)))
+            if target.hasAbility('B02E')
+                dmg = dmg * 2
+                target.removeAbility('B02E')
 
             DamageEvent.setNextDamageFromCode()
             sound_eff.playOnPoint(target.getPos3Real())
