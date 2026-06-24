@@ -1,0 +1,27 @@
+package Overpower
+
+import DamageEvent
+import SoundUtils
+import ClosureTimers
+
+let sound_eff = new SoundDefinition("Sounds/overpower.mp3", false, true)
+let special_eff = "Doodads/Cinematic/Lightningbolt/Lightningbolt.mdl"
+
+let OVERPOWER_CHANCE = 15
+let OVERPOWER_DAMAGE = 0.2
+
+init
+    DamageEvent.addListener() ->
+        if DamageEvent.getAttackType() == ATTACK_TYPE_MELEE
+            let unit_ = DamageEvent.getSource()
+            let target = DamageEvent.getTarget()
+            if unit_.hasAbility('B047') or (GetRandomInt(1, 100) <= 15 and unit_.hasAbility('A0KQ'))
+                if unit_.hasAbility('B047')
+                    udg_decimate_overpower_hits = udg_decimate_overpower_hits - 1
+                    if udg_decimate_overpower_hits == 0
+                        unit_.removeAbility('B047')
+                unit_.damageTarget(target, unit_.getMaxHP() * OVERPOWER_DAMAGE, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS)
+                sound_eff.playOnPoint(target.getPos3Real())
+                let eff = addEffect(special_eff, target.getPos3Real())
+                doAfter(0.5) ->
+                    eff.destr()

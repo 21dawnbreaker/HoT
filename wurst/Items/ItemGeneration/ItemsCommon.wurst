@@ -1,0 +1,28 @@
+package ItemsCommon
+
+import ItemObjEditing
+import ObjectIdGenerator
+import ObjectIds
+
+import public AbilityAndBuffID
+
+let ORIGIN_ITEM_ID = 'rst1'
+
+// public constant BOUNTY_HUNT_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
+let weapon = "Campaign"
+let trinket = "Purchasable"
+let armor = "Permanent"
+let gloves = "Charged"
+let boots = "Artifact"
+let consumable = "PowerUp"
+let scroll = "Miscellaneous"
+
+let common = 1
+let rune = 2
+let rare = 3
+let epic = 4
+let legendary = 5
+let fel_items = 6
+let holy_items = 7
+let not_spawnable = 8

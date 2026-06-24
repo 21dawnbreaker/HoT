@@ -1,4 +1,4 @@
-package ItemCreation
+package ItemsEpic
 
 import ItemObjEditing
 import ObjectIdGenerator
@@ -8,8 +8,6 @@ import public AbilityAndBuffID
 
 let ORIGIN_ITEM_ID = 'rst1'
 
-public constant BOUNTY_HUNT_ITEM_ID = compiletime(ITEM_ID_GEN.next())
-public constant EXCALIBUR_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EYE_OF_AVADRAAH_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant GIFT_OF_LORD_OF_LIES_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 
@@ -18,7 +16,7 @@ let trinket = "Purchasable"
 let armor = "Permanent"
 let gloves = "Charged"
 let boots = "Artifact"
-let consumable = "PowerUp"
+let other = "PowerUp"
 let scroll = "Miscellaneous"
 
 let common = 1
@@ -30,31 +28,6 @@ let fel_items = 6
 let holy_items = 7
 let not_spawnable = 8
 
-
-// COMMON
-
-
-
-
-// RARE
-
-@compiletime function genBountyHuntItem()
-    new ItemDefinition(BOUNTY_HUNT_ITEM_ID, ORIGIN_ITEM_ID)
-        ..setName("|cff8080ffЛисты розыска|r")..setTooltipBasic("|cff8080ffЛисты розыска|r")
-        ..setTooltipExtended("+15% урона по элитным противникам и боссам. |n|cff8080ff+25% к шансу столкновения с чемпионом в начале каждого боя|r.")
-        ..setDescription("+15% урона по элитным противникам и боссам. |n|cff8080ff+25% к шансу столкновения с чемпионом в начале каждого боя|r. |n|n[|cff00ffffУкрашение|r]")
-        ..setLevel(rare)..setLevelUnclassified(rare)..setIncludeAsRandomChoice(true)
-        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
-        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCritter Two-Thumbs Portrait.blp")..setModelUsed("war3mapImported\\Scroll.mdl")..setScalingValue(1)
-        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("")
-        ..setActivelyUsed(false)
-        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
-        ..setClassification(trinket)
-        ..setGoldCost(300)
-
-
-// EPIC
 
 @compiletime function genEyeOfAvadraahItem()
     new ItemDefinition(EYE_OF_AVADRAAH_ITEM_ID, ORIGIN_ITEM_ID)
@@ -76,7 +49,7 @@ let not_spawnable = 8
         ..setName("|cffc82596Дар Владыки Лжи|r")..setTooltipBasic("|cffc82596Дар Владыки Лжи|r")
         ..setTooltipExtended("+40 ко всем характеристикам. |n+8 к броне. |n+375 к здоровью. |n+20% к сопротивлению магии. |n|cffc82596Способность: \"Сокрытие личности\" - перевоплощает героя в случайного элитного противника на 45 сек. |nПо окончанию эффекта или смерти, возвращает истинный облик|r.")
         ..setDescription("+40 ко всем характеристикам. |n+8 к броне. |n +375 к здоровью. |n+20% к сопротивлению магии. |n|cffc82596Способность: \"Сокрытие личности\" - перевоплощает героя в случайного элитного противника на 45 сек. |nПо окончанию эффекта или смерти, возвращает истинный облик|r. |n|n[|cff00ffffБроня|r]")
-        // ..setLevel(epic)..setLevelUnclassified(epic)..setIncludeAsRandomChoice(true)
+        ..setLevel(epic)..setLevelUnclassified(epic)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(30)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNBNTHolyArmor2a1.BLP")..setModelUsed("war3mapImported\\SteelPlatemail.mdl")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
@@ -85,21 +58,3 @@ let not_spawnable = 8
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(armor)
         ..setGoldCost(500)
-
-
-// LEGENDARY
-
-@compiletime function genExcaliburItem()
-    new ItemDefinition(EXCALIBUR_ITEM_ID, ORIGIN_ITEM_ID)
-        ..setName("|cffd48219Экскалибур|r")..setTooltipBasic("|cffd48219Экскалибур|r")
-        ..setTooltipExtended("+50 к силе и ловкости. |n+50% к урону по нежити. |n+40 к регенерации здоровья. |n|cffd48219Способность: \"Священное орудие\" - персонаж концентрирует великую силу света в клинке в течение 5 сек., а затем высвобождает ее перед собой, нанося врагам [Основной аттрибут] х 50 ед. магического урона. |nГерои получают тройной урон|r.")
-        ..setDescription("+50 к силе и ловкости. |n+50% к урону по нежити. |n+40 к регенерации здоровья. |n|cffd48219Способность: \"Священное орудие\" - персонаж концентрирует великую силу света в клинке в течение 5 сек., а затем высвобождает ее перед собой, нанося врагам [Основной аттрибут] х 50 ед. магического урона. |nГерои получают тройной урон|r. |n|n[|cff00ffffОружие|r]")
-        ..setLevel(legendary)..setLevelUnclassified(legendary)..setIncludeAsRandomChoice(true)
-        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(0)
-        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNDivineRapier.blp")..setModelUsed("DivineRapier.mdl")..setScalingValue(1)
-        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities(EXCALIBUR_SPELL_ID.toRawCode() + "," + "A0IV,A0I5")
-        ..setActivelyUsed(true)
-        ..setCooldownGroup(EXCALIBUR_SPELL_ID.toRawCode())
-        ..setClassification(weapon)
-        ..setGoldCost(1000)
