@@ -10,7 +10,7 @@ import ItemsLegendary
 
 
 init
-    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) -> 
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) ->
         let _unit = GetManipulatingUnit()
         let _player = _unit.getOwner()
         let _id = _player.getId() + 1
@@ -18,44 +18,55 @@ init
         let _item_id = GetManipulatedItem().getTypeId()
 
         // ALL resistance --------------------------------------------------------------------
-        if _item.getAbility(ALL_RESISTANCE_5_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 5
+        for key in all_resistance_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_DEF_ALL[_id] += all_resistance_dict.get(key)
 
-        if _item.getAbility(ALL_RESISTANCE_10_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 10
-
-        if _item.getAbility(ALL_RESISTANCE_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 15
-
-        if _item.getAbility(ALL_RESISTANCE_20_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 20
+        // PHYSICAL resistance --------------------------------------------------------------------
+        for key in physical_resistance_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_DEF_PHYSICAL[_id] += physical_resistance_dict.get(key)
 
         // MAGIC resistance --------------------------------------------------------------------
-        if _item.getAbility(MAGIC_RESISTANCE_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 15
-
-        if _item.getAbility(MAGIC_RESISTANCE_20_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 20
+        for key in magic_resistance_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_DEF_MAGIC[_id] += magic_resistance_dict.get(key)
 
         // ALL damage amp --------------------------------------------------------------------
-        if _item.getAbility(ALL_AMP_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_BONUS_ALL[_id] = udg_HERO_DAMAGE_BONUS_ALL[_id] + 15
+        for key in all_amp_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_BONUS_ALL[_id] += all_amp_dict.get(key)
+
+        // PHYSICAL damage amp --------------------------------------------------------------------
+        for key in all_amp_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_BONUS_PHYSICAL[_id] += physical_amp_dict.get(key)
+
+        // MAGIC damage amp --------------------------------------------------------------------
+        for key in all_amp_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_BONUS_MAGIC[_id] += magic_amp_dict.get(key)
 
         // VS ELITES --------------------------------------------------------------------
-        if _item.getAbility(VS_ELITES_AMP_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] = udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] + 15
+        for key in vs_elite_amp_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] += vs_elite_amp_dict.get(key)
 
         // VS UNDEAD --------------------------------------------------------------------
-        if _item.getAbility(VS_UNDEAD_AMP_12_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] = udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] + 12
-
-        if _item.getAbility(VS_UNDEAD_AMP_50_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] = udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] + 50
+        for key in vs_undead_amp_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] += vs_undead_amp_dict.get(key)
 
         // MINIONS damage amp --------------------------------------------------------------------
-        if _item.getAbility(MINIONS_AMP_20_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_BONUS_MINIONS[_id] = udg_HERO_DAMAGE_BONUS_MINIONS[_id] + 20
+        for key in minion_amp_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_HERO_DAMAGE_BONUS_MINIONS[_id] += minion_amp_dict.get(key)
 
-        // OTHER --------------------------------------------------------------------
+        // DEATH DISOBEDIENCE max amount --------------------------------------------------------------------
+        for key in death_disobedience_dict
+            if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
+                udg_DISOBIDIENCE_OF_DEATH += death_disobedience_dict.get(key)
+
+        // OTHER
         if _item.getAbility(MINIBOSS_SPAWN_CHANCE_25_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
-            udg_MINIBOSS_SPAWN_CHANCE = udg_MINIBOSS_SPAWN_CHANCE + 25
+            udg_MINIBOSS_SPAWN_CHANCE += 25

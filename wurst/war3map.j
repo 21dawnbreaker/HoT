@@ -1,31 +1,31 @@
 globals
 //globals from DamageEngine:
 constant boolean LIBRARY_DamageEngine=true
-constant boolean DamageEngine__USE_GUI= true
+constant boolean DamageEngine___USE_GUI= true
                                                        
-constant boolean DamageEngine__USE_SCALING= DamageEngine__USE_GUI
-constant boolean DamageEngine__USE_EXTRA= true
-constant boolean DamageEngine__USE_ARMOR_MOD= true
-constant boolean DamageEngine__USE_MELEE_RANGE= true
-constant boolean DamageEngine__USE_LETHAL= true
+constant boolean DamageEngine___USE_SCALING= DamageEngine___USE_GUI
+constant boolean DamageEngine___USE_EXTRA= true
+constant boolean DamageEngine___USE_ARMOR_MOD= true
+constant boolean DamageEngine___USE_MELEE_RANGE= true
+constant boolean DamageEngine___USE_LETHAL= true
    
-constant integer DamageEngine__LIMBO= 16
+constant integer DamageEngine___LIMBO= 16
    
 constant integer DamageEngine_TYPE_CODE= 1
 constant integer DamageEngine_TYPE_PURE= 2
-constant real DamageEngine__DEATH_VAL= 0.405
-timer DamageEngine__alarm= CreateTimer()
-boolean DamageEngine__alarmSet= false
+constant real DamageEngine___DEATH_VAL= 0.405
+timer DamageEngine___alarm= CreateTimer()
+boolean DamageEngine___alarmSet= false
     //Values to track the original pre-spirit Link/defensive damage values
-integer DamageEngine__lastInstance= 0
-boolean DamageEngine__canKick= true
-boolean DamageEngine__totem= false
-boolean array DamageEngine__attacksImmune
-boolean array DamageEngine__damagesImmune
+integer DamageEngine___lastInstance= 0
+boolean DamageEngine___canKick= true
+boolean DamageEngine___totem= false
+boolean array DamageEngine___attacksImmune
+boolean array DamageEngine___damagesImmune
     //Made global in order to use enable/disable behavior.
-trigger DamageEngine__t1= CreateTrigger()
-trigger DamageEngine__t2= CreateTrigger()
-trigger DamageEngine__t3= CreateTrigger()
+trigger DamageEngine___t1= CreateTrigger()
+trigger DamageEngine___t2= CreateTrigger()
+trigger DamageEngine___t3= CreateTrigger()
     //These variables coincide with Blizzard's "limitop" type definitions so as to enable users (GUI in particular) with some nice performance perks.
 constant integer DamageEngine_FILTER_ATTACK= 0
 constant integer DamageEngine_FILTER_MELEE= 1
@@ -34,41 +34,41 @@ constant integer DamageEngine_FILTER_RANGED= 3
 constant integer DamageEngine_FILTER_SPELL= 4
 constant integer DamageEngine_FILTER_CODE= 5
 constant integer DamageEngine_FILTER_MAX= 6
-integer DamageEngine__eventFilter= DamageEngine_FILTER_OTHER
+integer DamageEngine___eventFilter= DamageEngine_FILTER_OTHER
 boolean DamageEngine_inception= false
-boolean DamageEngine__dreaming= false
-integer DamageEngine__sleepLevel= 0
-group DamageEngine__proclusGlobal= CreateGroup()
-group DamageEngine__fischerMorrow= CreateGroup()
-boolean DamageEngine__kicking= false
-boolean DamageEngine__eventsRun= false
+boolean DamageEngine___dreaming= false
+integer DamageEngine___sleepLevel= 0
+group DamageEngine___proclusGlobal= CreateGroup()
+group DamageEngine___fischerMorrow= CreateGroup()
+boolean DamageEngine___kicking= false
+boolean DamageEngine___eventsRun= false
    
-boolean DamageEngine__hasLethal= false
+boolean DamageEngine___hasLethal= false
 //endglobals from DamageEngine
 //globals from FileIO:
 constant boolean LIBRARY_FileIO=true
 //endglobals from FileIO
 //globals from GetMainSelectedUnit:
 constant boolean LIBRARY_GetMainSelectedUnit=true
-framehandle GetMainSelectedUnit__containerFrame
-framehandle array GetMainSelectedUnit__frames
-group GetMainSelectedUnit__Group= CreateGroup()
-unit array GetMainSelectedUnit__units
-integer GetMainSelectedUnit__unitsCount= 0
-filterfunc GetMainSelectedUnit__filter
+framehandle GetMainSelectedUnit___containerFrame
+framehandle array GetMainSelectedUnit___frames
+group GetMainSelectedUnit___Group= CreateGroup()
+unit array GetMainSelectedUnit___units
+integer GetMainSelectedUnit___unitsCount= 0
+filterfunc GetMainSelectedUnit___filter
 //endglobals from GetMainSelectedUnit
 //globals from NSLCodeHelper:
 constant boolean LIBRARY_NSLCodeHelper=true
 //endglobals from NSLCodeHelper
 //globals from NSLCodexStore:
 constant boolean LIBRARY_NSLCodexStore=true
-trigger array NSLCodexStore___CodexArray
-integer array NSLCodexStore___CodexVersion
-integer NSLCodexStore___CodexSize= 0
+trigger array NSLCodexStore__CodexArray
+integer array NSLCodexStore__CodexVersion
+integer NSLCodexStore__CodexSize= 0
 //endglobals from NSLCodexStore
 //globals from NSLHelper:
 constant boolean LIBRARY_NSLHelper=true
-integer array NSLHelper___TWO_POW_CACHE
+integer array NSLHelper__TWO_POW_CACHE
 //endglobals from NSLHelper
 //globals from NSLSizeEnum:
 constant boolean LIBRARY_NSLSizeEnum=true
@@ -108,30 +108,30 @@ constant integer NSL_SIZE_LESS_THAN_2147483648= 31
 constant boolean LIBRARY_PlayerUtils=true
 constant force FORCE_PLAYING= CreateForce()
    
-string array PlayerUtils___Name
-string array PlayerUtils___Hex
-string array PlayerUtils___OriginalHex
-playercolor array PlayerUtils___CurrentColor
+string array PlayerUtils__Name
+string array PlayerUtils__Hex
+string array PlayerUtils__OriginalHex
+playercolor array PlayerUtils__CurrentColor
 //endglobals from PlayerUtils
 //globals from RegisterPlayerUnitEvent:
 constant boolean LIBRARY_RegisterPlayerUnitEvent=true
-trigger array RegisterPlayerUnitEvent__t
+trigger array RegisterPlayerUnitEvent___t
 //endglobals from RegisterPlayerUnitEvent
 //globals from SyncHelper:
 constant boolean LIBRARY_SyncHelper=true
 constant string SyncHelper_SYNC_PREFIX_COUNT= "CP"
 constant string SyncHelper_SYNC_PREFIX= "CS"
-constant integer SyncHelper___SYNC_SIZE_CHUNK= 200
+constant integer SyncHelper__SYNC_SIZE_CHUNK= 200
 //endglobals from SyncHelper
 //globals from Table:
 constant boolean LIBRARY_Table=true
-integer Table___less= 0
-integer Table___more= 8190
+integer Table__less= 0
+integer Table__more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
-hashtable Table___ht= InitHashtable()
-constant integer Table___sizeK=10
-constant integer Table___listK=11
+hashtable Table__ht= InitHashtable()
+constant integer Table__sizeK=3
+constant integer Table__listK=5
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -139,12 +139,12 @@ constant boolean LIBRARY_TasUnitBagGUI=true
 //globals from Interface:
 constant boolean LIBRARY_Interface=true
         // Set this to a texture to replace the default gold icon
-constant string Interface__GOLD_ICON= ""
+constant string Interface___GOLD_ICON= ""
         // Set this to a texture to replace the default lumber icon
-constant string Interface__LUMBER_ICON= ""
+constant string Interface___LUMBER_ICON= ""
         // When true and a unit that has "Select Unit" or "Select Hero" or "Shop Purchase Item" 
         // abilities is select a panel above the portrait is created to show the items/units
-constant boolean Interface__DISPLAY_SHOP= true
+constant boolean Interface___DISPLAY_SHOP= true
 //endglobals from Interface
 //globals from NSLImpl:
 constant boolean LIBRARY_NSLImpl=true
@@ -159,34 +159,34 @@ constant boolean NSL_UseSimpleSaveLoad= false
 //endglobals from NSLImpl
 //globals from NSLSaveLoad:
 constant boolean LIBRARY_NSLSaveLoad=true
-string NSLSaveLoad___NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
-integer NSLSaveLoad___NSL_CharsetLen= 64
-integer NSLSaveLoad___NSL_BitPerChar= 6
+string NSLSaveLoad__NSL_Charset= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
+integer NSLSaveLoad__NSL_CharsetLen= 64
+integer NSLSaveLoad__NSL_BitPerChar= 6
 		
-integer NSLSaveLoad___NSL_HT_KEY_CODE_ID= 0
-integer NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX= 1
-integer NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET= 2
+integer NSLSaveLoad__NSL_HT_KEY_CODE_ID= 0
+integer NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX= 1
+integer NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET= 2
 
-hashtable NSLSaveLoad___NSL_Hashtable= InitHashtable()
-hashtable NSLSaveLoad___NSL_HashtableValue= InitHashtable()
-timer array NSLSaveLoad___NSL_Timers
+hashtable NSLSaveLoad__NSL_Hashtable= InitHashtable()
+hashtable NSLSaveLoad__NSL_HashtableValue= InitHashtable()
+timer array NSLSaveLoad__NSL_Timers
 //endglobals from NSLSaveLoad
 //globals from SaveFile:
 constant boolean LIBRARY_SaveFile=true
 //endglobals from SaveFile
 //globals from TasItemBag:
 constant boolean LIBRARY_TasItemBag=true
-real TasItemBag___PosX= 0.4
-real TasItemBag___PosY= 0.30
-framepointtype TasItemBag___Pos= FRAMEPOINT_TOP
-integer TasItemBag___Cols= 6
-integer TasItemBag___Rows= 4
+real TasItemBag__PosX= 0.4
+real TasItemBag__PosY= 0.30
+framepointtype TasItemBag__Pos= FRAMEPOINT_TOP
+integer TasItemBag__Cols= 6
+integer TasItemBag__Rows= 4
 
-real TasItemBag___ShowButtonPosX= 0.390
-real TasItemBag___ShowButtonPosY= 0.145
-framepointtype TasItemBag___ShowButtonPos= FRAMEPOINT_TOPLEFT
-string TasItemBag___ShowButtonTexture= "ReplaceableTextures/CommandButtons/BTNTreasure Chest.blp"
-string TasItemBag___ShowButtonTextureDisabled= "ReplaceableTextures/CommandButtonsDisabled/DISBTNTreasure Chest.blp"
+real TasItemBag__ShowButtonPosX= 0.390
+real TasItemBag__ShowButtonPosY= 0.145
+framepointtype TasItemBag__ShowButtonPos= FRAMEPOINT_TOPLEFT
+string TasItemBag__ShowButtonTexture= "ReplaceableTextures/CommandButtons/BTNTreasure Chest.blp"
+string TasItemBag__ShowButtonTextureDisabled= "ReplaceableTextures/CommandButtonsDisabled/DISBTNTreasure Chest.blp"
         // show the showButton only when the inventory is shown?
 boolean TasItemBag_ShowButtonNeedsInventory= true
 
@@ -194,12 +194,12 @@ boolean TasItemBag_ShowButtonNeedsInventory= true
 boolean TasItemBag_ShowButtonCloses= true
         
 
-real TasItemBag___TooltipWidth= 0.27
+real TasItemBag__TooltipWidth= 0.27
 real TasItemBag_TooltipScale= 1.0
 boolean TasItemBag_TooltipFixedPosition= true
-real TasItemBag___TooltipFixedPositionX= 0.79
-real TasItemBag___TooltipFixedPositionY= 0.16
-framepointtype TasItemBag___TooltipFixedPositionPoint= FRAMEPOINT_BOTTOMRIGHT
+real TasItemBag__TooltipFixedPositionX= 0.79
+real TasItemBag__TooltipFixedPositionY= 0.16
+framepointtype TasItemBag__TooltipFixedPositionPoint= FRAMEPOINT_BOTTOMRIGHT
 
 boolean TasItemBag_MoveUsedItemsIntoBag= false
 
@@ -208,13 +208,13 @@ boolean TasItemBag_IgnoreUndropAble= true
 
         // Units with the Locust skill do not move gained items into the bag
 boolean TasItemBag_IgnoreDummy= true
-integer TasItemBag___DummySkill= 'Aloc'
+integer TasItemBag__DummySkill= 'Aloc'
 
         // DestroyUndropAbleItems = true, When by death an undropable item would have to be droped from the TasItemBag, it is destroyed.
-boolean TasItemBag___DestroyUndropAbleItems= false
+boolean TasItemBag__DestroyUndropAbleItems= false
         
         // ItemBagSize is the maximum amount of items, an unit can carry in the bag, additional items are droped on pickup
-integer TasItemBag___ItemBagSize= 24
+integer TasItemBag__ItemBagSize= 24
 
         // can Equip only EquipClassLimit of one Item Class at one time
 integer TasItemBag_EquipClassLimit= 999
@@ -225,13 +225,13 @@ integer TasItemBag_EquipClassLimit= 999
 integer array TasItemBag_InventorySkills
 
         // An unit that can not use Items (cause of it's inventory skills) does not need to fullfill the requirments
-boolean TasItemBag___IgnoreNeedWhenCanNotUse= true
+boolean TasItemBag__IgnoreNeedWhenCanNotUse= true
 
         // Display the requirements in the Item Tooltip
 boolean TasItemBag_AddNeedText= false
 
         // ItemLevelRestriction = true; only a hero which level is equal or higher to the item's level can equip it
-boolean TasItemBag___ItemLevelRestriction= false
+boolean TasItemBag__ItemLevelRestriction= false
 
         //itemCode Require the unit to have ability X to equip
         //itemCode = AbilityCode
@@ -239,9 +239,9 @@ integer TasItemBag_ItemAbilityNeed
 integer TasItemBag_ItemIsInBag
 integer TasItemBag_BagItem
 
-abilityintegerlevelfield TasItemBag___AbilityFieldDrop
-abilityintegerlevelfield TasItemBag___AbilityFieldUse
-abilityintegerlevelfield TasItemBag___AbilityFieldCanDrop
+abilityintegerlevelfield TasItemBag__AbilityFieldDrop
+abilityintegerlevelfield TasItemBag__AbilityFieldUse
+abilityintegerlevelfield TasItemBag__AbilityFieldCanDrop
 timer TasItemBag_TimerUpdate
 trigger TasItemBag_Trigger
 trigger TasItemBag_TriggerESC
@@ -266,10 +266,10 @@ unit array TasItemBag_Selected
     // The UI moves all picked up items into the bag, RpgCustomUI.EquipNow = true prevents that
 boolean TasItemBag_EquipNow= true
 
-unit array TasItemBag___ItemGainTimerUnit
-timer TasItemBag___ItemGainTimer
-item array TasItemBag___ItemGainTimerItem
-integer TasItemBag___ItemGainTimerCount= 0
+unit array TasItemBag__ItemGainTimerUnit
+timer TasItemBag__ItemGainTimer
+item array TasItemBag__ItemGainTimerItem
+integer TasItemBag__ItemGainTimerCount= 0
     
 //endglobals from TasItemBag
 //globals from NSLSaveLoadExecutor:
@@ -288,7 +288,7 @@ string array NSL_PlayerLoadingCode
 constant trigger SL_OnLoadedTrigger= CreateTrigger()
 integer SL_LoadedPlayerId
         
-trigger NSLUtils___format
+trigger NSLUtils__format
 //endglobals from NSLUtils
     // User-defined
 group udg_UnitGroup= null
@@ -2954,9 +2954,9 @@ boolean array s__DamageTrigger_configured
 boolean array s__DamageTrigger_usingGUI
 integer array s__DamageTrigger_next
 trigger array s__DamageTrigger_rootTrig
-boolean array s__DamageTrigger_DamageEngine__trigFrozen
-integer array s__DamageTrigger_DamageEngine__levelsDeep
-boolean array s__DamageTrigger_DamageEngine__inceptionTrig
+boolean array s__DamageTrigger_DamageEngine___trigFrozen
+integer array s__DamageTrigger_DamageEngine___levelsDeep
+boolean array s__DamageTrigger_DamageEngine___inceptionTrig
 unit array s__DamageTrigger_source
 unit array s__DamageTrigger_target
 integer array s__DamageTrigger_sourceType
@@ -3023,172 +3023,172 @@ integer s__User_AmountPlaying= 0
 playercolor array s__User_Color
 integer array s__User_PlayingPlayer
 integer array s__User_PlayingPlayerIndex
-constant integer si__SyncHelper___Sync=5
-trigger s__SyncHelper___Sync_TriggerCount= CreateTrigger()
-trigger s__SyncHelper___Sync_Trigger= CreateTrigger()
-constant integer si__Table___dex=6
-constant integer si__Table___handles=7
-constant integer si__Table___agents=8
-constant integer si__Table___reals=9
-constant integer si__Table___booleans=10
-constant integer si__Table___strings=11
-constant integer si__Table___integers=12
-constant integer si__Table___players=13
-constant integer si__Table___widgets=14
-constant integer si__Table___destructables=15
-constant integer si__Table___items=16
-constant integer si__Table___units=17
-constant integer si__Table___abilitys=18
-constant integer si__Table___timers=19
-constant integer si__Table___triggers=20
-constant integer si__Table___triggerconditions=21
-constant integer si__Table___triggeractions=22
-constant integer si__Table___events=23
-constant integer si__Table___forces=24
-constant integer si__Table___groups=25
-constant integer si__Table___locations=26
-constant integer si__Table___rects=27
-constant integer si__Table___boolexprs=28
-constant integer si__Table___sounds=29
-constant integer si__Table___effects=30
-constant integer si__Table___unitpools=31
-constant integer si__Table___itempools=32
-constant integer si__Table___quests=33
-constant integer si__Table___questitems=34
-constant integer si__Table___defeatconditions=35
-constant integer si__Table___timerdialogs=36
-constant integer si__Table___leaderboards=37
-constant integer si__Table___multiboards=38
-constant integer si__Table___multiboarditems=39
-constant integer si__Table___trackables=40
-constant integer si__Table___dialogs=41
-constant integer si__Table___buttons=42
-constant integer si__Table___texttags=43
-constant integer si__Table___lightnings=44
-constant integer si__Table___images=45
-constant integer si__Table___ubersplats=46
-constant integer si__Table___regions=47
-constant integer si__Table___fogstates=48
-constant integer si__Table___fogmodifiers=49
-constant integer si__Table___hashtables=50
+constant integer si__SyncHelper__Sync=5
+trigger s__SyncHelper__Sync_TriggerCount= CreateTrigger()
+trigger s__SyncHelper__Sync_Trigger= CreateTrigger()
+constant integer si__Table__dex=6
+constant integer si__Table__handles=7
+constant integer si__Table__agents=8
+constant integer si__Table__reals=9
+constant integer si__Table__booleans=10
+constant integer si__Table__strings=11
+constant integer si__Table__integers=12
+constant integer si__Table__players=13
+constant integer si__Table__widgets=14
+constant integer si__Table__destructables=15
+constant integer si__Table__items=16
+constant integer si__Table__units=17
+constant integer si__Table__abilitys=18
+constant integer si__Table__timers=19
+constant integer si__Table__triggers=20
+constant integer si__Table__triggerconditions=21
+constant integer si__Table__triggeractions=22
+constant integer si__Table__events=23
+constant integer si__Table__forces=24
+constant integer si__Table__groups=25
+constant integer si__Table__locations=26
+constant integer si__Table__rects=27
+constant integer si__Table__boolexprs=28
+constant integer si__Table__sounds=29
+constant integer si__Table__effects=30
+constant integer si__Table__unitpools=31
+constant integer si__Table__itempools=32
+constant integer si__Table__quests=33
+constant integer si__Table__questitems=34
+constant integer si__Table__defeatconditions=35
+constant integer si__Table__timerdialogs=36
+constant integer si__Table__leaderboards=37
+constant integer si__Table__multiboards=38
+constant integer si__Table__multiboarditems=39
+constant integer si__Table__trackables=40
+constant integer si__Table__dialogs=41
+constant integer si__Table__buttons=42
+constant integer si__Table__texttags=43
+constant integer si__Table__lightnings=44
+constant integer si__Table__images=45
+constant integer si__Table__ubersplats=46
+constant integer si__Table__regions=47
+constant integer si__Table__fogstates=48
+constant integer si__Table__fogmodifiers=49
+constant integer si__Table__hashtables=50
 constant integer si__Table=51
 constant integer si__TableArray=52
 integer s__TableArray_tempTable
 integer s__TableArray_tempEnd
 constant integer si__HashTable=53
-constant integer si__Interface__UI=54
-integer si__Interface__UI_F=0
-integer si__Interface__UI_I=0
-integer array si__Interface__UI_V
-trigger s__Interface__UI_maptrigger= CreateTrigger()
-trigger s__Interface__UI_herotrigger= CreateTrigger()
-trigger s__Interface__UI_menutrigger= CreateTrigger()
-trigger s__Interface__UI_trigger= CreateTrigger()
-timer s__Interface__UI_timer= CreateTimer()
-integer s__Interface__UI_key= - 1
-integer array s__Interface__UI_array
-integer array s__Interface__UI_struct
-framehandle s__Interface__UI_handle= null
-framehandle s__Interface__UI_Interface__UI= null
-framehandle s__Interface__UI_ShopSlots= null
-framehandle s__Interface__UI_HealthBar= null
-framehandle s__Interface__UI_ManaBar= null
-framehandle s__Interface__UI_HeroCheck= null
-framehandle s__Interface__UI_HPText= null
-framehandle s__Interface__UI_MPText= null
-framehandle s__Interface__UI_Gold= null
-framehandle s__Interface__UI_Lumber= null
-framehandle s__Interface__UI_CheckBL= null
-framehandle s__Interface__UI_CheckBR= null
-framehandle s__Interface__UI_Minimap= null
-framehandle s__Interface__UI_MenuCheck= null
-framehandle s__Interface__UI_LumberIcon= null
-framehandle s__Interface__UI_GoldIcon= null
-framehandle s__Interface__UI_UnitName= null
-real array s__Interface__UI_x1
-real array s__Interface__UI_x2
-real array s__Interface__UI_y01
-real array s__Interface__UI_y02
-real array s__Interface__UI_y11
-real array s__Interface__UI_y12
-real array s__Interface__UI_y21
-real array s__Interface__UI_y22
-real array s__Interface__UI_y31
-real array s__Interface__UI_y32
-real array s__Interface__UI_y41
-real array s__Interface__UI_y42
-real array s__Interface__UI_y51
-real array s__Interface__UI_y52
-real array s__Interface__UI_y61
-real array s__Interface__UI_y62
-real array s__Interface__UI_mapX1
-real array s__Interface__UI_mapY1
-real array s__Interface__UI_mapX2
-real array s__Interface__UI_mapY2
-real array s__Interface__UI_frameX1
-real array s__Interface__UI_frameY1
-real array s__Interface__UI_frameX2
-real array s__Interface__UI_frameY2
-real array s__Interface__UI_command0X1
-real array s__Interface__UI_command0Y1
-real array s__Interface__UI_command0X2
-real array s__Interface__UI_command0Y2
-real array s__Interface__UI_command1X1
-real array s__Interface__UI_command1Y1
-real array s__Interface__UI_command1X2
-real array s__Interface__UI_command1Y2
-real array s__Interface__UI_command2X1
-real array s__Interface__UI_command2Y1
-real array s__Interface__UI_command2X2
-real array s__Interface__UI_command2Y2
-real array s__Interface__UI_command3X1
-real array s__Interface__UI_command3Y1
-real array s__Interface__UI_command3X2
-real array s__Interface__UI_command3Y2
-real array s__Interface__UI_command4X1
-real array s__Interface__UI_command4Y1
-real array s__Interface__UI_command4X2
-real array s__Interface__UI_command4Y2
-real array s__Interface__UI_command5X1
-real array s__Interface__UI_command5Y1
-real array s__Interface__UI_command5X2
-real array s__Interface__UI_command5Y2
-real array s__Interface__UI_command6X1
-real array s__Interface__UI_command6Y1
-real array s__Interface__UI_command6X2
-real array s__Interface__UI_command6Y2
-real array s__Interface__UI_command7X1
-real array s__Interface__UI_command7Y1
-real array s__Interface__UI_command7X2
-real array s__Interface__UI_command7Y2
-real array s__Interface__UI_command8X1
-real array s__Interface__UI_command8Y1
-real array s__Interface__UI_command8X2
-real array s__Interface__UI_command8Y2
-real array s__Interface__UI_command9X1
-real array s__Interface__UI_command9Y1
-real array s__Interface__UI_command9X2
-real array s__Interface__UI_command9Y2
-real array s__Interface__UI_command10X1
-real array s__Interface__UI_command10Y1
-real array s__Interface__UI_command10X2
-real array s__Interface__UI_command10Y2
-real array s__Interface__UI_command11X1
-real array s__Interface__UI_command11Y1
-real array s__Interface__UI_command11X2
-real array s__Interface__UI_command11Y2
-boolean array s__Interface__UI_shop
-unit array s__Interface__UI_main
-boolean array s__Interface__UI_checkL
-boolean array s__Interface__UI_checkR
-boolean array s__Interface__UI_checkMenu
-unit array s__Interface__UI_unit
-player array s__Interface__UI_player
-integer array s__Interface__UI_id
-real array s__Interface__UI_health
-real array s__Interface__UI_mana
-string array s__Interface__UI_hp
-string array s__Interface__UI_mp
+constant integer si__Interface___UI=54
+integer si__Interface___UI_F=0
+integer si__Interface___UI_I=0
+integer array si__Interface___UI_V
+trigger s__Interface___UI_maptrigger= CreateTrigger()
+trigger s__Interface___UI_herotrigger= CreateTrigger()
+trigger s__Interface___UI_menutrigger= CreateTrigger()
+trigger s__Interface___UI_trigger= CreateTrigger()
+timer s__Interface___UI_timer= CreateTimer()
+integer s__Interface___UI_key= - 1
+integer array s__Interface___UI_array
+integer array s__Interface___UI_struct
+framehandle s__Interface___UI_handle= null
+framehandle s__Interface___UI_Interface___UI= null
+framehandle s__Interface___UI_ShopSlots= null
+framehandle s__Interface___UI_HealthBar= null
+framehandle s__Interface___UI_ManaBar= null
+framehandle s__Interface___UI_HeroCheck= null
+framehandle s__Interface___UI_HPText= null
+framehandle s__Interface___UI_MPText= null
+framehandle s__Interface___UI_Gold= null
+framehandle s__Interface___UI_Lumber= null
+framehandle s__Interface___UI_CheckBL= null
+framehandle s__Interface___UI_CheckBR= null
+framehandle s__Interface___UI_Minimap= null
+framehandle s__Interface___UI_MenuCheck= null
+framehandle s__Interface___UI_LumberIcon= null
+framehandle s__Interface___UI_GoldIcon= null
+framehandle s__Interface___UI_UnitName= null
+real array s__Interface___UI_x1
+real array s__Interface___UI_x2
+real array s__Interface___UI_y01
+real array s__Interface___UI_y02
+real array s__Interface___UI_y11
+real array s__Interface___UI_y12
+real array s__Interface___UI_y21
+real array s__Interface___UI_y22
+real array s__Interface___UI_y31
+real array s__Interface___UI_y32
+real array s__Interface___UI_y41
+real array s__Interface___UI_y42
+real array s__Interface___UI_y51
+real array s__Interface___UI_y52
+real array s__Interface___UI_y61
+real array s__Interface___UI_y62
+real array s__Interface___UI_mapX1
+real array s__Interface___UI_mapY1
+real array s__Interface___UI_mapX2
+real array s__Interface___UI_mapY2
+real array s__Interface___UI_frameX1
+real array s__Interface___UI_frameY1
+real array s__Interface___UI_frameX2
+real array s__Interface___UI_frameY2
+real array s__Interface___UI_command0X1
+real array s__Interface___UI_command0Y1
+real array s__Interface___UI_command0X2
+real array s__Interface___UI_command0Y2
+real array s__Interface___UI_command1X1
+real array s__Interface___UI_command1Y1
+real array s__Interface___UI_command1X2
+real array s__Interface___UI_command1Y2
+real array s__Interface___UI_command2X1
+real array s__Interface___UI_command2Y1
+real array s__Interface___UI_command2X2
+real array s__Interface___UI_command2Y2
+real array s__Interface___UI_command3X1
+real array s__Interface___UI_command3Y1
+real array s__Interface___UI_command3X2
+real array s__Interface___UI_command3Y2
+real array s__Interface___UI_command4X1
+real array s__Interface___UI_command4Y1
+real array s__Interface___UI_command4X2
+real array s__Interface___UI_command4Y2
+real array s__Interface___UI_command5X1
+real array s__Interface___UI_command5Y1
+real array s__Interface___UI_command5X2
+real array s__Interface___UI_command5Y2
+real array s__Interface___UI_command6X1
+real array s__Interface___UI_command6Y1
+real array s__Interface___UI_command6X2
+real array s__Interface___UI_command6Y2
+real array s__Interface___UI_command7X1
+real array s__Interface___UI_command7Y1
+real array s__Interface___UI_command7X2
+real array s__Interface___UI_command7Y2
+real array s__Interface___UI_command8X1
+real array s__Interface___UI_command8Y1
+real array s__Interface___UI_command8X2
+real array s__Interface___UI_command8Y2
+real array s__Interface___UI_command9X1
+real array s__Interface___UI_command9Y1
+real array s__Interface___UI_command9X2
+real array s__Interface___UI_command9Y2
+real array s__Interface___UI_command10X1
+real array s__Interface___UI_command10Y1
+real array s__Interface___UI_command10X2
+real array s__Interface___UI_command10Y2
+real array s__Interface___UI_command11X1
+real array s__Interface___UI_command11Y1
+real array s__Interface___UI_command11X2
+real array s__Interface___UI_command11Y2
+boolean array s__Interface___UI_shop
+unit array s__Interface___UI_main
+boolean array s__Interface___UI_checkL
+boolean array s__Interface___UI_checkR
+boolean array s__Interface___UI_checkMenu
+unit array s__Interface___UI_unit
+player array s__Interface___UI_player
+integer array s__Interface___UI_id
+real array s__Interface___UI_health
+real array s__Interface___UI_mana
+string array s__Interface___UI_hp
+string array s__Interface___UI_mp
 constant integer si__NSL_Code=55
 integer si__NSL_Code_F=0
 integer si__NSL_Code_I=0
@@ -3314,32 +3314,32 @@ function s__NSL_Code_deallocate takes integer this returns nothing
     set si__NSL_Code_F=this
 endfunction
 
-//Generated allocator of Interface__UI
-function s__Interface__UI__allocate takes nothing returns integer
- local integer this=si__Interface__UI_F
+//Generated allocator of Interface___UI
+function s__Interface___UI__allocate takes nothing returns integer
+ local integer this=si__Interface___UI_F
     if (this!=0) then
-        set si__Interface__UI_F=si__Interface__UI_V[this]
+        set si__Interface___UI_F=si__Interface___UI_V[this]
     else
-        set si__Interface__UI_I=si__Interface__UI_I+1
-        set this=si__Interface__UI_I
+        set si__Interface___UI_I=si__Interface___UI_I+1
+        set this=si__Interface___UI_I
     endif
     if (this>8190) then
         return 0
     endif
 
-    set si__Interface__UI_V[this]=-1
+    set si__Interface___UI_V[this]=-1
  return this
 endfunction
 
-//Generated destructor of Interface__UI
-function s__Interface__UI_deallocate takes integer this returns nothing
+//Generated destructor of Interface___UI
+function s__Interface___UI_deallocate takes integer this returns nothing
     if this==null then
         return
-    elseif (si__Interface__UI_V[this]!=-1) then
+    elseif (si__Interface___UI_V[this]!=-1) then
         return
     endif
-    set si__Interface__UI_V[this]=si__Interface__UI_F
-    set si__Interface__UI_F=this
+    set si__Interface___UI_V[this]=si__Interface___UI_F
+    set si__Interface___UI_F=this
 endfunction
 function sc___prototype2_execute takes integer i,trigger a1,string a2,limitop a3,real a4 returns nothing
     set f__arg_trigger1=a1
@@ -3549,8 +3549,8 @@ endfunction
             return 0
         endif
  
-        if not DamageEngine__hasLethal and index == s__DamageTrigger_LETHAL then
-            set DamageEngine__hasLethal=true
+        if not DamageEngine___hasLethal and index == s__DamageTrigger_LETHAL then
+            set DamageEngine___hasLethal=true
         endif
         if s__DamageTrigger_trigIndexStack[0] == 0 then
             set s__DamageTrigger_count=s__DamageTrigger_count + 1 //List runs from index 10 and up
@@ -3612,7 +3612,7 @@ endfunction
         endif
         return true
     endfunction
-    function s__DamageTrigger_DamageEngine__run takes integer this returns nothing
+    function s__DamageTrigger_DamageEngine___run takes integer this returns nothing
         local integer cat= this
         local integer d= s__Damage_index
 
@@ -3620,13 +3620,13 @@ endfunction
         local boolean guiUnset= false
         local boolean mod= cat <= s__DamageTrigger_DAMAGE
 
-        if DamageEngine__dreaming then
+        if DamageEngine___dreaming then
             return
         endif
-        set DamageEngine__dreaming=true
-        call DisableTrigger(DamageEngine__t1)
-        call DisableTrigger(DamageEngine__t2)
-        call EnableTrigger(DamageEngine__t3)
+        set DamageEngine___dreaming=true
+        call DisableTrigger(DamageEngine___t1)
+        call DisableTrigger(DamageEngine___t2)
+        call EnableTrigger(DamageEngine___t3)
         //call BJDebugMsg("Start of event running")
         loop
             set this=s__DamageTrigger_next[this]
@@ -3634,11 +3634,11 @@ endfunction
             exitwhen cat == s__DamageTrigger_MOD and ( udg_DamageEventOverride or udg_DamageEventType == DamageEngine_TYPE_PURE )
             exitwhen cat == s__DamageTrigger_SHIELD and udg_DamageEventAmount <= 0.00
 
-            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine__DEATH_VAL
+            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine___DEATH_VAL
 
          
             set s__DamageTrigger_eventIndex=this
-            if not s__DamageTrigger_DamageEngine__trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
+            if not s__DamageTrigger_DamageEngine___trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
 
                 if mod then
                     if s__DamageTrigger_usingGUI[this] then
@@ -3698,10 +3698,10 @@ endfunction
 
 
         //call BJDebugMsg("End of event running")
-        call DisableTrigger(DamageEngine__t3)
-        call EnableTrigger(DamageEngine__t1)
-        call EnableTrigger(DamageEngine__t2)
-        set DamageEngine__dreaming=false
+        call DisableTrigger(DamageEngine___t3)
+        call EnableTrigger(DamageEngine___t1)
+        call EnableTrigger(DamageEngine___t2)
+        set DamageEngine___dreaming=false
     endfunction
     function s__DamageTrigger__staticgetindex takes code c returns trigger
         local integer i= 0
@@ -3771,7 +3771,7 @@ endfunction
 
     function s__Damage_onAOEEnd takes nothing returns nothing
         if udg_DamageEventAOE > 1 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AOE)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AOE)
         endif
         set udg_DamageEventAOE=0
         set udg_DamageEventLevel=0
@@ -3783,7 +3783,7 @@ endfunction
    
     function s__Damage_afterDamage takes nothing returns nothing
         if udg_DamageEventPrevAmt != 0.00 and udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AFTER)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AFTER)
             set udg_DamageEventDamageT=0
             set udg_DamageEventPrevAmt=0.00
         endif
@@ -3799,8 +3799,8 @@ endfunction
         set s__Damage_index=this
         call s__DamageTrigger_setGUIFromStruct(true)
        
-        call GroupAddUnit(DamageEngine__proclusGlobal, udg_DamageEventSource)
-        call GroupAddUnit(DamageEngine__fischerMorrow, udg_DamageEventTarget)
+        call GroupAddUnit(DamageEngine___proclusGlobal, udg_DamageEventSource)
+        call GroupAddUnit(DamageEngine___fischerMorrow, udg_DamageEventTarget)
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_01()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_02()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_03()
@@ -3808,7 +3808,7 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_05()
         if udg_DamageEventAmount != 0.00 then
             set udg_DamageEventOverride=udg_DamageEventDamageT == 0
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_MOD)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_MOD)
 
 
 
@@ -3830,46 +3830,46 @@ endfunction
         loop
             exitwhen i == 0
             set i=i - 1
-            set s__DamageTrigger_DamageEngine__trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
-            set s__DamageTrigger_DamageEngine__levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
+            set s__DamageTrigger_DamageEngine___trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
+            set s__DamageTrigger_DamageEngine___levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
         endloop
-        call EnableTrigger(DamageEngine__t1)
-        call EnableTrigger(DamageEngine__t2)
-        set DamageEngine__kicking=false
+        call EnableTrigger(DamageEngine___t1)
+        call EnableTrigger(DamageEngine___t2)
+        set DamageEngine___kicking=false
         set s__Damage_damageStack=0
         set s__Damage_prepped=0
-        set DamageEngine__dreaming=false
-        set DamageEngine__sleepLevel=0
-        call GroupClear(DamageEngine__proclusGlobal)
-        call GroupClear(DamageEngine__fischerMorrow)
+        set DamageEngine___dreaming=false
+        set DamageEngine___sleepLevel=0
+        call GroupClear(DamageEngine___proclusGlobal)
+        call GroupClear(DamageEngine___fischerMorrow)
         //call BJDebugMsg("Cleared up the groups")
     endfunction
     function s__Damage_finish takes nothing returns nothing
         local integer i= 0
         local integer exit
-        if DamageEngine__eventsRun then
-            set DamageEngine__eventsRun=false
+        if DamageEngine___eventsRun then
+            set DamageEngine___eventsRun=false
             call s__Damage_afterDamage()
         endif
-        if DamageEngine__canKick and not DamageEngine__kicking then
+        if DamageEngine___canKick and not DamageEngine___kicking then
             if s__Damage_damageStack != 0 then
-                set DamageEngine__kicking=true
+                set DamageEngine___kicking=true
                 loop
-                    set DamageEngine__sleepLevel=DamageEngine__sleepLevel + 1
+                    set DamageEngine___sleepLevel=DamageEngine___sleepLevel + 1
                     set exit=s__Damage_damageStack
                     loop
                         set s__Damage_prepped=s__Damage_stackRef[i]
                         if UnitAlive(s__Damage_targetUnit[s__Damage_prepped]) then //Added just in case dead units had issues.
                             call s__Damage_doPreEvents(s__Damage_prepped,false) //don't evaluate the pre-event
                             if s__Damage_damage[s__Damage_prepped] > 0.00 then
-                                call DisableTrigger(DamageEngine__t1) //Force only the after armor event to run.
-                                call EnableTrigger(DamageEngine__t2) //in case the user forgot to re-enable this
-                                set DamageEngine__totem=true
+                                call DisableTrigger(DamageEngine___t1) //Force only the after armor event to run.
+                                call EnableTrigger(DamageEngine___t2) //in case the user forgot to re-enable this
+                                set DamageEngine___totem=true
                                 call UnitDamageTarget(s__Damage_sourceUnit[s__Damage_prepped], s__Damage_targetUnit[s__Damage_prepped], s__Damage_damage[s__Damage_prepped], s__Damage_isAttack[s__Damage_prepped], s__Damage_isRanged[s__Damage_prepped], s__Damage_attackType[s__Damage_prepped], s__Damage_damageType[s__Damage_prepped], s__Damage_weaponType[s__Damage_prepped])
                             else
                                 //No new events run at all in this case
                                 if udg_DamageEventDamageT != 0 then
-                                    call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
+                                    call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
                                 endif
                                 if s__Damage_damage[s__Damage_prepped] < 0.00 then
                                     //No need for BlzSetEventDamage here
@@ -3894,43 +3894,43 @@ endfunction
 
         call s__Damage_setArmor(s__Damage_index,true)
 
-        set DamageEngine__canKick=true
-        set DamageEngine__kicking=false
-        set DamageEngine__totem=false
+        set DamageEngine___canKick=true
+        set DamageEngine___kicking=false
+        set DamageEngine___totem=false
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
-            set DamageEngine__eventsRun=true
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
+            set DamageEngine___eventsRun=true
         endif
         call s__Damage_finish()
     endfunction
     function s__Damage__set_enabled takes boolean b returns nothing
         if b then
-            if DamageEngine__dreaming then
-                call EnableTrigger(DamageEngine__t3)
+            if DamageEngine___dreaming then
+                call EnableTrigger(DamageEngine___t3)
             else
-                call EnableTrigger(DamageEngine__t1)
-                call EnableTrigger(DamageEngine__t2)
+                call EnableTrigger(DamageEngine___t1)
+                call EnableTrigger(DamageEngine___t2)
             endif
         else
-            if DamageEngine__dreaming then
-                call DisableTrigger(DamageEngine__t3)
+            if DamageEngine___dreaming then
+                call DisableTrigger(DamageEngine___t3)
             else
-                call DisableTrigger(DamageEngine__t1)
-                call DisableTrigger(DamageEngine__t2)
+                call DisableTrigger(DamageEngine___t1)
+                call DisableTrigger(DamageEngine___t2)
             endif
         endif
     endfunction
     function s__Damage__get_enabled takes nothing returns boolean
-        return IsTriggerEnabled(DamageEngine__t1)
+        return IsTriggerEnabled(DamageEngine___t1)
     endfunction
    
    
     function s__Damage_getOutOfBed takes nothing returns nothing
-        if DamageEngine__totem then
+        if DamageEngine___totem then
             call s__Damage_failsafeClear() //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
         else
-            set DamageEngine__canKick=true
-            set DamageEngine__kicking=false
+            set DamageEngine___canKick=true
+            set DamageEngine___kicking=false
             call s__Damage_finish()
         endif
 
@@ -3940,7 +3940,7 @@ endfunction
     endfunction
    
     function s__Damage_wakeUp takes nothing returns nothing
-        set DamageEngine__dreaming=false
+        set DamageEngine___dreaming=false
         call s__Damage__set_enabled(true)
         call ForForce(bj_FORCE_PLAYER[0], function s__Damage_getOutOfBed) //Moved to a new thread in case of a thread crash
         if not s__Damage_arisen then
@@ -3951,7 +3951,7 @@ endfunction
         endif
         set s__Damage_count=0
         set s__Damage_index=0
-        set DamageEngine__alarmSet=false
+        set DamageEngine___alarmSet=false
         //call BJDebugMsg("Timer wrapped up")
     endfunction
     function s__Damage_addRecursive takes integer this returns nothing
@@ -3961,16 +3961,16 @@ endfunction
                 set s__Damage_isCode[this]=true
                 set s__Damage_userType[this]=DamageEngine_TYPE_CODE
             endif
-            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]
-            if DamageEngine__kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine__proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine__fischerMorrow) then
+            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]
+            if DamageEngine___kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine___proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine___fischerMorrow) then
                 if not DamageEngine_inception then
-                    set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
-                elseif not s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex] then
-                    set s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]=true
-                    if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine__sleepLevel then
-                        set s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] + 1
-                        if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine__LIMBO then
-                            set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
+                    set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
+                elseif not s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex] then
+                    set s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]=true
+                    if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine___sleepLevel then
+                        set s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] + 1
+                        if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine___LIMBO then
+                            set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
                         endif
                     endif
                 endif
@@ -4069,12 +4069,12 @@ endfunction
     function s__Damage_onDamaging takes nothing returns boolean
         local integer d= s__Damage_createFromEvent()
         //call BJDebugMsg("Pre-damage event running for " + GetUnitName(GetTriggerUnit()))
-        if DamageEngine__alarmSet then
-            if DamageEngine__totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
+        if DamageEngine___alarmSet then
+            if DamageEngine___totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
                 if s__Damage_damageType[d] == DAMAGE_TYPE_SPIRIT_LINK or s__Damage_damageType[d] == DAMAGE_TYPE_DEFENSIVE or s__Damage_damageType[d] == DAMAGE_TYPE_PLANT then
-                    set DamageEngine__totem=false
-                    set DamageEngine__lastInstance=s__Damage_index
-                    set DamageEngine__canKick=false
+                    set DamageEngine___totem=false
+                    set DamageEngine___lastInstance=s__Damage_index
+                    set DamageEngine___canKick=false
                 else
                     call s__Damage_failsafeClear() //Not an overlapping event - just wrap it up
                 endif
@@ -4093,8 +4093,8 @@ endfunction
             endif
 
         else
-            call TimerStart(DamageEngine__alarm, 0.00, false, function s__Damage_wakeUp)
-            set DamageEngine__alarmSet=true
+            call TimerStart(DamageEngine___alarm, 0.00, false, function s__Damage_wakeUp)
+            set DamageEngine___alarmSet=true
 
             set udg_AOEDamageSource=s__Damage_sourceUnit[d]
             set udg_EnhancedDamageTarget=s__Damage_targetUnit[d]
@@ -4104,11 +4104,11 @@ endfunction
         call GroupAddUnit(udg_DamageEventAOEGroup, s__Damage_targetUnit[d])
 
         if s__Damage_doPreEvents(d,true) then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_ZERO)
-            set DamageEngine__canKick=true
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_ZERO)
+            set DamageEngine___canKick=true
             call s__Damage_finish()
         endif
-        set DamageEngine__totem=DamageEngine__lastInstance == 0 or DamageEngine__attacksImmune[udg_DamageEventAttackT] or DamageEngine__damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
+        set DamageEngine___totem=DamageEngine___lastInstance == 0 or DamageEngine___attacksImmune[udg_DamageEventAttackT] or DamageEngine___damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
         return false
     endfunction
     function s__Damage_onDamaged takes nothing returns boolean
@@ -4117,17 +4117,17 @@ endfunction
         //call BJDebugMsg("Second damage event running for " + GetUnitName(GetTriggerUnit()))
         if s__Damage_prepped > 0 then
             set s__Damage_prepped=0
-        elseif DamageEngine__dreaming or s__Damage_prevAmt[d] == 0.00 then
+        elseif DamageEngine___dreaming or s__Damage_prevAmt[d] == 0.00 then
             return false
-        elseif DamageEngine__totem then
-            set DamageEngine__totem=false
+        elseif DamageEngine___totem then
+            set DamageEngine___totem=false
         else
             //This should only happen for stuff like Spirit Link or Thorns Aura/Carapace
             call s__Damage_afterDamage()
-            set s__Damage_index=DamageEngine__lastInstance
-            set DamageEngine__lastInstance=0
+            set s__Damage_index=DamageEngine___lastInstance
+            set DamageEngine___lastInstance=0
             set d=s__Damage_index
-            set DamageEngine__canKick=true
+            set DamageEngine___canKick=true
             call s__DamageTrigger_setGUIFromStruct(true)
         endif
 
@@ -4160,21 +4160,21 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_VARS_PLUGIN_05()
  
         if udg_DamageEventAmount > 0.00 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_SHIELD)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_SHIELD)
 
 
 
 
-            if DamageEngine__hasLethal or udg_DamageEventType < 0 then
+            if DamageEngine___hasLethal or udg_DamageEventType < 0 then
                 set udg_LethalDamageHP=GetWidgetLife(udg_DamageEventTarget) - udg_DamageEventAmount
-                if udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
-                    if DamageEngine__hasLethal then
-                        call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_LETHAL)
+                if udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
+                    if DamageEngine___hasLethal then
+                        call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_LETHAL)
            
                         set udg_DamageEventAmount=GetWidgetLife(udg_DamageEventTarget) - udg_LethalDamageHP
                         set s__Damage_damage[d]=udg_DamageEventAmount
                     endif
-                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
+                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
                         call SetUnitExploded(udg_DamageEventTarget, true)
                     endif
                 endif
@@ -4189,10 +4189,10 @@ endfunction
 
         endif
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
+            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
         endif
         call BlzSetEventDamage(udg_DamageEventAmount)
-        set DamageEngine__eventsRun=true
+        set DamageEngine___eventsRun=true
         if udg_DamageEventAmount == 0.00 then
             call s__Damage_finish()
         endif
@@ -4203,7 +4203,7 @@ endfunction
         if udg_NextDamageType == 0 then
            set udg_NextDamageType=DamageEngine_TYPE_CODE
         endif
-        if DamageEngine__dreaming then
+        if DamageEngine___dreaming then
             set d=s__Damage_create(src , tgt , amt , a , at , dt , wt)
             set s__Damage_isCode[d]=true
             set s__Damage_eFilter[d]=DamageEngine_FILTER_CODE
@@ -4232,49 +4232,49 @@ endfunction
     endfunction
     //===========================================================================
     function s__Damage_onInit takes nothing returns nothing
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t1, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine__t1, Filter(function s__Damage_onDamaging))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t1, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine___t1, Filter(function s__Damage_onDamaging))
  
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t2, EVENT_PLAYER_UNIT_DAMAGED)
-        call TriggerAddCondition(DamageEngine__t2, Filter(function s__Damage_onDamaged))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t2, EVENT_PLAYER_UNIT_DAMAGED)
+        call TriggerAddCondition(DamageEngine___t2, Filter(function s__Damage_onDamaged))
  
         //For recursion
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t3, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine__t3, Filter(function s__Damage_onRecursion))
-        call DisableTrigger(DamageEngine__t3)
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t3, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine___t3, Filter(function s__Damage_onRecursion))
+        call DisableTrigger(DamageEngine___t3)
  
         //For preventing Thorns/Defensive glitch.
         //Data gathered from https://www.hiveworkshop.com/threads/repo-in-progress-mapping-damage-types-to-their-abilities.316271/
-        set DamageEngine__attacksImmune[0]=false //ATTACK_TYPE_NORMAL
-        set DamageEngine__attacksImmune[1]=true //ATTACK_TYPE_MELEE  
-        set DamageEngine__attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
-        set DamageEngine__attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
-        set DamageEngine__attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
-        set DamageEngine__attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
-        set DamageEngine__attacksImmune[6]=true //ATTACK_TYPE_HERO    
+        set DamageEngine___attacksImmune[0]=false //ATTACK_TYPE_NORMAL
+        set DamageEngine___attacksImmune[1]=true //ATTACK_TYPE_MELEE  
+        set DamageEngine___attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
+        set DamageEngine___attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
+        set DamageEngine___attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
+        set DamageEngine___attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
+        set DamageEngine___attacksImmune[6]=true //ATTACK_TYPE_HERO    
  
-        set DamageEngine__damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
-        set DamageEngine__damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
-        set DamageEngine__damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
-        set DamageEngine__damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
-        set DamageEngine__damagesImmune[9]=false //DAMAGE_TYPE_COLD              
-        set DamageEngine__damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
-        set DamageEngine__damagesImmune[11]=true //DAMAGE_TYPE_POISON          
-        set DamageEngine__damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
-        set DamageEngine__damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
-        set DamageEngine__damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
-        set DamageEngine__damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
-        set DamageEngine__damagesImmune[16]=true //DAMAGE_TYPE_ACID            
-        set DamageEngine__damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
-        set DamageEngine__damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
-        set DamageEngine__damagesImmune[19]=false //DAMAGE_TYPE_MIND              
-        set DamageEngine__damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
-        set DamageEngine__damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
-        set DamageEngine__damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
-        set DamageEngine__damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
-        set DamageEngine__damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
-        set DamageEngine__damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
-        set DamageEngine__damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
+        set DamageEngine___damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
+        set DamageEngine___damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
+        set DamageEngine___damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
+        set DamageEngine___damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
+        set DamageEngine___damagesImmune[9]=false //DAMAGE_TYPE_COLD              
+        set DamageEngine___damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
+        set DamageEngine___damagesImmune[11]=true //DAMAGE_TYPE_POISON          
+        set DamageEngine___damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
+        set DamageEngine___damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
+        set DamageEngine___damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
+        set DamageEngine___damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
+        set DamageEngine___damagesImmune[16]=true //DAMAGE_TYPE_ACID            
+        set DamageEngine___damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
+        set DamageEngine___damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
+        set DamageEngine___damagesImmune[19]=false //DAMAGE_TYPE_MIND              
+        set DamageEngine___damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
+        set DamageEngine___damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
+        set DamageEngine___damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
+        set DamageEngine___damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
+        set DamageEngine___damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
+        set DamageEngine___damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
+        set DamageEngine___damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
     endfunction
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_DMGPKG()
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_01()
@@ -4553,8 +4553,8 @@ endfunction
             return s__File_write(s__File_open(filename),"")
         endfunction
     
-//Implemented from module FileIO___FileInit:
-        function s__File_FileIO___FileInit___onInit takes nothing returns nothing
+//Implemented from module FileIO__FileInit:
+        function s__File_FileIO__FileInit__onInit takes nothing returns nothing
             // Read check
             set s__File_ReadEnabled=(s__File_readEx((s__File_write(s__File_open("FileTester.pld"),"FileIO_")),true)) == "FileIO_" // INLINED!!
         endfunction
@@ -4583,7 +4583,7 @@ function GetUnitOrderValue takes unit u returns integer
     endif
 endfunction
 
-function GetMainSelectedUnit__FilterFunction takes nothing returns boolean
+function GetMainSelectedUnit___FilterFunction takes nothing returns boolean
     local unit u= GetFilterUnit()
     local real prio= BlzGetUnitRealField(u, UNIT_RF_PRIORITY)
     local boolean found= false
@@ -4591,28 +4591,28 @@ function GetMainSelectedUnit__FilterFunction takes nothing returns boolean
     local integer loopB= 0
     // compare the current u with allready found, to place it in the right slot
     loop
-        exitwhen loopA > GetMainSelectedUnit__unitsCount
-        if BlzGetUnitRealField(GetMainSelectedUnit__units[loopA], UNIT_RF_PRIORITY) < prio then
-            set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount + 1
-            set loopB=GetMainSelectedUnit__unitsCount
+        exitwhen loopA > GetMainSelectedUnit___unitsCount
+        if BlzGetUnitRealField(GetMainSelectedUnit___units[loopA], UNIT_RF_PRIORITY) < prio then
+            set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount + 1
+            set loopB=GetMainSelectedUnit___unitsCount
             loop
                 exitwhen loopB <= loopA
-                set GetMainSelectedUnit__units[loopB]=GetMainSelectedUnit__units[loopB - 1]
+                set GetMainSelectedUnit___units[loopB]=GetMainSelectedUnit___units[loopB - 1]
                 set loopB=loopB - 1
             endloop
-            set GetMainSelectedUnit__units[loopA]=u
+            set GetMainSelectedUnit___units[loopA]=u
             set found=true
             exitwhen true
         // equal prio and better colisions Value
-        elseif BlzGetUnitRealField(GetMainSelectedUnit__units[loopA], UNIT_RF_PRIORITY) == prio and GetUnitOrderValue(GetMainSelectedUnit__units[loopA]) > GetUnitOrderValue(u) then
-            set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount + 1
-            set loopB=GetMainSelectedUnit__unitsCount
+        elseif BlzGetUnitRealField(GetMainSelectedUnit___units[loopA], UNIT_RF_PRIORITY) == prio and GetUnitOrderValue(GetMainSelectedUnit___units[loopA]) > GetUnitOrderValue(u) then
+            set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount + 1
+            set loopB=GetMainSelectedUnit___unitsCount
             loop
                 exitwhen loopB <= loopA
-                set GetMainSelectedUnit__units[loopB]=GetMainSelectedUnit__units[loopB - 1]
+                set GetMainSelectedUnit___units[loopB]=GetMainSelectedUnit___units[loopB - 1]
                 set loopB=loopB - 1
             endloop
-            set GetMainSelectedUnit__units[loopA]=u
+            set GetMainSelectedUnit___units[loopA]=u
             set found=true
             exitwhen true
         endif
@@ -4621,8 +4621,8 @@ function GetMainSelectedUnit__FilterFunction takes nothing returns boolean
    
     // not found add it at the end
     if not found then
-        set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount + 1
-        set GetMainSelectedUnit__units[GetMainSelectedUnit__unitsCount]=u
+        set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount + 1
+        set GetMainSelectedUnit___units[GetMainSelectedUnit___unitsCount]=u
     endif
 
     set u=null
@@ -4632,11 +4632,11 @@ endfunction
     function GetSelectedUnitIndex takes nothing returns integer
         local integer i= 0
         // local player is in group selection?
-        if BlzFrameIsVisible(GetMainSelectedUnit__containerFrame) then
+        if BlzFrameIsVisible(GetMainSelectedUnit___containerFrame) then
             // find the first visible yellow Background Frame
             loop
                 exitwhen i > 11
-                if BlzFrameIsVisible(GetMainSelectedUnit__frames[i]) then
+                if BlzFrameIsVisible(GetMainSelectedUnit___frames[i]) then
                     return i
                 endif
                 set i=i + 1
@@ -4647,18 +4647,18 @@ endfunction
 
     function GetMainSelectedUnit takes integer index returns unit
         if index >= 0 then
-            call GroupEnumUnitsSelected(GetMainSelectedUnit__Group, GetLocalPlayer(), GetMainSelectedUnit__filter)
-            set bj_groupRandomCurrentPick=GetMainSelectedUnit__units[index + 1]
+            call GroupEnumUnitsSelected(GetMainSelectedUnit___Group, GetLocalPlayer(), GetMainSelectedUnit___filter)
+            set bj_groupRandomCurrentPick=GetMainSelectedUnit___units[index + 1]
             //clear table
             loop
-                exitwhen GetMainSelectedUnit__unitsCount <= 0
-                set GetMainSelectedUnit__units[GetMainSelectedUnit__unitsCount]=null
-                set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount - 1
+                exitwhen GetMainSelectedUnit___unitsCount <= 0
+                set GetMainSelectedUnit___units[GetMainSelectedUnit___unitsCount]=null
+                set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount - 1
             endloop
             return bj_groupRandomCurrentPick
         else
-            call GroupEnumUnitsSelected(GetMainSelectedUnit__Group, GetLocalPlayer(), null)
-            return FirstOfGroup(GetMainSelectedUnit__Group)
+            call GroupEnumUnitsSelected(GetMainSelectedUnit___Group, GetLocalPlayer(), null)
+            return FirstOfGroup(GetMainSelectedUnit___Group)
         endif
     endfunction
 
@@ -4667,40 +4667,40 @@ endfunction
         return GetMainSelectedUnit(GetSelectedUnitIndex())
     endfunction
 
-    function GetMainSelectedUnit__init_functionAt0s takes nothing returns nothing
+    function GetMainSelectedUnit___init_functionAt0s takes nothing returns nothing
         local integer i= 0
         local framehandle console= BlzGetFrameByName("ConsoleUI", 0)
         local framehandle bottomUI= BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0))
         local framehandle groupframe= BlzFrameGetChild(bottomUI, 5)
         local framehandle buttonContainer
         //globals
-        set GetMainSelectedUnit__containerFrame=BlzFrameGetChild(groupframe, 0)
-        set GetMainSelectedUnit__Group=CreateGroup()
+        set GetMainSelectedUnit___containerFrame=BlzFrameGetChild(groupframe, 0)
+        set GetMainSelectedUnit___Group=CreateGroup()
         // give this frames a handleId
         loop
-            exitwhen i >= BlzFrameGetChildrenCount(GetMainSelectedUnit__containerFrame) - 1
-            set buttonContainer=BlzFrameGetChild(GetMainSelectedUnit__containerFrame, i)
-            set GetMainSelectedUnit__frames[i]=BlzFrameGetChild(buttonContainer, 0)
+            exitwhen i >= BlzFrameGetChildrenCount(GetMainSelectedUnit___containerFrame) - 1
+            set buttonContainer=BlzFrameGetChild(GetMainSelectedUnit___containerFrame, i)
+            set GetMainSelectedUnit___frames[i]=BlzFrameGetChild(buttonContainer, 0)
             set i=i + 1
         endloop
         call DestroyTimer(GetExpiredTimer())
     endfunction
 
-    function GetMainSelectedUnit__init_function takes nothing returns nothing
-        set GetMainSelectedUnit__filter=Filter(function GetMainSelectedUnit__FilterFunction)
-        call TimerStart(CreateTimer(), 0, false, function GetMainSelectedUnit__init_functionAt0s)
+    function GetMainSelectedUnit___init_function takes nothing returns nothing
+        set GetMainSelectedUnit___filter=Filter(function GetMainSelectedUnit___FilterFunction)
+        call TimerStart(CreateTimer(), 0, false, function GetMainSelectedUnit___init_functionAt0s)
     endfunction
 
 //library GetMainSelectedUnit ends
 //library NSLCodeHelper:
-    function NSLCodeHelper___GetSign takes integer value returns integer
+    function NSLCodeHelper__GetSign takes integer value returns integer
         if ( value < 0 ) then
             return 1
         endif
         return 0
     endfunction
     
-    function NSLCodeHelper___GetSignInvert takes integer sign returns integer
+    function NSLCodeHelper__GetSignInvert takes integer sign returns integer
         if ( sign == 1 ) then
             return - 1
         endif
@@ -4708,12 +4708,12 @@ endfunction
     endfunction
     
     function NSLCodeHelper_Save_Int takes integer inst,integer value returns nothing
-        call sc__NSL_Code_SV(inst,NSLCodeHelper___GetSign(value) , NSL_SIZE_BOOLEAN)
+        call sc__NSL_Code_SV(inst,NSLCodeHelper__GetSign(value) , NSL_SIZE_BOOLEAN)
         call sc__NSL_Code_SV(inst,IAbsBJ(value) , NSL_SIZE_LESS_THAN_2147483648)
     endfunction
     
     function NSLCodeHelper_Read_Int takes integer inst returns integer
-        return NSLCodeHelper___GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
+        return NSLCodeHelper__GetSignInvert(sc__NSL_Code_RV(inst,NSL_SIZE_BOOLEAN)) * sc__NSL_Code_RV(inst,NSL_SIZE_LESS_THAN_2147483648)
     endfunction
 
 //library NSLCodeHelper ends
@@ -4722,9 +4722,9 @@ endfunction
 //processed:     function interface CodexFormat takes integer playerId, NSL_Code loader returns nothing
 
     function NSLCodexStore_Add takes integer codex_version,trigger codex returns nothing
-        set NSLCodexStore___CodexArray[NSLCodexStore___CodexSize]=codex
-        set NSLCodexStore___CodexVersion[NSLCodexStore___CodexSize]=codex_version
-        set NSLCodexStore___CodexSize=NSLCodexStore___CodexSize + 1
+        set NSLCodexStore__CodexArray[NSLCodexStore__CodexSize]=codex
+        set NSLCodexStore__CodexVersion[NSLCodexStore__CodexSize]=codex_version
+        set NSLCodexStore__CodexSize=NSLCodexStore__CodexSize + 1
         call h__TriggerRegisterVariableEvent(codex, "udg_NSL_EventExecutorLoad", EQUAL, I2R(codex_version))
         call EnableTrigger(codex)
     endfunction
@@ -4732,9 +4732,9 @@ endfunction
     function NSLCodexStore_GetCodexForVersion takes integer codex_version returns trigger
         local integer i= 0
         loop
-            exitwhen i == NSLCodexStore___CodexSize
-            if ( NSLCodexStore___CodexVersion[i] == codex_version ) then
-                return NSLCodexStore___CodexArray[i]
+            exitwhen i == NSLCodexStore__CodexSize
+            if ( NSLCodexStore__CodexVersion[i] == codex_version ) then
+                return NSLCodexStore__CodexArray[i]
             endif
             set i=i + 1
         endloop
@@ -4746,43 +4746,43 @@ endfunction
 
     // vJass compiler should inline this function call
  function NSLHelper_TwoPow takes integer exp returns integer
-        return NSLHelper___TWO_POW_CACHE[exp]
+        return NSLHelper__TWO_POW_CACHE[exp]
 	endfunction
     
-    function NSLHelper___Init takes nothing returns nothing
+    function NSLHelper__Init takes nothing returns nothing
         // Cache for better performance
-        set NSLHelper___TWO_POW_CACHE[0]=1
-        set NSLHelper___TWO_POW_CACHE[1]=2
-        set NSLHelper___TWO_POW_CACHE[2]=4
-        set NSLHelper___TWO_POW_CACHE[3]=8
-        set NSLHelper___TWO_POW_CACHE[4]=16
-        set NSLHelper___TWO_POW_CACHE[5]=32
-        set NSLHelper___TWO_POW_CACHE[6]=64
-        set NSLHelper___TWO_POW_CACHE[7]=128
-        set NSLHelper___TWO_POW_CACHE[8]=256
-        set NSLHelper___TWO_POW_CACHE[9]=512
-        set NSLHelper___TWO_POW_CACHE[10]=1024
-        set NSLHelper___TWO_POW_CACHE[11]=2048
-        set NSLHelper___TWO_POW_CACHE[12]=4096
-        set NSLHelper___TWO_POW_CACHE[13]=8192
-        set NSLHelper___TWO_POW_CACHE[14]=16384
-        set NSLHelper___TWO_POW_CACHE[15]=32768
-        set NSLHelper___TWO_POW_CACHE[16]=65536
-        set NSLHelper___TWO_POW_CACHE[17]=131072
-        set NSLHelper___TWO_POW_CACHE[18]=262144
-        set NSLHelper___TWO_POW_CACHE[19]=524288
-        set NSLHelper___TWO_POW_CACHE[20]=1048576
-        set NSLHelper___TWO_POW_CACHE[21]=2097152
-        set NSLHelper___TWO_POW_CACHE[22]=4194304
-        set NSLHelper___TWO_POW_CACHE[23]=8388608
-        set NSLHelper___TWO_POW_CACHE[24]=16777216
-        set NSLHelper___TWO_POW_CACHE[25]=33554432
-        set NSLHelper___TWO_POW_CACHE[26]=67108864
-        set NSLHelper___TWO_POW_CACHE[27]=134217728
-        set NSLHelper___TWO_POW_CACHE[28]=268435456
-        set NSLHelper___TWO_POW_CACHE[29]=536870912
-        set NSLHelper___TWO_POW_CACHE[30]=1073741824
-        set NSLHelper___TWO_POW_CACHE[31]=2147483647
+        set NSLHelper__TWO_POW_CACHE[0]=1
+        set NSLHelper__TWO_POW_CACHE[1]=2
+        set NSLHelper__TWO_POW_CACHE[2]=4
+        set NSLHelper__TWO_POW_CACHE[3]=8
+        set NSLHelper__TWO_POW_CACHE[4]=16
+        set NSLHelper__TWO_POW_CACHE[5]=32
+        set NSLHelper__TWO_POW_CACHE[6]=64
+        set NSLHelper__TWO_POW_CACHE[7]=128
+        set NSLHelper__TWO_POW_CACHE[8]=256
+        set NSLHelper__TWO_POW_CACHE[9]=512
+        set NSLHelper__TWO_POW_CACHE[10]=1024
+        set NSLHelper__TWO_POW_CACHE[11]=2048
+        set NSLHelper__TWO_POW_CACHE[12]=4096
+        set NSLHelper__TWO_POW_CACHE[13]=8192
+        set NSLHelper__TWO_POW_CACHE[14]=16384
+        set NSLHelper__TWO_POW_CACHE[15]=32768
+        set NSLHelper__TWO_POW_CACHE[16]=65536
+        set NSLHelper__TWO_POW_CACHE[17]=131072
+        set NSLHelper__TWO_POW_CACHE[18]=262144
+        set NSLHelper__TWO_POW_CACHE[19]=524288
+        set NSLHelper__TWO_POW_CACHE[20]=1048576
+        set NSLHelper__TWO_POW_CACHE[21]=2097152
+        set NSLHelper__TWO_POW_CACHE[22]=4194304
+        set NSLHelper__TWO_POW_CACHE[23]=8388608
+        set NSLHelper__TWO_POW_CACHE[24]=16777216
+        set NSLHelper__TWO_POW_CACHE[25]=33554432
+        set NSLHelper__TWO_POW_CACHE[26]=67108864
+        set NSLHelper__TWO_POW_CACHE[27]=134217728
+        set NSLHelper__TWO_POW_CACHE[28]=268435456
+        set NSLHelper__TWO_POW_CACHE[29]=536870912
+        set NSLHelper__TWO_POW_CACHE[30]=1073741824
+        set NSLHelper__TWO_POW_CACHE[31]=2147483647
 	// set TWO_POW_CACHE[31] = 2147483648
     endfunction
 
@@ -4836,7 +4836,7 @@ endfunction
         endfunction
    
         function s__User__get_hex takes integer this returns string
-            return PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
+            return PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[(this)])))] // INLINED!!
         endfunction
    
         function s__User__set_color takes integer this,playercolor c returns nothing
@@ -4848,7 +4848,7 @@ endfunction
         endfunction
    
         function s__User__get_nameColored takes integer this returns string
-            return (PlayerUtils___OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
+            return (PlayerUtils__OriginalHex[GetHandleId((GetPlayerColor(s__User_handle[((this))])))]) + (GetPlayerName(s__User_handle[(this)])) + "|r" // INLINED!!
         endfunction
    
         function s__User_onLeave takes nothing returns boolean
@@ -4878,8 +4878,8 @@ endfunction
             return false
         endfunction
    
-//Implemented from module PlayerUtils___PlayerUtilsInit:
-        function s__User_PlayerUtils___PlayerUtilsInit___onInit takes nothing returns nothing
+//Implemented from module PlayerUtils__PlayerUtilsInit:
+        function s__User_PlayerUtils__PlayerUtilsInit__onInit takes nothing returns nothing
             local trigger t= CreateTrigger()
             local integer i= 0
             local integer p
@@ -4887,32 +4887,32 @@ endfunction
             set s__User_Local=GetLocalPlayer()
             set s__User_LocalId=GetPlayerId(s__User_Local)
        
-            set PlayerUtils___OriginalHex[0]="|cffff0303"
-            set PlayerUtils___OriginalHex[1]="|cff0042ff"
-            set PlayerUtils___OriginalHex[2]="|cff1ce6b9"
-            set PlayerUtils___OriginalHex[3]="|cff540081"
-            set PlayerUtils___OriginalHex[4]="|cfffffc01"
-            set PlayerUtils___OriginalHex[5]="|cfffe8a0e"
-            set PlayerUtils___OriginalHex[6]="|cff20c000"
-            set PlayerUtils___OriginalHex[7]="|cffe55bb0"
-            set PlayerUtils___OriginalHex[8]="|cff959697"
-            set PlayerUtils___OriginalHex[9]="|cff7ebff1"
-            set PlayerUtils___OriginalHex[10]="|cff106246"
-            set PlayerUtils___OriginalHex[11]="|cff4e2a04"
+            set PlayerUtils__OriginalHex[0]="|cffff0303"
+            set PlayerUtils__OriginalHex[1]="|cff0042ff"
+            set PlayerUtils__OriginalHex[2]="|cff1ce6b9"
+            set PlayerUtils__OriginalHex[3]="|cff540081"
+            set PlayerUtils__OriginalHex[4]="|cfffffc01"
+            set PlayerUtils__OriginalHex[5]="|cfffe8a0e"
+            set PlayerUtils__OriginalHex[6]="|cff20c000"
+            set PlayerUtils__OriginalHex[7]="|cffe55bb0"
+            set PlayerUtils__OriginalHex[8]="|cff959697"
+            set PlayerUtils__OriginalHex[9]="|cff7ebff1"
+            set PlayerUtils__OriginalHex[10]="|cff106246"
+            set PlayerUtils__OriginalHex[11]="|cff4e2a04"
             
             if ( bj_MAX_PLAYERS > 12 ) then
-                set PlayerUtils___OriginalHex[12]="|cff9B0000"
-                set PlayerUtils___OriginalHex[13]="|cff0000C3"
-                set PlayerUtils___OriginalHex[14]="|cff00EAFF"
-                set PlayerUtils___OriginalHex[15]="|cffBE00FE"
-                set PlayerUtils___OriginalHex[16]="|cffEBCD87"
-                set PlayerUtils___OriginalHex[17]="|cffF8A48B"
-                set PlayerUtils___OriginalHex[18]="|cffBFFF80"
-                set PlayerUtils___OriginalHex[19]="|cffDCB9EB"
-                set PlayerUtils___OriginalHex[20]="|cff282828"
-                set PlayerUtils___OriginalHex[21]="|cffEBF0FF"
-                set PlayerUtils___OriginalHex[22]="|cff00781E"
-                set PlayerUtils___OriginalHex[23]="|cffA46F33"
+                set PlayerUtils__OriginalHex[12]="|cff9B0000"
+                set PlayerUtils__OriginalHex[13]="|cff0000C3"
+                set PlayerUtils__OriginalHex[14]="|cff00EAFF"
+                set PlayerUtils__OriginalHex[15]="|cffBE00FE"
+                set PlayerUtils__OriginalHex[16]="|cffEBCD87"
+                set PlayerUtils__OriginalHex[17]="|cffF8A48B"
+                set PlayerUtils__OriginalHex[18]="|cffBFFF80"
+                set PlayerUtils__OriginalHex[19]="|cffDCB9EB"
+                set PlayerUtils__OriginalHex[20]="|cff282828"
+                set PlayerUtils__OriginalHex[21]="|cffEBF0FF"
+                set PlayerUtils__OriginalHex[22]="|cff00781E"
+                set PlayerUtils__OriginalHex[23]="|cffA46F33"
             endif
          
             set s__User_first=s__User_NULL
@@ -4925,7 +4925,7 @@ endfunction
                 set s__User_id[p]=i
            
                 set s__User_Color[i]=GetPlayerColor(s__User_handle[p])
-                set PlayerUtils___CurrentColor[i]=s__User_Color[i]
+                set PlayerUtils__CurrentColor[i]=s__User_Color[i]
              
                 if ( GetPlayerController(s__User_handle[p]) == MAP_CONTROL_USER and GetPlayerSlotState(s__User_handle[p]) == PLAYER_SLOT_STATE_PLAYING ) then
 
@@ -4949,14 +4949,14 @@ endfunction
                     call TriggerRegisterPlayerEvent(t, s__User_handle[p], EVENT_PLAYER_LEAVE)
                     call ForceAddPlayer(FORCE_PLAYING, s__User_handle[p])
                
-                    set PlayerUtils___Hex[p]=PlayerUtils___OriginalHex[GetHandleId(s__User_Color[i])]
+                    set PlayerUtils__Hex[p]=PlayerUtils__OriginalHex[GetHandleId(s__User_Color[i])]
                
                     set s__User_AmountPlaying=s__User_AmountPlaying + 1
 
                 endif
            
-                set PlayerUtils___Name[p]=GetPlayerName(s__User_handle[p])
-                set s__User_originalName[p]=PlayerUtils___Name[p]
+                set PlayerUtils__Name[p]=GetPlayerName(s__User_handle[p])
+                set s__User_originalName[p]=PlayerUtils__Name[p]
            
                 set i=i + 1
             endloop
@@ -4979,28 +4979,28 @@ endfunction
     function RegisterPlayerUnitEvent takes playerunitevent p,code c returns nothing
         local integer i= GetHandleId(p)
         local integer k= bj_MAX_PLAYER_SLOTS
-        if RegisterPlayerUnitEvent__t[i] == null then
-            set RegisterPlayerUnitEvent__t[i]=CreateTrigger()
+        if RegisterPlayerUnitEvent___t[i] == null then
+            set RegisterPlayerUnitEvent___t[i]=CreateTrigger()
             loop
-                call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent__t[i], Player(k), p, null)
+                call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent___t[i], Player(k), p, null)
                 exitwhen k == 0
                 set k=k - 1
             endloop
         endif
-        call TriggerAddCondition(RegisterPlayerUnitEvent__t[i], Filter(c))
+        call TriggerAddCondition(RegisterPlayerUnitEvent___t[i], Filter(c))
     endfunction
     
     function RegisterPlayerUnitEventForPlayer takes playerunitevent p,code c,player pl returns nothing
         local integer i= ( bj_MAX_PLAYER_SLOTS + 1 ) * GetHandleId(p) + GetPlayerId(pl)
-        if RegisterPlayerUnitEvent__t[i] == null then
-            set RegisterPlayerUnitEvent__t[i]=CreateTrigger()
-            call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent__t[i], pl, p, null)
+        if RegisterPlayerUnitEvent___t[i] == null then
+            set RegisterPlayerUnitEvent___t[i]=CreateTrigger()
+            call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent___t[i], pl, p, null)
         endif
-        call TriggerAddCondition(RegisterPlayerUnitEvent__t[i], Filter(c))
+        call TriggerAddCondition(RegisterPlayerUnitEvent___t[i], Filter(c))
     endfunction
     
     function GetPlayerUnitEventTrigger takes playerunitevent p returns trigger
-        return RegisterPlayerUnitEvent__t[GetHandleId(p)]
+        return RegisterPlayerUnitEvent___t[GetHandleId(p)]
     endfunction
 
 //library RegisterPlayerUnitEvent ends
@@ -5008,13 +5008,13 @@ endfunction
 
     
     
-//Implemented from module SyncHelper___INITS:
-        function s__SyncHelper___Sync_SyncHelper___INITS___onInit takes nothing returns nothing
+//Implemented from module SyncHelper__INITS:
+        function s__SyncHelper__Sync_SyncHelper__INITS__onInit takes nothing returns nothing
             local integer i= 0
             
             loop
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
-                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper___Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_TriggerCount, Player(i), SyncHelper_SYNC_PREFIX_COUNT, false)
+                call BlzTriggerRegisterPlayerSyncEvent(s__SyncHelper__Sync_Trigger, Player(i), SyncHelper_SYNC_PREFIX, false)
                 set i=i + 1
                 
                 exitwhen i == bj_MAX_PLAYER_SLOTS
@@ -5023,15 +5023,15 @@ endfunction
     
     function SyncString takes string s returns nothing
         local integer len= StringLength(s)
-        local integer parts= ( len / SyncHelper___SYNC_SIZE_CHUNK ) + 1
+        local integer parts= ( len / SyncHelper__SYNC_SIZE_CHUNK ) + 1
   local string sub
         local integer i= 0
-        if ( ModuloInteger(len, SyncHelper___SYNC_SIZE_CHUNK) == 0 ) then
+        if ( ModuloInteger(len, SyncHelper__SYNC_SIZE_CHUNK) == 0 ) then
             set parts=parts - 1
         endif
         call BlzSendSyncData(SyncHelper_SYNC_PREFIX_COUNT, I2S(parts))
 		loop
-			set sub=SubString(s, i * SyncHelper___SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper___SYNC_SIZE_CHUNK)
+			set sub=SubString(s, i * SyncHelper__SYNC_SIZE_CHUNK, ( i + 1 ) * SyncHelper__SYNC_SIZE_CHUNK)
 			if ( StringLength(sub) > 0 ) then
                 call BlzSendSyncData(SyncHelper_SYNC_PREFIX, sub)
 			endif
@@ -5041,15 +5041,15 @@ endfunction
     endfunction
     
     function OnSyncString takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper___Sync_Trigger, func)
+        return TriggerAddAction(s__SyncHelper__Sync_Trigger, func)
     endfunction
     
     function OnSyncStringCount takes code func returns triggeraction
-        return TriggerAddAction(s__SyncHelper___Sync_TriggerCount, func)
+        return TriggerAddAction(s__SyncHelper__Sync_TriggerCount, func)
     endfunction
     
     function RemoveSyncString takes triggeraction t returns nothing
-        call TriggerRemoveAction(s__SyncHelper___Sync_Trigger, t)
+        call TriggerRemoveAction(s__SyncHelper__Sync_Trigger, t)
     endfunction
     
 
@@ -5057,22 +5057,22 @@ endfunction
 //library Table:
     
     
-    function s__Table___dex__get_size takes nothing returns integer
-        return Table___sizeK
+    function s__Table__dex__get_size takes nothing returns integer
+        return Table__sizeK
     endfunction
-    function s__Table___dex__get_list takes nothing returns integer
-        return Table___listK
-    endfunction
-    
-    function s__Table___handles_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
-    endfunction
-    function s__Table___handles_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__dex__get_list takes nothing returns integer
+        return Table__listK
     endfunction
     
-    function s__Table___agents__setindex takes integer this,integer key,agent value returns nothing
-        call SaveAgentHandle(Table___ht, this, key, value)
+    function s__Table__handles_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
+    endfunction
+    function s__Table__handles_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
+    endfunction
+    
+    function s__Table__agents__setindex takes integer this,integer key,agent value returns nothing
+        call SaveAgentHandle(Table__ht, this, key, value)
     endfunction
     
     
@@ -5081,763 +5081,763 @@ endfunction
 //Don't be intimidated by the number of macros - Vexorian's map optimizer is
 //supposed to kill functions which inline (all of these functions inline).
 //textmacro instance: NEW_ARRAY_BASIC("Real", "Real", "real")
-    function s__Table___reals__getindex takes integer this,integer key returns real
-        return LoadReal(Table___ht, this, key)
+    function s__Table__reals__getindex takes integer this,integer key returns real
+        return LoadReal(Table__ht, this, key)
     endfunction
-    function s__Table___reals__setindex takes integer this,integer key,real value returns nothing
-        call SaveReal(Table___ht, this, key, value)
+    function s__Table__reals__setindex takes integer this,integer key,real value returns nothing
+        call SaveReal(Table__ht, this, key, value)
     endfunction
-    function s__Table___reals_has takes integer this,integer key returns boolean
-        return HaveSavedReal(Table___ht, this, key)
+    function s__Table__reals_has takes integer this,integer key returns boolean
+        return HaveSavedReal(Table__ht, this, key)
     endfunction
-    function s__Table___reals_remove takes integer this,integer key returns nothing
-        call RemoveSavedReal(Table___ht, this, key)
+    function s__Table__reals_remove takes integer this,integer key returns nothing
+        call RemoveSavedReal(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY_BASIC("Real", "Real", "real")
 //textmacro instance: NEW_ARRAY_BASIC("Boolean", "Boolean", "boolean")
-    function s__Table___booleans__getindex takes integer this,integer key returns boolean
-        return LoadBoolean(Table___ht, this, key)
+    function s__Table__booleans__getindex takes integer this,integer key returns boolean
+        return LoadBoolean(Table__ht, this, key)
     endfunction
-    function s__Table___booleans__setindex takes integer this,integer key,boolean value returns nothing
-        call SaveBoolean(Table___ht, this, key, value)
+    function s__Table__booleans__setindex takes integer this,integer key,boolean value returns nothing
+        call SaveBoolean(Table__ht, this, key, value)
     endfunction
-    function s__Table___booleans_has takes integer this,integer key returns boolean
-        return HaveSavedBoolean(Table___ht, this, key)
+    function s__Table__booleans_has takes integer this,integer key returns boolean
+        return HaveSavedBoolean(Table__ht, this, key)
     endfunction
-    function s__Table___booleans_remove takes integer this,integer key returns nothing
-        call RemoveSavedBoolean(Table___ht, this, key)
+    function s__Table__booleans_remove takes integer this,integer key returns nothing
+        call RemoveSavedBoolean(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY_BASIC("Boolean", "Boolean", "boolean")
 //textmacro instance: NEW_ARRAY_BASIC("String", "Str", "string")
-    function s__Table___strings__getindex takes integer this,integer key returns string
-        return LoadStr(Table___ht, this, key)
+    function s__Table__strings__getindex takes integer this,integer key returns string
+        return LoadStr(Table__ht, this, key)
     endfunction
-    function s__Table___strings__setindex takes integer this,integer key,string value returns nothing
-        call SaveStr(Table___ht, this, key, value)
+    function s__Table__strings__setindex takes integer this,integer key,string value returns nothing
+        call SaveStr(Table__ht, this, key, value)
     endfunction
-    function s__Table___strings_has takes integer this,integer key returns boolean
-        return HaveSavedString(Table___ht, this, key)
+    function s__Table__strings_has takes integer this,integer key returns boolean
+        return HaveSavedString(Table__ht, this, key)
     endfunction
-    function s__Table___strings_remove takes integer this,integer key returns nothing
-        call RemoveSavedString(Table___ht, this, key)
+    function s__Table__strings_remove takes integer this,integer key returns nothing
+        call RemoveSavedString(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY_BASIC("String", "Str", "string")
 //New textmacro to allow table.integer[] syntax for compatibility with textmacros that might desire it.
 //textmacro instance: NEW_ARRAY_BASIC("Integer", "Integer", "integer")
-    function s__Table___integers__getindex takes integer this,integer key returns integer
-        return LoadInteger(Table___ht, this, key)
+    function s__Table__integers__getindex takes integer this,integer key returns integer
+        return LoadInteger(Table__ht, this, key)
     endfunction
-    function s__Table___integers__setindex takes integer this,integer key,integer value returns nothing
-        call SaveInteger(Table___ht, this, key, value)
+    function s__Table__integers__setindex takes integer this,integer key,integer value returns nothing
+        call SaveInteger(Table__ht, this, key, value)
     endfunction
-    function s__Table___integers_has takes integer this,integer key returns boolean
-        return HaveSavedInteger(Table___ht, this, key)
+    function s__Table__integers_has takes integer this,integer key returns boolean
+        return HaveSavedInteger(Table__ht, this, key)
     endfunction
-    function s__Table___integers_remove takes integer this,integer key returns nothing
-        call RemoveSavedInteger(Table___ht, this, key)
+    function s__Table__integers_remove takes integer this,integer key returns nothing
+        call RemoveSavedInteger(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY_BASIC("Integer", "Integer", "integer")
     
 //textmacro instance: NEW_ARRAY("Player", "player")
-    function s__Table___players__getindex takes integer this,integer key returns player
-        return LoadPlayerHandle(Table___ht, this, key)
+    function s__Table__players__getindex takes integer this,integer key returns player
+        return LoadPlayerHandle(Table__ht, this, key)
     endfunction
-    function s__Table___players__setindex takes integer this,integer key,player value returns nothing
-        call SavePlayerHandle(Table___ht, this, key, value)
+    function s__Table__players__setindex takes integer this,integer key,player value returns nothing
+        call SavePlayerHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___players_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__players_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___players_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__players_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Player", "player")
 //textmacro instance: NEW_ARRAY("Widget", "widget")
-    function s__Table___widgets__getindex takes integer this,integer key returns widget
-        return LoadWidgetHandle(Table___ht, this, key)
+    function s__Table__widgets__getindex takes integer this,integer key returns widget
+        return LoadWidgetHandle(Table__ht, this, key)
     endfunction
-    function s__Table___widgets__setindex takes integer this,integer key,widget value returns nothing
-        call SaveWidgetHandle(Table___ht, this, key, value)
+    function s__Table__widgets__setindex takes integer this,integer key,widget value returns nothing
+        call SaveWidgetHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___widgets_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__widgets_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___widgets_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__widgets_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Widget", "widget")
 //textmacro instance: NEW_ARRAY("Destructable", "destructable")
-    function s__Table___destructables__getindex takes integer this,integer key returns destructable
-        return LoadDestructableHandle(Table___ht, this, key)
+    function s__Table__destructables__getindex takes integer this,integer key returns destructable
+        return LoadDestructableHandle(Table__ht, this, key)
     endfunction
-    function s__Table___destructables__setindex takes integer this,integer key,destructable value returns nothing
-        call SaveDestructableHandle(Table___ht, this, key, value)
+    function s__Table__destructables__setindex takes integer this,integer key,destructable value returns nothing
+        call SaveDestructableHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___destructables_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__destructables_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___destructables_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__destructables_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Destructable", "destructable")
 //textmacro instance: NEW_ARRAY("Item", "item")
-    function s__Table___items__getindex takes integer this,integer key returns item
-        return LoadItemHandle(Table___ht, this, key)
+    function s__Table__items__getindex takes integer this,integer key returns item
+        return LoadItemHandle(Table__ht, this, key)
     endfunction
-    function s__Table___items__setindex takes integer this,integer key,item value returns nothing
-        call SaveItemHandle(Table___ht, this, key, value)
+    function s__Table__items__setindex takes integer this,integer key,item value returns nothing
+        call SaveItemHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___items_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__items_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___items_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__items_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Item", "item")
 //textmacro instance: NEW_ARRAY("Unit", "unit")
-    function s__Table___units__getindex takes integer this,integer key returns unit
-        return LoadUnitHandle(Table___ht, this, key)
+    function s__Table__units__getindex takes integer this,integer key returns unit
+        return LoadUnitHandle(Table__ht, this, key)
     endfunction
-    function s__Table___units__setindex takes integer this,integer key,unit value returns nothing
-        call SaveUnitHandle(Table___ht, this, key, value)
+    function s__Table__units__setindex takes integer this,integer key,unit value returns nothing
+        call SaveUnitHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___units_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__units_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___units_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__units_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Unit", "unit")
 //textmacro instance: NEW_ARRAY("Ability", "ability")
-    function s__Table___abilitys__getindex takes integer this,integer key returns ability
-        return LoadAbilityHandle(Table___ht, this, key)
+    function s__Table__abilitys__getindex takes integer this,integer key returns ability
+        return LoadAbilityHandle(Table__ht, this, key)
     endfunction
-    function s__Table___abilitys__setindex takes integer this,integer key,ability value returns nothing
-        call SaveAbilityHandle(Table___ht, this, key, value)
+    function s__Table__abilitys__setindex takes integer this,integer key,ability value returns nothing
+        call SaveAbilityHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___abilitys_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__abilitys_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___abilitys_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__abilitys_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Ability", "ability")
 //textmacro instance: NEW_ARRAY("Timer", "timer")
-    function s__Table___timers__getindex takes integer this,integer key returns timer
-        return LoadTimerHandle(Table___ht, this, key)
+    function s__Table__timers__getindex takes integer this,integer key returns timer
+        return LoadTimerHandle(Table__ht, this, key)
     endfunction
-    function s__Table___timers__setindex takes integer this,integer key,timer value returns nothing
-        call SaveTimerHandle(Table___ht, this, key, value)
+    function s__Table__timers__setindex takes integer this,integer key,timer value returns nothing
+        call SaveTimerHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___timers_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__timers_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___timers_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__timers_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Timer", "timer")
 //textmacro instance: NEW_ARRAY("Trigger", "trigger")
-    function s__Table___triggers__getindex takes integer this,integer key returns trigger
-        return LoadTriggerHandle(Table___ht, this, key)
+    function s__Table__triggers__getindex takes integer this,integer key returns trigger
+        return LoadTriggerHandle(Table__ht, this, key)
     endfunction
-    function s__Table___triggers__setindex takes integer this,integer key,trigger value returns nothing
-        call SaveTriggerHandle(Table___ht, this, key, value)
+    function s__Table__triggers__setindex takes integer this,integer key,trigger value returns nothing
+        call SaveTriggerHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___triggers_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__triggers_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___triggers_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__triggers_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Trigger", "trigger")
 //textmacro instance: NEW_ARRAY("TriggerCondition", "triggercondition")
-    function s__Table___triggerconditions__getindex takes integer this,integer key returns triggercondition
-        return LoadTriggerConditionHandle(Table___ht, this, key)
+    function s__Table__triggerconditions__getindex takes integer this,integer key returns triggercondition
+        return LoadTriggerConditionHandle(Table__ht, this, key)
     endfunction
-    function s__Table___triggerconditions__setindex takes integer this,integer key,triggercondition value returns nothing
-        call SaveTriggerConditionHandle(Table___ht, this, key, value)
+    function s__Table__triggerconditions__setindex takes integer this,integer key,triggercondition value returns nothing
+        call SaveTriggerConditionHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___triggerconditions_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__triggerconditions_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___triggerconditions_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__triggerconditions_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("TriggerCondition", "triggercondition")
 //textmacro instance: NEW_ARRAY("TriggerAction", "triggeraction")
-    function s__Table___triggeractions__getindex takes integer this,integer key returns triggeraction
-        return LoadTriggerActionHandle(Table___ht, this, key)
+    function s__Table__triggeractions__getindex takes integer this,integer key returns triggeraction
+        return LoadTriggerActionHandle(Table__ht, this, key)
     endfunction
-    function s__Table___triggeractions__setindex takes integer this,integer key,triggeraction value returns nothing
-        call SaveTriggerActionHandle(Table___ht, this, key, value)
+    function s__Table__triggeractions__setindex takes integer this,integer key,triggeraction value returns nothing
+        call SaveTriggerActionHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___triggeractions_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__triggeractions_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___triggeractions_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__triggeractions_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("TriggerAction", "triggeraction")
 //textmacro instance: NEW_ARRAY("TriggerEvent", "event")
-    function s__Table___events__getindex takes integer this,integer key returns event
-        return LoadTriggerEventHandle(Table___ht, this, key)
+    function s__Table__events__getindex takes integer this,integer key returns event
+        return LoadTriggerEventHandle(Table__ht, this, key)
     endfunction
-    function s__Table___events__setindex takes integer this,integer key,event value returns nothing
-        call SaveTriggerEventHandle(Table___ht, this, key, value)
+    function s__Table__events__setindex takes integer this,integer key,event value returns nothing
+        call SaveTriggerEventHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___events_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__events_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___events_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__events_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("TriggerEvent", "event")
 //textmacro instance: NEW_ARRAY("Force", "force")
-    function s__Table___forces__getindex takes integer this,integer key returns force
-        return LoadForceHandle(Table___ht, this, key)
+    function s__Table__forces__getindex takes integer this,integer key returns force
+        return LoadForceHandle(Table__ht, this, key)
     endfunction
-    function s__Table___forces__setindex takes integer this,integer key,force value returns nothing
-        call SaveForceHandle(Table___ht, this, key, value)
+    function s__Table__forces__setindex takes integer this,integer key,force value returns nothing
+        call SaveForceHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___forces_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__forces_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___forces_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__forces_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Force", "force")
 //textmacro instance: NEW_ARRAY("Group", "group")
-    function s__Table___groups__getindex takes integer this,integer key returns group
-        return LoadGroupHandle(Table___ht, this, key)
+    function s__Table__groups__getindex takes integer this,integer key returns group
+        return LoadGroupHandle(Table__ht, this, key)
     endfunction
-    function s__Table___groups__setindex takes integer this,integer key,group value returns nothing
-        call SaveGroupHandle(Table___ht, this, key, value)
+    function s__Table__groups__setindex takes integer this,integer key,group value returns nothing
+        call SaveGroupHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___groups_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__groups_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___groups_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__groups_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Group", "group")
 //textmacro instance: NEW_ARRAY("Location", "location")
-    function s__Table___locations__getindex takes integer this,integer key returns location
-        return LoadLocationHandle(Table___ht, this, key)
+    function s__Table__locations__getindex takes integer this,integer key returns location
+        return LoadLocationHandle(Table__ht, this, key)
     endfunction
-    function s__Table___locations__setindex takes integer this,integer key,location value returns nothing
-        call SaveLocationHandle(Table___ht, this, key, value)
+    function s__Table__locations__setindex takes integer this,integer key,location value returns nothing
+        call SaveLocationHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___locations_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__locations_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___locations_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__locations_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Location", "location")
 //textmacro instance: NEW_ARRAY("Rect", "rect")
-    function s__Table___rects__getindex takes integer this,integer key returns rect
-        return LoadRectHandle(Table___ht, this, key)
+    function s__Table__rects__getindex takes integer this,integer key returns rect
+        return LoadRectHandle(Table__ht, this, key)
     endfunction
-    function s__Table___rects__setindex takes integer this,integer key,rect value returns nothing
-        call SaveRectHandle(Table___ht, this, key, value)
+    function s__Table__rects__setindex takes integer this,integer key,rect value returns nothing
+        call SaveRectHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___rects_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__rects_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___rects_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__rects_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Rect", "rect")
 //textmacro instance: NEW_ARRAY("BooleanExpr", "boolexpr")
-    function s__Table___boolexprs__getindex takes integer this,integer key returns boolexpr
-        return LoadBooleanExprHandle(Table___ht, this, key)
+    function s__Table__boolexprs__getindex takes integer this,integer key returns boolexpr
+        return LoadBooleanExprHandle(Table__ht, this, key)
     endfunction
-    function s__Table___boolexprs__setindex takes integer this,integer key,boolexpr value returns nothing
-        call SaveBooleanExprHandle(Table___ht, this, key, value)
+    function s__Table__boolexprs__setindex takes integer this,integer key,boolexpr value returns nothing
+        call SaveBooleanExprHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___boolexprs_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__boolexprs_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___boolexprs_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__boolexprs_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("BooleanExpr", "boolexpr")
 //textmacro instance: NEW_ARRAY("Sound", "sound")
-    function s__Table___sounds__getindex takes integer this,integer key returns sound
-        return LoadSoundHandle(Table___ht, this, key)
+    function s__Table__sounds__getindex takes integer this,integer key returns sound
+        return LoadSoundHandle(Table__ht, this, key)
     endfunction
-    function s__Table___sounds__setindex takes integer this,integer key,sound value returns nothing
-        call SaveSoundHandle(Table___ht, this, key, value)
+    function s__Table__sounds__setindex takes integer this,integer key,sound value returns nothing
+        call SaveSoundHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___sounds_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__sounds_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___sounds_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__sounds_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Sound", "sound")
 //textmacro instance: NEW_ARRAY("Effect", "effect")
-    function s__Table___effects__getindex takes integer this,integer key returns effect
-        return LoadEffectHandle(Table___ht, this, key)
+    function s__Table__effects__getindex takes integer this,integer key returns effect
+        return LoadEffectHandle(Table__ht, this, key)
     endfunction
-    function s__Table___effects__setindex takes integer this,integer key,effect value returns nothing
-        call SaveEffectHandle(Table___ht, this, key, value)
+    function s__Table__effects__setindex takes integer this,integer key,effect value returns nothing
+        call SaveEffectHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___effects_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__effects_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___effects_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__effects_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Effect", "effect")
 //textmacro instance: NEW_ARRAY("UnitPool", "unitpool")
-    function s__Table___unitpools__getindex takes integer this,integer key returns unitpool
-        return LoadUnitPoolHandle(Table___ht, this, key)
+    function s__Table__unitpools__getindex takes integer this,integer key returns unitpool
+        return LoadUnitPoolHandle(Table__ht, this, key)
     endfunction
-    function s__Table___unitpools__setindex takes integer this,integer key,unitpool value returns nothing
-        call SaveUnitPoolHandle(Table___ht, this, key, value)
+    function s__Table__unitpools__setindex takes integer this,integer key,unitpool value returns nothing
+        call SaveUnitPoolHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___unitpools_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__unitpools_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___unitpools_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__unitpools_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("UnitPool", "unitpool")
 //textmacro instance: NEW_ARRAY("ItemPool", "itempool")
-    function s__Table___itempools__getindex takes integer this,integer key returns itempool
-        return LoadItemPoolHandle(Table___ht, this, key)
+    function s__Table__itempools__getindex takes integer this,integer key returns itempool
+        return LoadItemPoolHandle(Table__ht, this, key)
     endfunction
-    function s__Table___itempools__setindex takes integer this,integer key,itempool value returns nothing
-        call SaveItemPoolHandle(Table___ht, this, key, value)
+    function s__Table__itempools__setindex takes integer this,integer key,itempool value returns nothing
+        call SaveItemPoolHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___itempools_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__itempools_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___itempools_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__itempools_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("ItemPool", "itempool")
 //textmacro instance: NEW_ARRAY("Quest", "quest")
-    function s__Table___quests__getindex takes integer this,integer key returns quest
-        return LoadQuestHandle(Table___ht, this, key)
+    function s__Table__quests__getindex takes integer this,integer key returns quest
+        return LoadQuestHandle(Table__ht, this, key)
     endfunction
-    function s__Table___quests__setindex takes integer this,integer key,quest value returns nothing
-        call SaveQuestHandle(Table___ht, this, key, value)
+    function s__Table__quests__setindex takes integer this,integer key,quest value returns nothing
+        call SaveQuestHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___quests_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__quests_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___quests_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__quests_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Quest", "quest")
 //textmacro instance: NEW_ARRAY("QuestItem", "questitem")
-    function s__Table___questitems__getindex takes integer this,integer key returns questitem
-        return LoadQuestItemHandle(Table___ht, this, key)
+    function s__Table__questitems__getindex takes integer this,integer key returns questitem
+        return LoadQuestItemHandle(Table__ht, this, key)
     endfunction
-    function s__Table___questitems__setindex takes integer this,integer key,questitem value returns nothing
-        call SaveQuestItemHandle(Table___ht, this, key, value)
+    function s__Table__questitems__setindex takes integer this,integer key,questitem value returns nothing
+        call SaveQuestItemHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___questitems_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__questitems_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___questitems_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__questitems_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("QuestItem", "questitem")
 //textmacro instance: NEW_ARRAY("DefeatCondition", "defeatcondition")
-    function s__Table___defeatconditions__getindex takes integer this,integer key returns defeatcondition
-        return LoadDefeatConditionHandle(Table___ht, this, key)
+    function s__Table__defeatconditions__getindex takes integer this,integer key returns defeatcondition
+        return LoadDefeatConditionHandle(Table__ht, this, key)
     endfunction
-    function s__Table___defeatconditions__setindex takes integer this,integer key,defeatcondition value returns nothing
-        call SaveDefeatConditionHandle(Table___ht, this, key, value)
+    function s__Table__defeatconditions__setindex takes integer this,integer key,defeatcondition value returns nothing
+        call SaveDefeatConditionHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___defeatconditions_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__defeatconditions_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___defeatconditions_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__defeatconditions_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("DefeatCondition", "defeatcondition")
 //textmacro instance: NEW_ARRAY("TimerDialog", "timerdialog")
-    function s__Table___timerdialogs__getindex takes integer this,integer key returns timerdialog
-        return LoadTimerDialogHandle(Table___ht, this, key)
+    function s__Table__timerdialogs__getindex takes integer this,integer key returns timerdialog
+        return LoadTimerDialogHandle(Table__ht, this, key)
     endfunction
-    function s__Table___timerdialogs__setindex takes integer this,integer key,timerdialog value returns nothing
-        call SaveTimerDialogHandle(Table___ht, this, key, value)
+    function s__Table__timerdialogs__setindex takes integer this,integer key,timerdialog value returns nothing
+        call SaveTimerDialogHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___timerdialogs_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__timerdialogs_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___timerdialogs_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__timerdialogs_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("TimerDialog", "timerdialog")
 //textmacro instance: NEW_ARRAY("Leaderboard", "leaderboard")
-    function s__Table___leaderboards__getindex takes integer this,integer key returns leaderboard
-        return LoadLeaderboardHandle(Table___ht, this, key)
+    function s__Table__leaderboards__getindex takes integer this,integer key returns leaderboard
+        return LoadLeaderboardHandle(Table__ht, this, key)
     endfunction
-    function s__Table___leaderboards__setindex takes integer this,integer key,leaderboard value returns nothing
-        call SaveLeaderboardHandle(Table___ht, this, key, value)
+    function s__Table__leaderboards__setindex takes integer this,integer key,leaderboard value returns nothing
+        call SaveLeaderboardHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___leaderboards_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__leaderboards_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___leaderboards_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__leaderboards_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Leaderboard", "leaderboard")
 //textmacro instance: NEW_ARRAY("Multiboard", "multiboard")
-    function s__Table___multiboards__getindex takes integer this,integer key returns multiboard
-        return LoadMultiboardHandle(Table___ht, this, key)
+    function s__Table__multiboards__getindex takes integer this,integer key returns multiboard
+        return LoadMultiboardHandle(Table__ht, this, key)
     endfunction
-    function s__Table___multiboards__setindex takes integer this,integer key,multiboard value returns nothing
-        call SaveMultiboardHandle(Table___ht, this, key, value)
+    function s__Table__multiboards__setindex takes integer this,integer key,multiboard value returns nothing
+        call SaveMultiboardHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___multiboards_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__multiboards_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___multiboards_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__multiboards_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Multiboard", "multiboard")
 //textmacro instance: NEW_ARRAY("MultiboardItem", "multiboarditem")
-    function s__Table___multiboarditems__getindex takes integer this,integer key returns multiboarditem
-        return LoadMultiboardItemHandle(Table___ht, this, key)
+    function s__Table__multiboarditems__getindex takes integer this,integer key returns multiboarditem
+        return LoadMultiboardItemHandle(Table__ht, this, key)
     endfunction
-    function s__Table___multiboarditems__setindex takes integer this,integer key,multiboarditem value returns nothing
-        call SaveMultiboardItemHandle(Table___ht, this, key, value)
+    function s__Table__multiboarditems__setindex takes integer this,integer key,multiboarditem value returns nothing
+        call SaveMultiboardItemHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___multiboarditems_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__multiboarditems_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___multiboarditems_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__multiboarditems_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("MultiboardItem", "multiboarditem")
 //textmacro instance: NEW_ARRAY("Trackable", "trackable")
-    function s__Table___trackables__getindex takes integer this,integer key returns trackable
-        return LoadTrackableHandle(Table___ht, this, key)
+    function s__Table__trackables__getindex takes integer this,integer key returns trackable
+        return LoadTrackableHandle(Table__ht, this, key)
     endfunction
-    function s__Table___trackables__setindex takes integer this,integer key,trackable value returns nothing
-        call SaveTrackableHandle(Table___ht, this, key, value)
+    function s__Table__trackables__setindex takes integer this,integer key,trackable value returns nothing
+        call SaveTrackableHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___trackables_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__trackables_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___trackables_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__trackables_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Trackable", "trackable")
 //textmacro instance: NEW_ARRAY("Dialog", "dialog")
-    function s__Table___dialogs__getindex takes integer this,integer key returns dialog
-        return LoadDialogHandle(Table___ht, this, key)
+    function s__Table__dialogs__getindex takes integer this,integer key returns dialog
+        return LoadDialogHandle(Table__ht, this, key)
     endfunction
-    function s__Table___dialogs__setindex takes integer this,integer key,dialog value returns nothing
-        call SaveDialogHandle(Table___ht, this, key, value)
+    function s__Table__dialogs__setindex takes integer this,integer key,dialog value returns nothing
+        call SaveDialogHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___dialogs_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__dialogs_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___dialogs_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__dialogs_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Dialog", "dialog")
 //textmacro instance: NEW_ARRAY("Button", "button")
-    function s__Table___buttons__getindex takes integer this,integer key returns button
-        return LoadButtonHandle(Table___ht, this, key)
+    function s__Table__buttons__getindex takes integer this,integer key returns button
+        return LoadButtonHandle(Table__ht, this, key)
     endfunction
-    function s__Table___buttons__setindex takes integer this,integer key,button value returns nothing
-        call SaveButtonHandle(Table___ht, this, key, value)
+    function s__Table__buttons__setindex takes integer this,integer key,button value returns nothing
+        call SaveButtonHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___buttons_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__buttons_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___buttons_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__buttons_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Button", "button")
 //textmacro instance: NEW_ARRAY("TextTag", "texttag")
-    function s__Table___texttags__getindex takes integer this,integer key returns texttag
-        return LoadTextTagHandle(Table___ht, this, key)
+    function s__Table__texttags__getindex takes integer this,integer key returns texttag
+        return LoadTextTagHandle(Table__ht, this, key)
     endfunction
-    function s__Table___texttags__setindex takes integer this,integer key,texttag value returns nothing
-        call SaveTextTagHandle(Table___ht, this, key, value)
+    function s__Table__texttags__setindex takes integer this,integer key,texttag value returns nothing
+        call SaveTextTagHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___texttags_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__texttags_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___texttags_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__texttags_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("TextTag", "texttag")
 //textmacro instance: NEW_ARRAY("Lightning", "lightning")
-    function s__Table___lightnings__getindex takes integer this,integer key returns lightning
-        return LoadLightningHandle(Table___ht, this, key)
+    function s__Table__lightnings__getindex takes integer this,integer key returns lightning
+        return LoadLightningHandle(Table__ht, this, key)
     endfunction
-    function s__Table___lightnings__setindex takes integer this,integer key,lightning value returns nothing
-        call SaveLightningHandle(Table___ht, this, key, value)
+    function s__Table__lightnings__setindex takes integer this,integer key,lightning value returns nothing
+        call SaveLightningHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___lightnings_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__lightnings_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___lightnings_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__lightnings_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Lightning", "lightning")
 //textmacro instance: NEW_ARRAY("Image", "image")
-    function s__Table___images__getindex takes integer this,integer key returns image
-        return LoadImageHandle(Table___ht, this, key)
+    function s__Table__images__getindex takes integer this,integer key returns image
+        return LoadImageHandle(Table__ht, this, key)
     endfunction
-    function s__Table___images__setindex takes integer this,integer key,image value returns nothing
-        call SaveImageHandle(Table___ht, this, key, value)
+    function s__Table__images__setindex takes integer this,integer key,image value returns nothing
+        call SaveImageHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___images_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__images_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___images_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__images_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Image", "image")
 //textmacro instance: NEW_ARRAY("Ubersplat", "ubersplat")
-    function s__Table___ubersplats__getindex takes integer this,integer key returns ubersplat
-        return LoadUbersplatHandle(Table___ht, this, key)
+    function s__Table__ubersplats__getindex takes integer this,integer key returns ubersplat
+        return LoadUbersplatHandle(Table__ht, this, key)
     endfunction
-    function s__Table___ubersplats__setindex takes integer this,integer key,ubersplat value returns nothing
-        call SaveUbersplatHandle(Table___ht, this, key, value)
+    function s__Table__ubersplats__setindex takes integer this,integer key,ubersplat value returns nothing
+        call SaveUbersplatHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___ubersplats_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__ubersplats_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___ubersplats_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__ubersplats_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Ubersplat", "ubersplat")
 //textmacro instance: NEW_ARRAY("Region", "region")
-    function s__Table___regions__getindex takes integer this,integer key returns region
-        return LoadRegionHandle(Table___ht, this, key)
+    function s__Table__regions__getindex takes integer this,integer key returns region
+        return LoadRegionHandle(Table__ht, this, key)
     endfunction
-    function s__Table___regions__setindex takes integer this,integer key,region value returns nothing
-        call SaveRegionHandle(Table___ht, this, key, value)
+    function s__Table__regions__setindex takes integer this,integer key,region value returns nothing
+        call SaveRegionHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___regions_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__regions_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___regions_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__regions_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Region", "region")
 //textmacro instance: NEW_ARRAY("FogState", "fogstate")
-    function s__Table___fogstates__getindex takes integer this,integer key returns fogstate
-        return LoadFogStateHandle(Table___ht, this, key)
+    function s__Table__fogstates__getindex takes integer this,integer key returns fogstate
+        return LoadFogStateHandle(Table__ht, this, key)
     endfunction
-    function s__Table___fogstates__setindex takes integer this,integer key,fogstate value returns nothing
-        call SaveFogStateHandle(Table___ht, this, key, value)
+    function s__Table__fogstates__setindex takes integer this,integer key,fogstate value returns nothing
+        call SaveFogStateHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___fogstates_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__fogstates_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___fogstates_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__fogstates_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("FogState", "fogstate")
 //textmacro instance: NEW_ARRAY("FogModifier", "fogmodifier")
-    function s__Table___fogmodifiers__getindex takes integer this,integer key returns fogmodifier
-        return LoadFogModifierHandle(Table___ht, this, key)
+    function s__Table__fogmodifiers__getindex takes integer this,integer key returns fogmodifier
+        return LoadFogModifierHandle(Table__ht, this, key)
     endfunction
-    function s__Table___fogmodifiers__setindex takes integer this,integer key,fogmodifier value returns nothing
-        call SaveFogModifierHandle(Table___ht, this, key, value)
+    function s__Table__fogmodifiers__setindex takes integer this,integer key,fogmodifier value returns nothing
+        call SaveFogModifierHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___fogmodifiers_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__fogmodifiers_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___fogmodifiers_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__fogmodifiers_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("FogModifier", "fogmodifier")
 //textmacro instance: NEW_ARRAY("Hashtable", "hashtable")
-    function s__Table___hashtables__getindex takes integer this,integer key returns hashtable
-        return LoadHashtableHandle(Table___ht, this, key)
+    function s__Table__hashtables__getindex takes integer this,integer key returns hashtable
+        return LoadHashtableHandle(Table__ht, this, key)
     endfunction
-    function s__Table___hashtables__setindex takes integer this,integer key,hashtable value returns nothing
-        call SaveHashtableHandle(Table___ht, this, key, value)
+    function s__Table__hashtables__setindex takes integer this,integer key,hashtable value returns nothing
+        call SaveHashtableHandle(Table__ht, this, key, value)
     endfunction
-    function s__Table___hashtables_has takes integer this,integer key returns boolean
-        return HaveSavedHandle(Table___ht, this, key)
+    function s__Table__hashtables_has takes integer this,integer key returns boolean
+        return HaveSavedHandle(Table__ht, this, key)
     endfunction
-    function s__Table___hashtables_remove takes integer this,integer key returns nothing
-        call RemoveSavedHandle(Table___ht, this, key)
+    function s__Table__hashtables_remove takes integer this,integer key returns nothing
+        call RemoveSavedHandle(Table__ht, this, key)
     endfunction
 //end of: NEW_ARRAY("Hashtable", "hashtable")
     
     
     // Implement modules for intuitive syntax (tb.handle; tb.unit; etc.)
-//Implemented from module Table___realm:
+//Implemented from module Table__realm:
     function s__Table__get_real takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___integerm:
+//Implemented from module Table__integerm:
     function s__Table__get_integer takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___booleanm:
+//Implemented from module Table__booleanm:
     function s__Table__get_boolean takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___stringm:
+//Implemented from module Table__stringm:
     function s__Table__get_string takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___playerm:
+//Implemented from module Table__playerm:
     function s__Table__get_player takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___widgetm:
+//Implemented from module Table__widgetm:
     function s__Table__get_widget takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___destructablem:
+//Implemented from module Table__destructablem:
     function s__Table__get_destructable takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___itemm:
+//Implemented from module Table__itemm:
     function s__Table__get_item takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___unitm:
+//Implemented from module Table__unitm:
     function s__Table__get_unit takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___abilitym:
+//Implemented from module Table__abilitym:
     function s__Table__get_ability takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___timerm:
+//Implemented from module Table__timerm:
     function s__Table__get_timer takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___triggerm:
+//Implemented from module Table__triggerm:
     function s__Table__get_trigger takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___triggerconditionm:
+//Implemented from module Table__triggerconditionm:
     function s__Table__get_triggercondition takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___triggeractionm:
+//Implemented from module Table__triggeractionm:
     function s__Table__get_triggeraction takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___eventm:
+//Implemented from module Table__eventm:
     function s__Table__get_event takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___forcem:
+//Implemented from module Table__forcem:
     function s__Table__get_force takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___groupm:
+//Implemented from module Table__groupm:
     function s__Table__get_group takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___locationm:
+//Implemented from module Table__locationm:
     function s__Table__get_location takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___rectm:
+//Implemented from module Table__rectm:
     function s__Table__get_rect takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___boolexprm:
+//Implemented from module Table__boolexprm:
     function s__Table__get_boolexpr takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___soundm:
+//Implemented from module Table__soundm:
     function s__Table__get_sound takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___effectm:
+//Implemented from module Table__effectm:
     function s__Table__get_effect takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___unitpoolm:
+//Implemented from module Table__unitpoolm:
     function s__Table__get_unitpool takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___itempoolm:
+//Implemented from module Table__itempoolm:
     function s__Table__get_itempool takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___questm:
+//Implemented from module Table__questm:
     function s__Table__get_quest takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___questitemm:
+//Implemented from module Table__questitemm:
     function s__Table__get_questitem takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___defeatconditionm:
+//Implemented from module Table__defeatconditionm:
     function s__Table__get_defeatcondition takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___timerdialogm:
+//Implemented from module Table__timerdialogm:
     function s__Table__get_timerdialog takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___leaderboardm:
+//Implemented from module Table__leaderboardm:
     function s__Table__get_leaderboard takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___multiboardm:
+//Implemented from module Table__multiboardm:
     function s__Table__get_multiboard takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___multiboarditemm:
+//Implemented from module Table__multiboarditemm:
     function s__Table__get_multiboarditem takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___trackablem:
+//Implemented from module Table__trackablem:
     function s__Table__get_trackable takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___dialogm:
+//Implemented from module Table__dialogm:
     function s__Table__get_dialog takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___buttonm:
+//Implemented from module Table__buttonm:
     function s__Table__get_button takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___texttagm:
+//Implemented from module Table__texttagm:
     function s__Table__get_texttag takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___lightningm:
+//Implemented from module Table__lightningm:
     function s__Table__get_lightning takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___imagem:
+//Implemented from module Table__imagem:
     function s__Table__get_image takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___ubersplatm:
+//Implemented from module Table__ubersplatm:
     function s__Table__get_ubersplat takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___regionm:
+//Implemented from module Table__regionm:
     function s__Table__get_region takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___fogstatem:
+//Implemented from module Table__fogstatem:
     function s__Table__get_fogstate takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___fogmodifierm:
+//Implemented from module Table__fogmodifierm:
     function s__Table__get_fogmodifier takes integer this returns integer
         return this
     endfunction
-//Implemented from module Table___hashtablem:
+//Implemented from module Table__hashtablem:
     function s__Table__get_hashtable takes integer this returns integer
         return this
     endfunction
@@ -5852,39 +5852,39 @@ endfunction
     
     //set this = tb[GetSpellAbilityId()]
     function s__Table__getindex takes integer this,integer key returns integer
-        return LoadInteger(Table___ht, this, key) //return this.integer[key]
+        return LoadInteger(Table__ht, this, key) //return this.integer[key]
     endfunction
     
     //set tb[389034] = 8192
     function s__Table__setindex takes integer this,integer key,integer tb returns nothing
-        call SaveInteger(Table___ht, this, key, tb) //set this.integer[key] = tb
+        call SaveInteger(Table__ht, this, key, tb) //set this.integer[key] = tb
     endfunction
     
     //set b = tb.has(2493223)
     function s__Table_has takes integer this,integer key returns boolean
-        return HaveSavedInteger(Table___ht, this, key) //return this.integer.has(key)
+        return HaveSavedInteger(Table__ht, this, key) //return this.integer.has(key)
     endfunction
     
     //call tb.remove(294080)
     function s__Table_remove takes integer this,integer key returns nothing
-        call RemoveSavedInteger(Table___ht, this, key) //call this.integer.remove(key)
+        call RemoveSavedInteger(Table__ht, this, key) //call this.integer.remove(key)
     endfunction
     
     //Remove all data from a Table instance
     function s__Table_flush takes integer this returns nothing
-        call FlushChildHashtable(Table___ht, this)
+        call FlushChildHashtable(Table__ht, this)
     endfunction
     
     //local Table tb = Table.create()
     function s__Table_create takes nothing returns integer
-        local integer this= (LoadInteger(Table___ht, ((Table___listK)), (0))) // INLINED!!
+        local integer this= (LoadInteger(Table__ht, ((Table__listK)), (0))) // INLINED!!
         
         if this == 0 then
-            set this=Table___more + 1
-            set Table___more=this
+            set this=Table__more + 1
+            set Table__more=this
         else
-            call SaveInteger(Table___ht, ((Table___listK)), (0), ( (LoadInteger(Table___ht, ((Table___listK)), (this))))) // INLINED!!
-            call RemoveSavedInteger(Table___ht, ((Table___listK)), (this)) //Clear hashed memory // INLINED!!
+            call SaveInteger(Table__ht, ((Table__listK)), (0), ( (LoadInteger(Table__ht, ((Table__listK)), (this))))) // INLINED!!
+            call RemoveSavedInteger(Table__ht, ((Table__listK)), (this)) //Clear hashed memory // INLINED!!
         endif
         
         return this
@@ -5896,10 +5896,10 @@ endfunction
     //
     function s__Table_destroy takes integer this returns nothing
         
-        call FlushChildHashtable(Table___ht, (this)) // INLINED!!
+        call FlushChildHashtable(Table__ht, (this)) // INLINED!!
         
-        call SaveInteger(Table___ht, ((Table___listK)), (this), ( (LoadInteger(Table___ht, ((Table___listK)), (0))))) // INLINED!!
-        call SaveInteger(Table___ht, ((Table___listK)), (0), ( this)) // INLINED!!
+        call SaveInteger(Table__ht, ((Table__listK)), (this), ( (LoadInteger(Table__ht, ((Table__listK)), (0))))) // INLINED!!
+        call SaveInteger(Table__ht, ((Table__listK)), (0), ( this)) // INLINED!!
     endfunction
     
 //ignored textmacro command: TABLE_BC_METHODS()
@@ -5912,25 +5912,25 @@ endfunction
     //    local TableArray ta = TableArray[array_size]
     //
     function s__TableArray__staticgetindex takes integer array_size returns integer
-        local integer tb= (LoadInteger(Table___ht, ((Table___sizeK)), (array_size))) // INLINED!!
-        local integer this= (LoadInteger(Table___ht, (tb), (0))) // INLINED!!
+        local integer tb= (LoadInteger(Table__ht, ((Table__sizeK)), (array_size))) // INLINED!!
+        local integer this= (LoadInteger(Table__ht, (tb), (0))) // INLINED!!
         
         
         if this == 0 then
-            set this=Table___less - array_size
-            set Table___less=this
+            set this=Table__less - array_size
+            set Table__less=this
         else
-            call SaveInteger(Table___ht, (tb), (0), ( (LoadInteger(Table___ht, (tb), (this))))) //Set the last destroyed to the last-last destroyed // INLINED!!
-            call RemoveSavedInteger(Table___ht, (tb), (this)) //Clear hashed memory // INLINED!!
+            call SaveInteger(Table__ht, (tb), (0), ( (LoadInteger(Table__ht, (tb), (this))))) //Set the last destroyed to the last-last destroyed // INLINED!!
+            call RemoveSavedInteger(Table__ht, (tb), (this)) //Clear hashed memory // INLINED!!
         endif
         
-        call SaveInteger(Table___ht, ((Table___sizeK)), (this), ( array_size)) //This remembers the array size // INLINED!!
+        call SaveInteger(Table__ht, ((Table__sizeK)), (this), ( array_size)) //This remembers the array size // INLINED!!
         return this
     endfunction
     
     //Returns the size of the TableArray
     function s__TableArray__get_size takes integer this returns integer
-        return (LoadInteger(Table___ht, ((Table___sizeK)), (this))) // INLINED!!
+        return (LoadInteger(Table__ht, ((Table__sizeK)), (this))) // INLINED!!
     endfunction
     
     //This magic method enables two-dimensional[array][syntax] for Tables,
@@ -5962,19 +5962,19 @@ endfunction
     //need to (ie. if you were flushing all child-keys as you used them).
     //
     function s__TableArray_destroy takes integer this returns nothing
-        local integer tb= (LoadInteger(Table___ht, ((Table___sizeK)), ((LoadInteger(Table___ht, ((Table___sizeK)), ((this))))))) // INLINED!!
+        local integer tb= (LoadInteger(Table__ht, ((Table__sizeK)), ((LoadInteger(Table__ht, ((Table__sizeK)), ((this))))))) // INLINED!!
         
         
         if tb == 0 then
             //Create a Table to index recycled instances with their array size
             set tb=s__Table_create()
-            call SaveInteger(Table___ht, ((Table___sizeK)), ((LoadInteger(Table___ht, ((Table___sizeK)), ((this))))), ( tb)) // INLINED!!
+            call SaveInteger(Table__ht, ((Table__sizeK)), ((LoadInteger(Table__ht, ((Table__sizeK)), ((this))))), ( tb)) // INLINED!!
         endif
         
-        call RemoveSavedInteger(Table___ht, ((Table___sizeK)), (this)) //Clear the array size from hash memory // INLINED!!
+        call RemoveSavedInteger(Table__ht, ((Table__sizeK)), (this)) //Clear the array size from hash memory // INLINED!!
         
-        call SaveInteger(Table___ht, (tb), (this), ( (LoadInteger(Table___ht, (tb), (0))))) // INLINED!!
-        call SaveInteger(Table___ht, (tb), (0), ( this)) // INLINED!!
+        call SaveInteger(Table__ht, (tb), (this), ( (LoadInteger(Table__ht, (tb), (0))))) // INLINED!!
+        call SaveInteger(Table__ht, (tb), (0), ( this)) // INLINED!!
     endfunction
     
     
@@ -5989,7 +5989,7 @@ endfunction
             set end=s__TableArray_tempEnd
         endif
         loop
-            call FlushChildHashtable(Table___ht, (tb)) // INLINED!!
+            call FlushChildHashtable(Table__ht, (tb)) // INLINED!!
             set tb=tb + 1
             exitwhen tb == end
         endloop
@@ -6000,7 +6000,7 @@ endfunction
     //
     function s__TableArray_flush takes integer this returns nothing
         set s__TableArray_tempTable=this
-        set s__TableArray_tempEnd=this + (LoadInteger(Table___ht, ((Table___sizeK)), ((this)))) // INLINED!!
+        set s__TableArray_tempEnd=this + (LoadInteger(Table__ht, ((Table__sizeK)), ((this)))) // INLINED!!
         call ForForce(bj_FORCE_PLAYER[0], function s__TableArray_clean)
         call s__TableArray_destroy(this)
     endfunction
@@ -6013,10 +6013,10 @@ endfunction
     //Basically, it creates a Table in the place of the parent key if
     //it didn't already get created earlier.
     function s__HashTable__getindex takes integer this,integer index returns integer
-        local integer t= (LoadInteger(Table___ht, ((this)), (index))) // INLINED!!
+        local integer t= (LoadInteger(Table__ht, ((this)), (index))) // INLINED!!
         if t == 0 then
             set t=s__Table_create()
-            call SaveInteger(Table___ht, ((this)), (index), ( t)) //whoops! Forgot that line. I'm out of practice! // INLINED!!
+            call SaveInteger(Table__ht, ((this)), (index), ( t)) //whoops! Forgot that line. I'm out of practice! // INLINED!!
         endif
         return t
     endfunction
@@ -6024,16 +6024,16 @@ endfunction
     //You need to call this on each parent key that you used if you
     //intend to destroy the HashTable or simply no longer need that key.
     function s__HashTable_remove takes integer this,integer index returns nothing
-        local integer t= (LoadInteger(Table___ht, ((this)), (index))) // INLINED!!
+        local integer t= (LoadInteger(Table__ht, ((this)), (index))) // INLINED!!
         if t != 0 then
             call s__Table_destroy(t)
-            call RemoveSavedInteger(Table___ht, ((this)), (index)) // INLINED!!
+            call RemoveSavedInteger(Table__ht, ((this)), (index)) // INLINED!!
         endif
     endfunction
     
     //Added in version 4.1
     function s__HashTable_has takes integer this,integer index returns boolean
-        return (HaveSavedInteger(Table___ht, ((this)), (index))) // INLINED!!
+        return (HaveSavedInteger(Table__ht, ((this)), (index))) // INLINED!!
     endfunction
     
     //HashTables are just fancy Table indices.
@@ -6050,12 +6050,12 @@ endfunction
 
 //library Table ends
 //library TasUnitBagGUI:
-function TasUnitBagGUI___Action takes nothing returns nothing
-    call SaveInteger(Table___ht, (TasItemBag_ItemAbilityNeed), (udg_TasItemBagItem), ( udg_TasItemBagSkill)) // INLINED!!
+function TasUnitBagGUI__Action takes nothing returns nothing
+    call SaveInteger(Table__ht, (TasItemBag_ItemAbilityNeed), (udg_TasItemBagItem), ( udg_TasItemBagSkill)) // INLINED!!
 endfunction
-function TasUnitBagGUI___init_function takes nothing returns nothing
+function TasUnitBagGUI__init_function takes nothing returns nothing
     set udg_TasItemBagNeedSkill=CreateTrigger()
-    call TriggerAddAction(udg_TasItemBagNeedSkill, function TasUnitBagGUI___Action)
+    call TriggerAddAction(udg_TasItemBagNeedSkill, function TasUnitBagGUI__Action)
 endfunction
 
 //library TasUnitBagGUI ends
@@ -6084,250 +6084,250 @@ endfunction
 
 
 
-        function s__Interface__UI_remove takes integer this,integer i returns integer
-            set s__Interface__UI_array[i]=s__Interface__UI_array[s__Interface__UI_key]
-            set s__Interface__UI_key=s__Interface__UI_key - 1
-            set s__Interface__UI_struct[s__Interface__UI_id[this]]=0
-            set s__Interface__UI_unit[this]=null
-            set s__Interface__UI_player[this]=null
+        function s__Interface___UI_remove takes integer this,integer i returns integer
+            set s__Interface___UI_array[i]=s__Interface___UI_array[s__Interface___UI_key]
+            set s__Interface___UI_key=s__Interface___UI_key - 1
+            set s__Interface___UI_struct[s__Interface___UI_id[this]]=0
+            set s__Interface___UI_unit[this]=null
+            set s__Interface___UI_player[this]=null
 
-            if s__Interface__UI_key == - 1 then
-                call PauseTimer(s__Interface__UI_timer)
+            if s__Interface___UI_key == - 1 then
+                call PauseTimer(s__Interface___UI_timer)
             endif
 
-            call s__Interface__UI_deallocate(this)
+            call s__Interface___UI_deallocate(this)
 
             return i - 1
         endfunction
 
-        function s__Interface__UI_onCommandButtons takes nothing returns nothing
+        function s__Interface___UI_onCommandButtons takes nothing returns nothing
             local integer id= GetPlayerId(GetLocalPlayer())
 
-            if s__Interface__UI_shop[id] then
-                set s__Interface__UI_command0X1[id]=0.333500
-                set s__Interface__UI_command0Y1[id]=0.213950
-                set s__Interface__UI_command0X2[id]=0.366760
-                set s__Interface__UI_command0Y2[id]=0.180700
-                set s__Interface__UI_command1X1[id]=0.370500
-                set s__Interface__UI_command1Y1[id]=0.213950
-                set s__Interface__UI_command1X2[id]=0.403760
-                set s__Interface__UI_command1Y2[id]=0.180700
-                set s__Interface__UI_command2X1[id]=0.407400
-                set s__Interface__UI_command2Y1[id]=0.213650
-                set s__Interface__UI_command2X2[id]=0.440660
-                set s__Interface__UI_command2Y2[id]=0.180400
-                set s__Interface__UI_command3X1[id]=0.444400
-                set s__Interface__UI_command3Y1[id]=0.213650
-                set s__Interface__UI_command3X2[id]=0.477660
-                set s__Interface__UI_command3Y2[id]=0.180400
-                set s__Interface__UI_command4X1[id]=0.333500
-                set s__Interface__UI_command4Y1[id]=0.175250
-                set s__Interface__UI_command4X2[id]=0.366760
-                set s__Interface__UI_command4Y2[id]=0.142000
-                set s__Interface__UI_command5X1[id]=0.370500
-                set s__Interface__UI_command5Y1[id]=0.175250
-                set s__Interface__UI_command5X2[id]=0.403760
-                set s__Interface__UI_command5Y2[id]=0.142000
-                set s__Interface__UI_command6X1[id]=0.407400
-                set s__Interface__UI_command6Y1[id]=0.175250
-                set s__Interface__UI_command6X2[id]=0.440660
-                set s__Interface__UI_command6Y2[id]=0.142000
-                set s__Interface__UI_command7X1[id]=0.444400
-                set s__Interface__UI_command7Y1[id]=0.175250
-                set s__Interface__UI_command7X2[id]=0.477660
-                set s__Interface__UI_command7Y2[id]=0.142000
-                set s__Interface__UI_command8X1[id]=0.333500
-                set s__Interface__UI_command8Y1[id]=0.136850
-                set s__Interface__UI_command8X2[id]=0.366760
-                set s__Interface__UI_command8Y2[id]=0.103600
-                set s__Interface__UI_command9X1[id]=0.370500
-                set s__Interface__UI_command9Y1[id]=0.136850
-                set s__Interface__UI_command9X2[id]=0.403760
-                set s__Interface__UI_command9Y2[id]=0.103600
-                set s__Interface__UI_command10X1[id]=0.407400
-                set s__Interface__UI_command10Y1[id]=0.136850
-                set s__Interface__UI_command10X2[id]=0.440660
-                set s__Interface__UI_command10Y2[id]=0.103600
-                set s__Interface__UI_command11X1[id]=0.444400
-                set s__Interface__UI_command11Y1[id]=0.136850
-                set s__Interface__UI_command11X2[id]=0.477660
-                set s__Interface__UI_command11Y2[id]=0.103600
+            if s__Interface___UI_shop[id] then
+                set s__Interface___UI_command0X1[id]=0.333500
+                set s__Interface___UI_command0Y1[id]=0.213950
+                set s__Interface___UI_command0X2[id]=0.366760
+                set s__Interface___UI_command0Y2[id]=0.180700
+                set s__Interface___UI_command1X1[id]=0.370500
+                set s__Interface___UI_command1Y1[id]=0.213950
+                set s__Interface___UI_command1X2[id]=0.403760
+                set s__Interface___UI_command1Y2[id]=0.180700
+                set s__Interface___UI_command2X1[id]=0.407400
+                set s__Interface___UI_command2Y1[id]=0.213650
+                set s__Interface___UI_command2X2[id]=0.440660
+                set s__Interface___UI_command2Y2[id]=0.180400
+                set s__Interface___UI_command3X1[id]=0.444400
+                set s__Interface___UI_command3Y1[id]=0.213650
+                set s__Interface___UI_command3X2[id]=0.477660
+                set s__Interface___UI_command3Y2[id]=0.180400
+                set s__Interface___UI_command4X1[id]=0.333500
+                set s__Interface___UI_command4Y1[id]=0.175250
+                set s__Interface___UI_command4X2[id]=0.366760
+                set s__Interface___UI_command4Y2[id]=0.142000
+                set s__Interface___UI_command5X1[id]=0.370500
+                set s__Interface___UI_command5Y1[id]=0.175250
+                set s__Interface___UI_command5X2[id]=0.403760
+                set s__Interface___UI_command5Y2[id]=0.142000
+                set s__Interface___UI_command6X1[id]=0.407400
+                set s__Interface___UI_command6Y1[id]=0.175250
+                set s__Interface___UI_command6X2[id]=0.440660
+                set s__Interface___UI_command6Y2[id]=0.142000
+                set s__Interface___UI_command7X1[id]=0.444400
+                set s__Interface___UI_command7Y1[id]=0.175250
+                set s__Interface___UI_command7X2[id]=0.477660
+                set s__Interface___UI_command7Y2[id]=0.142000
+                set s__Interface___UI_command8X1[id]=0.333500
+                set s__Interface___UI_command8Y1[id]=0.136850
+                set s__Interface___UI_command8X2[id]=0.366760
+                set s__Interface___UI_command8Y2[id]=0.103600
+                set s__Interface___UI_command9X1[id]=0.370500
+                set s__Interface___UI_command9Y1[id]=0.136850
+                set s__Interface___UI_command9X2[id]=0.403760
+                set s__Interface___UI_command9Y2[id]=0.103600
+                set s__Interface___UI_command10X1[id]=0.407400
+                set s__Interface___UI_command10Y1[id]=0.136850
+                set s__Interface___UI_command10X2[id]=0.440660
+                set s__Interface___UI_command10Y2[id]=0.103600
+                set s__Interface___UI_command11X1[id]=0.444400
+                set s__Interface___UI_command11Y1[id]=0.136850
+                set s__Interface___UI_command11X2[id]=0.477660
+                set s__Interface___UI_command11Y2[id]=0.103600
             else
-                set s__Interface__UI_command0X1[id]=999.0
-                set s__Interface__UI_command0Y1[id]=999.0
-                set s__Interface__UI_command0X2[id]=999.0
-                set s__Interface__UI_command0Y2[id]=999.0
-                set s__Interface__UI_command1X1[id]=999.0
-                set s__Interface__UI_command1Y1[id]=999.0
-                set s__Interface__UI_command1X2[id]=999.0
-                set s__Interface__UI_command1Y2[id]=999.0
-                set s__Interface__UI_command2X1[id]=999.0
-                set s__Interface__UI_command2Y1[id]=999.0
-                set s__Interface__UI_command2X2[id]=999.0
-                set s__Interface__UI_command2Y2[id]=999.0
-                set s__Interface__UI_command3X1[id]=999.0
-                set s__Interface__UI_command3Y1[id]=999.0
-                set s__Interface__UI_command3X2[id]=999.0
-                set s__Interface__UI_command3Y2[id]=999.0
-                set s__Interface__UI_command4X1[id]=999.0
-                set s__Interface__UI_command4Y1[id]=999.0
-                set s__Interface__UI_command4X2[id]=999.0
-                set s__Interface__UI_command4Y2[id]=999.0
-                set s__Interface__UI_command5X1[id]=0.186900
-                set s__Interface__UI_command5Y1[id]=0.0467700
-                set s__Interface__UI_command5X2[id]=0.216900
-                set s__Interface__UI_command5Y2[id]=0.0150000
-                set s__Interface__UI_command6X1[id]=0.223700
-                set s__Interface__UI_command6Y1[id]=0.0467700
-                set s__Interface__UI_command6X2[id]=0.254200
-                set s__Interface__UI_command6Y2[id]=0.0150000
-                set s__Interface__UI_command7X1[id]=0.00242900
-                set s__Interface__UI_command7Y1[id]=0.0467700
-                set s__Interface__UI_command7X2[id]=0.0342090
-                set s__Interface__UI_command7Y2[id]=0.0150000
-                set s__Interface__UI_command8X1[id]=0.0399070
-                set s__Interface__UI_command8Y1[id]=0.0467700
-                set s__Interface__UI_command8X2[id]=0.0716870
-                set s__Interface__UI_command8Y2[id]=0.0150000
-                set s__Interface__UI_command9X1[id]=0.0765555
-                set s__Interface__UI_command9Y1[id]=0.0467700
-                set s__Interface__UI_command9X2[id]=0.1095555
-                set s__Interface__UI_command9Y2[id]=0.0150000
-                set s__Interface__UI_command10X1[id]=0.113070
-                set s__Interface__UI_command10Y1[id]=0.0467700
-                set s__Interface__UI_command10X2[id]=0.144850
-                set s__Interface__UI_command10Y2[id]=0.0150000
-                set s__Interface__UI_command11X1[id]=0.150070
-                set s__Interface__UI_command11Y1[id]=0.0467700
-                set s__Interface__UI_command11X2[id]=0.181850
-                set s__Interface__UI_command11Y2[id]=0.0150000
+                set s__Interface___UI_command0X1[id]=999.0
+                set s__Interface___UI_command0Y1[id]=999.0
+                set s__Interface___UI_command0X2[id]=999.0
+                set s__Interface___UI_command0Y2[id]=999.0
+                set s__Interface___UI_command1X1[id]=999.0
+                set s__Interface___UI_command1Y1[id]=999.0
+                set s__Interface___UI_command1X2[id]=999.0
+                set s__Interface___UI_command1Y2[id]=999.0
+                set s__Interface___UI_command2X1[id]=999.0
+                set s__Interface___UI_command2Y1[id]=999.0
+                set s__Interface___UI_command2X2[id]=999.0
+                set s__Interface___UI_command2Y2[id]=999.0
+                set s__Interface___UI_command3X1[id]=999.0
+                set s__Interface___UI_command3Y1[id]=999.0
+                set s__Interface___UI_command3X2[id]=999.0
+                set s__Interface___UI_command3Y2[id]=999.0
+                set s__Interface___UI_command4X1[id]=999.0
+                set s__Interface___UI_command4Y1[id]=999.0
+                set s__Interface___UI_command4X2[id]=999.0
+                set s__Interface___UI_command4Y2[id]=999.0
+                set s__Interface___UI_command5X1[id]=0.186900
+                set s__Interface___UI_command5Y1[id]=0.0467700
+                set s__Interface___UI_command5X2[id]=0.216900
+                set s__Interface___UI_command5Y2[id]=0.0150000
+                set s__Interface___UI_command6X1[id]=0.223700
+                set s__Interface___UI_command6Y1[id]=0.0467700
+                set s__Interface___UI_command6X2[id]=0.254200
+                set s__Interface___UI_command6Y2[id]=0.0150000
+                set s__Interface___UI_command7X1[id]=0.00242900
+                set s__Interface___UI_command7Y1[id]=0.0467700
+                set s__Interface___UI_command7X2[id]=0.0342090
+                set s__Interface___UI_command7Y2[id]=0.0150000
+                set s__Interface___UI_command8X1[id]=0.0399070
+                set s__Interface___UI_command8Y1[id]=0.0467700
+                set s__Interface___UI_command8X2[id]=0.0716870
+                set s__Interface___UI_command8Y2[id]=0.0150000
+                set s__Interface___UI_command9X1[id]=0.0765555
+                set s__Interface___UI_command9Y1[id]=0.0467700
+                set s__Interface___UI_command9X2[id]=0.1095555
+                set s__Interface___UI_command9Y2[id]=0.0150000
+                set s__Interface___UI_command10X1[id]=0.113070
+                set s__Interface___UI_command10Y1[id]=0.0467700
+                set s__Interface___UI_command10X2[id]=0.144850
+                set s__Interface___UI_command10Y2[id]=0.0150000
+                set s__Interface___UI_command11X1[id]=0.150070
+                set s__Interface___UI_command11Y1[id]=0.0467700
+                set s__Interface___UI_command11X2[id]=0.181850
+                set s__Interface___UI_command11Y2[id]=0.0150000
             endif
 
             // Display the 12 slot grid
-            call BlzFrameSetVisible(s__Interface__UI_ShopSlots, s__Interface__UI_shop[id])
+            call BlzFrameSetVisible(s__Interface___UI_ShopSlots, s__Interface___UI_shop[id])
 
             // Reposition the Move command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_0", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command0X1[id], s__Interface__UI_command0Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command0X2[id], s__Interface__UI_command0Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_0", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command0X1[id], s__Interface___UI_command0Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command0X2[id], s__Interface___UI_command0Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
 
             // Reposition the Stop command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_1", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command1X1[id], s__Interface__UI_command1Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command1X2[id], s__Interface__UI_command1Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_1", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command1X1[id], s__Interface___UI_command1Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command1X2[id], s__Interface___UI_command1Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the Hold command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_2", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command2X1[id], s__Interface__UI_command2Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command2X2[id], s__Interface__UI_command2Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_2", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command2X1[id], s__Interface___UI_command2Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command2X2[id], s__Interface___UI_command2Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
 
             // Reposition the Attack command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_3", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command3X1[id], s__Interface__UI_command3Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command3X2[id], s__Interface__UI_command3Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_3", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command3X1[id], s__Interface___UI_command3Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command3X2[id], s__Interface___UI_command3Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
 
             // Reposition the Patrol command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_4", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command4X1[id], s__Interface__UI_command4Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command4X2[id], s__Interface__UI_command4Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_4", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command4X1[id], s__Interface___UI_command4Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command4X2[id], s__Interface___UI_command4Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
 
             // Reposition the D command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_5", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command5X1[id], s__Interface__UI_command5Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command5X2[id], s__Interface__UI_command5Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_5", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command5X1[id], s__Interface___UI_command5Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command5X2[id], s__Interface___UI_command5Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the F command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_6", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command6X1[id], s__Interface__UI_command6Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command6X2[id], s__Interface__UI_command6Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_6", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command6X1[id], s__Interface___UI_command6Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command6X2[id], s__Interface___UI_command6Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the + command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_7", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command7X1[id], s__Interface__UI_command7Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command7X2[id], s__Interface__UI_command7Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_7", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command7X1[id], s__Interface___UI_command7Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command7X2[id], s__Interface___UI_command7Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the Q command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_8", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command8X1[id], s__Interface__UI_command8Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command8X2[id], s__Interface__UI_command8Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_8", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command8X1[id], s__Interface___UI_command8Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command8X2[id], s__Interface___UI_command8Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the W command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_9", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command9X1[id], s__Interface__UI_command9Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command9X2[id], s__Interface__UI_command9Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_9", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command9X1[id], s__Interface___UI_command9Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command9X2[id], s__Interface___UI_command9Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the E command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_10", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command10X1[id], s__Interface__UI_command10Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command10X2[id], s__Interface__UI_command10Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_10", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command10X1[id], s__Interface___UI_command10Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command10X2[id], s__Interface___UI_command10Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
             
             // Reposition the R command button
-            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_11", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command11X1[id], s__Interface__UI_command11Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command11X2[id], s__Interface__UI_command11Y2[id])
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
+            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_11", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command11X1[id], s__Interface___UI_command11Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command11X2[id], s__Interface___UI_command11Y2[id])
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
 
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onInventoryButtons takes nothing returns nothing
+        function s__Interface___UI_onInventoryButtons takes nothing returns nothing
             // Reposition the 0 inventory button
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.552700, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.584480, 0.0150000)
-	    call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.552700, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.584480, 0.0150000)
+	    call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
             // call BlzFrameSetSize(handle, 0.038136, 0,038136)
             
             // Reposition the 1 inventory button
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.589949, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.621049, 0.0150000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.589949, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.621049, 0.0150000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
             
             // Reposition the 2 inventory button
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 2)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.625750, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.657530, 0.0150000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 2)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.625750, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.657530, 0.0150000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
             
             // Reposition the 3 inventory button
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 3)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.662999, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.694999, 0.0150000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 3)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.662999, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.694999, 0.0150000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
             
             // Reposition the 4 inventory button
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 4)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.699700, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.731480, 0.0150000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 4)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.699700, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.731480, 0.0150000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
             
             // Reposition the 5 inventory button
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 5)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.736555, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.768555, 0.0150000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 5)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.736555, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.768555, 0.0150000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
             
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onInfoPanel takes nothing returns nothing
+        function s__Interface___UI_onInfoPanel takes nothing returns nothing
             // Reposition the Buff bar
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_PANEL_BUFF_BAR, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.364600, 0.0280800)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.476200, 0.0147800)
-            call BlzFrameSetScale(s__Interface__UI_handle, 0.9)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_PANEL_BUFF_BAR, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.364600, 0.0280800)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.476200, 0.0147800)
+            call BlzFrameSetScale(s__Interface___UI_handle, 0.9)
             
             //Remove the Status text
             call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_UNIT_PANEL_BUFF_BAR_LABEL, 0), 0.00001)
@@ -6344,398 +6344,398 @@ endfunction
             call BlzFrameSetScale(BlzGetFrameByName("SimpleDestructableNameValue", 4), 0.00001)
             
             // Reposition the Hero Main Stat
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroIcon", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.449800, 0.0581100)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.474930, 0.0329900)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroIcon", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.449800, 0.0581100)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.474930, 0.0329900)
 
             // Reposition the Strength label and value
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthLabel", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0757800)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.530850, 0.0624800)
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthValue", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.480000, 0.0657200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0553800)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthLabel", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0757800)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.530850, 0.0624800)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthValue", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.480000, 0.0657200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0553800)
 
             // Reposition the Agility label and value
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityLabel", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.477400, 0.0559200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.532090, 0.0426200)
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityValue", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.480300, 0.0445700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0342300)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityLabel", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.477400, 0.0559200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.532090, 0.0426200)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityValue", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.480300, 0.0445700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0342300)
 
             // Reposition the Intelligence label and value
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectLabel", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0346500)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.531590, 0.0213500)
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectValue", 6)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.480600, 0.0240700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0137300)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectLabel", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0346500)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.531590, 0.0213500)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectValue", 6)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.480600, 0.0240700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0137300)
 
             // Reposition the Timed Life bar
-            set s__Interface__UI_handle=BlzGetFrameByName("SimpleProgressIndicator", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.77000, 0.01000)
+            set s__Interface___UI_handle=BlzGetFrameByName("SimpleProgressIndicator", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.77000, 0.01000)
             
             // Reposition the XP bar
-            set s__Interface__UI_handle=BlzGetFrameByName("SimpleHeroLevelBar", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.77000, 0.01000)
+            set s__Interface___UI_handle=BlzGetFrameByName("SimpleHeroLevelBar", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.77000, 0.01000)
 
             // Reposition the Training bar
-            set s__Interface__UI_handle=BlzGetFrameByName("SimpleBuildTimeIndicator", 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.77000, 0.01000)
+            set s__Interface___UI_handle=BlzGetFrameByName("SimpleBuildTimeIndicator", 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.77000, 0.01000)
 
             // Reposition the Attack 1 block
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.261800, 0.0723200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.289140, 0.0449800)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.02734, 0.02734)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.261800, 0.0723200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.289140, 0.0449800)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.02734, 0.02734)
             
             // Reposition the Armor block
-            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 2)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.261100, 0.0439700)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.288440, 0.0166300)
-            call BlzFrameSetSize(s__Interface__UI_handle, 0.02734, 0.02734)
+            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 2)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.261100, 0.0439700)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.288440, 0.0166300)
+            call BlzFrameSetSize(s__Interface___UI_handle, 0.02734, 0.02734)
             
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onPortrait takes nothing returns nothing
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_PORTRAIT, 0)
+        function s__Interface___UI_onPortrait takes nothing returns nothing
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_PORTRAIT, 0)
 
             call BlzEnableUIAutoPosition(false)
-            call BlzFrameSetVisible(s__Interface__UI_handle, false)
-            call BlzFrameClearAllPoints(s__Interface__UI_handle)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.373500, 0.0977600)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.431555, 0.0157400)
+            call BlzFrameSetVisible(s__Interface___UI_handle, false)
+            call BlzFrameClearAllPoints(s__Interface___UI_handle)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.373500, 0.0977600)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.431555, 0.0157400)
 
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onHeroCheck takes nothing returns nothing
+        function s__Interface___UI_onHeroCheck takes nothing returns nothing
             local integer i= GetPlayerId(GetLocalPlayer())
 
             if BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED then
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface__UI_x1[i]=- 0.131300
-                    set s__Interface__UI_x2[i]=- 0.103220
-                    set s__Interface__UI_y01[i]=0.581980
-                    set s__Interface__UI_y02[i]=0.553900
-                    set s__Interface__UI_y11[i]=0.544980
-                    set s__Interface__UI_y12[i]=0.516900
-                    set s__Interface__UI_y21[i]=0.510680
-                    set s__Interface__UI_y22[i]=0.482600
-                    set s__Interface__UI_y31[i]=0.474280
-                    set s__Interface__UI_y32[i]=0.446200
-                    set s__Interface__UI_y41[i]=0.437880
-                    set s__Interface__UI_y42[i]=0.409800
-                    set s__Interface__UI_y51[i]=0.401480
-                    set s__Interface__UI_y52[i]=0.373400
-                    set s__Interface__UI_y61[i]=0.365080
-                    set s__Interface__UI_y62[i]=0.337000
+                    set s__Interface___UI_x1[i]=- 0.131300
+                    set s__Interface___UI_x2[i]=- 0.103220
+                    set s__Interface___UI_y01[i]=0.581980
+                    set s__Interface___UI_y02[i]=0.553900
+                    set s__Interface___UI_y11[i]=0.544980
+                    set s__Interface___UI_y12[i]=0.516900
+                    set s__Interface___UI_y21[i]=0.510680
+                    set s__Interface___UI_y22[i]=0.482600
+                    set s__Interface___UI_y31[i]=0.474280
+                    set s__Interface___UI_y32[i]=0.446200
+                    set s__Interface___UI_y41[i]=0.437880
+                    set s__Interface___UI_y42[i]=0.409800
+                    set s__Interface___UI_y51[i]=0.401480
+                    set s__Interface___UI_y52[i]=0.373400
+                    set s__Interface___UI_y61[i]=0.365080
+                    set s__Interface___UI_y62[i]=0.337000
                 endif
 
                 // Reposition the hero button 0
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y01[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y02[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y01[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y02[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 0), 0.71)
 
                 // Reposition the hero button 1
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y11[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y12[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y11[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y12[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 1), 0.71)
 
                 // Reposition the hero button 2
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y21[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y22[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y21[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y22[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 2), 0.71)
 
                 // Reposition the hero button 3
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y31[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y32[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y31[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y32[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 3), 0.71)
 
                 // Reposition the hero button 4
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y41[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y42[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y41[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y42[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 4), 0.71)
 
                 // Reposition the hero button 5
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y51[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y52[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y51[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y52[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 5), 0.71)
 
                 // Reposition the hero button 6
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y61[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y62[i])
-                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y61[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y62[i])
+                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 6), 0.71)
 
-                set s__Interface__UI_handle=null
+                set s__Interface___UI_handle=null
             else
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface__UI_x1[i]=999.0
-                    set s__Interface__UI_x2[i]=999.0
-                    set s__Interface__UI_y01[i]=999.0
-                    set s__Interface__UI_y02[i]=999.0
-                    set s__Interface__UI_y11[i]=999.0
-                    set s__Interface__UI_y12[i]=999.0
-                    set s__Interface__UI_y21[i]=999.0
-                    set s__Interface__UI_y22[i]=999.0
-                    set s__Interface__UI_y31[i]=999.0
-                    set s__Interface__UI_y32[i]=999.0
-                    set s__Interface__UI_y41[i]=999.0
-                    set s__Interface__UI_y42[i]=999.0
-                    set s__Interface__UI_y51[i]=999.0
-                    set s__Interface__UI_y52[i]=999.0
-                    set s__Interface__UI_y61[i]=999.0
-                    set s__Interface__UI_y62[i]=999.0
+                    set s__Interface___UI_x1[i]=999.0
+                    set s__Interface___UI_x2[i]=999.0
+                    set s__Interface___UI_y01[i]=999.0
+                    set s__Interface___UI_y02[i]=999.0
+                    set s__Interface___UI_y11[i]=999.0
+                    set s__Interface___UI_y12[i]=999.0
+                    set s__Interface___UI_y21[i]=999.0
+                    set s__Interface___UI_y22[i]=999.0
+                    set s__Interface___UI_y31[i]=999.0
+                    set s__Interface___UI_y32[i]=999.0
+                    set s__Interface___UI_y41[i]=999.0
+                    set s__Interface___UI_y42[i]=999.0
+                    set s__Interface___UI_y51[i]=999.0
+                    set s__Interface___UI_y52[i]=999.0
+                    set s__Interface___UI_y61[i]=999.0
+                    set s__Interface___UI_y62[i]=999.0
                 endif
 
                 // Hides the hero button 0
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y01[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y02[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y01[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y02[i])
 
                 // Hides the hero button 1
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y11[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y12[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y11[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y12[i])
 
                 // Hides the hero button 2
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y21[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y22[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y21[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y22[i])
 
                 // Hides the hero button 3
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y31[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y32[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y31[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y32[i])
 
                 // Hides the hero button 4
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y41[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y42[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y41[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y42[i])
 
                 // Hides the hero button 5
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y51[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y52[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y51[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y52[i])
 
                 // Hides the hero button 6
-                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y61[i])
-                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y62[i])
+                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y61[i])
+                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y62[i])
 
-                set s__Interface__UI_handle=null
+                set s__Interface___UI_handle=null
             endif
         endfunction
 
-        function s__Interface__UI_onGroupSelection takes nothing returns nothing
+        function s__Interface___UI_onGroupSelection takes nothing returns nothing
             // Reposistion the Group selection button 0
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 0), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0776200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0546200)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 0), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0776200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0546200)
 
             // Reposistion the Group selection button 1
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 1), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0501200)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 1), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0501200)
 
             // Reposistion the Group selection button 2
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 2), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.328300, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.351300, 0.0501200)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 2), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.328300, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.351300, 0.0501200)
 
             // Reposistion the Group selection button 3
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 3), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0414100)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0184100)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 3), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0414100)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0184100)
             
             // Reposistion the Group selection button 4
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 4), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0184000)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 4), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0184000)
 
             // Reposistion the Group selection button 5
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 5), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.329100, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.352100, 0.0184000)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 5), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.329100, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.352100, 0.0184000)
 
             // Reposistion the Group selection button 6
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 6), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.449300, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.472300, 0.0501200)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 6), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.449300, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.472300, 0.0501200)
 
             // Reposistion the Group selection button 7
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 7), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0501200)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 7), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0501200)
 
             // Reposistion the Group selection button 8
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 8), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0501200)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 8), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0501200)
 
             // Reposistion the Group selection button 9
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 9), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.450300, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.473300, 0.0184000)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 9), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.450300, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.473300, 0.0184000)
 
             // Reposistion the Group selection button 10
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 10), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0184000)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 10), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0184000)
 
             // Reposistion the Group selection button 11
-            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 11), 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0184000)
+            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 11), 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0184000)
 
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onResources takes nothing returns nothing
-            call BlzFrameSetText(s__Interface__UI_Gold, "|cffffcc00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_GOLD)) + "|r")
-            call BlzFrameSetText(s__Interface__UI_Lumber, "|cff00ff00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_LUMBER)) + "|r")
+        function s__Interface___UI_onResources takes nothing returns nothing
+            call BlzFrameSetText(s__Interface___UI_Gold, "|cffffcc00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_GOLD)) + "|r")
+            call BlzFrameSetText(s__Interface___UI_Lumber, "|cff00ff00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_LUMBER)) + "|r")
         endfunction
 
-        function s__Interface__UI_onChat takes nothing returns nothing
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_CHAT_MSG, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
+        function s__Interface___UI_onChat takes nothing returns nothing
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_CHAT_MSG, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
 
-            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
+            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
 
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onMinimap takes nothing returns nothing
+        function s__Interface___UI_onMinimap takes nothing returns nothing
             local integer i= GetPlayerId(GetLocalPlayer())
 
             if BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED then
-                if BlzGetTriggerFrame() == s__Interface__UI_CheckBL then
+                if BlzGetTriggerFrame() == s__Interface___UI_CheckBL then
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        set s__Interface__UI_mapX1[i]=- 0.132100
-                        set s__Interface__UI_mapY1[i]=0.0986970
-                        set s__Interface__UI_mapX2[i]=- 0.0351000
-                        set s__Interface__UI_mapY2[i]=0.00169700
-                        set s__Interface__UI_frameX1[i]=- 0.133600
-                        set s__Interface__UI_frameY1[i]=0.100939
-                        set s__Interface__UI_frameX2[i]=- 0.0338300
-                        set s__Interface__UI_frameY2[i]=0.000438700
-                        set s__Interface__UI_checkL[i]=true
+                        set s__Interface___UI_mapX1[i]=- 0.132100
+                        set s__Interface___UI_mapY1[i]=0.0986970
+                        set s__Interface___UI_mapX2[i]=- 0.0351000
+                        set s__Interface___UI_mapY2[i]=0.00169700
+                        set s__Interface___UI_frameX1[i]=- 0.133600
+                        set s__Interface___UI_frameY1[i]=0.100939
+                        set s__Interface___UI_frameX2[i]=- 0.0338300
+                        set s__Interface___UI_frameY2[i]=0.000438700
+                        set s__Interface___UI_checkL[i]=true
                     endif
                 else
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        set s__Interface__UI_mapX1[i]=0.835800
-                        set s__Interface__UI_mapY1[i]=0.0999999
-                        set s__Interface__UI_mapX2[i]=0.933610
-                        set s__Interface__UI_mapY2[i]=0.000219400
-                        set s__Interface__UI_frameX1[i]=0.833900
-                        set s__Interface__UI_frameY1[i]=0.100939
-                        set s__Interface__UI_frameX2[i]=0.933670
-                        set s__Interface__UI_frameY2[i]=0.000438700
-                        set s__Interface__UI_checkR[i]=true
+                        set s__Interface___UI_mapX1[i]=0.835800
+                        set s__Interface___UI_mapY1[i]=0.0999999
+                        set s__Interface___UI_mapX2[i]=0.933610
+                        set s__Interface___UI_mapY2[i]=0.000219400
+                        set s__Interface___UI_frameX1[i]=0.833900
+                        set s__Interface___UI_frameY1[i]=0.100939
+                        set s__Interface___UI_frameX2[i]=0.933670
+                        set s__Interface___UI_frameY2[i]=0.000438700
+                        set s__Interface___UI_checkR[i]=true
                     endif
                 endif
             else
-                if BlzGetTriggerFrame() == s__Interface__UI_CheckBL then
+                if BlzGetTriggerFrame() == s__Interface___UI_CheckBL then
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        if s__Interface__UI_checkR[i] then
-                            set s__Interface__UI_mapX1[i]=0.835800
-                            set s__Interface__UI_mapY1[i]=0.0999999
-                            set s__Interface__UI_mapX2[i]=0.933610
-                            set s__Interface__UI_mapY2[i]=0.000219400
-                            set s__Interface__UI_frameX1[i]=0.833900
-                            set s__Interface__UI_frameY1[i]=0.100939
-                            set s__Interface__UI_frameX2[i]=0.933670
-                            set s__Interface__UI_frameY2[i]=0.000438700
+                        if s__Interface___UI_checkR[i] then
+                            set s__Interface___UI_mapX1[i]=0.835800
+                            set s__Interface___UI_mapY1[i]=0.0999999
+                            set s__Interface___UI_mapX2[i]=0.933610
+                            set s__Interface___UI_mapY2[i]=0.000219400
+                            set s__Interface___UI_frameX1[i]=0.833900
+                            set s__Interface___UI_frameY1[i]=0.100939
+                            set s__Interface___UI_frameX2[i]=0.933670
+                            set s__Interface___UI_frameY2[i]=0.000438700
                         else
-                            set s__Interface__UI_mapX1[i]=999.0
-                            set s__Interface__UI_mapY1[i]=999.0
-                            set s__Interface__UI_mapX2[i]=999.0
-                            set s__Interface__UI_mapY2[i]=999.0
-                            set s__Interface__UI_frameX1[i]=999.0
-                            set s__Interface__UI_frameY1[i]=999.0
-                            set s__Interface__UI_frameX2[i]=999.0
-                            set s__Interface__UI_frameY2[i]=999.0
+                            set s__Interface___UI_mapX1[i]=999.0
+                            set s__Interface___UI_mapY1[i]=999.0
+                            set s__Interface___UI_mapX2[i]=999.0
+                            set s__Interface___UI_mapY2[i]=999.0
+                            set s__Interface___UI_frameX1[i]=999.0
+                            set s__Interface___UI_frameY1[i]=999.0
+                            set s__Interface___UI_frameX2[i]=999.0
+                            set s__Interface___UI_frameY2[i]=999.0
                         endif
-                        set s__Interface__UI_checkL[i]=false
+                        set s__Interface___UI_checkL[i]=false
                     endif
                 else
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        if s__Interface__UI_checkL[i] then
-                            set s__Interface__UI_mapX1[i]=- 0.132100
-                            set s__Interface__UI_mapY1[i]=0.0986970
-                            set s__Interface__UI_mapX2[i]=- 0.0351000
-                            set s__Interface__UI_mapY2[i]=0.00169700
-                            set s__Interface__UI_frameX1[i]=- 0.133600
-                            set s__Interface__UI_frameY1[i]=0.100939
-                            set s__Interface__UI_frameX2[i]=- 0.0338300
-                            set s__Interface__UI_frameY2[i]=0.000438700
+                        if s__Interface___UI_checkL[i] then
+                            set s__Interface___UI_mapX1[i]=- 0.132100
+                            set s__Interface___UI_mapY1[i]=0.0986970
+                            set s__Interface___UI_mapX2[i]=- 0.0351000
+                            set s__Interface___UI_mapY2[i]=0.00169700
+                            set s__Interface___UI_frameX1[i]=- 0.133600
+                            set s__Interface___UI_frameY1[i]=0.100939
+                            set s__Interface___UI_frameX2[i]=- 0.0338300
+                            set s__Interface___UI_frameY2[i]=0.000438700
                         else
-                            set s__Interface__UI_mapX1[i]=999.0
-                            set s__Interface__UI_mapY1[i]=999.0
-                            set s__Interface__UI_mapX2[i]=999.0
-                            set s__Interface__UI_mapY2[i]=999.0
-                            set s__Interface__UI_frameX1[i]=999.0
-                            set s__Interface__UI_frameY1[i]=999.0
-                            set s__Interface__UI_frameX2[i]=999.0
-                            set s__Interface__UI_frameY2[i]=999.0
+                            set s__Interface___UI_mapX1[i]=999.0
+                            set s__Interface___UI_mapY1[i]=999.0
+                            set s__Interface___UI_mapX2[i]=999.0
+                            set s__Interface___UI_mapY2[i]=999.0
+                            set s__Interface___UI_frameX1[i]=999.0
+                            set s__Interface___UI_frameY1[i]=999.0
+                            set s__Interface___UI_frameX2[i]=999.0
+                            set s__Interface___UI_frameY2[i]=999.0
                         endif
-                        set s__Interface__UI_checkR[i]=false
+                        set s__Interface___UI_checkR[i]=false
                     endif
                 endif
             endif
 
-            set s__Interface__UI_handle=BlzGetFrameByName("MiniMapFrame", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_mapX1[i], s__Interface__UI_mapY1[i])
-            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_mapX2[i], s__Interface__UI_mapY2[i])
-            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_TOPLEFT, s__Interface__UI_frameX1[i], s__Interface__UI_frameY1[i])
-            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_frameX2[i], s__Interface__UI_frameY2[i])
+            set s__Interface___UI_handle=BlzGetFrameByName("MiniMapFrame", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_mapX1[i], s__Interface___UI_mapY1[i])
+            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_mapX2[i], s__Interface___UI_mapY2[i])
+            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_TOPLEFT, s__Interface___UI_frameX1[i], s__Interface___UI_frameY1[i])
+            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_frameX2[i], s__Interface___UI_frameY2[i])
 
-            set s__Interface__UI_handle=null
+            set s__Interface___UI_handle=null
         endfunction
 
-        function s__Interface__UI_onMenu takes nothing returns nothing
+        function s__Interface___UI_onMenu takes nothing returns nothing
             local integer i= GetPlayerId(GetLocalPlayer())
 
             if BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED then
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface__UI_checkMenu[i]=true
+                    set s__Interface___UI_checkMenu[i]=true
                 endif
             else
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface__UI_checkMenu[i]=false
+                    set s__Interface___UI_checkMenu[i]=false
                 endif
             endif
 
-            call BlzFrameSetVisible(BlzGetFrameByName("UpperButtonBarFrame", 0), s__Interface__UI_checkMenu[i])
-            call BlzFrameSetVisible(BlzGetFrameByName("ResourceBarFrame", 0), s__Interface__UI_checkMenu[i])
+            call BlzFrameSetVisible(BlzGetFrameByName("UpperButtonBarFrame", 0), s__Interface___UI_checkMenu[i])
+            call BlzFrameSetVisible(BlzGetFrameByName("ResourceBarFrame", 0), s__Interface___UI_checkMenu[i])
         endfunction
 
-        function s__Interface__UI_onPeriod takes nothing returns nothing
+        function s__Interface___UI_onPeriod takes nothing returns nothing
             local integer i= 0
             local real newHP
             local real newMP
@@ -6744,82 +6744,82 @@ endfunction
             local integer this
 
             loop
-                exitwhen i > s__Interface__UI_key
-                    set this=s__Interface__UI_array[i]
+                exitwhen i > s__Interface___UI_key
+                    set this=s__Interface___UI_array[i]
 
-                    if GetPlayerSlotState(s__Interface__UI_player[this]) != PLAYER_SLOT_STATE_LEFT then
-                        set s__Interface__UI_unit[this]=(GetMainSelectedUnit(GetSelectedUnitIndex())) // INLINED!!
+                    if GetPlayerSlotState(s__Interface___UI_player[this]) != PLAYER_SLOT_STATE_LEFT then
+                        set s__Interface___UI_unit[this]=(GetMainSelectedUnit(GetSelectedUnitIndex())) // INLINED!!
 
 
-                            if s__Interface__UI_main[s__Interface__UI_id[this]] != s__Interface__UI_unit[this] then
-                                set s__Interface__UI_main[s__Interface__UI_id[this]]=s__Interface__UI_unit[this]
-                                set s__Interface__UI_shop[s__Interface__UI_id[this]]=( GetUnitAbilityLevel(s__Interface__UI_unit[this], 'Aneu') > 0 or GetUnitAbilityLevel(s__Interface__UI_unit[this], 'Ane2') > 0 or GetUnitAbilityLevel(s__Interface__UI_unit[this], 'Apit') > 0 ) and not IsUnitEnemy(s__Interface__UI_unit[this], s__Interface__UI_player[this])
-                                call s__Interface__UI_onCommandButtons()
+                            if s__Interface___UI_main[s__Interface___UI_id[this]] != s__Interface___UI_unit[this] then
+                                set s__Interface___UI_main[s__Interface___UI_id[this]]=s__Interface___UI_unit[this]
+                                set s__Interface___UI_shop[s__Interface___UI_id[this]]=( GetUnitAbilityLevel(s__Interface___UI_unit[this], 'Aneu') > 0 or GetUnitAbilityLevel(s__Interface___UI_unit[this], 'Ane2') > 0 or GetUnitAbilityLevel(s__Interface___UI_unit[this], 'Apit') > 0 ) and not IsUnitEnemy(s__Interface___UI_unit[this], s__Interface___UI_player[this])
+                                call s__Interface___UI_onCommandButtons()
                             endif
 
 
-                        if s__Interface__UI_unit[this] != null then // custom
-                                call BlzFrameSetText(s__Interface__UI_UnitName, "|cffFFFFFF" + GetUnitName(s__Interface__UI_unit[this]) + "|r")
+                        if s__Interface___UI_unit[this] != null then // custom
+                                call BlzFrameSetText(s__Interface___UI_UnitName, "|cffFFFFFF" + GetUnitName(s__Interface___UI_unit[this]) + "|r")
                         else
-                                call BlzFrameSetText(s__Interface__UI_UnitName, "")
+                                call BlzFrameSetText(s__Interface___UI_UnitName, "")
                         endif
 
-                        if not IsUnitVisible(s__Interface__UI_unit[this], s__Interface__UI_player[this]) then
-                            set s__Interface__UI_unit[this]=null
+                        if not IsUnitVisible(s__Interface___UI_unit[this], s__Interface___UI_player[this]) then
+                            set s__Interface___UI_unit[this]=null
                         endif
 
-                        set s__Interface__UI_health[this]=BlzFrameGetValue(s__Interface__UI_HealthBar)
-                        set s__Interface__UI_mana[this]=BlzFrameGetValue(s__Interface__UI_ManaBar)
-                        set newHP=GetUnitLifePercent(s__Interface__UI_unit[this])
-                        set newMP=GetUnitManaPercent(s__Interface__UI_unit[this])
-                        set s__Interface__UI_hp[this]=BlzFrameGetText(s__Interface__UI_HPText)
-                        set s__Interface__UI_mp[this]=BlzFrameGetText(s__Interface__UI_MPText)
-                        set newHptext=I2S(R2I(GetWidgetLife(s__Interface__UI_unit[this]))) + " / " + I2S(BlzGetUnitMaxHP(s__Interface__UI_unit[this]))
-                        set newMptext=I2S(R2I(GetUnitState(s__Interface__UI_unit[this], UNIT_STATE_MANA))) + " / " + I2S(BlzGetUnitMaxMana(s__Interface__UI_unit[this]))
+                        set s__Interface___UI_health[this]=BlzFrameGetValue(s__Interface___UI_HealthBar)
+                        set s__Interface___UI_mana[this]=BlzFrameGetValue(s__Interface___UI_ManaBar)
+                        set newHP=GetUnitLifePercent(s__Interface___UI_unit[this])
+                        set newMP=GetUnitManaPercent(s__Interface___UI_unit[this])
+                        set s__Interface___UI_hp[this]=BlzFrameGetText(s__Interface___UI_HPText)
+                        set s__Interface___UI_mp[this]=BlzFrameGetText(s__Interface___UI_MPText)
+                        set newHptext=I2S(R2I(GetWidgetLife(s__Interface___UI_unit[this]))) + " / " + I2S(BlzGetUnitMaxHP(s__Interface___UI_unit[this]))
+                        set newMptext=I2S(R2I(GetUnitState(s__Interface___UI_unit[this], UNIT_STATE_MANA))) + " / " + I2S(BlzGetUnitMaxMana(s__Interface___UI_unit[this]))
 
-                        if GetLocalPlayer() == s__Interface__UI_player[this] then
-                            set s__Interface__UI_health[this]=newHP
-                            set s__Interface__UI_mana[this]=newMP
-                            set s__Interface__UI_hp[this]=newHptext
-                            set s__Interface__UI_mp[this]=newMptext
+                        if GetLocalPlayer() == s__Interface___UI_player[this] then
+                            set s__Interface___UI_health[this]=newHP
+                            set s__Interface___UI_mana[this]=newMP
+                            set s__Interface___UI_hp[this]=newHptext
+                            set s__Interface___UI_mp[this]=newMptext
                         endif
 
-                        call BlzFrameSetValue(s__Interface__UI_HealthBar, s__Interface__UI_health[this])
-                        call BlzFrameSetValue(s__Interface__UI_ManaBar, s__Interface__UI_mana[this])
-                        call BlzFrameSetText(s__Interface__UI_HPText, "|cffFFFFFF" + s__Interface__UI_hp[this] + "|r")
-                        call BlzFrameSetText(s__Interface__UI_MPText, "|cffFFFFFF" + s__Interface__UI_mp[this] + "|r")
+                        call BlzFrameSetValue(s__Interface___UI_HealthBar, s__Interface___UI_health[this])
+                        call BlzFrameSetValue(s__Interface___UI_ManaBar, s__Interface___UI_mana[this])
+                        call BlzFrameSetText(s__Interface___UI_HPText, "|cffFFFFFF" + s__Interface___UI_hp[this] + "|r")
+                        call BlzFrameSetText(s__Interface___UI_MPText, "|cffFFFFFF" + s__Interface___UI_mp[this] + "|r")
                     else
-                        set i=s__Interface__UI_remove(this,i)
+                        set i=s__Interface___UI_remove(this,i)
                     endif
                 set i=i + 1
             endloop
         endfunction
 
-        function s__Interface__UI_onSelect takes nothing returns nothing
+        function s__Interface___UI_onSelect takes nothing returns nothing
             local integer id= GetPlayerId(GetTriggerPlayer())
             local integer this
 
-            if s__Interface__UI_struct[id] != 0 then
-                set this=s__Interface__UI_struct[id]
+            if s__Interface___UI_struct[id] != 0 then
+                set this=s__Interface___UI_struct[id]
             else
-                set this=s__Interface__UI__allocate()
-                set s__Interface__UI_id[this]=id
-                set s__Interface__UI_player[this]=GetTriggerPlayer()
-                set s__Interface__UI_health[this]=0
-                set s__Interface__UI_mana[this]=0
-                set s__Interface__UI_hp[this]="0 / 0"
-                set s__Interface__UI_mp[this]="0 / 0"
-                set s__Interface__UI_key=s__Interface__UI_key + 1
-                set s__Interface__UI_array[s__Interface__UI_key]=this
-                set s__Interface__UI_struct[id]=this
+                set this=s__Interface___UI__allocate()
+                set s__Interface___UI_id[this]=id
+                set s__Interface___UI_player[this]=GetTriggerPlayer()
+                set s__Interface___UI_health[this]=0
+                set s__Interface___UI_mana[this]=0
+                set s__Interface___UI_hp[this]="0 / 0"
+                set s__Interface___UI_mp[this]="0 / 0"
+                set s__Interface___UI_key=s__Interface___UI_key + 1
+                set s__Interface___UI_array[s__Interface___UI_key]=this
+                set s__Interface___UI_struct[id]=this
                 
-                if s__Interface__UI_key == 0 then
-                    call TimerStart(s__Interface__UI_timer, 0.05, true, function s__Interface__UI_onPeriod)
+                if s__Interface___UI_key == 0 then
+                    call TimerStart(s__Interface___UI_timer, 0.05, true, function s__Interface___UI_onPeriod)
                 endif
             endif
         endfunction
 
-        function s__Interface__UI_onInit takes nothing returns nothing
+        function s__Interface___UI_onInit takes nothing returns nothing
             local integer i= 0
 
             call BlzFrameSetAlpha(BlzGetFrameByName("SimpleInventoryCover", 0), 0)
@@ -6833,210 +6833,210 @@ endfunction
             call BlzFrameSetParent(BlzGetOriginFrame(ORIGIN_FRAME_UBERTOOLTIP, 0), BlzGetFrameByName("ConsoleUIBackdrop", 0))
             call BlzFrameSetAbsPoint(BlzGetOriginFrame(ORIGIN_FRAME_UBERTOOLTIP, 0), FRAMEPOINT_BOTTOMRIGHT, 0.8, 0.165)
 
-            set s__Interface__UI_Interface__UI=BlzCreateFrameByType("BACKDROP", "UI", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Interface__UI, FRAMEPOINT_TOPLEFT, 0.00000, 0.100000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Interface__UI, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetTexture(s__Interface__UI_Interface__UI, "UI.blp", 0, true)
+            set s__Interface___UI_Interface___UI=BlzCreateFrameByType("BACKDROP", "UI", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Interface___UI, FRAMEPOINT_TOPLEFT, 0.00000, 0.100000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Interface___UI, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetTexture(s__Interface___UI_Interface___UI, "UI.blp", 0, true)
 
-            set s__Interface__UI_ShopSlots=BlzCreateFrameByType("BACKDROP", "ShopSlots", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_ShopSlots, FRAMEPOINT_TOPLEFT, 0.330600, 0.216500)
-            call BlzFrameSetAbsPoint(s__Interface__UI_ShopSlots, FRAMEPOINT_BOTTOMRIGHT, 0.478600, 0.100700)
-            call BlzFrameSetTexture(s__Interface__UI_ShopSlots, "12Slot.blp", 0, true)
+            set s__Interface___UI_ShopSlots=BlzCreateFrameByType("BACKDROP", "ShopSlots", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_ShopSlots, FRAMEPOINT_TOPLEFT, 0.330600, 0.216500)
+            call BlzFrameSetAbsPoint(s__Interface___UI_ShopSlots, FRAMEPOINT_BOTTOMRIGHT, 0.478600, 0.100700)
+            call BlzFrameSetTexture(s__Interface___UI_ShopSlots, "12Slot.blp", 0, true)
 
-            set s__Interface__UI_HealthBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface__UI_Interface__UI, "", 0)
-            call BlzFrameSetTexture(s__Interface__UI_HealthBar, "replaceabletextures\\teamcolor\\teamcolor00", 0, true)
-            call BlzFrameSetAbsPoint(s__Interface__UI_HealthBar, FRAMEPOINT_TOPLEFT, 0.0386400, 0.0778900)
-            call BlzFrameSetAbsPoint(s__Interface__UI_HealthBar, FRAMEPOINT_BOTTOMRIGHT, 0.255140, 0.0535100)
-            call BlzFrameSetValue(s__Interface__UI_HealthBar, 0)
+            set s__Interface___UI_HealthBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface___UI_Interface___UI, "", 0)
+            call BlzFrameSetTexture(s__Interface___UI_HealthBar, "replaceabletextures\\teamcolor\\teamcolor00", 0, true)
+            call BlzFrameSetAbsPoint(s__Interface___UI_HealthBar, FRAMEPOINT_TOPLEFT, 0.0386400, 0.0778900)
+            call BlzFrameSetAbsPoint(s__Interface___UI_HealthBar, FRAMEPOINT_BOTTOMRIGHT, 0.255140, 0.0535100)
+            call BlzFrameSetValue(s__Interface___UI_HealthBar, 0)
 
-            set s__Interface__UI_ManaBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface__UI_Interface__UI, "", 0)
-            call BlzFrameSetTexture(s__Interface__UI_ManaBar, "replaceabletextures\\teamcolor\\teamcolor01", 0, true)
-            call BlzFrameSetAbsPoint(s__Interface__UI_ManaBar, FRAMEPOINT_TOPLEFT, 0.551500, 0.0778000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_ManaBar, FRAMEPOINT_BOTTOMRIGHT, 0.768000, 0.0534200)
-            call BlzFrameSetValue(s__Interface__UI_ManaBar, 0)
+            set s__Interface___UI_ManaBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface___UI_Interface___UI, "", 0)
+            call BlzFrameSetTexture(s__Interface___UI_ManaBar, "replaceabletextures\\teamcolor\\teamcolor01", 0, true)
+            call BlzFrameSetAbsPoint(s__Interface___UI_ManaBar, FRAMEPOINT_TOPLEFT, 0.551500, 0.0778000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_ManaBar, FRAMEPOINT_BOTTOMRIGHT, 0.768000, 0.0534200)
+            call BlzFrameSetValue(s__Interface___UI_ManaBar, 0)
 
-            set s__Interface__UI_HeroCheck=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_HeroCheck, FRAMEPOINT_TOPLEFT, - 0.131300, 0.600240)
-            call BlzFrameSetAbsPoint(s__Interface__UI_HeroCheck, FRAMEPOINT_BOTTOMRIGHT, - 0.117260, 0.586200)
+            set s__Interface___UI_HeroCheck=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_HeroCheck, FRAMEPOINT_TOPLEFT, - 0.131300, 0.600240)
+            call BlzFrameSetAbsPoint(s__Interface___UI_HeroCheck, FRAMEPOINT_BOTTOMRIGHT, - 0.117260, 0.586200)
 
-            set s__Interface__UI_HPText=BlzCreateFrameByType("TEXT", "HPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_HPText, FRAMEPOINT_TOPLEFT, 0.108100, 0.0726300)
-            call BlzFrameSetAbsPoint(s__Interface__UI_HPText, FRAMEPOINT_BOTTOMRIGHT, 0.184960, 0.0585900)
-            call BlzFrameSetText(s__Interface__UI_HPText, "|cffFFFFFF|r")
-            call BlzFrameSetEnable(s__Interface__UI_HPText, false)
-            call BlzFrameSetScale(s__Interface__UI_HPText, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface__UI_HPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+            set s__Interface___UI_HPText=BlzCreateFrameByType("TEXT", "HPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_HPText, FRAMEPOINT_TOPLEFT, 0.108100, 0.0726300)
+            call BlzFrameSetAbsPoint(s__Interface___UI_HPText, FRAMEPOINT_BOTTOMRIGHT, 0.184960, 0.0585900)
+            call BlzFrameSetText(s__Interface___UI_HPText, "|cffFFFFFF|r")
+            call BlzFrameSetEnable(s__Interface___UI_HPText, false)
+            call BlzFrameSetScale(s__Interface___UI_HPText, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface___UI_HPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
-            set s__Interface__UI_MPText=BlzCreateFrameByType("TEXT", "MPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_MPText, FRAMEPOINT_TOPLEFT, 0.622500, 0.0726000)
-            call BlzFrameSetAbsPoint(s__Interface__UI_MPText, FRAMEPOINT_BOTTOMRIGHT, 0.699360, 0.0585600)
-            call BlzFrameSetText(s__Interface__UI_MPText, "|cffFFFFFF|r")
-            call BlzFrameSetEnable(s__Interface__UI_MPText, false)
-            call BlzFrameSetScale(s__Interface__UI_MPText, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface__UI_MPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+            set s__Interface___UI_MPText=BlzCreateFrameByType("TEXT", "MPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_MPText, FRAMEPOINT_TOPLEFT, 0.622500, 0.0726000)
+            call BlzFrameSetAbsPoint(s__Interface___UI_MPText, FRAMEPOINT_BOTTOMRIGHT, 0.699360, 0.0585600)
+            call BlzFrameSetText(s__Interface___UI_MPText, "|cffFFFFFF|r")
+            call BlzFrameSetEnable(s__Interface___UI_MPText, false)
+            call BlzFrameSetScale(s__Interface___UI_MPText, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface___UI_MPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
-            set s__Interface__UI_UnitName=BlzCreateFrameByType("TEXT", "UNITNAME", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0) // custom
-            call BlzFrameSetPoint(s__Interface__UI_UnitName, FRAMEPOINT_BOTTOM, BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), FRAMEPOINT_BOTTOM, - 0.23, 0.075)
-            call BlzFrameSetText(s__Interface__UI_UnitName, "")
-            call BlzFrameSetEnable(s__Interface__UI_UnitName, false)
-            call BlzFrameSetScale(s__Interface__UI_UnitName, 1.10)
-            call BlzFrameSetTextAlignment(s__Interface__UI_UnitName, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+            set s__Interface___UI_UnitName=BlzCreateFrameByType("TEXT", "UNITNAME", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0) // custom
+            call BlzFrameSetPoint(s__Interface___UI_UnitName, FRAMEPOINT_BOTTOM, BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), FRAMEPOINT_BOTTOM, - 0.23, 0.075)
+            call BlzFrameSetText(s__Interface___UI_UnitName, "")
+            call BlzFrameSetEnable(s__Interface___UI_UnitName, false)
+            call BlzFrameSetScale(s__Interface___UI_UnitName, 1.10)
+            call BlzFrameSetTextAlignment(s__Interface___UI_UnitName, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
-            set s__Interface__UI_Lumber=BlzCreateFrameByType("TEXT", "GOLD", s__Interface__UI_Interface__UI, "", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Lumber, FRAMEPOINT_TOPLEFT, 0.291100, 0.0970200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Lumber, FRAMEPOINT_BOTTOMRIGHT, 0.346530, 0.0815000)
-            call BlzFrameSetText(s__Interface__UI_Lumber, "|cff00ff00|r")
-            call BlzFrameSetEnable(s__Interface__UI_Lumber, false)
-            call BlzFrameSetScale(s__Interface__UI_Lumber, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface__UI_Lumber, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_RIGHT)
+            set s__Interface___UI_Lumber=BlzCreateFrameByType("TEXT", "GOLD", s__Interface___UI_Interface___UI, "", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Lumber, FRAMEPOINT_TOPLEFT, 0.291100, 0.0970200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Lumber, FRAMEPOINT_BOTTOMRIGHT, 0.346530, 0.0815000)
+            call BlzFrameSetText(s__Interface___UI_Lumber, "|cff00ff00|r")
+            call BlzFrameSetEnable(s__Interface___UI_Lumber, false)
+            call BlzFrameSetScale(s__Interface___UI_Lumber, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface___UI_Lumber, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_RIGHT)
 
-            set s__Interface__UI_Gold=BlzCreateFrameByType("TEXT", "LUMBER", s__Interface__UI_Interface__UI, "", 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Gold, FRAMEPOINT_TOPLEFT, 0.460600, 0.0972500)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Gold, FRAMEPOINT_BOTTOMRIGHT, 0.516030, 0.0817300)
-            call BlzFrameSetText(s__Interface__UI_Gold, "|cffffcc00|r")
-            call BlzFrameSetEnable(s__Interface__UI_Gold, false)
-            call BlzFrameSetScale(s__Interface__UI_Gold, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface__UI_Gold, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_LEFT)
+            set s__Interface___UI_Gold=BlzCreateFrameByType("TEXT", "LUMBER", s__Interface___UI_Interface___UI, "", 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Gold, FRAMEPOINT_TOPLEFT, 0.460600, 0.0972500)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Gold, FRAMEPOINT_BOTTOMRIGHT, 0.516030, 0.0817300)
+            call BlzFrameSetText(s__Interface___UI_Gold, "|cffffcc00|r")
+            call BlzFrameSetEnable(s__Interface___UI_Gold, false)
+            call BlzFrameSetScale(s__Interface___UI_Gold, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface___UI_Gold, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_LEFT)
 
-            set s__Interface__UI_CheckBL=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBL, FRAMEPOINT_TOPLEFT, 0.269200, 0.102200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBL, FRAMEPOINT_BOTTOMRIGHT, 0.292850, 0.0778100)
+            set s__Interface___UI_CheckBL=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBL, FRAMEPOINT_TOPLEFT, 0.269200, 0.102200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBL, FRAMEPOINT_BOTTOMRIGHT, 0.292850, 0.0778100)
 
-            set s__Interface__UI_CheckBR=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBR, FRAMEPOINT_TOPLEFT, 0.514800, 0.102200)
-            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBR, FRAMEPOINT_BOTTOMRIGHT, 0.538450, 0.0778100)
+            set s__Interface___UI_CheckBR=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBR, FRAMEPOINT_TOPLEFT, 0.514800, 0.102200)
+            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBR, FRAMEPOINT_BOTTOMRIGHT, 0.538450, 0.0778100)
 
-            set s__Interface__UI_Minimap=BlzCreateFrameByType("BACKDROP", "Minimap", s__Interface__UI_Interface__UI, "", 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_TOPLEFT, 999.0, 999.0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, 999.0, 999.0)
-            call BlzFrameSetTexture(s__Interface__UI_Minimap, "Minimap.blp", 0, true)
+            set s__Interface___UI_Minimap=BlzCreateFrameByType("BACKDROP", "Minimap", s__Interface___UI_Interface___UI, "", 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_TOPLEFT, 999.0, 999.0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, 999.0, 999.0)
+            call BlzFrameSetTexture(s__Interface___UI_Minimap, "Minimap.blp", 0, true)
 
-            set s__Interface__UI_MenuCheck=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface__UI_MenuCheck, FRAMEPOINT_TOPLEFT, 0.918800, 0.601640)
-            call BlzFrameSetAbsPoint(s__Interface__UI_MenuCheck, FRAMEPOINT_BOTTOMRIGHT, 0.932840, 0.587600)
+            set s__Interface___UI_MenuCheck=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface___UI_MenuCheck, FRAMEPOINT_TOPLEFT, 0.918800, 0.601640)
+            call BlzFrameSetAbsPoint(s__Interface___UI_MenuCheck, FRAMEPOINT_BOTTOMRIGHT, 0.932840, 0.587600)
 
-            set s__Interface__UI_LumberIcon=BlzCreateFrameByType("BACKDROP", "LumberIcon", s__Interface__UI_Interface__UI, "", 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_LumberIcon, FRAMEPOINT_TOPLEFT, 0.347600, 0.0966800)
-            call BlzFrameSetAbsPoint(s__Interface__UI_LumberIcon, FRAMEPOINT_BOTTOMRIGHT, 0.362600, 0.0816800)
+            set s__Interface___UI_LumberIcon=BlzCreateFrameByType("BACKDROP", "LumberIcon", s__Interface___UI_Interface___UI, "", 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_LumberIcon, FRAMEPOINT_TOPLEFT, 0.347600, 0.0966800)
+            call BlzFrameSetAbsPoint(s__Interface___UI_LumberIcon, FRAMEPOINT_BOTTOMRIGHT, 0.362600, 0.0816800)
 
-            if Interface__LUMBER_ICON != "" then
-                call BlzFrameSetTexture(s__Interface__UI_LumberIcon, Interface__LUMBER_ICON, 0, true)
+            if Interface___LUMBER_ICON != "" then
+                call BlzFrameSetTexture(s__Interface___UI_LumberIcon, Interface___LUMBER_ICON, 0, true)
             else
-                call BlzFrameSetVisible(s__Interface__UI_LumberIcon, false)
+                call BlzFrameSetVisible(s__Interface___UI_LumberIcon, false)
             endif
 
-            set s__Interface__UI_GoldIcon=BlzCreateFrameByType("BACKDROP", "GoldIcon", s__Interface__UI_Interface__UI, "", 1)
-            call BlzFrameSetAbsPoint(s__Interface__UI_GoldIcon, FRAMEPOINT_TOPLEFT, 0.445900, 0.0966600)
-            call BlzFrameSetAbsPoint(s__Interface__UI_GoldIcon, FRAMEPOINT_BOTTOMRIGHT, 0.460900, 0.0816600)
+            set s__Interface___UI_GoldIcon=BlzCreateFrameByType("BACKDROP", "GoldIcon", s__Interface___UI_Interface___UI, "", 1)
+            call BlzFrameSetAbsPoint(s__Interface___UI_GoldIcon, FRAMEPOINT_TOPLEFT, 0.445900, 0.0966600)
+            call BlzFrameSetAbsPoint(s__Interface___UI_GoldIcon, FRAMEPOINT_BOTTOMRIGHT, 0.460900, 0.0816600)
 
-            if Interface__GOLD_ICON != "" then
-                call BlzFrameSetTexture(s__Interface__UI_GoldIcon, Interface__GOLD_ICON, 0, true)
+            if Interface___GOLD_ICON != "" then
+                call BlzFrameSetTexture(s__Interface___UI_GoldIcon, Interface___GOLD_ICON, 0, true)
             else
-                call BlzFrameSetVisible(s__Interface__UI_GoldIcon, false)
+                call BlzFrameSetVisible(s__Interface___UI_GoldIcon, false)
             endif
             
-            call RegisterPlayerUnitEvent(EVENT_PLAYER_UNIT_SELECTED , function s__Interface__UI_onSelect)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_herotrigger, s__Interface__UI_HeroCheck, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_herotrigger, s__Interface__UI_HeroCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call TriggerAddAction(s__Interface__UI_herotrigger, function s__Interface__UI_onHeroCheck)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBL, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBL, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBR, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBR, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call TriggerAddAction(s__Interface__UI_maptrigger, function s__Interface__UI_onMinimap)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_menutrigger, s__Interface__UI_MenuCheck, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface__UI_menutrigger, s__Interface__UI_MenuCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call TriggerAddAction(s__Interface__UI_menutrigger, function s__Interface__UI_onMenu)
-            call TimerStart(CreateTimer(), 0.2, true, function s__Interface__UI_onResources)
+            call RegisterPlayerUnitEvent(EVENT_PLAYER_UNIT_SELECTED , function s__Interface___UI_onSelect)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_herotrigger, s__Interface___UI_HeroCheck, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_herotrigger, s__Interface___UI_HeroCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call TriggerAddAction(s__Interface___UI_herotrigger, function s__Interface___UI_onHeroCheck)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBL, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBL, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBR, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBR, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call TriggerAddAction(s__Interface___UI_maptrigger, function s__Interface___UI_onMinimap)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_menutrigger, s__Interface___UI_MenuCheck, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface___UI_menutrigger, s__Interface___UI_MenuCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call TriggerAddAction(s__Interface___UI_menutrigger, function s__Interface___UI_onMenu)
+            call TimerStart(CreateTimer(), 0.2, true, function s__Interface___UI_onResources)
 
             loop
                 exitwhen i > bj_MAX_PLAYER_SLOTS
-                    set s__Interface__UI_x1[i]=999.0
-                    set s__Interface__UI_x2[i]=999.0
-                    set s__Interface__UI_y01[i]=999.0
-                    set s__Interface__UI_y02[i]=999.0
-                    set s__Interface__UI_y11[i]=999.0
-                    set s__Interface__UI_y12[i]=999.0
-                    set s__Interface__UI_y21[i]=999.0
-                    set s__Interface__UI_y22[i]=999.0
-                    set s__Interface__UI_y31[i]=999.0
-                    set s__Interface__UI_y32[i]=999.0
-                    set s__Interface__UI_y41[i]=999.0
-                    set s__Interface__UI_y42[i]=999.0
-                    set s__Interface__UI_y51[i]=999.0
-                    set s__Interface__UI_y52[i]=999.0
-                    set s__Interface__UI_y61[i]=999.0
-                    set s__Interface__UI_y62[i]=999.0
-                    set s__Interface__UI_mapX1[i]=999.0
-                    set s__Interface__UI_mapY1[i]=999.0
-                    set s__Interface__UI_mapX2[i]=999.0
-                    set s__Interface__UI_mapY2[i]=999.0
-                    set s__Interface__UI_frameX1[i]=999.0
-                    set s__Interface__UI_frameY1[i]=999.0
-                    set s__Interface__UI_frameX2[i]=999.0
-                    set s__Interface__UI_frameY2[i]=999.0
-                    set s__Interface__UI_command0X1[i]=999.0
-                    set s__Interface__UI_command0Y1[i]=999.0
-                    set s__Interface__UI_command1X1[i]=999.0
-                    set s__Interface__UI_command1Y1[i]=999.0
-                    set s__Interface__UI_command2X1[i]=999.0
-                    set s__Interface__UI_command2Y1[i]=999.0
-                    set s__Interface__UI_command3X1[i]=999.0
-                    set s__Interface__UI_command3Y1[i]=999.0
-                    set s__Interface__UI_command4X1[i]=999.0
-                    set s__Interface__UI_command4Y1[i]=999.0
-                    set s__Interface__UI_command5X1[i]=999.0
-                    set s__Interface__UI_command5Y1[i]=999.0
-                    set s__Interface__UI_command6X1[i]=999.0
-                    set s__Interface__UI_command6Y1[i]=999.0
-                    set s__Interface__UI_command7X1[i]=999.0
-                    set s__Interface__UI_command7Y1[i]=999.0
-                    set s__Interface__UI_command8X1[i]=999.0
-                    set s__Interface__UI_command8Y1[i]=999.0
-                    set s__Interface__UI_command9X1[i]=999.0
-                    set s__Interface__UI_command9Y1[i]=999.0
-                    set s__Interface__UI_command10X1[i]=999.0
-                    set s__Interface__UI_command10Y1[i]=999.0
-                    set s__Interface__UI_command11X1[i]=999.0
-                    set s__Interface__UI_command11Y1[i]=999.0
-                    set s__Interface__UI_command0X2[i]=999.0
-                    set s__Interface__UI_command0Y2[i]=999.0
-                    set s__Interface__UI_command1X2[i]=999.0
-                    set s__Interface__UI_command1Y2[i]=999.0
-                    set s__Interface__UI_command2X2[i]=999.0
-                    set s__Interface__UI_command2Y2[i]=999.0
-                    set s__Interface__UI_command3X2[i]=999.0
-                    set s__Interface__UI_command3Y2[i]=999.0
-                    set s__Interface__UI_command4X2[i]=999.0
-                    set s__Interface__UI_command4Y2[i]=999.0
-                    set s__Interface__UI_command5X2[i]=999.0
-                    set s__Interface__UI_command5Y2[i]=999.0
-                    set s__Interface__UI_command6X2[i]=999.0
-                    set s__Interface__UI_command6Y2[i]=999.0
-                    set s__Interface__UI_command7X2[i]=999.0
-                    set s__Interface__UI_command7Y2[i]=999.0
-                    set s__Interface__UI_command8X2[i]=999.0
-                    set s__Interface__UI_command8Y2[i]=999.0
-                    set s__Interface__UI_command9X2[i]=999.0
-                    set s__Interface__UI_command9Y2[i]=999.0
-                    set s__Interface__UI_command10X2[i]=999.0
-                    set s__Interface__UI_command10Y2[i]=999.0
-                    set s__Interface__UI_command11X2[i]=999.0
-                    set s__Interface__UI_command11Y2[i]=999.0
-                    set s__Interface__UI_shop[i]=false
-                    set s__Interface__UI_main[i]=null
-                    set s__Interface__UI_checkL[i]=false
-                    set s__Interface__UI_checkR[i]=false
-                    set s__Interface__UI_checkMenu[i]=false
+                    set s__Interface___UI_x1[i]=999.0
+                    set s__Interface___UI_x2[i]=999.0
+                    set s__Interface___UI_y01[i]=999.0
+                    set s__Interface___UI_y02[i]=999.0
+                    set s__Interface___UI_y11[i]=999.0
+                    set s__Interface___UI_y12[i]=999.0
+                    set s__Interface___UI_y21[i]=999.0
+                    set s__Interface___UI_y22[i]=999.0
+                    set s__Interface___UI_y31[i]=999.0
+                    set s__Interface___UI_y32[i]=999.0
+                    set s__Interface___UI_y41[i]=999.0
+                    set s__Interface___UI_y42[i]=999.0
+                    set s__Interface___UI_y51[i]=999.0
+                    set s__Interface___UI_y52[i]=999.0
+                    set s__Interface___UI_y61[i]=999.0
+                    set s__Interface___UI_y62[i]=999.0
+                    set s__Interface___UI_mapX1[i]=999.0
+                    set s__Interface___UI_mapY1[i]=999.0
+                    set s__Interface___UI_mapX2[i]=999.0
+                    set s__Interface___UI_mapY2[i]=999.0
+                    set s__Interface___UI_frameX1[i]=999.0
+                    set s__Interface___UI_frameY1[i]=999.0
+                    set s__Interface___UI_frameX2[i]=999.0
+                    set s__Interface___UI_frameY2[i]=999.0
+                    set s__Interface___UI_command0X1[i]=999.0
+                    set s__Interface___UI_command0Y1[i]=999.0
+                    set s__Interface___UI_command1X1[i]=999.0
+                    set s__Interface___UI_command1Y1[i]=999.0
+                    set s__Interface___UI_command2X1[i]=999.0
+                    set s__Interface___UI_command2Y1[i]=999.0
+                    set s__Interface___UI_command3X1[i]=999.0
+                    set s__Interface___UI_command3Y1[i]=999.0
+                    set s__Interface___UI_command4X1[i]=999.0
+                    set s__Interface___UI_command4Y1[i]=999.0
+                    set s__Interface___UI_command5X1[i]=999.0
+                    set s__Interface___UI_command5Y1[i]=999.0
+                    set s__Interface___UI_command6X1[i]=999.0
+                    set s__Interface___UI_command6Y1[i]=999.0
+                    set s__Interface___UI_command7X1[i]=999.0
+                    set s__Interface___UI_command7Y1[i]=999.0
+                    set s__Interface___UI_command8X1[i]=999.0
+                    set s__Interface___UI_command8Y1[i]=999.0
+                    set s__Interface___UI_command9X1[i]=999.0
+                    set s__Interface___UI_command9Y1[i]=999.0
+                    set s__Interface___UI_command10X1[i]=999.0
+                    set s__Interface___UI_command10Y1[i]=999.0
+                    set s__Interface___UI_command11X1[i]=999.0
+                    set s__Interface___UI_command11Y1[i]=999.0
+                    set s__Interface___UI_command0X2[i]=999.0
+                    set s__Interface___UI_command0Y2[i]=999.0
+                    set s__Interface___UI_command1X2[i]=999.0
+                    set s__Interface___UI_command1Y2[i]=999.0
+                    set s__Interface___UI_command2X2[i]=999.0
+                    set s__Interface___UI_command2Y2[i]=999.0
+                    set s__Interface___UI_command3X2[i]=999.0
+                    set s__Interface___UI_command3Y2[i]=999.0
+                    set s__Interface___UI_command4X2[i]=999.0
+                    set s__Interface___UI_command4Y2[i]=999.0
+                    set s__Interface___UI_command5X2[i]=999.0
+                    set s__Interface___UI_command5Y2[i]=999.0
+                    set s__Interface___UI_command6X2[i]=999.0
+                    set s__Interface___UI_command6Y2[i]=999.0
+                    set s__Interface___UI_command7X2[i]=999.0
+                    set s__Interface___UI_command7Y2[i]=999.0
+                    set s__Interface___UI_command8X2[i]=999.0
+                    set s__Interface___UI_command8Y2[i]=999.0
+                    set s__Interface___UI_command9X2[i]=999.0
+                    set s__Interface___UI_command9Y2[i]=999.0
+                    set s__Interface___UI_command10X2[i]=999.0
+                    set s__Interface___UI_command10Y2[i]=999.0
+                    set s__Interface___UI_command11X2[i]=999.0
+                    set s__Interface___UI_command11Y2[i]=999.0
+                    set s__Interface___UI_shop[i]=false
+                    set s__Interface___UI_main[i]=null
+                    set s__Interface___UI_checkL[i]=false
+                    set s__Interface___UI_checkR[i]=false
+                    set s__Interface___UI_checkMenu[i]=false
                 set i=i + 1
             endloop
 
-            call s__Interface__UI_onCommandButtons()
-            call s__Interface__UI_onInventoryButtons()
-            call s__Interface__UI_onInfoPanel()
-            call s__Interface__UI_onPortrait()
-            call s__Interface__UI_onGroupSelection()
-            call s__Interface__UI_onChat()
+            call s__Interface___UI_onCommandButtons()
+            call s__Interface___UI_onInventoryButtons()
+            call s__Interface___UI_onInfoPanel()
+            call s__Interface___UI_onPortrait()
+            call s__Interface___UI_onGroupSelection()
+            call s__Interface___UI_onChat()
         endfunction
 
 //library Interface ends
@@ -7044,7 +7044,7 @@ endfunction
     
     
     
-    function NSLImpl___SaveCodeValues takes integer saver returns nothing
+    function NSLImpl__SaveCodeValues takes integer saver returns nothing
         local integer pid= GetPlayerId(udg_NSL_SavePlayer) + 1
         local integer i= 1
         loop
@@ -7054,7 +7054,7 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl___ReadCodeValues takes integer loader returns nothing
+    function NSLImpl__ReadCodeValues takes integer loader returns nothing
         local integer pid= GetPlayerId(udg_NSL_LoadPlayer) + 1
         local integer i= 1
         local integer v
@@ -7066,15 +7066,15 @@ endfunction
         endloop
     endfunction
     
-    function NSLImpl___SavePlayerCompleted takes nothing returns nothing
+    function NSLImpl__SavePlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_SavePlayer)
         local integer playerCode= udg_NSL_SaveCode[playerId]
-        call NSLImpl___SaveCodeValues(playerCode)
+        call NSLImpl__SaveCodeValues(playerCode)
         call sc__NSL_Code_Generate(playerCode)
         set udg_NSL_EventExecutorSaveCompleted=0.0
     endfunction
     
-    function NSLImpl___LoadPlayerCompleted takes nothing returns nothing
+    function NSLImpl__LoadPlayerCompleted takes nothing returns nothing
         local integer playerId= GetPlayerId(udg_NSL_LoadPlayer)
         local integer playerCode= udg_NSL_LoadCode[playerId]
         call s__NSL_Code_deallocate(playerCode)
@@ -7085,7 +7085,7 @@ endfunction
     function NSLImpl_LoadPlayer takes integer playerId,integer loader,trigger format returns nothing
         set udg_NSL_LoadPlayer=Player(playerId)
         set udg_NSL_LoadCode[playerId]=loader
-        call NSLImpl___ReadCodeValues(loader)
+        call NSLImpl__ReadCodeValues(loader)
         call TriggerExecute(format)
     endfunction
 
@@ -7095,14 +7095,14 @@ endfunction
         call TriggerExecute(udg_NSL_TriggerExecutorSave)
     endfunction
     
-    function NSLImpl___Init takes nothing returns nothing
+    function NSLImpl__Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl___SavePlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl__SavePlayerCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventExecutorLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLImpl___LoadPlayerCompleted)
+        call TriggerAddAction(t, function NSLImpl__LoadPlayerCompleted)
     endfunction
 
 //library NSLImpl ends
@@ -7111,52 +7111,52 @@ endfunction
 //processed: 	function interface NSL_PlayerLoadCallback takes integer playerId, boolean is_valid, NSL_Code loader returns nothing
 //processed: 	function interface NSL_PlayerSaveCallback takes integer playerId, string generated_code returns nothing
 	
- function NSLSaveLoad___Init takes nothing returns nothing
+ function NSLSaveLoad__Init takes nothing returns nothing
   local integer i= 0
 		
         loop
-			set NSLSaveLoad___NSL_Timers[i]=CreateTimer()
+			set NSLSaveLoad__NSL_Timers[i]=CreateTimer()
 			set i=i + 1
 			exitwhen i == 24
 		endloop
 	endfunction
 	
- function NSLSaveLoad___CharAt takes integer index returns string
-		return SubString(NSLSaveLoad___NSL_Charset, index, index + 1)
+ function NSLSaveLoad__CharAt takes integer index returns string
+		return SubString(NSLSaveLoad__NSL_Charset, index, index + 1)
 	endfunction
 	
- function NSLSaveLoad___GenerateTimerCallback takes nothing returns nothing
+ function NSLSaveLoad__GenerateTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Generate(inst)
 	endfunction
 	
- function NSLSaveLoad___LoadTimerCallback takes nothing returns nothing
+ function NSLSaveLoad__LoadTimerCallback takes nothing returns nothing
   local integer timerId= GetHandleId(GetExpiredTimer())
-  local integer inst= LoadInteger(NSLSaveLoad___NSL_Hashtable, timerId, NSLSaveLoad___NSL_HT_KEY_CODE_ID)
+  local integer inst= LoadInteger(NSLSaveLoad__NSL_Hashtable, timerId, NSLSaveLoad__NSL_HT_KEY_CODE_ID)
 		call sc__NSL_Code_Load(inst)
 	endfunction
 	
- function NSLSaveLoad___IndexOf takes string char returns integer
+ function NSLSaveLoad__IndexOf takes string char returns integer
   local integer i= 0
 		loop
-			if ( NSLSaveLoad___CharAt(i) == char ) then
+			if ( NSLSaveLoad__CharAt(i) == char ) then
 				return i
 			endif
 			set i=i + 1
-			exitwhen i == NSLSaveLoad___NSL_CharsetLen
+			exitwhen i == NSLSaveLoad__NSL_CharsetLen
 		endloop
 
 		return 0
 	endfunction
 	
- function NSLSaveLoad___GetPlayerHash takes integer player_id returns integer
+ function NSLSaveLoad__GetPlayerHash takes integer player_id returns integer
   local string name= GetPlayerName(Player(player_id))
   local integer len= StringLength(name)
   local integer hash= 0
   local integer i= 0
 		loop
-			set hash=hash + NSLSaveLoad___IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
+			set hash=hash + NSLSaveLoad__IndexOf(SubString(name, i, i + 1)) * NSL_Key * NSL_Key
 			set i=i + 1
 			exitwhen i == len
 		endloop
@@ -7202,14 +7202,14 @@ endfunction
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
 			
-			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
 			
 			return inst
   endfunction
 		
   function s__NSL_Code_StoreBit takes integer this,integer value returns nothing
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + s__NSL_Code_bits_count[this], value)
 			set s__NSL_Code_bits_count[this]=s__NSL_Code_bits_count[this] + 1
   endfunction 
 		
@@ -7233,7 +7233,7 @@ endfunction
 			endif
 			
 			loop
-				set current=(NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+				set current=(NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
 				if ( value >= current ) then
 					call s__NSL_Code_StoreBit(this,1)
 					set size_done=size_done + 1
@@ -7254,63 +7254,63 @@ endfunction
   endfunction
 		
   function s__NSL_Code_Insert takes integer this returns nothing
-   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_value_count[this] ) then
 				set s__NSL_Code_is_started[this]=false
 				set s__NSL_Code_is_ready[this]=true
-				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
 				return
 			endif
 
 			if ( s__NSL_Code_is_started[this] ) then
-				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
-				call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-				call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+				call s__NSL_Code_InsertImpl(this,LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2) , LoadInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], offset * 2 + 1))
+				call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+				call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
             call s__NSL_Code_InsertImpl(this,NSL_CodeVersion , NSL_SIZE_LESS_THAN_1024)
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_SV takes integer this,integer value,integer size returns nothing
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
   endfunction
 		
   function s__NSL_Code_BitAt takes integer this,integer pos returns integer
-			return LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + pos)
+			return LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + pos)
   endfunction
 		
   function s__NSL_Code_EncodeImpl takes integer this,integer offset returns integer
-   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad___NSL_BitPerChar)
+   local integer last_index= IMinBJ(s__NSL_Code_bits_count[this], offset + NSLSaveLoad__NSL_BitPerChar)
    local integer value= 0
    local integer exponent= ( last_index - offset ) - 1
    local integer i= offset
 			
 			loop
-				if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-					set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+				if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+					set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
 				endif
 				set exponent=exponent - 1
 				set i=i + 1
 				exitwhen i == last_index
 			endloop
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, last_index)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, last_index)
 			return value
   endfunction
 		
   function s__NSL_Code_Encode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_bits_count[this] ) then
 				return - 1
 			endif
@@ -7319,17 +7319,17 @@ endfunction
   endfunction
 		
   function s__NSL_Code_GenerateSecurity takes integer this returns nothing
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen))
 			
-            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen))
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen))
+            set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen))
 
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(s__NSL_Code_code_key[this], NSLSaveLoad__NSL_CharsetLen))
   endfunction
 		
   function s__NSL_Code_GenerateImpl takes integer this returns nothing
@@ -7342,10 +7342,10 @@ endfunction
 				return
 			endif
 			
-			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad___CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen))
+			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this] + NSLSaveLoad__CharAt(ModuloInteger(value + s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
             
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
   endfunction
 		
   function s__NSL_Code_Generate takes integer this returns nothing
@@ -7358,37 +7358,37 @@ endfunction
 				return
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
 			endif
 
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
   endfunction
 
   function s__NSL_Code_Decode takes integer this returns integer
-   local integer offset= LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX)
+   local integer offset= LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX)
 			if ( offset == s__NSL_Code_code_length[this] ) then
 				return - 1
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
-			return ModuloInteger(NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, offset + 1)
+			return ModuloInteger(NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], offset, offset + 1)) - s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen)
   endfunction
 
   function s__NSL_Code_CheckSecurity takes integer this returns boolean
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad___NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]] != ModuloInteger(s__NSL_Code_code_hash[this], NSLSaveLoad__NSL_CharsetLen) ) then
                 return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad___NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1] != ModuloInteger(s__NSL_Code_code_hash[this] / 2, NSLSaveLoad__NSL_CharsetLen) ) then
 				return false
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad___NSL_CharsetLen) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2] != ModuloInteger(s__NSL_Code_code_hash[this] / 3, NSLSaveLoad__NSL_CharsetLen) ) then
 				return false
 			endif
 			return true
@@ -7406,9 +7406,9 @@ endfunction
 				return
 			endif
 			
-			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad___NSL_BitPerChar)
+			call s__NSL_Code_InsertImpl(this,value , NSLSaveLoad__NSL_BitPerChar)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_hash[this] + ( value + s__NSL_Code_code_key[this] ) * NSL_Key
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
   endfunction
 
   function s__NSL_Code_Load takes integer this returns boolean
@@ -7417,36 +7417,36 @@ endfunction
 				return true
 			endif
 			
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
 			
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
 				return false
 			endif
 			
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
 			return true
   endfunction
 		
@@ -7456,8 +7456,8 @@ endfunction
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -7552,7 +7552,7 @@ endfunction
 //library TasItemBag:
 
 
-function TasItemBag___UserInit takes nothing returns nothing
+function TasItemBag__UserInit takes nothing returns nothing
     set TasItemBag_InventorySkills[0]='AInv'
     set TasItemBag_InventorySkills[1]='Apak'
     set TasItemBag_InventorySkills[2]='Aiun'
@@ -7564,37 +7564,37 @@ endfunction
 function TasItemBagAddItem takes unit u,item i returns nothing
     local integer unitHandle= GetHandleId(u)
     call SetItemPosition(i, GetUnitX(u), GetUnitY(u))
-    if not (LoadBoolean(Table___ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)))) and (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) < TasItemBag___ItemBagSize then // INLINED!!
-        call SaveInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0), ( (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) + 1)) // INLINED!!
-        call SaveBoolean(Table___ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)), ( true)) // INLINED!!
+    if not (LoadBoolean(Table__ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)))) and (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) < TasItemBag__ItemBagSize then // INLINED!!
+        call SaveInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0), ( (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) + 1)) // INLINED!!
+        call SaveBoolean(Table__ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)), ( true)) // INLINED!!
         call SetItemVisible(i, false)
-        call SaveItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), ((LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0)))), ( i)) // INLINED!!
-    elseif (LoadBoolean(Table___ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)))) then // INLINED!!
+        call SaveItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), ((LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0)))), ( i)) // INLINED!!
+    elseif (LoadBoolean(Table__ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)))) then // INLINED!!
         call SetItemVisible(i, false)
     endif
 endfunction
 function TasItemBagGetItem takes unit u,integer index returns item
     local integer unitHandle= GetHandleId(u)
-    if (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) <= 0 then // INLINED!!
+    if (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) <= 0 then // INLINED!!
         return null
     endif
-    return (LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (index))) // INLINED!!
+    return (LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (index))) // INLINED!!
 endfunction
 function TasItemBagSwap takes unit u,integer indexA,integer indexB returns boolean
     local integer unitHandle= GetHandleId(u)
     local item i
     local item i2
-    if (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) <= 0 then // INLINED!!
+    if (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) <= 0 then // INLINED!!
         return false
     endif
     if indexA <= 0 or indexB <= 0 then
         return false
     endif
-    set i=(LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexA))) // INLINED!!
-    set i2=(LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexB))) // INLINED!!
+    set i=(LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexA))) // INLINED!!
+    set i2=(LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexB))) // INLINED!!
     if GetHandleId(i) > 0 and GetHandleId(i2) > 0 then
-        call SaveItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexB), ( i)) // INLINED!!
-        call SaveItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexA), ( i2)) // INLINED!!
+        call SaveItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexB), ( i)) // INLINED!!
+        call SaveItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (indexA), ( i2)) // INLINED!!
         set i=null
         set i2=null
         return true
@@ -7607,15 +7607,15 @@ endfunction
 function TasItemBagRemoveIndex takes unit u,integer index,boolean drop returns boolean
     local item i
     local integer unitHandle= GetHandleId(u)
-    if (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) <= 0 then // INLINED!!
+    if (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) <= 0 then // INLINED!!
         return false
     endif
     
-    set i=(LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (index))) // INLINED!!
-    call SaveItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (index), ( (LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), ((LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0)))))))) // INLINED!!
-    call SaveItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), ((LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0)))), ( null)) // INLINED!!
-    call SaveInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0), ( (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) - 1)) // INLINED!!
-    call SaveBoolean(Table___ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)), ( false)) // INLINED!!
+    set i=(LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (index))) // INLINED!!
+    call SaveItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (index), ( (LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), ((LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0)))))))) // INLINED!!
+    call SaveItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), ((LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0)))), ( null)) // INLINED!!
+    call SaveInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0), ( (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) - 1)) // INLINED!!
+    call SaveBoolean(Table__ht, (((TasItemBag_ItemIsInBag))), (GetHandleId(i)), ( false)) // INLINED!!
     if drop and GetHandleId(i) > 0 then
         call SetItemPosition(i, GetUnitX(u), GetUnitY(u))
         call SetItemVisible(i, true)
@@ -7627,14 +7627,14 @@ function TasItemBagRemoveIndex takes unit u,integer index,boolean drop returns b
 endfunction
 function TasItemBagRemoveItem takes unit u,item i,boolean drop returns boolean
     local integer unitHandle= GetHandleId(u)
-    local integer loopA= (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) // INLINED!!
+    local integer loopA= (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) // INLINED!!
     if loopA <= 0 then
         return false
     endif
     // loop all items in the bag and remove it if found
     loop
         exitwhen loopA <= 0
-        if (LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (loopA))) == i then // INLINED!!
+        if (LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (loopA))) == i then // INLINED!!
             call TasItemBagRemoveIndex(u , loopA , drop)
             return true
         endif
@@ -7643,7 +7643,7 @@ function TasItemBagRemoveItem takes unit u,item i,boolean drop returns boolean
 
     return false
 endfunction
-function TasItemBag___FrameLoseFocus takes nothing returns nothing
+function TasItemBag__FrameLoseFocus takes nothing returns nothing
     if GetLocalPlayer() == GetTriggerPlayer() then
         call BlzFrameSetEnable(BlzGetTriggerFrame(), false)
         call BlzFrameSetEnable(BlzGetTriggerFrame(), true)
@@ -7655,7 +7655,7 @@ function TasItemBag_TasItemBagUnitCanUseItems takes unit u returns boolean
     local integer i= 0
     loop
         exitwhen TasItemBag_InventorySkills[i] == 0
-        if GetUnitAbilityLevel(u, TasItemBag_InventorySkills[i]) > 0 and BlzGetAbilityIntegerLevelField(BlzGetUnitAbility(u, TasItemBag_InventorySkills[i]), TasItemBag___AbilityFieldUse, 0) > 0 then
+        if GetUnitAbilityLevel(u, TasItemBag_InventorySkills[i]) > 0 and BlzGetAbilityIntegerLevelField(BlzGetUnitAbility(u, TasItemBag_InventorySkills[i]), TasItemBag__AbilityFieldUse, 0) > 0 then
             return true
         endif
         set i=i + 1
@@ -7669,7 +7669,7 @@ function TasItemBag_TasItemBagUnitIsDropItems takes unit u returns boolean
     local integer i= 0
     loop
         exitwhen TasItemBag_InventorySkills[i] == 0
-        if GetUnitAbilityLevel(u, TasItemBag_InventorySkills[i]) > 0 and BlzGetAbilityIntegerLevelField(BlzGetUnitAbility(u, TasItemBag_InventorySkills[i]), TasItemBag___AbilityFieldDrop, 0) > 0 then
+        if GetUnitAbilityLevel(u, TasItemBag_InventorySkills[i]) > 0 and BlzGetAbilityIntegerLevelField(BlzGetUnitAbility(u, TasItemBag_InventorySkills[i]), TasItemBag__AbilityFieldDrop, 0) > 0 then
             return true
         endif
         set i=i + 1
@@ -7677,7 +7677,7 @@ function TasItemBag_TasItemBagUnitIsDropItems takes unit u returns boolean
 
     return false
 endfunction
-function TasItemBag___DropsOnDeath takes unit u returns boolean
+function TasItemBag__DropsOnDeath takes unit u returns boolean
     local integer i= 0
     if not IsUnitType(u, UNIT_TYPE_HERO) then
         return true
@@ -7688,7 +7688,7 @@ function TasItemBag___DropsOnDeath takes unit u returns boolean
     
     return false
 endfunction
-function TasItemBag___CountItemsOfClass takes unit u,itemtype itemClass returns integer
+function TasItemBag__CountItemsOfClass takes unit u,itemtype itemClass returns integer
     local integer count= 0
     local integer i= 0
     loop
@@ -7700,12 +7700,12 @@ function TasItemBag___CountItemsOfClass takes unit u,itemtype itemClass returns 
     endloop
     return count
 endfunction
-function TasItemBag___UnitCanDropItems takes unit u returns boolean
+function TasItemBag__UnitCanDropItems takes unit u returns boolean
     // check all Inventory skills for the DROP flag
     local integer i= 0
     loop
         exitwhen TasItemBag_InventorySkills[i] == 0
-        if GetUnitAbilityLevel(u, TasItemBag_InventorySkills[i]) > 0 and BlzGetAbilityIntegerLevelField(BlzGetUnitAbility(u, TasItemBag_InventorySkills[i]), TasItemBag___AbilityFieldCanDrop, 0) == 0 then
+        if GetUnitAbilityLevel(u, TasItemBag_InventorySkills[i]) > 0 and BlzGetAbilityIntegerLevelField(BlzGetUnitAbility(u, TasItemBag_InventorySkills[i]), TasItemBag__AbilityFieldCanDrop, 0) == 0 then
             return false
         endif
         set i=i + 1
@@ -7714,44 +7714,44 @@ function TasItemBag___UnitCanDropItems takes unit u returns boolean
     return true
 endfunction
 
-function TasItemBag___CanDropItem takes item it returns boolean
+function TasItemBag__CanDropItem takes item it returns boolean
     return BlzGetItemBooleanField(it, ITEM_BF_CAN_BE_DROPPED)
 endfunction
-function TasItemBag___UnitCanEquipItem takes unit u,item i returns boolean
+function TasItemBag__UnitCanEquipItem takes unit u,item i returns boolean
     // don't use returns, to display all errors
     local boolean returnValue= true
     local integer itemCode= GetItemTypeId(i)
     // units that can not use items, ignore requirements hence return true when not
     local boolean canUse= false
     local integer loopA= 0
-    if TasItemBag___IgnoreNeedWhenCanNotUse and not TasItemBag_TasItemBagUnitCanUseItems(u) then
+    if TasItemBag__IgnoreNeedWhenCanNotUse and not TasItemBag_TasItemBagUnitCanUseItems(u) then
         return true
     endif
     // use Item Level as requirement. A lower Level can not equip it
-    if TasItemBag___ItemLevelRestriction and TasItemBag_TasItemBagUnitCanUseItems(u) and GetUnitLevel(u) < GetItemLevel(i) then
+    if TasItemBag__ItemLevelRestriction and TasItemBag_TasItemBagUnitCanUseItems(u) and GetUnitLevel(u) < GetItemLevel(i) then
         call DisplayTimedTextToPlayer(GetOwningPlayer(u), 0, 0, 20, GetItemName(i) + " needs " + GetLocalizedString("LEVEL") + " " + I2S(GetItemLevel(i)))
         set returnValue=false
     endif
     // itemCode can require an ability
-    if (LoadInteger(Table___ht, (TasItemBag_ItemAbilityNeed), (itemCode))) != 0 and GetUnitAbilityLevel(u, (LoadInteger(Table___ht, (TasItemBag_ItemAbilityNeed), (itemCode)))) == 0 then // INLINED!!
-        call DisplayTimedTextToPlayer(GetOwningPlayer(u), 0, 0, 20, GetItemName(i) + " needs Ability " + GetObjectName((LoadInteger(Table___ht, (TasItemBag_ItemAbilityNeed), (itemCode))))) // INLINED!!
+    if (LoadInteger(Table__ht, (TasItemBag_ItemAbilityNeed), (itemCode))) != 0 and GetUnitAbilityLevel(u, (LoadInteger(Table__ht, (TasItemBag_ItemAbilityNeed), (itemCode)))) == 0 then // INLINED!!
+        call DisplayTimedTextToPlayer(GetOwningPlayer(u), 0, 0, 20, GetItemName(i) + " needs Ability " + GetObjectName((LoadInteger(Table__ht, (TasItemBag_ItemAbilityNeed), (itemCode))))) // INLINED!!
         set returnValue=false
     endif
-    if TasItemBag_EquipClassLimit <= TasItemBag___CountItemsOfClass(u , GetItemType(i)) then
+    if TasItemBag_EquipClassLimit <= TasItemBag__CountItemsOfClass(u , GetItemType(i)) then
         call DisplayTimedTextToPlayer(GetOwningPlayer(u), 0, 0, 20, "To many Items of this Item-Class")
         return false
     endif
     return returnValue
 endfunction
 
-function TasItemBag___ItemBag2Equip takes unit u,item i returns nothing
+function TasItemBag__ItemBag2Equip takes unit u,item i returns nothing
     // Inventory Full?
     if UnitInventoryCount(u) >= UnitInventorySize(u) then
         return
     endif
     
     // unit can equip this, restrictions
-    if not TasItemBag___UnitCanEquipItem(u , i) then
+    if not TasItemBag__UnitCanEquipItem(u , i) then
         return
     endif
      
@@ -7761,11 +7761,11 @@ function TasItemBag___ItemBag2Equip takes unit u,item i returns nothing
     endif
     set TasItemBag_EquipNow=false
 endfunction
-function TasItemBag___ItemEquip2Bag takes unit u,item i returns nothing
+function TasItemBag__ItemEquip2Bag takes unit u,item i returns nothing
     call TasItemBagAddItem(u , i)
 endfunction
 
-function TasItemBag___BagPopupActionDrop takes nothing returns nothing
+function TasItemBag__BagPopupActionDrop takes nothing returns nothing
     local player p= GetTriggerPlayer()
     local integer pId= GetPlayerId(GetTriggerPlayer())
     if GetPlayerAlliance(GetOwningPlayer(TasItemBag_Selected[pId]), p, ALLIANCE_SHARED_CONTROL) then
@@ -7774,21 +7774,21 @@ function TasItemBag___BagPopupActionDrop takes nothing returns nothing
         endif
     endif
     call TasItemBagRemoveIndex(TasItemBag_Selected[pId] , TasItemBag_TransferIndex[pId] , true)
-    call TasItemBag___FrameLoseFocus()
+    call TasItemBag__FrameLoseFocus()
 endfunction
-function TasItemBag___BagPopupActionEquip takes nothing returns nothing
+function TasItemBag__BagPopupActionEquip takes nothing returns nothing
     local player p= GetTriggerPlayer()
     local integer pId= GetPlayerId(GetTriggerPlayer())
     if GetPlayerAlliance(GetOwningPlayer(TasItemBag_Selected[pId]), p, ALLIANCE_SHARED_CONTROL) then
-        call TasItemBag___ItemBag2Equip(TasItemBag_Selected[pId] , TasItemBag_TransferItem[pId])
+        call TasItemBag__ItemBag2Equip(TasItemBag_Selected[pId] , TasItemBag_TransferItem[pId])
         if GetLocalPlayer() == p then
             call BlzFrameSetVisible(BlzFrameGetParent(BlzGetTriggerFrame()), false)
         endif
     endif
-    call TasItemBag___FrameLoseFocus()
+    call TasItemBag__FrameLoseFocus()
 endfunction
 
-function TasItemBag___BagPopupActionSwap takes nothing returns nothing
+function TasItemBag__BagPopupActionSwap takes nothing returns nothing
     local player p= GetTriggerPlayer()
     local integer pId= GetPlayerId(GetTriggerPlayer())
     if GetPlayerAlliance(GetOwningPlayer(TasItemBag_Selected[pId]), p, ALLIANCE_SHARED_CONTROL) then
@@ -7797,15 +7797,15 @@ function TasItemBag___BagPopupActionSwap takes nothing returns nothing
         endif
         set TasItemBag_SwapIndex[pId]=TasItemBag_TransferIndex[pId]
     endif
-    call TasItemBag___FrameLoseFocus()
+    call TasItemBag__FrameLoseFocus()
 endfunction
 
-function TasItemBag___BagButtonAction takes nothing returns nothing
+function TasItemBag__BagButtonAction takes nothing returns nothing
     local player p= GetTriggerPlayer()
     local integer pId= GetPlayerId(GetTriggerPlayer())
     local integer bagIndex= S2I(BlzFrameGetText(BlzGetTriggerFrame())) + TasItemBag_Offset[pId]
     if GetPlayerAlliance(GetOwningPlayer(TasItemBag_Selected[pId]), p, ALLIANCE_SHARED_CONTROL) then
-        set TasItemBag_TransferItem[pId]=(LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,GetHandleId(TasItemBag_Selected[pId]))))), (bagIndex))) // INLINED!!
+        set TasItemBag_TransferItem[pId]=(LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,GetHandleId(TasItemBag_Selected[pId]))))), (bagIndex))) // INLINED!!
         set TasItemBag_TransferIndex[pId]=bagIndex
         if TasItemBag_SwapIndex[pId] > 0 then
             call TasItemBagSwap(TasItemBag_Selected[pId] , bagIndex , TasItemBag_SwapIndex[pId])
@@ -7813,13 +7813,13 @@ function TasItemBag___BagButtonAction takes nothing returns nothing
 
         elseif GetLocalPlayer() == p then
             call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPopUpPanel", 0), true)
-            call BlzFrameSetEnable(BlzGetFrameByName("TasItemBagPopUpButtonDrop", 0), TasItemBag_IgnoreUndropAble or ( TasItemBag___UnitCanDropItems(TasItemBag_Selected[pId]) and (BlzGetItemBooleanField((TasItemBag_TransferItem[pId]), ITEM_BF_CAN_BE_DROPPED)) )) // INLINED!!
+            call BlzFrameSetEnable(BlzGetFrameByName("TasItemBagPopUpButtonDrop", 0), TasItemBag_IgnoreUndropAble or ( TasItemBag__UnitCanDropItems(TasItemBag_Selected[pId]) and (BlzGetItemBooleanField((TasItemBag_TransferItem[pId]), ITEM_BF_CAN_BE_DROPPED)) )) // INLINED!!
             call BlzFrameSetPoint(BlzGetFrameByName("TasItemBagPopUpPanel", 0), FRAMEPOINT_TOPLEFT, BlzGetTriggerFrame(), FRAMEPOINT_TOPRIGHT, 0.005, 0)
         endif
     endif
-    call TasItemBag___FrameLoseFocus()
+    call TasItemBag__FrameLoseFocus()
 endfunction
-function TasItemBag___WheelAction takes nothing returns nothing
+function TasItemBag__WheelAction takes nothing returns nothing
     local boolean upwards= BlzGetTriggerFrameValue() > 0
     if GetLocalPlayer() == GetTriggerPlayer() then
         if upwards then
@@ -7829,7 +7829,7 @@ function TasItemBag___WheelAction takes nothing returns nothing
         endif
     endif
 endfunction
-function TasItemBag___CloseButtonAction takes nothing returns nothing
+function TasItemBag__CloseButtonAction takes nothing returns nothing
     local integer pId= GetPlayerId(GetTriggerPlayer())
     set TasItemBag_SwapIndex[pId]=0
     set TasItemBag_TransferIndex[pId]=0
@@ -7838,9 +7838,9 @@ function TasItemBag___CloseButtonAction takes nothing returns nothing
         call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPanel", 0), false)
         call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPopUpPanel", 0), false)
     endif
-    call TasItemBag___FrameLoseFocus()
+    call TasItemBag__FrameLoseFocus()
 endfunction
-function TasItemBag___ShowButtonAction takes nothing returns nothing
+function TasItemBag__ShowButtonAction takes nothing returns nothing
     local integer pId= GetPlayerId(GetTriggerPlayer())
     set TasItemBag_SwapIndex[pId]=0
     set TasItemBag_TransferIndex[pId]=0
@@ -7854,34 +7854,34 @@ function TasItemBag___ShowButtonAction takes nothing returns nothing
             call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPopUpPanel", 0), false)
         endif
     endif
-    call TasItemBag___FrameLoseFocus()
+    call TasItemBag__FrameLoseFocus()
 endfunction
-function TasItemBag___SliderAction takes nothing returns nothing
-    set TasItemBag_Offset[GetPlayerId(GetTriggerPlayer())]=R2I(BlzGetTriggerFrameValue() * TasItemBag___Cols)
+function TasItemBag__SliderAction takes nothing returns nothing
+    set TasItemBag_Offset[GetPlayerId(GetTriggerPlayer())]=R2I(BlzGetTriggerFrameValue() * TasItemBag__Cols)
 endfunction
 
-function TasItemBag___SelectAction takes nothing returns nothing
+function TasItemBag__SelectAction takes nothing returns nothing
     local integer pId= GetPlayerId(GetTriggerPlayer())
     set TasItemBag_Selected[pId]=GetTriggerUnit()
     set TasItemBag_Offset[pId]=0
 endfunction
-function TasItemBag___ESCAction takes nothing returns nothing
+function TasItemBag__ESCAction takes nothing returns nothing
     if GetLocalPlayer() == GetTriggerPlayer() then
         call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPanel", 0), false)
     endif
 endfunction
-function TasItemBag___ItemGainTimerAction takes nothing returns nothing
+function TasItemBag__ItemGainTimerAction takes nothing returns nothing
     loop
-        exitwhen TasItemBag___ItemGainTimerCount <= 0
-        if UnitHasItem(TasItemBag___ItemGainTimerUnit[TasItemBag___ItemGainTimerCount], TasItemBag___ItemGainTimerItem[TasItemBag___ItemGainTimerCount]) then
-            call TasItemBagAddItem((TasItemBag___ItemGainTimerUnit[TasItemBag___ItemGainTimerCount] ) , ( TasItemBag___ItemGainTimerItem[TasItemBag___ItemGainTimerCount])) // INLINED!!
+        exitwhen TasItemBag__ItemGainTimerCount <= 0
+        if UnitHasItem(TasItemBag__ItemGainTimerUnit[TasItemBag__ItemGainTimerCount], TasItemBag__ItemGainTimerItem[TasItemBag__ItemGainTimerCount]) then
+            call TasItemBagAddItem((TasItemBag__ItemGainTimerUnit[TasItemBag__ItemGainTimerCount] ) , ( TasItemBag__ItemGainTimerItem[TasItemBag__ItemGainTimerCount])) // INLINED!!
         endif
-        set TasItemBag___ItemGainTimerCount=TasItemBag___ItemGainTimerCount - 1
+        set TasItemBag__ItemGainTimerCount=TasItemBag__ItemGainTimerCount - 1
     endloop
 endfunction
-function TasItemBag___ItemGainAction takes nothing returns nothing
+function TasItemBag__ItemGainAction takes nothing returns nothing
     // dummies do not use the bag feature
-    if TasItemBag_IgnoreDummy and GetUnitAbilityLevel(GetTriggerUnit(), TasItemBag___DummySkill) > 0 then
+    if TasItemBag_IgnoreDummy and GetUnitAbilityLevel(GetTriggerUnit(), TasItemBag__DummySkill) > 0 then
         return
     endif
 
@@ -7907,15 +7907,15 @@ function TasItemBag___ItemGainAction takes nothing returns nothing
         //call TimerStart(ItemGainTimer, 0, false, function ItemGainTimerAction)
     //endif
 endfunction
-function TasItemBag___ItemUseAction takes nothing returns nothing
-    if TasItemBag_IgnoreDummy and GetUnitAbilityLevel(GetTriggerUnit(), TasItemBag___DummySkill) > 0 then
+function TasItemBag__ItemUseAction takes nothing returns nothing
+    if TasItemBag_IgnoreDummy and GetUnitAbilityLevel(GetTriggerUnit(), TasItemBag__DummySkill) > 0 then
         return
     endif
     if TasItemBag_MoveUsedItemsIntoBag then
         call TasItemBagAddItem((GetTriggerUnit() ) , ( GetManipulatedItem())) // INLINED!!
     endif
 endfunction
-function TasItemBag___UnitDeathAction takes nothing returns nothing
+function TasItemBag__UnitDeathAction takes nothing returns nothing
     local unit u= GetTriggerUnit()
     local integer unitHandle= GetHandleId(u)
     local item i
@@ -7925,19 +7925,19 @@ function TasItemBag___UnitDeathAction takes nothing returns nothing
 
     
     
-    set loopA=(LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) // INLINED!!
+    set loopA=(LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) // INLINED!!
     if loopA > 0 then
-        set dropOnDeath=TasItemBag___DropsOnDeath(u)
-        set canDropItems=TasItemBag___UnitCanDropItems(u)
+        set dropOnDeath=TasItemBag__DropsOnDeath(u)
+        set canDropItems=TasItemBag__UnitCanDropItems(u)
             
         loop
             exitwhen loopA <= 0
             set loopA=loopA - 1
         
-            set i=(LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (loopA))) // INLINED!!
+            set i=(LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (loopA))) // INLINED!!
             if dropOnDeath then
                 call TasItemBagRemoveIndex(u , loopA , true)
-                if TasItemBag___DestroyUndropAbleItems and ( not (BlzGetItemBooleanField((i), ITEM_BF_CAN_BE_DROPPED)) or not canDropItems ) then // INLINED!!
+                if TasItemBag__DestroyUndropAbleItems and ( not (BlzGetItemBooleanField((i), ITEM_BF_CAN_BE_DROPPED)) or not canDropItems ) then // INLINED!!
                     call RemoveItem(i)
                 endif
             endif
@@ -7949,10 +7949,10 @@ function TasItemBag___UnitDeathAction takes nothing returns nothing
     set u=null
     set i=null
 endfunction
-function TasItemBag___UpdateUI takes nothing returns nothing
+function TasItemBag__UpdateUI takes nothing returns nothing
     local integer pId= GetPlayerId(GetLocalPlayer())
     local integer unitHandle= GetHandleId(TasItemBag_Selected[pId])
-    local integer itemCount= (LoadInteger(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) // INLINED!!
+    local integer itemCount= (LoadInteger(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (0))) // INLINED!!
     local integer offset= TasItemBag_Offset[pId]
     local integer max
     local integer itemCode
@@ -7977,10 +7977,10 @@ function TasItemBag___UpdateUI takes nothing returns nothing
         if itemCount > 0 then
 
             // scroll by rows
-            set max=IMaxBJ(0, ( itemCount + TasItemBag___Cols - TasItemBag___Cols * TasItemBag___Rows ) / TasItemBag___Cols)
+            set max=IMaxBJ(0, ( itemCount + TasItemBag__Cols - TasItemBag__Cols * TasItemBag__Rows ) / TasItemBag__Cols)
             
             call BlzFrameSetMinMaxValue(BlzGetFrameByName("TasItemBagSlider", 0), 0, max)
-            call BlzFrameSetText(BlzGetFrameByName("TasItemBagSliderTooltip", 0), I2S(R2I(offset / TasItemBag___Cols)) + "/" + I2S(max))
+            call BlzFrameSetText(BlzGetFrameByName("TasItemBagSliderTooltip", 0), I2S(R2I(offset / TasItemBag__Cols)) + "/" + I2S(max))
         else
             call BlzFrameSetMinMaxValue(BlzGetFrameByName("TasItemBagSlider", 0), 0, 0)
             call BlzFrameSetText(BlzGetFrameByName("TasItemBagSliderTooltip", 0), "")
@@ -7988,18 +7988,18 @@ function TasItemBag___UpdateUI takes nothing returns nothing
 
         set i=1
         loop
-            exitwhen i > TasItemBag___Cols * TasItemBag___Rows
+            exitwhen i > TasItemBag__Cols * TasItemBag__Rows
             set dataIndex=i + offset
             call BlzFrameSetEnable(BlzGetFrameByName("TasItemBagSlotButton", i), dataIndex <= itemCount)
             if dataIndex <= itemCount then
-                set it=(LoadItemHandle(Table___ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (dataIndex))) // INLINED!!
+                set it=(LoadItemHandle(Table__ht, (((s__HashTable__getindex(TasItemBag_BagItem,unitHandle)))), (dataIndex))) // INLINED!!
                 set itemCode=GetItemTypeId(it)
                 call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdrop", i), BlzGetAbilityIcon(itemCode), 0, true)
                 call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdropPushed", i), BlzGetAbilityIcon(itemCode), 0, true)
                 if TasItemBag_AddNeedText then
                     set text="|nNEED " + GetLocalizedString("REQUIREDLEVELTOOLTIP") + " " + I2S(GetItemLevel(it))
-                    if (LoadInteger(Table___ht, (TasItemBag_ItemAbilityNeed), (itemCode))) > 0 then // INLINED!!
-                        set text=text + "|nNEED " + GetObjectName((LoadInteger(Table___ht, (TasItemBag_ItemAbilityNeed), (itemCode)))) // INLINED!!
+                    if (LoadInteger(Table__ht, (TasItemBag_ItemAbilityNeed), (itemCode))) > 0 then // INLINED!!
+                        set text=text + "|nNEED " + GetObjectName((LoadInteger(Table__ht, (TasItemBag_ItemAbilityNeed), (itemCode)))) // INLINED!!
                     endif
                 endif
 
@@ -8021,14 +8021,14 @@ function TasItemBag___UpdateUI takes nothing returns nothing
     set it=null
 endfunction
      
-function TasItemBag___CreateTextTooltip takes framehandle frame,string wantedframeName,integer wantedCreateContext,string text returns framehandle
+function TasItemBag__CreateTextTooltip takes framehandle frame,string wantedframeName,integer wantedCreateContext,string text returns framehandle
     // this FRAME is important when the Box is outside of 4:3 it can be limited to 4:3.
     local framehandle toolTipParent= BlzCreateFrameByType("FRAME", "", BlzGetFrameByName("TasItemBagTooltipPanel", 0), "", 0)
     local framehandle toolTipBox= BlzCreateFrame("TasToolTipBox", toolTipParent, 0, 0)
     local framehandle toolTip= BlzCreateFrameByType("TEXT", wantedframeName, toolTipBox, "TasTooltipText", wantedCreateContext)
 
     if TasItemBag_TooltipFixedPosition then
-        call BlzFrameSetAbsPoint(toolTip, TasItemBag___TooltipFixedPositionPoint, TasItemBag___TooltipFixedPositionX, TasItemBag___TooltipFixedPositionY)
+        call BlzFrameSetAbsPoint(toolTip, TasItemBag__TooltipFixedPositionPoint, TasItemBag__TooltipFixedPositionX, TasItemBag__TooltipFixedPositionY)
     else
         call BlzFrameSetPoint(toolTip, FRAMEPOINT_TOP, frame, FRAMEPOINT_BOTTOM, 0, - 0.008)
     endif
@@ -8037,11 +8037,11 @@ function TasItemBag___CreateTextTooltip takes framehandle frame,string wantedfra
     call BlzFrameSetPoint(toolTipBox, FRAMEPOINT_BOTTOMRIGHT, toolTip, FRAMEPOINT_BOTTOMRIGHT, 0.008, - 0.008)
     call BlzFrameSetText(toolTip, text)
     call BlzFrameSetTooltip(frame, toolTipParent)
-    call BlzFrameSetSize(toolTip, TasItemBag___TooltipWidth, 0)
+    call BlzFrameSetSize(toolTip, TasItemBag__TooltipWidth, 0)
     return toolTip
 endfunction
 
-function TasItemBag___InitFrames takes nothing returns nothing
+function TasItemBag__InitFrames takes nothing returns nothing
         local boolean loaded= BlzLoadTOCFile("war3mapImported/TasItemBag.toc")
         local framehandle panel
         local framehandle frame
@@ -8052,7 +8052,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         local boolean backup
 
         set panel=BlzCreateFrameByType("BUTTON", "TasItemBagPanel", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
-        call BlzFrameSetAbsPoint(panel, TasItemBag___Pos, TasItemBag___PosX, TasItemBag___PosY)
+        call BlzFrameSetAbsPoint(panel, TasItemBag__Pos, TasItemBag__PosX, TasItemBag__PosY)
         call BlzFrameSetAllPoints(BlzCreateFrame("TasItemBagBox", panel, 0, 0), panel)
         call BlzTriggerRegisterFrameEvent(TasItemBag_TriggerUIWheel, panel, FRAMEEVENT_MOUSE_WHEEL)
         call BlzCreateFrameByType("BUTTON", "TasItemBagTooltipPanel", panel, "", 0)
@@ -8060,7 +8060,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         set count=0
         set buttonIndex=1
         loop
-            exitwhen buttonIndex > TasItemBag___Rows * TasItemBag___Cols
+            exitwhen buttonIndex > TasItemBag__Rows * TasItemBag__Cols
         
             set frame=BlzCreateFrame("TasItemBagSlot", panel, 0, buttonIndex)
             set frame2=BlzGetFrameByName("TasItemBagSlotButton", buttonIndex)
@@ -8070,14 +8070,14 @@ function TasItemBag___InitFrames takes nothing returns nothing
             set frame2=BlzGetFrameByName("TasItemBagSlotButtonOverLay", buttonIndex)
             set frame2=BlzGetFrameByName("TasItemBagSlotButtonOverLayText", buttonIndex)
             set frame3=frame2
-            call TasItemBag___CreateTextTooltip(BlzGetFrameByName("TasItemBagSlotButton", buttonIndex) , "TasItemBagSlotButtonTooltip" , buttonIndex , "")
+            call TasItemBag__CreateTextTooltip(BlzGetFrameByName("TasItemBagSlotButton", buttonIndex) , "TasItemBagSlotButtonTooltip" , buttonIndex , "")
             call BlzTriggerRegisterFrameEvent(TasItemBag_TriggerUIBagButton, BlzGetFrameByName("TasItemBagSlotButton", buttonIndex), FRAMEEVENT_CONTROL_CLICK)
             call BlzTriggerRegisterFrameEvent(TasItemBag_TriggerUIWheel, BlzGetFrameByName("TasItemBagSlotButton", buttonIndex), FRAMEEVENT_MOUSE_WHEEL)
             call BlzFrameSetText(BlzGetFrameByName("TasItemBagSlotButton", buttonIndex), I2S(buttonIndex))
             
             set count=count + 1
-            if count > TasItemBag___Cols then
-                call BlzFrameSetPoint(frame, FRAMEPOINT_TOPLEFT, BlzGetFrameByName("TasItemBagSlot", buttonIndex - TasItemBag___Cols), FRAMEPOINT_BOTTOMLEFT, 0, - 0.002)
+            if count > TasItemBag__Cols then
+                call BlzFrameSetPoint(frame, FRAMEPOINT_TOPLEFT, BlzGetFrameByName("TasItemBagSlot", buttonIndex - TasItemBag__Cols), FRAMEPOINT_BOTTOMLEFT, 0, - 0.002)
                 set count=1
             elseif buttonIndex > 1 then
                 call BlzFrameSetPoint(frame, FRAMEPOINT_TOPLEFT, BlzGetFrameByName("TasItemBagSlot", buttonIndex - 1), FRAMEPOINT_TOPRIGHT, 0.002, 0)
@@ -8087,7 +8087,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         if GetHandleId(frame) == 0 then
             call BJDebugMsg("Error - Creating TasItemBagSlot")
         endif
-        call BlzFrameSetSize(panel, BlzFrameGetWidth(frame) * TasItemBag___Cols + ( TasItemBag___Cols - 1 ) * 0.002 + 0.02, BlzFrameGetHeight(frame) * TasItemBag___Rows + ( TasItemBag___Rows - 1 ) * 0.002 + 0.012)
+        call BlzFrameSetSize(panel, BlzFrameGetWidth(frame) * TasItemBag__Cols + ( TasItemBag__Cols - 1 ) * 0.002 + 0.02, BlzFrameGetHeight(frame) * TasItemBag__Rows + ( TasItemBag__Rows - 1 ) * 0.002 + 0.012)
         call BlzFrameSetPoint(BlzGetFrameByName("TasItemBagSlot", 1), FRAMEPOINT_TOPLEFT, panel, FRAMEPOINT_TOPLEFT, 0.006, - 0.006)
 
         set frame=BlzCreateFrameByType("SLIDER", "TasItemBagSlider", panel, "QuestMainListScrollBar", 0)
@@ -8097,7 +8097,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         //BlzFrameSetStepSize(frame, Cols)
         set backup=TasItemBag_TooltipFixedPosition
         set TasItemBag_TooltipFixedPosition=false
-        call TasItemBag___CreateTextTooltip(frame , "TasItemBagSliderTooltip" , 0 , "")
+        call TasItemBag__CreateTextTooltip(frame , "TasItemBagSliderTooltip" , 0 , "")
         call BlzFrameSetSize(BlzGetFrameByName("TasItemBagSliderTooltip", 0), 0, 0)
         set TasItemBag_TooltipFixedPosition=backup
         call BlzTriggerRegisterFrameEvent(TasItemBag_TriggerUIWheel, frame, FRAMEEVENT_MOUSE_WHEEL)
@@ -8106,10 +8106,10 @@ function TasItemBag___InitFrames takes nothing returns nothing
 
         // show Buttons
         set frame=BlzCreateFrame("TasItemBagSlot", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0, 0)
-        call BlzFrameSetAbsPoint(frame, TasItemBag___ShowButtonPos, TasItemBag___ShowButtonPosX, TasItemBag___ShowButtonPosY)
-        call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdrop", 0), TasItemBag___ShowButtonTexture, 0, false)
-        call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdropDisabled", 0), TasItemBag___ShowButtonTextureDisabled, 0, false)
-        call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdropPushed", 0), TasItemBag___ShowButtonTexture, 0, false)
+        call BlzFrameSetAbsPoint(frame, TasItemBag__ShowButtonPos, TasItemBag__ShowButtonPosX, TasItemBag__ShowButtonPosY)
+        call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdrop", 0), TasItemBag__ShowButtonTexture, 0, false)
+        call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdropDisabled", 0), TasItemBag__ShowButtonTextureDisabled, 0, false)
+        call BlzFrameSetTexture(BlzGetFrameByName("TasItemBagSlotButtonBackdropPushed", 0), TasItemBag__ShowButtonTexture, 0, false)
         set frame2=BlzGetFrameByName("TasItemBagSlotButtonOverLay", 0)
         set frame2=BlzGetFrameByName("TasItemBagSlotButtonOverLayText", 0)
         set frame3=frame2
@@ -8151,22 +8151,22 @@ function TasItemBag___InitFrames takes nothing returns nothing
         call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPopUpPanel", 0), false)
         call BlzFrameSetVisible(BlzGetFrameByName("TasItemBagPanel", 0), false)
     endfunction
-    function TasItemBag___At0s takes nothing returns nothing
+    function TasItemBag__At0s takes nothing returns nothing
         local integer i
-        set TasItemBag___AbilityFieldDrop=ConvertAbilityIntegerLevelField('inv2')
-        set TasItemBag___AbilityFieldUse=ConvertAbilityIntegerLevelField('inv3')
-        set TasItemBag___AbilityFieldCanDrop=ConvertAbilityIntegerLevelField('inv5')
+        set TasItemBag__AbilityFieldDrop=ConvertAbilityIntegerLevelField('inv2')
+        set TasItemBag__AbilityFieldUse=ConvertAbilityIntegerLevelField('inv3')
+        set TasItemBag__AbilityFieldCanDrop=ConvertAbilityIntegerLevelField('inv5')
         
         set TasItemBag_ItemAbilityNeed=s__Table_create()
         set TasItemBag_ItemIsInBag=s__Table_create()
         
         set TasItemBag_BagItem=(s__Table_create()) // INLINED!!
         set TasItemBag_TimerUpdate=CreateTimer()
-        call TimerStart(TasItemBag_TimerUpdate, 0.1, true, function TasItemBag___UpdateUI)
+        call TimerStart(TasItemBag_TimerUpdate, 0.1, true, function TasItemBag__UpdateUI)
         
         set TasItemBag_Trigger=CreateTrigger()
         call TriggerRegisterAnyUnitEventBJ(TasItemBag_Trigger, EVENT_PLAYER_UNIT_SELECTED)
-        call TriggerAddAction(TasItemBag_Trigger, function TasItemBag___SelectAction)
+        call TriggerAddAction(TasItemBag_Trigger, function TasItemBag__SelectAction)
         
         set TasItemBag_TriggerESC=CreateTrigger()
         set i=0
@@ -8176,62 +8176,62 @@ function TasItemBag___InitFrames takes nothing returns nothing
             exitwhen i >= bj_MAX_PLAYERS
         endloop
         
-        call TriggerAddAction(TasItemBag_TriggerESC, function TasItemBag___ESCAction)
+        call TriggerAddAction(TasItemBag_TriggerESC, function TasItemBag__ESCAction)
 
         
         set TasItemBag_TriggerItemGain=CreateTrigger()
         call TriggerRegisterAnyUnitEventBJ(TasItemBag_TriggerItemGain, EVENT_PLAYER_UNIT_PICKUP_ITEM)
-        call TriggerAddAction(TasItemBag_TriggerItemGain, function TasItemBag___ItemGainAction)
+        call TriggerAddAction(TasItemBag_TriggerItemGain, function TasItemBag__ItemGainAction)
 
         set TasItemBag_TriggerItemUse=CreateTrigger()
         call TriggerRegisterAnyUnitEventBJ(TasItemBag_TriggerItemUse, EVENT_PLAYER_UNIT_USE_ITEM)
-        call TriggerAddAction(TasItemBag_TriggerItemUse, function TasItemBag___ItemUseAction)
+        call TriggerAddAction(TasItemBag_TriggerItemUse, function TasItemBag__ItemUseAction)
 
         set TasItemBag_TriggerUnitDeath=CreateTrigger()
         call TriggerRegisterAnyUnitEventBJ(TasItemBag_TriggerUnitDeath, EVENT_PLAYER_UNIT_DEATH)
-        call TriggerAddAction(TasItemBag_TriggerUnitDeath, function TasItemBag___UnitDeathAction)
+        call TriggerAddAction(TasItemBag_TriggerUnitDeath, function TasItemBag__UnitDeathAction)
 
 
         set TasItemBag_TriggerUIOpen=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUIOpen, function TasItemBag___ShowButtonAction)
+        call TriggerAddAction(TasItemBag_TriggerUIOpen, function TasItemBag__ShowButtonAction)
 
         set TasItemBag_TriggerUIClose=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUIClose, function TasItemBag___CloseButtonAction)
+        call TriggerAddAction(TasItemBag_TriggerUIClose, function TasItemBag__CloseButtonAction)
 
         set TasItemBag_TriggerUIBagButton=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUIBagButton, function TasItemBag___BagButtonAction)
+        call TriggerAddAction(TasItemBag_TriggerUIBagButton, function TasItemBag__BagButtonAction)
 
         set TasItemBag_TriggerUISlider=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUISlider, function TasItemBag___SliderAction)
+        call TriggerAddAction(TasItemBag_TriggerUISlider, function TasItemBag__SliderAction)
 
         set TasItemBag_TriggerUIWheel=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUIWheel, function TasItemBag___WheelAction)
+        call TriggerAddAction(TasItemBag_TriggerUIWheel, function TasItemBag__WheelAction)
 
         set TasItemBag_TriggerUIEquip=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUIEquip, function TasItemBag___BagPopupActionEquip)
+        call TriggerAddAction(TasItemBag_TriggerUIEquip, function TasItemBag__BagPopupActionEquip)
 
         set TasItemBag_TriggerUIDrop=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUIDrop, function TasItemBag___BagPopupActionDrop)
+        call TriggerAddAction(TasItemBag_TriggerUIDrop, function TasItemBag__BagPopupActionDrop)
 
         set TasItemBag_TriggerUISwap=CreateTrigger()
-        call TriggerAddAction(TasItemBag_TriggerUISwap, function TasItemBag___BagPopupActionSwap)
+        call TriggerAddAction(TasItemBag_TriggerUISwap, function TasItemBag__BagPopupActionSwap)
 
-        call TasItemBag___UserInit()
-        call TasItemBag___InitFrames()
+        call TasItemBag__UserInit()
+        call TasItemBag__InitFrames()
 
 
 
     endfunction
-    function TasItemBag___init_function takes nothing returns nothing
-        set TasItemBag___ItemGainTimer=CreateTimer()
-        call TimerStart(TasItemBag___ItemGainTimer, 0, false, function TasItemBag___At0s)
+    function TasItemBag__init_function takes nothing returns nothing
+        set TasItemBag__ItemGainTimer=CreateTimer()
+        call TimerStart(TasItemBag__ItemGainTimer, 0, false, function TasItemBag__At0s)
 
     endfunction
 
 //library TasItemBag ends
 //library NSLSaveLoadExecutor:
     
-    function NSLSaveLoadExecutor___LoadSaveSlot takes player p,string charId returns nothing
+    function NSLSaveLoadExecutor__LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -8248,7 +8248,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         endif
     endfunction
 
-    function NSLSaveLoadExecutor___OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
+    function NSLSaveLoadExecutor__OnPlayerCodeGenerated takes integer player_id,string generated_code returns nothing
         local string charId= NSL_PlayerCharId[player_id]
 		call s__SaveFile_create(Player(player_id) , charId , charId , generated_code)
         if ( player_id == GetPlayerId(GetLocalPlayer()) ) then
@@ -8257,7 +8257,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     endfunction
     
-    function NSLSaveLoadExecutor___CheckSaveCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor__CheckSaveCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerSave ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Save Error]|r You are not allowed to save.")) // INLINED!!
             return
@@ -8267,13 +8267,13 @@ function TasItemBag___InitFrames takes nothing returns nothing
         set udg_NSL_EventCheckSaveCompleted=0.0
     endfunction
     
-    function NSLSaveLoadExecutor___CheckLoadCompleted takes nothing returns nothing
+    function NSLSaveLoadExecutor__CheckLoadCompleted takes nothing returns nothing
         if ( not udg_NSL_AllowPlayerLoad ) then
             call DisplayTimedTextToPlayer(Player((GetPlayerId(udg_NSL_AllowCheckPlayer) )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r You are not allowed to load.")) // INLINED!!
             return
         endif
 
-        call NSLSaveLoadExecutor___LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
+        call NSLSaveLoadExecutor__LoadSaveSlot(udg_NSL_AllowCheckPlayer , NSL_PlayerCharId[GetPlayerId(udg_NSL_AllowCheckPlayer)])
         
         set udg_NSL_EventCheckLoadCompleted=0.0
     endfunction
@@ -8292,14 +8292,14 @@ function TasItemBag___InitFrames takes nothing returns nothing
         call TriggerExecute(udg_NSL_TriggerCheckSave)
     endfunction
 
-    function NSLSaveLoadExecutor___Init takes nothing returns nothing
+    function NSLSaveLoadExecutor__Init takes nothing returns nothing
         local trigger t= CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckSaveCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckSaveCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckSaveCompleted)
         
         set t=CreateTrigger()
         call h__TriggerRegisterVariableEvent(t, "udg_NSL_EventCheckLoadCompleted", EQUAL, 1.0)
-        call TriggerAddAction(t, function NSLSaveLoadExecutor___CheckLoadCompleted)
+        call TriggerAddAction(t, function NSLSaveLoadExecutor__CheckLoadCompleted)
     endfunction
 
 
@@ -8322,22 +8322,22 @@ function TasItemBag___InitFrames takes nothing returns nothing
         call NSLSaveLoadExecutor_Save(GetPlayerId(savingPlayer) , SubString(input, 6, 999))
     endfunction
 
-    function NSLUtils___OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
+    function NSLUtils__OnPlayerCodeLoaded takes integer player_id,boolean is_valid,integer loader returns nothing
         if ( is_valid ) then
-            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils___format == null ) then
+            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils__format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
                 return
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
         endif
     endfunction
         
-    function NSLUtils___LoadSaveSlot takes player p,string charId returns nothing
+    function NSLUtils__LoadSaveSlot takes player p,string charId returns nothing
         local string s
         local integer user= (GetPlayerId((p))) // INLINED!!
         
@@ -8371,7 +8371,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         call NSLSaveLoadExecutor_Load(GetPlayerId(loadingPlayer) , SubString(input, 6, 999))
 	endfunction
     
-    function NSLUtils___LoadSaveSlot_OnLoadCount takes nothing returns nothing
+    function NSLUtils__LoadSaveSlot_OnLoadCount takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -8381,7 +8381,7 @@ function TasItemBag___InitFrames takes nothing returns nothing
         set NSL_PlayerLoadingCode[s__User_id[user]]=""
     endfunction
     
-    function NSLUtils___LoadSaveSlot_OnLoad takes nothing returns nothing
+    function NSLUtils__LoadSaveSlot_OnLoad takes nothing returns nothing
         local player p= GetTriggerPlayer()
         local string data= BlzGetTriggerSyncData()
         local integer user= (GetPlayerId((p))) // INLINED!!
@@ -8395,11 +8395,11 @@ function TasItemBag___InitFrames takes nothing returns nothing
         endif
     endfunction
     
- function NSLUtils___Init takes nothing returns nothing
+ function NSLUtils__Init takes nothing returns nothing
   local integer i= 0
 
-call TriggerAddAction(s__SyncHelper___Sync_TriggerCount, (function NSLUtils___LoadSaveSlot_OnLoadCount)) // INLINED!!
-call TriggerAddAction(s__SyncHelper___Sync_Trigger, (function NSLUtils___LoadSaveSlot_OnLoad)) // INLINED!!
+call TriggerAddAction(s__SyncHelper__Sync_TriggerCount, (function NSLUtils__LoadSaveSlot_OnLoadCount)) // INLINED!!
+call TriggerAddAction(s__SyncHelper__Sync_Trigger, (function NSLUtils__LoadSaveSlot_OnLoad)) // INLINED!!
 
 		loop
             if ( NSL_UseSimpleSaveLoad ) then
@@ -70490,15 +70490,15 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs47451937")
-call ExecuteFunc("GetMainSelectedUnit__init_function")
-call ExecuteFunc("NSLHelper___Init")
-call ExecuteFunc("TasUnitBagGUI___init_function")
-call ExecuteFunc("NSLImpl___Init")
-call ExecuteFunc("NSLSaveLoad___Init")
-call ExecuteFunc("TasItemBag___init_function")
-call ExecuteFunc("NSLSaveLoadExecutor___Init")
-call ExecuteFunc("NSLUtils___Init")
+call ExecuteFunc("jasshelper__initstructs55734468")
+call ExecuteFunc("GetMainSelectedUnit___init_function")
+call ExecuteFunc("NSLHelper__Init")
+call ExecuteFunc("TasUnitBagGUI__init_function")
+call ExecuteFunc("NSLImpl__Init")
+call ExecuteFunc("NSLSaveLoad__Init")
+call ExecuteFunc("TasItemBag__init_function")
+call ExecuteFunc("NSLSaveLoadExecutor__Init")
+call ExecuteFunc("NSLUtils__Init")
 
     call InitGlobals()
     call InitCustomTriggers()
@@ -70557,8 +70557,8 @@ local integer player_id=f__arg_integer1
 			set s__NSL_Code_code_length[inst]=0
 			set s__NSL_Code_value_count[inst]=0
             set s__NSL_Code_read_offset[inst]=0
-			call FlushChildHashtable(NSLSaveLoad___NSL_Hashtable, player_id)
-			call FlushChildHashtable(NSLSaveLoad___NSL_HashtableValue, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_Hashtable, player_id)
+			call FlushChildHashtable(NSLSaveLoad__NSL_HashtableValue, player_id)
 set f__result_integer= inst
    return true
 endfunction
@@ -70569,8 +70569,8 @@ local integer size=f__arg_integer2
             if ( value < 0 ) then
                 call BJDebugMsg("|cffff3333[Error]|r Attempting to save negative value !")
             endif
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
-			call SaveInteger(NSLSaveLoad___NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2, value)
+			call SaveInteger(NSLSaveLoad__NSL_HashtableValue, s__NSL_Code_player_id[this], s__NSL_Code_value_count[this] * 2 + 1, size)
 			set s__NSL_Code_value_count[this]=s__NSL_Code_value_count[this] + 1
    return true
 endfunction
@@ -70584,15 +70584,15 @@ return true
 				call s__NSL_Code_GenerateImpl(this)
 return true
 			endif
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
-			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar) != 0 ) then
-				call s__NSL_Code_Pad(this,NSLSaveLoad___NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad___NSL_BitPerChar))
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
+			if ( ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar) != 0 ) then
+				call s__NSL_Code_Pad(this,NSLSaveLoad__NSL_BitPerChar - ModuloInteger(s__NSL_Code_bits_count[this], NSLSaveLoad__NSL_BitPerChar))
 			endif
 			set s__NSL_Code_is_started[this]=true
-			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad___NSL_CharsetLen)
+			set s__NSL_Code_code_key[this]=ModuloInteger(GetRandomInt(1, 2147483647), NSLSaveLoad__NSL_CharsetLen)
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___GenerateTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__GenerateTimerCallback)
    return true
 endfunction
 function sa__NSL_Code_Load takes nothing returns boolean
@@ -70602,33 +70602,33 @@ local integer this=f__arg_this
 set f__result_boolean= true
 return true
 			endif
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, GetHandleId(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad___NSL_HT_KEY_CODE_ID, this)
-			call SaveInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad___NSL_HT_KEY_PROGRESS_INDEX, 0)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, GetHandleId(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]]), NSLSaveLoad__NSL_HT_KEY_CODE_ID, this)
+			call SaveInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[this], NSLSaveLoad__NSL_HT_KEY_PROGRESS_INDEX, 0)
 			set s__NSL_Code_is_started[this]=true
 			set s__NSL_Code_player_code[this]=s__NSL_Code_player_code[this]
 			set s__NSL_Code_code_length[this]=StringLength(s__NSL_Code_player_code[this]) - 7
-			set s__NSL_Code_player_hash[this]=NSLSaveLoad___GetPlayerHash(s__NSL_Code_player_id[this])
-			set s__NSL_Code_code_key[this]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
+			set s__NSL_Code_player_hash[this]=NSLSaveLoad__GetPlayerHash(s__NSL_Code_player_id[this])
+			set s__NSL_Code_code_key[this]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 6, s__NSL_Code_code_length[this] + 7))
 			set s__NSL_Code_code_hash[this]=s__NSL_Code_code_key[this]
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
-			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad___IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad___NSL_CharsetLen) ) ) then
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this], s__NSL_Code_code_length[this] + 1))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+1]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 1, s__NSL_Code_code_length[this] + 2))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+2]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 2, s__NSL_Code_code_length[this] + 3))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 3, s__NSL_Code_code_length[this] + 4))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 4, s__NSL_Code_code_length[this] + 5))
+			set s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5]=NSLSaveLoad__IndexOf(SubString(s__NSL_Code_player_code[this], s__NSL_Code_code_length[this] + 5, s__NSL_Code_code_length[this] + 6))
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+3] != ( ModuloInteger(s__NSL_Code_player_hash[this], NSLSaveLoad__NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+4] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 4, NSLSaveLoad__NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad___NSL_CharsetLen) ) ) then
+			if ( s___NSL_Code_security_hash[s__NSL_Code_security_hash[this]+5] != ( ModuloInteger(s__NSL_Code_player_hash[this] / 8, NSLSaveLoad__NSL_CharsetLen) ) ) then
 set f__result_boolean= false
 return true
 			endif
-			call TimerStart(NSLSaveLoad___NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad___LoadTimerCallback)
+			call TimerStart(NSLSaveLoad__NSL_Timers[s__NSL_Code_player_id[this]], 0.0, false, function NSLSaveLoad__LoadTimerCallback)
 set f__result_boolean= true
    return true
 endfunction
@@ -70640,8 +70640,8 @@ local integer size=f__arg_integer1
             local integer exponent= ( last_index - s__NSL_Code_read_offset[this] ) - 1
             local integer i= s__NSL_Code_read_offset[this]
             loop
-                if ( (LoadInteger(NSLSaveLoad___NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad___NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
-                    set value=value + (NSLHelper___TWO_POW_CACHE[(exponent)]) // INLINED!!
+                if ( (LoadInteger(NSLSaveLoad__NSL_Hashtable, s__NSL_Code_player_id[(this)], NSLSaveLoad__NSL_HT_KEY_BITS_OFFSET + (i))) == 1 ) then // INLINED!!
+                    set value=value + (NSLHelper__TWO_POW_CACHE[(exponent)]) // INLINED!!
                 endif
                 set exponent=exponent - 1
                 set i=i + 1
@@ -70671,7 +70671,7 @@ function sa___prototype2_DamageEngine_RegisterFromHook takes nothing returns boo
     call DamageEngine_RegisterFromHook(f__arg_trigger1,f__arg_string1,f__arg_limitop1,f__arg_real1)
     return true
 endfunction
-function sa___prototype18_NSLSaveLoadExecutor___OnPlayerCodeGenerated takes nothing returns boolean
+function sa___prototype18_NSLSaveLoadExecutor__OnPlayerCodeGenerated takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local string generated_code=f__arg_string1
 
@@ -70682,19 +70682,19 @@ function sa___prototype18_NSLSaveLoadExecutor___OnPlayerCodeGenerated takes noth
         call FlushChildHashtable(udg_NSL_GUIHashtable, player_id + 1)
     return true
 endfunction
-function sa___prototype27_NSLUtils___OnPlayerCodeLoaded takes nothing returns boolean
+function sa___prototype27_NSLUtils__OnPlayerCodeLoaded takes nothing returns boolean
  local integer player_id=f__arg_integer1
  local boolean is_valid=f__arg_boolean1
  local integer loader=f__arg_integer2
 
         if ( is_valid ) then
-            set NSLUtils___format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
-            if ( NSLUtils___format == null ) then
+            set NSLUtils__format=NSLCodexStore_GetCodexForVersion(s__NSL_Code_code_version[loader])
+            if ( NSLUtils__format == null ) then
                 call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code version " + I2S(s__NSL_Code_code_version[loader]) + " is unsupported.")) // INLINED!!
                 call s__NSL_Code_deallocate(loader)
     return true
             endif
-            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils___format)
+            call NSLImpl_LoadPlayer(player_id , loader , NSLUtils__format)
         else
             call DisplayTimedTextToPlayer(Player((player_id )), 0, 0, 5.0, ( "|cffff3333[Load Error]|r Code is invalid.")) // INLINED!!
             call s__NSL_Code_deallocate(loader)
@@ -70702,7 +70702,7 @@ function sa___prototype27_NSLUtils___OnPlayerCodeLoaded takes nothing returns bo
     return true
 endfunction
 
-function jasshelper__initstructs47451937 takes nothing returns nothing
+function jasshelper__initstructs55734468 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -70721,19 +70721,19 @@ function jasshelper__initstructs47451937 takes nothing returns nothing
     call TriggerAddAction(st___prototype2[1],function sa___prototype2_DamageEngine_RegisterFromHook)
     call TriggerAddCondition(st___prototype2[1],Condition(function sa___prototype2_DamageEngine_RegisterFromHook))
     set st___prototype18[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype18[1],function sa___prototype18_NSLSaveLoadExecutor___OnPlayerCodeGenerated)
-    call TriggerAddCondition(st___prototype18[1],Condition(function sa___prototype18_NSLSaveLoadExecutor___OnPlayerCodeGenerated))
+    call TriggerAddAction(st___prototype18[1],function sa___prototype18_NSLSaveLoadExecutor__OnPlayerCodeGenerated)
+    call TriggerAddCondition(st___prototype18[1],Condition(function sa___prototype18_NSLSaveLoadExecutor__OnPlayerCodeGenerated))
     set st___prototype27[1]=CreateTrigger()
-    call TriggerAddAction(st___prototype27[1],function sa___prototype27_NSLUtils___OnPlayerCodeLoaded)
-    call TriggerAddCondition(st___prototype27[1],Condition(function sa___prototype27_NSLUtils___OnPlayerCodeLoaded))
+    call TriggerAddAction(st___prototype27[1],function sa___prototype27_NSLUtils__OnPlayerCodeLoaded)
+    call TriggerAddCondition(st___prototype27[1],Condition(function sa___prototype27_NSLUtils__OnPlayerCodeLoaded))
 
 
 
-call ExecuteFunc("s__File_FileIO___FileInit___onInit")
+call ExecuteFunc("s__File_FileIO__FileInit__onInit")
 
-call ExecuteFunc("s__User_PlayerUtils___PlayerUtilsInit___onInit")
+call ExecuteFunc("s__User_PlayerUtils__PlayerUtilsInit__onInit")
 
-call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
+call ExecuteFunc("s__SyncHelper__Sync_SyncHelper__INITS__onInit")
 
 
 
@@ -70791,6 +70791,6 @@ call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
 
 
     call ExecuteFunc("s__Damage_onInit")
-    call ExecuteFunc("s__Interface__UI_onInit")
+    call ExecuteFunc("s__Interface___UI_onInit")
 endfunction
 
