@@ -1,0 +1,154 @@
+package AdditionalStatsAbilities
+
+import ChannelAbilityPreset
+import HashMap
+import public Assets
+
+
+// ALL resistance
+public constant ALL_RESISTANCE_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant ALL_RESISTANCE_10_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant ALL_RESISTANCE_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant ALL_RESISTANCE_20_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjAllResistance5()
+    new AbilityDefinitionCriticalStrikeItem(ALL_RESISTANCE_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjAllResistance10()
+    new AbilityDefinitionCriticalStrikeItem(ALL_RESISTANCE_10_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjAllResistance15()
+    new AbilityDefinitionCriticalStrikeItem(ALL_RESISTANCE_15_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjAllResistance20()
+    new AbilityDefinitionCriticalStrikeItem(ALL_RESISTANCE_20_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// PHYSICAL resistance
+public constant PHYSICAL_RESISTANCE_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjPhysicalResistance5()
+    new AbilityDefinitionCriticalStrikeItem(PHYSICAL_RESISTANCE_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// MAGIC resistance
+public constant MAGIC_RESISTANCE_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant MAGIC_RESISTANCE_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant MAGIC_RESISTANCE_20_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjMagicResistance5()
+    new AbilityDefinitionCriticalStrikeItem(MAGIC_RESISTANCE_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjMagicResistance15()
+    new AbilityDefinitionCriticalStrikeItem(MAGIC_RESISTANCE_15_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjMagicResistance20()
+    new AbilityDefinitionCriticalStrikeItem(MAGIC_RESISTANCE_20_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// ALL damage amplification
+public constant ALL_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant ALL_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjAllAmp5()
+    new AbilityDefinitionCriticalStrikeItem(ALL_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjAllAmp15()
+    new AbilityDefinitionCriticalStrikeItem(ALL_AMP_15_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// PHYSICAL damage amplification
+public constant PHYSICAL_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjPhysicalAmp5()
+    new AbilityDefinitionCriticalStrikeItem(PHYSICAL_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// MAGIC damage amplification
+public constant MAGIC_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjMagicAmp5()
+    new AbilityDefinitionCriticalStrikeItem(MAGIC_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// MINIONS damage amplification
+public constant MINIONS_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant MINIONS_AMP_20_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjMinionsAmp5()
+    new AbilityDefinitionCriticalStrikeItem(MINIONS_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjMinionsAmp20()
+    new AbilityDefinitionCriticalStrikeItem(MINIONS_AMP_20_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// VS ELITE damage amplification
+public constant VS_ELITES_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_ELITES_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjVsElitesAmp5()
+    new AbilityDefinitionCriticalStrikeItem(VS_ELITES_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsElitesAmp15()
+    new AbilityDefinitionCriticalStrikeItem(VS_ELITES_AMP_15_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// VS UNDEAD damage amplification
+public constant VS_UNDEAD_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_UNDEAD_AMP_12_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_UNDEAD_AMP_50_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjVsUndeadAmp5()
+    new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsUndeadAmp12()
+    new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_12_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsUndeadAmp50()
+    new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_50_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// DEATH DISOBEDIENCE max amount change
+public constant DEATH_DISOBEDIENCE_1_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjDeathDisobedience1()
+    new AbilityDefinitionCriticalStrikeItem(DEATH_DISOBEDIENCE_1_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+// MINIBOSS SPAWN CHANCE change
+public constant MINIBOSS_SPAWN_CHANCE_25_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjMinibossSpawnChance25()
+    new AbilityDefinitionCriticalStrikeItem(MINIBOSS_SPAWN_CHANCE_25_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)

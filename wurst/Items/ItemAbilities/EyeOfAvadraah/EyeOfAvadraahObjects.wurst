@@ -4,7 +4,7 @@ import ChannelAbilityPreset
 import public Assets
 import public BuffObjEditing
 
-public constant EYE_OF_AVADRAAH_ABIL = compiletime(ABIL_ID_GEN.next())
+public constant EYE_OF_AVADRAAH_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant EYE_OF_AVADRAAH_AURA = compiletime(ABIL_ID_GEN.next())
 public constant EYE_OF_AVADRAAH_BUFF = compiletime(BUFF_ID_GEN.next())
 public constant FLASH_EFFECT = Abilities.feralspirittarget
@@ -28,7 +28,7 @@ public constant FLASH_EFFECT = Abilities.feralspirittarget
         ..setBuffs(1, EYE_OF_AVADRAAH_BUFF.toRawCode())
 
 @compiletime function genObj()
-    new AbilityDefinitionRoarcreepSkeletalOrc(EYE_OF_AVADRAAH_ABIL)
+    new AbilityDefinitionRoarcreepSkeletalOrc(EYE_OF_AVADRAAH_SPELL_ID)
         ..setName("Eye Of Avadraah")
         ..setItemAbility(true)
         ..setAnimationNames("ready")

@@ -2,7 +2,7 @@ package EyeOfAvadraahSpell
 
 import ClosureEvents
 import ClosureTimers
-import AbilityAndBuffID
+
 import EyeOfAvadraahObjects
 
 init

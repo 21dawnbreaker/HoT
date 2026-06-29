@@ -4,7 +4,9 @@ import ItemObjEditing
 import ObjectIdGenerator
 import ObjectIds
 
-import public AbilityAndBuffID
+import AdditionalStatsAbilities
+import EyeOfAvadraahObjects
+import GiftOfLordOfLiesObjects
 
 let ORIGIN_ITEM_ID = 'rst1'
 
@@ -38,11 +40,16 @@ let not_spawnable = 8
         ..setTintingColor1Red(255)..setTintingColor2Green(40)..setTintingColor3Blue(30)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNSnakeEyeAmulet.blp")..setModelUsed("SpellShieldAmulet_RFRGD.mdl")..setScalingValue(0.5)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities(EYE_OF_AVADRAAH_SPELL_ID.toRawCode() + "," + "A0I1")
+        ..setAbilities(
+            EYE_OF_AVADRAAH_SPELL_ID.toRawCode() 
+            + "," + MAGIC_RESISTANCE_15_SPELL_ID.toRawCode()
+            + "," + ALL_AMP_15_SPELL_ID.toRawCode()
+            + "," + "A0I1"
+        )
         ..setActivelyUsed(true)
         ..setCooldownGroup(EYE_OF_AVADRAAH_SPELL_ID.toRawCode())
         ..setClassification(trinket)
-        ..setGoldCost(500)
+        ..setGoldCost(750)
 
 @compiletime function genGiftOfLordOfLiesItem()
     new ItemDefinition(GIFT_OF_LORD_OF_LIES_ITEM_ID, ORIGIN_ITEM_ID)
@@ -53,8 +60,12 @@ let not_spawnable = 8
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(30)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNBNTHolyArmor2a1.BLP")..setModelUsed("war3mapImported\\SteelPlatemail.mdl")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("" + "A0I1,A0CT,A0BH")
+        ..setAbilities(
+            GIFT_OF_LORD_OF_LIES_SPELL_ID.toRawCode() 
+            + "," + MAGIC_RESISTANCE_20_SPELL_ID.toRawCode()
+            + "," + "A0I1,A0CT,A0BH"
+        )
         ..setActivelyUsed(true)
-        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setCooldownGroup(GIFT_OF_LORD_OF_LIES_SPELL_ID.toRawCode())
         ..setClassification(armor)
-        ..setGoldCost(500)
+        ..setGoldCost(750)

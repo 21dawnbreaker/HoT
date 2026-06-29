@@ -1,0 +1,37 @@
+package GiftOfLordOfLiesSpell
+
+import ClosureEvents
+import HashMap
+
+import GiftOfLordOfLiesObjects
+
+let ELITES_LIST = ['n013', 'n01K', 'n00Y', 'h01T', 'n01B', 'n011', 'n00W', 'n01J', 'n012', 'h011', 'u00C', 'u00D', 'uabo']
+let dict = new HashMap<unit, unit>
+
+init
+    EventListener.onCast(GIFT_OF_LORD_OF_LIES_SPELL_ID) (unit caster) ->
+        caster.hide()
+        udg_backpack_by_player[caster.getOwner().getId() + 1].hide()
+        flashEffect(FLASH_EFFECT, caster.getPos3Real())
+
+        let u = CreateUnit(caster.getOwner(), ELITES_LIST[GetRandomInt(0, ELITES_LIST.length - 1)], caster.getX(), caster.getY(), GetUnitFacing(caster))
+        u.setTimedLife(45.0)
+        u.addAbility('A013')
+        u.setMaxHP(((u.getMaxHP() + (udg_difficultyReal * u.getMaxHP()) * udg_RoomMultiboardCounting) * 2).toInt())
+        u.setHP(u.getMaxHP())
+        u.setBaseDamage(((u.getBaseDamage(0) * udg_difficultyReal) * udg_RoomMultiboardCounting).toInt() + u.getBaseDamage(0), 0)
+        caster.getOwner().select(u)
+        dict.put(u, caster)
+
+    EventListener.add(EVENT_PLAYER_UNIT_DEATH) -> 
+        let u = GetTriggerUnit()
+
+        if dict.has(u)
+            let caster = dict.getAndRemove(u)
+            caster.setFacing(u.getFacingAngle())
+            caster.setXY(u.getPos())
+            u.remove()
+            caster.show()
+            caster.getOwner().select(caster)
+            flashEffect(FLASH_EFFECT, caster.getPos3Real())
+            udg_backpack_by_player[caster.getOwner().getId() + 1].show()

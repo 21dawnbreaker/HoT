@@ -6,7 +6,6 @@ import ClosureForGroups
 import SoundUtils
 import HashMap
 
-import AbilityAndBuffID
 import ExcaliburObjects
 
 var dict = new HashMap<unit, effect>

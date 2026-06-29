@@ -4,11 +4,11 @@ import ItemObjEditing
 import ObjectIdGenerator
 import ObjectIds
 
-import public AbilityAndBuffID
+import AdditionalStatsAbilities
 
 let ORIGIN_ITEM_ID = 'rst1'
 
-public constant DIAMOND_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant TOPAZ_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant RUBY_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EMERALD_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
@@ -33,6 +33,12 @@ let fel_items = 6
 let holy_items = 7
 let not_spawnable = 8
 
+// DIAMOND
+public constant DIAMOND_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant DIAMOND_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant DIAMOND_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant DIAMOND_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 @compiletime function genDiamond1Item()
     new ItemDefinition(DIAMOND_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Мутный алмаз|r")..setTooltipBasic("|cffc0c0c0Мутный алмаз|r")
@@ -42,12 +48,57 @@ let not_spawnable = 8
         ..setTintingColor1Red(100)..setTintingColor2Green(100)..setTintingColor3Blue(100)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNDiamonChipped.blp")..setModelUsed("Models\\Item_Gem_Diamond.mdx")..setScalingValue(0.5)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("")
+        ..setAbilities(ALL_RESISTANCE_5_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(other)
         ..setGoldCost(50)
 
+@compiletime function genDiamond2Item()
+    new ItemDefinition(DIAMOND_2_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff80ff80Алмаз|r")..setTooltipBasic("|cff80ff80Алмаз|r")
+        ..setTooltipExtended("+10% сопротивления всем видам урона.")
+        ..setDescription("+10% сопротивления всем видам урона. |n|n[|cff00ffffПрочие предметы|r]")
+        ..setLevel(not_spawnable)..setLevelUnclassified(not_spawnable)..setIncludeAsRandomChoice(false)
+        ..setTintingColor1Red(150)..setTintingColor2Green(150)..setTintingColor3Blue(150)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNDiamond.blp")..setModelUsed("Models\\Item_Gem_Diamond.mdx")..setScalingValue(0.6)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(ALL_RESISTANCE_10_SPELL_ID.toRawCode())
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(other)
+        ..setGoldCost(150)
+
+@compiletime function genDiamond3Item()
+    new ItemDefinition(DIAMOND_3_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff8080ffБезупречный алмаз|r")..setTooltipBasic("|cff8080ffБезупречный алмаз|r")
+        ..setTooltipExtended("+15% сопротивления всем видам урона.")
+        ..setDescription("+15% сопротивления всем видам урона. |n|n[|cff00ffffПрочие предметы|r]")
+        ..setLevel(not_spawnable)..setLevelUnclassified(not_spawnable)..setIncludeAsRandomChoice(false)
+        ..setTintingColor1Red(200)..setTintingColor2Green(200)..setTintingColor3Blue(200)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNDiamondFlawless.blp")..setModelUsed("Models\\Item_Gem_Diamond.mdx")..setScalingValue(0.7)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(ALL_RESISTANCE_15_SPELL_ID.toRawCode())
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(other)
+        ..setGoldCost(400)
+
+@compiletime function genDiamond4Item()
+    new ItemDefinition(DIAMOND_4_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cffc82596Идеальный алмаз|r")..setTooltipBasic("|cffc82596Идеальный алмаз|r")
+        ..setTooltipExtended("+20% сопротивления всем видам урона.")
+        ..setDescription("+20% сопротивления всем видам урона. |n|n[|cff00ffffПрочие предметы|r]")
+        ..setLevel(not_spawnable)..setLevelUnclassified(not_spawnable)..setIncludeAsRandomChoice(false)
+        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNDiamondPerfect.blp")..setModelUsed("Models\\Item_Gem_Diamond.mdx")..setScalingValue(0.8)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(ALL_RESISTANCE_20_SPELL_ID.toRawCode())
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(other)
+        ..setGoldCost(800)
+// TOPAZ
 @compiletime function genTopaz1Item()
     new ItemDefinition(TOPAZ_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Мутный топаз|r")..setTooltipBasic("|cffc0c0c0Мутный топаз|r")
@@ -63,6 +114,7 @@ let not_spawnable = 8
         ..setClassification(other)
         ..setGoldCost(50)
 
+// RUBY
 @compiletime function genRuby1Item()
     new ItemDefinition(RUBY_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Мутный рубин|r")..setTooltipBasic("|cffc0c0c0Мутный рубин|r")
@@ -78,6 +130,7 @@ let not_spawnable = 8
         ..setClassification(other)
         ..setGoldCost(50)
 
+// EMERALD
 @compiletime function genEmerald1Item()
     new ItemDefinition(EMERALD_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Мутный изумруд|r")..setTooltipBasic("|cffc0c0c0Мутный изумруд|r")
@@ -93,6 +146,7 @@ let not_spawnable = 8
         ..setClassification(other)
         ..setGoldCost(50)
 
+// AMETHYST
 @compiletime function genAmethyst1Item()
     new ItemDefinition(AMETHYST_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Мутный аметист|r")..setTooltipBasic("|cffc0c0c0Мутный аметист|r")
@@ -102,12 +156,13 @@ let not_spawnable = 8
         ..setTintingColor1Red(100)..setTintingColor2Green(100)..setTintingColor3Blue(100)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNAmethystChipped.blp")..setModelUsed("Models\\Item_Gem_Amethyst.mdx")..setScalingValue(0.5)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("")
+        ..setAbilities(MINIONS_AMP_20_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(other)
         ..setGoldCost(50)
 
+// SAPPHIRE
 @compiletime function genSapphire1Item()
     new ItemDefinition(SAPPHIRE_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Мутный сапфир|r")..setTooltipBasic("|cffc0c0c0Мутный сапфир|r")
@@ -117,12 +172,13 @@ let not_spawnable = 8
         ..setTintingColor1Red(100)..setTintingColor2Green(100)..setTintingColor3Blue(100)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNSapphireChipped.blp")..setModelUsed("Models\\Item_Gem_Sapphire.mdx")..setScalingValue(0.5)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("")
+        ..setAbilities(VS_ELITES_AMP_15_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(other)
         ..setGoldCost(50)
 
+// SKULL
 @compiletime function genSkull1Item()
     new ItemDefinition(SKULL_1_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc0c0c0Надколотый череп|r")..setTooltipBasic("|cffc0c0c0Надколотый череп|r")
@@ -132,7 +188,7 @@ let not_spawnable = 8
         ..setTintingColor1Red(100)..setTintingColor2Green(100)..setTintingColor3Blue(100)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNSkullChipped.blp")..setModelUsed("Models\\Hovering Skull.mdx")..setScalingValue(1.3)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities("")
+        ..setAbilities(VS_UNDEAD_AMP_12_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(other)

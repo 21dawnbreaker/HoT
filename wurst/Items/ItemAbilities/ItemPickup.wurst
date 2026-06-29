@@ -14,18 +14,48 @@ init
         let _unit = GetManipulatingUnit()
         let _player = _unit.getOwner()
         let _id = _player.getId() + 1
+        let _item = GetManipulatedItem()
         let _item_id = GetManipulatedItem().getTypeId()
 
-        if _item_id == DIAMOND_1_ITEM_ID and udg_HeroesGroup.has(_unit) and udg_PlayerGroup.containsPlayer(_player)
-            udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] = udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] + 15
-            udg_MINIBOSS_SPAWN_CHANCE = udg_MINIBOSS_SPAWN_CHANCE + 25
+        // ALL resistance --------------------------------------------------------------------
+        if _item.getAbility(ALL_RESISTANCE_5_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 5
 
-        if _item_id == EXCALIBUR_ITEM_ID and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] = udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] + 50
+        if _item.getAbility(ALL_RESISTANCE_10_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 10
 
-        if _item_id == GIFT_OF_LORD_OF_LIES_ITEM_ID and udg_HeroesGroup.has(_unit)
+        if _item.getAbility(ALL_RESISTANCE_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 15
+
+        if _item.getAbility(ALL_RESISTANCE_20_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_ALL[_id] = udg_HERO_DAMAGE_DEF_ALL[_id] + 20
+
+        // MAGIC resistance --------------------------------------------------------------------
+        if _item.getAbility(MAGIC_RESISTANCE_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 15
+
+        if _item.getAbility(MAGIC_RESISTANCE_20_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
             udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 20
 
-        if _item_id == EYE_OF_AVADRAAH_ITEM_ID and udg_HeroesGroup.has(_unit)
-            udg_HERO_DAMAGE_DEF_MAGIC[_id] = udg_HERO_DAMAGE_DEF_MAGIC[_id] + 15
+        // ALL damage amp --------------------------------------------------------------------
+        if _item.getAbility(ALL_AMP_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
             udg_HERO_DAMAGE_BONUS_ALL[_id] = udg_HERO_DAMAGE_BONUS_ALL[_id] + 15
+
+        // VS ELITES --------------------------------------------------------------------
+        if _item.getAbility(VS_ELITES_AMP_15_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] = udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] + 15
+
+        // VS UNDEAD --------------------------------------------------------------------
+        if _item.getAbility(VS_UNDEAD_AMP_12_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] = udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] + 12
+
+        if _item.getAbility(VS_UNDEAD_AMP_50_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] = udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] + 50
+
+        // MINIONS damage amp --------------------------------------------------------------------
+        if _item.getAbility(MINIONS_AMP_20_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_HERO_DAMAGE_BONUS_MINIONS[_id] = udg_HERO_DAMAGE_BONUS_MINIONS[_id] + 20
+
+        // OTHER --------------------------------------------------------------------
+        if _item.getAbility(MINIBOSS_SPAWN_CHANCE_25_SPELL_ID) != null and udg_HeroesGroup.has(_unit)
+            udg_MINIBOSS_SPAWN_CHANCE = udg_MINIBOSS_SPAWN_CHANCE + 25

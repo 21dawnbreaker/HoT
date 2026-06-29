@@ -4,7 +4,7 @@ import ItemObjEditing
 import ObjectIdGenerator
 import ObjectIds
 
-import public AbilityAndBuffID
+import AdditionalStatsAbilities
 
 let ORIGIN_ITEM_ID = 'rst1'
 

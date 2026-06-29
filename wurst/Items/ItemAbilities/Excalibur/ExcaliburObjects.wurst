@@ -6,7 +6,7 @@ import public Assets
 import public BuffObjEditing
 
 
-public constant EXCALIBUR_ABIL = compiletime(ABIL_ID_GEN.next())
+public constant EXCALIBUR_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public let CAST_EFFECT = "Models/SacredStorm.mdx"
 public let FLASH_EFFECT = "Divine Edict.mdx"
 public let SOUND_EFFECT = new SoundDefinition("Sounds/ExcaliburSound.mp3")
@@ -15,7 +15,7 @@ public let SOUND_EFFECT = new SoundDefinition("Sounds/ExcaliburSound.mp3")
     SOUND_EFFECT.is3D = false
 
 @compiletime function genObj()
-    new ChannelAbilityPreset(EXCALIBUR_ABIL, 1, true)
+    new ChannelAbilityPreset(EXCALIBUR_SPELL_ID, 1, true)
     ..setName("Excalibur")
     ..setItemAbility(true)
     ..setAnimationNames("attack")

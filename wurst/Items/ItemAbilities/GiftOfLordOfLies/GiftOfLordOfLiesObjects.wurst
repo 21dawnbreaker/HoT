@@ -1,0 +1,18 @@
+package GiftOfLordOfLiesObjects
+
+import ChannelAbilityPreset
+import public Assets
+
+public constant GIFT_OF_LORD_OF_LIES_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FLASH_EFFECT = Abilities.reviveDemon
+
+@compiletime function genObj()
+    new ChannelAbilityPreset(GIFT_OF_LORD_OF_LIES_SPELL_ID, 1, true)
+    ..setName("Gift of Lord of Lies")
+    ..setItemAbility(true)
+    ..setAnimationNames("ready")
+    ..setTargetType(1, 0)
+
+    ..setCooldown(1, 120.0)
+    ..setCastingTime(1, 0.0)
+        

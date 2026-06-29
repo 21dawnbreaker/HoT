@@ -1,0 +1,18 @@
+package CustomUI
+
+import ClosureTimers
+
+
+let idle_workers_timer = CreateTimer()
+
+function return_idle_workers_frames()
+    let idle_workers = BlzFrameGetChild(BlzGetFrameByName("ConsoleBottomBar", 0), 3)
+
+    BlzFrameSetVisible(idle_workers, true)
+    BlzFrameClearAllPoints(idle_workers)
+    BlzFrameSetAbsPoint(idle_workers, FRAMEPOINT_TOPLEFT, 0.003, 0.08) // 0.02, 0.17
+
+init
+    TimerStart(idle_workers_timer, 3, false, function return_idle_workers_frames)
+    doAfter(idle_workers_timer.getRemaining() + 0.5) -> 
+        idle_workers_timer.destr()

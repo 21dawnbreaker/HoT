@@ -7,8 +7,6 @@ import ItemsRare
 import ItemsEpic
 import ItemsLegendary
 
-import AbilityAndBuffID
-
 
 init
     EventListener.add(EVENT_PLAYER_CHAT_FILTER) ->
@@ -18,10 +16,15 @@ init
         if msg == "-test4"
             let u = udg_hero_by_player[plyer.getId() + 1]
             print(u.getProperName())
-            CreateItem(EMERALD_1_ITEM_ID, u.getX(), u.getY())
+            CreateItem(AMETHYST_1_ITEM_ID, u.getX(), u.getY())
+            CreateItem(SAPPHIRE_1_ITEM_ID, u.getX(), u.getY())
+            CreateItem(DIAMOND_1_ITEM_ID, u.getX(), u.getY())
+            CreateItem(DIAMOND_2_ITEM_ID, u.getX(), u.getY())
+            CreateItem(DIAMOND_3_ITEM_ID, u.getX(), u.getY())
+            CreateItem(DIAMOND_4_ITEM_ID, u.getX(), u.getY())
             CreateItem(SKULL_1_ITEM_ID, u.getX(), u.getY())
-            CreateItem('I08S', u.getX(), u.getY())
+            CreateItem(BOUNTY_HUNT_ITEM_ID, u.getX(), u.getY())
+            CreateItem(EXCALIBUR_ITEM_ID, u.getX(), u.getY())
+            CreateItem(GIFT_OF_LORD_OF_LIES_ITEM_ID, u.getX(), u.getY())
+            CreateItem(EYE_OF_AVADRAAH_ITEM_ID, u.getX(), u.getY())
         if msg == "-test5"
-            for i = 1 to CountUnitsInGroup(udg_HeroesGroup)
-                print(udg_Hero[i].getName() + " - " + udg_Karma[i].toString())
-        
