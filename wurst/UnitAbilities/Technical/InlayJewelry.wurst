@@ -1,0 +1,108 @@
+package InlayJewelry
+
+import ClosureEvents
+import SoundUtils
+
+import public ItemsRunesAndGems
+
+let insert_gem_sound = new SoundDefinition("Sounds/convert.wav", false, true)
+let take_out_gem_sound = new SoundDefinition("Sounds/leveluphireling.wav", false, true)
+
+
+
+function get_traders_chest(unit caster) returns unit
+    unit traders_chest = null
+
+    let g = CreateGroup()
+    GroupEnumUnitsInRange(g, caster.getX(), caster.getY(), 300, null)
+    for u from g
+        if u.getTypeId() == 'h02D'
+            traders_chest = u
+            break
+    g.destr()
+
+    return traders_chest
+
+function get_gem(item _item) returns GemData
+    for gem in GEMS
+        if gem.itemId == _item.getTypeId()
+            return gem
+    return null
+
+function can_be_upgraded(item _item) returns bool
+    let item_type = _item.getItemtype()
+    if item_type == ITEM_TYPE_PERMANENT or item_type == ITEM_TYPE_CHARGED or item_type == ITEM_TYPE_ARTIFACT or item_type == ITEM_TYPE_CAMPAIGN
+        return TRUE
+    return FALSE
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        let caster = GetTriggerUnit()
+        let sold_unit = GetSoldUnit()
+
+        // Drop from trader's chest
+        if sold_unit.getTypeId() == 'o03D'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+            for i = 0 to 1
+                UnitDropItemPoint(traders_chest, traders_chest.itemInSlot(i), traders_chest.getX(), traders_chest.getY())
+
+        // Inlay
+        if sold_unit.getTypeId() == 'o03B'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+            let item_0 = traders_chest.itemInSlot(0)
+            let item_1 = traders_chest.itemInSlot(1)
+
+            item item_to_be_upgraded = null
+            item gem_or_rune = null
+            if can_be_upgraded(item_0) and item_to_be_upgraded == null
+                item_to_be_upgraded = item_0
+            if can_be_upgraded(item_1) and item_to_be_upgraded == null
+                item_to_be_upgraded = item_1
+            if get_gem(item_0) != null and gem_or_rune == null
+                gem_or_rune = item_0
+            if get_gem(item_1) != null and gem_or_rune == null
+                gem_or_rune = item_1
+            
+            var MAXIMUM_GEMS_COUNT = 2
+            var gems_count = 0
+            if item_to_be_upgraded != null
+                for gem in GEMS
+                    if item_to_be_upgraded.getAbility(gem.abilityId) != null
+                        gems_count += 1
+                if item_to_be_upgraded.getItemtype() == ITEM_TYPE_PERMANENT
+                    MAXIMUM_GEMS_COUNT = 3
+
+            if item_to_be_upgraded != null and gem_or_rune != null and gems_count < MAXIMUM_GEMS_COUNT
+                let gem = get_gem(gem_or_rune)
+                
+                if item_to_be_upgraded.getAbility(gem.abilityId) == null
+                    insert_gem_sound.playOnPoint(caster.getPos3Real())
+                    item_to_be_upgraded.addAbility(gem.abilityId)
+                    item_to_be_upgraded.setExtendedTooltip(item_to_be_upgraded.getExtendedTooltip() + "|n|n" + "· " + gem_or_rune.getTooltip() + ": " + gem_or_rune.getExtendedTooltip())
+                    gem_or_rune.remove()
+            
+        // Deinlay
+        if sold_unit.getTypeId() == 'o03C'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+            let item_0 = traders_chest.itemInSlot(0)
+            let item_1 = traders_chest.itemInSlot(1)
+
+            item item_to_be_upgraded = null
+            if can_be_upgraded(item_0) and item_to_be_upgraded == null
+                item_to_be_upgraded = item_0
+            if can_be_upgraded(item_1) and item_to_be_upgraded == null
+                item_to_be_upgraded = item_1
+
+            if item_to_be_upgraded != null
+                take_out_gem_sound.playOnPoint(caster.getPos3Real())
+                for gem in GEMS
+                    if item_to_be_upgraded.getAbility(gem.abilityId) != null
+                        createItem(gem.itemId, traders_chest.getPos())
+                createItem(item_to_be_upgraded.getTypeId(), traders_chest.getPos())
+                item_to_be_upgraded.remove()

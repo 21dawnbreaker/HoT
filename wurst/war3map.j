@@ -130,8 +130,8 @@ integer Table__more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
 hashtable Table__ht= InitHashtable()
-constant integer Table__sizeK=3
-constant integer Table__listK=5
+constant integer Table__sizeK=6
+constant integer Table__listK=8
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -2792,6 +2792,7 @@ trigger gg_trg_OrcTrinket2= null
 trigger gg_trg_CraftUnit= null
 trigger gg_trg_CraftSound= null
 trigger gg_trg_Slots= null
+trigger gg_trg_DropDuplicateItemTimer= null
 trigger gg_trg_JuiceCactus= null
 trigger gg_trg_MultiboardKillsUpdate= null
 trigger gg_trg_DPScheck= null
@@ -2930,7 +2931,6 @@ destructable gg_dest_BTtw_12095= null
 destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
-trigger gg_trg_DropDuplicateItemTimer= null
 
 trigger l__library_init
 
@@ -11592,6 +11592,7 @@ function CreateUnitsForPlayer20 takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'o03A', - 15322.8, 15465.8, 139.676, 'o03A')
     set u=BlzCreateUnitWithSkin(p, 'hrdh', - 15455.6, 15619.9, 136.564, 'hrdh')
     set u=BlzCreateUnitWithSkin(p, 'hrdh', - 15518.5, 15559.6, 133.068, 'hrdh')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', - 300.9, - 20659.7, 258.388, 'h02D')
     set gg_unit_E001_0335=BlzCreateUnitWithSkin(p, 'E001', 740.9, - 19471.9, 14.820, 'E001')
     call SetHeroLevel(gg_unit_E001_0335, 25, false)
     call SetUnitColor(gg_unit_E001_0335, ConvertPlayerColor(0))
@@ -11656,6 +11657,11 @@ function CreateUnitsForPlayer20 takes nothing returns nothing
     call UnitAddItemToSlotById(gg_unit_H00D_0426, 'I08O', 1)
     call UnitAddItemToSlotById(gg_unit_H00D_0426, 'I056', 2)
     call UnitAddItemToSlotById(gg_unit_H00D_0426, 'I05X', 3)
+    set u=BlzCreateUnitWithSkin(p, 'h02D', - 951.1, - 20164.5, - 64.643, 'h02D')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', 17083.6, 18587.8, 11.922, 'h02D')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', 17122.9, 18195.1, - 2.472, 'h02D')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', - 18270.5, 16106.1, 176.759, 'h02D')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', - 15503.2, 15313.7, 221.682, 'h02D')
     set u=BlzCreateUnitWithSkin(p, 'nten', - 344.6, - 17849.2, 282.122, 'nten')
     set u=BlzCreateUnitWithSkin(p, 'nten', 15783.4, 18694.8, 78.840, 'nten')
     set u=BlzCreateUnitWithSkin(p, 'nten', - 15448.6, 14662.8, 151.147, 'nten')
@@ -70490,7 +70496,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs55734468")
+call ExecuteFunc("jasshelper__initstructs45450546")
 call ExecuteFunc("GetMainSelectedUnit___init_function")
 call ExecuteFunc("NSLHelper__Init")
 call ExecuteFunc("TasUnitBagGUI__init_function")
@@ -70702,7 +70708,7 @@ function sa___prototype27_NSLUtils__OnPlayerCodeLoaded takes nothing returns boo
     return true
 endfunction
 
-function jasshelper__initstructs55734468 takes nothing returns nothing
+function jasshelper__initstructs45450546 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
