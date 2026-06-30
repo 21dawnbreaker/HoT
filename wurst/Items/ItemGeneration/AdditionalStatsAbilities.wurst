@@ -134,6 +134,8 @@ public constant MAGIC_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant MINIONS_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant MINIONS_AMP_10_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant MINIONS_AMP_20_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant MINIONS_AMP_30_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant MINIONS_AMP_40_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjMinionsAmp5()
     new AbilityDefinitionCriticalStrikeItem(MINIONS_AMP_5_SPELL_ID)
@@ -150,10 +152,23 @@ public constant MINIONS_AMP_20_SPELL_ID = compiletime(ABIL_ID_GEN.next())
         ..setChancetoCriticalStrike(1, 0)
         ..setDamageMultiplier(1, 0)
 
+@compiletime function genObjMinionsAmp30()
+    new AbilityDefinitionCriticalStrikeItem(MINIONS_AMP_30_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjMinionsAmp40()
+    new AbilityDefinitionCriticalStrikeItem(MINIONS_AMP_40_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
 // VS ELITE damage amplification --------------------------------------------------------------------
 public constant VS_ELITES_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant VS_ELITES_AMP_8_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant VS_ELITES_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_ELITES_AMP_16_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_ELITES_AMP_24_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_ELITES_AMP_32_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjVsElitesAmp5()
     new AbilityDefinitionCriticalStrikeItem(VS_ELITES_AMP_5_SPELL_ID)
@@ -170,10 +185,28 @@ public constant VS_ELITES_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
         ..setChancetoCriticalStrike(1, 0)
         ..setDamageMultiplier(1, 0)
 
+@compiletime function genObjVsElitesAmp16()
+    new AbilityDefinitionCriticalStrikeItem(VS_ELITES_AMP_16_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsElitesAmp24()
+    new AbilityDefinitionCriticalStrikeItem(VS_ELITES_AMP_24_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsElitesAmp32()
+    new AbilityDefinitionCriticalStrikeItem(VS_ELITES_AMP_32_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
 // VS UNDEAD damage amplification --------------------------------------------------------------------
 public constant VS_UNDEAD_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant VS_UNDEAD_AMP_8_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant VS_UNDEAD_AMP_12_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_UNDEAD_AMP_16_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_UNDEAD_AMP_24_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant VS_UNDEAD_AMP_32_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant VS_UNDEAD_AMP_50_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjVsUndeadAmp5()
@@ -188,6 +221,21 @@ public constant VS_UNDEAD_AMP_50_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjVsUndeadAmp12()
     new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_12_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsUndeadAmp16()
+    new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_16_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsUndeadAmp24()
+    new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_24_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjVsUndeadAmp32()
+    new AbilityDefinitionCriticalStrikeItem(VS_UNDEAD_AMP_32_SPELL_ID)
         ..setChancetoCriticalStrike(1, 0)
         ..setDamageMultiplier(1, 0)
 
@@ -240,15 +288,23 @@ function fill_dicts()
     vs_elite_amp_dict.put(VS_ELITES_AMP_5_SPELL_ID, 5)
     vs_elite_amp_dict.put(VS_ELITES_AMP_8_SPELL_ID, 8)
     vs_elite_amp_dict.put(VS_ELITES_AMP_15_SPELL_ID, 15)
+    vs_elite_amp_dict.put(VS_ELITES_AMP_16_SPELL_ID, 16)
+    vs_elite_amp_dict.put(VS_ELITES_AMP_24_SPELL_ID, 24)
+    vs_elite_amp_dict.put(VS_ELITES_AMP_32_SPELL_ID, 32)
 
     vs_undead_amp_dict.put(VS_UNDEAD_AMP_5_SPELL_ID, 5)
     vs_undead_amp_dict.put(VS_UNDEAD_AMP_8_SPELL_ID, 8)
     vs_undead_amp_dict.put(VS_UNDEAD_AMP_12_SPELL_ID, 12)
+    vs_undead_amp_dict.put(VS_UNDEAD_AMP_16_SPELL_ID, 16)
+    vs_undead_amp_dict.put(VS_UNDEAD_AMP_24_SPELL_ID, 24)
+    vs_undead_amp_dict.put(VS_UNDEAD_AMP_32_SPELL_ID, 32)
     vs_undead_amp_dict.put(VS_UNDEAD_AMP_50_SPELL_ID, 50)
 
     minion_amp_dict.put(MINIONS_AMP_5_SPELL_ID, 5)
     minion_amp_dict.put(MINIONS_AMP_10_SPELL_ID, 10)
     minion_amp_dict.put(MINIONS_AMP_20_SPELL_ID, 20)
+    minion_amp_dict.put(MINIONS_AMP_30_SPELL_ID, 30)
+    minion_amp_dict.put(MINIONS_AMP_40_SPELL_ID, 40)
 
     death_disobedience_dict.put(DEATH_DISOBEDIENCE_1_SPELL_ID, 1)
 

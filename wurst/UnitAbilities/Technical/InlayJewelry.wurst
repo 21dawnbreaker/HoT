@@ -8,8 +8,6 @@ import public ItemsRunesAndGems
 let insert_gem_sound = new SoundDefinition("Sounds/convert.wav", false, true)
 let take_out_gem_sound = new SoundDefinition("Sounds/leveluphireling.wav", false, true)
 
-
-
 function get_traders_chest(unit caster) returns unit
     unit traders_chest = null
 
@@ -31,7 +29,7 @@ function get_gem(item _item) returns GemData
 
 function can_be_upgraded(item _item) returns bool
     let item_type = _item.getItemtype()
-    if item_type == ITEM_TYPE_PERMANENT or item_type == ITEM_TYPE_CHARGED or item_type == ITEM_TYPE_ARTIFACT or item_type == ITEM_TYPE_CAMPAIGN
+    if item_type == ITEM_TYPE_PERMANENT or item_type == ITEM_TYPE_CHARGED or item_type == ITEM_TYPE_ARTIFACT
         return TRUE
     return FALSE
 
@@ -39,6 +37,7 @@ init
     EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
         let caster = GetTriggerUnit()
         let sold_unit = GetSoldUnit()
+        let _player = GetBuyingUnit().getOwner()
 
         // Drop from trader's chest
         if sold_unit.getTypeId() == 'o03D'
@@ -55,6 +54,7 @@ init
             let traders_chest = get_traders_chest(caster)
             let item_0 = traders_chest.itemInSlot(0)
             let item_1 = traders_chest.itemInSlot(1)
+            
 
             item item_to_be_upgraded = null
             item gem_or_rune = null
@@ -76,14 +76,22 @@ init
                 if item_to_be_upgraded.getItemtype() == ITEM_TYPE_PERMANENT
                     MAXIMUM_GEMS_COUNT = 3
 
+            
+
             if item_to_be_upgraded != null and gem_or_rune != null and gems_count < MAXIMUM_GEMS_COUNT
                 let gem = get_gem(gem_or_rune)
                 
                 if item_to_be_upgraded.getAbility(gem.abilityId) == null
-                    insert_gem_sound.playOnPoint(caster.getPos3Real())
-                    item_to_be_upgraded.addAbility(gem.abilityId)
-                    item_to_be_upgraded.setExtendedTooltip(item_to_be_upgraded.getExtendedTooltip() + "|n|n" + "· " + gem_or_rune.getTooltip() + ": " + gem_or_rune.getExtendedTooltip())
-                    gem_or_rune.remove()
+                    var payment_received = FALSE
+                    if _player.getGold() >= 50
+                        payment_received = TRUE
+                        _player.setGold(_player.getGold() - 50)
+                    
+                    if payment_received
+                        insert_gem_sound.playOnPoint(caster.getPos3Real())
+                        item_to_be_upgraded.addAbility(gem.abilityId)
+                        item_to_be_upgraded.setExtendedTooltip(item_to_be_upgraded.getExtendedTooltip() + "|n|n" + "· " + gem_or_rune.getTooltip() + ": " + gem_or_rune.getExtendedTooltip())
+                        gem_or_rune.remove()
             
         // Deinlay
         if sold_unit.getTypeId() == 'o03C'
@@ -100,9 +108,24 @@ init
                 item_to_be_upgraded = item_1
 
             if item_to_be_upgraded != null
-                take_out_gem_sound.playOnPoint(caster.getPos3Real())
+                var payment_received = FALSE
+                var payment_amount = 0
                 for gem in GEMS
                     if item_to_be_upgraded.getAbility(gem.abilityId) != null
-                        createItem(gem.itemId, traders_chest.getPos())
-                createItem(item_to_be_upgraded.getTypeId(), traders_chest.getPos())
-                item_to_be_upgraded.remove()
+                        payment_amount += 50
+
+                if _player.getGold() >= payment_amount
+                    payment_received = TRUE
+                    _player.setGold(_player.getGold() - payment_amount)
+
+                if payment_received
+                    take_out_gem_sound.playOnPoint(caster.getPos3Real())
+                    for gem in GEMS
+                        if item_to_be_upgraded.getAbility(gem.abilityId) != null
+                            createItem(gem.itemId, traders_chest.getPos())
+                    createItem(item_to_be_upgraded.getTypeId(), traders_chest.getPos())
+                    item_to_be_upgraded.remove()
+
+            // Info
+            if sold_unit.getTypeId() == 'o03E'
+                sold_unit.remove()
