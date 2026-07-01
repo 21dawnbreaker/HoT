@@ -1,0 +1,25 @@
+package CrownOfEthoria
+
+import ClosureEvents
+
+import ItemsEpic
+import ItemsRunesAndGems
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL_ITEM) ->
+        let _item = GetManipulatedItem()
+
+        if _item.getTypeId() == CROWN_OF_ETHORIA_ITEM_ID
+            var gold_bonus = EPIC_ITEM_GOLD_PRICE
+            for gem in GEMS
+                if _item.getAbility(gem.abilityId) != null
+                    if gem.powerLvl == 1
+                        gold_bonus += (EPIC_ITEM_GOLD_PRICE / 6).toInt()
+                    if gem.powerLvl == 2
+                        gold_bonus += (EPIC_ITEM_GOLD_PRICE / 3).toInt()
+                    if gem.powerLvl == 3
+                        gold_bonus += (EPIC_ITEM_GOLD_PRICE / 2).toInt()
+                    if gem.powerLvl == 4
+                        gold_bonus += EPIC_ITEM_GOLD_PRICE
+
+            GetTriggerUnit().getOwner().addGold(gold_bonus)

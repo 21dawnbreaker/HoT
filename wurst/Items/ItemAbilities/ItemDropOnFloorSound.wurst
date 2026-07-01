@@ -1,0 +1,67 @@
+package ItemDropOnFloorSound
+
+import ClosureEvents
+import SoundUtils
+
+import ItemsRunesAndGems
+import ItemsPotions
+
+let weapon_sound = new SoundDefinition("diablo2_largemetalweapon.wav", false, true)
+let scroll_sound = new SoundDefinition("Sounds/scroll.wav", false, true)
+let platearmor_sound = new SoundDefinition("diablo2platearmor.wav", false, true)
+let amulet_sound = new SoundDefinition("diablo2amulet.wav", false, true)
+let boots_sound = new SoundDefinition("diablo2bootsmetal.wav", false, true)
+let gloves_sound = new SoundDefinition("diablo2glovesmetal.wav", false, true)
+let legendary_sound = new SoundDefinition("diabl2legendary.mp3", false, true)
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_DROP_ITEM) ->
+        let _unit = GetManipulatingUnit()
+        let _item = GetManipulatedItem()
+        let _item_itemType = GetManipulatedItem().getItemtype()
+        let _item_id = GetManipulatedItem().getTypeId()
+
+        var flag = true
+        
+        if 5 <= _item.getLevel() and _item.getLevel() < 8 and _item_itemType != ITEM_TYPE_POWERUP and flag
+            legendary_sound.playOnPoint(_unit.getPos3Real())
+            flag = false
+
+        if _item_itemType == ITEM_TYPE_POWERUP and flag
+            for pot in POTIONS
+                if _item_id == pot.itemId
+                    PotionData.potionDropSound.playOnPoint(_unit.getPos3Real())
+                    flag = false
+
+            for gem in GEMS
+                if _item_id == gem.itemId
+                    if gem.itemId != SKULL_1_ITEM_ID and gem.itemId != SKULL_2_ITEM_ID and gem.itemId != SKULL_3_ITEM_ID and gem.itemId != SKULL_4_ITEM_ID
+                        GemData.gemDropSound.playOnPoint(_unit.getPos3Real())
+                    else
+                        GemData.skullDropSound.playOnPoint(_unit.getPos3Real())
+                    flag = false
+        
+        if _item_itemType == ITEM_TYPE_CAMPAIGN and flag
+            weapon_sound.playOnPoint(_unit.getPos3Real())
+            flag = false
+
+        if _item_itemType == ITEM_TYPE_MISCELLANEOUS and flag
+            scroll_sound.playOnPoint(_unit.getPos3Real())
+            flag = false
+
+        if _item_itemType == ITEM_TYPE_PURCHASABLE and flag
+            amulet_sound.playOnPoint(_unit.getPos3Real())
+            flag = false
+
+        if _item_itemType == ITEM_TYPE_PERMANENT and flag
+            platearmor_sound.playOnPoint(_unit.getPos3Real())
+            flag = false
+
+        if _item_itemType == ITEM_TYPE_CHARGED and flag
+            gloves_sound.playOnPoint(_unit.getPos3Real())
+            flag = false
+
+        if _item_itemType == ITEM_TYPE_ARTIFACT and flag
+            boots_sound.playOnPoint(_unit.getPos3Real())
+            flag = false

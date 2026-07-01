@@ -1,0 +1,11 @@
+package Socketable
+
+import ChannelAbilityPreset
+import public Assets
+
+public constant SOCKETABLE_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+@compiletime function genObjSocketable()
+    new AbilityDefinitionStormHammers(SOCKETABLE_SPELL_ID)
+        ..setRequirements("")
+        ..setManaCost(1, 1)

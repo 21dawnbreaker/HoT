@@ -11,20 +11,23 @@ import ItemsLegendary
 init
     EventListener.add(EVENT_PLAYER_CHAT_FILTER) ->
         let msg = GetEventPlayerChatString()
-        let plyer = GetTriggerPlayer()
+        let _player = GetTriggerPlayer()
+        let _hero = udg_hero_by_player[_player.getId() + 1]
 
         if msg == "-test4"
-            let u = udg_hero_by_player[plyer.getId() + 1]
-            print(u.getProperName())
-            CreateItem(AMETHYST_1_ITEM_ID, u.getX(), u.getY())
-            CreateItem(SAPPHIRE_1_ITEM_ID, u.getX(), u.getY())
-            CreateItem(DIAMOND_1_ITEM_ID, u.getX(), u.getY())
-            CreateItem(DIAMOND_2_ITEM_ID, u.getX(), u.getY())
-            CreateItem(DIAMOND_3_ITEM_ID, u.getX(), u.getY())
-            CreateItem(DIAMOND_4_ITEM_ID, u.getX(), u.getY())
-            CreateItem(SKULL_1_ITEM_ID, u.getX(), u.getY())
-            CreateItem(BOUNTY_HUNT_ITEM_ID, u.getX(), u.getY())
-            CreateItem(EXCALIBUR_ITEM_ID, u.getX(), u.getY())
-            CreateItem(GIFT_OF_LORD_OF_LIES_ITEM_ID, u.getX(), u.getY())
-            CreateItem(EYE_OF_AVADRAAH_ITEM_ID, u.getX(), u.getY())
+            CreateItem(CROWN_OF_ETHORIA_ITEM_ID, _hero.getX(), _hero.getY())
+            
         if msg == "-test5"
+            let _item = _hero.itemInSlot(0)
+            print(_item.getName() + " - lvl: " + _item.getLevel().toString())
+            print(_item.getItemtype() == ITEM_TYPE_POWERUP)
+
+        if msg == "-legendary"
+            CreateItem(ChooseRandomItem(5), _hero.getX(), _hero.getY())
+
+        if msg == "-randitem"
+            CreateItem(ChooseRandomItem(GetRandomInt(1, 7)), _hero.getX(), _hero.getY())
+
+        if msg == "-gems"
+            for gem in GEMS
+                CreateItem(gem.itemId, _hero.getX(), _hero.getY())

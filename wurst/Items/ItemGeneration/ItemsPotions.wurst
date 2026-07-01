@@ -1,0 +1,46 @@
+package ItemsPotions
+
+import SoundUtils
+import LinkedList
+import HashMap
+
+
+public let get_purple_pot_by_powerLvl = new HashMap<int, int>
+
+public class PotionData
+    int itemId
+    int abilityId
+    int upgradedItem
+    int powerLvl
+    int customValue
+
+    static let potionDropSound = new SoundDefinition("Sounds/potionui.wav", false, true)
+
+    construct(int itemId, int abilityId, int upgradedItem, int powerLvl, int customValue)
+        this.itemId = itemId
+        this.abilityId = abilityId
+        this.upgradedItem = upgradedItem
+        this.powerLvl = powerLvl
+        this.customValue = customValue
+
+public let POTIONS = new LinkedList<PotionData>()
+
+init
+    // lesser pots
+    POTIONS.add(new PotionData('I01S', 'AIh1', 'I0AB', 1, 1))
+    POTIONS.add(new PotionData('I006', 'AIm1', 'I0AC', 1, 0))
+    POTIONS.add(new PotionData('I0AW', 'A0K6', 'I0AX', 1, -100500))
+
+    // medium pots
+    POTIONS.add(new PotionData('I0AB', 'AIh2', 'I0AY', 2, 2))
+    POTIONS.add(new PotionData('I0AC', 'AIm2', 'I0AZ', 2, -1))
+    POTIONS.add(new PotionData('I0AX', 'A0K7', 'I0AA', 2, -100500))
+
+    // large pots
+    POTIONS.add(new PotionData('I0AY', 'A0K4', -1, 3, 3))
+    POTIONS.add(new PotionData('I0AZ', 'A0K5', -1, 3, -2))
+    POTIONS.add(new PotionData('I0AA', 'A0JJ', -1, 3, -100500))
+
+    get_purple_pot_by_powerLvl.put(1, 'I0AW')
+    get_purple_pot_by_powerLvl.put(2, 'I0AX')
+    get_purple_pot_by_powerLvl.put(3, 'I0AA')

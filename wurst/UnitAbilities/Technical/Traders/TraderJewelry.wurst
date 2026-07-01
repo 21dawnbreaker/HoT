@@ -1,9 +1,10 @@
-package InlayJewelry
+package TraderJewelry
 
 import ClosureEvents
 import SoundUtils
 
 import public ItemsRunesAndGems
+import public Socketable
 
 let insert_gem_sound = new SoundDefinition("Sounds/convert.wav", false, true)
 let take_out_gem_sound = new SoundDefinition("Sounds/leveluphireling.wav", false, true)
@@ -33,6 +34,12 @@ function can_be_upgraded(item _item) returns bool
         return TRUE
     return FALSE
 
+function paymentDone(player _player, int cost) returns bool
+    if _player.getGold() >= cost
+        _player.setGold(_player.getGold() - cost)
+        return TRUE
+    return FALSE
+
 init
     EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
         let caster = GetTriggerUnit()
@@ -58,36 +65,37 @@ init
 
             item item_to_be_upgraded = null
             item gem_or_rune = null
-            if can_be_upgraded(item_0) and item_to_be_upgraded == null
+            if (can_be_upgraded(item_0) or item_0.getAbility(SOCKETABLE_SPELL_ID) != null) and item_to_be_upgraded == null
                 item_to_be_upgraded = item_0
-            if can_be_upgraded(item_1) and item_to_be_upgraded == null
+            if (can_be_upgraded(item_1) or item_1.getAbility(SOCKETABLE_SPELL_ID) != null) and item_to_be_upgraded == null
                 item_to_be_upgraded = item_1
             if get_gem(item_0) != null and gem_or_rune == null
                 gem_or_rune = item_0
             if get_gem(item_1) != null and gem_or_rune == null
                 gem_or_rune = item_1
             
-            var MAXIMUM_GEMS_COUNT = 2
+            var MAXIMUM_GEMS_COUNT = 0
             var gems_count = 0
             if item_to_be_upgraded != null
                 for gem in GEMS
                     if item_to_be_upgraded.getAbility(gem.abilityId) != null
                         gems_count += 1
+
+                if item_to_be_upgraded.getItemtype() == ITEM_TYPE_CHARGED or item_to_be_upgraded.getItemtype() == ITEM_TYPE_ARTIFACT
+                    MAXIMUM_GEMS_COUNT = 2
+
                 if item_to_be_upgraded.getItemtype() == ITEM_TYPE_PERMANENT
                     MAXIMUM_GEMS_COUNT = 3
 
-            
+                if item_to_be_upgraded.getAbility(SOCKETABLE_SPELL_ID) != null
+                    MAXIMUM_GEMS_COUNT += item_to_be_upgraded.getAbility(SOCKETABLE_SPELL_ID).getField(ABILITY_ILF_MANA_COST, 0)
 
             if item_to_be_upgraded != null and gem_or_rune != null and gems_count < MAXIMUM_GEMS_COUNT
                 let gem = get_gem(gem_or_rune)
                 
                 if item_to_be_upgraded.getAbility(gem.abilityId) == null
-                    var payment_received = FALSE
-                    if _player.getGold() >= 50
-                        payment_received = TRUE
-                        _player.setGold(_player.getGold() - 50)
                     
-                    if payment_received
+                    if paymentDone(_player, 50)
                         insert_gem_sound.playOnPoint(caster.getPos3Real())
                         item_to_be_upgraded.addAbility(gem.abilityId)
                         item_to_be_upgraded.setExtendedTooltip(item_to_be_upgraded.getExtendedTooltip() + "|n|n" + "· " + gem_or_rune.getTooltip() + ": " + gem_or_rune.getExtendedTooltip())
@@ -102,23 +110,18 @@ init
             let item_1 = traders_chest.itemInSlot(1)
 
             item item_to_be_upgraded = null
-            if can_be_upgraded(item_0) and item_to_be_upgraded == null
+            if (can_be_upgraded(item_0) or item_0.getAbility(SOCKETABLE_SPELL_ID) != null) and item_to_be_upgraded == null
                 item_to_be_upgraded = item_0
-            if can_be_upgraded(item_1) and item_to_be_upgraded == null
+            if (can_be_upgraded(item_1) or item_1.getAbility(SOCKETABLE_SPELL_ID) != null) and item_to_be_upgraded == null
                 item_to_be_upgraded = item_1
 
             if item_to_be_upgraded != null
-                var payment_received = FALSE
                 var payment_amount = 0
                 for gem in GEMS
                     if item_to_be_upgraded.getAbility(gem.abilityId) != null
                         payment_amount += 50
 
-                if _player.getGold() >= payment_amount
-                    payment_received = TRUE
-                    _player.setGold(_player.getGold() - payment_amount)
-
-                if payment_received
+                if paymentDone(_player, payment_amount)
                     take_out_gem_sound.playOnPoint(caster.getPos3Real())
                     for gem in GEMS
                         if item_to_be_upgraded.getAbility(gem.abilityId) != null
@@ -126,6 +129,24 @@ init
                     createItem(item_to_be_upgraded.getTypeId(), traders_chest.getPos())
                     item_to_be_upgraded.remove()
 
-            // Info
-            if sold_unit.getTypeId() == 'o03E'
-                sold_unit.remove()
+        // Upgrade gem
+        if sold_unit.getTypeId() == 'o03F'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+            let item_0 = traders_chest.itemInSlot(0)
+            let item_1 = traders_chest.itemInSlot(1)
+
+            if item_0.getTypeId() == item_1.getTypeId()
+                for gem in GEMS
+                    if gem.itemId == item_0.getTypeId() and gem.upgradedItem != -1
+                        if paymentDone(_player, 50)
+                            insert_gem_sound.playOnPoint(caster.getPos3Real())
+                            item_0.remove()
+                            item_1.remove()
+                            UnitAddItemById(traders_chest, gem.upgradedItem)
+
+
+        // Info
+        if sold_unit.getTypeId() == 'o03E'
+            sold_unit.remove()

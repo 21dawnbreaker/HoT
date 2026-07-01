@@ -1,0 +1,108 @@
+package TraderAlchemist
+
+import ClosureEvents
+import SoundUtils
+
+import public ItemsPotions
+
+let pot_craft_sound = PotionData.potionDropSound
+
+function get_traders_chest(unit caster) returns unit
+    unit traders_chest = null
+
+    let g = CreateGroup()
+    GroupEnumUnitsInRange(g, caster.getX(), caster.getY(), 300, null)
+    for u from g
+        if u.getTypeId() == 'h02D'
+            traders_chest = u
+            break
+    g.destr()
+
+    return traders_chest
+
+function paymentDone(player _player, int cost) returns bool
+    if _player.getGold() >= cost
+        _player.setGold(_player.getGold() - cost)
+        return TRUE
+    return FALSE
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        let caster = GetTriggerUnit()
+        let sold_unit = GetSoldUnit()
+        let _player = GetBuyingUnit().getOwner()
+
+        // Drop from trader's chest
+        if sold_unit.getTypeId() == 'o03D'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+            for i = 0 to 1
+                UnitDropItemPoint(traders_chest, traders_chest.itemInSlot(i), traders_chest.getX(), traders_chest.getY())
+
+        // Upgrade potion
+        if sold_unit.getTypeId() == 'o03G'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+            let item_0 = traders_chest.itemInSlot(0)
+            let item_1 = traders_chest.itemInSlot(1)
+
+            let charges_item_0 = item_0.getCharges()
+            let charges_item_1 = item_1.getCharges()
+
+            var ready_to_craft = TRUE
+
+            // purple
+            if item_0 != item_1 and item_0 != null and item_1 != null and ready_to_craft
+                var custom_value_count = 0
+                var power_lvl = -1
+                for pot in POTIONS
+                    if pot.itemId == item_0.getTypeId() or pot.itemId == item_1.getTypeId()
+                        custom_value_count += pot.customValue
+                        power_lvl = pot.powerLvl
+
+                if custom_value_count == 1 and power_lvl != -1 and paymentDone(_player, 10)
+                    if charges_item_0 > 1
+                        item_0.setCharges(charges_item_0 - 1)
+                    else
+                        item_0.remove()
+
+                    if charges_item_1 > 1
+                        item_1.setCharges(charges_item_1 - 1)
+                    else
+                        item_1.remove()
+
+                    UnitAddItemById(traders_chest, get_purple_pot_by_powerLvl.get(power_lvl))
+                    ready_to_craft = FALSE
+
+            if charges_item_0 >= 2 and ready_to_craft
+                for pot in POTIONS
+                    if pot.itemId == item_0.getTypeId() and pot.upgradedItem != -1
+                        if paymentDone(_player, 10)
+                            if charges_item_0 > 2
+                                item_0.setCharges(charges_item_0 - 2)
+                            else
+                                item_0.remove()
+                            UnitAddItemById(traders_chest, pot.upgradedItem)
+                            ready_to_craft = FALSE
+
+            if charges_item_1 >= 2 and ready_to_craft
+                
+                for pot in POTIONS
+                    if pot.itemId == item_1.getTypeId() and pot.upgradedItem != -1
+                        if paymentDone(_player, 10)
+                            if charges_item_1 > 2
+                                item_1.setCharges(charges_item_1 - 2)
+                            else
+                                item_1.remove()
+                            UnitAddItemById(traders_chest, pot.upgradedItem)
+                            ready_to_craft = FALSE
+
+            if not ready_to_craft
+                pot_craft_sound.playOnPoint(caster.getPos3Real())
+
+        // Info
+        if sold_unit.getTypeId() == 'o03H'
+            sold_unit.remove()

@@ -130,8 +130,8 @@ integer Table___more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
 hashtable Table___ht= InitHashtable()
-constant integer Table___sizeK=10
-constant integer Table___listK=11
+constant integer Table___sizeK=5
+constant integer Table___listK=7
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -1209,6 +1209,8 @@ boolean udg_allow_scale_units= false
 timer udg_duplicate_item_timer= null
 item array udg_duplicate_item_item
 unit array udg_duplicate_item_hero
+real udg_damage_to_be_added= 0
+boolean udg_shrine_gem_spawn= false
 
     // Generated
 rect gg_rct_StartLoc= null
@@ -1984,8 +1986,6 @@ trigger gg_trg_MutagenDealTextInit= null
 trigger gg_trg_MutagenApplyEffect= null
 trigger gg_trg_MutagenDropMiniboss= null
 trigger gg_trg_MutagenAquiring= null
-trigger gg_trg_MutagenDefenseModifier= null
-trigger gg_trg_MutagenDamageModifier= null
 trigger gg_trg_TimeElapsedUnits= null
 trigger gg_trg_GracePeriodEnd= null
 trigger gg_trg_RaiseDeadUp= null
@@ -4554,7 +4554,7 @@ endfunction
         endfunction
     
 //Implemented from module FileIO___FileInit:
-        function s__File_FileIO___FileInit___onInit takes nothing returns nothing
+        function s__File_FileIO___FileInit__onInit takes nothing returns nothing
             // Read check
             set s__File_ReadEnabled=(s__File_readEx((s__File_write(s__File_open("FileTester.pld"),"FileIO_")),true)) == "FileIO_" // INLINED!!
         endfunction
@@ -4879,7 +4879,7 @@ endfunction
         endfunction
    
 //Implemented from module PlayerUtils___PlayerUtilsInit:
-        function s__User_PlayerUtils___PlayerUtilsInit___onInit takes nothing returns nothing
+        function s__User_PlayerUtils___PlayerUtilsInit__onInit takes nothing returns nothing
             local trigger t= CreateTrigger()
             local integer i= 0
             local integer p
@@ -5009,7 +5009,7 @@ endfunction
     
     
 //Implemented from module SyncHelper___INITS:
-        function s__SyncHelper___Sync_SyncHelper___INITS___onInit takes nothing returns nothing
+        function s__SyncHelper___Sync_SyncHelper___INITS__onInit takes nothing returns nothing
             local integer i= 0
             
             loop
@@ -9228,7 +9228,7 @@ function InitGlobals takes nothing returns nothing
     set udg_frozen_immune_UG=CreateGroup()
     set udg_portal_avaible=true
     set udg_RandomImpalesTimer=CreateTimer()
-    set udg_MINIBOSS_SPAWN_CHANCE=5
+    set udg_MINIBOSS_SPAWN_CHANCE=10
     set udg_DuelEffOffset=200.00
     set udg_has_scrolls=false
     set i=0
@@ -9394,6 +9394,8 @@ function InitGlobals takes nothing returns nothing
     set udg_debug_mode=true
     set udg_allow_scale_units=false
     set udg_duplicate_item_timer=CreateTimer()
+    set udg_damage_to_be_added=0
+    set udg_shrine_gem_spawn=false
 endfunction
 
 //***************************************************************************
@@ -11322,7 +11324,7 @@ function CreateUnitsForPlayer12 takes nothing returns nothing
     call UnitAddItemToSlotById(gg_unit_O002_0268, 'I01P', 1)
     call UnitAddItemToSlotById(gg_unit_O002_0268, 'I02C', 2)
     call UnitAddItemToSlotById(gg_unit_O002_0268, 'I028', 3)
-    set gg_unit_H001_0281=BlzCreateUnitWithSkin(p, 'H001', - 426.3, - 21072.4, 270.000, 'H001')
+    set gg_unit_H001_0281=BlzCreateUnitWithSkin(p, 'H001', - 458.3, - 21127.4, 248.485, 'H001')
     call SetHeroLevel(gg_unit_H001_0281, 15, false)
     call SetUnitState(gg_unit_H001_0281, UNIT_STATE_MANA, 300)
     call SetUnitColor(gg_unit_H001_0281, ConvertPlayerColor(0))
@@ -11657,9 +11659,9 @@ function CreateUnitsForPlayer20 takes nothing returns nothing
     call UnitAddItemToSlotById(gg_unit_H00D_0426, 'I08O', 1)
     call UnitAddItemToSlotById(gg_unit_H00D_0426, 'I056', 2)
     call UnitAddItemToSlotById(gg_unit_H00D_0426, 'I05X', 3)
-    set u=BlzCreateUnitWithSkin(p, 'h02D', - 951.1, - 20164.5, - 64.643, 'h02D')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', - 951.1, - 20164.5, 295.357, 'h02D')
     set u=BlzCreateUnitWithSkin(p, 'h02D', 17083.6, 18587.8, 11.922, 'h02D')
-    set u=BlzCreateUnitWithSkin(p, 'h02D', 17122.9, 18195.1, - 2.472, 'h02D')
+    set u=BlzCreateUnitWithSkin(p, 'h02D', 17122.9, 18195.1, 357.528, 'h02D')
     set u=BlzCreateUnitWithSkin(p, 'h02D', - 18270.5, 16106.1, 176.759, 'h02D')
     set u=BlzCreateUnitWithSkin(p, 'h02D', - 15503.2, 15313.7, 221.682, 'h02D')
     set u=BlzCreateUnitWithSkin(p, 'nten', - 344.6, - 17849.2, 282.122, 'nten')
@@ -11946,8 +11948,8 @@ function CreateNeutralHostile takes nothing returns nothing
     set u=BlzCreateUnitWithSkin(p, 'h029', - 912.1, - 21449.8, 344.088, 'h029')
     set u=BlzCreateUnitWithSkin(p, 'h029', - 925.7, - 21540.3, 353.831, 'h029')
     set u=BlzCreateUnitWithSkin(p, 'h029', - 983.7, - 21387.4, 321.844, 'h029')
-    set u=BlzCreateUnitWithSkin(p, 'h029', - 82.8, - 21597.1, 66.772, 'h029')
-    set u=BlzCreateUnitWithSkin(p, 'h02A', - 505.2, - 21672.6, 36.067, 'h02A')
+    set u=BlzCreateUnitWithSkin(p, 'h029', - 328.5, - 21687.2, 49.887, 'h029')
+    set u=BlzCreateUnitWithSkin(p, 'h02A', - 632.7, - 21661.4, 36.067, 'h02A')
     set u=BlzCreateUnitWithSkin(p, 'h029', 16150.5, 20273.1, 262.527, 'h029')
     set u=BlzCreateUnitWithSkin(p, 'h029', 16229.6, 20327.9, 281.079, 'h029')
     set u=BlzCreateUnitWithSkin(p, 'h029', 16221.6, 20274.7, 281.079, 'h029')
@@ -12142,7 +12144,7 @@ function CreateNeutralPassive takes nothing returns nothing
     call UnitAddItemToSlotById(gg_unit_O024_0311, 'I000', 0)
     call UnitAddItemToSlotById(gg_unit_O024_0311, 'I01S', 1)
     set u=BlzCreateUnitWithSkin(p, 'n00K', - 3633.6, - 18028.6, 357.900, 'n00K')
-    set u=BlzCreateUnitWithSkin(p, 'n00K', 355.2, - 21511.8, 357.900, 'n00K')
+    set u=BlzCreateUnitWithSkin(p, 'n00K', 125.8, - 20290.1, 357.900, 'n00K')
     set u=BlzCreateUnitWithSkin(p, 'n00K', - 2749.7, - 21367.5, 357.900, 'n00K')
     set u=BlzCreateUnitWithSkin(p, 'npig', 700.3, - 20226.0, 314.109, 'npig')
     set u=BlzCreateUnitWithSkin(p, 'npig', 519.1, - 20646.1, 59.207, 'npig')
@@ -15166,7 +15168,7 @@ function Trig_GlobalDamageEvent_Func008C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003Func006Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func004Func008Func002C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
         return true
     endif
@@ -15182,14 +15184,14 @@ function Trig_GlobalDamageEvent_Func011Func003Func006Func002C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003Func006C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func003Func006Func002C() ) then
+function Trig_GlobalDamageEvent_Func011Func004Func008C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func004Func008Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003Func009Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func004Func011Func002C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
         return true
     endif
@@ -15202,21 +15204,21 @@ function Trig_GlobalDamageEvent_Func011Func003Func009Func002C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003Func009C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func003Func009Func002C() ) then
+function Trig_GlobalDamageEvent_Func011Func004Func011C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func004Func011Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003Func012C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func004Func014C takes nothing returns boolean
     if ( not ( IsUnitType(udg_DamageEventTarget, UNIT_TYPE_UNDEAD) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003Func020C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func004Func024C takes nothing returns boolean
     if ( not ( udg_IsDamageAttack == true ) ) then
         return false
     endif
@@ -15226,14 +15228,14 @@ function Trig_GlobalDamageEvent_Func011Func003Func020C takes nothing returns boo
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func003C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func004C takes nothing returns boolean
     if ( not ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func006Func006Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func007Func008Func002C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_HERO ) ) then
         return true
     endif
@@ -15249,14 +15251,14 @@ function Trig_GlobalDamageEvent_Func011Func006Func006Func002C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func006Func006C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func006Func006Func002C() ) then
+function Trig_GlobalDamageEvent_Func011Func007Func008C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func007Func008Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func006Func009Func002C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func007Func011Func002C takes nothing returns boolean
     if ( ( udg_DamageEventAttackT == udg_ATTACK_TYPE_MAGIC ) ) then
         return true
     endif
@@ -15269,28 +15271,28 @@ function Trig_GlobalDamageEvent_Func011Func006Func009Func002C takes nothing retu
     return false
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func006Func009C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func006Func009Func002C() ) then
+function Trig_GlobalDamageEvent_Func011Func007Func011C takes nothing returns boolean
+    if ( not Trig_GlobalDamageEvent_Func011Func007Func011Func002C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func006Func012C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func007Func014C takes nothing returns boolean
     if ( not ( udg_DamageEventAmount <= ( udg_temp_damage * 0.10 ) ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func006C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func007C takes nothing returns boolean
     if ( not ( IsUnitInGroup(udg_DamageEventTarget, udg_HeroesGroup) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GlobalDamageEvent_Func011Func009C takes nothing returns boolean
+function Trig_GlobalDamageEvent_Func011Func011C takes nothing returns boolean
     if ( ( IsUnitInGroup(udg_DamageEventSource, udg_HeroesGroup) == true ) ) then
         return true
     endif
@@ -15301,7 +15303,7 @@ function Trig_GlobalDamageEvent_Func011Func009C takes nothing returns boolean
 endfunction
 
 function Trig_GlobalDamageEvent_Func011C takes nothing returns boolean
-    if ( not Trig_GlobalDamageEvent_Func011Func009C() ) then
+    if ( not Trig_GlobalDamageEvent_Func011Func011C() ) then
         return false
     endif
     return true
@@ -17165,37 +17167,40 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
     // -
     // HERO DEF & DAMAGE AMP
     if ( Trig_GlobalDamageEvent_Func011C() ) then
-        set udg_temp_damage=udg_DamageEventAmount
         // HERO DAMAGE AMP
-        if ( Trig_GlobalDamageEvent_Func011Func003C() ) then
+        if ( Trig_GlobalDamageEvent_Func011Func004C() ) then
+            set udg_temp_damage=udg_DamageEventAmount
+            set udg_damage_to_be_added=0.00
             set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventSource))
-            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_ALL[udg_tempInt]) / 100.00 ) ) )
+            set udg_damage_to_be_added=( udg_damage_to_be_added + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_ALL[udg_tempInt]) / 100.00 ) ) )
             // -
             // HERO DAMAGE AMP PHYSICAL
-            if ( Trig_GlobalDamageEvent_Func011Func003Func006C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
+            if ( Trig_GlobalDamageEvent_Func011Func004Func008C() ) then
+                set udg_damage_to_be_added=( udg_damage_to_be_added + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
             else
             endif
             // -
             // HERO DAMAGE AMP MAGIC
-            if ( Trig_GlobalDamageEvent_Func011Func003Func009C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_MAGIC[udg_tempInt]) / 100.00 ) ) )
+            if ( Trig_GlobalDamageEvent_Func011Func004Func011C() ) then
+                set udg_damage_to_be_added=( udg_damage_to_be_added + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_MAGIC[udg_tempInt]) / 100.00 ) ) )
             else
             endif
             // -
             // HERO DAMAGE AMP vs UNDEAD
-            if ( Trig_GlobalDamageEvent_Func011Func003Func012C() ) then
-                set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_UNDEAD[udg_tempInt]) / 100.00 ) ) )
+            if ( Trig_GlobalDamageEvent_Func011Func004Func014C() ) then
+                set udg_damage_to_be_added=( udg_damage_to_be_added + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_UNDEAD[udg_tempInt]) / 100.00 ) ) )
             else
             endif
             // -
             // HERO DAMAGE AMP vs ELITE
             if IsUnitType(udg_DamageEventTarget, UNIT_TYPE_GIANT) then
-            set udg_DamageEventAmount=( udg_DamageEventAmount + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_ELITES[udg_tempInt]) / 100.00 ) ) )
+            set udg_damage_to_be_added=( udg_damage_to_be_added + ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_BONUS_VS_ELITES[udg_tempInt]) / 100.00 ) ) )
             endif
             // -
+            set udg_DamageEventAmount=( udg_temp_damage + udg_damage_to_be_added )
+            // -
             // Blade of Doom
-            if ( Trig_GlobalDamageEvent_Func011Func003Func020C() ) then
+            if ( Trig_GlobalDamageEvent_Func011Func004Func024C() ) then
                 set udg_DamageEventAmount=0.00
                 call UnitDamageTargetBJ(udg_DamageEventSource, udg_DamageEventTarget, udg_DamageEventPrevAmt, ATTACK_TYPE_MELEE, DAMAGE_TYPE_UNIVERSAL)
             else
@@ -17205,24 +17210,26 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
         endif
         // -
         // HERO DAMAGE REDUCE
-        if ( Trig_GlobalDamageEvent_Func011Func006C() ) then
+        if ( Trig_GlobalDamageEvent_Func011Func007C() ) then
+            set udg_temp_damage=udg_DamageEventPrevAmt
+            set udg_damage_to_be_added=0.00
             set udg_tempInt=GetConvertedPlayerId(GetOwningPlayer(udg_DamageEventTarget))
             set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_ALL[udg_tempInt]) / 100.00 ) ) )
             // -
             // HERO DAMAGE DEF PHYSICAL
-            if ( Trig_GlobalDamageEvent_Func011Func006Func006C() ) then
+            if ( Trig_GlobalDamageEvent_Func011Func007Func008C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_PHYSICAL[udg_tempInt]) / 100.00 ) ) )
             else
             endif
             // -
             // HERO DAMAGE DEF MAGIC
-            if ( Trig_GlobalDamageEvent_Func011Func006Func009C() ) then
+            if ( Trig_GlobalDamageEvent_Func011Func007Func011C() ) then
                 set udg_DamageEventAmount=( udg_DamageEventAmount - ( udg_temp_damage * ( I2R(udg_HERO_DAMAGE_DEF_MAGIC[udg_tempInt]) / 100.00 ) ) )
             else
             endif
             // -
             // minimal 10%
-            if ( Trig_GlobalDamageEvent_Func011Func006Func012C() ) then
+            if ( Trig_GlobalDamageEvent_Func011Func007Func014C() ) then
                 set udg_DamageEventAmount=( udg_temp_damage * 0.10 )
             else
             endif
@@ -17230,6 +17237,7 @@ function Trig_GlobalDamageEvent_Actions takes nothing returns nothing
         endif
         // -
         set udg_temp_damage=0.00
+        set udg_damage_to_be_added=0.00
     else
     endif
     // -
@@ -18935,8 +18943,20 @@ endfunction
 //===========================================================================
 // Trigger: test
 //===========================================================================
+function Trig_test_Func001A takes nothing returns nothing
+    set bj_forLoopAIndex=3
+    set bj_forLoopAIndexEnd=7
+    loop
+        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+        set udg_tempLoc2=PolarProjectionBJ(GetUnitLoc(GetEnumUnit()), GetRandomReal(150.00, 250.00), GetRandomDirectionDeg())
+        call CreateItemLoc(ChooseRandomItemExBJ(2, ITEM_TYPE_ANY), udg_tempLoc2)
+        call RemoveLocation(udg_tempLoc2)
+        set bj_forLoopAIndex=bj_forLoopAIndex + 1
+    endloop
+endfunction
+
 function Trig_test_Actions takes nothing returns nothing
-    call UnitAddItemByIdSwapped('I0AT', gg_unit_E00C_0088)
+    call ForGroupBJ(udg_HeroesGroup, function Trig_test_Func001A)
 endfunction
 
 //===========================================================================
@@ -18949,18 +18969,20 @@ endfunction
 //===========================================================================
 // Trigger: test2
 //===========================================================================
-function Trig_test2_Func002A takes nothing returns nothing
-    call ShowUnitHide(GetEnumUnit())
-endfunction
-
-function Trig_test2_Func003A takes nothing returns nothing
-    call ShowUnitShow(GetEnumUnit())
+function Trig_test2_Func001A takes nothing returns nothing
+    set bj_forLoopAIndex=3
+    set bj_forLoopAIndexEnd=7
+    loop
+        exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
+        set udg_tempLoc2=PolarProjectionBJ(GetUnitLoc(GetEnumUnit()), GetRandomReal(150.00, 250.00), GetRandomDirectionDeg())
+        call CreateItemLoc(ChooseRandomItemExBJ(2, ITEM_TYPE_ANY), udg_tempLoc2)
+        call RemoveLocation(udg_tempLoc2)
+        set bj_forLoopAIndex=bj_forLoopAIndex + 1
+    endloop
 endfunction
 
 function Trig_test2_Actions takes nothing returns nothing
-    set udg_npc_heroes_variation=2
-    call ForGroupBJ(udg_npc_heroes_UG[1], function Trig_test2_Func002A)
-    call ForGroupBJ(udg_npc_heroes_UG[udg_npc_heroes_variation], function Trig_test2_Func003A)
+    call ForGroupBJ(udg_HeroesGroup, function Trig_test2_Func001A)
 endfunction
 
 //===========================================================================
@@ -28196,6 +28218,13 @@ function Trig_MutagenSelling_Conditions takes nothing returns boolean
     return true
 endfunction
 
+function Trig_MutagenSelling_Func004Func001C takes nothing returns boolean
+    if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02Y' ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_MutagenSelling_Func004C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o032' ) ) then
         return false
@@ -28303,7 +28332,11 @@ function Trig_MutagenSelling_Actions takes nothing returns nothing
     if ( Trig_MutagenSelling_Func004C() ) then
         set udg_MutagenPrice=3
     else
-        set udg_MutagenPrice=1
+        if ( Trig_MutagenSelling_Func004Func001C() ) then
+            set udg_MutagenPrice=2
+        else
+            set udg_MutagenPrice=1
+        endif
     endif
     call ForGroupBJ(udg_HeroesGroup, function Trig_MutagenSelling_Func005A)
     set udg_MutagenEiramonta=null
@@ -28429,7 +28462,7 @@ function Trig_MutagenApplyEffect_Func005C takes nothing returns boolean
 endfunction
 
 function Trig_MutagenApplyEffect_Func006Func002C takes nothing returns boolean
-    if ( not ( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] == 0.40 ) ) then
+    if ( not ( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] == 0.30 ) ) then
         return false
     endif
     return true
@@ -28532,8 +28565,8 @@ function Trig_MutagenApplyEffect_Actions takes nothing returns nothing
         if ( Trig_MutagenApplyEffect_Func006Func002C() ) then
             call SetItemCharges(GetItemOfTypeFromUnitBJ(udg_MutagenSeller, 'I08S'), ( GetItemCharges(GetItemOfTypeFromUnitBJ(udg_MutagenSeller, 'I08S')) + udg_MutagenPrice ))
         else
-            set udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.04 )
-            set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 4 )
+            set udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.03 )
+            set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 3 )
         endif
         set udg_tempInt=R2I(( ( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.01 ) * 100.00 ))
         call CreateTextTagUnitBJ(( "Текущее сопротивление урону:  |cffff0000" + ( I2S(udg_tempInt) + "%|r из |cffff000040%|r" ) ), udg_MutagenHero, 0, 10, 100, 100, 100, 0)
@@ -53928,7 +53961,7 @@ endfunction
 function Trig_TimeElapsedInit_Func008A takes nothing returns nothing
 endfunction
 
-function Trig_TimeElapsedInit_Func056Func001Func003C takes nothing returns boolean
+function Trig_TimeElapsedInit_Func056Func001Func004C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetEnumUnit()) == 'h029' ) ) then
         return true
     endif
@@ -53939,7 +53972,7 @@ function Trig_TimeElapsedInit_Func056Func001Func003C takes nothing returns boole
 endfunction
 
 function Trig_TimeElapsedInit_Func056Func001C takes nothing returns boolean
-    if ( not Trig_TimeElapsedInit_Func056Func001Func003C() ) then
+    if ( not Trig_TimeElapsedInit_Func056Func001Func004C() ) then
         return false
     endif
     return true
@@ -53949,6 +53982,7 @@ function Trig_TimeElapsedInit_Func056A takes nothing returns nothing
     if ( Trig_TimeElapsedInit_Func056Func001C() ) then
         call GroupAddUnitSimple(GetEnumUnit(), udg_ManekenUG)
         call GroupAddUnitSimple(GetEnumUnit(), udg_not_knockbackable_UG)
+        call GroupAddUnitSimple(GetEnumUnit(), udg_frozen_immune_UG)
     else
     endif
 endfunction
@@ -57063,11 +57097,18 @@ function Trig_Shrine_Func011C takes nothing returns boolean
     return true
 endfunction
 
+function Trig_Shrine_Func012C takes nothing returns boolean
+    if ( not ( udg_tempInt == 6 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_Shrine_Actions takes nothing returns nothing
     call DestroyEffectBJ(udg_ShrineSoulEff[1])
     call DestroyEffectBJ(udg_ShrineSoulEff[2])
     call PauseUnitBJ(true, GetTriggerUnit())
-    set udg_tempInt=GetRandomInt(1, 5)
+    set udg_tempInt=GetRandomInt(1, 6)
     set udg_tempLoc=GetUnitLoc(GetBuyingUnit())
     if ( Trig_Shrine_Func007C() ) then
         call PlaySoundOnUnitBJ(gg_snd_DiabloSrineLifeSound, 100, GetBuyingUnit())
@@ -57118,6 +57159,14 @@ function Trig_Shrine_Actions takes nothing returns nothing
         call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
         call PlaySoundOnUnitBJ(gg_snd_DiabloShrineSound, 100, GetBuyingUnit())
         call ForGroupBJ(udg_HeroesGroup, function Trig_Shrine_Func011Func006A)
+    else
+    endif
+    if ( Trig_Shrine_Func012C() ) then
+        call CreateTextTagUnitBJ("TRIGSTR_1264", GetTriggerUnit(), 0, 10, 100, 100, 100, 0)
+        call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
+        call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 3.00)
+        call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
+        set udg_shrine_gem_spawn=true
     else
     endif
     set udg_tempInt=0
@@ -70496,7 +70545,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs49029171")
+call ExecuteFunc("jasshelper__initstructs53650781")
 call ExecuteFunc("GetMainSelectedUnit__init_function")
 call ExecuteFunc("NSLHelper___Init")
 call ExecuteFunc("TasUnitBagGUI___init_function")
@@ -70708,7 +70757,7 @@ function sa___prototype27_NSLUtils___OnPlayerCodeLoaded takes nothing returns bo
     return true
 endfunction
 
-function jasshelper__initstructs49029171 takes nothing returns nothing
+function jasshelper__initstructs53650781 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -70735,11 +70784,11 @@ function jasshelper__initstructs49029171 takes nothing returns nothing
 
 
 
-call ExecuteFunc("s__File_FileIO___FileInit___onInit")
+call ExecuteFunc("s__File_FileIO___FileInit__onInit")
 
-call ExecuteFunc("s__User_PlayerUtils___PlayerUtilsInit___onInit")
+call ExecuteFunc("s__User_PlayerUtils___PlayerUtilsInit__onInit")
 
-call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
+call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS__onInit")
 
 
 

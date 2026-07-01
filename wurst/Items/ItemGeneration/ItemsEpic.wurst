@@ -3,6 +3,9 @@ package ItemsEpic
 import ItemObjEditing
 import ObjectIdGenerator
 import ObjectIds
+import ClosureEvents
+
+import Socketable
 
 import AdditionalStatsAbilities
 import EyeOfAvadraahObjects
@@ -10,8 +13,11 @@ import GiftOfLordOfLiesObjects
 
 let ORIGIN_ITEM_ID = 'rst1'
 
+public constant CROWN_OF_ETHORIA_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EYE_OF_AVADRAAH_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant GIFT_OF_LORD_OF_LIES_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
+public let EPIC_ITEM_GOLD_PRICE = 750
 
 let weapon = "Campaign"
 let trinket = "Purchasable"
@@ -31,6 +37,21 @@ let holy_items = 7
 let not_spawnable = 8
 
 
+@compiletime function genCrownOfEmphidiaItem()
+    new ItemDefinition(CROWN_OF_ETHORIA_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cffc82596Корона Этории|r")..setTooltipBasic("|cffc82596Корона Этории|r")
+        ..setTooltipExtended("+100% к цене предмета при продаже. |n|cffc82596В этот предмет можно вставить до 5 разных самоцветов. |n|n+33% к цене за каждый базовый самоцвет; |n+66% к цене за каждый обработанный самоцвет; |n+100% к цене за каждый безупречный самоцвет; |n+200% к цене за каждый идеальный самоцвет|r.")
+        ..setDescription("+100% к цене предмета при продаже. |n|cffc82596В этот предмет можно вставить до 5 разных самоцветов. |n|n+33% к цене за каждый базовый самоцвет; |n+66% к цене за каждый обработанный самоцвет; |n+100% к цене за каждый безупречный самоцвет; |n+200% к цене за каждый идеальный самоцвет|r. |n|n[|cff00ffffУкрашение|r]")
+        ..setLevel(epic)..setLevelUnclassified(epic)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCrownForWindking.dds")..setModelUsed("SpellShieldAmulet_RFRGD.mdl")..setScalingValue(0.5)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(SOCKETABLE_SPELL_ID.toRawCode())
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(EYE_OF_AVADRAAH_SPELL_ID.toRawCode())
+        ..setClassification(trinket)
+        ..setGoldCost(EPIC_ITEM_GOLD_PRICE)
+
 @compiletime function genEyeOfAvadraahItem()
     new ItemDefinition(EYE_OF_AVADRAAH_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc82596Око Авадрааха|r")..setTooltipBasic("|cffc82596Око Авадрааха|r")
@@ -49,7 +70,7 @@ let not_spawnable = 8
         ..setActivelyUsed(true)
         ..setCooldownGroup(EYE_OF_AVADRAAH_SPELL_ID.toRawCode())
         ..setClassification(trinket)
-        ..setGoldCost(750)
+        ..setGoldCost(EPIC_ITEM_GOLD_PRICE)
 
 @compiletime function genGiftOfLordOfLiesItem()
     new ItemDefinition(GIFT_OF_LORD_OF_LIES_ITEM_ID, ORIGIN_ITEM_ID)
@@ -68,4 +89,12 @@ let not_spawnable = 8
         ..setActivelyUsed(true)
         ..setCooldownGroup(GIFT_OF_LORD_OF_LIES_SPELL_ID.toRawCode())
         ..setClassification(armor)
-        ..setGoldCost(750)
+        ..setGoldCost(EPIC_ITEM_GOLD_PRICE)
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) ->
+        let _item = GetManipulatedItem()
+
+        if _item.getTypeId() == CROWN_OF_ETHORIA_ITEM_ID
+            _item.getAbility(SOCKETABLE_SPELL_ID).setField(ABILITY_ILF_MANA_COST, 0, 5)

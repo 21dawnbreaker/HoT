@@ -1,0 +1,25 @@
+package Shrine
+
+import ClosureEvents
+import ClosureTimers
+import SoundUtils
+import LinkedList
+
+import ItemsRunesAndGems
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        let caster = GetTriggerUnit()
+        let sold_unit = GetSoldUnit()
+
+        // Random lvl 1 gems creation
+        if sold_unit.getTypeId() == 'o02G'
+            doAfter(0.1) -> 
+                if udg_shrine_gem_spawn  
+                    udg_shrine_gem_spawn = false
+
+                    for i = 3 to 7
+                        let random_gem = GemData.getRandomGemObjByPowerLvl(GEMS, 1).itemId
+
+                        GemData.gemDropSound.playOnPoint(caster.getPos3Real())
+                        createItem(random_gem, caster.getPos().polarOffset(GetRandomReal(0, 360).asAngleDegrees(), GetRandomReal(100, 250)))
