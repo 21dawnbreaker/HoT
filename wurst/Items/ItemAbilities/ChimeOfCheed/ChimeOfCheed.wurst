@@ -1,0 +1,51 @@
+package ChimeOfCheed
+
+import ClosureEvents
+import ChannelAbilityPreset
+import public Assets
+
+import Utilities
+import FloatingText
+
+
+public constant CHIME_OF_CHEED_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+let eff = "Abilities\\Spells\\Human\\MassTeleport\\MassTeleportTarget.mdl"
+let lines = [
+    "А вот и я!",
+    "Чувствуешь себя удачным сегодня?",
+    "Сыграем?",
+    "Как насчет игры?",
+    "О, мудро было меня позвать",
+    "Рубины или рванина?",
+    "Куплю все что у тебя есть",
+    "А ведь я мог не приходить!"
+]
+
+@compiletime function genObj()
+    new ChannelAbilityPreset(CHIME_OF_CHEED_SPELL_ID, 1, true)
+    ..setName("Chime of Cheed")
+    ..setItemAbility(true)
+    ..setAnimationNames("attack")
+    ..setTargetType(1, targetTypeNoTarget)
+    ..setBaseOrderID(1, "starfall")
+
+    ..setCooldown(1, 900.0)
+    ..setCastingTime(1, 0.0)
+
+
+init
+    EventListener.onCast(CHIME_OF_CHEED_SPELL_ID) (unit caster) ->
+        let g = CreateGroup()
+
+        GroupEnumUnitsOfPlayer(g, ALLIES_PLAYER, null)
+        for u in g
+            if u.getTypeId() == 'h025'
+                flashEffect(eff, u.getPos3Real())
+                u.remove()
+        g.destr()
+
+        let cheed = createUnit(ALLIES_PLAYER, 'h025', caster.getPos().polarOffset(getRandomAngle(), 250))..setTimedLife(300)
+        cheed.setFacing(cheed.getPos().angleTo(caster.getPos()))
+        flashEffect(eff, cheed.getPos3Real())
+
+        createFloatingTextAboveUnitRP(cheed, lines[GetRandomInt(0, lines.length - 1)])

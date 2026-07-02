@@ -4,13 +4,14 @@ import ClosureEvents
 
 import ItemsEpic
 import ItemsRunesAndGems
+import FloatingText
 
 init
-    EventListener.add(EVENT_PLAYER_UNIT_SELL_ITEM) ->
-        let _item = GetManipulatedItem()
+    EventListener.add(EVENT_PLAYER_UNIT_PAWN_ITEM) ->
+        let _item = GetSoldItem()
 
         if _item.getTypeId() == CROWN_OF_ETHORIA_ITEM_ID
-            var gold_bonus = EPIC_ITEM_GOLD_PRICE
+            var gold_bonus = (EPIC_ITEM_GOLD_PRICE / 2).toInt()
             for gem in GEMS
                 if _item.getAbility(gem.abilityId) != null
                     if gem.powerLvl == 1
@@ -22,4 +23,5 @@ init
                     if gem.powerLvl == 4
                         gold_bonus += EPIC_ITEM_GOLD_PRICE
 
+            createFloatingTextAboveUnit(GetTriggerUnit(), "Additional gold: +" + "|cffffcc00" + gold_bonus.toString() + "|r", 3)
             GetTriggerUnit().getOwner().addGold(gold_bonus)

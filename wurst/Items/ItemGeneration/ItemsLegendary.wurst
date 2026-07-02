@@ -19,10 +19,6 @@ let boots = "Artifact"
 let other = "PowerUp"
 let scroll = "Miscellaneous"
 
-let common = 1
-let rune = 2
-let rare = 3
-let epic = 4
 let legendary = 5
 let fel_items = 6
 let holy_items = 7

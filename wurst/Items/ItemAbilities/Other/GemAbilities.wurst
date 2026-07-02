@@ -3,16 +3,15 @@ package GemAbilities
 import ChannelAbilityPreset
 import public Assets
 
+public constant GEM_MAX_LIFE_1_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_MAX_LIFE_2_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_MAX_LIFE_3_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_MAX_LIFE_4_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
-public constant GEM_STR_AND_AGI_1_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public constant GEM_STR_AND_AGI_2_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public constant GEM_STR_AND_AGI_3_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public constant GEM_STR_AND_AGI_4_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-
-public constant GEM_INT_1_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public constant GEM_INT_2_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public constant GEM_INT_3_SPELL_ID = compiletime(ABIL_ID_GEN.next())
-public constant GEM_INT_4_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_ALL_STAT_1_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_ALL_STAT_2_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_ALL_STAT_3_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant GEM_ALL_STAT_4_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 public constant GEM_ATTACK_SPEED_1_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant GEM_ATTACK_SPEED_2_SPELL_ID = compiletime(ABIL_ID_GEN.next())
@@ -20,56 +19,44 @@ public constant GEM_ATTACK_SPEED_3_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant GEM_ATTACK_SPEED_4_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjSTRandAGIbonus1()
-    new AbilityDefinitionAllPlus1(GEM_STR_AND_AGI_1_SPELL_ID)
-        ..setAgilityBonus(1, 12)
-        ..setStrengthBonus(1, 12)
-        ..setIntelligenceBonus(1, 0)
+    new AbilityDefinitionMaxLifeBonusGreater(GEM_MAX_LIFE_1_SPELL_ID)
+        ..setMaxLifeGained(1, 125)
 
 @compiletime function genObjSTRandAGIbonus2()
-    new AbilityDefinitionAllPlus1(GEM_STR_AND_AGI_2_SPELL_ID)
-        ..setAgilityBonus(1, 24)
-        ..setStrengthBonus(1, 24)
-        ..setIntelligenceBonus(1, 0)
+    new AbilityDefinitionMaxLifeBonusGreater(GEM_MAX_LIFE_2_SPELL_ID)
+        ..setMaxLifeGained(1, 250)
 
 @compiletime function genObjSTRandAGIbonus3()
-    new AbilityDefinitionAllPlus1(GEM_STR_AND_AGI_3_SPELL_ID)
-        ..setAgilityBonus(1, 36)
-        ..setStrengthBonus(1, 36)
-        ..setIntelligenceBonus(1, 0)
+    new AbilityDefinitionMaxLifeBonusGreater(GEM_MAX_LIFE_3_SPELL_ID)
+        ..setMaxLifeGained(1, 375)
 
 @compiletime function genObjSTRandAGIbonus4()
-    new AbilityDefinitionAllPlus1(GEM_STR_AND_AGI_4_SPELL_ID)
-        ..setAgilityBonus(1, 48)
-        ..setStrengthBonus(1, 48)
-        ..setIntelligenceBonus(1, 0)
-
-
+    new AbilityDefinitionMaxLifeBonusGreater(GEM_MAX_LIFE_4_SPELL_ID)
+        ..setMaxLifeGained(1, 500)
 
 @compiletime function genObjINTbonus1()
-    new AbilityDefinitionAllPlus1(GEM_INT_1_SPELL_ID)
-        ..setAgilityBonus(1, 0)
-        ..setStrengthBonus(1, 0)
+    new AbilityDefinitionAllPlus1(GEM_ALL_STAT_1_SPELL_ID)
+        ..setAgilityBonus(1, 12)
+        ..setStrengthBonus(1, 12)
         ..setIntelligenceBonus(1, 12)
 
 @compiletime function genObjINTbonus2()
-    new AbilityDefinitionAllPlus1(GEM_INT_2_SPELL_ID)
-        ..setAgilityBonus(1, 0)
-        ..setStrengthBonus(1, 0)
+    new AbilityDefinitionAllPlus1(GEM_ALL_STAT_2_SPELL_ID)
+        ..setAgilityBonus(1, 24)
+        ..setStrengthBonus(1, 24)
         ..setIntelligenceBonus(1, 24)
 
 @compiletime function genObjINTbonus3()
-    new AbilityDefinitionAllPlus1(GEM_INT_3_SPELL_ID)
-        ..setAgilityBonus(1, 0)
-        ..setStrengthBonus(1, 0)
+    new AbilityDefinitionAllPlus1(GEM_ALL_STAT_3_SPELL_ID)
+        ..setAgilityBonus(1, 36)
+        ..setStrengthBonus(1, 36)
         ..setIntelligenceBonus(1, 36)
 
 @compiletime function genObjINTbonus4()
-    new AbilityDefinitionAllPlus1(GEM_INT_4_SPELL_ID)
-        ..setAgilityBonus(1, 0)
-        ..setStrengthBonus(1, 0)
+    new AbilityDefinitionAllPlus1(GEM_ALL_STAT_4_SPELL_ID)
+        ..setAgilityBonus(1, 48)
+        ..setStrengthBonus(1, 48)
         ..setIntelligenceBonus(1, 48)
-
-
 
 @compiletime function genObjAttackSpeedbonus1()
     new AbilityDefinitionAttackSpeedIncrease(GEM_ATTACK_SPEED_1_SPELL_ID)

@@ -1,0 +1,13 @@
+package Utilities
+
+public let targetTypeNoTarget = 0
+public let targetTypeUnit = 1
+public let targetTypePoint = 2
+public let targetTypePointOrUnit = 3
+
+public let ALLIES_PLAYER = Player(20)
+public let UNDEAD_PLAYER = Player(22)
+public let MONSTERS_PLAYER = Player(23)
+
+public function getRandomAngle() returns angle
+    return GetRandomReal(0., 360.).asAngleRadians()

@@ -1,0 +1,45 @@
+package Freeze
+
+import ChannelAbilityPreset
+import DamageEvent
+import public Assets
+
+public constant FREEZE_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_10_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_20_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_25_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_30_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_35_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_40_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_45_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant FREEZE_50_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+
+let FREEZE_ABILITY_LIST = [
+    FREEZE_5_SPELL_ID,
+    FREEZE_10_SPELL_ID,
+    FREEZE_15_SPELL_ID,
+    FREEZE_20_SPELL_ID,
+    FREEZE_25_SPELL_ID,
+    FREEZE_30_SPELL_ID,
+    FREEZE_35_SPELL_ID,
+    FREEZE_40_SPELL_ID,
+    FREEZE_45_SPELL_ID,
+    FREEZE_50_SPELL_ID
+]
+
+function hasFreezeAbilityAndProc(unit u) returns bool
+    for i = 0 to FREEZE_ABILITY_LIST.length - 1
+        if u.hasAbility(FREEZE_ABILITY_LIST[i]) and (i + 1) * 5 >= GetRandomInt(1, 100)
+            print("proc!")
+            return true
+    return false
+
+
+init
+    DamageEvent.addListener() -> 
+        if DamageEvent.getType() == ATTACK and hasFreezeAbilityAndProc(DamageEvent.getSource())
+            DamageEvent.setAmount(0)
+            udg_tempUnit = DamageEvent.getTarget()
+            TriggerExecute(gg_trg_FreezeFunc)
+            udg_tempUnit = null

@@ -4,10 +4,17 @@ import ObjectIdGenerator
 import ObjectIds
 
 import public AdditionalStatsAbilities
+import Freeze
+
+import ChimeOfCheed
+
 
 let ORIGIN_ITEM_ID = 'rst1'
 
 public constant BOUNTY_HUNT_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant FROST_CLAWS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant SWORD_OF_PANTILUS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant CHIME_OF_CHEED_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 
 let weapon = "Campaign"
 let trinket = "Purchasable"
@@ -17,13 +24,7 @@ let boots = "Artifact"
 let other = "PowerUp"
 let scroll = "Miscellaneous"
 
-let common = 1
-let rune = 2
 let rare = 3
-let epic = 4
-let legendary = 5
-let fel_items = 6
-let holy_items = 7
 let not_spawnable = 8
 
 
@@ -41,6 +42,57 @@ let not_spawnable = 8
             + "," + MINIBOSS_SPAWN_CHANCE_25_SPELL_ID.toRawCode()
         )
         ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(trinket)
+        ..setGoldCost(300)
+
+@compiletime function genFrostClawsItem()
+    new ItemDefinition(FROST_CLAWS_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff8080ffЛедяные когти|r")..setTooltipBasic("|cff8080ffЛедяные когти|r")
+        ..setTooltipExtended("+25 к интеллекту. |n+25 к урону. |n+50% к регенерации маны.|n|cff8080ffС шансом 5% автоатака заморозит цель (кроме боссов)|r.")
+        ..setDescription("+25 к интеллекту. |n+25 к урону. |n+50% к регенерации маны.|n|cff8080ffС шансом 5% автоатака заморозит цель (кроме боссов)|r. |n|n[|cff00ffffУкрашение|r]")
+        ..setLevel(rare)..setLevelUnclassified(rare)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(120)..setTintingColor2Green(120)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNFrostClaws.blp")..setModelUsed("war3mapImported\\Claws.mdx")..setScalingValue(1)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(
+            FREEZE_50_SPELL_ID.toRawCode() 
+            + "," + "A0CG,A07C,A0FB"
+        )
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(weapon)
+        ..setGoldCost(300)
+
+@compiletime function genSwordOfPantilusItem()
+    new ItemDefinition(SWORD_OF_PANTILUS_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff8080ffМеч Пантилуса|r")..setTooltipBasic("|cff8080ffМеч Пантилуса|r")
+        ..setTooltipExtended("+20 к силе и ловкости. |n+20% к скорости атаки. |n+10% к физическому урону.|n|cff8080ffС шансом 20% автоатака наносит двойной урон|r.")
+        ..setDescription("+20 к силе и ловкости. |n+20% к скорости атаки. |n+10% к физическому урону.|n|cff8080ffС шансом 20% автоатака наносит двойной урон|r. |n|n[|cff00ffffУкрашение|r]")
+        ..setLevel(rare)..setLevelUnclassified(rare)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(235)..setTintingColor3Blue(200)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNRaiderCleavingAttack.blp")..setModelUsed("war3mapImported\\Sword.mdx")..setScalingValue(1)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(
+            PHYSICAL_AMP_10_SPELL_ID.toRawCode() 
+            + "," + "A07O,A0BL,A056"
+        )
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(weapon)
+        ..setGoldCost(300)
+
+@compiletime function genChimeOfCheedItem()
+    new ItemDefinition(CHIME_OF_CHEED_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff8080ffКолокольчик Чида|r")..setTooltipBasic("|cff8080ffКолокольчик Чида|r")
+        ..setTooltipExtended("|n|cff8080ffМгновенно перемещает Чида к герою|r.")
+        ..setDescription("|n|cff8080ffМгновенно перемещает Чида к герою|r. |n|n[|cff00ffffУкрашение|r]")
+        ..setLevel(rare)..setLevelUnclassified(rare)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNChime.blp")..setScalingValue(0.6)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(CHIME_OF_CHEED_SPELL_ID.toRawCode())
+        ..setActivelyUsed(true)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(trinket)
         ..setGoldCost(300)

@@ -5,6 +5,10 @@ import SoundUtils
 
 import ItemsRunesAndGems
 import ItemsPotions
+import ItemsUncommon
+import ItemsRare
+import ItemsEpic
+import ItemsLegendary
 
 let weapon_sound = new SoundDefinition("diablo2_largemetalweapon.wav", false, true)
 let scroll_sound = new SoundDefinition("Sounds/scroll.wav", false, true)
@@ -51,8 +55,12 @@ init
             flag = false
 
         if _item_itemType == ITEM_TYPE_PURCHASABLE and flag
-            amulet_sound.playOnPoint(_unit.getPos3Real())
-            flag = false
+            if _item_id == BOUNTY_HUNT_ITEM_ID
+                scroll_sound.playOnPoint(_unit.getPos3Real())
+                flag = false
+            if flag
+                amulet_sound.playOnPoint(_unit.getPos3Real())
+                flag = false
 
         if _item_itemType == ITEM_TYPE_PERMANENT and flag
             platearmor_sound.playOnPoint(_unit.getPos3Real())

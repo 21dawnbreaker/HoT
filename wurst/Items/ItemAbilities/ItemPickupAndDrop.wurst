@@ -2,7 +2,7 @@ package ItemPickupAndDrop
 
 import ClosureEvents
 
-import ItemsCommon
+import ItemsUncommon
 import ItemsRunesAndGems
 import ItemsRare
 import ItemsEpic
@@ -43,12 +43,12 @@ init
                 udg_HERO_DAMAGE_BONUS_ALL[_id] += all_amp_dict.get(key)
 
         // PHYSICAL damage amp --------------------------------------------------------------------
-        for key in all_amp_dict
+        for key in physical_amp_dict
             if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
                 udg_HERO_DAMAGE_BONUS_PHYSICAL[_id] += physical_amp_dict.get(key)
 
         // MAGIC damage amp --------------------------------------------------------------------
-        for key in all_amp_dict
+        for key in magic_amp_dict
             if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
                 udg_HERO_DAMAGE_BONUS_MAGIC[_id] += magic_amp_dict.get(key)
 
@@ -105,12 +105,12 @@ init
                 udg_HERO_DAMAGE_BONUS_ALL[_id] -= all_amp_dict.get(key)
 
         // PHYSICAL damage amp --------------------------------------------------------------------
-        for key in all_amp_dict
+        for key in physical_amp_dict
             if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
                 udg_HERO_DAMAGE_BONUS_PHYSICAL[_id] -= physical_amp_dict.get(key)
 
         // MAGIC damage amp --------------------------------------------------------------------
-        for key in all_amp_dict
+        for key in magic_amp_dict
             if _item.getAbility(key) != null and udg_HeroesGroup.has(_unit)
                 udg_HERO_DAMAGE_BONUS_MAGIC[_id] -= magic_amp_dict.get(key)
 

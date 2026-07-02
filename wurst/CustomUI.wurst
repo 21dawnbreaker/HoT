@@ -4,6 +4,7 @@ import ClosureTimers
 
 
 let idle_workers_timer = CreateTimer()
+let system_msg_pos_timer = CreateTimer()
 
 function return_idle_workers_frames()
     let idle_workers = BlzFrameGetChild(BlzGetFrameByName("ConsoleBottomBar", 0), 3)
@@ -12,7 +13,19 @@ function return_idle_workers_frames()
     BlzFrameClearAllPoints(idle_workers)
     BlzFrameSetAbsPoint(idle_workers, FRAMEPOINT_TOPLEFT, 0.003, 0.08) // 0.02, 0.17
 
+function change_system_msg_frame_pos()
+    let _handle = BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
+
+    BlzFrameClearAllPoints(_handle)
+    BlzFrameSetAbsPoint(_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.500000)
+    BlzFrameSetAbsPoint(_handle, FRAMEPOINT_BOTTOMRIGHT, 0.500000, 0.340000)
+
+
 init
     TimerStart(idle_workers_timer, 3, false, function return_idle_workers_frames)
     doAfter(idle_workers_timer.getRemaining() + 0.5) -> 
         idle_workers_timer.destr()
+
+    TimerStart(system_msg_pos_timer, 0.1, false, function change_system_msg_frame_pos)
+    doAfter(system_msg_pos_timer.getRemaining() + 0.5) -> 
+        system_msg_pos_timer.destr()

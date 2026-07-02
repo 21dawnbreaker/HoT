@@ -1,11 +1,12 @@
 package Tests
 import ClosureEvents
 
-import ItemsCommon
+import ItemsUncommon
 import ItemsRunesAndGems
 import ItemsRare
 import ItemsEpic
 import ItemsLegendary
+import Utilities
 
 
 init
@@ -15,12 +16,31 @@ init
         let _hero = udg_hero_by_player[_player.getId() + 1]
 
         if msg == "-test4"
-            CreateItem(CROWN_OF_ETHORIA_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(CHIME_OF_CHEED_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(FROST_CLAWS_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(SWORD_OF_PANTILUS_ITEM_ID, _hero.getX(), _hero.getY())
             
         if msg == "-test5"
-            let _item = _hero.itemInSlot(0)
-            print(_item.getName() + " - lvl: " + _item.getLevel().toString())
-            print(_item.getItemtype() == ITEM_TYPE_POWERUP)
+            print(ALLIES_PLAYER.getName())
+            print(MONSTERS_PLAYER.getName())
+            print(UNDEAD_PLAYER.getName())
+
+            let cheed = createUnit(ALLIES_PLAYER, 'h025', _hero.getPos().polarOffset(getRandomAngle(), 250))..setTimedLife(300)
+            cheed.setFacing(cheed.getPos().angleTo(_hero.getPos()))
+
+            print("2")
+            createUnit(ALLIES_PLAYER, 'h025', _hero.getPos().polarOffset(getRandomAngle(), 250))..setTimedLife(300)
+
+            
+        if msg == "-test6"
+            let _handle = BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
+            
+            BlzFrameClearAllPoints(_handle)
+            BlzFrameSetAbsPoint(_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.500000)
+            BlzFrameSetAbsPoint(_handle, FRAMEPOINT_BOTTOMRIGHT, 0.500000, 0.340000)
+
+        if msg == "-msg"
+            print("Message!")
 
         if msg == "-legendary"
             CreateItem(ChooseRandomItem(5), _hero.getX(), _hero.getY())
