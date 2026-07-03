@@ -12,13 +12,15 @@ public constant CHIME_OF_CHEED_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 let eff = "Abilities\\Spells\\Human\\MassTeleport\\MassTeleportTarget.mdl"
 let lines = [
     "А вот и я!",
-    "Чувствуешь себя удачным сегодня?",
+    "Чувствуешь запах фортуны?",
     "Сыграем?",
     "Как насчет игры?",
     "О, мудро было меня позвать",
-    "Рубины или рванина?",
+    "Куплю что угодно, хе-хе",
     "Куплю все что у тебя есть",
-    "А ведь я мог не приходить!"
+    "У меня есть кое-что новенькое",
+    "Продам даже Аркенстон",
+    "Всегда рад явиться к моему любимому клиенту"
 ]
 
 @compiletime function genObj()
@@ -44,8 +46,8 @@ init
                 u.remove()
         g.destr()
 
-        let cheed = createUnit(ALLIES_PLAYER, 'h025', caster.getPos().polarOffset(getRandomAngle(), 250))..setTimedLife(300)
-        cheed.setFacing(cheed.getPos().angleTo(caster.getPos()))
+        let pos = caster.getPos().polarOffset(getRandomAngle(), 250)
+        let cheed = createUnit(ALLIES_PLAYER, 'h025', pos, pos.angleTo(caster.getPos()))
         flashEffect(eff, cheed.getPos3Real())
 
         createFloatingTextAboveUnitRP(cheed, lines[GetRandomInt(0, lines.length - 1)])

@@ -56,7 +56,7 @@ let not_spawnable = 8
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNFrostClaws.blp")..setModelUsed("war3mapImported\\Claws.mdx")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities(
-            FREEZE_50_SPELL_ID.toRawCode() 
+            FREEZE_5_SPELL_ID.toRawCode() 
             + "," + "A0CG,A07C,A0FB"
         )
         ..setActivelyUsed(false)

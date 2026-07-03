@@ -117,6 +117,7 @@ public constant ALL_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 // PHYSICAL damage amplification --------------------------------------------------------------------
 public constant PHYSICAL_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 public constant PHYSICAL_AMP_10_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant PHYSICAL_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjPhysicalAmp5()
     new AbilityDefinitionCriticalStrikeItem(PHYSICAL_AMP_5_SPELL_ID)
@@ -125,6 +126,11 @@ public constant PHYSICAL_AMP_10_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjPhysicalAmp10()
     new AbilityDefinitionCriticalStrikeItem(PHYSICAL_AMP_10_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjPhysicalAmp15()
+    new AbilityDefinitionCriticalStrikeItem(PHYSICAL_AMP_15_SPELL_ID)
         ..setChancetoCriticalStrike(1, 0)
         ..setDamageMultiplier(1, 0)
 
@@ -291,6 +297,7 @@ function fill_dicts()
 
     physical_amp_dict.put(PHYSICAL_AMP_5_SPELL_ID, 5)
     physical_amp_dict.put(PHYSICAL_AMP_10_SPELL_ID, 10)
+    physical_amp_dict.put(PHYSICAL_AMP_15_SPELL_ID, 15)
 
     vs_elite_amp_dict.put(VS_ELITES_AMP_5_SPELL_ID, 5)
     vs_elite_amp_dict.put(VS_ELITES_AMP_8_SPELL_ID, 8)

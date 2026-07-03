@@ -10,6 +10,7 @@ let ORIGIN_ITEM_ID = 'rst1'
 
 public constant HUNTERS_HATCHET_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant CLAWS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant RAGING_AXE_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 
 let weapon = "Campaign"
 let trinket = "Purchasable"
@@ -39,7 +40,7 @@ let not_spawnable = 8
 
 @compiletime function genClawsItem()
     new ItemDefinition(CLAWS_ITEM_ID, ORIGIN_ITEM_ID)
-        ..setName("|cff8080ffЛедяные когти|r")..setTooltipBasic("|cff8080ffЛедяные когти|r")
+        ..setName("|cff80ff80Боевые когти|r")..setTooltipBasic("|cff80ff80Боевые когти|r")
         ..setTooltipExtended("+25 к интеллекту. |n+50% к регенерации маны.")
         ..setDescription("+25 к интеллекту. |n+50% к регенерации маны. |n|n[|cff00ffffОружие|r]")
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
@@ -47,6 +48,21 @@ let not_spawnable = 8
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNClawsOfAttack.blp")..setModelUsed("war3mapImported\\Claws.mdx")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities("A0CG,A0FB")
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(weapon)
+        ..setGoldCost(200)
+
+@compiletime function genRagingAxeItem()
+    new ItemDefinition(RAGING_AXE_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cffff0000Топор Гнева|r")..setTooltipBasic("|cff80ff80Топор Гнева|r")
+        ..setTooltipExtended("+40 к силе и ловкости. |n+15% к физическому урону. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r.")
+        ..setDescription("+40 к силе и ловкости. |n15% к физическому урону. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r.|n|n[|cff00ffffОружие|r]")
+        ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(180)..setTintingColor3Blue(120)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNFireAxe.blp")..setModelUsed("BattleAxe.mdx")..setScalingValue(1)
+        ..setCanBeDropped(false)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)..setDroppedWhenCarrierDies(true)
+        ..setAbilities(PHYSICAL_AMP_15_SPELL_ID.toRawCode() + "A0JG")
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(weapon)

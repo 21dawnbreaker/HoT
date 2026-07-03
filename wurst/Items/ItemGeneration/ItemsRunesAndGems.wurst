@@ -8,6 +8,7 @@ import SoundUtils
 import AdditionalStatsAbilities
 import GemAbilities
 
+
 public class GemData
     int itemId
     int abilityId
@@ -35,36 +36,80 @@ public class GemData
                 if count == rnd
                     return gem
         return null
+
 public constant GEMS = new LinkedList<GemData>
+
 constant ORIGIN_ITEM_ID = 'rst1'
+
 public constant DIAMOND_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant DIAMOND_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant DIAMOND_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant DIAMOND_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant TOPAZ_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant TOPAZ_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant TOPAZ_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant TOPAZ_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant RUBY_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant RUBY_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant RUBY_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant RUBY_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant EMERALD_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EMERALD_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EMERALD_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EMERALD_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant AMETHYST_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant AMETHYST_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant AMETHYST_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant AMETHYST_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant SAPPHIRE_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SAPPHIRE_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SAPPHIRE_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SAPPHIRE_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
 public constant SKULL_1_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SKULL_2_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SKULL_3_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SKULL_4_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
+public constant ARKENSTONE_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+
+public let RUNES_AND_GEMS_LIST = [
+    DIAMOND_1_ITEM_ID,
+    DIAMOND_2_ITEM_ID,
+    DIAMOND_2_ITEM_ID,
+    DIAMOND_2_ITEM_ID,
+    TOPAZ_1_ITEM_ID,
+    TOPAZ_1_ITEM_ID,
+    TOPAZ_1_ITEM_ID,
+    TOPAZ_1_ITEM_ID,
+    RUBY_1_ITEM_ID,
+    RUBY_1_ITEM_ID,
+    RUBY_1_ITEM_ID,
+    RUBY_1_ITEM_ID,
+    EMERALD_1_ITEM_ID,
+    EMERALD_1_ITEM_ID,
+    EMERALD_1_ITEM_ID,
+    EMERALD_1_ITEM_ID,
+    AMETHYST_1_ITEM_ID,
+    AMETHYST_1_ITEM_ID,
+    AMETHYST_1_ITEM_ID,
+    AMETHYST_1_ITEM_ID,
+    SAPPHIRE_1_ITEM_ID,
+    SAPPHIRE_1_ITEM_ID,
+    SAPPHIRE_1_ITEM_ID,
+    SAPPHIRE_1_ITEM_ID,
+    SKULL_1_ITEM_ID,
+    SKULL_1_ITEM_ID,
+    SKULL_1_ITEM_ID,
+    SKULL_1_ITEM_ID,
+    ARKENSTONE_ITEM_ID
+]
+
 constant weapon = "Campaign"
 constant trinket = "Purchasable"
 constant armor = "Permanent"
@@ -72,6 +117,7 @@ constant gloves = "Charged"
 constant boots = "Artifact"
 constant other = "PowerUp"
 constant scroll = "Miscellaneous"
+
 constant common = 1
 constant rune = 2
 constant rare = 3
@@ -760,32 +806,65 @@ constant not_spawnable = 8
         ..setClassification(other)
         ..setGoldCost(800)
 
+@compiletime function genArkenstoneItem()
+    new ItemDefinition(ARKENSTONE_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cffd48219Аркенстон|r")
+        ..setTooltipBasic("|cffd48219Аркенстон|r")
+        ..setTooltipExtended("+100 ко всем характеристикам.")
+        ..setDescription("+100 ко всем характеристикам. |n|n[|cff00ffffСамоцвет|r]")
+        ..setLevel(legendary)
+        ..setLevelUnclassified(legendary)
+        ..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)
+        ..setTintingColor2Green(255)
+        ..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNGemOfLife.blp")
+        ..setModelUsed("Models\\Item_Gem_Aquamarine.mdx")
+        ..setScalingValue(0.8)
+        ..setCanBeDropped(true)
+        ..setCanBeSoldByMerchants(true)
+        ..setCanBeSoldToMerchants(true)
+        ..setAbilities(GEM_ALL_STAT_100_SPELL_ID.toRawCode())
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(other)
+        ..setGoldCost(1500)
+
+
 init
     GEMS.add(new GemData(DIAMOND_1_ITEM_ID, ALL_RESISTANCE_3_SPELL_ID, 1, DIAMOND_2_ITEM_ID))
     GEMS.add(new GemData(DIAMOND_2_ITEM_ID, ALL_RESISTANCE_6_SPELL_ID, 2, DIAMOND_3_ITEM_ID))
     GEMS.add(new GemData(DIAMOND_3_ITEM_ID, ALL_RESISTANCE_9_SPELL_ID, 3, DIAMOND_4_ITEM_ID))
     GEMS.add(new GemData(DIAMOND_4_ITEM_ID, ALL_RESISTANCE_12_SPELL_ID, 4, -1))
+
     GEMS.add(new GemData(TOPAZ_1_ITEM_ID, GEM_ALL_STAT_1_SPELL_ID, 1, TOPAZ_2_ITEM_ID))
     GEMS.add(new GemData(TOPAZ_2_ITEM_ID, GEM_ALL_STAT_2_SPELL_ID, 2, TOPAZ_3_ITEM_ID))
     GEMS.add(new GemData(TOPAZ_3_ITEM_ID, GEM_ALL_STAT_3_SPELL_ID, 3, TOPAZ_4_ITEM_ID))
     GEMS.add(new GemData(TOPAZ_4_ITEM_ID, GEM_ALL_STAT_4_SPELL_ID, 4, -1))
+
     GEMS.add(new GemData(RUBY_1_ITEM_ID, GEM_MAX_LIFE_1_SPELL_ID, 1, RUBY_2_ITEM_ID))
     GEMS.add(new GemData(RUBY_2_ITEM_ID, GEM_MAX_LIFE_2_SPELL_ID, 2, RUBY_3_ITEM_ID))
     GEMS.add(new GemData(RUBY_3_ITEM_ID, GEM_MAX_LIFE_3_SPELL_ID, 3, RUBY_4_ITEM_ID))
     GEMS.add(new GemData(RUBY_4_ITEM_ID, GEM_MAX_LIFE_4_SPELL_ID, 4, -1))
+
     GEMS.add(new GemData(EMERALD_1_ITEM_ID, GEM_ATTACK_SPEED_1_SPELL_ID, 1, EMERALD_2_ITEM_ID))
     GEMS.add(new GemData(EMERALD_2_ITEM_ID, GEM_ATTACK_SPEED_2_SPELL_ID, 2, EMERALD_3_ITEM_ID))
     GEMS.add(new GemData(EMERALD_3_ITEM_ID, GEM_ATTACK_SPEED_3_SPELL_ID, 3, EMERALD_4_ITEM_ID))
     GEMS.add(new GemData(EMERALD_4_ITEM_ID, GEM_ATTACK_SPEED_4_SPELL_ID, 4, -1))
+
     GEMS.add(new GemData(AMETHYST_1_ITEM_ID, MINIONS_AMP_10_SPELL_ID, 1, AMETHYST_2_ITEM_ID))
     GEMS.add(new GemData(AMETHYST_2_ITEM_ID, MINIONS_AMP_20_SPELL_ID, 2, AMETHYST_3_ITEM_ID))
     GEMS.add(new GemData(AMETHYST_3_ITEM_ID, MINIONS_AMP_30_SPELL_ID, 3, AMETHYST_4_ITEM_ID))
     GEMS.add(new GemData(AMETHYST_4_ITEM_ID, MINIONS_AMP_40_SPELL_ID, 4, -1))
+
     GEMS.add(new GemData(SAPPHIRE_1_ITEM_ID, VS_ELITES_AMP_8_SPELL_ID, 1, SAPPHIRE_2_ITEM_ID))
     GEMS.add(new GemData(SAPPHIRE_2_ITEM_ID, VS_ELITES_AMP_16_SPELL_ID, 2, SAPPHIRE_3_ITEM_ID))
     GEMS.add(new GemData(SAPPHIRE_3_ITEM_ID, VS_ELITES_AMP_24_SPELL_ID, 3, SAPPHIRE_4_ITEM_ID))
     GEMS.add(new GemData(SAPPHIRE_4_ITEM_ID, VS_ELITES_AMP_32_SPELL_ID, 4, -1))
+
     GEMS.add(new GemData(SKULL_1_ITEM_ID, VS_UNDEAD_AMP_8_SPELL_ID, 1, SKULL_2_ITEM_ID))
     GEMS.add(new GemData(SKULL_2_ITEM_ID, VS_UNDEAD_AMP_16_SPELL_ID, 2, SKULL_3_ITEM_ID))
     GEMS.add(new GemData(SKULL_3_ITEM_ID, VS_UNDEAD_AMP_24_SPELL_ID, 3, SKULL_4_ITEM_ID))
     GEMS.add(new GemData(SKULL_4_ITEM_ID, VS_UNDEAD_AMP_32_SPELL_ID, 4, -1))
+
+    GEMS.add(new GemData(ARKENSTONE_ITEM_ID, GEM_ALL_STAT_100_SPELL_ID, 4, -1))

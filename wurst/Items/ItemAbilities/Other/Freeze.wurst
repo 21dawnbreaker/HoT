@@ -28,17 +28,21 @@ let FREEZE_ABILITY_LIST = [
     FREEZE_50_SPELL_ID
 ]
 
+@compiletime function genFreezeAbilities()
+    for i = 0 to FREEZE_ABILITY_LIST.length - 1
+        new AbilityDefinitionStormHammers(FREEZE_ABILITY_LIST[i])
+            ..setRequirements("")
+
 function hasFreezeAbilityAndProc(unit u) returns bool
     for i = 0 to FREEZE_ABILITY_LIST.length - 1
         if u.hasAbility(FREEZE_ABILITY_LIST[i]) and (i + 1) * 5 >= GetRandomInt(1, 100)
-            print("proc!")
             return true
     return false
 
 
 init
     DamageEvent.addListener() -> 
-        if DamageEvent.getType() == ATTACK and hasFreezeAbilityAndProc(DamageEvent.getSource())
+        if DamageEvent.getType() == ATTACK and IsUnitInGroup(DamageEvent.getTarget(), udg_frozen_UG) == false and hasFreezeAbilityAndProc(DamageEvent.getSource())
             DamageEvent.setAmount(0)
             udg_tempUnit = DamageEvent.getTarget()
             TriggerExecute(gg_trg_FreezeFunc)

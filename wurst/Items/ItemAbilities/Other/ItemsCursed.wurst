@@ -1,0 +1,36 @@
+package ItemsCursed
+
+import ClosureEvents
+import HashList
+
+import ItemsUncommon
+import ItemsRare
+import ItemsEpic
+import ItemsLegendary
+
+let _cursedItemsList = [
+    RAGING_AXE_ITEM_ID
+]
+
+public let CURSED_ITEMS_HASHLIST = new HashList<int>
+
+
+init
+    for i = 0 to _cursedItemsList.length -1
+        CURSED_ITEMS_HASHLIST.add(_cursedItemsList[i])
+
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) ->
+        let _unit = GetManipulatingUnit()
+        let _player = _unit.getOwner()
+        let _item = GetManipulatedItem()
+        let _item_id = GetManipulatedItem().getTypeId()
+
+        if CURSED_ITEMS_HASHLIST.has(_item_id) == true and IsUnitInGroup(_unit, udg_HeroesGroup) and _unit.hasAbility('A08F') == false // A08F == "Принципиальность", запрещает брать нечестивые и проклятые вещи
+            for i = 1 to udg_HeroNumber
+                if _player == udg_Hero[i].getOwner()
+                    udg_Karma[i] -= 1
+                    udg_KarmaU = _unit
+                    TriggerExecute(gg_trg_KarmaSystem)
+                    udg_KarmaU = null
+                    break
+        
