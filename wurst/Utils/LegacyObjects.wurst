@@ -1,0 +1,39 @@
+package LegacyObjects
+
+import HashSet
+
+public constant ARROWS_AND_BOWS_SET = new HashSet<int>
+
+public let ELITES_LIST = ['n013', 'n01K', 'n00Y', 'h01T', 'n01B', 'n011', 'n00W', 'n01J', 'n012', 'h011', 'u00C', 'u00D', 'uabo']
+
+public let BOWS_LIST = [
+    'I0AK',
+    'I09A',
+    'I03V',
+    'I00D',
+    'I04F',
+    'I00E',
+    'I02T',
+    'I05N',
+    'I05O',
+    'I04G',
+    'I04H',
+    'I02U',
+    'I02V',
+    'I00F',
+    'I05Q',
+    'I04I',
+    'I02W',
+    'I09T',
+    'I0AJ',
+    'I05P'
+]
+
+public let QUIVERS_LIST = ['I00G', 'I00H', 'I09D', 'I0A6']
+
+
+init
+    for i = 0 to BOWS_LIST.length - 1
+        ARROWS_AND_BOWS_SET.add(BOWS_LIST[i])
+        if i < QUIVERS_LIST.length
+            ARROWS_AND_BOWS_SET.add(QUIVERS_LIST[i])

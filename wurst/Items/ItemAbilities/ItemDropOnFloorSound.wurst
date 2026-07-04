@@ -1,7 +1,9 @@
 package ItemDropOnFloorSound
 
+import ClosureTimers
 import ClosureEvents
 import SoundUtils
+import HashMap
 
 import ItemsRunesAndGems
 import ItemsPotions
@@ -10,6 +12,8 @@ import ItemsRare
 import ItemsEpic
 import ItemsLegendary
 
+import LegacyObjects
+
 let weapon_sound = new SoundDefinition("diablo2_largemetalweapon.wav", false, true)
 let scroll_sound = new SoundDefinition("Sounds/scroll.wav", false, true)
 let platearmor_sound = new SoundDefinition("diablo2platearmor.wav", false, true)
@@ -17,26 +21,36 @@ let amulet_sound = new SoundDefinition("diablo2amulet.wav", false, true)
 let boots_sound = new SoundDefinition("diablo2bootsmetal.wav", false, true)
 let gloves_sound = new SoundDefinition("diablo2glovesmetal.wav", false, true)
 let legendary_sound = new SoundDefinition("diabl2legendary.mp3", false, true)
+let bow_sound = new SoundDefinition("Sounds/bow.wav", false, true)
+let quiver_sound = new SoundDefinition("Sounds/quiver.wav", false, true)
+
+let BOWS = new HashMap<int, SoundDefinition>
+let QUIVERS = new HashMap<int, SoundDefinition>
 
 
 init
+    doAfter(3) -> 
+        for i = 0 to BOWS_LIST.length - 1
+            BOWS.put(BOWS_LIST[i], bow_sound)
+        for i = 0 to QUIVERS_LIST.length - 1
+            QUIVERS.put(QUIVERS_LIST[i], quiver_sound)
+
+
     EventListener.add(EVENT_PLAYER_UNIT_DROP_ITEM) ->
         let _unit = GetManipulatingUnit()
         let _item = GetManipulatedItem()
         let _item_itemType = GetManipulatedItem().getItemtype()
         let _item_id = GetManipulatedItem().getTypeId()
-
-        var flag = true
         
-        if 5 <= _item.getLevel() and _item.getLevel() < 8 and _item_itemType != ITEM_TYPE_POWERUP and flag
+        if 5 <= _item.getLevel() and _item.getLevel() < 8 and _item_itemType != ITEM_TYPE_POWERUP
             legendary_sound.playOnPoint(_unit.getPos3Real())
-            flag = false
+            return
 
-        if _item_itemType == ITEM_TYPE_POWERUP and flag
+        if _item_itemType == ITEM_TYPE_POWERUP
             for pot in POTIONS
                 if _item_id == pot.itemId
                     PotionData.potionDropSound.playOnPoint(_unit.getPos3Real())
-                    flag = false
+                    return
 
             for gem in GEMS
                 if _item_id == gem.itemId
@@ -44,32 +58,36 @@ init
                         GemData.gemDropSound.playOnPoint(_unit.getPos3Real())
                     else
                         GemData.skullDropSound.playOnPoint(_unit.getPos3Real())
-                    flag = false
+                    return
         
-        if _item_itemType == ITEM_TYPE_CAMPAIGN and flag
+        if _item_itemType == ITEM_TYPE_CAMPAIGN
+            if BOWS.has(_item_id)
+                bow_sound.playOnPoint(_unit.getPos3Real())
+                return
+            if QUIVERS.has(_item_id)
+                quiver_sound.playOnPoint(_unit.getPos3Real())
+                return
             weapon_sound.playOnPoint(_unit.getPos3Real())
-            flag = false
+            return
 
-        if _item_itemType == ITEM_TYPE_MISCELLANEOUS and flag
+        if _item_itemType == ITEM_TYPE_MISCELLANEOUS
             scroll_sound.playOnPoint(_unit.getPos3Real())
-            flag = false
+            return
 
-        if _item_itemType == ITEM_TYPE_PURCHASABLE and flag
+        if _item_itemType == ITEM_TYPE_PURCHASABLE
             if _item_id == BOUNTY_HUNT_ITEM_ID
                 scroll_sound.playOnPoint(_unit.getPos3Real())
-                flag = false
-            if flag
-                amulet_sound.playOnPoint(_unit.getPos3Real())
-                flag = false
+                return
+            amulet_sound.playOnPoint(_unit.getPos3Real())
+            return
 
-        if _item_itemType == ITEM_TYPE_PERMANENT and flag
+        if _item_itemType == ITEM_TYPE_PERMANENT
             platearmor_sound.playOnPoint(_unit.getPos3Real())
-            flag = false
+            return
 
-        if _item_itemType == ITEM_TYPE_CHARGED and flag
+        if _item_itemType == ITEM_TYPE_CHARGED
             gloves_sound.playOnPoint(_unit.getPos3Real())
-            flag = false
+            return
 
-        if _item_itemType == ITEM_TYPE_ARTIFACT and flag
+        if _item_itemType == ITEM_TYPE_ARTIFACT
             boots_sound.playOnPoint(_unit.getPos3Real())
-            flag = false

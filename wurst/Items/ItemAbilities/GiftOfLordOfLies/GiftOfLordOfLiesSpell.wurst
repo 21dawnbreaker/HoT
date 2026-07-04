@@ -4,8 +4,8 @@ import ClosureEvents
 import HashMap
 
 import GiftOfLordOfLiesObjects
+import LegacyObjects
 
-let ELITES_LIST = ['n013', 'n01K', 'n00Y', 'h01T', 'n01B', 'n011', 'n00W', 'n01J', 'n012', 'h011', 'u00C', 'u00D', 'uabo']
 let dict = new HashMap<unit, unit>
 
 init

@@ -1,0 +1,45 @@
+package BookOfEvil
+
+import ClosureEvents
+import ClosureTimers
+import ChannelAbilityPreset
+import public Assets
+
+import LegacyObjects
+import Utilities
+
+
+public constant BOOK_OF_EVIL_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+let eff = "Abilities\\Spells\\Undead\\DarkRitual\\DarkRitualTarget.mdl"
+
+@compiletime function genObj()
+    new ChannelAbilityPreset(BOOK_OF_EVIL_SPELL_ID, 1, true)
+    ..setName("Book of Evil")
+    ..setItemAbility(true)
+    ..setAnimationNames("spell")
+    ..setTargetType(1, targetTypeNoTarget)
+    ..setBaseOrderID(1, "chemicalrage")
+
+    ..setCooldown(1, 90.0)
+    ..setManaCost(1, 120)
+    ..setCastingTime(1, 0.0)
+
+
+init
+    EventListener.onCast(BOOK_OF_EVIL_SPELL_ID) (unit caster) ->
+        let u = createUnit(caster.getOwner(), ELITES_LIST[GetRandomInt(0, ELITES_LIST.length - 1)], caster.getPos().polarOffset(caster.getFacingAngle(), 250))
+
+        u.setFacing(caster.getFacingAngle())
+        u.setMaxHP(((u.getMaxHP() + (udg_difficultyReal * u.getMaxHP()) * udg_RoomMultiboardCounting) * 2).toInt())
+        u.setHP(u.getMaxHP())
+        u.setBaseDamage(((u.getBaseDamage(0) * udg_difficultyReal) * udg_RoomMultiboardCounting).toInt() + u.getBaseDamage(0), 0)
+
+        flashEffect(eff, u.getPos3Real())
+
+        doAfter(45) -> 
+            if u.isAliveTrick()
+                flashEffect(eff, u.getPos3Real())
+                if RectContainsUnit(gg_rct_Room6_TRADE, u) or RectContainsUnit(gg_rct_Room12_TRADE, u) or RectContainsUnit(gg_rct_Room18_TRADE, u)
+                    u.remove()
+                else
+                    u.setOwner(MONSTERS_PLAYER, false)

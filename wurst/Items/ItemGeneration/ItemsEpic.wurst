@@ -6,13 +6,15 @@ import ObjectIds
 import ClosureEvents
 
 import Socketable
-
 import AdditionalStatsAbilities
+
 import EyeOfAvadraahObjects
 import GiftOfLordOfLiesObjects
+import BookOfEvil
 
 let ORIGIN_ITEM_ID = 'rst1'
 
+public constant BOOK_OF_EVIL_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant CROWN_OF_ETHORIA_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EYE_OF_AVADRAAH_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant GIFT_OF_LORD_OF_LIES_ITEM_ID = compiletime(ITEM_ID_GEN.next())
@@ -31,18 +33,37 @@ let epic = 4
 let not_spawnable = 8
 
 
-@compiletime function genCrownOfEmphidiaItem()
+@compiletime function genBookOfEvilItem()
+    new ItemDefinition(BOOK_OF_EVIL_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cffc82596Книга Зла Чарльза|r")..setTooltipBasic("|cffc82596Книга Зла Чарльза|r")
+        ..setTooltipExtended("+30% к урону подконтрольных существ. |n+400 к здоровью. |n+15% к магическому урону. |n|cffc82596Способность: \"Призыв Тьмы\" - призывает случайное элитное существо, которым вы можете управлять до 45 сек|r.")
+        ..setDescription("+30% к урону подконтрольных существ. |n+400 к здоровью. |n+15% к магическому урону. |n|cffc82596Способность: \"Призыв Тьмы\" - призывает случайное элитное существо, которым вы можете управлять до 45 сек|r. |n|n[|cff00ffffУкрашение|r]")
+        ..setLevel(epic)..setLevelUnclassified(epic)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNNecromancerMaster.blp")..setModelUsed("Objects\\InventoryItems\\tome\\tome.mdl")..setScalingValue(0.8)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities(
+            BOOK_OF_EVIL_SPELL_ID.toRawCode()
+            + "," + MAGIC_AMP_15_SPELL_ID.toRawCode()
+            + "," + MINIONS_AMP_30_SPELL_ID.toRawCode()
+            + "," + "A0BN"
+        )
+        ..setActivelyUsed(true)
+        ..setCooldownGroup(BOOK_OF_EVIL_SPELL_ID.toRawCode())
+        ..setClassification(trinket)
+        ..setGoldCost(EPIC_ITEM_GOLD_PRICE)
+
+@compiletime function genCrownOfEthoriaItem()
     new ItemDefinition(CROWN_OF_ETHORIA_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cffc82596Корона Этории|r")..setTooltipBasic("|cffc82596Корона Этории|r")
         ..setTooltipExtended("+100% к цене предмета при продаже. |n|cffc82596В этот предмет можно вставить до 5 разных самоцветов. |n|n+33% к цене за каждый базовый самоцвет; |n+66% к цене за каждый обработанный самоцвет; |n+100% к цене за каждый безупречный самоцвет; |n+200% к цене за каждый идеальный самоцвет|r.")
         ..setDescription("+100% к цене предмета при продаже. |n|cffc82596В этот предмет можно вставить до 5 разных самоцветов. |n|n+33% к цене за каждый базовый самоцвет; |n+66% к цене за каждый обработанный самоцвет; |n+100% к цене за каждый безупречный самоцвет; |n+200% к цене за каждый идеальный самоцвет|r. |n|n[|cff00ffffУкрашение|r]")
         ..setLevel(epic)..setLevelUnclassified(epic)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
-        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCrownForWindking.dds")..setModelUsed("SpellShieldAmulet_RFRGD.mdl")..setScalingValue(0.5)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCrownForWindking.dds")..setScalingValue(0.5)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities(SOCKETABLE_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
-        ..setCooldownGroup(EYE_OF_AVADRAAH_SPELL_ID.toRawCode())
         ..setClassification(trinket)
         ..setGoldCost(EPIC_ITEM_GOLD_PRICE)
 

@@ -16,8 +16,7 @@ init
         let _hero = udg_hero_by_player[_player.getId() + 1]
 
         if msg == "-test4"
-            CreateItem(RAGING_AXE_ITEM_ID, _hero.getX(), _hero.getY())
-            CreateItem('I095', _hero.getX(), _hero.getY())
+            CreateItem(BOOK_OF_EVIL_ITEM_ID, _hero.getX(), _hero.getY())
             
         if msg == "-test5"
             print(ALLIES_PLAYER.getName())

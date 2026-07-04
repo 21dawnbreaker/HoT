@@ -1,0 +1,209 @@
+package ItemOnHeroPickupAndDrop
+
+import ClosureEvents
+import HashSet
+
+import RageExpansion
+import LegacyObjects
+import FloatingText
+
+import ItemsUncommon
+import ItemsRunesAndGems
+import ItemsRare
+import ItemsEpic
+import ItemsLegendary
+import ItemsCursed
+
+
+function checkPickedItem(unit _unit, item _item, int _item_id, player _player)
+
+    if ARROWS_AND_BOWS_SET.has(_item_id) and udg_HuntersGroup.has(_unit) != true
+        UnitRemoveItem(_unit, _item)
+        createFloatingTextAboveUnitRP(_unit, "Мне это не подходит")
+        return
+
+    if udg_HuntersGroup.has(_unit) and _item.getItemtype() == ITEM_TYPE_CAMPAIGN and not ARROWS_AND_BOWS_SET.has(_item_id) 
+        UnitRemoveItem(_unit, _item)
+        createFloatingTextAboveUnitRP(_unit, "Я не могу экипировать это")
+        return
+
+    if udg_WarriorsGroup.has(_unit)
+        if maximumRageExceeded(_unit)
+            UnitRemoveItem(_unit, _item)
+            createFloatingTextAboveUnitRP(_unit, "Я не могу экипировать это")
+            return
+
+    let WEAPONS_MAX_COUNT = 2
+    let equiped_items_set = new HashSet<int>
+    var weapons = 0
+    var chests = 0
+    var gloves = 0
+    var boots = 0
+    var trinkets = 0
+    
+    for i = 0 to 5
+        let item_in_slot = _unit.itemInSlot(i)
+
+        if item_in_slot == null
+            continue
+
+        if item_in_slot.getItemtype() == ITEM_TYPE_CAMPAIGN
+            weapons += 1
+        if item_in_slot.getItemtype() == ITEM_TYPE_PERMANENT
+            chests += 1
+        if item_in_slot.getItemtype() == ITEM_TYPE_CHARGED
+            gloves += 1
+        if item_in_slot.getItemtype() == ITEM_TYPE_ARTIFACT
+            boots += 1
+        if item_in_slot.getItemtype() == ITEM_TYPE_PURCHASABLE
+            trinkets += 1
+
+        if weapons > WEAPONS_MAX_COUNT or chests > 1 or gloves > 1 or boots > 1 or trinkets > 1 or equiped_items_set.has(item_in_slot.getTypeId())
+            UnitRemoveItem(_unit, _item)
+            createFloatingTextAboveUnitRP(_unit, "Не получится")
+            destroy equiped_items_set
+            return
+
+        if item_in_slot.getItemtype() != ITEM_TYPE_MISCELLANEOUS and item_in_slot.getItemtype() != ITEM_TYPE_POWERUP
+            equiped_items_set.add(item_in_slot.getTypeId())
+
+    destroy equiped_items_set
+
+    if isCursed(_item)
+        if unableToEquipCursedItems(_unit)
+            UnitRemoveItem(_unit, _item)
+            createFloatingTextAboveUnitRP(_unit, "Я не коснусь этой дряни")
+        else
+            doAlignmentDamage(_unit, _player)
+
+
+init
+    // PICKUP
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) ->
+        let _unit = GetManipulatingUnit()
+        let _player = _unit.getOwner()
+        let _id = _player.getId() + 1
+        let _item = GetManipulatedItem()
+        let _item_id = GetManipulatedItem().getTypeId()
+
+        if udg_HeroesGroup.has(_unit)
+
+            // ALL resistance --------------------------------------------------------------------
+            for key in all_resistance_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_DEF_ALL[_id] += all_resistance_dict.get(key)
+
+            // PHYSICAL resistance --------------------------------------------------------------------
+            for key in physical_resistance_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_DEF_PHYSICAL[_id] += physical_resistance_dict.get(key)
+
+            // MAGIC resistance --------------------------------------------------------------------
+            for key in magic_resistance_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_DEF_MAGIC[_id] += magic_resistance_dict.get(key)
+
+            // ALL damage amp --------------------------------------------------------------------
+            for key in all_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_ALL[_id] += all_amp_dict.get(key)
+
+            // PHYSICAL damage amp --------------------------------------------------------------------
+            for key in physical_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_PHYSICAL[_id] += physical_amp_dict.get(key)
+
+            // MAGIC damage amp --------------------------------------------------------------------
+            for key in magic_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_MAGIC[_id] += magic_amp_dict.get(key)
+
+            // VS ELITES --------------------------------------------------------------------
+            for key in vs_elite_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] += vs_elite_amp_dict.get(key)
+
+            // VS UNDEAD --------------------------------------------------------------------
+            for key in vs_undead_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] += vs_undead_amp_dict.get(key)
+
+            // MINIONS damage amp --------------------------------------------------------------------
+            for key in minion_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_MINIONS[_id] += minion_amp_dict.get(key)
+
+            // DEATH DISOBEDIENCE max amount --------------------------------------------------------------------
+            for key in death_disobedience_dict
+                if _item.getAbility(key) != null
+                    udg_DISOBIDIENCE_OF_DEATH += death_disobedience_dict.get(key)
+
+            // OTHER
+            if _item.getAbility(MINIBOSS_SPAWN_CHANCE_25_SPELL_ID) != null
+                udg_MINIBOSS_SPAWN_CHANCE += 25
+
+            checkPickedItem(_unit, _item, _item_id, _player)
+
+    // DROP
+    EventListener.add(EVENT_PLAYER_UNIT_DROP_ITEM) -> 
+        let _unit = GetManipulatingUnit()
+        let _player = _unit.getOwner()
+        let _id = _player.getId() + 1
+        let _item = GetManipulatedItem()
+        let _item_id = GetManipulatedItem().getTypeId()
+
+        if udg_HeroesGroup.has(_unit)
+
+            // ALL resistance --------------------------------------------------------------------
+            for key in all_resistance_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_DEF_ALL[_id] -= all_resistance_dict.get(key)
+
+            // PHYSICAL resistance --------------------------------------------------------------------
+            for key in physical_resistance_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_DEF_PHYSICAL[_id] -= physical_resistance_dict.get(key)
+
+            // MAGIC resistance --------------------------------------------------------------------
+            for key in magic_resistance_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_DEF_MAGIC[_id] -= magic_resistance_dict.get(key)
+
+            // ALL damage amp --------------------------------------------------------------------
+            for key in all_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_ALL[_id] -= all_amp_dict.get(key)
+
+            // PHYSICAL damage amp --------------------------------------------------------------------
+            for key in physical_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_PHYSICAL[_id] -= physical_amp_dict.get(key)
+
+            // MAGIC damage amp --------------------------------------------------------------------
+            for key in magic_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_MAGIC[_id] -= magic_amp_dict.get(key)
+
+            // VS ELITES --------------------------------------------------------------------
+            for key in vs_elite_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_VS_ELITES[_id] -= vs_elite_amp_dict.get(key)
+
+            // VS UNDEAD --------------------------------------------------------------------
+            for key in vs_undead_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_VS_UNDEAD[_id] -= vs_undead_amp_dict.get(key)
+
+            // MINIONS damage amp --------------------------------------------------------------------
+            for key in minion_amp_dict
+                if _item.getAbility(key) != null
+                    udg_HERO_DAMAGE_BONUS_MINIONS[_id] -= minion_amp_dict.get(key)
+
+            // DEATH DISOBEDIENCE max amount --------------------------------------------------------------------
+            for key in death_disobedience_dict
+                if _item.getAbility(key) != null
+                    udg_DISOBIDIENCE_OF_DEATH -= death_disobedience_dict.get(key)
+
+            // OTHER
+            if _item.getAbility(MINIBOSS_SPAWN_CHANCE_25_SPELL_ID) != null
+                udg_MINIBOSS_SPAWN_CHANCE -= 25

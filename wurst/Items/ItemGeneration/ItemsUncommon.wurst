@@ -12,6 +12,7 @@ public constant HUNTERS_HATCHET_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant CLAWS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant RAGING_AXE_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 
+
 let weapon = "Campaign"
 let trinket = "Purchasable"
 let armor = "Permanent"

@@ -1,0 +1,23 @@
+package RageExpansion
+
+import HashMap
+
+public constant RAGE_EXPANSION_HASHMAP = new HashMap<int, int>
+
+public function maximumRageExceeded(unit u) returns bool
+    var warrior_allowed_mana = 100
+    
+    for i = 0 to 5
+        let item_in_slot_id = u.itemInSlot(i).getTypeId()
+
+        if RAGE_EXPANSION_HASHMAP.has(item_in_slot_id)
+            warrior_allowed_mana += RAGE_EXPANSION_HASHMAP.get(item_in_slot_id)
+
+    if BlzGetUnitMaxMana(u) != warrior_allowed_mana
+        return true
+
+    return false
+
+
+init
+    RAGE_EXPANSION_HASHMAP.put('I09L', 20) // Хватка Титана

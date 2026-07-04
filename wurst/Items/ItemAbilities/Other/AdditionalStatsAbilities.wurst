@@ -136,9 +136,15 @@ public constant PHYSICAL_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 // MAGIC damage amplification --------------------------------------------------------------------
 public constant MAGIC_AMP_5_SPELL_ID = compiletime(ABIL_ID_GEN.next())
+public constant MAGIC_AMP_15_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
 @compiletime function genObjMagicAmp5()
     new AbilityDefinitionCriticalStrikeItem(MAGIC_AMP_5_SPELL_ID)
+        ..setChancetoCriticalStrike(1, 0)
+        ..setDamageMultiplier(1, 0)
+
+@compiletime function genObjMagicAmp15()
+    new AbilityDefinitionCriticalStrikeItem(MAGIC_AMP_15_SPELL_ID)
         ..setChancetoCriticalStrike(1, 0)
         ..setDamageMultiplier(1, 0)
 
@@ -294,6 +300,7 @@ function fill_dicts()
     all_amp_dict.put(ALL_AMP_15_SPELL_ID, 15)
 
     magic_amp_dict.put(MAGIC_AMP_5_SPELL_ID, 5)
+    magic_amp_dict.put(MAGIC_AMP_15_SPELL_ID, 15)
 
     physical_amp_dict.put(PHYSICAL_AMP_5_SPELL_ID, 5)
     physical_amp_dict.put(PHYSICAL_AMP_10_SPELL_ID, 10)
