@@ -15,6 +15,7 @@ init
         if DamageEvent.getAttackType() == ATTACK_TYPE_MELEE
             let unit_ = DamageEvent.getSource()
             let target = DamageEvent.getTarget()
+            
             if unit_.hasAbility('B047') or (GetRandomInt(1, 100) <= 15 and unit_.hasAbility('A0KQ'))
                 if unit_.hasAbility('B047')
                     udg_decimate_overpower_hits = udg_decimate_overpower_hits - 1

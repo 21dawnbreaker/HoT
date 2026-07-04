@@ -16,7 +16,11 @@ init
         let _hero = udg_hero_by_player[_player.getId() + 1]
 
         if msg == "-test4"
-            CreateItem(BOOK_OF_EVIL_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(MAGIC_CLOAK_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(STAFF_OF_FALLEN_SHAMAN_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(STONE_GLOVES_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(TOUGH_HAMMER_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem(CLOAK_OF_INSANITY_ITEM_ID, _hero.getX(), _hero.getY())
             
         if msg == "-test5"
             print(ALLIES_PLAYER.getName())

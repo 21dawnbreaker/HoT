@@ -130,8 +130,8 @@ integer Table__more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
 hashtable Table__ht= InitHashtable()
-constant integer Table__sizeK=4
-constant integer Table__listK=6
+constant integer Table__sizeK=6
+constant integer Table__listK=8
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -21981,7 +21981,7 @@ function Trig_ArtifactRewardingGeneral_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_ArtifactRewardingGeneral_Func004Func006Func001Func001Func001C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 100) <= 50 ) ) then
+    if ( not ( GetRandomInt(1, 100) <= 25 ) ) then
         return false
     endif
     return true
@@ -21995,7 +21995,7 @@ function Trig_ArtifactRewardingGeneral_Func004Func006Func001Func001C takes nothi
 endfunction
 
 function Trig_ArtifactRewardingGeneral_Func004Func006Func001C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 100) <= 6 ) ) then
+    if ( not ( GetRandomInt(1, 100) <= 5 ) ) then
         return false
     endif
     return true
@@ -29496,11 +29496,11 @@ function Trig_MinibossesScaling_Conditions takes nothing returns boolean
 endfunction
 
 function Trig_MinibossesScaling_Func003A takes nothing returns nothing
-    call BlzSetUnitMaxHP(GetEnumUnit(), ( ( BlzGetUnitMaxHP(GetEnumUnit()) * 6 ) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetEnumUnit()) )) * R2I(udg_RoomMultiboardCounting) ) ))
+    call BlzSetUnitMaxHP(GetEnumUnit(), ( ( BlzGetUnitMaxHP(GetEnumUnit()) * 9 ) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetEnumUnit()) )) * R2I(udg_RoomMultiboardCounting) ) ))
     call SetUnitLifeBJ(GetEnumUnit(), GetUnitStateSwap(UNIT_STATE_MAX_LIFE, GetEnumUnit()))
     set udg_tempReal=I2R(BlzGetUnitBaseDamage(GetEnumUnit(), 0))
     call BlzSetUnitBaseDamage(GetEnumUnit(), ( BlzGetUnitBaseDamage(GetEnumUnit(), 0) + ( R2I(( udg_tempReal * udg_difficultyReal )) * R2I(udg_RoomMultiboardCounting) ) ), 0)
-    call BlzSetUnitBaseDamage(GetEnumUnit(), ( BlzGetUnitBaseDamage(GetEnumUnit(), 0) * 2 ), 0)
+    call BlzSetUnitBaseDamage(GetEnumUnit(), ( BlzGetUnitBaseDamage(GetEnumUnit(), 0) * 4 ), 0)
     set udg_tempReal=0.00
     call SetUnitManaPercentBJ(GetEnumUnit(), 0.00)
     call PlaySoundOnUnitBJ(gg_snd_RankAnimations_5, 100, GetEnumUnit())
@@ -30273,7 +30273,7 @@ function Trig_AtkivusInit_Actions takes nothing returns nothing
     call SetUnitPositionLocFacingBJ(gg_unit_H012_0027, GetRectCenter(gg_rct_BossfightBossLoc), 0.00)
     // BOSS STATS
     call BlzSetUnitMaxHP(gg_unit_H012_0027, ( BlzGetUnitMaxHP(gg_unit_H012_0027) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, gg_unit_H012_0027) )) * R2I(udg_RoomMultiboardCounting) ) ))
-    call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 3 ))
+    call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 4 ))
     set udg_tempReal=I2R(BlzGetUnitBaseDamage(gg_unit_H012_0027, 0))
     call BlzSetUnitBaseDamage(gg_unit_H012_0027, ( BlzGetUnitBaseDamage(gg_unit_H012_0027, 0) + ( R2I(( udg_tempReal * udg_difficultyReal )) * R2I(udg_RoomMultiboardCounting) ) ), 0)
     call BlzSetUnitBaseDamage(gg_unit_H012_0027, ( BlzGetUnitBaseDamage(gg_unit_H012_0027, 0) * 2 ), 0)
@@ -30289,7 +30289,7 @@ function Trig_AtkivusInit_Actions takes nothing returns nothing
     call UnitAddAbilityBJ('Abun', gg_unit_U007_0220)
     call SetHeroLevelBJ(gg_unit_U007_0220, GetUnitLevel(GroupPickRandomUnit(udg_HeroesGroup)), false)
     // ---
-    call BlzSetUnitMaxHP(gg_unit_H013_0011, ( BlzGetUnitMaxHP(gg_unit_H012_0027) / 2 ))
+    call BlzSetUnitMaxHP(gg_unit_H013_0011, ( BlzGetUnitMaxHP(gg_unit_H012_0027) * 1 ))
     call SetUnitLifePercentBJ(gg_unit_H013_0011, 100)
     call SetHeroLevelBJ(gg_unit_H013_0011, 25, false)
     // ---
@@ -30368,7 +30368,7 @@ function Trig_BallLightningBullethell_Func001Func001C takes nothing returns bool
     return true
 endfunction
 
-function Trig_BallLightningBullethell_Func002C takes nothing returns boolean
+function Trig_BallLightningBullethell_Func001Func002C takes nothing returns boolean
     if ( not ( RectContainsLoc(gg_rct_inactiveBallsAtkivus, udg_ball_lightning_pos_current[udg_ball_lightning_count]) == true ) ) then
         return false
     endif
@@ -30377,7 +30377,7 @@ endfunction
 
 function Trig_BallLightningBullethell_Actions takes nothing returns nothing
     set bj_forLoopAIndex=1
-    set bj_forLoopAIndexEnd=GetRandomInt(1, 1)
+    set bj_forLoopAIndexEnd=GetRandomInt(1, 3)
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
         if ( Trig_BallLightningBullethell_Func001Func001C() ) then
@@ -30385,29 +30385,29 @@ function Trig_BallLightningBullethell_Actions takes nothing returns nothing
         else
             set udg_ball_lightning_count=( udg_ball_lightning_count + 1 )
         endif
+        if ( Trig_BallLightningBullethell_Func001Func002C() ) then
+            set udg_tempLoc2=GetUnitLoc(udg_DamageEventSource)
+            set udg_tempLoc3=GetUnitLoc(udg_DamageEventTarget)
+            set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventTarget), 110.00, AngleBetweenPoints(udg_tempLoc2, udg_tempLoc3))
+            // CLEANUP
+            call DestroyEffectBJ(udg_ball_lightning_eff[udg_ball_lightning_count])
+            call RemoveLocation(udg_ball_lightning_pos_final[udg_ball_lightning_count])
+            call RemoveLocation(udg_ball_lightning_pos_current[udg_ball_lightning_count])
+            // CLEANUP
+            call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Weapons\\FarseerMissile\\FarseerMissile.mdl")
+            call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 2.00)
+            call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(udg_DamageEventTarget) + 65.00 ))
+            set udg_ball_lightning_eff[udg_ball_lightning_count]=GetLastCreatedEffectBJ()
+            set udg_ball_lightning_pos_current[udg_ball_lightning_count]=udg_tempLoc
+            set udg_tempReal=GetRandomReal(- 40.00, 40.00)
+            set udg_ball_lightning_pos_final[udg_ball_lightning_count]=PolarProjectionBJ(udg_tempLoc, 10000.00, ( GetUnitFacing(udg_DamageEventSource) + udg_tempReal ))
+            set udg_tempReal=0.00
+            call RemoveLocation(udg_tempLoc2)
+            call RemoveLocation(udg_tempLoc3)
+        else
+        endif
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
-    if ( Trig_BallLightningBullethell_Func002C() ) then
-        set udg_tempLoc2=GetUnitLoc(udg_DamageEventSource)
-        set udg_tempLoc3=GetUnitLoc(udg_DamageEventTarget)
-        set udg_tempLoc=PolarProjectionBJ(GetUnitLoc(udg_DamageEventTarget), 110.00, AngleBetweenPoints(udg_tempLoc2, udg_tempLoc3))
-        // CLEANUP
-        call DestroyEffectBJ(udg_ball_lightning_eff[udg_ball_lightning_count])
-        call RemoveLocation(udg_ball_lightning_pos_final[udg_ball_lightning_count])
-        call RemoveLocation(udg_ball_lightning_pos_current[udg_ball_lightning_count])
-        // CLEANUP
-        call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Weapons\\FarseerMissile\\FarseerMissile.mdl")
-        call BlzSetSpecialEffectScale(GetLastCreatedEffectBJ(), 2.00)
-        call BlzSetSpecialEffectHeight(GetLastCreatedEffectBJ(), ( BlzGetLocalUnitZ(udg_DamageEventTarget) + 65.00 ))
-        set udg_ball_lightning_eff[udg_ball_lightning_count]=GetLastCreatedEffectBJ()
-        set udg_ball_lightning_pos_current[udg_ball_lightning_count]=udg_tempLoc
-        set udg_tempReal=GetRandomReal(- 40.00, 40.00)
-        set udg_ball_lightning_pos_final[udg_ball_lightning_count]=PolarProjectionBJ(udg_tempLoc, 10000.00, ( GetUnitFacing(udg_DamageEventSource) + udg_tempReal ))
-        set udg_tempReal=0.00
-        call RemoveLocation(udg_tempLoc2)
-        call RemoveLocation(udg_tempLoc3)
-    else
-    endif
 endfunction
 
 //===========================================================================
@@ -30733,9 +30733,6 @@ endfunction
 // Trigger: GiornosAidPeriodic
 //===========================================================================
 function Trig_GiornosAidPeriodic_Func001C takes nothing returns boolean
-    if ( not ( IsUnitAliveBJ(gg_unit_U008_0255) == true ) ) then
-        return false
-    endif
     if ( not ( BlzIsUnitInvulnerable(gg_unit_H012_0027) == false ) ) then
         return false
     endif
@@ -32064,7 +32061,7 @@ function Trig_HopesEndPeriodic_Func003C takes nothing returns boolean
 endfunction
 
 function Trig_HopesEndPeriodic_Actions takes nothing returns nothing
-    call SetUnitLifePercentBJ(gg_unit_H013_0011, ( GetUnitLifePercent(gg_unit_H013_0011) - 0.50 ))
+    call SetUnitLifePercentBJ(gg_unit_H013_0011, ( GetUnitLifePercent(gg_unit_H013_0011) - 0.25 ))
     if ( Trig_HopesEndPeriodic_Func003C() ) then
         call RemoveLocation(udg_hopes_end_pos[GetForLoopIndexA()])
         call SetUnitAnimation(gg_unit_H013_0011, "attack")
@@ -32398,7 +32395,7 @@ function Trig_ShiadalInit_Actions takes nothing returns nothing
     call SetUnitPositionLocFacingBJ(gg_unit_E002_0526, GetRectCenter(gg_rct_BossfightBossLoc), 0.00)
     // BOSS STATS
     call BlzSetUnitMaxHP(gg_unit_E002_0526, ( BlzGetUnitMaxHP(gg_unit_E002_0526) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, gg_unit_E002_0526) )) * R2I(udg_RoomMultiboardCounting) ) ))
-    call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 3 ))
+    call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 4 ))
     call SetUnitLifePercentBJ(udg_Boss[1], 100)
     set udg_tempReal=I2R(BlzGetUnitBaseDamage(gg_unit_E002_0526, 0))
     call BlzSetUnitBaseDamage(gg_unit_E002_0526, ( BlzGetUnitBaseDamage(gg_unit_E002_0526, 0) + ( R2I(( udg_tempReal * udg_difficultyReal )) * R2I(udg_RoomMultiboardCounting) ) ), 0)
@@ -33359,7 +33356,7 @@ function Trig_BossfightNataAraInit_Actions takes nothing returns nothing
     call SetUnitPositionLocFacingBJ(gg_unit_U006_0283, GetRectCenter(gg_rct_BossfightAraman), 0.00)
     // BOSS STATS
     call BlzSetUnitMaxHP(gg_unit_U005_0113, ( BlzGetUnitMaxHP(gg_unit_U005_0113) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, gg_unit_U005_0113) )) * R2I(udg_RoomMultiboardCounting) ) ))
-    call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 2 ))
+    call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 3 ))
     call SetUnitLifePercentBJ(udg_Boss[1], 100)
     set udg_tempReal=I2R(BlzGetUnitBaseDamage(gg_unit_U006_0283, 0))
     call BlzSetUnitBaseDamage(gg_unit_U006_0283, ( BlzGetUnitBaseDamage(gg_unit_U006_0283, 0) + ( R2I(( udg_tempReal * udg_difficultyReal )) * R2I(udg_RoomMultiboardCounting) ) ), 0)
@@ -33369,7 +33366,7 @@ function Trig_BossfightNataAraInit_Actions takes nothing returns nothing
     call SetHeroLevelBJ(gg_unit_U006_0283, GetUnitLevel(GroupPickRandomUnit(udg_HeroesGroup)), false)
     // BOSS STATS
     call BlzSetUnitMaxHP(gg_unit_U006_0283, ( BlzGetUnitMaxHP(gg_unit_U006_0283) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, gg_unit_U006_0283) )) * R2I(udg_RoomMultiboardCounting) ) ))
-    call BlzSetUnitMaxHP(udg_Boss[2], ( BlzGetUnitMaxHP(udg_Boss[2]) * 2 ))
+    call BlzSetUnitMaxHP(udg_Boss[2], ( BlzGetUnitMaxHP(udg_Boss[2]) * 3 ))
     call SetUnitLifePercentBJ(udg_Boss[2], 100)
     set udg_tempReal=I2R(BlzGetUnitBaseDamage(gg_unit_U005_0113, 0))
     call BlzSetUnitBaseDamage(gg_unit_U005_0113, ( BlzGetUnitBaseDamage(gg_unit_U005_0113, 0) + ( R2I(( udg_tempReal * udg_difficultyReal )) * R2I(udg_RoomMultiboardCounting) ) ), 0)
@@ -56585,6 +56582,13 @@ function Trig_CheedGenerateRandomItems_Func012C takes nothing returns boolean
     return true
 endfunction
 
+function Trig_CheedGenerateRandomItems_Func016Func001Func002Func002Func001C takes nothing returns boolean
+    if ( not ( GetRandomInt(1, 100) <= 75 ) ) then
+        return false
+    endif
+    return true
+endfunction
+
 function Trig_CheedGenerateRandomItems_Func016Func001Func002Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= 15 ) ) then
         return false
@@ -56600,7 +56604,7 @@ function Trig_CheedGenerateRandomItems_Func016Func001Func002C takes nothing retu
 endfunction
 
 function Trig_CheedGenerateRandomItems_Func016Func001C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 100) <= 2 ) ) then
+    if ( not ( GetRandomInt(1, 100) <= 3 ) ) then
         return false
     endif
     return true
@@ -56640,7 +56644,11 @@ function Trig_CheedGenerateRandomItems_Actions takes nothing returns nothing
                 if ( Trig_CheedGenerateRandomItems_Func016Func001Func002Func002C() ) then
                     set udg_CheedLootToSell[GetForLoopIndexA()]=ChooseRandomItemBJ(3)
                 else
-                    set udg_CheedLootToSell[GetForLoopIndexA()]=ChooseRandomItemBJ(GetRandomInt(0, 1))
+                    if ( Trig_CheedGenerateRandomItems_Func016Func001Func002Func002Func001C() ) then
+                        set udg_CheedLootToSell[GetForLoopIndexA()]=ChooseRandomItemBJ(1)
+                    else
+                        set udg_CheedLootToSell[GetForLoopIndexA()]=ChooseRandomItemBJ(0)
+                    endif
                 endif
             endif
         endif
@@ -57128,7 +57136,7 @@ endfunction
 // func requires tempLoc
 //===========================================================================
 function Trig_GenerateLootOnFloorFunc_Func002Func001Func001Func001C takes nothing returns boolean
-    if ( not ( GetRandomInt(1, 100) <= 50 ) ) then
+    if ( not ( GetRandomInt(1, 100) <= 75 ) ) then
         return false
     endif
     return true
@@ -57191,7 +57199,7 @@ endfunction
 // func requires tempUnit
 //===========================================================================
 function Trig_GenerateLootForHeroFunc_Func002Func001Func001Func001C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 50 ) ) then
+    if ( not ( udg_tempInt <= 75 ) ) then
         return false
     endif
     return true
@@ -57781,14 +57789,14 @@ function Trig_ChestBase_Func001Func007C takes nothing returns boolean
     if ( not ( udg_tempInt <= 95 ) ) then
         return false
     endif
-    if ( not ( udg_tempInt > 80 ) ) then
+    if ( not ( udg_tempInt > 85 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestBase_Func001Func009C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 80 ) ) then
+    if ( not ( udg_tempInt <= 85 ) ) then
         return false
     endif
     return true
@@ -57839,34 +57847,34 @@ endfunction
 // Trigger: ChestRare
 //===========================================================================
 function Trig_ChestRare_Func001Func003C takes nothing returns boolean
-    if ( not ( udg_tempInt > 95 ) ) then
+    if ( not ( udg_tempInt > 98 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestRare_Func001Func005C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 95 ) ) then
+    if ( not ( udg_tempInt <= 98 ) ) then
         return false
     endif
-    if ( not ( udg_tempInt > 85 ) ) then
+    if ( not ( udg_tempInt > 95 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestRare_Func001Func007C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 85 ) ) then
+    if ( not ( udg_tempInt <= 95 ) ) then
         return false
     endif
-    if ( not ( udg_tempInt > 60 ) ) then
+    if ( not ( udg_tempInt > 88 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestRare_Func001Func009C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 60 ) ) then
+    if ( not ( udg_tempInt <= 88 ) ) then
         return false
     endif
     return true
@@ -57917,34 +57925,34 @@ endfunction
 // Trigger: ChestEpic
 //===========================================================================
 function Trig_ChestEpic_Func001Func003C takes nothing returns boolean
-    if ( not ( udg_tempInt > 92 ) ) then
+    if ( not ( udg_tempInt > 96 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestEpic_Func001Func005C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 92 ) ) then
+    if ( not ( udg_tempInt <= 96 ) ) then
         return false
     endif
-    if ( not ( udg_tempInt > 75 ) ) then
+    if ( not ( udg_tempInt > 90 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestEpic_Func001Func007C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 75 ) ) then
+    if ( not ( udg_tempInt <= 90 ) ) then
         return false
     endif
-    if ( not ( udg_tempInt > 30 ) ) then
+    if ( not ( udg_tempInt > 60 ) ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_ChestEpic_Func001Func009C takes nothing returns boolean
-    if ( not ( udg_tempInt <= 30 ) ) then
+    if ( not ( udg_tempInt <= 60 ) ) then
         return false
     endif
     return true
@@ -69831,7 +69839,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs134371390")
+call ExecuteFunc("jasshelper__initstructs37207046")
 call ExecuteFunc("GetMainSelectedUnit___init_function")
 call ExecuteFunc("NSLHelper__Init")
 call ExecuteFunc("TasUnitBagGUI__init_function")
@@ -70043,7 +70051,7 @@ function sa___prototype27_NSLUtils__OnPlayerCodeLoaded takes nothing returns boo
     return true
 endfunction
 
-function jasshelper__initstructs134371390 takes nothing returns nothing
+function jasshelper__initstructs37207046 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()

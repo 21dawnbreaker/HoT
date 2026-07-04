@@ -7,6 +7,7 @@ import public AdditionalStatsAbilities
 import Freeze
 
 import ChimeOfCheed
+import CloakOfInsanity
 
 
 let ORIGIN_ITEM_ID = 'rst1'
@@ -15,6 +16,7 @@ public constant BOUNTY_HUNT_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant FROST_CLAWS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant SWORD_OF_PANTILUS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant CHIME_OF_CHEED_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant CLOAK_OF_INSANITY_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 
 let weapon = "Campaign"
 let trinket = "Purchasable"
@@ -95,4 +97,23 @@ let not_spawnable = 8
         ..setActivelyUsed(true)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(trinket)
+        ..setGoldCost(300)
+
+@compiletime function genCloakOfInsanityItem()
+    new ItemDefinition(CLOAK_OF_INSANITY_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cffff0000Покров Безумия|r")..setTooltipBasic("|cff8080ffПокров Безумия|r")
+        ..setTooltipExtended("+35 к интеллекту. |n+375 к здоровью. |n+15% к магическому урону. |n+20% к скорости атаки. |n|cff8080ffКаждый раз, когда вы наносите урон магией, вы вместо этого наносите от 1% до 200% урона Силой Хаоса|r. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r.")
+        ..setDescription("+35 к интеллекту. |n+375 к здоровью. |n+15% к магическому урону. |n+20% к скорости атаки. |n|cff8080ffКаждый раз, когда вы наносите урон магией, вы вместо этого наносите от 1% до 200% урона Силой Хаоса|r. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r. |n|n[|cff00ffffБроня|r]")
+        ..setLevel(rare)..setLevelUnclassified(rare)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(100)..setTintingColor2Green(200)..setTintingColor3Blue(100)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCloakOfFlames.blp")..setModelUsed("war3mapImported\\Cloak.mdx")..setScalingValue(1)
+        ..setCanBeDropped(false)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)..setDroppedWhenCarrierDies(true)
+        ..setAbilities(
+            MAGIC_AMP_15_SPELL_ID.toRawCode() 
+            + "," + "A0J4,A0BH,A0BL"
+            + "," + CLOAK_OF_INSANITY_SPELL_ID.toRawCode()
+        )
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(armor)
         ..setGoldCost(300)

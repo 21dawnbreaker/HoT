@@ -12,7 +12,8 @@ let _cursedItemsList = [
     'I095',
     'I09H',
     'I09Q',
-    RAGING_AXE_ITEM_ID
+    RAGING_AXE_ITEM_ID,
+    CLOAK_OF_INSANITY_ITEM_ID
 ]
 
 public let CURSED_ITEMS_SET = new HashSet<int>
@@ -30,7 +31,6 @@ public function doAlignmentDamage(unit u, player plyer)
             udg_KarmaU = u
             TriggerExecute(gg_trg_KarmaSystem)
             udg_KarmaU = null
-            print(i)
             break
 
 
