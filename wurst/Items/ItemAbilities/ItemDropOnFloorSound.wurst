@@ -70,7 +70,7 @@ init
             weapon_sound.playOnPoint(_unit.getPos3Real())
             return
 
-        if _item_itemType == ITEM_TYPE_MISCELLANEOUS
+        if _item_itemType == ITEM_TYPE_MISCELLANEOUS and _item_id != 'I092'
             scroll_sound.playOnPoint(_unit.getPos3Real())
             return
 
@@ -89,5 +89,5 @@ init
             gloves_sound.playOnPoint(_unit.getPos3Real())
             return
 
-        if _item_itemType == ITEM_TYPE_ARTIFACT
+        if _item_itemType == ITEM_TYPE_ARTIFACT and _item_id != 'tkno'
             boots_sound.playOnPoint(_unit.getPos3Real())

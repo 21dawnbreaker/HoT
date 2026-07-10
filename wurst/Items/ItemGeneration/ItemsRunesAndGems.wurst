@@ -149,6 +149,7 @@ constant not_spawnable = 8
         ..setAbilities(ALL_RESISTANCE_3_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(50)
 
@@ -246,6 +247,7 @@ constant not_spawnable = 8
         ..setAbilities(GEM_ALL_STAT_1_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(50)
 
@@ -367,6 +369,7 @@ constant not_spawnable = 8
         ..setAbilities(GEM_MAX_LIFE_2_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(150)
 
@@ -464,6 +467,7 @@ constant not_spawnable = 8
         ..setAbilities(GEM_ATTACK_SPEED_2_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(150)
 
@@ -561,6 +565,7 @@ constant not_spawnable = 8
         ..setAbilities(MINIONS_AMP_20_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(150)
 
@@ -658,6 +663,7 @@ constant not_spawnable = 8
         ..setAbilities(VS_ELITES_AMP_16_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(150)
 
@@ -755,6 +761,7 @@ constant not_spawnable = 8
         ..setAbilities(VS_UNDEAD_AMP_16_SPELL_ID.toRawCode())
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setButtonPositionY(1)
         ..setClassification(other)
         ..setGoldCost(150)
 

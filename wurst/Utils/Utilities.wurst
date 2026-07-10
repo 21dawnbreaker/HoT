@@ -1,5 +1,7 @@
 package Utilities
 
+import HashSet
+
 public let targetTypeNoTarget = 0
 public let targetTypeUnit = 1
 public let targetTypePoint = 2
@@ -8,6 +10,62 @@ public let targetTypePointOrUnit = 3
 public let ALLIES_PLAYER = Player(20)
 public let UNDEAD_PLAYER = Player(22)
 public let MONSTERS_PLAYER = Player(23)
+public let NEUTRAL_PASSIVE_PLAYER = Player(27)
+public let GNOMES_PLAYER = Player(8)
+
+public let PATH_UNIT = 'o02I'
+public let PATH_ARTIFACT_UNIT = 'o02J'
+public let PATH_OBJECT_UNIT = 'o02K'
+public let PATH_GOLD_UNIT = 'o02H'
+public let PATH_TOWN_UNIT = 'o02L'
+public let PATH_BOSS_UNIT = 'o02R'
+public var path_UG = CreateGroup()
+public let PATH_SET = new HashSet<int>
+public let PATH_SET_ALL = new HashSet<int>
+
+public let EFF_BLINK = "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl"
 
 public function getRandomAngle() returns angle
     return GetRandomReal(0., 360.).asAngleRadians()
+
+function fadeInForPlayer(player p, real duration)
+    if GetLocalPlayer() == p
+        CinematicFadeBJ(
+            bj_CINEFADETYPE_FADEIN,
+            duration,
+            "ReplaceableTextures\\CameraMasks\\Black_mask.blp",
+            0.,
+            0.,
+            0.,
+            0.
+        )
+
+function fadeOutForPlayer(player p, real duration)
+    if GetLocalPlayer() == p
+        CinematicFadeBJ(
+            bj_CINEFADETYPE_FADEOUT,
+            duration,
+            "ReplaceableTextures\\CameraMasks\\Black_mask.blp",
+            0.,
+            0.,
+            0.,
+            0.
+        )
+
+public function getVec2FromLoc(location loc) returns vec2
+    return vec2(GetLocationX(loc), GetLocationY(loc))
+
+public function getVec2FromRectCenter(rect rct) returns vec2
+    return vec2(GetRectCenterX(rct), GetRectCenterY(rct)) 
+
+public function getRandomVec2FromRect(rect rct) returns vec2
+    let x = GetRandomReal(rct.getMinX(), rct.getMaxX())
+    let y = GetRandomReal(rct.getMinY(), rct.getMaxY())
+
+    return vec2(x, y)
+
+
+init
+    PATH_SET.add(PATH_ARTIFACT_UNIT, PATH_GOLD_UNIT, PATH_OBJECT_UNIT)
+    PATH_SET_ALL.add(PATH_ARTIFACT_UNIT, PATH_GOLD_UNIT, PATH_OBJECT_UNIT, PATH_BOSS_UNIT, PATH_TOWN_UNIT)
+    

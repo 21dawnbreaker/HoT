@@ -1,0 +1,104 @@
+package CaveTeleport
+
+import ClosureEvents
+import ClosureTimers
+import LinkedList
+import SoundUtils
+
+import Utilities
+
+
+class UnitDwarfData
+    int id
+    vec2 pos
+    angle facing
+
+    let owner = GNOMES_PLAYER
+
+    construct(int id, vec2 pos, angle facing)
+        this.id = id
+        this.pos = pos
+        this.facing = facing
+
+let dwarf_data = new LinkedList<UnitDwarfData>()
+let sound_eff = new SoundDefinition(Sounds.rockGolemDeath1, false, false)
+let PATHS_OUT_RECTS_LIST = [
+    gg_rct_DwarfesPathOut3,
+    gg_rct_DwarfesPathOut,
+    gg_rct_DwarfesPathOut2
+]
+
+public let dwarfs_UG = CreateGroup()
+public unit thane
+
+
+init
+    doAfter(3) -> 
+        let g = CreateGroup()
+
+        GroupEnumUnitsInRect(g, gg_rct_LegionOfDwarfes, null)
+        for u in g
+            dwarf_data.add(new UnitDwarfData(u.getTypeId(), u.getPos(), u.getFacingAngle()))
+            u.remove()
+
+        g.destr()
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if GetSoldUnit().getTypeId() == 'o03K'
+            GetSoldUnit().remove()
+            GetTriggerUnit().remove()
+
+            let spawn_zone_center = getVec2FromRectCenter(gg_rct_DwarfesHeroesSpawn)
+            
+            sound_eff.play()
+            SetCameraBoundsToRect(gg_rct_LegionOfDwarfes)
+            doAfter(0.1) -> 
+                panCameraToTimed(spawn_zone_center, 1)
+
+            for u in dwarf_data
+                let new_u = createUnit(u.owner, u.id, u.pos, u.facing)
+
+                dwarfs_UG.add(new_u)
+                if u.id == 'h02H'
+                    thane = new_u
+
+            for p in udg_PlayerGroup
+                let g = CreateGroup()
+
+                GroupEnumUnitsOfPlayer(g, p, null)
+                for u in g
+                    if not udg_StashUG.has(u)
+                        let pos = getRandomVec2FromRect(gg_rct_DwarfesHeroesSpawn)
+
+                        u.setPos(pos)
+                    
+                    if u.isType(UNIT_TYPE_HERO) and not udg_BackpackGroup.has(u)
+                        let eff = AddSpecialEffect("Doodads/Cinematic/CavernDust/CavernDust.mdl", u.getX(), u.getY())
+                        doAfter(4) -> 
+                            eff.destr()
+
+                g.destr()
+
+            if GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE * 2
+                let pos = getVec2FromRectCenter(gg_rct_cheedDwarfes)
+
+                createUnit(ALLIES_PLAYER, 'h025', pos, 270.0.asAngleDegrees())
+
+            for i = 0 to PATHS_OUT_RECTS_LIST.length - 1
+                let u = createUnit(NEUTRAL_PASSIVE_PLAYER, PATH_UNIT, getVec2FromRectCenter(PATHS_OUT_RECTS_LIST[i]))
+
+                path_UG.add(u)
+
+                if udg_RoomMultiboardCounting == 23.00
+                    u.addUnitToStock(PATH_TOWN_UNIT, 1, 1)
+                    break
+
+                u.addUnitToStock(PATH_SET.getRandomElement(), 1, 1)
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if PATH_SET_ALL.has(GetSoldUnit().getTypeId()) and not dwarfs_UG.isEmpty()
+
+            for u in dwarfs_UG
+                u.remove()
+            
+            dwarfs_UG.clear()

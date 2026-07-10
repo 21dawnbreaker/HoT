@@ -1,0 +1,16 @@
+package Cleanup
+
+import ClosureEvents
+import HashSet
+
+import Utilities
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if PATH_SET_ALL.has(GetSoldUnit().getTypeId()) and not path_UG.isEmpty()
+
+            for u in path_UG
+                u.remove()
+
+            path_UG.clear()

@@ -23,15 +23,7 @@ init
             CreateItem(CLOAK_OF_INSANITY_ITEM_ID, _hero.getX(), _hero.getY())
             
         if msg == "-test5"
-            print(ALLIES_PLAYER.getName())
-            print(MONSTERS_PLAYER.getName())
-            print(UNDEAD_PLAYER.getName())
-
-            let cheed = createUnit(ALLIES_PLAYER, 'h025', _hero.getPos().polarOffset(getRandomAngle(), 250))..setTimedLife(300)
-            cheed.setFacing(cheed.getPos().angleTo(_hero.getPos()))
-
-            print("2")
-            createUnit(ALLIES_PLAYER, 'h025', _hero.getPos().polarOffset(getRandomAngle(), 250))..setTimedLife(300)
+            createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02I', _hero.getPos())
 
             
         if msg == "-test6"
