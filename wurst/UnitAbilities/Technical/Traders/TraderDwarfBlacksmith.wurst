@@ -1,0 +1,57 @@
+package TraderDwarfBlacksmith
+
+import ClosureEvents
+import SoundUtils
+
+import ItemCraftRecipes
+
+
+let COST = 100
+
+let sound_eff = new SoundDefinition("forge.mp3", false, true)
+
+
+function get_traders_chest(unit caster) returns unit
+    unit traders_chest = null
+
+    let g = CreateGroup()
+    GroupEnumUnitsInRange(g, caster.getX(), caster.getY(), 300, null)
+    for u from g
+        if u.getTypeId() == 'h02D'
+            traders_chest = u
+            break
+    g.destr()
+
+    return traders_chest
+
+function paymentDone(player _player, int cost) returns bool
+    if _player.getGold() >= cost
+        _player.setGold(_player.getGold() - cost)
+        return TRUE
+    return FALSE
+
+function returnMoney(player _player, int amount)
+    _player.setGold(_player.getGold() + amount)
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        let caster = GetTriggerUnit()
+        let sold_unit = GetSoldUnit()
+        let _player = GetBuyingUnit().getOwner()
+
+        // Craft
+        if sold_unit.getTypeId() == 'o03I'
+            sold_unit.remove()
+
+            let traders_chest = get_traders_chest(caster)
+
+            if paymentDone(_player, COST)
+                if craftFromPreset(traders_chest)
+                    sound_eff.playOnPoint(caster.getPos3Real())
+
+                    if traders_chest.hasItemById(DUMMY_ITEM)
+                        traders_chest.removeItemById(DUMMY_ITEM)
+                        traders_chest.addItemById(ChooseRandomItem(4))
+                else
+                    returnMoney(_player, COST)

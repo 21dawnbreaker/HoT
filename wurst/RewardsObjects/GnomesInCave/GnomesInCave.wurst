@@ -91,7 +91,13 @@ function makeRewards(vec2 thane_pos, vec2 blacksmith_pos)
         for i = 0 to 5
             u.addItemToStock(GemData.getRandomGemObjByPowerLvl(GEMS, 2).itemId, 1, 1)
 
-    if dwarfs_UG.size() > 1
+    var dwarfs_survived = false
+    for u in dwarfs_UG
+        if u.getTypeId() != 'h02D' and u.getTypeId() != 'o028'
+            dwarfs_survived = true
+            break
+
+    if dwarfs_survived
         let u = createUnit(NEUTRAL_PASSIVE_PLAYER, 'o028', getRandomVec2FromRect(GNOME_INNER_CAMP), getRandomAngle())
         dwarfs_UG.add(u)
         flashEffect(EFF_TELEPORT, u.getPos3Real())

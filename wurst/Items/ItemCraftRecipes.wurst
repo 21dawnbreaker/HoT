@@ -1,0 +1,62 @@
+package ItemCraftRecipes
+
+import LinkedList
+
+import public ItemsUncommon
+import public ItemsRare
+import public ItemsEpic
+
+
+public class CraftRecipeTwoItems
+    int itemA
+    int itemB
+    int resultItem
+
+    construct(int itemA, int itemB, int resultItem)
+        this.itemA = itemA
+        this.itemB = itemB
+        this.resultItem = resultItem
+
+    function matches(item first, item second) returns bool
+        if first == null or second == null
+            return false
+
+        let firstId = first.getTypeId()
+        let secondId = second.getTypeId()
+
+        return (
+            firstId == itemA and secondId == itemB
+        ) or (
+            firstId == itemB and secondId == itemA
+        )
+
+    function craft(unit crafter) returns bool
+        let first = crafter.itemInSlot(0)
+        let second = crafter.itemInSlot(1)
+
+        if not matches(first, second)
+            return false
+
+        first.remove()
+        second.remove()
+
+        crafter.addItemById(resultItem)
+
+        return true
+
+public let TWO_ITEM_CRAFTS = new LinkedList<CraftRecipeTwoItems>
+
+public function craftFromPreset(unit chest) returns bool
+    for recipe in TWO_ITEM_CRAFTS
+        if recipe.craft(chest)
+            return true
+
+    return false
+
+public let DUMMY_ITEM = 'I0AU'
+
+
+init
+    TWO_ITEM_CRAFTS.add(new CraftRecipeTwoItems('I01Y', 'I01Z', DUMMY_ITEM)) // result items is placeholder, needs to be changed manually to random item
+    TWO_ITEM_CRAFTS.add(new CraftRecipeTwoItems(TOUGH_HAMMER_ITEM_ID, 'I03G', 'I0AT'))
+    TWO_ITEM_CRAFTS.add(new CraftRecipeTwoItems('I01L', 'I09I', 'I09C'))

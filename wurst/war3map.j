@@ -130,8 +130,8 @@ integer Table___more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
 hashtable Table___ht= InitHashtable()
-constant integer Table___sizeK=9
-constant integer Table___listK=11
+constant integer Table___sizeK=7
+constant integer Table___listK=8
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -2459,7 +2459,7 @@ trigger gg_trg_TelekinesisDummy= null
 trigger gg_trg_TelekinesisOnDamage= null
 trigger gg_trg_GreedGnolls= null
 trigger gg_trg_AuraOfMobility= null
-trigger gg_trg_GiantHowl= null
+trigger gg_trg_GiantHowlAndWarstomp= null
 trigger gg_trg_GiantStrike= null
 trigger gg_trg_InfectorInvul= null
 trigger gg_trg_InfectorOnDeath= null
@@ -2952,6 +2952,9 @@ destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
 trigger gg_trg_LergzanGivesRage= null
+rect gg_rct_ItemIgnoreCleanupRect= null
+rect gg_rct_ItemIgnoreCleanupRect2= null
+rect gg_rct_ItemIgnoreCleanupRect3= null
 
 trigger l__library_init
 
@@ -11855,9 +11858,9 @@ function CreateUnitsForPlayer20 takes nothing returns nothing
     call SetUnitColor(u, ConvertPlayerColor(8))
     set u=BlzCreateUnitWithSkin(p, 'h02E', 1288.9, 16953.3, 293.188, 'h02E')
     call SetUnitColor(u, ConvertPlayerColor(8))
-    set u=BlzCreateUnitWithSkin(p, 'h02F', 261.9, 17546.7, 83.576, 'h02F')
+    set u=BlzCreateUnitWithSkin(p, 'h02F', 261.9, 17459.0, 83.576, 'h02F')
     call SetUnitColor(u, ConvertPlayerColor(8))
-    set u=BlzCreateUnitWithSkin(p, 'h02F', 1376.7, 17512.5, 57.955, 'h02F')
+    set u=BlzCreateUnitWithSkin(p, 'h02F', 1110.1, 17651.9, 13.620, 'h02F')
     call SetUnitColor(u, ConvertPlayerColor(8))
     set u=BlzCreateUnitWithSkin(p, 'h02F', 1128.5, 17067.0, 333.617, 'h02F')
     call SetUnitColor(u, ConvertPlayerColor(8))
@@ -12468,10 +12471,10 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_EnemyRoom4_Copy_2=Rect(13536.0, - 21984.0, 14496.0, - 21664.0)
     set gg_rct_EnemyRoom4_Copy_3=Rect(9984.0, - 21984.0, 10752.0, - 21536.0)
     set gg_rct_EnemyRoom4_Copy_4=Rect(9920.0, - 21536.0, 10528.0, - 20896.0)
-    set gg_rct_RewardRoom4=Rect(12224.0, - 20704.0, 12288.0, - 20640.0)
+    set gg_rct_RewardRoom4=Rect(12224.0, - 20800.0, 12288.0, - 20736.0)
     set gg_rct_ChestRoom4=Rect(12064.0, - 20800.0, 12160.0, - 20704.0)
     set gg_rct_ExitRoom4=Rect(10016.0, - 20928.0, 10144.0, - 20800.0)
-    set gg_rct_ExitRoom4_Copy=Rect(12032.0, - 19392.0, 12160.0, - 19264.0)
+    set gg_rct_ExitRoom4_Copy=Rect(12032.0, - 19328.0, 12160.0, - 19200.0)
     set gg_rct_ExitRoom4_Copy_2=Rect(14240.0, - 21568.0, 14368.0, - 21440.0)
     set gg_rct_Room5=Rect(16448.0, - 12960.0, 19328.0, - 9856.0)
     set gg_rct_EnterRoom5=Rect(17088.0, - 12896.0, 19168.0, - 12608.0)
@@ -12545,9 +12548,9 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_EnemyRoom11_Copy_3=Rect(20864.0, 64.0, 21312.0, 448.0)
     set gg_rct_EnemyRoom11_Copy_4=Rect(20032.0, 128.0, 20288.0, 512.0)
     set gg_rct_Room12_TRADE=Rect(14464.0, 16096.0, 21248.0, 20608.0)
-    set gg_rct_EnterRoom12_TRADE=Rect(20384.0, 17056.0, 20800.0, 17728.0)
-    set gg_rct_ExitRoom12=Rect(20928.0, 17344.0, 21024.0, 17440.0)
-    set gg_rct_ExitRoom12_Copy=Rect(14560.0, 19424.0, 14656.0, 19520.0)
+    set gg_rct_EnterRoom12_TRADE=Rect(20224.0, 17056.0, 20736.0, 17760.0)
+    set gg_rct_ExitRoom12=Rect(20832.0, 17344.0, 20928.0, 17440.0)
+    set gg_rct_ExitRoom12_Copy=Rect(14656.0, 19424.0, 14752.0, 19520.0)
     set gg_rct_Room13=Rect(- 21728.0, - 256.0, - 19200.0, 1888.0)
     set gg_rct_RewardRoom13=Rect(- 20416.0, 512.0, - 20320.0, 608.0)
     set gg_rct_EnterRoom13=Rect(- 21376.0, 1568.0, - 19680.0, 1824.0)
@@ -12684,8 +12687,11 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_DwarfesHeroesSpawn=Rect(928.0, 18368.0, 1216.0, 18624.0)
     set gg_rct_DwarfesRetreat=Rect(480.0, 17184.0, 1248.0, 17632.0)
     set gg_rct_DwarfBlacksmithPos=Rect(352.0, 17568.0, 416.0, 17632.0)
-    set gg_rct_DwarfThanePos=Rect(1184.0, 17664.0, 1248.0, 17728.0)
+    set gg_rct_DwarfThanePos=Rect(1280.0, 17632.0, 1344.0, 17696.0)
     set gg_rct_LegionOfDwarfesEntireRect=Rect(- 864.0, 16256.0, 2720.0, 19296.0)
+    set gg_rct_ItemIgnoreCleanupRect=Rect(17376.0, 19712.0, 18432.0, 20064.0)
+    set gg_rct_ItemIgnoreCleanupRect2=Rect(160.0, - 21536.0, 576.0, - 20608.0)
+    set gg_rct_ItemIgnoreCleanupRect3=Rect(- 19584.0, 16448.0, - 19008.0, 17152.0)
 endfunction
 
 //***************************************************************************
@@ -19239,7 +19245,7 @@ endfunction
 //===========================================================================
 // Trigger: PathGeneral
 //===========================================================================
-function Trig_PathGeneral_Func010C takes nothing returns boolean
+function Trig_PathGeneral_Func011C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return true
     endif
@@ -19259,14 +19265,20 @@ function Trig_PathGeneral_Func010C takes nothing returns boolean
 endfunction
 
 function Trig_PathGeneral_Conditions takes nothing returns boolean
-    if ( not Trig_PathGeneral_Func010C() ) then
+    if ( not Trig_PathGeneral_Func011C() ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_PathGeneral_Func005Func001C takes nothing returns boolean
-    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
+    if ( not ( RectContainsItem(GetEnumItem(), gg_rct_ItemIgnoreCleanupRect) == false ) ) then
+        return false
+    endif
+    if ( not ( RectContainsItem(GetEnumItem(), gg_rct_ItemIgnoreCleanupRect2) == false ) ) then
+        return false
+    endif
+    if ( not ( RectContainsItem(GetEnumItem(), gg_rct_ItemIgnoreCleanupRect3) == false ) ) then
         return false
     endif
     return true
@@ -19274,13 +19286,13 @@ endfunction
 
 function Trig_PathGeneral_Func005A takes nothing returns nothing
     if ( Trig_PathGeneral_Func005Func001C() ) then
-        set udg_tempInt=( udg_tempInt + 1 )
+        call RemoveItem(GetEnumItem())
     else
     endif
 endfunction
 
 function Trig_PathGeneral_Func006Func001C takes nothing returns boolean
-    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_HeroesGroup) == true ) ) then
         return false
     endif
     return true
@@ -19288,40 +19300,54 @@ endfunction
 
 function Trig_PathGeneral_Func006A takes nothing returns nothing
     if ( Trig_PathGeneral_Func006Func001C() ) then
+        set udg_tempInt=( udg_tempInt + 1 )
+    else
+    endif
+endfunction
+
+function Trig_PathGeneral_Func007Func001C takes nothing returns boolean
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_PathGeneral_Func007A takes nothing returns nothing
+    if ( Trig_PathGeneral_Func007Func001C() ) then
         set udg_tempInt2=( udg_tempInt2 + 1 )
     else
     endif
 endfunction
 
-function Trig_PathGeneral_Func008Func013C takes nothing returns boolean
+function Trig_PathGeneral_Func009Func013C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetTriggerUnit()) == 'n00E' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathGeneral_Func008Func015Func010Func001C takes nothing returns boolean
+function Trig_PathGeneral_Func009Func015Func010Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_npc_static) == false ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathGeneral_Func008Func015Func010A takes nothing returns nothing
-    if ( Trig_PathGeneral_Func008Func015Func010Func001C() ) then
+function Trig_PathGeneral_Func009Func015Func010A takes nothing returns nothing
+    if ( Trig_PathGeneral_Func009Func015Func010Func001C() ) then
         call RemoveUnit(GetEnumUnit())
     else
     endif
 endfunction
 
-function Trig_PathGeneral_Func008Func015C takes nothing returns boolean
+function Trig_PathGeneral_Func009Func015C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) != 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathGeneral_Func008C takes nothing returns boolean
+function Trig_PathGeneral_Func009C takes nothing returns boolean
     if ( not ( udg_tempInt == udg_tempInt2 ) ) then
         return false
     endif
@@ -19331,27 +19357,27 @@ function Trig_PathGeneral_Func008C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_PathGeneral_Func009Func001A takes nothing returns nothing
+function Trig_PathGeneral_Func010Func001A takes nothing returns nothing
     call RemoveUnit(GetEnumUnit())
 endfunction
 
-function Trig_PathGeneral_Func009Func003Func003A takes nothing returns nothing
+function Trig_PathGeneral_Func010Func003Func003A takes nothing returns nothing
     call ShowUnitHide(GetEnumUnit())
 endfunction
 
-function Trig_PathGeneral_Func009Func003Func004A takes nothing returns nothing
+function Trig_PathGeneral_Func010Func003Func004A takes nothing returns nothing
     call ShowUnitHide(GetEnumUnit())
 endfunction
 
-function Trig_PathGeneral_Func009Func003Func006Func001C takes nothing returns boolean
+function Trig_PathGeneral_Func010Func003Func006Func001C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetEnumUnit()) == 'h02A' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathGeneral_Func009Func003Func006A takes nothing returns nothing
-    if ( Trig_PathGeneral_Func009Func003Func006Func001C() ) then
+function Trig_PathGeneral_Func010Func003Func006A takes nothing returns nothing
+    if ( Trig_PathGeneral_Func010Func003Func006Func001C() ) then
         call BlzSetUnitMaxHP(GetEnumUnit(), ( BlzGetUnitMaxHP(gg_unit_H012_0027) + ( R2I(( udg_difficultyReal * GetUnitStateSwap(UNIT_STATE_MAX_LIFE, gg_unit_H012_0027) )) * R2I(udg_RoomMultiboardCounting) ) ))
         call BlzSetUnitMaxHP(udg_Boss[1], ( BlzGetUnitMaxHP(udg_Boss[1]) * 3 ))
         call SetUnitLifePercentBJ(GetEnumUnit(), 100)
@@ -19359,18 +19385,18 @@ function Trig_PathGeneral_Func009Func003Func006A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_PathGeneral_Func009Func003Func008A takes nothing returns nothing
+function Trig_PathGeneral_Func010Func003Func008A takes nothing returns nothing
     call ShowUnitShow(GetEnumUnit())
 endfunction
 
-function Trig_PathGeneral_Func009Func003C takes nothing returns boolean
+function Trig_PathGeneral_Func010Func003C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathGeneral_Func009Func005C takes nothing returns boolean
+function Trig_PathGeneral_Func010Func005C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) != 'o02L' ) ) then
         return false
     endif
@@ -19383,7 +19409,7 @@ function Trig_PathGeneral_Func009Func005C takes nothing returns boolean
     return true
 endfunction
 
-function Trig_PathGeneral_Func009C takes nothing returns boolean
+function Trig_PathGeneral_Func010C takes nothing returns boolean
     if ( not ( udg_heroes_ready_to_go == true ) ) then
         return false
     endif
@@ -19395,21 +19421,22 @@ function Trig_PathGeneral_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
     set udg_tempInt=0
     set udg_tempInt2=0
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(600.00, udg_tempLoc), function Trig_PathGeneral_Func005A)
-    call ForGroupBJ(udg_HeroesGroup, function Trig_PathGeneral_Func006A)
+    call EnumItemsInRectBJ(GetPlayableMapRect(), function Trig_PathGeneral_Func005A)
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(600.00, udg_tempLoc), function Trig_PathGeneral_Func006A)
+    call ForGroupBJ(udg_HeroesGroup, function Trig_PathGeneral_Func007A)
     call RemoveLocation(udg_tempLoc)
-    if ( Trig_PathGeneral_Func008C() ) then
+    if ( Trig_PathGeneral_Func009C() ) then
         set udg_heroes_ready_to_go=true
         call EnableTrigger(gg_trg_PathAlliance)
         call EnableTrigger(gg_trg_PathNaluara)
         call EnableTrigger(gg_trg_PathOrc)
         call EnableTrigger(gg_trg_PathToBossInit)
-        if ( Trig_PathGeneral_Func008Func013C() ) then
+        if ( Trig_PathGeneral_Func009Func013C() ) then
             call PlaySoundBJ(gg_snd_diablo2portalenter)
         else
         endif
         call DestroyEffectBJ(udg_BossfightEndEff)
-        if ( Trig_PathGeneral_Func008Func015C() ) then
+        if ( Trig_PathGeneral_Func009Func015C() ) then
             call EnableTrigger(gg_trg_TownWelcomeOrc)
             call EnableTrigger(gg_trg_TownWelcomeNaluara)
             call EnableTrigger(gg_trg_TownWelcomeAlliance)
@@ -19418,7 +19445,7 @@ function Trig_PathGeneral_Actions takes nothing returns nothing
             call DisableTrigger(gg_trg_TownMusicRepeatAlliance)
             call EnableTrigger(gg_trg_MusicEnd)
             // Remove random traders
-            call ForGroupBJ(GetUnitsOfPlayerAll(Player(20)), function Trig_PathGeneral_Func008Func015Func010A)
+            call ForGroupBJ(GetUnitsOfPlayerAll(Player(20)), function Trig_PathGeneral_Func009Func015Func010A)
         else
         endif
         // Trash remove
@@ -19434,22 +19461,22 @@ function Trig_PathGeneral_Actions takes nothing returns nothing
         call DisableTrigger(gg_trg_PathOrc)
         call DisableTrigger(gg_trg_PathToBossInit)
     endif
-    if ( Trig_PathGeneral_Func009C() ) then
-        call ForGroupBJ(GetUnitsInRectAll(gg_rct_cleanupReg), function Trig_PathGeneral_Func009Func001A)
+    if ( Trig_PathGeneral_Func010C() ) then
+        call ForGroupBJ(GetUnitsInRectAll(gg_rct_cleanupReg), function Trig_PathGeneral_Func010Func001A)
         // town
-        if ( Trig_PathGeneral_Func009Func003C() ) then
+        if ( Trig_PathGeneral_Func010Func003C() ) then
             call EnableTrigger(gg_trg_ManekenOnDamage)
-            call ForGroupBJ(udg_ManekenUG, function Trig_PathGeneral_Func009Func003Func006A)
+            call ForGroupBJ(udg_ManekenUG, function Trig_PathGeneral_Func010Func003Func006A)
             set udg_npc_heroes_variation=GetRandomInt(1, 3)
-            call ForGroupBJ(udg_npc_heroes_UG[udg_npc_heroes_variation], function Trig_PathGeneral_Func009Func003Func008A)
+            call ForGroupBJ(udg_npc_heroes_UG[udg_npc_heroes_variation], function Trig_PathGeneral_Func010Func003Func008A)
         else
             call DisableTrigger(gg_trg_TownPatrolNaluara)
             call DisableTrigger(gg_trg_ManekenOnDamage)
-            call ForGroupBJ(udg_npc_heroes_UG[1], function Trig_PathGeneral_Func009Func003Func003A)
-            call ForGroupBJ(udg_npc_heroes_UG[2], function Trig_PathGeneral_Func009Func003Func004A)
+            call ForGroupBJ(udg_npc_heroes_UG[1], function Trig_PathGeneral_Func010Func003Func003A)
+            call ForGroupBJ(udg_npc_heroes_UG[2], function Trig_PathGeneral_Func010Func003Func004A)
         endif
         // miniboss roll
-        if ( Trig_PathGeneral_Func009Func005C() ) then
+        if ( Trig_PathGeneral_Func010Func005C() ) then
             set udg_miniboss_spawn=true
         else
             set udg_miniboss_spawn=false
@@ -19823,7 +19850,7 @@ endfunction
 //===========================================================================
 // Trigger: PathOrc
 //===========================================================================
-function Trig_PathOrc_Func012C takes nothing returns boolean
+function Trig_PathOrc_Func011C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return true
     endif
@@ -19839,7 +19866,7 @@ function Trig_PathOrc_Func012C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathOrc_Func013C takes nothing returns boolean
+function Trig_PathOrc_Func012C takes nothing returns boolean
     if ( ( udg_CurrentLocation == 1 ) ) then
         return true
     endif
@@ -19856,10 +19883,10 @@ function Trig_PathOrc_Func013C takes nothing returns boolean
 endfunction
 
 function Trig_PathOrc_Conditions takes nothing returns boolean
-    if ( not Trig_PathOrc_Func012C() ) then
+    if ( not Trig_PathOrc_Func011C() ) then
         return false
     endif
-    if ( not Trig_PathOrc_Func013C() ) then
+    if ( not Trig_PathOrc_Func012C() ) then
         return false
     endif
     return true
@@ -19905,53 +19932,49 @@ function Trig_PathOrc_Func008Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_PathOrc_Func009A takes nothing returns nothing
-    call RemoveItem(GetEnumItem())
-endfunction
-
-function Trig_PathOrc_Func016Func001C takes nothing returns boolean
+function Trig_PathOrc_Func015Func001C takes nothing returns boolean
     if ( not ( udg_RoomInt == udg_RoomPreviousInt ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func018C takes nothing returns boolean
+function Trig_PathOrc_Func017C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func019C takes nothing returns boolean
+function Trig_PathOrc_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func020C takes nothing returns boolean
+function Trig_PathOrc_Func019C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func022Func001Func007C takes nothing returns boolean
+function Trig_PathOrc_Func021Func001Func007C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func022Func001A takes nothing returns nothing
+function Trig_PathOrc_Func021Func001A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom6_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room6_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), gg_rct_Room6_TRADE)
     // !
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathOrc_Func022Func001Func007C() ) then
+    if ( Trig_PathOrc_Func021Func001Func007C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -19960,7 +19983,7 @@ function Trig_PathOrc_Func022Func001A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathOrc_Func022Func002A takes nothing returns nothing
+function Trig_PathOrc_Func021Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom6_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room6_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -19968,7 +19991,7 @@ function Trig_PathOrc_Func022Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathOrc_Func022Func005Func020C takes nothing returns boolean
+function Trig_PathOrc_Func021Func005Func023C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 24.00 ) ) then
         return true
     endif
@@ -19984,48 +20007,48 @@ function Trig_PathOrc_Func022Func005Func020C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathOrc_Func022Func005C takes nothing returns boolean
-    if ( not Trig_PathOrc_Func022Func005Func020C() ) then
+function Trig_PathOrc_Func021Func005C takes nothing returns boolean
+    if ( not Trig_PathOrc_Func021Func005Func023C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func022Func007C takes nothing returns boolean
+function Trig_PathOrc_Func021Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func022Func008C takes nothing returns boolean
+function Trig_PathOrc_Func021Func008C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func022C takes nothing returns boolean
+function Trig_PathOrc_Func021C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func025Func002Func006C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func002A takes nothing returns nothing
+function Trig_PathOrc_Func025Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), udg_RoomReg[udg_RoomInt])
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathOrc_Func026Func002Func006C() ) then
+    if ( Trig_PathOrc_Func025Func002Func006C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -20034,7 +20057,7 @@ function Trig_PathOrc_Func026Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathOrc_Func026Func003A takes nothing returns nothing
+function Trig_PathOrc_Func025Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -20042,14 +20065,14 @@ function Trig_PathOrc_Func026Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathOrc_Func026Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[( 20 + ( udg_tempInt2 * 20 ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007Func002Func002Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func002Func002Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -20059,14 +20082,14 @@ function Trig_PathOrc_Func026Func007Func002Func002Func002Func006C takes nothing 
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[20]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007Func002Func003Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func002Func003Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -20076,21 +20099,21 @@ function Trig_PathOrc_Func026Func007Func002Func003Func002Func006C takes nothing 
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007Func002C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007Func005Func002Func006Func001C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func005Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007Func005Func002Func006C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007Func005Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -20100,14 +20123,14 @@ function Trig_PathOrc_Func026Func007Func005Func002Func006C takes nothing returns
     return true
 endfunction
 
-function Trig_PathOrc_Func026Func007C takes nothing returns boolean
+function Trig_PathOrc_Func025Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathOrc_Func026C takes nothing returns boolean
+function Trig_PathOrc_Func025C takes nothing returns boolean
     if ( not ( udg_PathTown == 0 ) ) then
         return false
     endif
@@ -20129,7 +20152,6 @@ function Trig_PathOrc_Actions takes nothing returns nothing
         call ForGroupBJ(GetUnitsInRectAll(udg_RoomReg[GetForLoopIndexA()]), function Trig_PathOrc_Func008Func001A)
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
-    call EnumItemsInRectBJ(gg_rct_PlayableMapAreaLoc, function Trig_PathOrc_Func009A)
     call RemoveUnit(GetSoldUnit())
     call RemoveUnit(GetSellingUnit())
     set udg_RoomInt=GetRandomInt(1, 5)
@@ -20138,32 +20160,32 @@ function Trig_PathOrc_Actions takes nothing returns nothing
     set bj_forLoopAIndexEnd=5
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_PathOrc_Func016Func001C() ) then
+        if ( Trig_PathOrc_Func015Func001C() ) then
             set udg_RoomInt=GetRandomInt(1, 5)
         else
         endif
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_RoomPreviousInt=udg_RoomInt
-    if ( Trig_PathOrc_Func018C() ) then
+    if ( Trig_PathOrc_Func017C() ) then
         set udg_PathArtifact=1
     else
     endif
-    if ( Trig_PathOrc_Func019C() ) then
+    if ( Trig_PathOrc_Func018C() ) then
         set udg_PathGold=1
     else
     endif
-    if ( Trig_PathOrc_Func020C() ) then
+    if ( Trig_PathOrc_Func019C() ) then
         set udg_PathObject=1
     else
     endif
     // IF TOWN
-    if ( Trig_PathOrc_Func022C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func022Func001A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func022Func002A)
+    if ( Trig_PathOrc_Func021C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func021Func001A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func021Func002A)
         set udg_PathTown=1
         // IF BOSS
-        if ( Trig_PathOrc_Func022Func005C() ) then
+        if ( Trig_PathOrc_Func021Func005C() ) then
             call ConditionalTriggerExecute(gg_trg_ToBoss)
         else
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom6)
@@ -20171,28 +20193,31 @@ function Trig_PathOrc_Actions takes nothing returns nothing
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02J', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100, 0.00, 0.00, 0)
             call RemoveLocation(udg_tempLoc)
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom6_Copy_2)
             call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02H', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100.00, 100.00, 0.00, 0)
             call RemoveLocation(udg_tempLoc)
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom6_Copy)
             call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02K', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 80.00, 0.00, 100.00, 0)
             call RemoveLocation(udg_tempLoc)
         endif
         // Traders - Orc
-        if ( Trig_PathOrc_Func022Func007C() ) then
+        if ( Trig_PathOrc_Func021Func007C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_cheed3)
             call CreateNUnitsAtLoc(1, 'h025', Player(20), udg_tempLoc, 45.00)
             call RemoveLocation(udg_tempLoc)
         else
         endif
-        if ( Trig_PathOrc_Func022Func008C() ) then
+        if ( Trig_PathOrc_Func021Func008C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_goldenconsul3)
             call CreateNUnitsAtLoc(1, 'h026', Player(20), udg_tempLoc, 0.00)
             call RemoveLocation(udg_tempLoc)
@@ -20203,13 +20228,13 @@ function Trig_PathOrc_Actions takes nothing returns nothing
     // IF NOT TOWN
     // IF NOT TOWN
     // IF NOT TOWN
-    if ( Trig_PathOrc_Func026C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func026Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func026Func003A)
+    if ( Trig_PathOrc_Func025C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathOrc_Func025Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathOrc_Func025Func003A)
         // MAKING ENEMIES
         set udg_RoomInt=( udg_RoomInt * 5 )
         // regional enemies or not
-        if ( Trig_PathOrc_Func026Func007C() ) then
+        if ( Trig_PathOrc_Func025Func007C() ) then
             set udg_tempInt=GetRandomInt(0, 2)
             // room
             set bj_forLoopBIndex=1
@@ -20226,8 +20251,8 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                     call RemoveLocation(udg_tempLoc)
                     // MAKING REGIONAL HERO
-                    if ( Trig_PathOrc_Func026Func007Func005Func002Func006C() ) then
-                        if ( Trig_PathOrc_Func026Func007Func005Func002Func006Func001C() ) then
+                    if ( Trig_PathOrc_Func025Func007Func005Func002Func006C() ) then
+                        if ( Trig_PathOrc_Func025Func007Func005Func002Func006Func001C() ) then
                             set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                             call SetUnitPositionLocFacingBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )], udg_tempLoc, GetRandomDirectionDeg())
                             call GroupAddUnitSimple(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )], udg_RoomEnemyUG)
@@ -20245,7 +20270,7 @@ function Trig_PathOrc_Actions takes nothing returns nothing
             endloop
         else
             // undead or not
-            if ( Trig_PathOrc_Func026Func007Func002C() ) then
+            if ( Trig_PathOrc_Func025Func007Func002C() ) then
                 set bj_forLoopBIndex=1
                 set bj_forLoopBIndexEnd=5
                 loop
@@ -20260,8 +20285,8 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING UNDEAD HERO
-                        if ( Trig_PathOrc_Func026Func007Func002Func003Func002Func006C() ) then
-                            if ( Trig_PathOrc_Func026Func007Func002Func003Func002Func006Func001C() ) then
+                        if ( Trig_PathOrc_Func025Func007Func002Func003Func002Func006C() ) then
+                            if ( Trig_PathOrc_Func025Func007Func002Func003Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[20], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[20], udg_RoomEnemyUG)
@@ -20293,8 +20318,8 @@ function Trig_PathOrc_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING ALL HERO
-                        if ( Trig_PathOrc_Func026Func007Func002Func002Func002Func006C() ) then
-                            if ( Trig_PathOrc_Func026Func007Func002Func002Func002Func006Func001C() ) then
+                        if ( Trig_PathOrc_Func025Func007Func002Func002Func002Func006C() ) then
+                            if ( Trig_PathOrc_Func025Func007Func002Func002Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_RoomEnemyUG)
@@ -20335,7 +20360,7 @@ endfunction
 //===========================================================================
 // Trigger: PathNaluara
 //===========================================================================
-function Trig_PathNaluara_Func012C takes nothing returns boolean
+function Trig_PathNaluara_Func011C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return true
     endif
@@ -20351,7 +20376,7 @@ function Trig_PathNaluara_Func012C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathNaluara_Func013C takes nothing returns boolean
+function Trig_PathNaluara_Func012C takes nothing returns boolean
     if ( ( udg_CurrentLocation == 2 ) ) then
         return true
     endif
@@ -20368,10 +20393,10 @@ function Trig_PathNaluara_Func013C takes nothing returns boolean
 endfunction
 
 function Trig_PathNaluara_Conditions takes nothing returns boolean
-    if ( not Trig_PathNaluara_Func012C() ) then
+    if ( not Trig_PathNaluara_Func011C() ) then
         return false
     endif
-    if ( not Trig_PathNaluara_Func013C() ) then
+    if ( not Trig_PathNaluara_Func012C() ) then
         return false
     endif
     return true
@@ -20417,46 +20442,42 @@ function Trig_PathNaluara_Func008Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_PathNaluara_Func009A takes nothing returns nothing
-    call RemoveItem(GetEnumItem())
-endfunction
-
-function Trig_PathNaluara_Func016Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func015Func001C takes nothing returns boolean
     if ( not ( udg_RoomInt == udg_RoomPreviousInt ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func018C takes nothing returns boolean
+function Trig_PathNaluara_Func017C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func019C takes nothing returns boolean
+function Trig_PathNaluara_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func020C takes nothing returns boolean
+function Trig_PathNaluara_Func019C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func022Func002Func008C takes nothing returns boolean
+function Trig_PathNaluara_Func021Func002Func008C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func022Func002A takes nothing returns nothing
+function Trig_PathNaluara_Func021Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom12_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room6_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -20464,7 +20485,7 @@ function Trig_PathNaluara_Func022Func002A takes nothing returns nothing
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), gg_rct_Room12_TRADE)
     // !
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathNaluara_Func022Func002Func008C() ) then
+    if ( Trig_PathNaluara_Func021Func002Func008C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -20472,7 +20493,7 @@ function Trig_PathNaluara_Func022Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathNaluara_Func022Func003A takes nothing returns nothing
+function Trig_PathNaluara_Func021Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom12_TRADE)
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -20480,7 +20501,7 @@ function Trig_PathNaluara_Func022Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathNaluara_Func022Func006Func014C takes nothing returns boolean
+function Trig_PathNaluara_Func021Func006Func016C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 24.00 ) ) then
         return true
     endif
@@ -20520,48 +20541,48 @@ function Trig_PathNaluara_Func022Func006Func014C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathNaluara_Func022Func006C takes nothing returns boolean
-    if ( not Trig_PathNaluara_Func022Func006Func014C() ) then
+function Trig_PathNaluara_Func021Func006C takes nothing returns boolean
+    if ( not Trig_PathNaluara_Func021Func006Func016C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func022Func008C takes nothing returns boolean
+function Trig_PathNaluara_Func021Func008C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func022Func009C takes nothing returns boolean
+function Trig_PathNaluara_Func021Func009C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func022C takes nothing returns boolean
+function Trig_PathNaluara_Func021C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func002Func006C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func002A takes nothing returns nothing
+function Trig_PathNaluara_Func025Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(gg_rct_Room12_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), udg_RoomReg[udg_RoomInt])
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathNaluara_Func026Func002Func006C() ) then
+    if ( Trig_PathNaluara_Func025Func002Func006C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -20570,7 +20591,7 @@ function Trig_PathNaluara_Func026Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathNaluara_Func026Func003A takes nothing returns nothing
+function Trig_PathNaluara_Func025Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -20578,14 +20599,14 @@ function Trig_PathNaluara_Func026Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[( 20 + ( udg_tempInt2 * 20 ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func002Func002Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func002Func002Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -20595,14 +20616,14 @@ function Trig_PathNaluara_Func026Func007Func002Func002Func002Func006C takes noth
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[20]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func002Func003Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func002Func003Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -20612,21 +20633,21 @@ function Trig_PathNaluara_Func026Func007Func002Func003Func002Func006C takes noth
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func002C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func005Func002Func006Func001C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func005Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007Func005Func002Func006C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007Func005Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -20636,14 +20657,14 @@ function Trig_PathNaluara_Func026Func007Func005Func002Func006C takes nothing ret
     return true
 endfunction
 
-function Trig_PathNaluara_Func026Func007C takes nothing returns boolean
+function Trig_PathNaluara_Func025Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathNaluara_Func026C takes nothing returns boolean
+function Trig_PathNaluara_Func025C takes nothing returns boolean
     if ( not ( udg_PathTown == 0 ) ) then
         return false
     endif
@@ -20665,7 +20686,6 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
         call ForGroupBJ(GetUnitsInRectAll(udg_RoomReg[GetForLoopIndexA()]), function Trig_PathNaluara_Func008Func001A)
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
-    call EnumItemsInRectBJ(GetPlayableMapRect(), function Trig_PathNaluara_Func009A)
     call RemoveUnit(GetSoldUnit())
     call RemoveUnit(GetSellingUnit())
     set udg_RoomInt=GetRandomInt(7, 11)
@@ -20674,33 +20694,33 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
     set bj_forLoopAIndexEnd=5
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_PathNaluara_Func016Func001C() ) then
+        if ( Trig_PathNaluara_Func015Func001C() ) then
             set udg_RoomInt=GetRandomInt(7, 11)
         else
         endif
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_RoomPreviousInt=udg_RoomInt
-    if ( Trig_PathNaluara_Func018C() ) then
+    if ( Trig_PathNaluara_Func017C() ) then
         set udg_PathArtifact=1
     else
     endif
-    if ( Trig_PathNaluara_Func019C() ) then
+    if ( Trig_PathNaluara_Func018C() ) then
         set udg_PathGold=1
     else
     endif
-    if ( Trig_PathNaluara_Func020C() ) then
+    if ( Trig_PathNaluara_Func019C() ) then
         set udg_PathObject=1
     else
     endif
     // IF TOWN
-    if ( Trig_PathNaluara_Func022C() ) then
+    if ( Trig_PathNaluara_Func021C() ) then
         call EnableTrigger(gg_trg_TownPatrolNaluara)
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func022Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func022Func003A)
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func021Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func021Func003A)
         set udg_PathTown=1
         // IF BOSS
-        if ( Trig_PathNaluara_Func022Func006C() ) then
+        if ( Trig_PathNaluara_Func021Func006C() ) then
             call ConditionalTriggerExecute(gg_trg_ToBoss)
         else
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom12)
@@ -20708,22 +20728,24 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02H', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 20.00, 100.00, 100.00, 0)
             call RemoveLocation(udg_tempLoc)
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom12_Copy)
             call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02K', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 80.00, 0.00, 100.00, 0)
             call RemoveLocation(udg_tempLoc)
         endif
         // Traders - Naluara
-        if ( Trig_PathNaluara_Func022Func008C() ) then
+        if ( Trig_PathNaluara_Func021Func008C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_cheed1)
             call CreateNUnitsAtLoc(1, 'h025', Player(20), udg_tempLoc, 230.00)
             call RemoveLocation(udg_tempLoc)
         else
         endif
-        if ( Trig_PathNaluara_Func022Func009C() ) then
+        if ( Trig_PathNaluara_Func021Func009C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_goldenconsul1)
             call CreateNUnitsAtLoc(1, 'h026', Player(20), udg_tempLoc, 150.00)
             call RemoveLocation(udg_tempLoc)
@@ -20736,13 +20758,13 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
     // IF NOT TOWN
     // IF NOT TOWN
     // IF NOT TOWN
-    if ( Trig_PathNaluara_Func026C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func026Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func026Func003A)
+    if ( Trig_PathNaluara_Func025C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathNaluara_Func025Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathNaluara_Func025Func003A)
         // MAKING ENEMIES
         set udg_RoomInt=( udg_RoomInt * 5 )
         // regional enemies or not
-        if ( Trig_PathNaluara_Func026Func007C() ) then
+        if ( Trig_PathNaluara_Func025Func007C() ) then
             set udg_tempInt=GetRandomInt(0, 2)
             // room
             set bj_forLoopBIndex=1
@@ -20759,8 +20781,8 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                     call RemoveLocation(udg_tempLoc)
                     // MAKING REGIONAL HERO
-                    if ( Trig_PathNaluara_Func026Func007Func005Func002Func006C() ) then
-                        if ( Trig_PathNaluara_Func026Func007Func005Func002Func006Func001C() ) then
+                    if ( Trig_PathNaluara_Func025Func007Func005Func002Func006C() ) then
+                        if ( Trig_PathNaluara_Func025Func007Func005Func002Func006Func001C() ) then
                             set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                             call SetUnitPositionLocFacingBJ(udg_EnemyRoomMinibossNaluara[( 20 + ( 20 * udg_tempInt ) )], udg_tempLoc, GetRandomDirectionDeg())
                             call GroupAddUnitSimple(udg_EnemyRoomMinibossNaluara[( 20 + ( 20 * udg_tempInt ) )], udg_RoomEnemyUG)
@@ -20778,7 +20800,7 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
             endloop
         else
             // undead or not
-            if ( Trig_PathNaluara_Func026Func007Func002C() ) then
+            if ( Trig_PathNaluara_Func025Func007Func002C() ) then
                 set bj_forLoopBIndex=1
                 set bj_forLoopBIndexEnd=5
                 loop
@@ -20793,8 +20815,8 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING UNDEAD HERO
-                        if ( Trig_PathNaluara_Func026Func007Func002Func003Func002Func006C() ) then
-                            if ( Trig_PathNaluara_Func026Func007Func002Func003Func002Func006Func001C() ) then
+                        if ( Trig_PathNaluara_Func025Func007Func002Func003Func002Func006C() ) then
+                            if ( Trig_PathNaluara_Func025Func007Func002Func003Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[20], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[20], udg_RoomEnemyUG)
@@ -20826,8 +20848,8 @@ function Trig_PathNaluara_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING ALL HERO
-                        if ( Trig_PathNaluara_Func026Func007Func002Func002Func002Func006C() ) then
-                            if ( Trig_PathNaluara_Func026Func007Func002Func002Func002Func006Func001C() ) then
+                        if ( Trig_PathNaluara_Func025Func007Func002Func002Func002Func006C() ) then
+                            if ( Trig_PathNaluara_Func025Func007Func002Func002Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_RoomEnemyUG)
@@ -21295,7 +21317,7 @@ endfunction
 //===========================================================================
 // Trigger: PathAlliance
 //===========================================================================
-function Trig_PathAlliance_Func012C takes nothing returns boolean
+function Trig_PathAlliance_Func011C takes nothing returns boolean
     if ( ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return true
     endif
@@ -21311,7 +21333,7 @@ function Trig_PathAlliance_Func012C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathAlliance_Func013C takes nothing returns boolean
+function Trig_PathAlliance_Func012C takes nothing returns boolean
     if ( ( udg_CurrentLocation == 3 ) ) then
         return true
     endif
@@ -21328,10 +21350,10 @@ function Trig_PathAlliance_Func013C takes nothing returns boolean
 endfunction
 
 function Trig_PathAlliance_Conditions takes nothing returns boolean
-    if ( not Trig_PathAlliance_Func012C() ) then
+    if ( not Trig_PathAlliance_Func011C() ) then
         return false
     endif
-    if ( not Trig_PathAlliance_Func013C() ) then
+    if ( not Trig_PathAlliance_Func012C() ) then
         return false
     endif
     return true
@@ -21377,46 +21399,42 @@ function Trig_PathAlliance_Func008Func001A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_PathAlliance_Func009A takes nothing returns nothing
-    call RemoveItem(GetEnumItem())
-endfunction
-
-function Trig_PathAlliance_Func016Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func015Func001C takes nothing returns boolean
     if ( not ( udg_RoomInt == udg_RoomPreviousInt ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func018C takes nothing returns boolean
+function Trig_PathAlliance_Func017C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02J' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func019C takes nothing returns boolean
+function Trig_PathAlliance_Func018C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02H' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func020C takes nothing returns boolean
+function Trig_PathAlliance_Func019C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02K' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func022Func001Func008C takes nothing returns boolean
+function Trig_PathAlliance_Func021Func001Func008C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func022Func001A takes nothing returns nothing
+function Trig_PathAlliance_Func021Func001A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom18_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room18_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -21424,7 +21442,7 @@ function Trig_PathAlliance_Func022Func001A takes nothing returns nothing
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), gg_rct_Room18_TRADE)
     // !
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathAlliance_Func022Func001Func008C() ) then
+    if ( Trig_PathAlliance_Func021Func001Func008C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -21432,7 +21450,7 @@ function Trig_PathAlliance_Func022Func001A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathAlliance_Func022Func002A takes nothing returns nothing
+function Trig_PathAlliance_Func021Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(gg_rct_EnterRoom18_TRADE)
     set udg_tempLoc2=GetRectCenter(gg_rct_Room18_TRADE)
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -21440,7 +21458,7 @@ function Trig_PathAlliance_Func022Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathAlliance_Func022Func005Func014C takes nothing returns boolean
+function Trig_PathAlliance_Func021Func005Func016C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 24.00 ) ) then
         return true
     endif
@@ -21480,48 +21498,48 @@ function Trig_PathAlliance_Func022Func005Func014C takes nothing returns boolean
     return false
 endfunction
 
-function Trig_PathAlliance_Func022Func005C takes nothing returns boolean
-    if ( not Trig_PathAlliance_Func022Func005Func014C() ) then
+function Trig_PathAlliance_Func021Func005C takes nothing returns boolean
+    if ( not Trig_PathAlliance_Func021Func005Func016C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func022Func007C takes nothing returns boolean
+function Trig_PathAlliance_Func021Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func022Func008C takes nothing returns boolean
+function Trig_PathAlliance_Func021Func008C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func022C takes nothing returns boolean
+function Trig_PathAlliance_Func021C takes nothing returns boolean
     if ( not ( GetUnitTypeId(GetSoldUnit()) == 'o02L' ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func002Func006C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func002A takes nothing returns nothing
+function Trig_PathAlliance_Func025Func002A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
     call SetCameraBoundsToRectForPlayerBJ(GetOwningPlayer(GetEnumUnit()), udg_RoomReg[udg_RoomInt])
     call PanCameraToTimedLocForPlayer(GetOwningPlayer(GetEnumUnit()), udg_tempLoc, 0.00)
-    if ( Trig_PathAlliance_Func026Func002Func006C() ) then
+    if ( Trig_PathAlliance_Func025Func002Func006C() ) then
         call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
         call DestroyEffectBJ(GetLastCreatedEffectBJ())
     else
@@ -21530,7 +21548,7 @@ function Trig_PathAlliance_Func026Func002A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc2)
 endfunction
 
-function Trig_PathAlliance_Func026Func003A takes nothing returns nothing
+function Trig_PathAlliance_Func025Func003A takes nothing returns nothing
     set udg_tempLoc=GetRandomLocInRect(udg_EnterRoom[udg_RoomInt])
     set udg_tempLoc2=GetRectCenter(udg_RoomReg[udg_RoomInt])
     call SetUnitPositionLocFacingLocBJ(GetEnumUnit(), udg_tempLoc, udg_tempLoc2)
@@ -21538,14 +21556,14 @@ function Trig_PathAlliance_Func026Func003A takes nothing returns nothing
     call RemoveLocation(udg_tempLoc)
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func002Func002Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[( 20 + ( udg_tempInt2 * 20 ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func002Func002Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func002Func002Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -21555,14 +21573,14 @@ function Trig_PathAlliance_Func026Func007Func002Func002Func002Func006C takes not
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func002Func003Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMiniboss[20]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func002Func003Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func002Func003Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -21572,21 +21590,21 @@ function Trig_PathAlliance_Func026Func007Func002Func003Func002Func006C takes not
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func002C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func002C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func005Func002Func006Func001C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func005Func002Func006Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(udg_EnemyRoomMinibossOrc[( 20 + ( 20 * udg_tempInt ) )]) == true ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007Func005Func002Func006C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007Func005Func002Func006C takes nothing returns boolean
     if ( not ( udg_miniboss_spawn == true ) ) then
         return false
     endif
@@ -21596,14 +21614,14 @@ function Trig_PathAlliance_Func026Func007Func005Func002Func006C takes nothing re
     return true
 endfunction
 
-function Trig_PathAlliance_Func026Func007C takes nothing returns boolean
+function Trig_PathAlliance_Func025Func007C takes nothing returns boolean
     if ( not ( GetRandomInt(1, 3) == 1 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_PathAlliance_Func026C takes nothing returns boolean
+function Trig_PathAlliance_Func025C takes nothing returns boolean
     if ( not ( udg_PathTown == 0 ) ) then
         return false
     endif
@@ -21625,7 +21643,6 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
         call ForGroupBJ(GetUnitsInRectAll(udg_RoomReg[GetForLoopIndexA()]), function Trig_PathAlliance_Func008Func001A)
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
-    call EnumItemsInRectBJ(GetPlayableMapRect(), function Trig_PathAlliance_Func009A)
     call RemoveUnit(GetSoldUnit())
     call RemoveUnit(GetSellingUnit())
     set udg_RoomInt=GetRandomInt(13, 17)
@@ -21634,32 +21651,32 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
     set bj_forLoopAIndexEnd=5
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
-        if ( Trig_PathAlliance_Func016Func001C() ) then
+        if ( Trig_PathAlliance_Func015Func001C() ) then
             set udg_RoomInt=GetRandomInt(13, 17)
         else
         endif
         set bj_forLoopAIndex=bj_forLoopAIndex + 1
     endloop
     set udg_RoomPreviousInt=udg_RoomInt
-    if ( Trig_PathAlliance_Func018C() ) then
+    if ( Trig_PathAlliance_Func017C() ) then
         set udg_PathArtifact=1
     else
     endif
-    if ( Trig_PathAlliance_Func019C() ) then
+    if ( Trig_PathAlliance_Func018C() ) then
         set udg_PathGold=1
     else
     endif
-    if ( Trig_PathAlliance_Func020C() ) then
+    if ( Trig_PathAlliance_Func019C() ) then
         set udg_PathObject=1
     else
     endif
     // IF TOWN
-    if ( Trig_PathAlliance_Func022C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func022Func001A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func022Func002A)
+    if ( Trig_PathAlliance_Func021C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func021Func001A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func021Func002A)
         set udg_PathTown=1
         // IF BOSS
-        if ( Trig_PathAlliance_Func022Func005C() ) then
+        if ( Trig_PathAlliance_Func021Func005C() ) then
             call ConditionalTriggerExecute(gg_trg_ToBoss)
         else
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom18_Copy)
@@ -21667,22 +21684,24 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02J', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100, 0.00, 0.00, 0)
             call RemoveLocation(udg_tempLoc)
             set udg_tempLoc=GetRandomLocInRect(gg_rct_ExitRoom18)
             call CreateNUnitsAtLoc(1, 'o02I', Player(PLAYER_NEUTRAL_PASSIVE), udg_tempLoc, bj_UNIT_FACING)
             call AddSpecialEffectLocBJ(udg_tempLoc, "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl")
             call DestroyEffectBJ(GetLastCreatedEffectBJ())
             call AddUnitToStockBJ('o02H', GetLastCreatedUnit(), 1, 1)
+            call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100.00, 100.00, 0.00, 0)
             call RemoveLocation(udg_tempLoc)
         endif
         // Traders - Alliance
-        if ( Trig_PathAlliance_Func022Func007C() ) then
+        if ( Trig_PathAlliance_Func021Func007C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_cheed2)
             call CreateNUnitsAtLoc(1, 'h025', Player(20), udg_tempLoc, 270.00)
             call RemoveLocation(udg_tempLoc)
         else
         endif
-        if ( Trig_PathAlliance_Func022Func008C() ) then
+        if ( Trig_PathAlliance_Func021Func008C() ) then
             set udg_tempLoc=GetRectCenter(gg_rct_goldenconsul2)
             call CreateNUnitsAtLoc(1, 'h026', Player(20), udg_tempLoc, 230.00)
             call RemoveLocation(udg_tempLoc)
@@ -21693,13 +21712,13 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
     // IF NOT TOWN
     // IF NOT TOWN
     // IF NOT TOWN
-    if ( Trig_PathAlliance_Func026C() ) then
-        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func026Func002A)
-        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func026Func003A)
+    if ( Trig_PathAlliance_Func025C() ) then
+        call ForGroupBJ(udg_HeroesGroup, function Trig_PathAlliance_Func025Func002A)
+        call ForGroupBJ(udg_MinionsUG, function Trig_PathAlliance_Func025Func003A)
         // MAKING ENEMIES
         set udg_RoomInt=( udg_RoomInt * 5 )
         // regional enemies or not
-        if ( Trig_PathAlliance_Func026Func007C() ) then
+        if ( Trig_PathAlliance_Func025Func007C() ) then
             set udg_tempInt=GetRandomInt(0, 2)
             // room
             set bj_forLoopBIndex=1
@@ -21716,8 +21735,8 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                     call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                     call RemoveLocation(udg_tempLoc)
                     // MAKING REGIONAL HERO
-                    if ( Trig_PathAlliance_Func026Func007Func005Func002Func006C() ) then
-                        if ( Trig_PathAlliance_Func026Func007Func005Func002Func006Func001C() ) then
+                    if ( Trig_PathAlliance_Func025Func007Func005Func002Func006C() ) then
+                        if ( Trig_PathAlliance_Func025Func007Func005Func002Func006Func001C() ) then
                             set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                             call SetUnitPositionLocFacingBJ(udg_EnemyRoomMinibossAlliance[( 20 + ( 20 * udg_tempInt ) )], udg_tempLoc, GetRandomDirectionDeg())
                             call GroupAddUnitSimple(udg_EnemyRoomMinibossAlliance[( 20 + ( 20 * udg_tempInt ) )], udg_RoomEnemyUG)
@@ -21735,7 +21754,7 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
             endloop
         else
             // undead or not
-            if ( Trig_PathAlliance_Func026Func007Func002C() ) then
+            if ( Trig_PathAlliance_Func025Func007Func002C() ) then
                 set bj_forLoopBIndex=1
                 set bj_forLoopBIndexEnd=5
                 loop
@@ -21750,8 +21769,8 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING UNDEAD HERO
-                        if ( Trig_PathAlliance_Func026Func007Func002Func003Func002Func006C() ) then
-                            if ( Trig_PathAlliance_Func026Func007Func002Func003Func002Func006Func001C() ) then
+                        if ( Trig_PathAlliance_Func025Func007Func002Func003Func002Func006C() ) then
+                            if ( Trig_PathAlliance_Func025Func007Func002Func003Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[20], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[20], udg_RoomEnemyUG)
@@ -21783,8 +21802,8 @@ function Trig_PathAlliance_Actions takes nothing returns nothing
                         call GroupAddUnitSimple(GetLastCreatedUnit(), udg_RoomEnemyUG)
                         call RemoveLocation(udg_tempLoc)
                         // MAKING ALL HERO
-                        if ( Trig_PathAlliance_Func026Func007Func002Func002Func002Func006C() ) then
-                            if ( Trig_PathAlliance_Func026Func007Func002Func002Func002Func006Func001C() ) then
+                        if ( Trig_PathAlliance_Func025Func007Func002Func002Func002Func006C() ) then
+                            if ( Trig_PathAlliance_Func025Func007Func002Func002Func002Func006Func001C() ) then
                                 set udg_tempLoc=GetRandomLocInRect(udg_EnemyRoomReg[udg_RoomInt])
                                 call SetUnitPositionLocFacingBJ(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_tempLoc, GetRandomDirectionDeg())
                                 call GroupAddUnitSimple(udg_EnemyRoomMiniboss[( 20 + ( 20 * udg_tempInt2 ) )], udg_RoomEnemyUG)
@@ -22889,13 +22908,13 @@ function Trig_RoomCreateExit_Func009Func002Func010C takes nothing returns boolea
     if ( not ( udg_RoomRewardType > 64 ) ) then
         return false
     endif
-    if ( not ( udg_RoomRewardType <= 95 ) ) then
+    if ( not ( udg_RoomRewardType <= 97 ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_RoomCreateExit_Func009Func002Func011Func001Func003C takes nothing returns boolean
+function Trig_RoomCreateExit_Func009Func002Func011Func001Func005C takes nothing returns boolean
     if ( ( udg_RoomMultiboardCounting == 22.00 ) ) then
         return true
     endif
@@ -22936,14 +22955,14 @@ function Trig_RoomCreateExit_Func009Func002Func011Func001Func003C takes nothing 
 endfunction
 
 function Trig_RoomCreateExit_Func009Func002Func011Func001C takes nothing returns boolean
-    if ( not Trig_RoomCreateExit_Func009Func002Func011Func001Func003C() ) then
+    if ( not Trig_RoomCreateExit_Func009Func002Func011Func001Func005C() ) then
         return false
     endif
     return true
 endfunction
 
 function Trig_RoomCreateExit_Func009Func002Func011C takes nothing returns boolean
-    if ( not ( udg_RoomRewardType > 95 ) ) then
+    if ( not ( udg_RoomRewardType > 97 ) ) then
         return false
     endif
     if ( not ( udg_RoomRewardType <= 100 ) ) then
@@ -22980,21 +22999,26 @@ function Trig_RoomCreateExit_Actions takes nothing returns nothing
             set udg_RoomRewardType=GetRandomInt(1, 100)
             if ( Trig_RoomCreateExit_Func009Func002Func008C() ) then
                 call AddUnitToStockBJ('o02J', GetLastCreatedUnit(), 1, 1)
+                call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100, 0.00, 0.00, 0)
             else
             endif
             if ( Trig_RoomCreateExit_Func009Func002Func009C() ) then
                 call AddUnitToStockBJ('o02H', GetLastCreatedUnit(), 1, 1)
+                call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100, 100.00, 0.00, 0)
             else
             endif
             if ( Trig_RoomCreateExit_Func009Func002Func010C() ) then
                 call AddUnitToStockBJ('o02K', GetLastCreatedUnit(), 1, 1)
+                call SetUnitVertexColorBJ(GetLastCreatedUnit(), 80.00, 0.00, 100.00, 0)
             else
             endif
             if ( Trig_RoomCreateExit_Func009Func002Func011C() ) then
                 if ( Trig_RoomCreateExit_Func009Func002Func011Func001C() ) then
                     call AddUnitToStockBJ('o02H', GetLastCreatedUnit(), 1, 1)
+                    call SetUnitVertexColorBJ(GetLastCreatedUnit(), 100, 100.00, 0.00, 0)
                 else
                     call AddUnitToStockBJ('o02L', GetLastCreatedUnit(), 1, 1)
+                    call SetUnitVertexColorBJ(GetLastCreatedUnit(), 20.00, 100.00, 100.00, 0)
                 endif
             else
             endif
@@ -28823,7 +28847,7 @@ function Trig_MutagenApplyEffect_Actions takes nothing returns nothing
             set udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))]=( udg_HERO_DAMAGE_DEF_ALL[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 3 )
         endif
         set udg_tempInt=R2I(( ( udg_MutagenDefenseModifier[GetConvertedPlayerId(GetOwningPlayer(udg_MutagenHero))] + 0.01 ) * 100.00 ))
-        call CreateTextTagUnitBJ(( "Текущее сопротивление урону:  |cffff0000" + ( I2S(udg_tempInt) + "%|r из |cffff000040%|r" ) ), udg_MutagenHero, 0, 10, 100, 100, 100, 0)
+        call CreateTextTagUnitBJ(( "Текущее сопротивление урону:  |cffff0000" + ( I2S(udg_tempInt) + "%|r из |cffff000030%|r" ) ), udg_MutagenHero, 0, 10, 100, 100, 100, 0)
         call SetTextTagPermanentBJ(GetLastCreatedTextTag(), false)
         call SetTextTagLifespanBJ(GetLastCreatedTextTag(), 2.00)
         call SetTextTagVelocityBJ(GetLastCreatedTextTag(), 32.00, 45.00)
@@ -41850,6 +41874,9 @@ function Trig_DemoralizingShout_Func002Func001C takes nothing returns boolean
     if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
         return false
     endif
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_ManekenUG) == false ) ) then
+        return false
+    endif
     return true
 endfunction
 
@@ -41876,9 +41903,50 @@ function Trig_DemoralizingShout_Func002A takes nothing returns nothing
     endif
 endfunction
 
+function Trig_DemoralizingShout_Func004Func001Func001C takes nothing returns boolean
+    if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemoralizingShout_Func004Func001C takes nothing returns boolean
+    if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
+        return false
+    endif
+    if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
+        return false
+    endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
+    return true
+endfunction
+
+function Trig_DemoralizingShout_Func004A takes nothing returns nothing
+    if ( Trig_DemoralizingShout_Func004Func001C() ) then
+        if ( Trig_DemoralizingShout_Func004Func001Func001C() ) then
+            set udg_KBA_Caster=GetTriggerUnit()
+            set udg_KBA_TargetUnit=GetEnumUnit()
+            set udg_KBA_Level=1
+            set udg_KBA_StartingPosition=GetUnitLoc(GetTriggerUnit())
+            set udg_KBA_Speed=5.00
+            set udg_KBA_DistancePerLevel=150.00
+            set udg_KBA_SpecialEffects[1]="Abilities\\Spells\\Human\\FlakCannons\\FlakTarget.mdl"
+            set udg_KBA_SpecialEffects[2]="Abilities\\Weapons\\AncientProtectorMissile\\AncientProtectorMissile.mdl"
+            set udg_KBA_DestroyTrees=false
+            call ConditionalTriggerExecute(gg_trg_Cast_A_Knockback)
+        else
+        endif
+    else
+    endif
+endfunction
+
 function Trig_DemoralizingShout_Actions takes nothing returns nothing
     set udg_tempLoc2=GetUnitLoc(GetTriggerUnit())
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(900.00, udg_tempLoc2), function Trig_DemoralizingShout_Func002A)
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(600.00, udg_tempLoc2), function Trig_DemoralizingShout_Func002A)
+    call DestroyGroup(GetLastCreatedGroup())
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(300.00, udg_tempLoc2), function Trig_DemoralizingShout_Func004A)
     call DestroyGroup(GetLastCreatedGroup())
     call RemoveLocation(udg_tempLoc2)
 endfunction
@@ -41938,7 +42006,7 @@ function Trig_Tyrant_Actions takes nothing returns nothing
     loop
         exitwhen bj_forLoopAIndex > bj_forLoopAIndexEnd
         set udg_TyrantRoll=GetRandomInt(1, 100)
-        set udg_tempLoc2=PolarProjectionBJ(udg_tempLoc, 350.00, GetRandomDirectionDeg())
+        set udg_tempLoc2=PolarProjectionBJ(udg_tempLoc, 250.00, GetRandomDirectionDeg())
         if ( Trig_Tyrant_Func004Func003C() ) then
             if ( Trig_Tyrant_Func004Func003Func001C() ) then
                 call PlaySoundOnUnitBJ(gg_snd_WolfriderYes4, 100, gg_unit_O002_0064)
@@ -42443,7 +42511,7 @@ endfunction
 
 function Trig_MomentOfCourageActive_Func005A takes nothing returns nothing
     if ( Trig_MomentOfCourageActive_Func005Func001C() ) then
-        call UnitDamageTargetBJ(gg_unit_E001_0061, GetEnumUnit(), udg_MorddiganDamage, ATTACK_TYPE_MELEE, DAMAGE_TYPE_NORMAL)
+        call UnitDamageTargetBJ(gg_unit_E001_0061, GetEnumUnit(), udg_MorddiganDamage, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL)
         call SetUnitLifePercentBJ(GetTriggerUnit(), ( GetUnitLifePercent(GetTriggerUnit()) + 3.00 ))
     else
     endif
@@ -52042,35 +52110,48 @@ function InitTrig_GreedGnolls takes nothing returns nothing
 endfunction
 
 //===========================================================================
-// Trigger: GiantHowl
+// Trigger: GiantHowlAndWarstomp
 //===========================================================================
-function Trig_GiantHowl_Conditions takes nothing returns boolean
-    if ( not ( GetSpellAbilityId() == 'Acht' ) ) then
+function Trig_GiantHowlAndWarstomp_Func001C takes nothing returns boolean
+    if ( ( GetSpellAbilityId() == 'Acht' ) ) then
+        return true
+    endif
+    if ( ( GetSpellAbilityId() == 'A0L1' ) ) then
+        return true
+    endif
+    return false
+endfunction
+
+function Trig_GiantHowlAndWarstomp_Conditions takes nothing returns boolean
+    if ( not Trig_GiantHowlAndWarstomp_Func001C() ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GiantHowl_Func004Func001Func001C takes nothing returns boolean
+function Trig_GiantHowlAndWarstomp_Func004Func001Func001C takes nothing returns boolean
     if ( not ( IsUnitInGroup(GetEnumUnit(), udg_not_knockbackable_UG) == false ) ) then
         return false
     endif
     return true
 endfunction
 
-function Trig_GiantHowl_Func004Func001C takes nothing returns boolean
+function Trig_GiantHowlAndWarstomp_Func004Func001C takes nothing returns boolean
     if ( not ( IsUnitEnemy(GetEnumUnit(), GetOwningPlayer(GetTriggerUnit())) == true ) ) then
         return false
     endif
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_STRUCTURE) == false ) ) then
         return false
     endif
+    if ( not ( IsUnitAliveBJ(GetEnumUnit()) == true ) ) then
+        return false
+    endif
     return true
 endfunction
 
-function Trig_GiantHowl_Func004A takes nothing returns nothing
-    if ( Trig_GiantHowl_Func004Func001C() ) then
-        if ( Trig_GiantHowl_Func004Func001Func001C() ) then
+function Trig_GiantHowlAndWarstomp_Func004A takes nothing returns nothing
+    if ( Trig_GiantHowlAndWarstomp_Func004Func001C() ) then
+        if ( Trig_GiantHowlAndWarstomp_Func004Func001Func001C() ) then
             set udg_KBA_Caster=GetTriggerUnit()
             set udg_KBA_TargetUnit=GetEnumUnit()
             set udg_KBA_Level=1
@@ -52087,18 +52168,18 @@ function Trig_GiantHowl_Func004A takes nothing returns nothing
     endif
 endfunction
 
-function Trig_GiantHowl_Actions takes nothing returns nothing
+function Trig_GiantHowlAndWarstomp_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetTriggerUnit())
-    call ForGroupBJ(GetUnitsInRangeOfLocAll(400.00, udg_tempLoc), function Trig_GiantHowl_Func004A)
+    call ForGroupBJ(GetUnitsInRangeOfLocAll(400.00, udg_tempLoc), function Trig_GiantHowlAndWarstomp_Func004A)
     call RemoveLocation(udg_tempLoc)
 endfunction
 
 //===========================================================================
-function InitTrig_GiantHowl takes nothing returns nothing
-    set gg_trg_GiantHowl=CreateTrigger()
-    call TriggerRegisterAnyUnitEventBJ(gg_trg_GiantHowl, EVENT_PLAYER_UNIT_SPELL_EFFECT)
-    call TriggerAddCondition(gg_trg_GiantHowl, Condition(function Trig_GiantHowl_Conditions))
-    call TriggerAddAction(gg_trg_GiantHowl, function Trig_GiantHowl_Actions)
+function InitTrig_GiantHowlAndWarstomp takes nothing returns nothing
+    set gg_trg_GiantHowlAndWarstomp=CreateTrigger()
+    call TriggerRegisterAnyUnitEventBJ(gg_trg_GiantHowlAndWarstomp, EVENT_PLAYER_UNIT_SPELL_EFFECT)
+    call TriggerAddCondition(gg_trg_GiantHowlAndWarstomp, Condition(function Trig_GiantHowlAndWarstomp_Conditions))
+    call TriggerAddAction(gg_trg_GiantHowlAndWarstomp, function Trig_GiantHowlAndWarstomp_Actions)
 endfunction
 
 //===========================================================================
@@ -69110,7 +69191,7 @@ function InitCustomTriggers takes nothing returns nothing
     call InitTrig_Telekinesis()
     call InitTrig_TelekinesisDummy()
     call InitTrig_GreedGnolls()
-    call InitTrig_GiantHowl()
+    call InitTrig_GiantHowlAndWarstomp()
     call InitTrig_InfectorOnDeath()
     call InitTrig_CounterForce()
     call InitTrig_EviscerateCast()
@@ -69990,7 +70071,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs15408859")
+call ExecuteFunc("jasshelper__initstructs42508578")
 call ExecuteFunc("GetMainSelectedUnit__init_function")
 call ExecuteFunc("NSLHelper___Init")
 call ExecuteFunc("TasUnitBagGUI___init_function")
@@ -70203,7 +70284,7 @@ function sa___prototype27_NSLUtils___OnPlayerCodeLoaded takes nothing returns bo
     return true
 endfunction
 
-function jasshelper__initstructs15408859 takes nothing returns nothing
+function jasshelper__initstructs42508578 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()

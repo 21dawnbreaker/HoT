@@ -12,9 +12,13 @@ let OVERPOWER_DAMAGE = 0.2
 
 public let OVERPOWER_SPELL_ID = 'A0KQ'
 
+// ATTACK_TYPE_HERO должен использоваться для способностей,
+// наносящих физический урон. Это необходимо для корректной
+// работы данного package.
+
 init
     DamageEvent.addListener() ->
-        if DamageEvent.getSource().isType(UNIT_TYPE_MELEE_ATTACKER)
+        if DamageEvent.getAttackType() == ATTACK_TYPE_SIEGE or DamageEvent.getAttackType() == ATTACK_TYPE_MELEE or DamageEvent.getAttackType() == ATTACK_TYPE_PIERCE
             let unit_ = DamageEvent.getSource()
             let target = DamageEvent.getTarget()
             
@@ -25,7 +29,8 @@ init
                     if udg_decimate_overpower_hits == 0
                         unit_.removeAbility('B047')
 
-                unit_.damageTarget(target, unit_.getMaxHP() * OVERPOWER_DAMAGE, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS)
+                DamageEvent.setNextDamageFromCode()
+                unit_.damageTarget(target, unit_.getMaxHP() * OVERPOWER_DAMAGE, false, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS)
                 sound_eff.playOnPoint(target.getPos3Real())
 
                 let eff = addEffect(special_eff, target.getPos3Real())

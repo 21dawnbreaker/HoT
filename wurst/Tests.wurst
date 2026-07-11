@@ -1,6 +1,7 @@
 package Tests
 import ClosureEvents
 
+import ItemCraftRecipes
 import ItemsUncommon
 import ItemsRunesAndGems
 import ItemsRare
@@ -24,8 +25,9 @@ init
             CreateItem(CLOAK_OF_INSANITY_ITEM_ID, _hero.getX(), _hero.getY())
             
         if msg == "-test5"
-            createUnit(GNOMES_PLAYER, 'u00M', _hero.getPos())..addAbility(OVERPOWER_SPELL_ID)
-            CreateItem(ARKENSTONE_ITEM_ID, _hero.getX(), _hero.getY())
+            for itm in TWO_ITEM_CRAFTS
+                CreateItem(itm.itemA, _hero.getX(), _hero.getY())
+                CreateItem(itm.itemB, _hero.getX(), _hero.getY())
 
             
         if msg == "-test6"

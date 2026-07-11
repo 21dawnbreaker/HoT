@@ -125,7 +125,7 @@ let not_spawnable = 8
         ..setDescription("+25 к силе. |nАвтоатаки с шансом 15% оглушают цель. |n|n[|cff00ffffОружие|r]")
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
-        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNHammer.blp")..setModelUsed("war3mapImported\runehammer.mdl")..setScalingValue(1)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNHammer.blp")..setModelUsed("war3mapImported\\runehammer.mdl")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
         ..setAbilities("A0B1,AIbx")
         ..setActivelyUsed(false)

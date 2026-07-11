@@ -33,14 +33,6 @@ init
         let sold_unit = GetSoldUnit()
         let _player = GetBuyingUnit().getOwner()
 
-        // Drop from trader's chest
-        if sold_unit.getTypeId() == 'o03D'
-            sold_unit.remove()
-
-            let traders_chest = get_traders_chest(caster)
-            for i = 0 to 1
-                UnitDropItemPoint(traders_chest, traders_chest.itemInSlot(i), traders_chest.getX(), traders_chest.getY())
-
         // Upgrade potion
         if sold_unit.getTypeId() == 'o03G'
             sold_unit.remove()
