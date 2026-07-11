@@ -1,6 +1,9 @@
 package Utilities
 
+import ClosureTimers
+import SoundUtils
 import HashSet
+
 
 public let targetTypeNoTarget = 0
 public let targetTypeUnit = 1
@@ -24,6 +27,9 @@ public let PATH_SET = new HashSet<int>
 public let PATH_SET_ALL = new HashSet<int>
 
 public let EFF_BLINK = "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl"
+public let EFF_TELEPORT = "Abilities\\Spells\\Human\\MassTeleport\\MassTeleportTarget.mdl"
+public let EFF_CHAOS_BLINK = "Models\\ChaosBlinkCaster.mdx"
+public let EFF_RAISE_DEAD = "Abilities\\Spells\\Undead\\RaiseSkeletonWarrior\\RaiseSkeleton.mdl"
 
 public function getRandomAngle() returns angle
     return GetRandomReal(0., 360.).asAngleRadians()
@@ -63,6 +69,33 @@ public function getRandomVec2FromRect(rect rct) returns vec2
     let y = GetRandomReal(rct.getMinY(), rct.getMaxY())
 
     return vec2(x, y)
+
+public function playMusicTimed(string path)
+    if udg_musicOn == 0 and udg_BossfightMainIsOn == 0
+        StopMusic(false)
+        EndThematicMusic()
+        PlayThematicMusic(path)
+        udg_musicOn = 1
+
+        if gg_trg_MusicEnd.isEnabled()
+            DisableTrigger(gg_trg_MusicEnd)
+
+        doAfter(GetSoundFileDuration(path) + 5.0) -> 
+            udg_musicOn = 0
+
+public function stopMusic()
+    StopMusic(false)
+    EndThematicMusic()
+    udg_musicOn = 0
+
+    if not gg_trg_MusicEnd.isEnabled()
+        EnableTrigger(gg_trg_MusicEnd)
+
+public function unit.orderMoveTo(vec2 pos)
+    IssuePointOrder(this, "move", pos.x, pos.y)
+
+public function unit.orderAttackMoveTo(vec2 pos)
+    IssuePointOrder(this, "attack", pos.x, pos.y)
 
 
 init

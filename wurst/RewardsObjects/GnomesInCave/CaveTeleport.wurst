@@ -4,6 +4,7 @@ import ClosureEvents
 import ClosureTimers
 import LinkedList
 import SoundUtils
+import HashList
 
 import Utilities
 
@@ -21,7 +22,12 @@ class UnitDwarfData
         this.facing = facing
 
 let dwarf_data = new LinkedList<UnitDwarfData>()
+
+let town_required_rooms_list = new HashList<real>
+
 let sound_eff = new SoundDefinition(Sounds.rockGolemDeath1, false, false)
+
+public let PATHS_LIST = new HashList<unit>
 let PATHS_OUT_RECTS_LIST = [
     gg_rct_DwarfesPathOut3,
     gg_rct_DwarfesPathOut,
@@ -29,10 +35,14 @@ let PATHS_OUT_RECTS_LIST = [
 ]
 
 public let dwarfs_UG = CreateGroup()
-public unit thane
+public unit thane = null
+public unit blacksmith = null
+public unit cheed = null
 
 
 init
+    town_required_rooms_list.add(23.00, 48.00, 73.00, 98.00)
+
     doAfter(3) -> 
         let g = CreateGroup()
 
@@ -61,6 +71,10 @@ init
                 dwarfs_UG.add(new_u)
                 if u.id == 'h02H'
                     thane = new_u
+                    thane.addUnitToStock('o03J', 1, 1)
+
+                if u.id == 'h02G'
+                    blacksmith = new_u
 
             for p in udg_PlayerGroup
                 let g = CreateGroup()
@@ -82,14 +96,15 @@ init
             if GetRandomInt(1, 100) <= udg_TOWN_TRADER_CHANCE * 2
                 let pos = getVec2FromRectCenter(gg_rct_cheedDwarfes)
 
-                createUnit(ALLIES_PLAYER, 'h025', pos, 270.0.asAngleDegrees())
+                cheed = createUnit(ALLIES_PLAYER, 'h025', pos, 270.0.asAngleDegrees())
 
             for i = 0 to PATHS_OUT_RECTS_LIST.length - 1
                 let u = createUnit(NEUTRAL_PASSIVE_PLAYER, PATH_UNIT, getVec2FromRectCenter(PATHS_OUT_RECTS_LIST[i]))
+                PATHS_LIST.add(u)
 
                 path_UG.add(u)
 
-                if udg_RoomMultiboardCounting == 23.00
+                if town_required_rooms_list.has(udg_RoomMultiboardCounting)
                     u.addUnitToStock(PATH_TOWN_UNIT, 1, 1)
                     break
 
@@ -102,3 +117,6 @@ init
                 u.remove()
             
             dwarfs_UG.clear()
+            PATHS_LIST.clear()
+
+            cheed = null

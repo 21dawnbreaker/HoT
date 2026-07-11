@@ -1,0 +1,216 @@
+package GnomesInCave
+
+import AttachmentPoints
+import ClosureEvents
+import ClosureTimers
+import Sounds
+
+import CaveTeleport
+import ItemsRunesAndGems
+import FloatingText
+import Utilities
+import HashSet
+
+let gnomes_music = "Sounds/drums_in_the_deep.mp3"
+let MAXIMUM_UNDEAD = 150
+let MAXIMUM_UNDEAD_ACTIVE = 30
+let MAXIMUM_MONSTERS = 100
+let MAXIMUM_MONSTERS_ACTIVE = 20
+let MAXIMUM_GNOMES = 90
+let MAXIMUM_GNOMES_ACTIVE = 15
+
+let GNOMES_SPAWN_POSITIONS = new HashSet<rect>
+let UNDEAD_SPAWN_POSITIONS = new HashSet<rect>
+let MONSTERS_SPAWN_POSITION = gg_rct_DwarfesPathOut3
+let GNOME_INNER_CAMP = gg_rct_DwarfesRetreat
+
+let MAX_SPAWN_CYCLES_PER_TICK = 1
+let TICK = 0.5
+
+effect thane_eff_storm = null
+effect thane_eff_fire = null
+
+let thane_replics = [
+    "Тогда за дело",
+    "К оружию!",
+    "Давно пора с этим разобраться"
+]
+
+let gnomes_ids = [
+    'h02E', // footman
+    'h02E',
+    'h02E',
+    'h02F' // rifleman
+]
+
+let spider_id = 'n00U'
+
+function prepareGnomeLeaders(unit t, unit b)
+    let thane_pos = t.getPos()
+    let blacksmith_pos = b.getPos()
+
+    t.remove()
+    thane = createUnit(GNOMES_PLAYER, 'u00M', thane_pos, 0.0.asAngleDegrees())
+    thane.addAbility('A0KQ')
+    thane_eff_storm = thane.addEffect("Abilities\\Weapons\\FarseerMissile\\FarseerMissile.mdl", SpecialAttachmentPoints.leftHand)
+    thane_eff_fire = thane.addEffect("Doodads\\Cinematic\\FirePillarMedium\\FirePillarMedium.mdl", SpecialAttachmentPoints.leftHand)
+    thane.orderMoveTo(getVec2FromRectCenter(gg_rct_DwarfThanePos))
+
+    b.remove()
+    blacksmith = createUnit(GNOMES_PLAYER, 'u00N', blacksmith_pos, 90.0.asAngleDegrees())
+    blacksmith.orderMoveTo(getVec2FromRectCenter(gg_rct_DwarfBlacksmithPos))
+
+    dwarfs_UG.remove(t, b)
+    dwarfs_UG.add(thane, blacksmith)
+
+function enemiesSpawnEnded(int undead_created, int monsters_created) returns bool
+    return undead_created >= MAXIMUM_UNDEAD and monsters_created >= MAXIMUM_MONSTERS
+
+function makeRewards(vec2 thane_pos, vec2 blacksmith_pos)
+    for u in PATHS_LIST
+        u.show()
+
+    if thane.isAliveTrick()
+        dwarfs_UG.remove(thane)
+        thane_eff_fire.destr()
+        thane_eff_storm.destr()
+        thane.remove()
+        let u = createUnit(GNOMES_PLAYER, 'h02H', thane_pos, 0.0.asAngleDegrees())
+        u.addUnitToStock('h02F', 2, 2)
+        dwarfs_UG.add(u)
+
+    if blacksmith.isAliveTrick()
+        dwarfs_UG.remove(blacksmith)
+        blacksmith.remove()
+        let u = createUnit(GNOMES_PLAYER, 'h02G', blacksmith_pos, 90.0.asAngleDegrees())
+        dwarfs_UG.add(u)
+        for i = 0 to 5
+            u.addItemToStock(GemData.getRandomGemObjByPowerLvl(GEMS, 2).itemId, 1, 1)
+
+    if dwarfs_UG.size() > 1
+        let u = createUnit(NEUTRAL_PASSIVE_PLAYER, 'o028', getRandomVec2FromRect(GNOME_INNER_CAMP), getRandomAngle())
+        dwarfs_UG.add(u)
+        flashEffect(EFF_TELEPORT, u.getPos3Real())
+        PlaySound(Sounds.rescue)
+        print("Гномам удалось выстоять!")
+
+    else
+        PlaySound(Sounds.flashBack1Second)
+        print("Все гномы в этом лагере были истреблены...")
+
+
+init
+    GNOMES_SPAWN_POSITIONS.add(gg_rct_DwarfesSpawn1, gg_rct_DwarfesSpawn2, gg_rct_DwarfesSpawn3)
+    UNDEAD_SPAWN_POSITIONS.add(gg_rct_DwarfesPathOut, gg_rct_DwarfesPathOut2)
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if GetSoldUnit().getTypeId() == 'o03J'
+            GetSoldUnit().remove()
+            let gnomes_center_pos = getVec2FromRectCenter(gg_rct_DwarfesRetreat)
+            let thane_initial_pos = thane.getPos()
+            let blacksmith_initial_pos = blacksmith.getPos()
+            var dwarfs_created = 0
+            var monsters_created = 0
+            var undead_created = 0
+
+            for u in PATHS_LIST
+                u.hide()
+
+            if cheed != null
+                flashEffect(EFF_TELEPORT, cheed.getPos3Real())
+                cheed.remove()
+
+            createFloatingTextAboveUnitRP(thane, thane_replics[GetRandomInt(0, thane_replics.length - 1)])
+            prepareGnomeLeaders(thane, blacksmith)
+
+            stopMusic()
+            playMusicTimed(gnomes_music)
+
+            doAfter(8) -> 
+
+                doPeriodically(TICK) (CallbackPeriodic cb) ->
+                    var dwarf_count = 0
+                    var undead_count = 0
+                    var monster_count = 0
+                    var spawned_this_tick = 0
+
+                    if udg_musicOn == 0
+                        playMusicTimed(gnomes_music)
+
+                    let g = CreateGroup()
+
+                    GroupEnumUnitsInRect(g, gg_rct_LegionOfDwarfesEntireRect, null)
+
+                    for u in g
+                        if u.isAliveTrick()
+                            if GNOMES_PLAYER == u.getOwner()
+                                dwarf_count++
+                                if u.getPos().distanceTo(gnomes_center_pos) > 1100
+                                    u.orderMoveTo(getRandomVec2FromRect(GNOME_INNER_CAMP))
+                            if UNDEAD_PLAYER == u.getOwner()
+                                undead_count++
+                            if MONSTERS_PLAYER == u.getOwner()
+                                monster_count++
+
+                    g.destr()
+
+                    while true
+                        let random_point = getRandomVec2FromRect(GNOME_INNER_CAMP)
+                        
+                        var counter = 0
+
+                        if dwarf_count < MAXIMUM_GNOMES_ACTIVE and dwarfs_created < MAXIMUM_GNOMES
+                            dwarf_count++
+                            dwarfs_created++
+                            spawned_this_tick++
+                            let u = createUnit(GNOMES_PLAYER, gnomes_ids[GetRandomInt(0, gnomes_ids.length - 1)], getVec2FromRectCenter(GNOMES_SPAWN_POSITIONS.getRandomElement()))..orderAttackMoveTo(random_point)
+                            flashEffect(EFF_TELEPORT, u.getPos3Real())
+                            dwarfs_UG.add(u)
+                        else
+                            counter++
+
+                        if monster_count < MAXIMUM_MONSTERS_ACTIVE and monsters_created < MAXIMUM_MONSTERS
+                            monster_count++
+                            monsters_created++
+                            spawned_this_tick++
+                            let u = createUnit(MONSTERS_PLAYER, spider_id, getVec2FromRectCenter(MONSTERS_SPAWN_POSITION))..orderAttackMoveTo(random_point)
+                            flashEffect(EFF_CHAOS_BLINK, u.getPos3Real())
+                        else
+                            counter++
+
+                        if undead_count < MAXIMUM_UNDEAD_ACTIVE and undead_created < MAXIMUM_UNDEAD
+                            undead_count++
+                            undead_created++
+                            spawned_this_tick++
+                            let unit_id = udg_EnemyRoom[GetRandomInt(1, 19)]
+                            let u = createUnit(UNDEAD_PLAYER, unit_id, getVec2FromRectCenter(UNDEAD_SPAWN_POSITIONS.getRandomElement()))..orderAttackMoveTo(random_point)
+                            flashEffect(EFF_RAISE_DEAD, u.getPos3Real())
+                        else
+                            counter++
+
+                        if counter == 3 or spawned_this_tick >= MAX_SPAWN_CYCLES_PER_TICK
+                            break
+
+                    if enemiesSpawnEnded(undead_created, monsters_created)
+                        var hasEnemies = false
+                        let enemies_remaining = CreateGroup()
+
+                        GroupEnumUnitsInRect(enemies_remaining, gg_rct_LegionOfDwarfesEntireRect, null)
+                        for u in enemies_remaining
+                            if (u.getOwner() == MONSTERS_PLAYER or u.getOwner() == UNDEAD_PLAYER) and u.isAliveTrick()
+                                hasEnemies = true
+                                break
+
+                        if not hasEnemies
+                            stopMusic()
+                            makeRewards(thane_initial_pos, blacksmith_initial_pos)
+                            enemies_remaining.destr()
+                            destroy cb
+
+                            return
+
+                        enemies_remaining.destr()
+            
+    EventListener.add(EVENT_PLAYER_UNIT_DEATH) -> 
+        if dwarfs_UG.has(GetTriggerUnit())
+            dwarfs_UG.remove(GetTriggerUnit())
