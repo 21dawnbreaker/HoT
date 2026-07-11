@@ -7,6 +7,7 @@ import ItemsRare
 import ItemsEpic
 import ItemsLegendary
 import Utilities
+import Overpower
 
 
 init
@@ -23,18 +24,24 @@ init
             CreateItem(CLOAK_OF_INSANITY_ITEM_ID, _hero.getX(), _hero.getY())
             
         if msg == "-test5"
-            createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02I', _hero.getPos())
+            createUnit(GNOMES_PLAYER, 'u00M', _hero.getPos())..addAbility(OVERPOWER_SPELL_ID)
+            CreateItem(ARKENSTONE_ITEM_ID, _hero.getX(), _hero.getY())
 
             
         if msg == "-test6"
-            let _handle = BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
-            
-            BlzFrameClearAllPoints(_handle)
-            BlzFrameSetAbsPoint(_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.500000)
-            BlzFrameSetAbsPoint(_handle, FRAMEPOINT_BOTTOMRIGHT, 0.500000, 0.340000)
+            TriggerExecuteBJ(gg_trg_ObjectRewardingGeneral, false)
+
+        if msg == "-gnomes"
+            createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02I', _hero.getPos())
 
         if msg == "-msg"
             print("Message!")
+
+        if msg == "-m"
+            let g = CreateGroup()
+            GroupEnumUnitsInRect(g, gg_rct_BossfightInnerLoc, null)
+            for u in g
+                u.addMana(u.getMaxMana())
 
         if msg == "-legendary"
             CreateItem(ChooseRandomItem(5), _hero.getX(), _hero.getY())

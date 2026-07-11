@@ -3,17 +3,21 @@ package GnomesInCave
 import AttachmentPoints
 import ClosureEvents
 import ClosureTimers
-import Sounds
+import SoundUtils
+import HashSet
 
 import CaveTeleport
 import ItemsRunesAndGems
 import FloatingText
 import Utilities
-import HashSet
+import Overpower
 
-let gnomes_music = "Sounds/drums_in_the_deep.mp3"
-let MAXIMUM_UNDEAD = 150
-let MAXIMUM_UNDEAD_ACTIVE = 30
+
+let gnomes_music = "Sounds\\drums_in_the_deep.mp3"
+let arkenston_song = new SoundDefinition("Sounds\\All That Is Gold.mp3", false, false)
+
+let MAXIMUM_UNDEAD = 175
+let MAXIMUM_UNDEAD_ACTIVE = 35
 let MAXIMUM_MONSTERS = 100
 let MAXIMUM_MONSTERS_ACTIVE = 20
 let MAXIMUM_GNOMES = 90
@@ -37,10 +41,11 @@ let thane_replics = [
 ]
 
 let gnomes_ids = [
+    'h02F', // rifleman
     'h02E', // footman
     'h02E',
     'h02E',
-    'h02F' // rifleman
+    'h02E'
 ]
 
 let spider_id = 'n00U'
@@ -50,8 +55,7 @@ function prepareGnomeLeaders(unit t, unit b)
     let blacksmith_pos = b.getPos()
 
     t.remove()
-    thane = createUnit(GNOMES_PLAYER, 'u00M', thane_pos, 0.0.asAngleDegrees())
-    thane.addAbility('A0KQ')
+    thane = createUnit(GNOMES_PLAYER, 'u00M', thane_pos, 0.0.asAngleDegrees())..addAbility(OVERPOWER_SPELL_ID)
     thane_eff_storm = thane.addEffect("Abilities\\Weapons\\FarseerMissile\\FarseerMissile.mdl", SpecialAttachmentPoints.leftHand)
     thane_eff_fire = thane.addEffect("Doodads\\Cinematic\\FirePillarMedium\\FirePillarMedium.mdl", SpecialAttachmentPoints.leftHand)
     thane.orderMoveTo(getVec2FromRectCenter(gg_rct_DwarfThanePos))
@@ -96,6 +100,11 @@ function makeRewards(vec2 thane_pos, vec2 blacksmith_pos)
 
     else
         PlaySound(Sounds.flashBack1Second)
+        for u in dwarfs_UG
+            if u.getTypeId() == 'h02D'
+                for i = 0 to 1
+                    UnitDropItemPoint(u, u.itemInSlot(i), u.getX(), u.getY())
+                    u.kill()
         print("Все гномы в этом лагере были истреблены...")
 
 
@@ -134,6 +143,8 @@ init
                     var monster_count = 0
                     var spawned_this_tick = 0
 
+                    showDebugInfo("gnomesincave_periodic")
+
                     if udg_musicOn == 0
                         playMusicTimed(gnomes_music)
 
@@ -145,7 +156,7 @@ init
                         if u.isAliveTrick()
                             if GNOMES_PLAYER == u.getOwner()
                                 dwarf_count++
-                                if u.getPos().distanceTo(gnomes_center_pos) > 1100
+                                if u.getPos().distanceTo(gnomes_center_pos) > 900
                                     u.orderMoveTo(getRandomVec2FromRect(GNOME_INNER_CAMP))
                             if UNDEAD_PLAYER == u.getOwner()
                                 undead_count++
@@ -214,3 +225,14 @@ init
     EventListener.add(EVENT_PLAYER_UNIT_DEATH) -> 
         if dwarfs_UG.has(GetTriggerUnit())
             dwarfs_UG.remove(GetTriggerUnit())
+
+    EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) -> 
+        if GetManipulatedItem().getTypeId() == ARKENSTONE_ITEM_ID and GetTriggerUnit().getTypeId() == 'h02H'
+            RemoveItem(GetManipulatedItem())
+            createFloatingTextAboveUnitRP(GetTriggerUnit(), "Аркенстон... невероятно... мы все в долгу перед вами.")
+            arkenston_song.play()
+
+            for i = 0 to 2
+                let u = createUnit(NEUTRAL_PASSIVE_PLAYER, 'o028', getRandomVec2FromRect(GNOME_INNER_CAMP), getRandomAngle())
+                dwarfs_UG.add(u)
+                flashEffect(EFF_TELEPORT, u.getPos3Real())

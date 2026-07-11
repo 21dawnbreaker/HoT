@@ -15,10 +15,11 @@ init
         if udg_wurst_rewards_object
 
             udg_wurst_rewards_object = false
+            
             let pos = vec2(GetLocationX(udg_wurstLoc), GetLocationY(udg_wurstLoc))
             let object = objects_set.getRandomElement()
 
             if object == 0
-                createUnit(NEUTRAL_PASSIVE_PLAYER, 'H02I', pos)
+                createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02I', pos)
             
             RemoveLocation(udg_wurstLoc)

@@ -26,6 +26,8 @@ public var path_UG = CreateGroup()
 public let PATH_SET = new HashSet<int>
 public let PATH_SET_ALL = new HashSet<int>
 
+var music_token = 0
+
 public let EFF_BLINK = "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl"
 public let EFF_TELEPORT = "Abilities\\Spells\\Human\\MassTeleport\\MassTeleportTarget.mdl"
 public let EFF_CHAOS_BLINK = "Models\\ChaosBlinkCaster.mdx"
@@ -72,18 +74,27 @@ public function getRandomVec2FromRect(rect rct) returns vec2
 
 public function playMusicTimed(string path)
     if udg_musicOn == 0 and udg_BossfightMainIsOn == 0
+        music_token++
+        let token = music_token
+
         StopMusic(false)
         EndThematicMusic()
+
         PlayThematicMusic(path)
         udg_musicOn = 1
 
         if gg_trg_MusicEnd.isEnabled()
             DisableTrigger(gg_trg_MusicEnd)
 
-        doAfter(GetSoundFileDuration(path) + 5.0) -> 
-            udg_musicOn = 0
+        let duration = GetSoundFileDuration(path).toReal() / 1000.0
+
+        doAfter(duration + 3.0) ->
+            if token == music_token
+                udg_musicOn = 0
 
 public function stopMusic()
+    music_token++
+
     StopMusic(false)
     EndThematicMusic()
     udg_musicOn = 0
@@ -96,6 +107,19 @@ public function unit.orderMoveTo(vec2 pos)
 
 public function unit.orderAttackMoveTo(vec2 pos)
     IssuePointOrder(this, "attack", pos.x, pos.y)
+
+public function showDebugInfo(string str)
+    if udg_debug_mode
+        print(str)
+
+function removeEnumItem()
+    let itm = GetEnumItem()
+
+    if itm != null
+        itm.remove()
+
+public function removeItemsInRect(rect rct)
+    EnumItemsInRect(rct, null, function removeEnumItem)
 
 
 init

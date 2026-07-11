@@ -119,4 +119,6 @@ init
             dwarfs_UG.clear()
             PATHS_LIST.clear()
 
+            removeItemsInRect(gg_rct_LegionOfDwarfesEntireRect)
+
             cheed = null
