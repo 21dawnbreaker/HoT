@@ -9,5 +9,5 @@ init
         flashEffect("Models/[Wind]Decimate_Q2.mdx", caster.getPos3Real(), 0.75)
         caster.setAnimation("attack")
         doAfter(0.5) -> 
-            PauseUnit(caster, false)
+            caster.unpause()
             caster.setAnimation("ready")

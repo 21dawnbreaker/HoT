@@ -18,7 +18,7 @@ public let OVERPOWER_SPELL_ID = 'A0KQ'
 
 init
     DamageEvent.addListener() ->
-        if DamageEvent.getAttackType() == ATTACK_TYPE_SIEGE or DamageEvent.getAttackType() == ATTACK_TYPE_MELEE or DamageEvent.getAttackType() == ATTACK_TYPE_PIERCE
+        if BlzGetEventIsAttack()
             let unit_ = DamageEvent.getSource()
             let target = DamageEvent.getTarget()
             

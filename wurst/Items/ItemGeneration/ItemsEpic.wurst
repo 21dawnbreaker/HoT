@@ -7,6 +7,7 @@ import ClosureEvents
 
 import Socketable
 import AdditionalStatsAbilities
+import ItemClassifications
 
 import EyeOfAvadraahObjects
 import GiftOfLordOfLiesObjects
@@ -14,24 +15,12 @@ import BookOfEvil
 
 let ORIGIN_ITEM_ID = 'rst1'
 
+public let EPIC_ITEM_GOLD_PRICE = 750
+
 public constant BOOK_OF_EVIL_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant CROWN_OF_ETHORIA_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant EYE_OF_AVADRAAH_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant GIFT_OF_LORD_OF_LIES_ITEM_ID = compiletime(ITEM_ID_GEN.next())
-
-public let EPIC_ITEM_GOLD_PRICE = 750
-
-let weapon = "Campaign"
-let trinket = "Purchasable"
-let armor = "Permanent"
-let gloves = "Charged"
-let boots = "Artifact"
-let other = "PowerUp"
-let scroll = "Miscellaneous"
-
-let epic = 4
-let not_spawnable = 8
-
 
 @compiletime function genBookOfEvilItem()
     new ItemDefinition(BOOK_OF_EVIL_ITEM_ID, ORIGIN_ITEM_ID)

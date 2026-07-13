@@ -1,6 +1,7 @@
 package CaveTeleport
 
 import ClosureEvents
+import ClosureForGroups
 import ClosureTimers
 import LinkedList
 import SoundUtils
@@ -14,7 +15,8 @@ class UnitDwarfData
     vec2 pos
     angle facing
 
-    let owner = GNOMES_PLAYER
+    function getOwner() returns player
+        return GNOMES_PLAYER
 
     construct(int id, vec2 pos, angle facing)
         this.id = id
@@ -39,19 +41,13 @@ public unit thane = null
 public unit blacksmith = null
 public unit cheed = null
 
-
 init
     town_required_rooms_list.add(23.00, 48.00, 73.00, 98.00)
 
     doAfter(3) -> 
-        let g = CreateGroup()
-
-        GroupEnumUnitsInRect(g, gg_rct_LegionOfDwarfes, null)
-        for u in g
+        forUnitsInRect(gg_rct_LegionOfDwarfes) u -> 
             dwarf_data.add(new UnitDwarfData(u.getTypeId(), u.getPos(), u.getFacingAngle()))
             u.remove()
-
-        g.destr()
 
     EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
         if GetSoldUnit().getTypeId() == 'o03K'
@@ -66,7 +62,7 @@ init
                 panCameraToTimed(spawn_zone_center, 1)
 
             for u in dwarf_data
-                let new_u = createUnit(u.owner, u.id, u.pos, u.facing)
+                let new_u = createUnit(u.getOwner(), u.id, u.pos, u.facing)
 
                 dwarfs_UG.add(new_u)
                 if u.id == 'h02H'

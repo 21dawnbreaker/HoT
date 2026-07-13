@@ -1,7 +1,9 @@
 package Tests
 import ClosureEvents
+import ClosureForGroups
 
 import ItemCraftRecipes
+import ItemClassifications
 import ItemsUncommon
 import ItemsRunesAndGems
 import ItemsRare
@@ -18,11 +20,7 @@ init
         let _hero = udg_hero_by_player[_player.getId() + 1]
 
         if msg == "-test4"
-            CreateItem(MAGIC_CLOAK_ITEM_ID, _hero.getX(), _hero.getY())
-            CreateItem(STAFF_OF_FALLEN_SHAMAN_ITEM_ID, _hero.getX(), _hero.getY())
-            CreateItem(STONE_GLOVES_ITEM_ID, _hero.getX(), _hero.getY())
-            CreateItem(TOUGH_HAMMER_ITEM_ID, _hero.getX(), _hero.getY())
-            CreateItem(CLOAK_OF_INSANITY_ITEM_ID, _hero.getX(), _hero.getY())
+            CreateItem('I0AT', _hero.getX(), _hero.getY())
             
         if msg == "-test5"
             for itm in TWO_ITEM_CRAFTS
@@ -31,7 +29,7 @@ init
 
             
         if msg == "-test6"
-            TriggerExecuteBJ(gg_trg_ObjectRewardingGeneral, false)
+            TriggerExecute(gg_trg_ObjectRewardingGeneral)
 
         if msg == "-gnomes"
             createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02I', _hero.getPos())
@@ -40,13 +38,11 @@ init
             print("Message!")
 
         if msg == "-m"
-            let g = CreateGroup()
-            GroupEnumUnitsInRect(g, gg_rct_BossfightInnerLoc, null)
-            for u in g
+            forUnitsInRect(gg_rct_BossfightInnerLoc) u ->
                 u.addMana(u.getMaxMana())
 
         if msg == "-legendary"
-            CreateItem(ChooseRandomItem(5), _hero.getX(), _hero.getY())
+            CreateItem(ChooseRandomItem(legendary), _hero.getX(), _hero.getY())
 
         if msg == "-randitem"
             CreateItem(ChooseRandomItem(GetRandomInt(1, 7)), _hero.getX(), _hero.getY())

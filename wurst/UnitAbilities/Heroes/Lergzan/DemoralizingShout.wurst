@@ -4,15 +4,12 @@ import ClosureEvents
 import HashSet
 import SoundUtils
 
-let shout0 = new SoundDefinition("Sounds\\battlecry1.mp3", false, true)
-let shout1 = new SoundDefinition("Sounds\\battlecry2.mp3", false, true)
-let shout2 = new SoundDefinition("Sounds\\battlecry3.mp3", false, true)
-
-let shouts_set = new HashSet<SoundDefinition>
-
+let shouts_set = new HashSet<SoundDefinition>..add(
+    new SoundDefinition("Sounds\\battlecry1.mp3", false, true),
+    new SoundDefinition("Sounds\\battlecry2.mp3", false, true),
+    new SoundDefinition("Sounds\\battlecry3.mp3", false, true)
+)
 
 init
-    shouts_set.add(shout0, shout1, shout2)
-
     EventListener.onCast('ANht') (unit caster) ->
         shouts_set.getRandomElement().playOnPoint(caster.getPos3Real())

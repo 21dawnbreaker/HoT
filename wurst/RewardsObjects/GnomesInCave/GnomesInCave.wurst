@@ -16,20 +16,20 @@ import Overpower
 let gnomes_music = "Sounds\\drums_in_the_deep.mp3"
 let arkenston_song = new SoundDefinition("Sounds\\All That Is Gold.mp3", false, false)
 
-let MAXIMUM_UNDEAD = 175
-let MAXIMUM_UNDEAD_ACTIVE = 35
-let MAXIMUM_MONSTERS = 100
-let MAXIMUM_MONSTERS_ACTIVE = 20
-let MAXIMUM_GNOMES = 90
-let MAXIMUM_GNOMES_ACTIVE = 15
+constant MAXIMUM_UNDEAD = 175
+constant MAXIMUM_UNDEAD_ACTIVE = 35
+constant MAXIMUM_MONSTERS = 100
+constant MAXIMUM_MONSTERS_ACTIVE = 20
+constant MAXIMUM_GNOMES = 90
+constant MAXIMUM_GNOMES_ACTIVE = 15
 
 let GNOMES_SPAWN_POSITIONS = new HashSet<rect>
 let UNDEAD_SPAWN_POSITIONS = new HashSet<rect>
 let MONSTERS_SPAWN_POSITION = gg_rct_DwarfesPathOut3
 let GNOME_INNER_CAMP = gg_rct_DwarfesRetreat
 
-let MAX_SPAWN_CYCLES_PER_TICK = 1
-let TICK = 0.5
+constant MAX_SPAWN_CYCLES_PER_TICK = 1
+constant TICK = 0.5
 
 effect thane_eff_storm = null
 effect thane_eff_fire = null
@@ -109,8 +109,8 @@ function makeRewards(vec2 thane_pos, vec2 blacksmith_pos)
         for u in dwarfs_UG
             if u.getTypeId() == 'h02D'
                 for i = 0 to 1
-                    UnitDropItemPoint(u, u.itemInSlot(i), u.getX(), u.getY())
-                    u.kill()
+                    u.removeItemFromSlot(i)
+                u.kill()
         print("Все гномы в этом лагере были истреблены...")
 
 
@@ -234,7 +234,7 @@ init
 
     EventListener.add(EVENT_PLAYER_UNIT_PICKUP_ITEM) -> 
         if GetManipulatedItem().getTypeId() == ARKENSTONE_ITEM_ID and GetTriggerUnit().getTypeId() == 'h02H'
-            RemoveItem(GetManipulatedItem())
+            GetManipulatedItem().remove()
             createFloatingTextAboveUnitRP(GetTriggerUnit(), "Аркенстон... невероятно... мы все в долгу перед вами.")
             arkenston_song.play()
 

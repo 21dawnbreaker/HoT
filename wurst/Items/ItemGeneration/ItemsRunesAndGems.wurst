@@ -5,8 +5,10 @@ import ObjectIdGenerator
 import ObjectIds
 import LinkedList
 import SoundUtils
+
 import AdditionalStatsAbilities
 import GemAbilities
+import ItemClassifications
 
 
 public class GemData
@@ -109,23 +111,6 @@ public let RUNES_AND_GEMS_LIST = [
     SKULL_1_ITEM_ID,
     ARKENSTONE_ITEM_ID
 ]
-
-constant weapon = "Campaign"
-constant trinket = "Purchasable"
-constant armor = "Permanent"
-constant gloves = "Charged"
-constant boots = "Artifact"
-constant other = "PowerUp"
-constant scroll = "Miscellaneous"
-
-constant common = 1
-constant rune = 2
-constant rare = 3
-constant epic = 4
-constant legendary = 5
-constant fel_items = 6
-constant holy_items = 7
-constant not_spawnable = 8
 
 // DIAMOND
 @compiletime function genDiamond1Item()

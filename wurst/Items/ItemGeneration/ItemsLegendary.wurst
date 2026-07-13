@@ -6,24 +6,13 @@ import ObjectIds
 
 import AdditionalStatsAbilities
 import ExcaliburObjects
+import ItemClassifications
 
 let ORIGIN_ITEM_ID = 'rst1'
 
+public let LEGENDARY_ITEM_GOLD_PRICE = 1500
+
 public constant EXCALIBUR_ITEM_ID = compiletime(ITEM_ID_GEN.next())
-
-let weapon = "Campaign"
-let trinket = "Purchasable"
-let armor = "Permanent"
-let gloves = "Charged"
-let boots = "Artifact"
-let other = "PowerUp"
-let scroll = "Miscellaneous"
-
-let legendary = 5
-let fel_items = 6
-let holy_items = 7
-let not_spawnable = 8
-
 
 @compiletime function genExcaliburItem()
     new ItemDefinition(EXCALIBUR_ITEM_ID, ORIGIN_ITEM_ID)
@@ -42,4 +31,4 @@ let not_spawnable = 8
         ..setActivelyUsed(true)
         ..setCooldownGroup(EXCALIBUR_SPELL_ID.toRawCode())
         ..setClassification(weapon)
-        ..setGoldCost(1500)
+        ..setGoldCost(LEGENDARY_ITEM_GOLD_PRICE)

@@ -28,10 +28,14 @@ init
 
         if dict.has(u)
             let caster = dict.getAndRemove(u)
+            let owner = caster.getOwner()
+
             caster.setFacing(u.getFacingAngle())
             caster.setXY(u.getPos())
+            let isSelected = IsUnitSelected(u, owner)
             u.remove()
             caster.show()
-            caster.getOwner().select(caster)
+            if isSelected
+                owner.select(caster)
             flashEffect(FLASH_EFFECT, caster.getPos3Real())
-            udg_backpack_by_player[caster.getOwner().getId() + 1].show()
+            udg_backpack_by_player[owner.getId() + 1].show()

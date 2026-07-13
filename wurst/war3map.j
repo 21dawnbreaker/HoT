@@ -130,8 +130,8 @@ integer Table___more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
 hashtable Table___ht= InitHashtable()
-constant integer Table___sizeK=7
-constant integer Table___listK=8
+constant integer Table___sizeK=10
+constant integer Table___listK=11
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -1506,6 +1506,9 @@ rect gg_rct_DwarfesRetreat= null
 rect gg_rct_DwarfBlacksmithPos= null
 rect gg_rct_DwarfThanePos= null
 rect gg_rct_LegionOfDwarfesEntireRect= null
+rect gg_rct_ItemIgnoreCleanupRect= null
+rect gg_rct_ItemIgnoreCleanupRect2= null
+rect gg_rct_ItemIgnoreCleanupRect3= null
 camerasetup gg_cam_OrcStart= null
 camerasetup gg_cam_NaluaraStart= null
 sound gg_snd_FarseerThrallYesAttack2= null
@@ -2265,6 +2268,7 @@ trigger gg_trg_InfernoHint_Copy_4= null
 trigger gg_trg_LifeTap= null
 trigger gg_trg_Felguards= null
 trigger gg_trg_FelguardEnters= null
+trigger gg_trg_LergzanGivesRage= null
 trigger gg_trg_WarShout= null
 trigger gg_trg_WarBanner= null
 trigger gg_trg_DemoralizingShout= null
@@ -2882,6 +2886,7 @@ unit gg_unit_n00R_0715= null
 unit gg_unit_ogru_0290= null
 unit gg_unit_U00I_0341= null
 unit gg_unit_E00A_0257= null
+unit gg_unit_n00K_0440= null
 unit gg_unit_O001_0250= null
 unit gg_unit_O000_0251= null
 unit gg_unit_O002_0252= null
@@ -2944,17 +2949,12 @@ unit gg_unit_O024_0421= null
 unit gg_unit_H00D_0426= null
 unit gg_unit_hfoo_0427= null
 unit gg_unit_hfoo_0429= null
-unit gg_unit_n00K_0440= null
 destructable gg_dest_LTlt_12813= null
 destructable gg_dest_FTtw_12843= null
 destructable gg_dest_BTtw_12095= null
 destructable gg_dest_BTtw_12096= null
 destructable gg_dest_BTtw_12097= null
 destructable gg_dest_LTg1_9128= null
-trigger gg_trg_LergzanGivesRage= null
-rect gg_rct_ItemIgnoreCleanupRect= null
-rect gg_rct_ItemIgnoreCleanupRect2= null
-rect gg_rct_ItemIgnoreCleanupRect3= null
 
 trigger l__library_init
 
@@ -11373,21 +11373,6 @@ endfunction
 function CreateAllItems takes nothing returns nothing
     local integer itemID
 
-    call BlzCreateItemWithSkin('I079', 20068.2, - 14469.0, 'I079')
-    call BlzCreateItemWithSkin('I07C', 20084.5, - 14615.5, 'I07C')
-    call BlzCreateItemWithSkin('I07F', 20097.2, - 14827.1, 'I07F')
-    call BlzCreateItemWithSkin('I07I', 20101.0, - 14738.9, 'I07I')
-    call BlzCreateItemWithSkin('I07M', 20202.5, - 14736.0, 'I07M')
-    call BlzCreateItemWithSkin('I07O', 20301.1, - 14726.7, 'I07O')
-    call BlzCreateItemWithSkin('I07P', 20174.6, - 14598.6, 'I07P')
-    call BlzCreateItemWithSkin('I07R', 20286.1, - 14590.1, 'I07R')
-    call BlzCreateItemWithSkin('I07T', 20169.6, - 14451.1, 'I07T')
-    call BlzCreateItemWithSkin('I07W', 20283.6, - 14442.4, 'I07W')
-    call BlzCreateItemWithSkin('I07Y', 20198.8, - 14826.5, 'I07Y')
-    call BlzCreateItemWithSkin('I080', 20296.6, - 14811.0, 'I080')
-    call BlzCreateItemWithSkin('I081', 20188.4, - 14896.3, 'I081')
-    call BlzCreateItemWithSkin('I082', 20095.7, - 14885.1, 'I082')
-    call BlzCreateItemWithSkin('I087', 20288.3, - 14893.7, 'I087')
     call BlzCreateItemWithSkin('I0AU', 20091.5, 19997.6, 'I0AU')
 endfunction
 
@@ -11732,7 +11717,7 @@ function CreateUnitsForPlayer19 takes nothing returns nothing
     call SetUnitColor(gg_unit_U007_0220, ConvertPlayerColor(4))
     call SelectHeroSkill(gg_unit_U007_0220, 'A0E4')
     call IssueImmediateOrder(gg_unit_U007_0220, "")
-    set gg_unit_U006_0283=BlzCreateUnitWithSkin(p, 'U006', 20160.6, - 19689.2, 141.336, 'U006')
+    set gg_unit_U006_0283=BlzCreateUnitWithSkin(p, 'U006', 20185.6, - 19654.8, 161.271, 'U006')
     call SetUnitColor(gg_unit_U006_0283, ConvertPlayerColor(12))
     set gg_unit_E002_0526=BlzCreateUnitWithSkin(p, 'E002', 20297.7, - 19451.6, 166.069, 'E002')
     call SetUnitColor(gg_unit_E002_0526, ConvertPlayerColor(14))
@@ -12012,6 +11997,8 @@ function CreateUnitsForPlayer22 takes nothing returns nothing
     local trigger t
     local real life
 
+    set u=BlzCreateUnitWithSkin(p, 'H02J', 21331.3, - 18875.4, 279.861, 'H02J')
+    call SetUnitColor(u, ConvertPlayerColor(22))
     set u=BlzCreateUnitWithSkin(p, 'ntt2', 10048.0, - 9888.0, 270.000, 'ntt2')
     set u=BlzCreateUnitWithSkin(p, 'ugho', 7564.2, - 9930.9, 266.218, 'ugho')
     set u=BlzCreateUnitWithSkin(p, 'uabo', 8024.5, - 9518.2, 280.344, 'uabo')
@@ -12466,10 +12453,10 @@ function CreateRegions takes nothing returns nothing
     set gg_rct_ExitRoom3_Copy=Rect(4704.0, - 15200.0, 4832.0, - 15072.0)
     set gg_rct_Room4=Rect(9824.0, - 22048.0, 14656.0, - 18976.0)
     set gg_rct_EnterRoom4=Rect(14080.0, - 20288.0, 14560.0, - 19616.0)
-    set gg_rct_EnemyRoom4=Rect(12608.0, - 21984.0, 14400.0, - 21600.0)
+    set gg_rct_EnemyRoom4=Rect(12800.0, - 21984.0, 14400.0, - 21696.0)
     set gg_rct_EnemyRoom4_Copy=Rect(10528.0, - 21632.0, 11360.0, - 21184.0)
-    set gg_rct_EnemyRoom4_Copy_2=Rect(13536.0, - 21984.0, 14496.0, - 21664.0)
-    set gg_rct_EnemyRoom4_Copy_3=Rect(9984.0, - 21984.0, 10752.0, - 21536.0)
+    set gg_rct_EnemyRoom4_Copy_2=Rect(10080.0, - 21984.0, 14432.0, - 21664.0)
+    set gg_rct_EnemyRoom4_Copy_3=Rect(9984.0, - 21984.0, 11648.0, - 21664.0)
     set gg_rct_EnemyRoom4_Copy_4=Rect(9920.0, - 21536.0, 10528.0, - 20896.0)
     set gg_rct_RewardRoom4=Rect(12224.0, - 20800.0, 12288.0, - 20736.0)
     set gg_rct_ChestRoom4=Rect(12064.0, - 20800.0, 12160.0, - 20704.0)
@@ -19279,6 +19266,9 @@ function Trig_PathGeneral_Func005Func001C takes nothing returns boolean
         return false
     endif
     if ( not ( RectContainsItem(GetEnumItem(), gg_rct_ItemIgnoreCleanupRect3) == false ) ) then
+        return false
+    endif
+    if ( not ( RectContainsItem(GetEnumItem(), gg_rct_TestLoc) == false ) ) then
         return false
     endif
     return true
@@ -56851,7 +56841,7 @@ function Trig_BloodAltar_Func002Func001Func016Func001C takes nothing returns boo
 endfunction
 
 function Trig_BloodAltar_Func002Func001C takes nothing returns boolean
-    if ( not ( udg_tempInt == 0 ) ) then
+    if ( not ( udg_tempInt3 == 0 ) ) then
         return false
     endif
     if ( not ( IsUnitType(GetEnumUnit(), UNIT_TYPE_HERO) == false ) ) then
@@ -56868,7 +56858,7 @@ endfunction
 
 function Trig_BloodAltar_Func002A takes nothing returns nothing
     if ( Trig_BloodAltar_Func002Func001C() ) then
-        set udg_tempInt=1
+        set udg_tempInt3=1
         set udg_tempLoc2=GetUnitLoc(GetEnumUnit())
         call PlaySoundOnUnitBJ(gg_snd_DiabloShrineSound, 100, GetTriggerUnit())
         call AddSpecialEffectLocBJ(udg_tempLoc2, "Abilities\\Spells\\Items\\AIso\\AIsoTarget.mdl")
@@ -56917,7 +56907,7 @@ endfunction
 function Trig_BloodAltar_Actions takes nothing returns nothing
     set udg_tempLoc=GetUnitLoc(GetSellingUnit())
     call ForGroupBJ(GetUnitsInRangeOfLocAll(300.00, udg_tempLoc), function Trig_BloodAltar_Func002A)
-    set udg_tempInt=0
+    set udg_tempInt3=0
     set udg_tempZ=0.00
     call RemoveLocation(udg_tempLoc)
     call RemoveLocation(udg_tempLoc2)
@@ -68614,7 +68604,7 @@ function Trig_MinibossDies_Actions takes nothing returns nothing
     call EnableTrigger(gg_trg_MinibossEnteringMusic)
     set udg_miniboss_music_on=false
     set udg_musicOn=0
-    call StartTimerBJ(udg_MusicTimer, false, 0.01)
+    call EndThematicMusicBJ()
 endfunction
 
 //===========================================================================
@@ -70071,7 +70061,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs42508578")
+call ExecuteFunc("jasshelper__initstructs8215171")
 call ExecuteFunc("GetMainSelectedUnit__init_function")
 call ExecuteFunc("NSLHelper___Init")
 call ExecuteFunc("TasUnitBagGUI___init_function")
@@ -70284,7 +70274,7 @@ function sa___prototype27_NSLUtils___OnPlayerCodeLoaded takes nothing returns bo
     return true
 endfunction
 
-function jasshelper__initstructs42508578 takes nothing returns nothing
+function jasshelper__initstructs8215171 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()

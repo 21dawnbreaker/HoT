@@ -1,0 +1,26 @@
+package ItemClassifications
+
+public constant weapon = "Campaign"
+public constant trinket = "Purchasable"
+public constant armor = "Permanent"
+public constant gloves = "Charged"
+public constant boots = "Artifact"
+public constant other = "PowerUp"
+public constant scroll = "Miscellaneous"
+
+public constant uncommon = 1
+public constant rune = 2
+public constant rare = 3
+public constant epic = 4
+public constant legendary = 5
+public constant fel_items = 6
+public constant holy_items = 7
+public constant not_spawnable = 8
+
+public constant classification_weapon_string = "|n|n[|cff00ffffОружие|r"
+public constant classification_trinket_string = "|n|n[|cff00ffffУкрашение|r"
+public constant classification_armor_string = "|n|n[|cff00ffffБроня|r"
+public constant classification_gloves_string = "|n|n[|cff00ffffПерчатки|r"
+public constant classification_boots_string = "|n|n[|cff00ffffСапоги|r"
+public constant classification_consumable_string = "|n|n[|cff00ffffПрочие предметы|r"
+public constant classification_scroll_string = "|n|n[|cff00ffffСвиток|r"

@@ -9,9 +9,9 @@ init
     EventListener.onCast('A0KD') (unit caster) ->
         let eff = addEffect("Abilities/Spells/Items/AIda/AIdaTarget.mdl", caster, "overhead")
         doAfter(1) -> 
-            eff..destr()
+            eff.destr()
 
     EventListener.onCast('A0KE') (unit caster) ->
         let eff = addEffect("Burning Rage Yellow.mdx", caster, "overhead")
         doAfter(1) -> 
-            eff..destr()
+            eff.destr()

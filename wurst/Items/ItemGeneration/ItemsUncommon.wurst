@@ -5,8 +5,11 @@ import ObjectIdGenerator
 import ObjectIds
 
 import AdditionalStatsAbilities
+import ItemClassifications
 
 let ORIGIN_ITEM_ID = 'rst1'
+
+public let UNCOMMON_ITEM_GOLD_PRICE = 200
 
 public constant HUNTERS_HATCHET_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant CLAWS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
@@ -15,24 +18,14 @@ public constant MAGIC_CLOAK_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant STAFF_OF_FALLEN_SHAMAN_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant STONE_GLOVES_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 public constant TOUGH_HAMMER_ITEM_ID = compiletime(ITEM_ID_GEN.next())
-
-
-let weapon = "Campaign"
-let trinket = "Purchasable"
-let armor = "Permanent"
-let gloves = "Charged"
-let boots = "Artifact"
-let consumable = "PowerUp"
-let scroll = "Miscellaneous"
-
-let uncommon = 1
-let not_spawnable = 8
+public constant BATTLE_MAGE_GLOVES_ITEM_ID = compiletime(ITEM_ID_GEN.next())
+public constant SAPPHIRE_PATH_BOOTS_ITEM_ID = compiletime(ITEM_ID_GEN.next())
 
 @compiletime function genHuntersHatchetItem()
     new ItemDefinition(HUNTERS_HATCHET_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cff80ff80Топор охотника|r")..setTooltipBasic("|cff80ff80Топор охотника|r")
         ..setTooltipExtended("+25 к силе и ловкости. |n+20% к скорости атаки.")
-        ..setDescription("+25 к силе и ловкости. |n+20% к скорости атаки. |n|n[|cff00ffffОружие|r]")
+        ..setDescription("+25 к силе и ловкости. |n+20% к скорости атаки." + classification_weapon_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(200)..setTintingColor3Blue(200)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNAbility_Hunter_SwiftStrike.blp")..setModelUsed("war3mapImported\\RuneAxe.mdl")..setScalingValue(1)
@@ -41,13 +34,13 @@ let not_spawnable = 8
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(weapon)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
 
 @compiletime function genClawsItem()
     new ItemDefinition(CLAWS_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cff80ff80Боевые когти|r")..setTooltipBasic("|cff80ff80Боевые когти|r")
         ..setTooltipExtended("+25 к интеллекту. |n+50% к регенерации маны.")
-        ..setDescription("+25 к интеллекту. |n+50% к регенерации маны. |n|n[|cff00ffffОружие|r]")
+        ..setDescription("+25 к интеллекту. |n+50% к регенерации маны." + classification_weapon_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNClawsOfAttack.blp")..setModelUsed("war3mapImported\\Claws.mdx")..setScalingValue(1)
@@ -56,43 +49,43 @@ let not_spawnable = 8
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(weapon)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
 
 @compiletime function genRagingAxeItem()
     new ItemDefinition(RAGING_AXE_ITEM_ID, ORIGIN_ITEM_ID)
-        ..setName("|cffff0000Топор Гнева|r")..setTooltipBasic("|cff80ff80Топор Гнева|r")
+        ..setName("|cffff0000Топор Гнева|r")..setTooltipBasic("|cffff0000Топор Гнева|r")
         ..setTooltipExtended("+40 к силе и ловкости. |n+15% к физическому урону. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r.")
-        ..setDescription("+40 к силе и ловкости. |n15% к физическому урону. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r.|n|n[|cff00ffffОружие|r]")
+        ..setDescription("+40 к силе и ловкости. |n15% к физическому урону. |n|n|cffff0000Когда герой получает предмет, его мировоззрение навсегда изменяется на -1. |nНельзя выбросить. Выпадает после смерти|r." + classification_weapon_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(180)..setTintingColor3Blue(120)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNFireAxe.blp")..setModelUsed("BattleAxe.mdx")..setScalingValue(1)
         ..setCanBeDropped(false)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)..setDroppedWhenCarrierDies(true)
-        ..setAbilities(PHYSICAL_AMP_15_SPELL_ID.toRawCode() + "A0JG")
+        ..setAbilities(PHYSICAL_AMP_15_SPELL_ID.toRawCode() + ",A0JG")
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(weapon)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
 
 @compiletime function genMagicCloakItem()
     new ItemDefinition(MAGIC_CLOAK_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cff80ff80Волшебный плащ|r")..setTooltipBasic("|cff80ff80Волшебный плащ|r")
         ..setTooltipExtended("+25 к интеллекту. |n+15% к магическому урону. |n+250 к максимальному запасу маны.")
-        ..setDescription("+25 к интеллекту. |n+15% к магическому урону. |n+250 к максимальному запасу маны.|n|n[|cff00ffffБроня|r]")
+        ..setDescription("+25 к интеллекту. |n+15% к магическому урону. |n+250 к максимальному запасу маны." + classification_armor_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNCloak.blp")..setModelUsed("war3mapImported\\Cloak.mdx")..setScalingValue(1)
         ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
-        ..setAbilities(MAGIC_AMP_15_SPELL_ID.toRawCode() + "A0CG,A0EM")
+        ..setAbilities(MAGIC_AMP_15_SPELL_ID.toRawCode() + ",A0CG,A0EM")
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(armor)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
 
 @compiletime function genStaffOfFallenShamanItem()
     new ItemDefinition(STAFF_OF_FALLEN_SHAMAN_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cff80ff80Посох шамана падших|r")..setTooltipBasic("|cff80ff80Посох шамана падших|r")
         ..setTooltipExtended("+25 к интеллекту. |n+15% к скорости атаки союзников.")
-        ..setDescription("+25 к интеллекту. |n+15% к скорости атаки союзников. |n|n[|cff00ffffОружие|r]")
+        ..setDescription("+25 к интеллекту. |n+15% к скорости атаки союзников." + classification_weapon_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(160)..setTintingColor2Green(100)..setTintingColor3Blue(100)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNEntrapmentWard.blp")..setModelUsed("war3mapImported\\DemonRod.mdl")..setScalingValue(1)
@@ -101,13 +94,13 @@ let not_spawnable = 8
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(weapon)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
 
 @compiletime function genStoneGlovesItem()
     new ItemDefinition(STONE_GLOVES_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cff80ff80Каменные перчатки|r")..setTooltipBasic("|cff80ff80Каменные перчатки|r")
         ..setTooltipExtended("+8 к броне. |n+5% к сопротивлению всем видам урона. |nСпособность: \"|cffd45e19Провокация|r\" - заставляет выбранную цель атаковать вас. Перезарядка - |cffff000015 сек|r.")
-        ..setDescription("+8 к броне. |n+5% к сопротивлению всем видам урона. |nСпособность: \"|cffd45e19Провокация|r\" - заставляет выбранную цель атаковать вас. Перезарядка - |cffff000015 сек|r. |n|n[|cff00ffffПерчатки|r]")
+        ..setDescription("+8 к броне. |n+5% к сопротивлению всем видам урона. |nСпособность: \"|cffd45e19Провокация|r\" - заставляет выбранную цель атаковать вас. Перезарядка - |cffff000015 сек|r." + classification_gloves_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(100)..setTintingColor2Green(100)..setTintingColor3Blue(135)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNGolemThunderClap.blp")..setModelUsed("GauntletsOfOgrePower_RFRGD.mdl")..setScalingValue(0.55)
@@ -116,13 +109,13 @@ let not_spawnable = 8
         ..setActivelyUsed(true)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(gloves)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
 
 @compiletime function genToughHammerItem()
     new ItemDefinition(TOUGH_HAMMER_ITEM_ID, ORIGIN_ITEM_ID)
         ..setName("|cff80ff80Мощный молот|r")..setTooltipBasic("|cff80ff80Мощный молот|r")
         ..setTooltipExtended("+25 к силе. |nАвтоатаки с шансом 15% оглушают цель")
-        ..setDescription("+25 к силе. |nАвтоатаки с шансом 15% оглушают цель. |n|n[|cff00ffffОружие|r]")
+        ..setDescription("+25 к силе. |nАвтоатаки с шансом 15% оглушают цель." + classification_weapon_string)
         ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
         ..setTintingColor1Red(255)..setTintingColor2Green(255)..setTintingColor3Blue(255)
         ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNHammer.blp")..setModelUsed("war3mapImported\\runehammer.mdl")..setScalingValue(1)
@@ -131,4 +124,34 @@ let not_spawnable = 8
         ..setActivelyUsed(false)
         ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
         ..setClassification(weapon)
-        ..setGoldCost(200)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
+
+@compiletime function genBattleMageGlovesItem()
+    new ItemDefinition(BATTLE_MAGE_GLOVES_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff80ff80Перчатки боевого мага|r")..setTooltipBasic("|cff80ff80Перчатки боевого мага|r")
+        ..setTooltipExtended("+25 к интеллекту. |n+20% к скорости атаки.")
+        ..setDescription("+25 к интеллекту. |n+20% к скорости атаки." + classification_gloves_string)
+        ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(255)..setTintingColor2Green(200)..setTintingColor3Blue(150)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNGlove.blp")..setModelUsed("GauntletsOfOgrePower_RFRGD.mdl")..setScalingValue(0.55)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities("A0CG,A0BL")
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(gloves)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
+
+@compiletime function genSapphirePathBootsItem()
+    new ItemDefinition(SAPPHIRE_PATH_BOOTS_ITEM_ID, ORIGIN_ITEM_ID)
+        ..setName("|cff80ff80Сапоги сапфирового пути|r")..setTooltipBasic("|cff80ff80Сапоги сапфирового пути|r")
+        ..setTooltipExtended("+35 к интеллекту.")
+        ..setDescription("+35 к интеллекту. |n|n[|cff00ffffСапоги|r]")
+        ..setLevel(uncommon)..setLevelUnclassified(uncommon)..setIncludeAsRandomChoice(true)
+        ..setTintingColor1Red(150)..setTintingColor2Green(180)..setTintingColor3Blue(255)
+        ..setInterfaceIcon("ReplaceableTextures\\CommandButtons\\BTNBoots.blp")..setScalingValue(1)
+        ..setCanBeDropped(true)..setCanBeSoldByMerchants(true)..setCanBeSoldToMerchants(true)
+        ..setAbilities("A0J4")
+        ..setActivelyUsed(false)
+        ..setCooldownGroup(ORIGIN_ITEM_ID.toRawCode())
+        ..setClassification(boots)
+        ..setGoldCost(UNCOMMON_ITEM_GOLD_PRICE)
