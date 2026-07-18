@@ -20,7 +20,7 @@ init
         let _hero = udg_hero_by_player[_player.getId() + 1]
 
         if msg == "-test4"
-            CreateItem('I0AT', _hero.getX(), _hero.getY())
+            createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02K', _hero.getPos())
             
         if msg == "-test5"
             for itm in TWO_ITEM_CRAFTS

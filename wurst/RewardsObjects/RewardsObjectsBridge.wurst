@@ -2,6 +2,7 @@ package RewardsObjectsBridge
 
 import HashSet
 
+import FloatingText
 import Utilities
 
 
@@ -9,7 +10,7 @@ let objects_set = new HashSet<int>
 
 
 init
-    objects_set.add(0) // gnomes in cave
+    objects_set.add(0, 1, 2, 3, 4, 5, 6, 7)
 
     gg_trg_WurstBridge.addAction() ->
         if udg_wurst_rewards_object
@@ -19,7 +20,35 @@ init
             let pos = vec2(GetLocationX(udg_wurstLoc), GetLocationY(udg_wurstLoc))
             let object = objects_set.getRandomElement()
 
-            if object == 0
+            flashEffect(EFF_CHAOS_BLINK, vec3(pos.x, pos.y, pos.getTerrainZ()))
+
+            if object == 0 // gnomes in cave
                 createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02I', pos)
+
+            if object == 1 // shrine
+                createUnit(NEUTRAL_PASSIVE_PLAYER, 'h027', pos)
+
+            if object == 2 // shrine of fallen
+                createUnit(NEUTRAL_PASSIVE_PLAYER, 'h01O', pos, 300.0.asAngleDegrees())
+
+            if object == 3 // cheed
+                let u = createUnit(ALLIES_PLAYER, 'h025', pos, 250.0.asAngleDegrees())
+
+                createFloatingTextAboveUnitRP(u, "Хо-хо, вы меня нашли!")
+
+            if object == 4 // golden council
+                createUnit(ALLIES_PLAYER, 'h026', pos, 250.0.asAngleDegrees())
+                createUnit(ALLIES_PLAYER, 'h01S', pos.polarOffset(270.0.asAngleDegrees(), 150))..pauseTimedLife(true)..addAbility('Avul')
+
+            if object == 5 // altar of sacrifice
+                createUnit(NEUTRAL_PASSIVE_PLAYER, 'o02D', pos)
+
+            if object == 6 // source of magic
+                createUnit(NEUTRAL_PASSIVE_PLAYER, 'h02K', pos, 270.0.asAngleDegrees())
+
+            if object == 7 // master blacksmith Makron
+                let u = createUnit(ALLIES_PLAYER, 'h02L', pos, 250.0.asAngleDegrees())..setColor(PLAYER_COLOR_ORANGE)
+
+                createFloatingTextAboveUnitRP(u, "Как я мог забыть... какое же там было значение...")
             
             RemoveLocation(udg_wurstLoc)

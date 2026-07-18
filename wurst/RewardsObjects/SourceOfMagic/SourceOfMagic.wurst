@@ -1,0 +1,53 @@
+package SourceOfMagic
+
+import ClosureEvents
+import HashSet
+import SoundUtils
+
+import Utilities
+
+
+constant MAGIC_AMPLIFY_DURATION_IN_ROOMS = 2
+constant MAGIC_BUFF_AMOUNT_PERCENT = 50
+
+let magic_amplify_expiration_rooms_set = new HashSet<real>
+
+let sound_eff = new SoundDefinition("ArcaneBrilliance.mp3", false, false)
+
+
+init
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        let id = GetSoldUnit().getTypeId()
+        let room = udg_RoomMultiboardCounting
+
+        if id == 'o03N'
+            GetSoldUnit().remove()
+            GetSellingUnit().pause()
+
+            magic_amplify_expiration_rooms_set.add(room + (MAGIC_AMPLIFY_DURATION_IN_ROOMS + 1.0))
+
+            sound_eff.play()
+
+            for p in udg_PlayerGroup
+                let p_id = p.getId() + 1
+
+                udg_HERO_DAMAGE_BONUS_MAGIC[p_id] += MAGIC_BUFF_AMOUNT_PERCENT
+                udg_hero_by_player[p_id]..addAbility('A0L2')..hideAbility('A0L2', true)
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        let id = GetSoldUnit().getTypeId()
+        let room = udg_RoomMultiboardCounting
+
+        if PATH_SET_ALL.has(id) and magic_amplify_expiration_rooms_set.has(room)
+            magic_amplify_expiration_rooms_set.remove(room)
+
+            let buff_expired = magic_amplify_expiration_rooms_set.size() < 1
+
+            for p in udg_PlayerGroup
+                let p_id = p.getId() + 1
+
+                udg_HERO_DAMAGE_BONUS_MAGIC[p_id] -= MAGIC_BUFF_AMOUNT_PERCENT
+
+                if buff_expired
+                    udg_hero_by_player[p_id].removeAbility('A0L2')
+        
