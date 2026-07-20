@@ -48,7 +48,17 @@ init
 
             if object == 7 // master blacksmith Makron
                 let u = createUnit(ALLIES_PLAYER, 'h02L', pos, 250.0.asAngleDegrees())..setColor(PLAYER_COLOR_ORANGE)
+                let r_int = GetRandomInt(0, 100)
 
                 createFloatingTextAboveUnitRP(u, "Как я мог забыть... какое же там было значение...")
+
+                if 0 <= r_int and r_int < 80
+                    u.addItemById(ChooseRandomItem(3))
+                
+                if 80 <= r_int and r_int < 95
+                    u.addItemById(ChooseRandomItem(4))
+
+                if 95 < r_int
+                    u.addItemById(ChooseRandomItem(5))
             
             RemoveLocation(udg_wurstLoc)

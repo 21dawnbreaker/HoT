@@ -41,6 +41,19 @@ init
             forUnitsInRect(gg_rct_BossfightInnerLoc) u ->
                 u.addMana(u.getMaxMana())
 
+        if msg == "-makron"
+            let u = createUnit(ALLIES_PLAYER, 'h02L', _hero.getPos(), 250.0.asAngleDegrees())..setColor(PLAYER_COLOR_ORANGE)
+            let r_int = GetRandomInt(0, 100)
+
+            if 0 <= r_int and r_int < 80
+                u.addItemById(ChooseRandomItem(3))
+            
+            if 80 <= r_int and r_int < 95
+                u.addItemById(ChooseRandomItem(4))
+
+            if 95 < r_int
+                u.addItemById(ChooseRandomItem(5))
+
         if msg == "-legendary"
             CreateItem(ChooseRandomItem(legendary), _hero.getX(), _hero.getY())
 

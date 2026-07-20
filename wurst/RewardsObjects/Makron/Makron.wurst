@@ -1,0 +1,135 @@
+package Makron
+
+import ClosureEvents
+import ClosureTimers
+import LinkedList
+import HashSet
+import SoundUtils
+
+import FloatingText
+import Utilities
+
+
+class MakronQuizData
+    string question
+    string correct_answer
+
+    construct(string question, string correct_answer)
+        this.question = question
+        this.correct_answer = correct_answer
+
+constant MAKRON_QUIZ = new LinkedList<MakronQuizData>
+constant MAKRON_WRONG_ANSWER_REACTION = new HashSet<string>
+constant MAKRON_CORRECT_ANSWER_REACTION = "Действительно..."
+constant MAKRON_TIRED_OF_WAITING = "У меня есть дела поважнее, забудьте"
+
+let SOUND_CORRECT = new SoundDefinition("Sound\\Interface\\Warning.flac", false, false)
+let SOUND_WRONG = new SoundDefinition("Sound\\Interface\\Rescue.flac", false, false)
+
+MakronQuizData problem = null
+player answering_player = null
+unit makron_unit = null
+var new_question = true
+var makron_awaits_answer = false
+
+function fill_makron_data()
+    MAKRON_QUIZ.add(
+        new MakronQuizData("Бонус к здоровью у |cff8080ffМолота Сверхсилы|r?", "350"),
+        new MakronQuizData("Бонус к урону у |cff8080ffЗачарованного Копья|r [ур. 5]?", "40"),
+        new MakronQuizData("Бонус к ловкости у |cff8080ffОгненного Лука|r?", "25"),
+        new MakronQuizData("Бонус к максимальному количеству ресурса |cff8080ffХватки Титана|r?", "20"),
+        new MakronQuizData("Бонус к силе магии (за уровень) у |cffc82596Посоха Хаоса|r?", "2"),
+        new MakronQuizData("Бонус к броне |cff80ff80Ростового щита|r?", "16"),
+        new MakronQuizData("Бонус к сопротивлению физическому урону |cff8080ffЧерепокола Теклуитона|r?", "10"),
+        new MakronQuizData("Бонус к силе и ловкости у |cff8080ffОрихалкового топора|r [ур. 5]?", "45"),
+        new MakronQuizData("Суммарный бонус к силе у |cffc82596Лабриса Великой Силы|r?", "150"),
+        new MakronQuizData("Бонус к броне у |cff8080ffСтального щита|r [ур. 5]?", "10"),
+        new MakronQuizData("Бонус к силе магии у |cff8080ffКлинка Арканы|r?", "25"),
+        new MakronQuizData("Шанс заморозить врага у |cff8080ffЛедяных стрел|r?", "10"),
+        new MakronQuizData("Бонус к скорости атаки у |cff8080ffСтального меча|r [ур. 5]?", "30"),
+        new MakronQuizData("Шанс критического урона у |cff8080ffСтального лука|r [ур. 5]?", "10"),
+        new MakronQuizData("Бонус к силе и ловкости у |cff8080ffМеча Пантилуса|r?", "20"),
+        new MakronQuizData("Бонус к силе у |cff80ff80Мощного молота|r?", "25"),
+        new MakronQuizData("Шанс оглушить врага у |cff8080ffЧерепокола Теклуитона|r?", "15"),
+        new MakronQuizData("Бонус к сопротивлению всем видам урона у |cff80ff80Каменных перчаток|r?", "5"),
+        new MakronQuizData("Бонус к скорости атаки у |cff80ff80Топора охотника|r?", "20"),
+        new MakronQuizData("Бонус к регенерации маны у |cff80ff80Боевых когтей|r?", "50"),
+        new MakronQuizData("Бонус к физическому урону у |cffff0000Топора Гнева|r?", "15"),
+        new MakronQuizData("Бонус к скорости атаки союзников у |cff80ff80Посоха шамана падших|r?", "15"),
+        new MakronQuizData("Бонус к здоровью у |cffff0000Нечистивой Протекции|r?", "250")
+    )
+
+    MAKRON_WRONG_ANSWER_REACTION.add(
+        "Чушь",
+        "Что за вздор...",
+        "Нет, не думаю...",
+        "Точно нет",
+        "Не согласен"
+    )
+
+
+init
+    fill_makron_data()
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if GetSoldUnit().getTypeId() == 'o03Q' // question
+            GetSoldUnit().remove()
+
+            if new_question
+                new_question = false
+                problem = MAKRON_QUIZ.getRandomElement()
+
+            createFloatingTextAboveUnitRP(GetSellingUnit(), problem.question)
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if GetSoldUnit().getTypeId() == 'o03P' // answer check
+            GetSoldUnit().remove()
+
+            if not makron_awaits_answer
+                makron_unit = GetSellingUnit()
+                answering_player = GetBuyingUnit().getOwner()
+                makron_awaits_answer = true
+
+                flashEffect("Abilities\\Spells\\Other\\TalkToMe\\TalkToMe.mdl", makron_unit, "overhead")
+                createFloatingTextAboveUnitRP(makron_unit, "Хм?")
+
+                let makron_handle = makron_unit.getHandleId()
+
+                doAfter(30) -> 
+                    if makron_awaits_answer and makron_handle == makron_unit.getHandleId()
+                        makron_awaits_answer = false
+                        makron_unit.pause()
+                        createFloatingTextAboveUnitRP(makron_unit, MAKRON_TIRED_OF_WAITING)
+
+
+    EventListener.add(EVENT_PLAYER_CHAT_FILTER) ->
+        if makron_awaits_answer
+            let msg = GetEventPlayerChatString()
+            let _player = GetTriggerPlayer()
+            let _hero = udg_hero_by_player[_player.getId() + 1]
+
+            if _player == answering_player
+                createFloatingTextAboveUnitRP(_hero, msg)
+                makron_awaits_answer = false
+                makron_unit.pause()
+
+                doAfter(1) -> 
+                    if msg == problem.correct_answer
+                        makron_unit.removeItemFromSlot(0)..setPos(makron_unit.getPos().polarOffset(makron_unit.getFacingAngle(), 75))
+                        makron_unit..setAnimation("attack")..queueAnimation("alive")
+                        createFloatingTextAboveUnitRP(makron_unit, MAKRON_CORRECT_ANSWER_REACTION)
+                    else
+                        createFloatingTextAboveUnitRP(makron_unit, MAKRON_WRONG_ANSWER_REACTION.getRandomElement())
+                    
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if GetSoldUnit().getTypeId() == 'o03O' // info
+            GetSoldUnit().remove()
+
+
+    EventListener.add(EVENT_PLAYER_UNIT_SELL) -> 
+        if PATH_SET_ALL.has(GetSoldUnit().getTypeId())
+            if not new_question
+                new_question = true
+                answering_player = null
+                makron_unit = null
