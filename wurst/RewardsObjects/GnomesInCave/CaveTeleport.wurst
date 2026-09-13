@@ -66,11 +66,11 @@ init
 
                 dwarfs_UG.add(new_u)
                 if u.id == 'h02H'
-                    thane = new_u
+                    thane = new_u..setColor(PLAYER_COLOR_LIGHT_BLUE)
                     thane.addUnitToStock('o03J', 1, 1)
 
                 if u.id == 'h02G'
-                    blacksmith = new_u
+                    blacksmith = new_u..setColor(PLAYER_COLOR_LIGHT_BLUE)
 
             for p in udg_PlayerGroup
                 let g = CreateGroup()

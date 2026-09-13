@@ -1,31 +1,31 @@
 globals
 //globals from DamageEngine:
 constant boolean LIBRARY_DamageEngine=true
-constant boolean DamageEngine___USE_GUI= true
+constant boolean DamageEngine__USE_GUI= true
                                                        
-constant boolean DamageEngine___USE_SCALING= DamageEngine___USE_GUI
-constant boolean DamageEngine___USE_EXTRA= true
-constant boolean DamageEngine___USE_ARMOR_MOD= true
-constant boolean DamageEngine___USE_MELEE_RANGE= true
-constant boolean DamageEngine___USE_LETHAL= true
+constant boolean DamageEngine__USE_SCALING= DamageEngine__USE_GUI
+constant boolean DamageEngine__USE_EXTRA= true
+constant boolean DamageEngine__USE_ARMOR_MOD= true
+constant boolean DamageEngine__USE_MELEE_RANGE= true
+constant boolean DamageEngine__USE_LETHAL= true
    
-constant integer DamageEngine___LIMBO= 16
+constant integer DamageEngine__LIMBO= 16
    
 constant integer DamageEngine_TYPE_CODE= 1
 constant integer DamageEngine_TYPE_PURE= 2
-constant real DamageEngine___DEATH_VAL= 0.405
-timer DamageEngine___alarm= CreateTimer()
-boolean DamageEngine___alarmSet= false
+constant real DamageEngine__DEATH_VAL= 0.405
+timer DamageEngine__alarm= CreateTimer()
+boolean DamageEngine__alarmSet= false
     //Values to track the original pre-spirit Link/defensive damage values
-integer DamageEngine___lastInstance= 0
-boolean DamageEngine___canKick= true
-boolean DamageEngine___totem= false
-boolean array DamageEngine___attacksImmune
-boolean array DamageEngine___damagesImmune
+integer DamageEngine__lastInstance= 0
+boolean DamageEngine__canKick= true
+boolean DamageEngine__totem= false
+boolean array DamageEngine__attacksImmune
+boolean array DamageEngine__damagesImmune
     //Made global in order to use enable/disable behavior.
-trigger DamageEngine___t1= CreateTrigger()
-trigger DamageEngine___t2= CreateTrigger()
-trigger DamageEngine___t3= CreateTrigger()
+trigger DamageEngine__t1= CreateTrigger()
+trigger DamageEngine__t2= CreateTrigger()
+trigger DamageEngine__t3= CreateTrigger()
     //These variables coincide with Blizzard's "limitop" type definitions so as to enable users (GUI in particular) with some nice performance perks.
 constant integer DamageEngine_FILTER_ATTACK= 0
 constant integer DamageEngine_FILTER_MELEE= 1
@@ -34,28 +34,28 @@ constant integer DamageEngine_FILTER_RANGED= 3
 constant integer DamageEngine_FILTER_SPELL= 4
 constant integer DamageEngine_FILTER_CODE= 5
 constant integer DamageEngine_FILTER_MAX= 6
-integer DamageEngine___eventFilter= DamageEngine_FILTER_OTHER
+integer DamageEngine__eventFilter= DamageEngine_FILTER_OTHER
 boolean DamageEngine_inception= false
-boolean DamageEngine___dreaming= false
-integer DamageEngine___sleepLevel= 0
-group DamageEngine___proclusGlobal= CreateGroup()
-group DamageEngine___fischerMorrow= CreateGroup()
-boolean DamageEngine___kicking= false
-boolean DamageEngine___eventsRun= false
+boolean DamageEngine__dreaming= false
+integer DamageEngine__sleepLevel= 0
+group DamageEngine__proclusGlobal= CreateGroup()
+group DamageEngine__fischerMorrow= CreateGroup()
+boolean DamageEngine__kicking= false
+boolean DamageEngine__eventsRun= false
    
-boolean DamageEngine___hasLethal= false
+boolean DamageEngine__hasLethal= false
 //endglobals from DamageEngine
 //globals from FileIO:
 constant boolean LIBRARY_FileIO=true
 //endglobals from FileIO
 //globals from GetMainSelectedUnit:
 constant boolean LIBRARY_GetMainSelectedUnit=true
-framehandle GetMainSelectedUnit___containerFrame
-framehandle array GetMainSelectedUnit___frames
-group GetMainSelectedUnit___Group= CreateGroup()
-unit array GetMainSelectedUnit___units
-integer GetMainSelectedUnit___unitsCount= 0
-filterfunc GetMainSelectedUnit___filter
+framehandle GetMainSelectedUnit__containerFrame
+framehandle array GetMainSelectedUnit__frames
+group GetMainSelectedUnit__Group= CreateGroup()
+unit array GetMainSelectedUnit__units
+integer GetMainSelectedUnit__unitsCount= 0
+filterfunc GetMainSelectedUnit__filter
 //endglobals from GetMainSelectedUnit
 //globals from NSLCodeHelper:
 constant boolean LIBRARY_NSLCodeHelper=true
@@ -115,7 +115,7 @@ playercolor array PlayerUtils___CurrentColor
 //endglobals from PlayerUtils
 //globals from RegisterPlayerUnitEvent:
 constant boolean LIBRARY_RegisterPlayerUnitEvent=true
-trigger array RegisterPlayerUnitEvent___t
+trigger array RegisterPlayerUnitEvent__t
 //endglobals from RegisterPlayerUnitEvent
 //globals from SyncHelper:
 constant boolean LIBRARY_SyncHelper=true
@@ -130,8 +130,8 @@ integer Table___more= 8190
     //Configure it if you use more than 8190 "key" variables in your map (this will never happen though).
     
 hashtable Table___ht= InitHashtable()
-constant integer Table___sizeK=10
-constant integer Table___listK=11
+constant integer Table___sizeK=8
+constant integer Table___listK=9
 //endglobals from Table
 //globals from TasUnitBagGUI:
 constant boolean LIBRARY_TasUnitBagGUI=true
@@ -139,12 +139,12 @@ constant boolean LIBRARY_TasUnitBagGUI=true
 //globals from Interface:
 constant boolean LIBRARY_Interface=true
         // Set this to a texture to replace the default gold icon
-constant string Interface___GOLD_ICON= ""
+constant string Interface__GOLD_ICON= ""
         // Set this to a texture to replace the default lumber icon
-constant string Interface___LUMBER_ICON= ""
+constant string Interface__LUMBER_ICON= ""
         // When true and a unit that has "Select Unit" or "Select Hero" or "Shop Purchase Item" 
         // abilities is select a panel above the portrait is created to show the items/units
-constant boolean Interface___DISPLAY_SHOP= true
+constant boolean Interface__DISPLAY_SHOP= true
 //endglobals from Interface
 //globals from NSLImpl:
 constant boolean LIBRARY_NSLImpl=true
@@ -2977,9 +2977,9 @@ boolean array s__DamageTrigger_configured
 boolean array s__DamageTrigger_usingGUI
 integer array s__DamageTrigger_next
 trigger array s__DamageTrigger_rootTrig
-boolean array s__DamageTrigger_DamageEngine___trigFrozen
-integer array s__DamageTrigger_DamageEngine___levelsDeep
-boolean array s__DamageTrigger_DamageEngine___inceptionTrig
+boolean array s__DamageTrigger_DamageEngine__trigFrozen
+integer array s__DamageTrigger_DamageEngine__levelsDeep
+boolean array s__DamageTrigger_DamageEngine__inceptionTrig
 unit array s__DamageTrigger_source
 unit array s__DamageTrigger_target
 integer array s__DamageTrigger_sourceType
@@ -3099,127 +3099,127 @@ constant integer si__TableArray=52
 integer s__TableArray_tempTable
 integer s__TableArray_tempEnd
 constant integer si__HashTable=53
-constant integer si__Interface___UI=54
-integer si__Interface___UI_F=0
-integer si__Interface___UI_I=0
-integer array si__Interface___UI_V
-trigger s__Interface___UI_maptrigger= CreateTrigger()
-trigger s__Interface___UI_herotrigger= CreateTrigger()
-trigger s__Interface___UI_menutrigger= CreateTrigger()
-trigger s__Interface___UI_trigger= CreateTrigger()
-timer s__Interface___UI_timer= CreateTimer()
-integer s__Interface___UI_key= - 1
-integer array s__Interface___UI_array
-integer array s__Interface___UI_struct
-framehandle s__Interface___UI_handle= null
-framehandle s__Interface___UI_Interface___UI= null
-framehandle s__Interface___UI_ShopSlots= null
-framehandle s__Interface___UI_HealthBar= null
-framehandle s__Interface___UI_ManaBar= null
-framehandle s__Interface___UI_HeroCheck= null
-framehandle s__Interface___UI_HPText= null
-framehandle s__Interface___UI_MPText= null
-framehandle s__Interface___UI_Gold= null
-framehandle s__Interface___UI_Lumber= null
-framehandle s__Interface___UI_CheckBL= null
-framehandle s__Interface___UI_CheckBR= null
-framehandle s__Interface___UI_Minimap= null
-framehandle s__Interface___UI_MenuCheck= null
-framehandle s__Interface___UI_LumberIcon= null
-framehandle s__Interface___UI_GoldIcon= null
-framehandle s__Interface___UI_UnitName= null
-timer s__Interface___UI_groundItemTimer= CreateTimer()
-framehandle s__Interface___UI_GroundItemBorder= null
-framehandle s__Interface___UI_GroundItemBox= null
-framehandle s__Interface___UI_GroundItemName= null
-framehandle s__Interface___UI_GroundItemDesc= null
-string s__Interface___UI_lastGroundItemName= ""
-string s__Interface___UI_lastGroundItemDesc= ""
-integer s__Interface___UI_groundItemSkipTicks= 10
-real array s__Interface___UI_x1
-real array s__Interface___UI_x2
-real array s__Interface___UI_y01
-real array s__Interface___UI_y02
-real array s__Interface___UI_y11
-real array s__Interface___UI_y12
-real array s__Interface___UI_y21
-real array s__Interface___UI_y22
-real array s__Interface___UI_y31
-real array s__Interface___UI_y32
-real array s__Interface___UI_y41
-real array s__Interface___UI_y42
-real array s__Interface___UI_y51
-real array s__Interface___UI_y52
-real array s__Interface___UI_y61
-real array s__Interface___UI_y62
-real array s__Interface___UI_mapX1
-real array s__Interface___UI_mapY1
-real array s__Interface___UI_mapX2
-real array s__Interface___UI_mapY2
-real array s__Interface___UI_frameX1
-real array s__Interface___UI_frameY1
-real array s__Interface___UI_frameX2
-real array s__Interface___UI_frameY2
-real array s__Interface___UI_command0X1
-real array s__Interface___UI_command0Y1
-real array s__Interface___UI_command0X2
-real array s__Interface___UI_command0Y2
-real array s__Interface___UI_command1X1
-real array s__Interface___UI_command1Y1
-real array s__Interface___UI_command1X2
-real array s__Interface___UI_command1Y2
-real array s__Interface___UI_command2X1
-real array s__Interface___UI_command2Y1
-real array s__Interface___UI_command2X2
-real array s__Interface___UI_command2Y2
-real array s__Interface___UI_command3X1
-real array s__Interface___UI_command3Y1
-real array s__Interface___UI_command3X2
-real array s__Interface___UI_command3Y2
-real array s__Interface___UI_command4X1
-real array s__Interface___UI_command4Y1
-real array s__Interface___UI_command4X2
-real array s__Interface___UI_command4Y2
-real array s__Interface___UI_command5X1
-real array s__Interface___UI_command5Y1
-real array s__Interface___UI_command5X2
-real array s__Interface___UI_command5Y2
-real array s__Interface___UI_command6X1
-real array s__Interface___UI_command6Y1
-real array s__Interface___UI_command6X2
-real array s__Interface___UI_command6Y2
-real array s__Interface___UI_command7X1
-real array s__Interface___UI_command7Y1
-real array s__Interface___UI_command7X2
-real array s__Interface___UI_command7Y2
-real array s__Interface___UI_command8X1
-real array s__Interface___UI_command8Y1
-real array s__Interface___UI_command8X2
-real array s__Interface___UI_command8Y2
-real array s__Interface___UI_command9X1
-real array s__Interface___UI_command9Y1
-real array s__Interface___UI_command9X2
-real array s__Interface___UI_command9Y2
-real array s__Interface___UI_command10X1
-real array s__Interface___UI_command10Y1
-real array s__Interface___UI_command10X2
-real array s__Interface___UI_command10Y2
-real array s__Interface___UI_command11X1
-real array s__Interface___UI_command11Y1
-real array s__Interface___UI_command11X2
-real array s__Interface___UI_command11Y2
-boolean array s__Interface___UI_shop
-unit array s__Interface___UI_main
-boolean array s__Interface___UI_checkL
-boolean array s__Interface___UI_checkR
-boolean array s__Interface___UI_checkMenu
-unit array s__Interface___UI_unit
-player array s__Interface___UI_player
-integer array s__Interface___UI_id
-real array s__Interface___UI_health
-real array s__Interface___UI_mana
-string array s__Interface___UI_hp
-string array s__Interface___UI_mp
+constant integer si__Interface__UI=54
+integer si__Interface__UI_F=0
+integer si__Interface__UI_I=0
+integer array si__Interface__UI_V
+trigger s__Interface__UI_maptrigger= CreateTrigger()
+trigger s__Interface__UI_herotrigger= CreateTrigger()
+trigger s__Interface__UI_menutrigger= CreateTrigger()
+trigger s__Interface__UI_trigger= CreateTrigger()
+timer s__Interface__UI_timer= CreateTimer()
+integer s__Interface__UI_key= - 1
+integer array s__Interface__UI_array
+integer array s__Interface__UI_struct
+framehandle s__Interface__UI_handle= null
+framehandle s__Interface__UI_Interface__UI= null
+framehandle s__Interface__UI_ShopSlots= null
+framehandle s__Interface__UI_HealthBar= null
+framehandle s__Interface__UI_ManaBar= null
+framehandle s__Interface__UI_HeroCheck= null
+framehandle s__Interface__UI_HPText= null
+framehandle s__Interface__UI_MPText= null
+framehandle s__Interface__UI_Gold= null
+framehandle s__Interface__UI_Lumber= null
+framehandle s__Interface__UI_CheckBL= null
+framehandle s__Interface__UI_CheckBR= null
+framehandle s__Interface__UI_Minimap= null
+framehandle s__Interface__UI_MenuCheck= null
+framehandle s__Interface__UI_LumberIcon= null
+framehandle s__Interface__UI_GoldIcon= null
+framehandle s__Interface__UI_UnitName= null
+timer s__Interface__UI_groundItemTimer= CreateTimer()
+framehandle s__Interface__UI_GroundItemBorder= null
+framehandle s__Interface__UI_GroundItemBox= null
+framehandle s__Interface__UI_GroundItemName= null
+framehandle s__Interface__UI_GroundItemDesc= null
+string s__Interface__UI_lastGroundItemName= ""
+string s__Interface__UI_lastGroundItemDesc= ""
+integer s__Interface__UI_groundItemSkipTicks= 10
+real array s__Interface__UI_x1
+real array s__Interface__UI_x2
+real array s__Interface__UI_y01
+real array s__Interface__UI_y02
+real array s__Interface__UI_y11
+real array s__Interface__UI_y12
+real array s__Interface__UI_y21
+real array s__Interface__UI_y22
+real array s__Interface__UI_y31
+real array s__Interface__UI_y32
+real array s__Interface__UI_y41
+real array s__Interface__UI_y42
+real array s__Interface__UI_y51
+real array s__Interface__UI_y52
+real array s__Interface__UI_y61
+real array s__Interface__UI_y62
+real array s__Interface__UI_mapX1
+real array s__Interface__UI_mapY1
+real array s__Interface__UI_mapX2
+real array s__Interface__UI_mapY2
+real array s__Interface__UI_frameX1
+real array s__Interface__UI_frameY1
+real array s__Interface__UI_frameX2
+real array s__Interface__UI_frameY2
+real array s__Interface__UI_command0X1
+real array s__Interface__UI_command0Y1
+real array s__Interface__UI_command0X2
+real array s__Interface__UI_command0Y2
+real array s__Interface__UI_command1X1
+real array s__Interface__UI_command1Y1
+real array s__Interface__UI_command1X2
+real array s__Interface__UI_command1Y2
+real array s__Interface__UI_command2X1
+real array s__Interface__UI_command2Y1
+real array s__Interface__UI_command2X2
+real array s__Interface__UI_command2Y2
+real array s__Interface__UI_command3X1
+real array s__Interface__UI_command3Y1
+real array s__Interface__UI_command3X2
+real array s__Interface__UI_command3Y2
+real array s__Interface__UI_command4X1
+real array s__Interface__UI_command4Y1
+real array s__Interface__UI_command4X2
+real array s__Interface__UI_command4Y2
+real array s__Interface__UI_command5X1
+real array s__Interface__UI_command5Y1
+real array s__Interface__UI_command5X2
+real array s__Interface__UI_command5Y2
+real array s__Interface__UI_command6X1
+real array s__Interface__UI_command6Y1
+real array s__Interface__UI_command6X2
+real array s__Interface__UI_command6Y2
+real array s__Interface__UI_command7X1
+real array s__Interface__UI_command7Y1
+real array s__Interface__UI_command7X2
+real array s__Interface__UI_command7Y2
+real array s__Interface__UI_command8X1
+real array s__Interface__UI_command8Y1
+real array s__Interface__UI_command8X2
+real array s__Interface__UI_command8Y2
+real array s__Interface__UI_command9X1
+real array s__Interface__UI_command9Y1
+real array s__Interface__UI_command9X2
+real array s__Interface__UI_command9Y2
+real array s__Interface__UI_command10X1
+real array s__Interface__UI_command10Y1
+real array s__Interface__UI_command10X2
+real array s__Interface__UI_command10Y2
+real array s__Interface__UI_command11X1
+real array s__Interface__UI_command11Y1
+real array s__Interface__UI_command11X2
+real array s__Interface__UI_command11Y2
+boolean array s__Interface__UI_shop
+unit array s__Interface__UI_main
+boolean array s__Interface__UI_checkL
+boolean array s__Interface__UI_checkR
+boolean array s__Interface__UI_checkMenu
+unit array s__Interface__UI_unit
+player array s__Interface__UI_player
+integer array s__Interface__UI_id
+real array s__Interface__UI_health
+real array s__Interface__UI_mana
+string array s__Interface__UI_hp
+string array s__Interface__UI_mp
 constant integer si__NSL_Code=55
 integer si__NSL_Code_F=0
 integer si__NSL_Code_I=0
@@ -3345,32 +3345,32 @@ function s__NSL_Code_deallocate takes integer this returns nothing
     set si__NSL_Code_F=this
 endfunction
 
-//Generated allocator of Interface___UI
-function s__Interface___UI__allocate takes nothing returns integer
- local integer this=si__Interface___UI_F
+//Generated allocator of Interface__UI
+function s__Interface__UI__allocate takes nothing returns integer
+ local integer this=si__Interface__UI_F
     if (this!=0) then
-        set si__Interface___UI_F=si__Interface___UI_V[this]
+        set si__Interface__UI_F=si__Interface__UI_V[this]
     else
-        set si__Interface___UI_I=si__Interface___UI_I+1
-        set this=si__Interface___UI_I
+        set si__Interface__UI_I=si__Interface__UI_I+1
+        set this=si__Interface__UI_I
     endif
     if (this>8190) then
         return 0
     endif
 
-    set si__Interface___UI_V[this]=-1
+    set si__Interface__UI_V[this]=-1
  return this
 endfunction
 
-//Generated destructor of Interface___UI
-function s__Interface___UI_deallocate takes integer this returns nothing
+//Generated destructor of Interface__UI
+function s__Interface__UI_deallocate takes integer this returns nothing
     if this==null then
         return
-    elseif (si__Interface___UI_V[this]!=-1) then
+    elseif (si__Interface__UI_V[this]!=-1) then
         return
     endif
-    set si__Interface___UI_V[this]=si__Interface___UI_F
-    set si__Interface___UI_F=this
+    set si__Interface__UI_V[this]=si__Interface__UI_F
+    set si__Interface__UI_F=this
 endfunction
 function sc___prototype2_execute takes integer i,trigger a1,string a2,limitop a3,real a4 returns nothing
     set f__arg_trigger1=a1
@@ -3580,8 +3580,8 @@ endfunction
             return 0
         endif
  
-        if not DamageEngine___hasLethal and index == s__DamageTrigger_LETHAL then
-            set DamageEngine___hasLethal=true
+        if not DamageEngine__hasLethal and index == s__DamageTrigger_LETHAL then
+            set DamageEngine__hasLethal=true
         endif
         if s__DamageTrigger_trigIndexStack[0] == 0 then
             set s__DamageTrigger_count=s__DamageTrigger_count + 1 //List runs from index 10 and up
@@ -3643,7 +3643,7 @@ endfunction
         endif
         return true
     endfunction
-    function s__DamageTrigger_DamageEngine___run takes integer this returns nothing
+    function s__DamageTrigger_DamageEngine__run takes integer this returns nothing
         local integer cat= this
         local integer d= s__Damage_index
 
@@ -3651,13 +3651,13 @@ endfunction
         local boolean guiUnset= false
         local boolean mod= cat <= s__DamageTrigger_DAMAGE
 
-        if DamageEngine___dreaming then
+        if DamageEngine__dreaming then
             return
         endif
-        set DamageEngine___dreaming=true
-        call DisableTrigger(DamageEngine___t1)
-        call DisableTrigger(DamageEngine___t2)
-        call EnableTrigger(DamageEngine___t3)
+        set DamageEngine__dreaming=true
+        call DisableTrigger(DamageEngine__t1)
+        call DisableTrigger(DamageEngine__t2)
+        call EnableTrigger(DamageEngine__t3)
         //call BJDebugMsg("Start of event running")
         loop
             set this=s__DamageTrigger_next[this]
@@ -3665,11 +3665,11 @@ endfunction
             exitwhen cat == s__DamageTrigger_MOD and ( udg_DamageEventOverride or udg_DamageEventType == DamageEngine_TYPE_PURE )
             exitwhen cat == s__DamageTrigger_SHIELD and udg_DamageEventAmount <= 0.00
 
-            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine___DEATH_VAL
+            exitwhen cat == s__DamageTrigger_LETHAL and udg_LethalDamageHP > DamageEngine__DEATH_VAL
 
          
             set s__DamageTrigger_eventIndex=this
-            if not s__DamageTrigger_DamageEngine___trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
+            if not s__DamageTrigger_DamageEngine__trigFrozen[this] and s__DamageTrigger_filters[this * DamageEngine_FILTER_MAX + s__Damage_eFilter[d]] and IsTriggerEnabled(s__DamageTrigger_rootTrig[this]) and ( not s__DamageTrigger_configured[this] or s__DamageTrigger_checkConfiguration(this) ) then
 
                 if mod then
                     if s__DamageTrigger_usingGUI[this] then
@@ -3729,10 +3729,10 @@ endfunction
 
 
         //call BJDebugMsg("End of event running")
-        call DisableTrigger(DamageEngine___t3)
-        call EnableTrigger(DamageEngine___t1)
-        call EnableTrigger(DamageEngine___t2)
-        set DamageEngine___dreaming=false
+        call DisableTrigger(DamageEngine__t3)
+        call EnableTrigger(DamageEngine__t1)
+        call EnableTrigger(DamageEngine__t2)
+        set DamageEngine__dreaming=false
     endfunction
     function s__DamageTrigger__staticgetindex takes code c returns trigger
         local integer i= 0
@@ -3802,7 +3802,7 @@ endfunction
 
     function s__Damage_onAOEEnd takes nothing returns nothing
         if udg_DamageEventAOE > 1 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AOE)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AOE)
         endif
         set udg_DamageEventAOE=0
         set udg_DamageEventLevel=0
@@ -3814,7 +3814,7 @@ endfunction
    
     function s__Damage_afterDamage takes nothing returns nothing
         if udg_DamageEventPrevAmt != 0.00 and udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_AFTER)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_AFTER)
             set udg_DamageEventDamageT=0
             set udg_DamageEventPrevAmt=0.00
         endif
@@ -3830,8 +3830,8 @@ endfunction
         set s__Damage_index=this
         call s__DamageTrigger_setGUIFromStruct(true)
        
-        call GroupAddUnit(DamageEngine___proclusGlobal, udg_DamageEventSource)
-        call GroupAddUnit(DamageEngine___fischerMorrow, udg_DamageEventTarget)
+        call GroupAddUnit(DamageEngine__proclusGlobal, udg_DamageEventSource)
+        call GroupAddUnit(DamageEngine__fischerMorrow, udg_DamageEventTarget)
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_01()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_02()
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_03()
@@ -3839,7 +3839,7 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_PRE_VARS_PLUGIN_05()
         if udg_DamageEventAmount != 0.00 then
             set udg_DamageEventOverride=udg_DamageEventDamageT == 0
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_MOD)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_MOD)
 
 
 
@@ -3861,46 +3861,46 @@ endfunction
         loop
             exitwhen i == 0
             set i=i - 1
-            set s__DamageTrigger_DamageEngine___trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
-            set s__DamageTrigger_DamageEngine___levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
+            set s__DamageTrigger_DamageEngine__trigFrozen[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=false
+            set s__DamageTrigger_DamageEngine__levelsDeep[s__Damage_recursiveTrig[s__Damage_stackRef[i]]]=0
         endloop
-        call EnableTrigger(DamageEngine___t1)
-        call EnableTrigger(DamageEngine___t2)
-        set DamageEngine___kicking=false
+        call EnableTrigger(DamageEngine__t1)
+        call EnableTrigger(DamageEngine__t2)
+        set DamageEngine__kicking=false
         set s__Damage_damageStack=0
         set s__Damage_prepped=0
-        set DamageEngine___dreaming=false
-        set DamageEngine___sleepLevel=0
-        call GroupClear(DamageEngine___proclusGlobal)
-        call GroupClear(DamageEngine___fischerMorrow)
+        set DamageEngine__dreaming=false
+        set DamageEngine__sleepLevel=0
+        call GroupClear(DamageEngine__proclusGlobal)
+        call GroupClear(DamageEngine__fischerMorrow)
         //call BJDebugMsg("Cleared up the groups")
     endfunction
     function s__Damage_finish takes nothing returns nothing
         local integer i= 0
         local integer exit
-        if DamageEngine___eventsRun then
-            set DamageEngine___eventsRun=false
+        if DamageEngine__eventsRun then
+            set DamageEngine__eventsRun=false
             call s__Damage_afterDamage()
         endif
-        if DamageEngine___canKick and not DamageEngine___kicking then
+        if DamageEngine__canKick and not DamageEngine__kicking then
             if s__Damage_damageStack != 0 then
-                set DamageEngine___kicking=true
+                set DamageEngine__kicking=true
                 loop
-                    set DamageEngine___sleepLevel=DamageEngine___sleepLevel + 1
+                    set DamageEngine__sleepLevel=DamageEngine__sleepLevel + 1
                     set exit=s__Damage_damageStack
                     loop
                         set s__Damage_prepped=s__Damage_stackRef[i]
                         if UnitAlive(s__Damage_targetUnit[s__Damage_prepped]) then //Added just in case dead units had issues.
                             call s__Damage_doPreEvents(s__Damage_prepped,false) //don't evaluate the pre-event
                             if s__Damage_damage[s__Damage_prepped] > 0.00 then
-                                call DisableTrigger(DamageEngine___t1) //Force only the after armor event to run.
-                                call EnableTrigger(DamageEngine___t2) //in case the user forgot to re-enable this
-                                set DamageEngine___totem=true
+                                call DisableTrigger(DamageEngine__t1) //Force only the after armor event to run.
+                                call EnableTrigger(DamageEngine__t2) //in case the user forgot to re-enable this
+                                set DamageEngine__totem=true
                                 call UnitDamageTarget(s__Damage_sourceUnit[s__Damage_prepped], s__Damage_targetUnit[s__Damage_prepped], s__Damage_damage[s__Damage_prepped], s__Damage_isAttack[s__Damage_prepped], s__Damage_isRanged[s__Damage_prepped], s__Damage_attackType[s__Damage_prepped], s__Damage_damageType[s__Damage_prepped], s__Damage_weaponType[s__Damage_prepped])
                             else
                                 //No new events run at all in this case
                                 if udg_DamageEventDamageT != 0 then
-                                    call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
+                                    call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
                                 endif
                                 if s__Damage_damage[s__Damage_prepped] < 0.00 then
                                     //No need for BlzSetEventDamage here
@@ -3925,43 +3925,43 @@ endfunction
 
         call s__Damage_setArmor(s__Damage_index,true)
 
-        set DamageEngine___canKick=true
-        set DamageEngine___kicking=false
-        set DamageEngine___totem=false
+        set DamageEngine__canKick=true
+        set DamageEngine__kicking=false
+        set DamageEngine__totem=false
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
-            set DamageEngine___eventsRun=true
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
+            set DamageEngine__eventsRun=true
         endif
         call s__Damage_finish()
     endfunction
     function s__Damage__set_enabled takes boolean b returns nothing
         if b then
-            if DamageEngine___dreaming then
-                call EnableTrigger(DamageEngine___t3)
+            if DamageEngine__dreaming then
+                call EnableTrigger(DamageEngine__t3)
             else
-                call EnableTrigger(DamageEngine___t1)
-                call EnableTrigger(DamageEngine___t2)
+                call EnableTrigger(DamageEngine__t1)
+                call EnableTrigger(DamageEngine__t2)
             endif
         else
-            if DamageEngine___dreaming then
-                call DisableTrigger(DamageEngine___t3)
+            if DamageEngine__dreaming then
+                call DisableTrigger(DamageEngine__t3)
             else
-                call DisableTrigger(DamageEngine___t1)
-                call DisableTrigger(DamageEngine___t2)
+                call DisableTrigger(DamageEngine__t1)
+                call DisableTrigger(DamageEngine__t2)
             endif
         endif
     endfunction
     function s__Damage__get_enabled takes nothing returns boolean
-        return IsTriggerEnabled(DamageEngine___t1)
+        return IsTriggerEnabled(DamageEngine__t1)
     endfunction
    
    
     function s__Damage_getOutOfBed takes nothing returns nothing
-        if DamageEngine___totem then
+        if DamageEngine__totem then
             call s__Damage_failsafeClear() //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
         else
-            set DamageEngine___canKick=true
-            set DamageEngine___kicking=false
+            set DamageEngine__canKick=true
+            set DamageEngine__kicking=false
             call s__Damage_finish()
         endif
 
@@ -3971,7 +3971,7 @@ endfunction
     endfunction
    
     function s__Damage_wakeUp takes nothing returns nothing
-        set DamageEngine___dreaming=false
+        set DamageEngine__dreaming=false
         call s__Damage__set_enabled(true)
         call ForForce(bj_FORCE_PLAYER[0], function s__Damage_getOutOfBed) //Moved to a new thread in case of a thread crash
         if not s__Damage_arisen then
@@ -3982,7 +3982,7 @@ endfunction
         endif
         set s__Damage_count=0
         set s__Damage_index=0
-        set DamageEngine___alarmSet=false
+        set DamageEngine__alarmSet=false
         //call BJDebugMsg("Timer wrapped up")
     endfunction
     function s__Damage_addRecursive takes integer this returns nothing
@@ -3992,16 +3992,16 @@ endfunction
                 set s__Damage_isCode[this]=true
                 set s__Damage_userType[this]=DamageEngine_TYPE_CODE
             endif
-            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]
-            if DamageEngine___kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine___proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine___fischerMorrow) then
+            set DamageEngine_inception=DamageEngine_inception or s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]
+            if DamageEngine__kicking and IsUnitInGroup(s__Damage_sourceUnit[this], DamageEngine__proclusGlobal) and IsUnitInGroup(s__Damage_targetUnit[this], DamageEngine__fischerMorrow) then
                 if not DamageEngine_inception then
-                    set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
-                elseif not s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex] then
-                    set s__DamageTrigger_DamageEngine___inceptionTrig[s__DamageTrigger_eventIndex]=true
-                    if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine___sleepLevel then
-                        set s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] + 1
-                        if s__DamageTrigger_DamageEngine___levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine___LIMBO then
-                            set s__DamageTrigger_DamageEngine___trigFrozen[s__DamageTrigger_eventIndex]=true
+                    set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
+                elseif not s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex] then
+                    set s__DamageTrigger_DamageEngine__inceptionTrig[s__DamageTrigger_eventIndex]=true
+                    if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] < DamageEngine__sleepLevel then
+                        set s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex]=s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] + 1
+                        if s__DamageTrigger_DamageEngine__levelsDeep[s__DamageTrigger_eventIndex] >= DamageEngine__LIMBO then
+                            set s__DamageTrigger_DamageEngine__trigFrozen[s__DamageTrigger_eventIndex]=true
                         endif
                     endif
                 endif
@@ -4100,12 +4100,12 @@ endfunction
     function s__Damage_onDamaging takes nothing returns boolean
         local integer d= s__Damage_createFromEvent()
         //call BJDebugMsg("Pre-damage event running for " + GetUnitName(GetTriggerUnit()))
-        if DamageEngine___alarmSet then
-            if DamageEngine___totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
+        if DamageEngine__alarmSet then
+            if DamageEngine__totem then //WarCraft 3 didn't run the DAMAGED event despite running the DAMAGING event.
                 if s__Damage_damageType[d] == DAMAGE_TYPE_SPIRIT_LINK or s__Damage_damageType[d] == DAMAGE_TYPE_DEFENSIVE or s__Damage_damageType[d] == DAMAGE_TYPE_PLANT then
-                    set DamageEngine___totem=false
-                    set DamageEngine___lastInstance=s__Damage_index
-                    set DamageEngine___canKick=false
+                    set DamageEngine__totem=false
+                    set DamageEngine__lastInstance=s__Damage_index
+                    set DamageEngine__canKick=false
                 else
                     call s__Damage_failsafeClear() //Not an overlapping event - just wrap it up
                 endif
@@ -4124,8 +4124,8 @@ endfunction
             endif
 
         else
-            call TimerStart(DamageEngine___alarm, 0.00, false, function s__Damage_wakeUp)
-            set DamageEngine___alarmSet=true
+            call TimerStart(DamageEngine__alarm, 0.00, false, function s__Damage_wakeUp)
+            set DamageEngine__alarmSet=true
 
             set udg_AOEDamageSource=s__Damage_sourceUnit[d]
             set udg_EnhancedDamageTarget=s__Damage_targetUnit[d]
@@ -4135,11 +4135,11 @@ endfunction
         call GroupAddUnit(udg_DamageEventAOEGroup, s__Damage_targetUnit[d])
 
         if s__Damage_doPreEvents(d,true) then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_ZERO)
-            set DamageEngine___canKick=true
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_ZERO)
+            set DamageEngine__canKick=true
             call s__Damage_finish()
         endif
-        set DamageEngine___totem=DamageEngine___lastInstance == 0 or DamageEngine___attacksImmune[udg_DamageEventAttackT] or DamageEngine___damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
+        set DamageEngine__totem=DamageEngine__lastInstance == 0 or DamageEngine__attacksImmune[udg_DamageEventAttackT] or DamageEngine__damagesImmune[udg_DamageEventDamageT] or not IsUnitType(udg_DamageEventTarget, UNIT_TYPE_MAGIC_IMMUNE)
         return false
     endfunction
     function s__Damage_onDamaged takes nothing returns boolean
@@ -4148,17 +4148,17 @@ endfunction
         //call BJDebugMsg("Second damage event running for " + GetUnitName(GetTriggerUnit()))
         if s__Damage_prepped > 0 then
             set s__Damage_prepped=0
-        elseif DamageEngine___dreaming or s__Damage_prevAmt[d] == 0.00 then
+        elseif DamageEngine__dreaming or s__Damage_prevAmt[d] == 0.00 then
             return false
-        elseif DamageEngine___totem then
-            set DamageEngine___totem=false
+        elseif DamageEngine__totem then
+            set DamageEngine__totem=false
         else
             //This should only happen for stuff like Spirit Link or Thorns Aura/Carapace
             call s__Damage_afterDamage()
-            set s__Damage_index=DamageEngine___lastInstance
-            set DamageEngine___lastInstance=0
+            set s__Damage_index=DamageEngine__lastInstance
+            set DamageEngine__lastInstance=0
             set d=s__Damage_index
-            set DamageEngine___canKick=true
+            set DamageEngine__canKick=true
             call s__DamageTrigger_setGUIFromStruct(true)
         endif
 
@@ -4191,21 +4191,21 @@ endfunction
 //ignored textmacro command: DAMAGE_EVENT_VARS_PLUGIN_05()
  
         if udg_DamageEventAmount > 0.00 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_SHIELD)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_SHIELD)
 
 
 
 
-            if DamageEngine___hasLethal or udg_DamageEventType < 0 then
+            if DamageEngine__hasLethal or udg_DamageEventType < 0 then
                 set udg_LethalDamageHP=GetWidgetLife(udg_DamageEventTarget) - udg_DamageEventAmount
-                if udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
-                    if DamageEngine___hasLethal then
-                        call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_LETHAL)
+                if udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
+                    if DamageEngine__hasLethal then
+                        call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_LETHAL)
            
                         set udg_DamageEventAmount=GetWidgetLife(udg_DamageEventTarget) - udg_LethalDamageHP
                         set s__Damage_damage[d]=udg_DamageEventAmount
                     endif
-                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine___DEATH_VAL then
+                    if udg_DamageEventType < 0 and udg_LethalDamageHP <= DamageEngine__DEATH_VAL then
                         call SetUnitExploded(udg_DamageEventTarget, true)
                     endif
                 endif
@@ -4220,10 +4220,10 @@ endfunction
 
         endif
         if udg_DamageEventDamageT != 0 then
-            call s__DamageTrigger_DamageEngine___run(s__DamageTrigger_DAMAGE)
+            call s__DamageTrigger_DamageEngine__run(s__DamageTrigger_DAMAGE)
         endif
         call BlzSetEventDamage(udg_DamageEventAmount)
-        set DamageEngine___eventsRun=true
+        set DamageEngine__eventsRun=true
         if udg_DamageEventAmount == 0.00 then
             call s__Damage_finish()
         endif
@@ -4234,7 +4234,7 @@ endfunction
         if udg_NextDamageType == 0 then
            set udg_NextDamageType=DamageEngine_TYPE_CODE
         endif
-        if DamageEngine___dreaming then
+        if DamageEngine__dreaming then
             set d=s__Damage_create(src , tgt , amt , a , at , dt , wt)
             set s__Damage_isCode[d]=true
             set s__Damage_eFilter[d]=DamageEngine_FILTER_CODE
@@ -4263,49 +4263,49 @@ endfunction
     endfunction
     //===========================================================================
     function s__Damage_onInit takes nothing returns nothing
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t1, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine___t1, Filter(function s__Damage_onDamaging))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t1, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine__t1, Filter(function s__Damage_onDamaging))
  
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t2, EVENT_PLAYER_UNIT_DAMAGED)
-        call TriggerAddCondition(DamageEngine___t2, Filter(function s__Damage_onDamaged))
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t2, EVENT_PLAYER_UNIT_DAMAGED)
+        call TriggerAddCondition(DamageEngine__t2, Filter(function s__Damage_onDamaged))
  
         //For recursion
-        call TriggerRegisterAnyUnitEventBJ(DamageEngine___t3, EVENT_PLAYER_UNIT_DAMAGING)
-        call TriggerAddCondition(DamageEngine___t3, Filter(function s__Damage_onRecursion))
-        call DisableTrigger(DamageEngine___t3)
+        call TriggerRegisterAnyUnitEventBJ(DamageEngine__t3, EVENT_PLAYER_UNIT_DAMAGING)
+        call TriggerAddCondition(DamageEngine__t3, Filter(function s__Damage_onRecursion))
+        call DisableTrigger(DamageEngine__t3)
  
         //For preventing Thorns/Defensive glitch.
         //Data gathered from https://www.hiveworkshop.com/threads/repo-in-progress-mapping-damage-types-to-their-abilities.316271/
-        set DamageEngine___attacksImmune[0]=false //ATTACK_TYPE_NORMAL
-        set DamageEngine___attacksImmune[1]=true //ATTACK_TYPE_MELEE  
-        set DamageEngine___attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
-        set DamageEngine___attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
-        set DamageEngine___attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
-        set DamageEngine___attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
-        set DamageEngine___attacksImmune[6]=true //ATTACK_TYPE_HERO    
+        set DamageEngine__attacksImmune[0]=false //ATTACK_TYPE_NORMAL
+        set DamageEngine__attacksImmune[1]=true //ATTACK_TYPE_MELEE  
+        set DamageEngine__attacksImmune[2]=true //ATTACK_TYPE_PIERCE  
+        set DamageEngine__attacksImmune[3]=true //ATTACK_TYPE_SIEGE  
+        set DamageEngine__attacksImmune[4]=false //ATTACK_TYPE_MAGIC  
+        set DamageEngine__attacksImmune[5]=true //ATTACK_TYPE_CHAOS  
+        set DamageEngine__attacksImmune[6]=true //ATTACK_TYPE_HERO    
  
-        set DamageEngine___damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
-        set DamageEngine___damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
-        set DamageEngine___damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
-        set DamageEngine___damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
-        set DamageEngine___damagesImmune[9]=false //DAMAGE_TYPE_COLD              
-        set DamageEngine___damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
-        set DamageEngine___damagesImmune[11]=true //DAMAGE_TYPE_POISON          
-        set DamageEngine___damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
-        set DamageEngine___damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
-        set DamageEngine___damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
-        set DamageEngine___damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
-        set DamageEngine___damagesImmune[16]=true //DAMAGE_TYPE_ACID            
-        set DamageEngine___damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
-        set DamageEngine___damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
-        set DamageEngine___damagesImmune[19]=false //DAMAGE_TYPE_MIND              
-        set DamageEngine___damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
-        set DamageEngine___damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
-        set DamageEngine___damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
-        set DamageEngine___damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
-        set DamageEngine___damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
-        set DamageEngine___damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
-        set DamageEngine___damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
+        set DamageEngine__damagesImmune[0]=true //DAMAGE_TYPE_UNKNOWN      
+        set DamageEngine__damagesImmune[4]=true //DAMAGE_TYPE_NORMAL          
+        set DamageEngine__damagesImmune[5]=true //DAMAGE_TYPE_ENHANCED        
+        set DamageEngine__damagesImmune[8]=false //DAMAGE_TYPE_FIRE            
+        set DamageEngine__damagesImmune[9]=false //DAMAGE_TYPE_COLD              
+        set DamageEngine__damagesImmune[10]=false //DAMAGE_TYPE_LIGHTNING        
+        set DamageEngine__damagesImmune[11]=true //DAMAGE_TYPE_POISON          
+        set DamageEngine__damagesImmune[12]=true //DAMAGE_TYPE_DISEASE          
+        set DamageEngine__damagesImmune[13]=false //DAMAGE_TYPE_DIVINE            
+        set DamageEngine__damagesImmune[14]=false //DAMAGE_TYPE_MAGIC            
+        set DamageEngine__damagesImmune[15]=false //DAMAGE_TYPE_SONIC            
+        set DamageEngine__damagesImmune[16]=true //DAMAGE_TYPE_ACID            
+        set DamageEngine__damagesImmune[17]=false //DAMAGE_TYPE_FORCE            
+        set DamageEngine__damagesImmune[18]=false //DAMAGE_TYPE_DEATH            
+        set DamageEngine__damagesImmune[19]=false //DAMAGE_TYPE_MIND              
+        set DamageEngine__damagesImmune[20]=false //DAMAGE_TYPE_PLANT            
+        set DamageEngine__damagesImmune[21]=false //DAMAGE_TYPE_DEFENSIVE        
+        set DamageEngine__damagesImmune[22]=true //DAMAGE_TYPE_DEMOLITION      
+        set DamageEngine__damagesImmune[23]=true //DAMAGE_TYPE_SLOW_POISON      
+        set DamageEngine__damagesImmune[24]=false //DAMAGE_TYPE_SPIRIT_LINK      
+        set DamageEngine__damagesImmune[25]=false //DAMAGE_TYPE_SHADOW_STRIKE    
+        set DamageEngine__damagesImmune[26]=true //DAMAGE_TYPE_UNIVERSAL
     endfunction
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_DMGPKG()
 //ignored textmacro command: DAMAGE_EVENT_STRUCT_PLUGIN_01()
@@ -4614,7 +4614,7 @@ function GetUnitOrderValue takes unit u returns integer
     endif
 endfunction
 
-function GetMainSelectedUnit___FilterFunction takes nothing returns boolean
+function GetMainSelectedUnit__FilterFunction takes nothing returns boolean
     local unit u= GetFilterUnit()
     local real prio= BlzGetUnitRealField(u, UNIT_RF_PRIORITY)
     local boolean found= false
@@ -4622,28 +4622,28 @@ function GetMainSelectedUnit___FilterFunction takes nothing returns boolean
     local integer loopB= 0
     // compare the current u with allready found, to place it in the right slot
     loop
-        exitwhen loopA > GetMainSelectedUnit___unitsCount
-        if BlzGetUnitRealField(GetMainSelectedUnit___units[loopA], UNIT_RF_PRIORITY) < prio then
-            set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount + 1
-            set loopB=GetMainSelectedUnit___unitsCount
+        exitwhen loopA > GetMainSelectedUnit__unitsCount
+        if BlzGetUnitRealField(GetMainSelectedUnit__units[loopA], UNIT_RF_PRIORITY) < prio then
+            set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount + 1
+            set loopB=GetMainSelectedUnit__unitsCount
             loop
                 exitwhen loopB <= loopA
-                set GetMainSelectedUnit___units[loopB]=GetMainSelectedUnit___units[loopB - 1]
+                set GetMainSelectedUnit__units[loopB]=GetMainSelectedUnit__units[loopB - 1]
                 set loopB=loopB - 1
             endloop
-            set GetMainSelectedUnit___units[loopA]=u
+            set GetMainSelectedUnit__units[loopA]=u
             set found=true
             exitwhen true
         // equal prio and better colisions Value
-        elseif BlzGetUnitRealField(GetMainSelectedUnit___units[loopA], UNIT_RF_PRIORITY) == prio and GetUnitOrderValue(GetMainSelectedUnit___units[loopA]) > GetUnitOrderValue(u) then
-            set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount + 1
-            set loopB=GetMainSelectedUnit___unitsCount
+        elseif BlzGetUnitRealField(GetMainSelectedUnit__units[loopA], UNIT_RF_PRIORITY) == prio and GetUnitOrderValue(GetMainSelectedUnit__units[loopA]) > GetUnitOrderValue(u) then
+            set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount + 1
+            set loopB=GetMainSelectedUnit__unitsCount
             loop
                 exitwhen loopB <= loopA
-                set GetMainSelectedUnit___units[loopB]=GetMainSelectedUnit___units[loopB - 1]
+                set GetMainSelectedUnit__units[loopB]=GetMainSelectedUnit__units[loopB - 1]
                 set loopB=loopB - 1
             endloop
-            set GetMainSelectedUnit___units[loopA]=u
+            set GetMainSelectedUnit__units[loopA]=u
             set found=true
             exitwhen true
         endif
@@ -4652,8 +4652,8 @@ function GetMainSelectedUnit___FilterFunction takes nothing returns boolean
    
     // not found add it at the end
     if not found then
-        set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount + 1
-        set GetMainSelectedUnit___units[GetMainSelectedUnit___unitsCount]=u
+        set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount + 1
+        set GetMainSelectedUnit__units[GetMainSelectedUnit__unitsCount]=u
     endif
 
     set u=null
@@ -4663,11 +4663,11 @@ endfunction
     function GetSelectedUnitIndex takes nothing returns integer
         local integer i= 0
         // local player is in group selection?
-        if BlzFrameIsVisible(GetMainSelectedUnit___containerFrame) then
+        if BlzFrameIsVisible(GetMainSelectedUnit__containerFrame) then
             // find the first visible yellow Background Frame
             loop
                 exitwhen i > 11
-                if BlzFrameIsVisible(GetMainSelectedUnit___frames[i]) then
+                if BlzFrameIsVisible(GetMainSelectedUnit__frames[i]) then
                     return i
                 endif
                 set i=i + 1
@@ -4678,18 +4678,18 @@ endfunction
 
     function GetMainSelectedUnit takes integer index returns unit
         if index >= 0 then
-            call GroupEnumUnitsSelected(GetMainSelectedUnit___Group, GetLocalPlayer(), GetMainSelectedUnit___filter)
-            set bj_groupRandomCurrentPick=GetMainSelectedUnit___units[index + 1]
+            call GroupEnumUnitsSelected(GetMainSelectedUnit__Group, GetLocalPlayer(), GetMainSelectedUnit__filter)
+            set bj_groupRandomCurrentPick=GetMainSelectedUnit__units[index + 1]
             //clear table
             loop
-                exitwhen GetMainSelectedUnit___unitsCount <= 0
-                set GetMainSelectedUnit___units[GetMainSelectedUnit___unitsCount]=null
-                set GetMainSelectedUnit___unitsCount=GetMainSelectedUnit___unitsCount - 1
+                exitwhen GetMainSelectedUnit__unitsCount <= 0
+                set GetMainSelectedUnit__units[GetMainSelectedUnit__unitsCount]=null
+                set GetMainSelectedUnit__unitsCount=GetMainSelectedUnit__unitsCount - 1
             endloop
             return bj_groupRandomCurrentPick
         else
-            call GroupEnumUnitsSelected(GetMainSelectedUnit___Group, GetLocalPlayer(), null)
-            return FirstOfGroup(GetMainSelectedUnit___Group)
+            call GroupEnumUnitsSelected(GetMainSelectedUnit__Group, GetLocalPlayer(), null)
+            return FirstOfGroup(GetMainSelectedUnit__Group)
         endif
     endfunction
 
@@ -4698,28 +4698,28 @@ endfunction
         return GetMainSelectedUnit(GetSelectedUnitIndex())
     endfunction
 
-    function GetMainSelectedUnit___init_functionAt0s takes nothing returns nothing
+    function GetMainSelectedUnit__init_functionAt0s takes nothing returns nothing
         local integer i= 0
         local framehandle console= BlzGetFrameByName("ConsoleUI", 0)
         local framehandle bottomUI= BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0))
         local framehandle groupframe= BlzFrameGetChild(bottomUI, 5)
         local framehandle buttonContainer
         //globals
-        set GetMainSelectedUnit___containerFrame=BlzFrameGetChild(groupframe, 0)
-        set GetMainSelectedUnit___Group=CreateGroup()
+        set GetMainSelectedUnit__containerFrame=BlzFrameGetChild(groupframe, 0)
+        set GetMainSelectedUnit__Group=CreateGroup()
         // give this frames a handleId
         loop
-            exitwhen i >= BlzFrameGetChildrenCount(GetMainSelectedUnit___containerFrame) - 1
-            set buttonContainer=BlzFrameGetChild(GetMainSelectedUnit___containerFrame, i)
-            set GetMainSelectedUnit___frames[i]=BlzFrameGetChild(buttonContainer, 0)
+            exitwhen i >= BlzFrameGetChildrenCount(GetMainSelectedUnit__containerFrame) - 1
+            set buttonContainer=BlzFrameGetChild(GetMainSelectedUnit__containerFrame, i)
+            set GetMainSelectedUnit__frames[i]=BlzFrameGetChild(buttonContainer, 0)
             set i=i + 1
         endloop
         call DestroyTimer(GetExpiredTimer())
     endfunction
 
-    function GetMainSelectedUnit___init_function takes nothing returns nothing
-        set GetMainSelectedUnit___filter=Filter(function GetMainSelectedUnit___FilterFunction)
-        call TimerStart(CreateTimer(), 0, false, function GetMainSelectedUnit___init_functionAt0s)
+    function GetMainSelectedUnit__init_function takes nothing returns nothing
+        set GetMainSelectedUnit__filter=Filter(function GetMainSelectedUnit__FilterFunction)
+        call TimerStart(CreateTimer(), 0, false, function GetMainSelectedUnit__init_functionAt0s)
     endfunction
 
 //library GetMainSelectedUnit ends
@@ -5010,28 +5010,28 @@ endfunction
     function RegisterPlayerUnitEvent takes playerunitevent p,code c returns nothing
         local integer i= GetHandleId(p)
         local integer k= bj_MAX_PLAYER_SLOTS
-        if RegisterPlayerUnitEvent___t[i] == null then
-            set RegisterPlayerUnitEvent___t[i]=CreateTrigger()
+        if RegisterPlayerUnitEvent__t[i] == null then
+            set RegisterPlayerUnitEvent__t[i]=CreateTrigger()
             loop
-                call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent___t[i], Player(k), p, null)
+                call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent__t[i], Player(k), p, null)
                 exitwhen k == 0
                 set k=k - 1
             endloop
         endif
-        call TriggerAddCondition(RegisterPlayerUnitEvent___t[i], Filter(c))
+        call TriggerAddCondition(RegisterPlayerUnitEvent__t[i], Filter(c))
     endfunction
     
     function RegisterPlayerUnitEventForPlayer takes playerunitevent p,code c,player pl returns nothing
         local integer i= ( bj_MAX_PLAYER_SLOTS + 1 ) * GetHandleId(p) + GetPlayerId(pl)
-        if RegisterPlayerUnitEvent___t[i] == null then
-            set RegisterPlayerUnitEvent___t[i]=CreateTrigger()
-            call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent___t[i], pl, p, null)
+        if RegisterPlayerUnitEvent__t[i] == null then
+            set RegisterPlayerUnitEvent__t[i]=CreateTrigger()
+            call TriggerRegisterPlayerUnitEvent(RegisterPlayerUnitEvent__t[i], pl, p, null)
         endif
-        call TriggerAddCondition(RegisterPlayerUnitEvent___t[i], Filter(c))
+        call TriggerAddCondition(RegisterPlayerUnitEvent__t[i], Filter(c))
     endfunction
     
     function GetPlayerUnitEventTrigger takes playerunitevent p returns trigger
-        return RegisterPlayerUnitEvent___t[GetHandleId(p)]
+        return RegisterPlayerUnitEvent__t[GetHandleId(p)]
     endfunction
 
 //library RegisterPlayerUnitEvent ends
@@ -6115,250 +6115,250 @@ endfunction
 
 
 
-        function s__Interface___UI_remove takes integer this,integer i returns integer
-            set s__Interface___UI_array[i]=s__Interface___UI_array[s__Interface___UI_key]
-            set s__Interface___UI_key=s__Interface___UI_key - 1
-            set s__Interface___UI_struct[s__Interface___UI_id[this]]=0
-            set s__Interface___UI_unit[this]=null
-            set s__Interface___UI_player[this]=null
+        function s__Interface__UI_remove takes integer this,integer i returns integer
+            set s__Interface__UI_array[i]=s__Interface__UI_array[s__Interface__UI_key]
+            set s__Interface__UI_key=s__Interface__UI_key - 1
+            set s__Interface__UI_struct[s__Interface__UI_id[this]]=0
+            set s__Interface__UI_unit[this]=null
+            set s__Interface__UI_player[this]=null
 
-            if s__Interface___UI_key == - 1 then
-                call PauseTimer(s__Interface___UI_timer)
+            if s__Interface__UI_key == - 1 then
+                call PauseTimer(s__Interface__UI_timer)
             endif
 
-            call s__Interface___UI_deallocate(this)
+            call s__Interface__UI_deallocate(this)
 
             return i - 1
         endfunction
 
-        function s__Interface___UI_onCommandButtons takes nothing returns nothing
+        function s__Interface__UI_onCommandButtons takes nothing returns nothing
             local integer id= GetPlayerId(GetLocalPlayer())
 
-            if s__Interface___UI_shop[id] then
-                set s__Interface___UI_command0X1[id]=0.333500
-                set s__Interface___UI_command0Y1[id]=0.213950
-                set s__Interface___UI_command0X2[id]=0.366760
-                set s__Interface___UI_command0Y2[id]=0.180700
-                set s__Interface___UI_command1X1[id]=0.370500
-                set s__Interface___UI_command1Y1[id]=0.213950
-                set s__Interface___UI_command1X2[id]=0.403760
-                set s__Interface___UI_command1Y2[id]=0.180700
-                set s__Interface___UI_command2X1[id]=0.407400
-                set s__Interface___UI_command2Y1[id]=0.213650
-                set s__Interface___UI_command2X2[id]=0.440660
-                set s__Interface___UI_command2Y2[id]=0.180400
-                set s__Interface___UI_command3X1[id]=0.444400
-                set s__Interface___UI_command3Y1[id]=0.213650
-                set s__Interface___UI_command3X2[id]=0.477660
-                set s__Interface___UI_command3Y2[id]=0.180400
-                set s__Interface___UI_command4X1[id]=0.333500
-                set s__Interface___UI_command4Y1[id]=0.175250
-                set s__Interface___UI_command4X2[id]=0.366760
-                set s__Interface___UI_command4Y2[id]=0.142000
-                set s__Interface___UI_command5X1[id]=0.370500
-                set s__Interface___UI_command5Y1[id]=0.175250
-                set s__Interface___UI_command5X2[id]=0.403760
-                set s__Interface___UI_command5Y2[id]=0.142000
-                set s__Interface___UI_command6X1[id]=0.407400
-                set s__Interface___UI_command6Y1[id]=0.175250
-                set s__Interface___UI_command6X2[id]=0.440660
-                set s__Interface___UI_command6Y2[id]=0.142000
-                set s__Interface___UI_command7X1[id]=0.444400
-                set s__Interface___UI_command7Y1[id]=0.175250
-                set s__Interface___UI_command7X2[id]=0.477660
-                set s__Interface___UI_command7Y2[id]=0.142000
-                set s__Interface___UI_command8X1[id]=0.333500
-                set s__Interface___UI_command8Y1[id]=0.136850
-                set s__Interface___UI_command8X2[id]=0.366760
-                set s__Interface___UI_command8Y2[id]=0.103600
-                set s__Interface___UI_command9X1[id]=0.370500
-                set s__Interface___UI_command9Y1[id]=0.136850
-                set s__Interface___UI_command9X2[id]=0.403760
-                set s__Interface___UI_command9Y2[id]=0.103600
-                set s__Interface___UI_command10X1[id]=0.407400
-                set s__Interface___UI_command10Y1[id]=0.136850
-                set s__Interface___UI_command10X2[id]=0.440660
-                set s__Interface___UI_command10Y2[id]=0.103600
-                set s__Interface___UI_command11X1[id]=0.444400
-                set s__Interface___UI_command11Y1[id]=0.136850
-                set s__Interface___UI_command11X2[id]=0.477660
-                set s__Interface___UI_command11Y2[id]=0.103600
+            if s__Interface__UI_shop[id] then
+                set s__Interface__UI_command0X1[id]=0.333500
+                set s__Interface__UI_command0Y1[id]=0.213950
+                set s__Interface__UI_command0X2[id]=0.366760
+                set s__Interface__UI_command0Y2[id]=0.180700
+                set s__Interface__UI_command1X1[id]=0.370500
+                set s__Interface__UI_command1Y1[id]=0.213950
+                set s__Interface__UI_command1X2[id]=0.403760
+                set s__Interface__UI_command1Y2[id]=0.180700
+                set s__Interface__UI_command2X1[id]=0.407400
+                set s__Interface__UI_command2Y1[id]=0.213650
+                set s__Interface__UI_command2X2[id]=0.440660
+                set s__Interface__UI_command2Y2[id]=0.180400
+                set s__Interface__UI_command3X1[id]=0.444400
+                set s__Interface__UI_command3Y1[id]=0.213650
+                set s__Interface__UI_command3X2[id]=0.477660
+                set s__Interface__UI_command3Y2[id]=0.180400
+                set s__Interface__UI_command4X1[id]=0.333500
+                set s__Interface__UI_command4Y1[id]=0.175250
+                set s__Interface__UI_command4X2[id]=0.366760
+                set s__Interface__UI_command4Y2[id]=0.142000
+                set s__Interface__UI_command5X1[id]=0.370500
+                set s__Interface__UI_command5Y1[id]=0.175250
+                set s__Interface__UI_command5X2[id]=0.403760
+                set s__Interface__UI_command5Y2[id]=0.142000
+                set s__Interface__UI_command6X1[id]=0.407400
+                set s__Interface__UI_command6Y1[id]=0.175250
+                set s__Interface__UI_command6X2[id]=0.440660
+                set s__Interface__UI_command6Y2[id]=0.142000
+                set s__Interface__UI_command7X1[id]=0.444400
+                set s__Interface__UI_command7Y1[id]=0.175250
+                set s__Interface__UI_command7X2[id]=0.477660
+                set s__Interface__UI_command7Y2[id]=0.142000
+                set s__Interface__UI_command8X1[id]=0.333500
+                set s__Interface__UI_command8Y1[id]=0.136850
+                set s__Interface__UI_command8X2[id]=0.366760
+                set s__Interface__UI_command8Y2[id]=0.103600
+                set s__Interface__UI_command9X1[id]=0.370500
+                set s__Interface__UI_command9Y1[id]=0.136850
+                set s__Interface__UI_command9X2[id]=0.403760
+                set s__Interface__UI_command9Y2[id]=0.103600
+                set s__Interface__UI_command10X1[id]=0.407400
+                set s__Interface__UI_command10Y1[id]=0.136850
+                set s__Interface__UI_command10X2[id]=0.440660
+                set s__Interface__UI_command10Y2[id]=0.103600
+                set s__Interface__UI_command11X1[id]=0.444400
+                set s__Interface__UI_command11Y1[id]=0.136850
+                set s__Interface__UI_command11X2[id]=0.477660
+                set s__Interface__UI_command11Y2[id]=0.103600
             else
-                set s__Interface___UI_command0X1[id]=999.0
-                set s__Interface___UI_command0Y1[id]=999.0
-                set s__Interface___UI_command0X2[id]=999.0
-                set s__Interface___UI_command0Y2[id]=999.0
-                set s__Interface___UI_command1X1[id]=999.0
-                set s__Interface___UI_command1Y1[id]=999.0
-                set s__Interface___UI_command1X2[id]=999.0
-                set s__Interface___UI_command1Y2[id]=999.0
-                set s__Interface___UI_command2X1[id]=999.0
-                set s__Interface___UI_command2Y1[id]=999.0
-                set s__Interface___UI_command2X2[id]=999.0
-                set s__Interface___UI_command2Y2[id]=999.0
-                set s__Interface___UI_command3X1[id]=999.0
-                set s__Interface___UI_command3Y1[id]=999.0
-                set s__Interface___UI_command3X2[id]=999.0
-                set s__Interface___UI_command3Y2[id]=999.0
-                set s__Interface___UI_command4X1[id]=999.0
-                set s__Interface___UI_command4Y1[id]=999.0
-                set s__Interface___UI_command4X2[id]=999.0
-                set s__Interface___UI_command4Y2[id]=999.0
-                set s__Interface___UI_command5X1[id]=0.186900
-                set s__Interface___UI_command5Y1[id]=0.0467700
-                set s__Interface___UI_command5X2[id]=0.216900
-                set s__Interface___UI_command5Y2[id]=0.0150000
-                set s__Interface___UI_command6X1[id]=0.223700
-                set s__Interface___UI_command6Y1[id]=0.0467700
-                set s__Interface___UI_command6X2[id]=0.254200
-                set s__Interface___UI_command6Y2[id]=0.0150000
-                set s__Interface___UI_command7X1[id]=0.00242900
-                set s__Interface___UI_command7Y1[id]=0.0467700
-                set s__Interface___UI_command7X2[id]=0.0342090
-                set s__Interface___UI_command7Y2[id]=0.0150000
-                set s__Interface___UI_command8X1[id]=0.0399070
-                set s__Interface___UI_command8Y1[id]=0.0467700
-                set s__Interface___UI_command8X2[id]=0.0716870
-                set s__Interface___UI_command8Y2[id]=0.0150000
-                set s__Interface___UI_command9X1[id]=0.0765555
-                set s__Interface___UI_command9Y1[id]=0.0467700
-                set s__Interface___UI_command9X2[id]=0.1095555
-                set s__Interface___UI_command9Y2[id]=0.0150000
-                set s__Interface___UI_command10X1[id]=0.113070
-                set s__Interface___UI_command10Y1[id]=0.0467700
-                set s__Interface___UI_command10X2[id]=0.144850
-                set s__Interface___UI_command10Y2[id]=0.0150000
-                set s__Interface___UI_command11X1[id]=0.150070
-                set s__Interface___UI_command11Y1[id]=0.0467700
-                set s__Interface___UI_command11X2[id]=0.181850
-                set s__Interface___UI_command11Y2[id]=0.0150000
+                set s__Interface__UI_command0X1[id]=999.0
+                set s__Interface__UI_command0Y1[id]=999.0
+                set s__Interface__UI_command0X2[id]=999.0
+                set s__Interface__UI_command0Y2[id]=999.0
+                set s__Interface__UI_command1X1[id]=999.0
+                set s__Interface__UI_command1Y1[id]=999.0
+                set s__Interface__UI_command1X2[id]=999.0
+                set s__Interface__UI_command1Y2[id]=999.0
+                set s__Interface__UI_command2X1[id]=999.0
+                set s__Interface__UI_command2Y1[id]=999.0
+                set s__Interface__UI_command2X2[id]=999.0
+                set s__Interface__UI_command2Y2[id]=999.0
+                set s__Interface__UI_command3X1[id]=999.0
+                set s__Interface__UI_command3Y1[id]=999.0
+                set s__Interface__UI_command3X2[id]=999.0
+                set s__Interface__UI_command3Y2[id]=999.0
+                set s__Interface__UI_command4X1[id]=999.0
+                set s__Interface__UI_command4Y1[id]=999.0
+                set s__Interface__UI_command4X2[id]=999.0
+                set s__Interface__UI_command4Y2[id]=999.0
+                set s__Interface__UI_command5X1[id]=0.186900
+                set s__Interface__UI_command5Y1[id]=0.0467700
+                set s__Interface__UI_command5X2[id]=0.216900
+                set s__Interface__UI_command5Y2[id]=0.0150000
+                set s__Interface__UI_command6X1[id]=0.223700
+                set s__Interface__UI_command6Y1[id]=0.0467700
+                set s__Interface__UI_command6X2[id]=0.254200
+                set s__Interface__UI_command6Y2[id]=0.0150000
+                set s__Interface__UI_command7X1[id]=0.00242900
+                set s__Interface__UI_command7Y1[id]=0.0467700
+                set s__Interface__UI_command7X2[id]=0.0342090
+                set s__Interface__UI_command7Y2[id]=0.0150000
+                set s__Interface__UI_command8X1[id]=0.0399070
+                set s__Interface__UI_command8Y1[id]=0.0467700
+                set s__Interface__UI_command8X2[id]=0.0716870
+                set s__Interface__UI_command8Y2[id]=0.0150000
+                set s__Interface__UI_command9X1[id]=0.0765555
+                set s__Interface__UI_command9Y1[id]=0.0467700
+                set s__Interface__UI_command9X2[id]=0.1095555
+                set s__Interface__UI_command9Y2[id]=0.0150000
+                set s__Interface__UI_command10X1[id]=0.113070
+                set s__Interface__UI_command10Y1[id]=0.0467700
+                set s__Interface__UI_command10X2[id]=0.144850
+                set s__Interface__UI_command10Y2[id]=0.0150000
+                set s__Interface__UI_command11X1[id]=0.150070
+                set s__Interface__UI_command11Y1[id]=0.0467700
+                set s__Interface__UI_command11X2[id]=0.181850
+                set s__Interface__UI_command11Y2[id]=0.0150000
             endif
 
             // Display the 12 slot grid
-            call BlzFrameSetVisible(s__Interface___UI_ShopSlots, s__Interface___UI_shop[id])
+            call BlzFrameSetVisible(s__Interface__UI_ShopSlots, s__Interface__UI_shop[id])
 
             // Reposition the Move command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_0", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command0X1[id], s__Interface___UI_command0Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command0X2[id], s__Interface___UI_command0Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_0", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command0X1[id], s__Interface__UI_command0Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command0X2[id], s__Interface__UI_command0Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
 
             // Reposition the Stop command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_1", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command1X1[id], s__Interface___UI_command1Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command1X2[id], s__Interface___UI_command1Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_1", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command1X1[id], s__Interface__UI_command1Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command1X2[id], s__Interface__UI_command1Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the Hold command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_2", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command2X1[id], s__Interface___UI_command2Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command2X2[id], s__Interface___UI_command2Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_2", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command2X1[id], s__Interface__UI_command2Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command2X2[id], s__Interface__UI_command2Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
 
             // Reposition the Attack command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_3", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command3X1[id], s__Interface___UI_command3Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command3X2[id], s__Interface___UI_command3Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_3", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command3X1[id], s__Interface__UI_command3Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command3X2[id], s__Interface__UI_command3Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
 
             // Reposition the Patrol command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_4", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command4X1[id], s__Interface___UI_command4Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command4X2[id], s__Interface___UI_command4Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_4", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command4X1[id], s__Interface__UI_command4Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command4X2[id], s__Interface__UI_command4Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
 
             // Reposition the D command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_5", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command5X1[id], s__Interface___UI_command5Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command5X2[id], s__Interface___UI_command5Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_5", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command5X1[id], s__Interface__UI_command5Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command5X2[id], s__Interface__UI_command5Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the F command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_6", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command6X1[id], s__Interface___UI_command6Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command6X2[id], s__Interface___UI_command6Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_6", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command6X1[id], s__Interface__UI_command6Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command6X2[id], s__Interface__UI_command6Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the + command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_7", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command7X1[id], s__Interface___UI_command7Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command7X2[id], s__Interface___UI_command7Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_7", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command7X1[id], s__Interface__UI_command7Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command7X2[id], s__Interface__UI_command7Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the Q command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_8", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command8X1[id], s__Interface___UI_command8Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command8X2[id], s__Interface___UI_command8Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_8", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command8X1[id], s__Interface__UI_command8Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command8X2[id], s__Interface__UI_command8Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the W command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_9", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command9X1[id], s__Interface___UI_command9Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command9X2[id], s__Interface___UI_command9Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_9", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command9X1[id], s__Interface__UI_command9Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command9X2[id], s__Interface__UI_command9Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the E command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_10", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command10X1[id], s__Interface___UI_command10Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command10X2[id], s__Interface___UI_command10Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_10", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command10X1[id], s__Interface__UI_command10Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command10X2[id], s__Interface__UI_command10Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
             
             // Reposition the R command button
-            set s__Interface___UI_handle=BlzGetFrameByName("CommandButton_11", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_command11X1[id], s__Interface___UI_command11Y1[id])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_command11X2[id], s__Interface___UI_command11Y2[id])
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.82)
+            set s__Interface__UI_handle=BlzGetFrameByName("CommandButton_11", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_command11X1[id], s__Interface__UI_command11Y1[id])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_command11X2[id], s__Interface__UI_command11Y2[id])
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.82)
 
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onInventoryButtons takes nothing returns nothing
+        function s__Interface__UI_onInventoryButtons takes nothing returns nothing
             // Reposition the 0 inventory button
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.552700, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.584480, 0.0150000)
-	    call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.552700, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.584480, 0.0150000)
+	    call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
             // call BlzFrameSetSize(handle, 0.038136, 0,038136)
             
             // Reposition the 1 inventory button
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.589949, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.621049, 0.0150000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.589949, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.621049, 0.0150000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
             
             // Reposition the 2 inventory button
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 2)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.625750, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.657530, 0.0150000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 2)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.625750, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.657530, 0.0150000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
             
             // Reposition the 3 inventory button
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 3)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.662999, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.694999, 0.0150000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 3)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.662999, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.694999, 0.0150000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
             
             // Reposition the 4 inventory button
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 4)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.699700, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.731480, 0.0150000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 4)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.699700, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.731480, 0.0150000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
             
             // Reposition the 5 inventory button
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 5)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.736555, 0.0467700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.768555, 0.0150000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.04178, 0.04178)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_ITEM_BUTTON, 5)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.736555, 0.0467700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.768555, 0.0150000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.04178, 0.04178)
             
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onInfoPanel takes nothing returns nothing
+        function s__Interface__UI_onInfoPanel takes nothing returns nothing
             // Reposition the Buff bar
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_PANEL_BUFF_BAR, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.364600, 0.0280800)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.476200, 0.0147800)
-            call BlzFrameSetScale(s__Interface___UI_handle, 0.9)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_PANEL_BUFF_BAR, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.364600, 0.0280800)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.476200, 0.0147800)
+            call BlzFrameSetScale(s__Interface__UI_handle, 0.9)
             
             //Remove the Status text
             call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_UNIT_PANEL_BUFF_BAR_LABEL, 0), 0.00001)
@@ -6375,398 +6375,398 @@ endfunction
             call BlzFrameSetScale(BlzGetFrameByName("SimpleDestructableNameValue", 4), 0.00001)
             
             // Reposition the Hero Main Stat
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroIcon", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.449800, 0.0581100)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.474930, 0.0329900)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroIcon", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.449800, 0.0581100)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.474930, 0.0329900)
 
             // Reposition the Strength label and value
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthLabel", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0757800)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.530850, 0.0624800)
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthValue", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.480000, 0.0657200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0553800)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthLabel", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0757800)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.530850, 0.0624800)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroStrengthValue", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.480000, 0.0657200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0553800)
 
             // Reposition the Agility label and value
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityLabel", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.477400, 0.0559200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.532090, 0.0426200)
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityValue", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.480300, 0.0445700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0342300)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityLabel", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.477400, 0.0559200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.532090, 0.0426200)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroAgilityValue", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.480300, 0.0445700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0342300)
 
             // Reposition the Intelligence label and value
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectLabel", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0346500)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.531590, 0.0213500)
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectValue", 6)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.480600, 0.0240700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0137300)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectLabel", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.476900, 0.0346500)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.531590, 0.0213500)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconHeroIntellectValue", 6)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.480600, 0.0240700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.550000, 0.0137300)
 
             // Reposition the Timed Life bar
-            set s__Interface___UI_handle=BlzGetFrameByName("SimpleProgressIndicator", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.77000, 0.01000)
+            set s__Interface__UI_handle=BlzGetFrameByName("SimpleProgressIndicator", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.77000, 0.01000)
             
             // Reposition the XP bar
-            set s__Interface___UI_handle=BlzGetFrameByName("SimpleHeroLevelBar", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.77000, 0.01000)
+            set s__Interface__UI_handle=BlzGetFrameByName("SimpleHeroLevelBar", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.77000, 0.01000)
 
             // Reposition the Training bar
-            set s__Interface___UI_handle=BlzGetFrameByName("SimpleBuildTimeIndicator", 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.77000, 0.01000)
+            set s__Interface__UI_handle=BlzGetFrameByName("SimpleBuildTimeIndicator", 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.00000, 0.0100000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.77000, 0.01000)
 
             // Reposition the Attack 1 block
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.261800, 0.0723200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.289140, 0.0449800)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.02734, 0.02734)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.261800, 0.0723200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.289140, 0.0449800)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.02734, 0.02734)
             
             // Reposition the Armor block
-            set s__Interface___UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 2)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.261100, 0.0439700)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.288440, 0.0166300)
-            call BlzFrameSetSize(s__Interface___UI_handle, 0.02734, 0.02734)
+            set s__Interface__UI_handle=BlzGetFrameByName("InfoPanelIconBackdrop", 2)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.261100, 0.0439700)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.288440, 0.0166300)
+            call BlzFrameSetSize(s__Interface__UI_handle, 0.02734, 0.02734)
             
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onPortrait takes nothing returns nothing
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_PORTRAIT, 0)
+        function s__Interface__UI_onPortrait takes nothing returns nothing
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_PORTRAIT, 0)
 
             call BlzEnableUIAutoPosition(false)
-            call BlzFrameSetVisible(s__Interface___UI_handle, false)
-            call BlzFrameClearAllPoints(s__Interface___UI_handle)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.373500, 0.0977600)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.431555, 0.0157400)
+            call BlzFrameSetVisible(s__Interface__UI_handle, false)
+            call BlzFrameClearAllPoints(s__Interface__UI_handle)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.373500, 0.0977600)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.431555, 0.0157400)
 
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onHeroCheck takes nothing returns nothing
+        function s__Interface__UI_onHeroCheck takes nothing returns nothing
             local integer i= GetPlayerId(GetLocalPlayer())
 
             if BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED then
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface___UI_x1[i]=- 0.131300
-                    set s__Interface___UI_x2[i]=- 0.103220
-                    set s__Interface___UI_y01[i]=0.581980
-                    set s__Interface___UI_y02[i]=0.553900
-                    set s__Interface___UI_y11[i]=0.544980
-                    set s__Interface___UI_y12[i]=0.516900
-                    set s__Interface___UI_y21[i]=0.510680
-                    set s__Interface___UI_y22[i]=0.482600
-                    set s__Interface___UI_y31[i]=0.474280
-                    set s__Interface___UI_y32[i]=0.446200
-                    set s__Interface___UI_y41[i]=0.437880
-                    set s__Interface___UI_y42[i]=0.409800
-                    set s__Interface___UI_y51[i]=0.401480
-                    set s__Interface___UI_y52[i]=0.373400
-                    set s__Interface___UI_y61[i]=0.365080
-                    set s__Interface___UI_y62[i]=0.337000
+                    set s__Interface__UI_x1[i]=- 0.131300
+                    set s__Interface__UI_x2[i]=- 0.103220
+                    set s__Interface__UI_y01[i]=0.581980
+                    set s__Interface__UI_y02[i]=0.553900
+                    set s__Interface__UI_y11[i]=0.544980
+                    set s__Interface__UI_y12[i]=0.516900
+                    set s__Interface__UI_y21[i]=0.510680
+                    set s__Interface__UI_y22[i]=0.482600
+                    set s__Interface__UI_y31[i]=0.474280
+                    set s__Interface__UI_y32[i]=0.446200
+                    set s__Interface__UI_y41[i]=0.437880
+                    set s__Interface__UI_y42[i]=0.409800
+                    set s__Interface__UI_y51[i]=0.401480
+                    set s__Interface__UI_y52[i]=0.373400
+                    set s__Interface__UI_y61[i]=0.365080
+                    set s__Interface__UI_y62[i]=0.337000
                 endif
 
                 // Reposition the hero button 0
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y01[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y02[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y01[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y02[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 0), 0.71)
 
                 // Reposition the hero button 1
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y11[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y12[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y11[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y12[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 1), 0.71)
 
                 // Reposition the hero button 2
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y21[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y22[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y21[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y22[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 2), 0.71)
 
                 // Reposition the hero button 3
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y31[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y32[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y31[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y32[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 3), 0.71)
 
                 // Reposition the hero button 4
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y41[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y42[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y41[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y42[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 4), 0.71)
 
                 // Reposition the hero button 5
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y51[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y52[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y51[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y52[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 5), 0.71)
 
                 // Reposition the hero button 6
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y61[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y62[i])
-                call BlzFrameSetScale(s__Interface___UI_handle, 0.7)
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y61[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y62[i])
+                call BlzFrameSetScale(s__Interface__UI_handle, 0.7)
                 call BlzFrameSetScale(BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON_INDICATOR, 6), 0.71)
 
-                set s__Interface___UI_handle=null
+                set s__Interface__UI_handle=null
             else
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface___UI_x1[i]=999.0
-                    set s__Interface___UI_x2[i]=999.0
-                    set s__Interface___UI_y01[i]=999.0
-                    set s__Interface___UI_y02[i]=999.0
-                    set s__Interface___UI_y11[i]=999.0
-                    set s__Interface___UI_y12[i]=999.0
-                    set s__Interface___UI_y21[i]=999.0
-                    set s__Interface___UI_y22[i]=999.0
-                    set s__Interface___UI_y31[i]=999.0
-                    set s__Interface___UI_y32[i]=999.0
-                    set s__Interface___UI_y41[i]=999.0
-                    set s__Interface___UI_y42[i]=999.0
-                    set s__Interface___UI_y51[i]=999.0
-                    set s__Interface___UI_y52[i]=999.0
-                    set s__Interface___UI_y61[i]=999.0
-                    set s__Interface___UI_y62[i]=999.0
+                    set s__Interface__UI_x1[i]=999.0
+                    set s__Interface__UI_x2[i]=999.0
+                    set s__Interface__UI_y01[i]=999.0
+                    set s__Interface__UI_y02[i]=999.0
+                    set s__Interface__UI_y11[i]=999.0
+                    set s__Interface__UI_y12[i]=999.0
+                    set s__Interface__UI_y21[i]=999.0
+                    set s__Interface__UI_y22[i]=999.0
+                    set s__Interface__UI_y31[i]=999.0
+                    set s__Interface__UI_y32[i]=999.0
+                    set s__Interface__UI_y41[i]=999.0
+                    set s__Interface__UI_y42[i]=999.0
+                    set s__Interface__UI_y51[i]=999.0
+                    set s__Interface__UI_y52[i]=999.0
+                    set s__Interface__UI_y61[i]=999.0
+                    set s__Interface__UI_y62[i]=999.0
                 endif
 
                 // Hides the hero button 0
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y01[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y02[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 0)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y01[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y02[i])
 
                 // Hides the hero button 1
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y11[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y12[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 1)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y11[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y12[i])
 
                 // Hides the hero button 2
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y21[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y22[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 2)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y21[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y22[i])
 
                 // Hides the hero button 3
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y31[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y32[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 3)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y31[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y32[i])
 
                 // Hides the hero button 4
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y41[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y42[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 4)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y41[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y42[i])
 
                 // Hides the hero button 5
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y51[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y52[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 5)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y51[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y52[i])
 
                 // Hides the hero button 6
-                set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_x1[i], s__Interface___UI_y61[i])
-                call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_x2[i], s__Interface___UI_y62[i])
+                set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_HERO_BUTTON, 6)
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_x1[i], s__Interface__UI_y61[i])
+                call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_x2[i], s__Interface__UI_y62[i])
 
-                set s__Interface___UI_handle=null
+                set s__Interface__UI_handle=null
             endif
         endfunction
 
-        function s__Interface___UI_onGroupSelection takes nothing returns nothing
+        function s__Interface__UI_onGroupSelection takes nothing returns nothing
             // Reposistion the Group selection button 0
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 0), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0776200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0546200)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 0), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0776200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0546200)
 
             // Reposistion the Group selection button 1
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 1), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0501200)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 1), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0501200)
 
             // Reposistion the Group selection button 2
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 2), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.328300, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.351300, 0.0501200)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 2), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.328300, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.351300, 0.0501200)
 
             // Reposistion the Group selection button 3
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 3), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0414100)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0184100)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 3), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.262600, 0.0414100)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.285600, 0.0184100)
             
             // Reposistion the Group selection button 4
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 4), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0184000)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 4), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.295800, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.318800, 0.0184000)
 
             // Reposistion the Group selection button 5
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 5), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.329100, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.352100, 0.0184000)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 5), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.329100, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.352100, 0.0184000)
 
             // Reposistion the Group selection button 6
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 6), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.449300, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.472300, 0.0501200)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 6), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.449300, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.472300, 0.0501200)
 
             // Reposistion the Group selection button 7
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 7), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0501200)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 7), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0501200)
 
             // Reposistion the Group selection button 8
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 8), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0731200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0501200)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 8), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0731200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0501200)
 
             // Reposistion the Group selection button 9
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 9), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.450300, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.473300, 0.0184000)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 9), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.450300, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.473300, 0.0184000)
 
             // Reposistion the Group selection button 10
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 10), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0184000)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 10), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.483500, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.506500, 0.0184000)
 
             // Reposistion the Group selection button 11
-            set s__Interface___UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 11), 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0414000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0184000)
+            set s__Interface__UI_handle=BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetChild(BlzFrameGetParent(BlzGetFrameByName("SimpleInfoPanelUnitDetail", 0)), 5), 0), 11), 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.516800, 0.0414000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.539800, 0.0184000)
 
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onResources takes nothing returns nothing
-            call BlzFrameSetText(s__Interface___UI_Gold, "|cffffcc00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_GOLD)) + "|r")
-            call BlzFrameSetText(s__Interface___UI_Lumber, "|cff00ff00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_LUMBER)) + "|r")
+        function s__Interface__UI_onResources takes nothing returns nothing
+            call BlzFrameSetText(s__Interface__UI_Gold, "|cffffcc00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_GOLD)) + "|r")
+            call BlzFrameSetText(s__Interface__UI_Lumber, "|cff00ff00" + I2S(GetPlayerState(GetLocalPlayer(), PLAYER_STATE_RESOURCE_LUMBER)) + "|r")
         endfunction
 
-        function s__Interface___UI_onChat takes nothing returns nothing
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_CHAT_MSG, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
+        function s__Interface__UI_onChat takes nothing returns nothing
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_CHAT_MSG, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
 
-            set s__Interface___UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
+            set s__Interface__UI_handle=BlzGetOriginFrame(ORIGIN_FRAME_UNIT_MSG, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, 0.000212200, 0.302800)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, 0.400212, 0.100300)
 
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onMinimap takes nothing returns nothing
+        function s__Interface__UI_onMinimap takes nothing returns nothing
             local integer i= GetPlayerId(GetLocalPlayer())
 
             if BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED then
-                if BlzGetTriggerFrame() == s__Interface___UI_CheckBL then
+                if BlzGetTriggerFrame() == s__Interface__UI_CheckBL then
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        set s__Interface___UI_mapX1[i]=- 0.132100
-                        set s__Interface___UI_mapY1[i]=0.0986970
-                        set s__Interface___UI_mapX2[i]=- 0.0351000
-                        set s__Interface___UI_mapY2[i]=0.00169700
-                        set s__Interface___UI_frameX1[i]=- 0.133600
-                        set s__Interface___UI_frameY1[i]=0.100939
-                        set s__Interface___UI_frameX2[i]=- 0.0338300
-                        set s__Interface___UI_frameY2[i]=0.000438700
-                        set s__Interface___UI_checkL[i]=true
+                        set s__Interface__UI_mapX1[i]=- 0.132100
+                        set s__Interface__UI_mapY1[i]=0.0986970
+                        set s__Interface__UI_mapX2[i]=- 0.0351000
+                        set s__Interface__UI_mapY2[i]=0.00169700
+                        set s__Interface__UI_frameX1[i]=- 0.133600
+                        set s__Interface__UI_frameY1[i]=0.100939
+                        set s__Interface__UI_frameX2[i]=- 0.0338300
+                        set s__Interface__UI_frameY2[i]=0.000438700
+                        set s__Interface__UI_checkL[i]=true
                     endif
                 else
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        set s__Interface___UI_mapX1[i]=0.835800
-                        set s__Interface___UI_mapY1[i]=0.0999999
-                        set s__Interface___UI_mapX2[i]=0.933610
-                        set s__Interface___UI_mapY2[i]=0.000219400
-                        set s__Interface___UI_frameX1[i]=0.833900
-                        set s__Interface___UI_frameY1[i]=0.100939
-                        set s__Interface___UI_frameX2[i]=0.933670
-                        set s__Interface___UI_frameY2[i]=0.000438700
-                        set s__Interface___UI_checkR[i]=true
+                        set s__Interface__UI_mapX1[i]=0.835800
+                        set s__Interface__UI_mapY1[i]=0.0999999
+                        set s__Interface__UI_mapX2[i]=0.933610
+                        set s__Interface__UI_mapY2[i]=0.000219400
+                        set s__Interface__UI_frameX1[i]=0.833900
+                        set s__Interface__UI_frameY1[i]=0.100939
+                        set s__Interface__UI_frameX2[i]=0.933670
+                        set s__Interface__UI_frameY2[i]=0.000438700
+                        set s__Interface__UI_checkR[i]=true
                     endif
                 endif
             else
-                if BlzGetTriggerFrame() == s__Interface___UI_CheckBL then
+                if BlzGetTriggerFrame() == s__Interface__UI_CheckBL then
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        if s__Interface___UI_checkR[i] then
-                            set s__Interface___UI_mapX1[i]=0.835800
-                            set s__Interface___UI_mapY1[i]=0.0999999
-                            set s__Interface___UI_mapX2[i]=0.933610
-                            set s__Interface___UI_mapY2[i]=0.000219400
-                            set s__Interface___UI_frameX1[i]=0.833900
-                            set s__Interface___UI_frameY1[i]=0.100939
-                            set s__Interface___UI_frameX2[i]=0.933670
-                            set s__Interface___UI_frameY2[i]=0.000438700
+                        if s__Interface__UI_checkR[i] then
+                            set s__Interface__UI_mapX1[i]=0.835800
+                            set s__Interface__UI_mapY1[i]=0.0999999
+                            set s__Interface__UI_mapX2[i]=0.933610
+                            set s__Interface__UI_mapY2[i]=0.000219400
+                            set s__Interface__UI_frameX1[i]=0.833900
+                            set s__Interface__UI_frameY1[i]=0.100939
+                            set s__Interface__UI_frameX2[i]=0.933670
+                            set s__Interface__UI_frameY2[i]=0.000438700
                         else
-                            set s__Interface___UI_mapX1[i]=999.0
-                            set s__Interface___UI_mapY1[i]=999.0
-                            set s__Interface___UI_mapX2[i]=999.0
-                            set s__Interface___UI_mapY2[i]=999.0
-                            set s__Interface___UI_frameX1[i]=999.0
-                            set s__Interface___UI_frameY1[i]=999.0
-                            set s__Interface___UI_frameX2[i]=999.0
-                            set s__Interface___UI_frameY2[i]=999.0
+                            set s__Interface__UI_mapX1[i]=999.0
+                            set s__Interface__UI_mapY1[i]=999.0
+                            set s__Interface__UI_mapX2[i]=999.0
+                            set s__Interface__UI_mapY2[i]=999.0
+                            set s__Interface__UI_frameX1[i]=999.0
+                            set s__Interface__UI_frameY1[i]=999.0
+                            set s__Interface__UI_frameX2[i]=999.0
+                            set s__Interface__UI_frameY2[i]=999.0
                         endif
-                        set s__Interface___UI_checkL[i]=false
+                        set s__Interface__UI_checkL[i]=false
                     endif
                 else
                     if GetLocalPlayer() == GetTriggerPlayer() then
-                        if s__Interface___UI_checkL[i] then
-                            set s__Interface___UI_mapX1[i]=- 0.132100
-                            set s__Interface___UI_mapY1[i]=0.0986970
-                            set s__Interface___UI_mapX2[i]=- 0.0351000
-                            set s__Interface___UI_mapY2[i]=0.00169700
-                            set s__Interface___UI_frameX1[i]=- 0.133600
-                            set s__Interface___UI_frameY1[i]=0.100939
-                            set s__Interface___UI_frameX2[i]=- 0.0338300
-                            set s__Interface___UI_frameY2[i]=0.000438700
+                        if s__Interface__UI_checkL[i] then
+                            set s__Interface__UI_mapX1[i]=- 0.132100
+                            set s__Interface__UI_mapY1[i]=0.0986970
+                            set s__Interface__UI_mapX2[i]=- 0.0351000
+                            set s__Interface__UI_mapY2[i]=0.00169700
+                            set s__Interface__UI_frameX1[i]=- 0.133600
+                            set s__Interface__UI_frameY1[i]=0.100939
+                            set s__Interface__UI_frameX2[i]=- 0.0338300
+                            set s__Interface__UI_frameY2[i]=0.000438700
                         else
-                            set s__Interface___UI_mapX1[i]=999.0
-                            set s__Interface___UI_mapY1[i]=999.0
-                            set s__Interface___UI_mapX2[i]=999.0
-                            set s__Interface___UI_mapY2[i]=999.0
-                            set s__Interface___UI_frameX1[i]=999.0
-                            set s__Interface___UI_frameY1[i]=999.0
-                            set s__Interface___UI_frameX2[i]=999.0
-                            set s__Interface___UI_frameY2[i]=999.0
+                            set s__Interface__UI_mapX1[i]=999.0
+                            set s__Interface__UI_mapY1[i]=999.0
+                            set s__Interface__UI_mapX2[i]=999.0
+                            set s__Interface__UI_mapY2[i]=999.0
+                            set s__Interface__UI_frameX1[i]=999.0
+                            set s__Interface__UI_frameY1[i]=999.0
+                            set s__Interface__UI_frameX2[i]=999.0
+                            set s__Interface__UI_frameY2[i]=999.0
                         endif
-                        set s__Interface___UI_checkR[i]=false
+                        set s__Interface__UI_checkR[i]=false
                     endif
                 endif
             endif
 
-            set s__Interface___UI_handle=BlzGetFrameByName("MiniMapFrame", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_TOPLEFT, s__Interface___UI_mapX1[i], s__Interface___UI_mapY1[i])
-            call BlzFrameSetAbsPoint(s__Interface___UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_mapX2[i], s__Interface___UI_mapY2[i])
-            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_TOPLEFT, s__Interface___UI_frameX1[i], s__Interface___UI_frameY1[i])
-            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_frameX2[i], s__Interface___UI_frameY2[i])
+            set s__Interface__UI_handle=BlzGetFrameByName("MiniMapFrame", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_TOPLEFT, s__Interface__UI_mapX1[i], s__Interface__UI_mapY1[i])
+            call BlzFrameSetAbsPoint(s__Interface__UI_handle, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_mapX2[i], s__Interface__UI_mapY2[i])
+            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_TOPLEFT, s__Interface__UI_frameX1[i], s__Interface__UI_frameY1[i])
+            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_frameX2[i], s__Interface__UI_frameY2[i])
 
-            set s__Interface___UI_handle=null
+            set s__Interface__UI_handle=null
         endfunction
 
-        function s__Interface___UI_onMenu takes nothing returns nothing
+        function s__Interface__UI_onMenu takes nothing returns nothing
             local integer i= GetPlayerId(GetLocalPlayer())
 
             if BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED then
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface___UI_checkMenu[i]=true
+                    set s__Interface__UI_checkMenu[i]=true
                 endif
             else
                 if GetLocalPlayer() == GetTriggerPlayer() then
-                    set s__Interface___UI_checkMenu[i]=false
+                    set s__Interface__UI_checkMenu[i]=false
                 endif
             endif
 
-            call BlzFrameSetVisible(BlzGetFrameByName("UpperButtonBarFrame", 0), s__Interface___UI_checkMenu[i])
-            call BlzFrameSetVisible(BlzGetFrameByName("ResourceBarFrame", 0), s__Interface___UI_checkMenu[i])
+            call BlzFrameSetVisible(BlzGetFrameByName("UpperButtonBarFrame", 0), s__Interface__UI_checkMenu[i])
+            call BlzFrameSetVisible(BlzGetFrameByName("ResourceBarFrame", 0), s__Interface__UI_checkMenu[i])
         endfunction
 
-        function s__Interface___UI_onPeriod takes nothing returns nothing
+        function s__Interface__UI_onPeriod takes nothing returns nothing
             local integer i= 0
             local real newHP
             local real newMP
@@ -6775,82 +6775,82 @@ endfunction
             local integer this
 
             loop
-                exitwhen i > s__Interface___UI_key
-                    set this=s__Interface___UI_array[i]
+                exitwhen i > s__Interface__UI_key
+                    set this=s__Interface__UI_array[i]
 
-                    if GetPlayerSlotState(s__Interface___UI_player[this]) != PLAYER_SLOT_STATE_LEFT then
-                        set s__Interface___UI_unit[this]=(GetMainSelectedUnit(GetSelectedUnitIndex())) // INLINED!!
+                    if GetPlayerSlotState(s__Interface__UI_player[this]) != PLAYER_SLOT_STATE_LEFT then
+                        set s__Interface__UI_unit[this]=(GetMainSelectedUnit(GetSelectedUnitIndex())) // INLINED!!
 
 
-                            if s__Interface___UI_main[s__Interface___UI_id[this]] != s__Interface___UI_unit[this] then
-                                set s__Interface___UI_main[s__Interface___UI_id[this]]=s__Interface___UI_unit[this]
-                                set s__Interface___UI_shop[s__Interface___UI_id[this]]=GetUnitAbilityLevel(s__Interface___UI_unit[this], 'Aneu') > 0 or GetUnitAbilityLevel(s__Interface___UI_unit[this], 'Ane2') > 0 or GetUnitAbilityLevel(s__Interface___UI_unit[this], 'Apit') > 0 or GetUnitAbilityLevel(s__Interface___UI_unit[this], 'A08X') > 0 and not IsUnitEnemy(s__Interface___UI_unit[this], s__Interface___UI_player[this])
-                                call s__Interface___UI_onCommandButtons()
+                            if s__Interface__UI_main[s__Interface__UI_id[this]] != s__Interface__UI_unit[this] then
+                                set s__Interface__UI_main[s__Interface__UI_id[this]]=s__Interface__UI_unit[this]
+                                set s__Interface__UI_shop[s__Interface__UI_id[this]]=GetUnitAbilityLevel(s__Interface__UI_unit[this], 'Aneu') > 0 or GetUnitAbilityLevel(s__Interface__UI_unit[this], 'Ane2') > 0 or GetUnitAbilityLevel(s__Interface__UI_unit[this], 'Apit') > 0 or GetUnitAbilityLevel(s__Interface__UI_unit[this], 'A08X') > 0 and not IsUnitEnemy(s__Interface__UI_unit[this], s__Interface__UI_player[this])
+                                call s__Interface__UI_onCommandButtons()
                             endif
 
 
-                        if s__Interface___UI_unit[this] != null then // custom
-                                call BlzFrameSetText(s__Interface___UI_UnitName, "|cffFFFFFF" + GetUnitName(s__Interface___UI_unit[this]) + "|r")
+                        if s__Interface__UI_unit[this] != null then // custom
+                                call BlzFrameSetText(s__Interface__UI_UnitName, "|cffFFFFFF" + GetUnitName(s__Interface__UI_unit[this]) + "|r")
                         else
-                                call BlzFrameSetText(s__Interface___UI_UnitName, "")
+                                call BlzFrameSetText(s__Interface__UI_UnitName, "")
                         endif
 
-                        if not IsUnitVisible(s__Interface___UI_unit[this], s__Interface___UI_player[this]) then
-                            set s__Interface___UI_unit[this]=null
+                        if not IsUnitVisible(s__Interface__UI_unit[this], s__Interface__UI_player[this]) then
+                            set s__Interface__UI_unit[this]=null
                         endif
 
-                        set s__Interface___UI_health[this]=BlzFrameGetValue(s__Interface___UI_HealthBar)
-                        set s__Interface___UI_mana[this]=BlzFrameGetValue(s__Interface___UI_ManaBar)
-                        set newHP=GetUnitLifePercent(s__Interface___UI_unit[this])
-                        set newMP=GetUnitManaPercent(s__Interface___UI_unit[this])
-                        set s__Interface___UI_hp[this]=BlzFrameGetText(s__Interface___UI_HPText)
-                        set s__Interface___UI_mp[this]=BlzFrameGetText(s__Interface___UI_MPText)
-                        set newHptext=I2S(R2I(GetWidgetLife(s__Interface___UI_unit[this]))) + " / " + I2S(BlzGetUnitMaxHP(s__Interface___UI_unit[this]))
-                        set newMptext=I2S(R2I(GetUnitState(s__Interface___UI_unit[this], UNIT_STATE_MANA))) + " / " + I2S(BlzGetUnitMaxMana(s__Interface___UI_unit[this]))
+                        set s__Interface__UI_health[this]=BlzFrameGetValue(s__Interface__UI_HealthBar)
+                        set s__Interface__UI_mana[this]=BlzFrameGetValue(s__Interface__UI_ManaBar)
+                        set newHP=GetUnitLifePercent(s__Interface__UI_unit[this])
+                        set newMP=GetUnitManaPercent(s__Interface__UI_unit[this])
+                        set s__Interface__UI_hp[this]=BlzFrameGetText(s__Interface__UI_HPText)
+                        set s__Interface__UI_mp[this]=BlzFrameGetText(s__Interface__UI_MPText)
+                        set newHptext=I2S(R2I(GetWidgetLife(s__Interface__UI_unit[this]))) + " / " + I2S(BlzGetUnitMaxHP(s__Interface__UI_unit[this]))
+                        set newMptext=I2S(R2I(GetUnitState(s__Interface__UI_unit[this], UNIT_STATE_MANA))) + " / " + I2S(BlzGetUnitMaxMana(s__Interface__UI_unit[this]))
 
-                        if GetLocalPlayer() == s__Interface___UI_player[this] then
-                            set s__Interface___UI_health[this]=newHP
-                            set s__Interface___UI_mana[this]=newMP
-                            set s__Interface___UI_hp[this]=newHptext
-                            set s__Interface___UI_mp[this]=newMptext
+                        if GetLocalPlayer() == s__Interface__UI_player[this] then
+                            set s__Interface__UI_health[this]=newHP
+                            set s__Interface__UI_mana[this]=newMP
+                            set s__Interface__UI_hp[this]=newHptext
+                            set s__Interface__UI_mp[this]=newMptext
                         endif
 
-                        call BlzFrameSetValue(s__Interface___UI_HealthBar, s__Interface___UI_health[this])
-                        call BlzFrameSetValue(s__Interface___UI_ManaBar, s__Interface___UI_mana[this])
-                        call BlzFrameSetText(s__Interface___UI_HPText, "|cffFFFFFF" + s__Interface___UI_hp[this] + "|r")
-                        call BlzFrameSetText(s__Interface___UI_MPText, "|cffFFFFFF" + s__Interface___UI_mp[this] + "|r")
+                        call BlzFrameSetValue(s__Interface__UI_HealthBar, s__Interface__UI_health[this])
+                        call BlzFrameSetValue(s__Interface__UI_ManaBar, s__Interface__UI_mana[this])
+                        call BlzFrameSetText(s__Interface__UI_HPText, "|cffFFFFFF" + s__Interface__UI_hp[this] + "|r")
+                        call BlzFrameSetText(s__Interface__UI_MPText, "|cffFFFFFF" + s__Interface__UI_mp[this] + "|r")
                     else
-                        set i=s__Interface___UI_remove(this,i)
+                        set i=s__Interface__UI_remove(this,i)
                     endif
                 set i=i + 1
             endloop
         endfunction
 
-        function s__Interface___UI_onSelect takes nothing returns nothing
+        function s__Interface__UI_onSelect takes nothing returns nothing
             local integer id= GetPlayerId(GetTriggerPlayer())
             local integer this
 
-            if s__Interface___UI_struct[id] != 0 then
-                set this=s__Interface___UI_struct[id]
+            if s__Interface__UI_struct[id] != 0 then
+                set this=s__Interface__UI_struct[id]
             else
-                set this=s__Interface___UI__allocate()
-                set s__Interface___UI_id[this]=id
-                set s__Interface___UI_player[this]=GetTriggerPlayer()
-                set s__Interface___UI_health[this]=0
-                set s__Interface___UI_mana[this]=0
-                set s__Interface___UI_hp[this]="0 / 0"
-                set s__Interface___UI_mp[this]="0 / 0"
-                set s__Interface___UI_key=s__Interface___UI_key + 1
-                set s__Interface___UI_array[s__Interface___UI_key]=this
-                set s__Interface___UI_struct[id]=this
+                set this=s__Interface__UI__allocate()
+                set s__Interface__UI_id[this]=id
+                set s__Interface__UI_player[this]=GetTriggerPlayer()
+                set s__Interface__UI_health[this]=0
+                set s__Interface__UI_mana[this]=0
+                set s__Interface__UI_hp[this]="0 / 0"
+                set s__Interface__UI_mp[this]="0 / 0"
+                set s__Interface__UI_key=s__Interface__UI_key + 1
+                set s__Interface__UI_array[s__Interface__UI_key]=this
+                set s__Interface__UI_struct[id]=this
                 
-                if s__Interface___UI_key == 0 then
-                    call TimerStart(s__Interface___UI_timer, 0.05, true, function s__Interface___UI_onPeriod)
+                if s__Interface__UI_key == 0 then
+                    call TimerStart(s__Interface__UI_timer, 0.05, true, function s__Interface__UI_onPeriod)
                 endif
             endif
         endfunction
 
- function s__Interface___UI_createGroundItemPanel takes nothing returns nothing
+ function s__Interface__UI_createGroundItemPanel takes nothing returns nothing
       local framehandle stdNameFrame= BlzGetFrameByName("SimpleItemNameValue", 3)
       local framehandle stdDescFrame= BlzGetFrameByName("SimpleItemDescriptionValue", 3)
 
@@ -6864,42 +6864,42 @@ endfunction
     		endif
 
     		// Menu-like panel: background + border from standard WC3 menu
-    		set s__Interface___UI_GroundItemBorder=BlzCreateFrame("EscMenuBackdrop", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0, 0)
-    		call BlzFrameClearAllPoints(s__Interface___UI_GroundItemBorder)
-    		call BlzFrameSetAbsPoint(s__Interface___UI_GroundItemBorder, FRAMEPOINT_TOPLEFT, 0.263000, 0.265000)
-		call BlzFrameSetAbsPoint(s__Interface___UI_GroundItemBorder, FRAMEPOINT_BOTTOMRIGHT, 0.543000, 0.105000)
-    		call BlzFrameSetVisible(s__Interface___UI_GroundItemBorder, false)
-    		call BlzFrameSetEnable(s__Interface___UI_GroundItemBorder, false)
-    		call BlzFrameSetLevel(s__Interface___UI_GroundItemBorder, 40)
+    		set s__Interface__UI_GroundItemBorder=BlzCreateFrame("EscMenuBackdrop", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0, 0)
+    		call BlzFrameClearAllPoints(s__Interface__UI_GroundItemBorder)
+    		call BlzFrameSetAbsPoint(s__Interface__UI_GroundItemBorder, FRAMEPOINT_TOPLEFT, 0.263000, 0.265000)
+		call BlzFrameSetAbsPoint(s__Interface__UI_GroundItemBorder, FRAMEPOINT_BOTTOMRIGHT, 0.543000, 0.105000)
+    		call BlzFrameSetVisible(s__Interface__UI_GroundItemBorder, false)
+    		call BlzFrameSetEnable(s__Interface__UI_GroundItemBorder, false)
+    		call BlzFrameSetLevel(s__Interface__UI_GroundItemBorder, 40)
 
     		// Not used anymore, but keep handle clean
-    		set s__Interface___UI_GroundItemBox=null
+    		set s__Interface__UI_GroundItemBox=null
 
 		// Item name
-		set s__Interface___UI_GroundItemName=BlzCreateFrameByType("TEXT", "GroundItemName", s__Interface___UI_GroundItemBorder, "", 0)
-		call BlzFrameSetPoint(s__Interface___UI_GroundItemName, FRAMEPOINT_TOPLEFT, s__Interface___UI_GroundItemBorder, FRAMEPOINT_TOPLEFT, 0.018000, - 0.015000)
-		call BlzFrameSetPoint(s__Interface___UI_GroundItemName, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_GroundItemBorder, FRAMEPOINT_TOPRIGHT, - 0.018000, - 0.038000)
-		call BlzFrameSetText(s__Interface___UI_GroundItemName, "")
-		call BlzFrameSetScale(s__Interface___UI_GroundItemName, 0.95)
-		call BlzFrameSetEnable(s__Interface___UI_GroundItemName, false)
-		call BlzFrameSetLevel(s__Interface___UI_GroundItemName, 42)
-		call BlzFrameSetTextAlignment(s__Interface___UI_GroundItemName, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+		set s__Interface__UI_GroundItemName=BlzCreateFrameByType("TEXT", "GroundItemName", s__Interface__UI_GroundItemBorder, "", 0)
+		call BlzFrameSetPoint(s__Interface__UI_GroundItemName, FRAMEPOINT_TOPLEFT, s__Interface__UI_GroundItemBorder, FRAMEPOINT_TOPLEFT, 0.018000, - 0.015000)
+		call BlzFrameSetPoint(s__Interface__UI_GroundItemName, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_GroundItemBorder, FRAMEPOINT_TOPRIGHT, - 0.018000, - 0.038000)
+		call BlzFrameSetText(s__Interface__UI_GroundItemName, "")
+		call BlzFrameSetScale(s__Interface__UI_GroundItemName, 0.95)
+		call BlzFrameSetEnable(s__Interface__UI_GroundItemName, false)
+		call BlzFrameSetLevel(s__Interface__UI_GroundItemName, 42)
+		call BlzFrameSetTextAlignment(s__Interface__UI_GroundItemName, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
     		// Item description
-    		set s__Interface___UI_GroundItemDesc=BlzCreateFrameByType("TEXT", "GroundItemDesc", s__Interface___UI_GroundItemBorder, "", 0)
-    		call BlzFrameSetPoint(s__Interface___UI_GroundItemDesc, FRAMEPOINT_TOPLEFT, s__Interface___UI_GroundItemBorder, FRAMEPOINT_TOPLEFT, 0.028000, - 0.043000)
-		call BlzFrameSetPoint(s__Interface___UI_GroundItemDesc, FRAMEPOINT_BOTTOMRIGHT, s__Interface___UI_GroundItemBorder, FRAMEPOINT_BOTTOMRIGHT, - 0.010000, 0.018000)
-    		call BlzFrameSetText(s__Interface___UI_GroundItemDesc, "")
-    		call BlzFrameSetScale(s__Interface___UI_GroundItemDesc, 0.78)
-    		call BlzFrameSetEnable(s__Interface___UI_GroundItemDesc, false)
-    		call BlzFrameSetLevel(s__Interface___UI_GroundItemDesc, 42)
-    		call BlzFrameSetTextAlignment(s__Interface___UI_GroundItemDesc, TEXT_JUSTIFY_LEFT, TEXT_JUSTIFY_TOP)
+    		set s__Interface__UI_GroundItemDesc=BlzCreateFrameByType("TEXT", "GroundItemDesc", s__Interface__UI_GroundItemBorder, "", 0)
+    		call BlzFrameSetPoint(s__Interface__UI_GroundItemDesc, FRAMEPOINT_TOPLEFT, s__Interface__UI_GroundItemBorder, FRAMEPOINT_TOPLEFT, 0.028000, - 0.043000)
+		call BlzFrameSetPoint(s__Interface__UI_GroundItemDesc, FRAMEPOINT_BOTTOMRIGHT, s__Interface__UI_GroundItemBorder, FRAMEPOINT_BOTTOMRIGHT, - 0.010000, 0.018000)
+    		call BlzFrameSetText(s__Interface__UI_GroundItemDesc, "")
+    		call BlzFrameSetScale(s__Interface__UI_GroundItemDesc, 0.78)
+    		call BlzFrameSetEnable(s__Interface__UI_GroundItemDesc, false)
+    		call BlzFrameSetLevel(s__Interface__UI_GroundItemDesc, 42)
+    		call BlzFrameSetTextAlignment(s__Interface__UI_GroundItemDesc, TEXT_JUSTIFY_LEFT, TEXT_JUSTIFY_TOP)
 
     		set stdNameFrame=null
     		set stdDescFrame=null
  endfunction
 
- function s__Interface___UI_onGroundItemPanel takes nothing returns nothing
+ function s__Interface__UI_onGroundItemPanel takes nothing returns nothing
       local framehandle stdNameFrame= BlzGetFrameByName("SimpleItemNameValue", 3)
       local framehandle stdDescFrame= BlzGetFrameByName("SimpleItemDescriptionValue", 3)
   local framehandle stdItemFrame= BlzGetFrameByName("SimpleInfoPanelItemDetail", 3)
@@ -6908,12 +6908,12 @@ endfunction
       local string itemDesc= ""
 
 		// Prevent stale standard item text from showing the panel on map init
-		if s__Interface___UI_groundItemSkipTicks > 0 then
-    			set s__Interface___UI_groundItemSkipTicks=s__Interface___UI_groundItemSkipTicks - 1
+		if s__Interface__UI_groundItemSkipTicks > 0 then
+    			set s__Interface__UI_groundItemSkipTicks=s__Interface__UI_groundItemSkipTicks - 1
 
-    			call BlzFrameSetVisible(s__Interface___UI_GroundItemBorder, false)
-    			call BlzFrameSetText(s__Interface___UI_GroundItemName, "")
-    			call BlzFrameSetText(s__Interface___UI_GroundItemDesc, "")
+    			call BlzFrameSetVisible(s__Interface__UI_GroundItemBorder, false)
+    			call BlzFrameSetText(s__Interface__UI_GroundItemName, "")
+    			call BlzFrameSetText(s__Interface__UI_GroundItemDesc, "")
 
     			if stdNameFrame != null then
         			call BlzFrameSetText(stdNameFrame, "")
@@ -6923,8 +6923,8 @@ endfunction
         			call BlzFrameSetText(stdDescFrame, "")
     			endif
 
-    			set s__Interface___UI_lastGroundItemName=""
-    			set s__Interface___UI_lastGroundItemDesc=""
+    			set s__Interface__UI_lastGroundItemName=""
+    			set s__Interface__UI_lastGroundItemDesc=""
 
     			set stdNameFrame=null
     			set stdDescFrame=null
@@ -6935,12 +6935,12 @@ endfunction
 		// Show custom panel only when the standard selected-item panel is actually active.
 		// This prevents stale SimpleItemNameValue/SimpleItemDescriptionValue from opening the frame on map init.
 		if stdItemFrame == null or not BlzFrameIsVisible(stdItemFrame) then
-    			call BlzFrameSetVisible(s__Interface___UI_GroundItemBorder, false)
-    			call BlzFrameSetText(s__Interface___UI_GroundItemName, "")
-    			call BlzFrameSetText(s__Interface___UI_GroundItemDesc, "")
+    			call BlzFrameSetVisible(s__Interface__UI_GroundItemBorder, false)
+    			call BlzFrameSetText(s__Interface__UI_GroundItemName, "")
+    			call BlzFrameSetText(s__Interface__UI_GroundItemDesc, "")
 
-    			set s__Interface___UI_lastGroundItemName=""
-    			set s__Interface___UI_lastGroundItemDesc=""
+    			set s__Interface__UI_lastGroundItemName=""
+    			set s__Interface__UI_lastGroundItemDesc=""
 
     			set stdNameFrame=null
     			set stdDescFrame=null
@@ -6951,9 +6951,9 @@ endfunction
 
     		// If selected object is a unit/hero/building, hide item panel
     		if selectedUnit != null then
-        		call BlzFrameSetVisible(s__Interface___UI_GroundItemBorder, false)
-        		set s__Interface___UI_lastGroundItemName=""
-        		set s__Interface___UI_lastGroundItemDesc=""
+        		call BlzFrameSetVisible(s__Interface__UI_GroundItemBorder, false)
+        		set s__Interface__UI_lastGroundItemName=""
+        		set s__Interface__UI_lastGroundItemDesc=""
 
         		set stdNameFrame=null
         		set stdDescFrame=null
@@ -6971,19 +6971,19 @@ endfunction
 
     		// No item selected / empty standard item panel
     		if itemName == "" or itemDesc == "" then
-        		call BlzFrameSetVisible(s__Interface___UI_GroundItemBorder, false)
-        		set s__Interface___UI_lastGroundItemName=""
-        		set s__Interface___UI_lastGroundItemDesc=""
+        		call BlzFrameSetVisible(s__Interface__UI_GroundItemBorder, false)
+        		set s__Interface__UI_lastGroundItemName=""
+        		set s__Interface__UI_lastGroundItemDesc=""
     		else
-        		if itemName != s__Interface___UI_lastGroundItemName or itemDesc != s__Interface___UI_lastGroundItemDesc then
-            		set s__Interface___UI_lastGroundItemName=itemName
-            		set s__Interface___UI_lastGroundItemDesc=itemDesc
+        		if itemName != s__Interface__UI_lastGroundItemName or itemDesc != s__Interface__UI_lastGroundItemDesc then
+            		set s__Interface__UI_lastGroundItemName=itemName
+            		set s__Interface__UI_lastGroundItemDesc=itemDesc
 
-            		call BlzFrameSetText(s__Interface___UI_GroundItemName, "|cffffcc00" + itemName + "|r")
-            		call BlzFrameSetText(s__Interface___UI_GroundItemDesc, "|cffffffff" + itemDesc + "|r")
+            		call BlzFrameSetText(s__Interface__UI_GroundItemName, "|cffffcc00" + itemName + "|r")
+            		call BlzFrameSetText(s__Interface__UI_GroundItemDesc, "|cffffffff" + itemDesc + "|r")
         		endif
 
-        		call BlzFrameSetVisible(s__Interface___UI_GroundItemBorder, true)
+        		call BlzFrameSetVisible(s__Interface__UI_GroundItemBorder, true)
     		endif
 
     		set stdNameFrame=null
@@ -6992,7 +6992,7 @@ endfunction
 		set selectedUnit=null
  endfunction
 
-        function s__Interface___UI_onInit takes nothing returns nothing
+        function s__Interface__UI_onInit takes nothing returns nothing
             local integer i= 0
 
             call BlzFrameSetAlpha(BlzGetFrameByName("SimpleInventoryCover", 0), 0)
@@ -7006,212 +7006,212 @@ endfunction
             call BlzFrameSetParent(BlzGetOriginFrame(ORIGIN_FRAME_UBERTOOLTIP, 0), BlzGetFrameByName("ConsoleUIBackdrop", 0))
             call BlzFrameSetAbsPoint(BlzGetOriginFrame(ORIGIN_FRAME_UBERTOOLTIP, 0), FRAMEPOINT_BOTTOMRIGHT, 0.8, 0.165)
 
-            set s__Interface___UI_Interface___UI=BlzCreateFrameByType("BACKDROP", "UI", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Interface___UI, FRAMEPOINT_TOPLEFT, 0.00000, 0.100000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Interface___UI, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
-            call BlzFrameSetTexture(s__Interface___UI_Interface___UI, "UI.blp", 0, true)
+            set s__Interface__UI_Interface__UI=BlzCreateFrameByType("BACKDROP", "UI", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Interface__UI, FRAMEPOINT_TOPLEFT, 0.00000, 0.100000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Interface__UI, FRAMEPOINT_BOTTOMRIGHT, 0.770000, 0.00000)
+            call BlzFrameSetTexture(s__Interface__UI_Interface__UI, "UI.blp", 0, true)
 
-            set s__Interface___UI_ShopSlots=BlzCreateFrameByType("BACKDROP", "ShopSlots", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_ShopSlots, FRAMEPOINT_TOPLEFT, 0.330600, 0.216500)
-            call BlzFrameSetAbsPoint(s__Interface___UI_ShopSlots, FRAMEPOINT_BOTTOMRIGHT, 0.478600, 0.100700)
-            call BlzFrameSetTexture(s__Interface___UI_ShopSlots, "12Slot.blp", 0, true)
+            set s__Interface__UI_ShopSlots=BlzCreateFrameByType("BACKDROP", "ShopSlots", BlzGetFrameByName("ConsoleUIBackdrop", 0), "", 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_ShopSlots, FRAMEPOINT_TOPLEFT, 0.330600, 0.216500)
+            call BlzFrameSetAbsPoint(s__Interface__UI_ShopSlots, FRAMEPOINT_BOTTOMRIGHT, 0.478600, 0.100700)
+            call BlzFrameSetTexture(s__Interface__UI_ShopSlots, "12Slot.blp", 0, true)
 
-            set s__Interface___UI_HealthBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface___UI_Interface___UI, "", 0)
-            call BlzFrameSetTexture(s__Interface___UI_HealthBar, "replaceabletextures\\teamcolor\\teamcolor00", 0, true)
-            call BlzFrameSetAbsPoint(s__Interface___UI_HealthBar, FRAMEPOINT_TOPLEFT, 0.0386400, 0.0778900)
-            call BlzFrameSetAbsPoint(s__Interface___UI_HealthBar, FRAMEPOINT_BOTTOMRIGHT, 0.255140, 0.0535100)
-            call BlzFrameSetValue(s__Interface___UI_HealthBar, 0)
+            set s__Interface__UI_HealthBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface__UI_Interface__UI, "", 0)
+            call BlzFrameSetTexture(s__Interface__UI_HealthBar, "replaceabletextures\\teamcolor\\teamcolor00", 0, true)
+            call BlzFrameSetAbsPoint(s__Interface__UI_HealthBar, FRAMEPOINT_TOPLEFT, 0.0386400, 0.0778900)
+            call BlzFrameSetAbsPoint(s__Interface__UI_HealthBar, FRAMEPOINT_BOTTOMRIGHT, 0.255140, 0.0535100)
+            call BlzFrameSetValue(s__Interface__UI_HealthBar, 0)
 
-            set s__Interface___UI_ManaBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface___UI_Interface___UI, "", 0)
-            call BlzFrameSetTexture(s__Interface___UI_ManaBar, "replaceabletextures\\teamcolor\\teamcolor01", 0, true)
-            call BlzFrameSetAbsPoint(s__Interface___UI_ManaBar, FRAMEPOINT_TOPLEFT, 0.551500, 0.0778000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_ManaBar, FRAMEPOINT_BOTTOMRIGHT, 0.768000, 0.0534200)
-            call BlzFrameSetValue(s__Interface___UI_ManaBar, 0)
+            set s__Interface__UI_ManaBar=BlzCreateFrameByType("SIMPLESTATUSBAR", "", s__Interface__UI_Interface__UI, "", 0)
+            call BlzFrameSetTexture(s__Interface__UI_ManaBar, "replaceabletextures\\teamcolor\\teamcolor01", 0, true)
+            call BlzFrameSetAbsPoint(s__Interface__UI_ManaBar, FRAMEPOINT_TOPLEFT, 0.551500, 0.0778000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_ManaBar, FRAMEPOINT_BOTTOMRIGHT, 0.768000, 0.0534200)
+            call BlzFrameSetValue(s__Interface__UI_ManaBar, 0)
 
-            set s__Interface___UI_HeroCheck=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_HeroCheck, FRAMEPOINT_TOPLEFT, - 0.131300, 0.600240)
-            call BlzFrameSetAbsPoint(s__Interface___UI_HeroCheck, FRAMEPOINT_BOTTOMRIGHT, - 0.117260, 0.586200)
+            set s__Interface__UI_HeroCheck=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_HeroCheck, FRAMEPOINT_TOPLEFT, - 0.131300, 0.600240)
+            call BlzFrameSetAbsPoint(s__Interface__UI_HeroCheck, FRAMEPOINT_BOTTOMRIGHT, - 0.117260, 0.586200)
 
-            set s__Interface___UI_HPText=BlzCreateFrameByType("TEXT", "HPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_HPText, FRAMEPOINT_TOPLEFT, 0.108100, 0.0726300)
-            call BlzFrameSetAbsPoint(s__Interface___UI_HPText, FRAMEPOINT_BOTTOMRIGHT, 0.184960, 0.0585900)
-            call BlzFrameSetText(s__Interface___UI_HPText, "|cffFFFFFF|r")
-            call BlzFrameSetEnable(s__Interface___UI_HPText, false)
-            call BlzFrameSetScale(s__Interface___UI_HPText, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface___UI_HPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+            set s__Interface__UI_HPText=BlzCreateFrameByType("TEXT", "HPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_HPText, FRAMEPOINT_TOPLEFT, 0.108100, 0.0726300)
+            call BlzFrameSetAbsPoint(s__Interface__UI_HPText, FRAMEPOINT_BOTTOMRIGHT, 0.184960, 0.0585900)
+            call BlzFrameSetText(s__Interface__UI_HPText, "|cffFFFFFF|r")
+            call BlzFrameSetEnable(s__Interface__UI_HPText, false)
+            call BlzFrameSetScale(s__Interface__UI_HPText, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface__UI_HPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
-            set s__Interface___UI_MPText=BlzCreateFrameByType("TEXT", "MPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_MPText, FRAMEPOINT_TOPLEFT, 0.622500, 0.0726000)
-            call BlzFrameSetAbsPoint(s__Interface___UI_MPText, FRAMEPOINT_BOTTOMRIGHT, 0.699360, 0.0585600)
-            call BlzFrameSetText(s__Interface___UI_MPText, "|cffFFFFFF|r")
-            call BlzFrameSetEnable(s__Interface___UI_MPText, false)
-            call BlzFrameSetScale(s__Interface___UI_MPText, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface___UI_MPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+            set s__Interface__UI_MPText=BlzCreateFrameByType("TEXT", "MPTEXT", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_MPText, FRAMEPOINT_TOPLEFT, 0.622500, 0.0726000)
+            call BlzFrameSetAbsPoint(s__Interface__UI_MPText, FRAMEPOINT_BOTTOMRIGHT, 0.699360, 0.0585600)
+            call BlzFrameSetText(s__Interface__UI_MPText, "|cffFFFFFF|r")
+            call BlzFrameSetEnable(s__Interface__UI_MPText, false)
+            call BlzFrameSetScale(s__Interface__UI_MPText, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface__UI_MPText, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
-            set s__Interface___UI_UnitName=BlzCreateFrameByType("TEXT", "UNITNAME", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0) // custom
-            call BlzFrameSetPoint(s__Interface___UI_UnitName, FRAMEPOINT_BOTTOM, BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), FRAMEPOINT_BOTTOM, - 0.23, 0.075)
-            call BlzFrameSetText(s__Interface___UI_UnitName, "")
-            call BlzFrameSetEnable(s__Interface___UI_UnitName, false)
-            call BlzFrameSetScale(s__Interface___UI_UnitName, 1.10)
-            call BlzFrameSetTextAlignment(s__Interface___UI_UnitName, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
+            set s__Interface__UI_UnitName=BlzCreateFrameByType("TEXT", "UNITNAME", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), "", 0) // custom
+            call BlzFrameSetPoint(s__Interface__UI_UnitName, FRAMEPOINT_BOTTOM, BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), FRAMEPOINT_BOTTOM, - 0.23, 0.075)
+            call BlzFrameSetText(s__Interface__UI_UnitName, "")
+            call BlzFrameSetEnable(s__Interface__UI_UnitName, false)
+            call BlzFrameSetScale(s__Interface__UI_UnitName, 1.10)
+            call BlzFrameSetTextAlignment(s__Interface__UI_UnitName, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_MIDDLE)
 
-            set s__Interface___UI_Lumber=BlzCreateFrameByType("TEXT", "GOLD", s__Interface___UI_Interface___UI, "", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Lumber, FRAMEPOINT_TOPLEFT, 0.291100, 0.0970200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Lumber, FRAMEPOINT_BOTTOMRIGHT, 0.346530, 0.0815000)
-            call BlzFrameSetText(s__Interface___UI_Lumber, "|cff00ff00|r")
-            call BlzFrameSetEnable(s__Interface___UI_Lumber, false)
-            call BlzFrameSetScale(s__Interface___UI_Lumber, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface___UI_Lumber, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_RIGHT)
+            set s__Interface__UI_Lumber=BlzCreateFrameByType("TEXT", "GOLD", s__Interface__UI_Interface__UI, "", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Lumber, FRAMEPOINT_TOPLEFT, 0.291100, 0.0970200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Lumber, FRAMEPOINT_BOTTOMRIGHT, 0.346530, 0.0815000)
+            call BlzFrameSetText(s__Interface__UI_Lumber, "|cff00ff00|r")
+            call BlzFrameSetEnable(s__Interface__UI_Lumber, false)
+            call BlzFrameSetScale(s__Interface__UI_Lumber, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface__UI_Lumber, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_RIGHT)
 
-            set s__Interface___UI_Gold=BlzCreateFrameByType("TEXT", "LUMBER", s__Interface___UI_Interface___UI, "", 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Gold, FRAMEPOINT_TOPLEFT, 0.460600, 0.0972500)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Gold, FRAMEPOINT_BOTTOMRIGHT, 0.516030, 0.0817300)
-            call BlzFrameSetText(s__Interface___UI_Gold, "|cffffcc00|r")
-            call BlzFrameSetEnable(s__Interface___UI_Gold, false)
-            call BlzFrameSetScale(s__Interface___UI_Gold, 1.00)
-            call BlzFrameSetTextAlignment(s__Interface___UI_Gold, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_LEFT)
+            set s__Interface__UI_Gold=BlzCreateFrameByType("TEXT", "LUMBER", s__Interface__UI_Interface__UI, "", 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Gold, FRAMEPOINT_TOPLEFT, 0.460600, 0.0972500)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Gold, FRAMEPOINT_BOTTOMRIGHT, 0.516030, 0.0817300)
+            call BlzFrameSetText(s__Interface__UI_Gold, "|cffffcc00|r")
+            call BlzFrameSetEnable(s__Interface__UI_Gold, false)
+            call BlzFrameSetScale(s__Interface__UI_Gold, 1.00)
+            call BlzFrameSetTextAlignment(s__Interface__UI_Gold, TEXT_JUSTIFY_CENTER, TEXT_JUSTIFY_LEFT)
 
-            set s__Interface___UI_CheckBL=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBL, FRAMEPOINT_TOPLEFT, 0.269200, 0.102200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBL, FRAMEPOINT_BOTTOMRIGHT, 0.292850, 0.0778100)
+            set s__Interface__UI_CheckBL=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBL, FRAMEPOINT_TOPLEFT, 0.269200, 0.102200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBL, FRAMEPOINT_BOTTOMRIGHT, 0.292850, 0.0778100)
 
-            set s__Interface___UI_CheckBR=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBR, FRAMEPOINT_TOPLEFT, 0.514800, 0.102200)
-            call BlzFrameSetAbsPoint(s__Interface___UI_CheckBR, FRAMEPOINT_BOTTOMRIGHT, 0.538450, 0.0778100)
+            set s__Interface__UI_CheckBR=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBR, FRAMEPOINT_TOPLEFT, 0.514800, 0.102200)
+            call BlzFrameSetAbsPoint(s__Interface__UI_CheckBR, FRAMEPOINT_BOTTOMRIGHT, 0.538450, 0.0778100)
 
-            set s__Interface___UI_Minimap=BlzCreateFrameByType("BACKDROP", "Minimap", s__Interface___UI_Interface___UI, "", 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_TOPLEFT, 999.0, 999.0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, 999.0, 999.0)
-            call BlzFrameSetTexture(s__Interface___UI_Minimap, "Minimap.blp", 0, true)
+            set s__Interface__UI_Minimap=BlzCreateFrameByType("BACKDROP", "Minimap", s__Interface__UI_Interface__UI, "", 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_TOPLEFT, 999.0, 999.0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_Minimap, FRAMEPOINT_BOTTOMRIGHT, 999.0, 999.0)
+            call BlzFrameSetTexture(s__Interface__UI_Minimap, "Minimap.blp", 0, true)
 
-            set s__Interface___UI_MenuCheck=BlzCreateFrame("QuestCheckBox", s__Interface___UI_Interface___UI, 0, 0)
-            call BlzFrameSetAbsPoint(s__Interface___UI_MenuCheck, FRAMEPOINT_TOPLEFT, 0.918800, 0.601640)
-            call BlzFrameSetAbsPoint(s__Interface___UI_MenuCheck, FRAMEPOINT_BOTTOMRIGHT, 0.932840, 0.587600)
+            set s__Interface__UI_MenuCheck=BlzCreateFrame("QuestCheckBox", s__Interface__UI_Interface__UI, 0, 0)
+            call BlzFrameSetAbsPoint(s__Interface__UI_MenuCheck, FRAMEPOINT_TOPLEFT, 0.918800, 0.601640)
+            call BlzFrameSetAbsPoint(s__Interface__UI_MenuCheck, FRAMEPOINT_BOTTOMRIGHT, 0.932840, 0.587600)
 
-            set s__Interface___UI_LumberIcon=BlzCreateFrameByType("BACKDROP", "LumberIcon", s__Interface___UI_Interface___UI, "", 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_LumberIcon, FRAMEPOINT_TOPLEFT, 0.347600, 0.0966800)
-            call BlzFrameSetAbsPoint(s__Interface___UI_LumberIcon, FRAMEPOINT_BOTTOMRIGHT, 0.362600, 0.0816800)
+            set s__Interface__UI_LumberIcon=BlzCreateFrameByType("BACKDROP", "LumberIcon", s__Interface__UI_Interface__UI, "", 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_LumberIcon, FRAMEPOINT_TOPLEFT, 0.347600, 0.0966800)
+            call BlzFrameSetAbsPoint(s__Interface__UI_LumberIcon, FRAMEPOINT_BOTTOMRIGHT, 0.362600, 0.0816800)
 
-            if Interface___LUMBER_ICON != "" then
-                call BlzFrameSetTexture(s__Interface___UI_LumberIcon, Interface___LUMBER_ICON, 0, true)
+            if Interface__LUMBER_ICON != "" then
+                call BlzFrameSetTexture(s__Interface__UI_LumberIcon, Interface__LUMBER_ICON, 0, true)
             else
-                call BlzFrameSetVisible(s__Interface___UI_LumberIcon, false)
+                call BlzFrameSetVisible(s__Interface__UI_LumberIcon, false)
             endif
 
-            set s__Interface___UI_GoldIcon=BlzCreateFrameByType("BACKDROP", "GoldIcon", s__Interface___UI_Interface___UI, "", 1)
-            call BlzFrameSetAbsPoint(s__Interface___UI_GoldIcon, FRAMEPOINT_TOPLEFT, 0.445900, 0.0966600)
-            call BlzFrameSetAbsPoint(s__Interface___UI_GoldIcon, FRAMEPOINT_BOTTOMRIGHT, 0.460900, 0.0816600)
+            set s__Interface__UI_GoldIcon=BlzCreateFrameByType("BACKDROP", "GoldIcon", s__Interface__UI_Interface__UI, "", 1)
+            call BlzFrameSetAbsPoint(s__Interface__UI_GoldIcon, FRAMEPOINT_TOPLEFT, 0.445900, 0.0966600)
+            call BlzFrameSetAbsPoint(s__Interface__UI_GoldIcon, FRAMEPOINT_BOTTOMRIGHT, 0.460900, 0.0816600)
 
-            if Interface___GOLD_ICON != "" then
-                call BlzFrameSetTexture(s__Interface___UI_GoldIcon, Interface___GOLD_ICON, 0, true)
+            if Interface__GOLD_ICON != "" then
+                call BlzFrameSetTexture(s__Interface__UI_GoldIcon, Interface__GOLD_ICON, 0, true)
             else
-                call BlzFrameSetVisible(s__Interface___UI_GoldIcon, false)
+                call BlzFrameSetVisible(s__Interface__UI_GoldIcon, false)
             endif
             
-            call RegisterPlayerUnitEvent(EVENT_PLAYER_UNIT_SELECTED , function s__Interface___UI_onSelect)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_herotrigger, s__Interface___UI_HeroCheck, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_herotrigger, s__Interface___UI_HeroCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call TriggerAddAction(s__Interface___UI_herotrigger, function s__Interface___UI_onHeroCheck)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBL, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBL, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBR, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_maptrigger, s__Interface___UI_CheckBR, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call TriggerAddAction(s__Interface___UI_maptrigger, function s__Interface___UI_onMinimap)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_menutrigger, s__Interface___UI_MenuCheck, FRAMEEVENT_CHECKBOX_CHECKED)
-            call BlzTriggerRegisterFrameEvent(s__Interface___UI_menutrigger, s__Interface___UI_MenuCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
-            call TriggerAddAction(s__Interface___UI_menutrigger, function s__Interface___UI_onMenu)
-            call TimerStart(CreateTimer(), 0.2, true, function s__Interface___UI_onResources)
+            call RegisterPlayerUnitEvent(EVENT_PLAYER_UNIT_SELECTED , function s__Interface__UI_onSelect)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_herotrigger, s__Interface__UI_HeroCheck, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_herotrigger, s__Interface__UI_HeroCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call TriggerAddAction(s__Interface__UI_herotrigger, function s__Interface__UI_onHeroCheck)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBL, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBL, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBR, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_maptrigger, s__Interface__UI_CheckBR, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call TriggerAddAction(s__Interface__UI_maptrigger, function s__Interface__UI_onMinimap)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_menutrigger, s__Interface__UI_MenuCheck, FRAMEEVENT_CHECKBOX_CHECKED)
+            call BlzTriggerRegisterFrameEvent(s__Interface__UI_menutrigger, s__Interface__UI_MenuCheck, FRAMEEVENT_CHECKBOX_UNCHECKED)
+            call TriggerAddAction(s__Interface__UI_menutrigger, function s__Interface__UI_onMenu)
+            call TimerStart(CreateTimer(), 0.2, true, function s__Interface__UI_onResources)
 
             loop
                 exitwhen i > bj_MAX_PLAYER_SLOTS
-                    set s__Interface___UI_x1[i]=999.0
-                    set s__Interface___UI_x2[i]=999.0
-                    set s__Interface___UI_y01[i]=999.0
-                    set s__Interface___UI_y02[i]=999.0
-                    set s__Interface___UI_y11[i]=999.0
-                    set s__Interface___UI_y12[i]=999.0
-                    set s__Interface___UI_y21[i]=999.0
-                    set s__Interface___UI_y22[i]=999.0
-                    set s__Interface___UI_y31[i]=999.0
-                    set s__Interface___UI_y32[i]=999.0
-                    set s__Interface___UI_y41[i]=999.0
-                    set s__Interface___UI_y42[i]=999.0
-                    set s__Interface___UI_y51[i]=999.0
-                    set s__Interface___UI_y52[i]=999.0
-                    set s__Interface___UI_y61[i]=999.0
-                    set s__Interface___UI_y62[i]=999.0
-                    set s__Interface___UI_mapX1[i]=999.0
-                    set s__Interface___UI_mapY1[i]=999.0
-                    set s__Interface___UI_mapX2[i]=999.0
-                    set s__Interface___UI_mapY2[i]=999.0
-                    set s__Interface___UI_frameX1[i]=999.0
-                    set s__Interface___UI_frameY1[i]=999.0
-                    set s__Interface___UI_frameX2[i]=999.0
-                    set s__Interface___UI_frameY2[i]=999.0
-                    set s__Interface___UI_command0X1[i]=999.0
-                    set s__Interface___UI_command0Y1[i]=999.0
-                    set s__Interface___UI_command1X1[i]=999.0
-                    set s__Interface___UI_command1Y1[i]=999.0
-                    set s__Interface___UI_command2X1[i]=999.0
-                    set s__Interface___UI_command2Y1[i]=999.0
-                    set s__Interface___UI_command3X1[i]=999.0
-                    set s__Interface___UI_command3Y1[i]=999.0
-                    set s__Interface___UI_command4X1[i]=999.0
-                    set s__Interface___UI_command4Y1[i]=999.0
-                    set s__Interface___UI_command5X1[i]=999.0
-                    set s__Interface___UI_command5Y1[i]=999.0
-                    set s__Interface___UI_command6X1[i]=999.0
-                    set s__Interface___UI_command6Y1[i]=999.0
-                    set s__Interface___UI_command7X1[i]=999.0
-                    set s__Interface___UI_command7Y1[i]=999.0
-                    set s__Interface___UI_command8X1[i]=999.0
-                    set s__Interface___UI_command8Y1[i]=999.0
-                    set s__Interface___UI_command9X1[i]=999.0
-                    set s__Interface___UI_command9Y1[i]=999.0
-                    set s__Interface___UI_command10X1[i]=999.0
-                    set s__Interface___UI_command10Y1[i]=999.0
-                    set s__Interface___UI_command11X1[i]=999.0
-                    set s__Interface___UI_command11Y1[i]=999.0
-                    set s__Interface___UI_command0X2[i]=999.0
-                    set s__Interface___UI_command0Y2[i]=999.0
-                    set s__Interface___UI_command1X2[i]=999.0
-                    set s__Interface___UI_command1Y2[i]=999.0
-                    set s__Interface___UI_command2X2[i]=999.0
-                    set s__Interface___UI_command2Y2[i]=999.0
-                    set s__Interface___UI_command3X2[i]=999.0
-                    set s__Interface___UI_command3Y2[i]=999.0
-                    set s__Interface___UI_command4X2[i]=999.0
-                    set s__Interface___UI_command4Y2[i]=999.0
-                    set s__Interface___UI_command5X2[i]=999.0
-                    set s__Interface___UI_command5Y2[i]=999.0
-                    set s__Interface___UI_command6X2[i]=999.0
-                    set s__Interface___UI_command6Y2[i]=999.0
-                    set s__Interface___UI_command7X2[i]=999.0
-                    set s__Interface___UI_command7Y2[i]=999.0
-                    set s__Interface___UI_command8X2[i]=999.0
-                    set s__Interface___UI_command8Y2[i]=999.0
-                    set s__Interface___UI_command9X2[i]=999.0
-                    set s__Interface___UI_command9Y2[i]=999.0
-                    set s__Interface___UI_command10X2[i]=999.0
-                    set s__Interface___UI_command10Y2[i]=999.0
-                    set s__Interface___UI_command11X2[i]=999.0
-                    set s__Interface___UI_command11Y2[i]=999.0
-                    set s__Interface___UI_shop[i]=false
-                    set s__Interface___UI_main[i]=null
-                    set s__Interface___UI_checkL[i]=false
-                    set s__Interface___UI_checkR[i]=false
-                    set s__Interface___UI_checkMenu[i]=false
+                    set s__Interface__UI_x1[i]=999.0
+                    set s__Interface__UI_x2[i]=999.0
+                    set s__Interface__UI_y01[i]=999.0
+                    set s__Interface__UI_y02[i]=999.0
+                    set s__Interface__UI_y11[i]=999.0
+                    set s__Interface__UI_y12[i]=999.0
+                    set s__Interface__UI_y21[i]=999.0
+                    set s__Interface__UI_y22[i]=999.0
+                    set s__Interface__UI_y31[i]=999.0
+                    set s__Interface__UI_y32[i]=999.0
+                    set s__Interface__UI_y41[i]=999.0
+                    set s__Interface__UI_y42[i]=999.0
+                    set s__Interface__UI_y51[i]=999.0
+                    set s__Interface__UI_y52[i]=999.0
+                    set s__Interface__UI_y61[i]=999.0
+                    set s__Interface__UI_y62[i]=999.0
+                    set s__Interface__UI_mapX1[i]=999.0
+                    set s__Interface__UI_mapY1[i]=999.0
+                    set s__Interface__UI_mapX2[i]=999.0
+                    set s__Interface__UI_mapY2[i]=999.0
+                    set s__Interface__UI_frameX1[i]=999.0
+                    set s__Interface__UI_frameY1[i]=999.0
+                    set s__Interface__UI_frameX2[i]=999.0
+                    set s__Interface__UI_frameY2[i]=999.0
+                    set s__Interface__UI_command0X1[i]=999.0
+                    set s__Interface__UI_command0Y1[i]=999.0
+                    set s__Interface__UI_command1X1[i]=999.0
+                    set s__Interface__UI_command1Y1[i]=999.0
+                    set s__Interface__UI_command2X1[i]=999.0
+                    set s__Interface__UI_command2Y1[i]=999.0
+                    set s__Interface__UI_command3X1[i]=999.0
+                    set s__Interface__UI_command3Y1[i]=999.0
+                    set s__Interface__UI_command4X1[i]=999.0
+                    set s__Interface__UI_command4Y1[i]=999.0
+                    set s__Interface__UI_command5X1[i]=999.0
+                    set s__Interface__UI_command5Y1[i]=999.0
+                    set s__Interface__UI_command6X1[i]=999.0
+                    set s__Interface__UI_command6Y1[i]=999.0
+                    set s__Interface__UI_command7X1[i]=999.0
+                    set s__Interface__UI_command7Y1[i]=999.0
+                    set s__Interface__UI_command8X1[i]=999.0
+                    set s__Interface__UI_command8Y1[i]=999.0
+                    set s__Interface__UI_command9X1[i]=999.0
+                    set s__Interface__UI_command9Y1[i]=999.0
+                    set s__Interface__UI_command10X1[i]=999.0
+                    set s__Interface__UI_command10Y1[i]=999.0
+                    set s__Interface__UI_command11X1[i]=999.0
+                    set s__Interface__UI_command11Y1[i]=999.0
+                    set s__Interface__UI_command0X2[i]=999.0
+                    set s__Interface__UI_command0Y2[i]=999.0
+                    set s__Interface__UI_command1X2[i]=999.0
+                    set s__Interface__UI_command1Y2[i]=999.0
+                    set s__Interface__UI_command2X2[i]=999.0
+                    set s__Interface__UI_command2Y2[i]=999.0
+                    set s__Interface__UI_command3X2[i]=999.0
+                    set s__Interface__UI_command3Y2[i]=999.0
+                    set s__Interface__UI_command4X2[i]=999.0
+                    set s__Interface__UI_command4Y2[i]=999.0
+                    set s__Interface__UI_command5X2[i]=999.0
+                    set s__Interface__UI_command5Y2[i]=999.0
+                    set s__Interface__UI_command6X2[i]=999.0
+                    set s__Interface__UI_command6Y2[i]=999.0
+                    set s__Interface__UI_command7X2[i]=999.0
+                    set s__Interface__UI_command7Y2[i]=999.0
+                    set s__Interface__UI_command8X2[i]=999.0
+                    set s__Interface__UI_command8Y2[i]=999.0
+                    set s__Interface__UI_command9X2[i]=999.0
+                    set s__Interface__UI_command9Y2[i]=999.0
+                    set s__Interface__UI_command10X2[i]=999.0
+                    set s__Interface__UI_command10Y2[i]=999.0
+                    set s__Interface__UI_command11X2[i]=999.0
+                    set s__Interface__UI_command11Y2[i]=999.0
+                    set s__Interface__UI_shop[i]=false
+                    set s__Interface__UI_main[i]=null
+                    set s__Interface__UI_checkL[i]=false
+                    set s__Interface__UI_checkR[i]=false
+                    set s__Interface__UI_checkMenu[i]=false
                 set i=i + 1
             endloop
 
-            call s__Interface___UI_onCommandButtons()
-            call s__Interface___UI_onInventoryButtons()
-            call s__Interface___UI_onInfoPanel()
-            call s__Interface___UI_onPortrait()
-            call s__Interface___UI_onGroupSelection()
-            call s__Interface___UI_onChat()
-            call s__Interface___UI_createGroundItemPanel()
-            call TimerStart(s__Interface___UI_groundItemTimer, 0.05, true, function s__Interface___UI_onGroundItemPanel)
+            call s__Interface__UI_onCommandButtons()
+            call s__Interface__UI_onInventoryButtons()
+            call s__Interface__UI_onInfoPanel()
+            call s__Interface__UI_onPortrait()
+            call s__Interface__UI_onGroupSelection()
+            call s__Interface__UI_onChat()
+            call s__Interface__UI_createGroundItemPanel()
+            call TimerStart(s__Interface__UI_groundItemTimer, 0.05, true, function s__Interface__UI_onGroundItemPanel)
         endfunction
 
 //library Interface ends
@@ -69968,8 +69968,8 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs115784656")
-call ExecuteFunc("GetMainSelectedUnit___init_function")
+call ExecuteFunc("jasshelper__initstructs120411015")
+call ExecuteFunc("GetMainSelectedUnit__init_function")
 call ExecuteFunc("NSLHelper___Init")
 call ExecuteFunc("TasUnitBagGUI___init_function")
 call ExecuteFunc("NSLImpl___Init")
@@ -70181,7 +70181,7 @@ function sa___prototype27_NSLUtils___OnPlayerCodeLoaded takes nothing returns bo
     return true
 endfunction
 
-function jasshelper__initstructs115784656 takes nothing returns nothing
+function jasshelper__initstructs120411015 takes nothing returns nothing
     set st__NSL_Code_create=CreateTrigger()
     call TriggerAddCondition(st__NSL_Code_create,Condition( function sa__NSL_Code_create))
     set st__NSL_Code_SV=CreateTrigger()
@@ -70270,6 +70270,6 @@ call ExecuteFunc("s__SyncHelper___Sync_SyncHelper___INITS___onInit")
 
 
     call ExecuteFunc("s__Damage_onInit")
-    call ExecuteFunc("s__Interface___UI_onInit")
+    call ExecuteFunc("s__Interface__UI_onInit")
 endfunction
 

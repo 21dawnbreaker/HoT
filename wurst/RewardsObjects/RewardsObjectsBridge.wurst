@@ -52,10 +52,10 @@ init
 
                 createFloatingTextAboveUnitRP(u, "Как я мог забыть... какое же там было значение...")
 
-                if 0 <= r_int and r_int < 80
+                if 0 <= r_int and r_int < 85
                     u.addItemById(ChooseRandomItem(3))
                 
-                if 80 <= r_int and r_int < 95
+                if 85 <= r_int and r_int < 95
                     u.addItemById(ChooseRandomItem(4))
 
                 if 95 < r_int
